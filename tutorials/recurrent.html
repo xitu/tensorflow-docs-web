@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -50,7 +52,7 @@
 <p>本教程的目的是重现 <a href="https://arxiv.org/abs/1409.2329">Zaremba et al., 2014</a> (<a href="https://arxiv.org/pdf/1409.2329.pdf">pdf</a>) 的结果，它在 PTB 数据集上得到了很棒的质量。</p>
 <h2>教程文件</h2>
 <p>这篇教程使用的文件在<a href="https://github.com/tensorflow/models">我们的仓库</a>中可以找到，路径是 <code>models/tutorials/rnn/ptb</code>。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>文件</th>
 <th>作用</th>
@@ -66,7 +68,7 @@
 <td>用于读取数据集的代码。</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>下载和准备数据</h2>
 <p>本教程需要的数据在 data/ 路径下，来源于 <a href="http://www.fit.vutbr.cz/~imikolov/rnnlm/simple-examples.tgz">Tomas Mikolov 网站上的 PTB 数据集</a></p>
 <p>该数据集已经经过预处理，总共包含了 10000 个不同的词语，其中包括语句结束标记符，以及标记稀有词语的特殊符号 (<unk>) 。我们在 <code>reader.py</code> 中转换所有的词语，让他们各自有唯一的整型标识符，便于神经网络处理。</p>

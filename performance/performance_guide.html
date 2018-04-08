@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -347,7 +349,7 @@ if FLAGS.num_intra_threads &gt; 0:
 --batch_size=1 --num_inter_threads=1 --num_intra_threads=4 \
 --data_dir=&lt;path to ImageNet TFRecords&gt;
 </code></pre>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>优化</th>
 <th>数据格式</th>
@@ -386,7 +388,7 @@ if FLAGS.num_intra_threads &gt; 0:
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>每批次样本数目：32</strong></p>
 <p>MKL 测试所执行的命令：</p>
 <pre><code class="lang-bash">python tf_cnn_benchmarks.py --forward_only=True --device=cpu --mkl=True \
@@ -394,7 +396,7 @@ if FLAGS.num_intra_threads &gt; 0:
 --batch_size=32 --num_inter_threads=1 --num_intra_threads=4 \
 --data_dir=&lt;path to ImageNet TFRecords&gt;
 </code></pre>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>优化</th>
 <th>数据格式</th>
@@ -433,7 +435,7 @@ if FLAGS.num_intra_threads &gt; 0:
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>推理 ResNet-50</h4>
 <p><strong>环境</strong></p>
 <ul>
@@ -450,7 +452,7 @@ if FLAGS.num_intra_threads &gt; 0:
 --batch_size=1 --num_inter_threads=1 --num_intra_threads=4 \
 --data_dir=&lt;path to ImageNet TFRecords&gt;
 </code></pre>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>优化</th>
 <th>数据格式</th>
@@ -489,7 +491,7 @@ if FLAGS.num_intra_threads &gt; 0:
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>每批次样本数目：32</strong></p>
 <p>MKL 测试所执行的命令：</p>
 <pre><code class="lang-bash">python tf_cnn_benchmarks.py --forward_only=True --device=cpu --mkl=True \
@@ -497,7 +499,7 @@ if FLAGS.num_intra_threads &gt; 0:
 --batch_size=32 --num_inter_threads=1 --num_intra_threads=4 \
 --data_dir=&lt;path to ImageNet TFRecords&gt;
 </code></pre>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>优化</th>
 <th>数据格式</th>
@@ -536,7 +538,7 @@ if FLAGS.num_intra_threads &gt; 0:
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>训练 InceptionV3</h4>
 <p><strong>环境</strong></p>
 <ul>
@@ -552,7 +554,7 @@ if FLAGS.num_intra_threads &gt; 0:
 --num_inter_threads=2 --num_intra_threads=36 \
 --data_dir=&lt;path to ImageNet TFRecords&gt;
 </code></pre>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th></th>
 <th>优化</th>
@@ -592,7 +594,7 @@ if FLAGS.num_intra_threads &gt; 0:
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>另外，我们还让 ResNet 和 <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet</a><br>
 在此配置上以一种自组织（ad hoc）方式运行。只不过测试次数还不足以发布一份明确的结果。不过，不完整的测试结果很大程度上与上表结果类似，即 MKL 的效率为 AVX2 三倍多。</p>
 

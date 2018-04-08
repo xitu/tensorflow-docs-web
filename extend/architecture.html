@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -47,7 +49,7 @@
 <p>本文适用于那些受到当前 API 制约从而希望以某种方式扩展 TensorFlow 的开发者、希望优化 TensorFlow 的硬件工程师、大规模分布式机器学习系统的实现人员以及任何希望了解 TensorFlow 底层机制的人。阅读本文之后，你应该了解 TensorFlow 体系架构，以便能够阅读和修改 TensorFlow 的核心代码。</p>
 <h2>概述</h2>
 <p>TensorFlow 运行时是一个跨平台库。图 1 展示了其总体框架。通过一套 C API 将核心运行时与不同语言的用户级代码分离开来。</p>
-<p><img src="https://www.tensorflow.org/images/layers.png" alt="TensorFlow 架构层级">{: width="300"}</p>
+<p><img src="https://www.tensorflow.org/images/layers.png" alt="TensorFlow 架构层级"></p>
 <p><strong>图 1</strong></p>
 <p>本文只关注如下几层：</p>
 <ul>
@@ -74,7 +76,7 @@
 </li>
 </ul>
 <p>图 2 展示了这些组件之间的交互。<code>/job:worker/task:0</code> 和 <code>/job:ps/task:0</code> 均为具有工作进程的任务。<code>PS</code> 代表参数服务器：负责存储和更新模型参数的任务。其他任务在优化参数时会向这些参数发送更新。任务之间的这种特定分工并不是必须的，但是这在分布式训练中很常用。</p>
-<p><img src="https://www.tensorflow.org/images/diag1.svg" alt="TensorFlow 架构图示">{: width="500"}</p>
+<p><img src="https://www.tensorflow.org/images/diag1.svg" alt="TensorFlow 架构图示"></p>
 <p><strong>图 2</strong></p>
 <p>注意，分布式主控端和工作进程仅存在于分布式 TensorFlow 中。单进程版的 TensorFlow 使用了一种特殊的 Session 实现，与分布式主控端的工作完全一样，不过它只与本地进程中的设备通信。</p>
 <p>下面各小节更详细地描述了 TensorFlow 核心层，并以一个示例图来展示其处理步骤。</p>
@@ -82,7 +84,7 @@
 <p>用户负责编写用于构建计算图的 TensorFlow 客户端程序。这个程序可以直接组成独立的操作或者使用类似于 Estimator API 之类的库组建神经网络层和其他更高层次的抽象。TensorFlow 支持多种客户端语言，我们优先考虑 Python 和 C++，因为我们内部的用户最熟悉这些语言。随着其特性的逐渐稳定与完善，我们通常将它们移植到 C++，这样用户就能够从所有客户端语言中使用优化后的版本了。大部分训练库仍然是 Python，但是 C++ 则是作为更高效率的接口来提供给模型部署后的推断。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></p>
 <p>在图 3 中，客户端构建了一个图，其权值 (w) 与特征向量 (x) 相乘，然后将其与偏置 (b) 相加，并最后将结果保存在变量 (s) 中。</p>
-<p><img src="https://www.tensorflow.org/images/graph_client.svg" alt="TensorFlow 架构图示：客户端">{: width="700"}</p>
+<p><img src="https://www.tensorflow.org/images/graph_client.svg" alt="TensorFlow 架构图示：客户端"></p>
 <p><strong>图 3</strong></p>
 <h3>代码</h3>
 <ul>
@@ -96,16 +98,16 @@
 <li>将计算子图缓存，以便后续复用</li>
 </ul>
 <p>由于主控端了解在每一步计算中的整个计算过程，它首先使用了诸如公共子表达式消除、常量拆叠等标准优化方法对计算子图进行优化，然后再负责协调优化后的子图去执行一系列任务。</p>
-<p><img src="https://www.tensorflow.org/images/graph_master_cln.svg" alt="TensorFlow 架构图示：Master">{: width="700"}</p>
+<p><img src="https://www.tensorflow.org/images/graph_master_cln.svg" alt="TensorFlow 架构图示：Master"></p>
 <p><strong>图 4</strong></p>
 <p>图 5 展示了一个示例图可能的划分。分布式主控端已将模型的参数分组，以便于将它们存储在参数服务器上。</p>
-<p><img src="https://www.tensorflow.org/images/graph_split1.svg" alt="划分图">{: width="700"}</p>
+<p><img src="https://www.tensorflow.org/images/graph_split1.svg" alt="划分图"></p>
 <p><strong>图 5</strong></p>
 <p>当图的边被分区所切断时，分布式 Master 则会介入并在接受和发送节点间传递任务信息（如图 6）。</p>
-<p><img src="https://www.tensorflow.org/images/graph_split2.svg" alt="划分图">{: width="700"}</p>
+<p><img src="https://www.tensorflow.org/images/graph_split2.svg" alt="划分图"></p>
 <p><strong>图 6</strong></p>
 <p>然后，分布式 Master 会将子图分配给分布式任务。</p>
-<p><img src="https://www.tensorflow.org/images/graph_workers_cln.svg" alt="分区图">{: width="700"}</p>
+<p><img src="https://www.tensorflow.org/images/graph_workers_cln.svg" alt="分区图"></p>
 <p><strong>图 7</strong></p>
 <h3>代码</h3>
 <ul>
@@ -131,7 +133,7 @@
 <li>Converged Ethernet 上的 RDMA</li>
 </ul>
 <p>我们也为用于多 GPU 通信的 Nvidia NCCL 库提供了初步支持 (见 <a href="https://www.tensorflow.org/code/tensorflow/contrib/nccl/python/ops/nccl_ops.py"><code>tf.contrib.nccl</code></a>)。</p>
-<p><img src="https://www.tensorflow.org/images/graph_send_recv.svg" alt="分区图">{: width="700"}</p>
+<p><img src="https://www.tensorflow.org/images/graph_send_recv.svg" alt="分区图"></p>
 <p><strong>图 8</strong></p>
 <h3>代码</h3>
 <ul>

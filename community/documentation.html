@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -278,8 +280,8 @@ and deletes everything else from the module. For example, the following snippet<
 demonstrates how to put <code>remove_undocumented</code> in the <code>__init__.py</code> file for a<br>
 module:</p>
 <p><strong>init</strong>.py:</p>
-<pre><code># Use * imports only if __all__ defined in some_file
-from tensorflow.some_module.some_file import *
+<h1>Use * imports only if <strong>all</strong> defined in some_file</h1>
+<pre><code>from tensorflow.some_module.some_file import *
 
 # Otherwise import symbols directly
 from tensorflow.some_module.some_other_file import some_symbol
@@ -350,16 +352,12 @@ input.dims()</code>)</li>
 <p>Put three backticks around sample code and pseudocode examples. And use <code>==&gt;</code><br>
 instead of a single equal sign when you want to show what an op returns. For<br>
 example:</p>
-<pre><code>```
-# 'input' is a tensor of shape [2, 3, 5]
-(tf.expand_dims(input, 0)) ==&gt; [1, 2, 3, 5]
-```
+<pre><code>    # 'input' is a tensor of shape [2, 3, 5]
+    (tf.expand_dims(input, 0)) ==&gt; [1, 2, 3, 5]
 </code></pre>
 <p>If you're providing a Python code sample, add the python style label to ensure<br>
 proper syntax highlighting:</p>
-<pre><code>```python
-# some Python code
-```
+<pre><code class="lang-python">    # some Python code
 </code></pre>
 <p>Two notes about backticks for code samples in Markdown:</p>
 <ol>
@@ -399,29 +397,26 @@ with a <code>REGISTER_OP</code> declaration. The docstring in the C++ file is pr
 automatically add some information for the input types, output types, and Attr<br>
 types and default values.</p>
 <p>For example:</p>
-<pre><code>```c++
-REGISTER_OP("PngDecode")
-  .Input("contents: string")
-  .Attr("channels: int = 0")
-  .Output("image: uint8")
-  .Doc(R"doc(
-Decodes the contents of a PNG file into a uint8 tensor.
+<pre><code class="lang-c++">    REGISTER_OP(&quot;PngDecode&quot;)
+      .Input(&quot;contents: string&quot;)
+      .Attr(&quot;channels: int = 0&quot;)
+      .Output(&quot;image: uint8&quot;)
+      .Doc(R&quot;doc(
+    Decodes the contents of a PNG file into a uint8 tensor.
 
-contents: PNG file contents.
-channels: Number of color channels, or 0 to autodetect based on the input.
-  Must be 0 for autodetect, 1 for grayscale, 3 for RGB, or 4 for RGBA.
-  If the input has a different number of channels, it will be transformed
-  accordingly.
-image:= A 3-D uint8 tensor of shape `[height, width, channels]`.
-  If `channels` is 0, the last dimension is determined
-  from the png contents.
-)doc");
-```
+    contents: PNG file contents.
+    channels: Number of color channels, or 0 to autodetect based on the input.
+      Must be 0 for autodetect, 1 for grayscale, 3 for RGB, or 4 for RGBA.
+      If the input has a different number of channels, it will be transformed
+      accordingly.
+    image:= A 3-D uint8 tensor of shape `[height, width, channels]`.
+      If `channels` is 0, the last dimension is determined
+      from the png contents.
+    )doc&quot;);
 </code></pre>
 <p>Results in this piece of Markdown:</p>
-<pre><code>### tf.image.png_decode(contents, channels=None, name=None) {#png_decode}
-
-Decodes the contents of a PNG file into a uint8 tensor.
+<h3>tf.image.png_decode(contents, channels=None, name=None) {#png_decode}</h3>
+<pre><code>Decodes the contents of a PNG file into a uint8 tensor.
 
 #### Args:
 
@@ -508,8 +503,8 @@ snippet of code to clarify what the example is demonstrating. When an op<br>
 manipulates the shape of a Tensor it is often useful to include an example of<br>
 the before and after, as well.</p>
 <p>The <code>squeeze()</code> op has a nice pseudocode example:</p>
-<pre><code># 't' is a tensor of shape [1, 2, 1, 3, 1, 1]
-shape(squeeze(t)) ==&gt; [2, 3]
+<h1>'t' is a tensor of shape [1, 2, 1, 3, 1, 1]</h1>
+<pre><code>shape(squeeze(t)) ==&gt; [2, 3]
 </code></pre>
 <p>The <code>tile()</code> op provides a good example in descriptive text:</p>
 <pre><code>For example, tiling `[a, b, c, d]` by `[2]` produces `[a b c d a b c d]`.
@@ -521,9 +516,8 @@ possible, putting code samples in the<br>
 Otherwise, add them to the module or class docstring where the Ops constructors<br>
 are called out.</p>
 <p>Here's an example from the module docstring in <code>api_guides/python/math_ops.md</code>:</p>
-<pre><code>## Segmentation
-
-TensorFlow provides several operations that you can use to perform common
+<h2>Segmentation</h2>
+<pre><code>TensorFlow provides several operations that you can use to perform common
 math computations on tensor segments.
 ...
 In particular, a segmentation of a matrix tensor is a mapping of rows to
@@ -604,16 +598,16 @@ image: 3-D with shape `[height, width, channels]`.
 </code></pre>
 <p>This generates the following Args section in<br>
 <code>api_docs/python/tf/image/decode_png.md</code>:</p>
-<pre><code>#### Args:
-
-* &lt;b&gt;`contents`&lt;/b&gt;: A `Tensor` of type `string`. 0-D.  The PNG-encoded
-  image.
-* &lt;b&gt;`channels`&lt;/b&gt;: An optional `int`. Defaults to `0`. Number of color
-  channels for the decoded image.
-* &lt;b&gt;`dtype`&lt;/b&gt;: An optional `tf.DType` from: `tf.uint8,
-  tf.uint16`. Defaults to `tf.uint 8`.
-* &lt;b&gt;`name`&lt;/b&gt;: A name for the operation (optional).
-</code></pre>
+<h4>Args:</h4>
+<ul>
+<li><b>`contents`</b>: A <code>Tensor</code> of type <code>string</code>. 0-D.  The PNG-encoded<br>
+image.</li>
+<li><b>`channels`</b>: An optional <code>int</code>. Defaults to <code>0</code>. Number of color<br>
+channels for the decoded image.</li>
+<li><b>`dtype`</b>: An optional <code>tf.DType</code> from: <code>tf.uint8,
+tf.uint16</code>. Defaults to <code>tf.uint 8</code>.</li>
+<li><b>`name`</b>: A name for the operation (optional).</li>
+</ul>
 
         </main>
     </div>

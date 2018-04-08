@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -60,7 +62,7 @@
 <p>除了 <code>tf.Variable</code> 以外，张量的值是不可变的，也就是说张量在单次执行的上下文中值是唯一的。但是，两次对同一个张量求值可能返回不同的值，比如，张量的值可能是从磁盘读取的数据，或者是一个随机数，那么每次产生的结果可能是不一样的。</p>
 <h2>秩</h2>
 <p><code>tf.Tensor</code> 对象的<strong>秩</strong>就是它维度的数量。秩的也可以叫做<strong>阶数</strong>、<strong>度数</strong>或者是 <strong>n 维</strong>。注意：Tensorflow 里的秩和数学中矩阵的秩是不一样的。如下表所示，Tensorflow 中的不同的秩代表不同的数学实体：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>秩</th>
 <th>数学实体</th>
@@ -88,7 +90,7 @@
 <td>n 维张量 (你可以自行想象一下)</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3>秩为 0</h3>
 <p>下列代码片段展示了如何创建一些秩为 0 的变量：</p>
 <pre><code class="lang-python">mammal = tf.Variable(&quot;Elephant&quot;, tf.string)
@@ -139,7 +141,7 @@ my_column_vector = my_matrix[:, 3]
 <h2>形状</h2>
 <p>张量的<strong>形状</strong>是其各个维度元素的数量。TensorFlow 能够在图的构建过程中自动推断张量的形状。这些推断出的形状的秩可能是已知的，也可能是未知的。即使张量的秩已知，其各个维度的大小也可能是未知的。</p>
 <p>TensorFlow 开发者指南中使用三种传统的表示方法来描述向量的维度：秩、形状、和维数。下表展示了这几种表示方法之间的关系：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>秩</th>
 <th>形状</th>
@@ -179,7 +181,7 @@ my_column_vector = my_matrix[:, 3]
 <td>形为 [维度 0, 维度 1, ... 维度 n-1] 的张量。</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/TensorShape"><code>tf.TensorShape</code></a></p>
 <h3>获取 <code>tf.Tensor</code> 对象的形状</h3>
 <p>获取 <code>tf.Tensor</code> 对象的形状有两种方式。在构建计算图的时候，检查一下张量的形状的已知部分是很有帮助的。我们可以通过读取 <code>tf.Tensor</code> 对象的 <code>shape</code> 属性来获知其已知部分。这种方法会返回一个 <code>TensorShape</code> 对象，在表示一些部分已知的形状时非常方便（因为在构建计算图的时候不是所有张量的形状都是完全已知的）。</p>

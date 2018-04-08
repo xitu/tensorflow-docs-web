@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -120,7 +122,7 @@ with tf.name_scope(&#39;hidden&#39;) as scope:
     </td>
   </tr>
 </table><p>最后，作为对于易读性的最后一个帮助，可视化将对于常量和总节点使用特殊的图标。在此总结一下，下面是一个节点的符号表：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>Symbol</th>
 <th>Meaning</th>
@@ -164,7 +166,7 @@ with tf.name_scope(&#39;hidden&#39;) as scope:
 <td>显示传出操作节点可以改变传入张量。</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>互动 {#interaction}</h2>
 <p>通过平移和缩放导航图形。可以通过点击并拖动来平移，并使用滚动手势进行缩放。双击某个节点，或者单击其 <code>+</code> 按钮，展开代表一组操作的名称域。为了在放大和平移时轻松跟踪当前视点，右下角会有一个小地图。</p>
 <p>要关闭打开的节点，请再次双击它或单击其 <code>-</code> 按钮。您也可以单击一次来选择一个节点。它会变成一个较深的颜色，并且关于它的详细信息以及它所连接的节点将出现在可视化对象右上角的信息卡中。</p>

@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -231,7 +233,7 @@ function looks like this:</p>
 <p>Focus on that third argument, mode. As the following table shows, when someone<br>
 calls <code>train</code>, <code>evaluate</code>, or <code>predict</code>, the Estimator framework invokes your model<br>
 function with the mode parameter set as follows:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th style="text-align:left">Estimator method</th>
 <th style="text-align:left">Estimator Mode</th>
@@ -251,7 +253,7 @@ function with the mode parameter set as follows:</p>
 <td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/ModeKeys/PREDICT"><code>tf.estimator.ModeKeys.PREDICT</code></a></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>For example, suppose you instantiate a custom Estimator to generate an object<br>
 named <code>classifier</code>. Then, you make the following call:</p>
 <pre><code class="lang-python">classifier = tf.estimator.Estimator(...)

@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -76,7 +78,7 @@
 <p>在 GPU 上训练了几个小时后，该模型最高可以达到 86% 的准确度。细节请查看<a href="#评估模型">下面</a>的介绍和代码。模型中包含了 1068298 个学习参数，对一副图像进行分类大概需要 1950 万个乘加操作。</p>
 <h2>代码组织结构</h2>
 <p>本教程的代码位于 <a href="https://www.tensorflow.org/code/tensorflow_models/tutorials/image/cifar10/"><code>models/tutorials/image/cifar10/</code></a>。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>文件</th>
 <th>作用</th>
@@ -104,7 +106,7 @@
 <td>评估 CIFAR-10 模型的预测性能</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>CIFAR-10 模型</h2>
 <p>CIFAR-10 网络主要的代码位于 <a href="https://www.tensorflow.org/code/tensorflow_models/tutorials/image/cifar10/cifar10.py"><code>cifar10.py</code></a>。完整的训练图大致包含 765 个操作。但是我们发现通过下面的模块来构造训练图可以最大程度的提供代码的复用率：</p>
 <ol>
@@ -131,7 +133,7 @@
 </div><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch"><code>tf.train.shuffle_batch</code></a></p>
 <h3>模型预测</h3>
 <p>模型预测过程通过 <code>inference()</code> 函数进行构造，该函数会增加操作来计算预测值的 <em>logits</em>，其对应模型的组织方式如下：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>Layer 名称</th>
 <th>描述</th>
@@ -175,7 +177,7 @@
 <td>进行线性变换以输出 logits</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>这里有一个通过 TensorBoard 绘制的图形，用来描述模型建立中经过的步骤：</p>
 <div style="width:15%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%" src="../images/cifar_graph.png">

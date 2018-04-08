@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -58,7 +60,7 @@
 <p>至少，一个语言的绑定必须支持运行预定义的图，当然这也意味着需要支持图的构造。 TensorFlow Python API 提供了所有这些功能。</p>
 <h2>当前状态</h2>
 <p>新的语言支持应该建立在 <a href="https://www.tensorflow.org/code/tensorflow/c/c_api.h">C API</a> 之上。 但是，正如下表所示，并不是所有的功能都可以在 C 中使用。在 <a href="https://www.tensorflow.org/code/tensorflow/c/c_api.h">C API</a> 中提供更多的功能是一个正在进行的项目。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th style="text-align:left">特性</th>
 <th style="text-align:left">Python</th>
@@ -96,7 +98,7 @@
 <td style="text-align:left"><code>tf.train</code>, <code>tf.nn</code>, <code>tf.contrib.layers</code>, <code>tf.contrib.slim</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>推荐方法</h2>
 <h3>运行预定义 <code>Graph</code></h3>
 <p>一个语言的绑定应该定义下面的这些类：</p>

@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -158,7 +160,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </li>
 </ul>
 <p>新版和旧版的除法操作对比总结如下表所示：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>表达式</th>
 <th>TF 0.11 (py2)</th>
@@ -204,9 +206,9 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 <td>-1</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>新版和旧版的取整操作对比总结如下表所示：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>输入</th>
 <th>Python</th>
@@ -282,7 +284,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 <td>4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3>匹配 NumPy 命名</h3>
 <p>新版本对许多函数进行了重命名以匹配 NumPy。这么做旨在使得 NumPy 与 TensorFlow 之间的转换尽量简便。虽然我们已经排除了一些常见的不一致情况，但现在还有一些函数未能完全匹配。</p>
 <ul>

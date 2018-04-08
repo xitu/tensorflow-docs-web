@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -43,7 +45,7 @@
 和 <a href="https://arxiv.org/abs/1502.03167">batch normalization 原始论文</a>。</p>
 <p>计算 batch norm 的梯度</p>
 <p><b> `BatchNormGrad(operand, scale, mean, variance, grad_output, epsilon, feature_index)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>类型</th>
 <th>类型</th>
@@ -87,7 +89,7 @@
 <td><code>operand</code> 中的特征维数索引</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>对于特征维数中的每一个特征（<code>feature_index</code> 即 <code>operand</code> 中特征维度的索引），此操作计算 <code>operand</code> 的梯度、在所有其他维度上的 <code>offset</code> 和 <code>scale</code>。<code>feature_index</code> 必须是 <code>operand</code> 中特征维度的合法索引。</p>
 <p>如下公式定义了三个渐变：</p>
 <p>\( \nabla x = \nabla y <em> \gamma </em> \sqrt{\sigma^2+\epsilon} \)</p>
@@ -95,7 +97,7 @@
 <p>\( \nabla \beta = sum(\nabla y) \)</p>
 <p>输入 <code>mean</code> 和 <code>variance</code> 表示在批处理和空间维度上的矩值。</p>
 <p>输出类型是包含三个句柄的元组：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>输出</th>
 <th>类型</th>
@@ -119,14 +121,14 @@
 <td>输入 <code>offset</code> 的梯度</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>BatchNormInference</h2>
 <p>算法详情参见<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::BatchNormInference</code></a> and<br>
 <a href="https://arxiv.org/abs/1502.03167">batch normalization 原始论文</a>。</p>
 <p>在批处理和空间维度上归一化数组。</p>
 <p><b> `BatchNormInference(operand, scale, offset, mean, variance, epsilon, feature_index)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -170,7 +172,7 @@
 <td><code>operand</code> 中的特征维数索引</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>对于特征维数中的每一个特征（<code>feature_index</code> 即 <code>operand</code> 中特征维度的索引），此操作计算在所有其他维度上的均值和方差，以及使用均值和方差归一化 <code>operand</code> 中的每个元素。<code>feature_index</code> 必须是 <code>operand</code> 中特征维度的合法索引。</p>
 <p><code>BatchNormInference</code> 等价于在每批次中不计算 <code>mean</code> 和 <code>variance</code> 的情况下调用 <code>BatchNormTraining</code>。它使用 <code>mean</code> 和 <code>variance</code> 作为估计值。此操作的目的是减少推断中的延迟，因此命名为 <code>BatchNormInference</code>。</p>
 <p>输出是一个 N 维的标准化数组，与输入 <code>operand</code> 的形状相同。</p>
@@ -180,7 +182,7 @@
 <a href="https://arxiv.org/abs/1502.03167"><code>batch normalization 原始论文</code></a>。</p>
 <p>在批处理和空间维度上归一化数组。</p>
 <p><b> `BatchNormTraining(operand, scale, offset, epsilon, feature_index)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -214,7 +216,7 @@
 <td><code>operand</code> 中的特征维数索引</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>对于特征维数中的每一个特征（<code>feature_index</code> 即 <code>operand</code> 中特征维度的索引），此操作计算在所有其他维度上的均值和方差，以及使用均值和方差归一化 <code>operand</code> 中的每个元素。<code>feature_index</code> 必须是 <code>operand</code> 中特征维度的合法索引。</p>
 <p>该算法对 <code>operand</code> \(x\) 中的每批次数据（包含 <code>w</code> 和 <code>h</code> 的 <code>m</code> 元素作为空间维度的大小）按如下次序执行：</p>
 <ul>
@@ -230,7 +232,7 @@
 </ul>
 <p>ε 值，通常是一个很小的数字，以避免 divide-by-zero 错误</p>
 <p>输出类型是一个包含三个 <code>ComputationDataHandle</code> 类型元素的元组：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>输出</th>
 <th>类型</th>
@@ -254,14 +256,14 @@
 <td>1 维数组 (\(\sigma^2\))</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>输入 <code>batch_mean</code> 和 <code>batch_var</code> 表示使用上述公式在批处理和空间维度上计算的矩值。</p>
 <h2>BitcastConvertType</h2>
 <p>同样参见<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::BitcastConvertType</code></a>.</p>
 <p>类似于 TensorFlow 中的 <code>tf.bitcast</code>，对输入数据的每个元素进行 bitcast 操作，从而转化为目标形状。维度必须匹配，且转换是一对一的；如 <code>s32</code> 元素通过 bitcast 操作转化为 <code>f32</code>。Bitcast 采用底层 cast 操作，所以不同浮点数表示法的机器会产生不同的结果。</p>
 <p><b> `BitcastConvertType(operand, new_element_type)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -280,13 +282,13 @@
 <td>类型 U</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>operand 和 目标形状的维度必须匹配。源和目标元素类型的位宽必须一致。源和目标元素类型不能是元组。</p>
 <h2>广播（Broadcast）</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Broadcast</code></a>。</p>
 <p>通过在数组中复制数据来增加其维度。</p>
 <p><b> `Broadcast(operand, broadcast_sizes)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数        </th>
 <th>类型                  </th>
@@ -305,7 +307,7 @@
 <td>新维度的形状大小</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>新的维度被插入在操作数（operand）的左侧，即，若 <code>broadcast_sizes</code> 的值为 <code>{a0, ..., aN}</code>，而操作数（operand）的维度形状为 <code>{b0, ..., bM}</code>，则广播后输出的维度形状为 <code>{a0, ..., aN, b0, ..., bM}</code>。</p>
 <p>新的维度指标被插入到操作数（operand）副本中，即</p>
 <pre><code>output[i0, ..., iN, j0, ..., jM] = operand[j0, ..., jM]
@@ -315,7 +317,7 @@
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Call</code></a>。</p>
 <p>给定参数情况下，触发计算。</p>
 <p><b> `Call(computation, args...)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数    </th>
 <th>类型                    </th>
@@ -334,13 +336,13 @@
 <td>任意类型的 N 个 参数</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>参数 <code>args</code> 的数目和类型必须与计算 <code>computation</code> 相匹配。当然，没有参数 <code>args</code> 也是允许的。</p>
 <h2>钳制（Clamp）</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Clamp</code></a>。</p>
 <p>将一个操作数钳制在最小值和最大值之间的范围内。</p>
 <p><b> `Clamp(computation, args...)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数    </th>
 <th>类型                  </th>
@@ -369,7 +371,7 @@
 <td>类型为 T 的数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>给定操作数，最小和最大值，如果操作数位于最小值和最大值之间，则返回操作数，否则，如果操作数小于最小值，则返回最小值，如果操作数大于最大值，则返回最大值。即 <code>clamp(a, x, b) =  max(min(a, x), b)</code>。</p>
 <p>输入的三个数组的维度形状必须是一样的。不过，也可以采用一种严格的<a href="broadcasting.md">广播</a>形式，即 <code>min</code> 和/或 <code>max</code> 可以是类型为 <code>T</code> 的一个标量。</p>
 <p><code>min</code> 和 <code>max</code> 为标量的示例如下：</p>
@@ -383,7 +385,7 @@ Clamp(min, operand, max) = s32[3]{0, 5, 6};
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/reshape"><code>tf.reshape</code></a></p>
 <p>将一个数组的多个维度折叠为一个维度。</p>
 <p><b> `Collapse(operand, dimensions)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数  </th>
 <th>类型                  </th>
@@ -402,7 +404,7 @@ Clamp(min, operand, max) = s32[3]{0, 5, 6};
 <td>T 的维度形状的依次连续子集</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/reshape"><code>tf.reshape</code></a></p>
 <p>比如，令 v 为包含 24 个元素的数组：</p>
 <pre><code>let v = f32[4x2x3] {{{10, 11, 12},  {15, 16, 17}},
@@ -439,7 +441,7 @@ then v12 == f32[8x3] {{10, 11, 12},
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::ConcatInDim</code></a>。</p>
 <p>串连操作是将多个数组操作数合并成一个数组。输出数组与输入数组的秩必须是一样的（即要求输入数组的秩也要相同），并且它按输入次序包含了输入数组的所有元素。</p>
 <p><b> `Concatenate(operands..., dimension)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -458,7 +460,7 @@ then v12 == f32[8x3] {{10, 11, 12},
 <td>区间 <code>[0, N)</code> 中的一个整数值，令那些 <code>operands</code> 能够串连起来的维度名</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>除了 <code>dimension</code> 之外，其它维度都必须是一样的。这是因为 XLA 不支持 "不规则" 数组。还要注意的是，0-阶的标量值是无法串连在一起的（因为无法确定串连到底发生在哪个维度）。</p>
 <p>1-维示例：</p>
 <pre><code>Concat({{2, 3}, {4, 5}, {6, 7}}, 0)
@@ -487,7 +489,7 @@ Concat({a, b}, 0)
 </div><h2>Conditional</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Conditional</code></a>.</p>
 <p><b> `Conditional(pred, true_operand, true_computation, false_operand, false_computation)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -521,7 +523,7 @@ Concat({a, b}, 0)
 <td>类型为 <code>T_0 -&gt; S</code> 的计算</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>如果 <code>pred</code> 为 <code>true</code>，执行 <code>true_computation</code>，如果 <code>pred</code> 为 <code>false</code>，则返回结果。</p>
 <p><code>true_computation</code> 必须接受一个类型为 <code>T_0</code> 的单参数，并使用 <code>true_operand</code> 来调用，它们必须类型相同。  <code>false_computation</code> 必须接受一个类型为 <code>T_1</code> 的单参数，并使用 <code>false_operand</code> 来调用，它们必须类型相同。 <code>true_computation</code> 和 <code>false_computation</code> 的返回值的类型必须相同。</p>
 <p>注意，根据 <code>pred</code> 的值，<code>true_computation</code> 和 <code>false_computation</code> 只能执行其中一个。</p>
@@ -531,7 +533,7 @@ Concat({a, b}, 0)
 <h2>ConvWithGeneralPadding (卷积)</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::ConvWithGeneralPadding</code></a>。</p>
 <p>计算神经网络中使用的卷积。此处，一个卷积可被认为是一个 n-维窗口在一个 n-维底空间上移动，并对窗口的每个可能的位置执行一次计算。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -570,7 +572,7 @@ Concat({a, b}, 0)
 <td>n-维右边扩张因子数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>设 n 为空间维数。<code>lhs</code> 参数是一个 n+2 阶数组，它描述底空间区域的维度。它被称为输入，其实 rhs 也是输入。在神经网络中，它们都属于输入激励。n+2 维的含义依次为：</p>
 <ul>
 <li><code>batch</code>: 此维中每个坐标表示执行卷积的一个独立输入</li>
@@ -614,7 +616,7 @@ Concat({a, b}, 0)
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::ConvertElementType</code></a>.</p>
 <p>与 C++ 中逐元素的 <code>static_cast</code> 类似，对输入数据的每个元素进行转换操作，从而转化为目标形状。维度必须匹配，且转换是一对一的；如 <code>s32</code> 元素通过 <code>s32</code>-to-<code>f32</code> 转换过程转换为 <code>f32</code>。</p>
 <p><b> `ConvertElementType(operand, new_element_type)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -633,7 +635,7 @@ Concat({a, b}, 0)
 <td>类型 U</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>操作数和目标形状的维度必须匹配。源和目标元素类型不能是元组。</p>
 <p>一个 <code>T=s32</code> 到 <code>U=f32</code> 的转换将执行标准化的 int-to-float 转化过程，如 round-to-nearest-even。</p>
 <blockquote><p>注意：目前没有指定精确的 float-to-int 和 visa-versa 转换，但是将来可能作为转换操作的附加参数。不是所有的目标都实现了所有可能的转换。</p>
@@ -646,7 +648,7 @@ then b == f32[3]{0.0, 1.0, 2.0}
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::CrossReplicaSum</code></a>。</p>
 <p>跨多个副本（replica）的求和。</p>
 <p><b> `CrossReplicaSum(operand)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -660,14 +662,14 @@ then b == f32[3]{0.0, 1.0, 2.0}
 <td>跨多个副本待求和的数组。</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>输出的维度形状与输入形状一样。比如，如果有两个副本，而操作数在这两个副本上的值分别为 <code>(1.0, 2.5)</code> 和 <code>(3.0, 5.25)</code>，则此操作在两个副本上的输出值都是 <code>(4.0, 7.75)</code>。</p>
 <p>计算 CrossReplicaSum 的结果需要从每个副本中获得一个输入，所以，如果一个副本执行一个 CrossReplicaSum 结点的次数多于其它副本，则前一个副本将永久等待。因此这些副本都运行的是同一个程序，这种情况发生的机会并不多，其中一种可能的情况是，一个 while 循环的条件依赖于输入的数据，而被输入的数据导致此循环在一个副本上执行的次数多于其它副本。</p>
 <h2>CustomCall</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::CustomCall</code></a>。</p>
 <p>在计算中调用由用户提供的函数。</p>
 <p><b> `CustomCall(target_name, args..., shape)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -691,7 +693,7 @@ then b == f32[3]{0.0, 1.0, 2.0}
 <td>此函数的输出维度形状</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>不管参数的数目和类型，此函数的签名（signature）都是一样的。</p>
 <pre><code>extern "C" void target_name(void* out, void** in);
 </code></pre>
@@ -724,7 +726,7 @@ CustomCall("myfunc", {x, y}, f32[3x3])
 <h2>点乘（Dot）</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Dot</code></a>。</p>
 <p><b> `Dot(lhs, rhs)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -743,9 +745,9 @@ CustomCall("myfunc", {x, y}, f32[3x3])
 <td>类型为 T 的数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>此操作的具体语义由它的两个操作数的秩来决定：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>输入</th>
 <th>输出</th>
@@ -769,13 +771,13 @@ CustomCall("myfunc", {x, y}, f32[3x3])
 <td>矩阵矩阵乘法</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>此操作执行的是 <code>lhs</code> 的最后一维与 <code>rhs</code> 的倒数第二维之间的乘法结果的求和。因而计算结果会导致维度的 "缩减"。<code>lhs</code> 和 <code>rhs</code> 缩减的维度必须具有相同的大小。在实际中，我们会用到矢量之间的点乘，矢量/矩阵点乘，以及矩阵间的乘法。</p>
 <h2>DotGeneral</h2>
 <p>另请参阅<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::DotGeneral</code></a>.</p>
 <p><b> `DotGeneral(lhs, rhs, dimension_numbers)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -799,9 +801,9 @@ CustomCall("myfunc", {x, y}, f32[3x3])
 <td>类型为 T 的数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>和点乘一样，但是对于 'lhs' 和 'rhs' 允许收缩和指定批处理维数。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>DotDimensionNumbers 成员</th>
 <th>类型</th>
@@ -830,7 +832,7 @@ CustomCall("myfunc", {x, y}, f32[3x3])
 <td>'rhs' 批处理维数</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>DotGeneral 根据 'dimension_numbers' 指定的维数进行转换操作，然后计算点积和。</p>
 <p>与 'lhs' 和 'rhs' 有关的转换维数不需要相同，但是在 'lhs_contracting_dimensions' 和 'rhs_contracting_dimensions' 数组必须按照相同的顺序列出，同时具有相同的维数大小。</p>
 <p>以转换维数为例：</p>
@@ -870,7 +872,7 @@ DotGeneral(lhs, rhs, dnums) -&gt; { { {1.0, 2.0},
                                  { {5.0, 6.0},
                                    {7.0, 8.0} } }
 </code></pre>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>Input</th>
 <th>Output</th>
@@ -889,14 +891,14 @@ DotGeneral(lhs, rhs, dnums) -&gt; { { {1.0, 2.0},
 <td>batch matmul</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>DynamicSlice</h2>
 <p>另请参阅<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::DynamicSlice</code></a>.</p>
 <p>DynamicSlice从动态 <code>start_indices</code> 输入数组中提取子数组。<code>size_indices</code> 为每个维度的切片大小，它在每个维度上指定了切片范围：[start, start + size)。<code>start_indices</code> 的秩必须为 1，且维数大小等于 <code>operand</code> 的秩。</p>
 <p>注意：当前实现未定义切片索引越界（错误的运行时生成的'start_indices'）的情况。当前，切片索引通过对输入维数大小做模运算来防止越界访问，但是这个机制在未来的实现中可能会修改。</p>
 <p><b> `DynamicSlice(operand, start_indices, size_indices)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -920,7 +922,7 @@ DotGeneral(lhs, rhs, dnums) -&gt; { { {1.0, 2.0},
 <td>N 个整数组成的列表，其中包含每个维度的切片大小。值必须大于 0，且 start + size 必须小于等于维度大小，从而避免封装维数大小的模运算</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>1 维示例如下：</p>
 <pre><code>let a = {0.0, 1.0, 2.0, 3.0, 4.0}
 let s = {2}
@@ -946,7 +948,7 @@ DynamicSlice(b, s, {2, 2}) produces:
 <p>DynamicUpdateSlice 是在输入数组 <code>operand</code> 上，通过切片 <code>update</code> 操作覆盖 <code>start_indices</code> 后生成的结果。<code>update</code> 的形状决定了更新后结果的子数组的形状。 <code>start_indices</code> 的秩必须为 1，且维数大小等于 <code>operand</code> 的秩。</p>
 <p>注意：当前实现未定义切片索引越界（错误的运行时生成的'start_indices'）的情况。当前，切片索引通过对输入维数大小做模运算来防止越界访问，但是这个机制在未来的实现中可能会修改。</p>
 <p><b> `DynamicUpdateSlice(operand, update, start_indices)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -970,7 +972,7 @@ DynamicSlice(b, s, {2, 2}) produces:
 <td>N 个整数组成的秩为 1 的数组，其中包含每个维度的起始切片索引。值必须大于等于0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>1 维示例如下：</p>
 <pre><code>let a = {0.0, 1.0, 2.0, 3.0, 4.0}
 let u = {5.0, 6.0}
@@ -1003,7 +1005,7 @@ DynamicUpdateSlice(b, u, s) produces:
 <p>XLA 支持多个逐个元素的二元算术操作。</p>
 <p><b> `Op(lhs, rhs)` </b></p>
 <p>其中 <code>Op</code> 可以是如下操作之一：<code>Add</code> (加法), <code>Sub</code> (减法), <code>Mul</code> (乘法), <code>Div</code> (除法), <code>Rem</code> (余数), <code>Max</code> (最大值), <code>Min</code> (最小值), <code>LogicalAnd</code> (逻辑且), 或 <code>LogicalOr</code> (逻辑或)。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1022,7 +1024,7 @@ DynamicUpdateSlice(b, u, s) produces:
 <td>右操作数：类型为 T 的数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><a href="//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html">广播语义</a></p>
 <p>当 <code>Op</code> 为 <code>Rem</code> 时，结果的符号与被除数一致，而结果的绝对值总是小于除数的绝对值。</p>
 <p>不过，还是可以用如下接口来支持不同秩操作数的广播：</p>
@@ -1034,7 +1036,7 @@ DynamicUpdateSlice(b, u, s) produces:
 <p>XLA 还支持标准的逐个元素的二元比较操作。注意：当比较浮点类型时，遵循的是标准的 IEEE 754 浮点数语义。</p>
 <p><b> `Op(lhs, rhs)` </b></p>
 <p>其中 <code>Op</code> 可以是如下操作之一：<code>Eq</code> (相等), <code>Ne</code> (不等), <code>Ge</code> (大于或等于), <code>Gt</code> (大于), <code>Le</code> (小于或等于), <code>Lt</code> (小于)。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1053,7 +1055,7 @@ DynamicUpdateSlice(b, u, s) produces:
 <td>右操作数：类型为 T 的数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><a href="//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html">广播语义</a></p>
 <p>要想用广播来比较不同秩的数组，需要用到如下接口：</p>
 <p><b> `Op(lhs, rhs, broadcast_dimensions)` </b></p>
@@ -1074,7 +1076,7 @@ DynamicUpdateSlice(b, u, s) produces:
 <p>$$\text{sgn}(x) = \begin{cases} -1 &amp; x &lt; 0\ 0 &amp; x = 0\ 1 &amp; x &gt; 0 \end{cases}$$</p>
 <p>它使用的是 <code>operand</code> 的元素类型的比较运算符。</p>
 <p><b>`Tanh(operand)`</b> 逐个元素的双曲正切 <code>x -&gt; tanh(x)</code>。</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1088,7 +1090,7 @@ DynamicUpdateSlice(b, u, s) produces:
 <td>函数的操作数</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>该函数应用于 <code>operand</code> 数组的每个元素，从而形成具有相同形状的数组。它允许操作数为标量（秩 0 ）</p>
 <h2>GetTupleElement</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::GetTupleElement</code></a>。</p>
@@ -1104,7 +1106,7 @@ let element_1: s32 = gettupleelement(t, 1);  // 推断出的形状匹配 s32.
 <h2>Infeed</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Infeed</code></a>.</p>
 <p><b> `Infeed(shape)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1118,7 +1120,7 @@ let element_1: s32 = gettupleelement(t, 1);  // 推断出的形状匹配 s32.
 <td>从 Infeed 接口读取数据的维度形状。此形状的数据布局必须与发送到设备上的数据相匹配；否则行为是未定义的</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>从设备的隐式 Infeed 流接口读取单个数据项，根据给定的形状和布局来进行解析，并返回一个此数据的 <code>ComputationDataHandle</code>。在一个计算中允许有多个 Infeed 操作，但这些 Infeed 操作之间必须是全序的。比如，下面代码中两个 Infeed 是全序的，因为在不同 while 循环之间有依赖关系。</p>
 <pre><code>result1 = while (condition, init = init_value) {
   Infeed(shape)
@@ -1134,7 +1136,7 @@ result2 = while (condition, init = result1) {
 <h2>映射（Map）</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Map</code></a>。</p>
 <p><b> `Map(operands..., computation)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1163,7 +1165,7 @@ result2 = while (condition, init = result1) {
 <td>任意类型的 M 个数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>将一个标量函数作用于给定的 <code>operands</code> 数组，可产生相同维度的数组，其中每个元素都是映射函数（mapped function）作用于相应输入数组中相应元素的结果，而 <code>static_operands</code> 是 <code>computation</code> 的附加输入。</p>
 <p>此映射函数可以是任意计算过程，只不过它必须有 N 个类型为 <code>T</code> 的标量参数，和单个类型为 <code>S</code> 的输出。输出的维度与输入 <code>operands</code> 相同，只不过元素类型 T 换成了 S。</p>
 <p>比如，<code>Map(op1, op2, op3, computation, par1)</code> 用 <code>elem_out &lt;-
@@ -1171,7 +1173,7 @@ computation(elem1, elem2, elem3, par1)</code> 将输入数组中的每个（多�
 <h2>填充（Pad）</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Pad</code></a>。</p>
 <p><b> `Pad(operand, padding_value, padding_config)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1195,7 +1197,7 @@ computation(elem1, elem2, elem3, par1)</code> 将输入数组中的每个（多�
 <td>每个维度的两端的填充量 (low, high)</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>通过在数组周围和数组之间进行填充，可以将给定的 <code>operand</code> 数组扩大，其中 <code>padding_value</code> 和 <code>padding_config</code> 用于配置每个维度的边缘填充和内部填充的数目。</p>
 <p><code>PaddingConfig</code> 是 <code>PaddingConfigDimension</code> 的一个重复字段，它对于每个维度都包含有三个字段：<code>edge_padding_low</code>, <code>edge_padding_high</code> 和 <code>interior_padding</code>。<code>edge_padding_low</code> 和 <code>edge_padding_high</code> 分别指定了该维度上低端（指标为 0 那端）和高端（最高指标那端）上的填充数目。边缘填充数目可以是负值 -- 负的填充数目的绝对值表示从指定维度移除元素的数目。<code>interior_padding</code> 指定了在每个维度的任意两个相邻元素之间的填充数目。逻辑上，内部填充应发生在边缘填充之前，所有在负边缘填充时，会从经过内部填充的操作数之上再移除边缘元素。如果边缘填充配置为 (0, 0)，且内部填充值都是 0，则此操作是一个 no-op。下图展示的是二维数组上不同 <code>edge_padding</code> 和 <code>interior_padding</code> 值的示例。</p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
@@ -1204,7 +1206,7 @@ computation(elem1, elem2, elem3, par1)</code> 将输入数组中的每个（多�
 <p>另请参阅<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Recv</code></a>.</p>
 <p><b> `Recv(shape, channel_handle)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1223,7 +1225,7 @@ computation(elem1, elem2, elem3, par1)</code> 将输入数组中的每个（多�
 <td>发送/接收对的唯一标识</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>从另一台共享相同通道句柄的计算机的 <code>Send</code> 指令接收指定形状的数据，返回一个接收数据的 ComputationDataHandle。</p>
 <p>客户端 <code>Recv</code> 操作的客户端 API 是同步通信。但是，指令内分解成 2 个 HLO 指令（<code>Recv</code> 和 <code>RecvDone</code>）用于异步数据传输。请参考 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/service/hlo_instruction.h"><code>HloInstruction::CreateRecv</code> 和 <code>HloInstruction::CreateRecvDone</code></a></p>
 <p><b>`Recv(const Shape& shape, int64 channel_id)`</b></p>
@@ -1234,7 +1236,7 @@ computation(elem1, elem2, elem3, par1)</code> 将输入数组中的每个（多�
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Reduce</code></a>。</p>
 <p>将一个归约函数作用于一个数组。</p>
 <p><b> `Reduce(operand, init_value, computation, dimensions)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1263,7 +1265,7 @@ computation(elem1, elem2, elem3, par1)</code> 将输入数组中的每个（多�
 <td>待归约的未排序的维度数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>从概念上看，归约（Reduce）操作将输入数组中的一个或多个数组归约为标量。结果数组的秩为 <code>rank(operand) - len(dimensions)</code>。 <code>init_value</code> 是每次归约的初值，如果后端有需求也可以在计算中插入到任何地方。所以，在大多数情况下，<code>init_value</code> 应该为归约函数的一个单位元（比如，加法中的 0）。</p>
 <p>归约函数的执行顺序是任意的，即可能是非确定的。因而，归约函数不应对运算的结合性敏感。</p>
 <p>有些归约函数，比如加法，对于浮点数并没有严格遵守结合率。不过，如果数据的范围是有限的，则在大多数实际情况中，浮点加法已经足够满足结合率。当然，我们也可以构造出完全不遵守结合率的归约函数，这时，XLA 归约就会产生不正确或不可预测的结果。</p>
@@ -1314,7 +1316,7 @@ for r0 in range(result_shape[0]), r1 in range(result_shape[1]), ...:
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::ReducePrecision</code></a>。</p>
 <p>当浮点数转换为低精度格式（比如 IEEE-FP16）然后转换回原格式时，值可能会发生变化，ReducePrecision 对这种变化进行建模。低精度格式中的指数（exponent）和尾数（mantissa）的位数目是可以任意指定的，不过不是所有硬件实现都支持所有的位大小。</p>
 <p><b> `ReducePrecision(operand, mantissa_bits, exponent_bits)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1338,7 +1340,7 @@ for r0 in range(result_shape[0]), r1 in range(result_shape[1]), ...:
 <td>低精度格式中的尾数位数</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>结果为类型为 <code>T</code> 的数组。输入值被舍入至与给定尾数位的数字最接近的那个值（采用的是"偶数优先"原则）。而超过指数位所允许的值域时，输入值会被视为正无穷或负无穷。<code>NaN</code> 值会保留，不过它可能会被转换为规范化的 NaN 值。</p>
 <p>低精度格式必须至少有一个指数位（为了区分零和无穷，因为两者的尾数位都为零），且尾数位必须是非负的。指数或尾数位可能会超过类型 <code>T</code>；这种情况下，相应部分的转换就仅仅是一个 no-op 了。</p>
 <h2>ReduceWindow</h2>
@@ -1346,7 +1348,7 @@ for r0 in range(result_shape[0]), r1 in range(result_shape[1]), ...:
 <p>将一个归约函数应用于输入多维数组的每个窗口内的所有元素上，输出一个多维数组，其元素个数等于合法窗口的元素数目。一个池化层可以表示为一个 <code>ReduceWindow</code>。</p>
 <p><b> `ReduceWindow(operand, init_value, computation, window_dimensions,
 window_strides, padding)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1385,7 +1387,7 @@ window_strides, padding)` </b></p>
 <td>窗口的边缘填充类型（Padding\:\:kSame 或 Padding\:\:kValid）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>下列代码和图为一个使用 <code>ReduceWindow</code> 的示例。输入是一个大小为 [4x6] 的矩阵，window_dimensions 和 window_stride_dimensions 都是 [2x3]。</p>
 <pre><code>// 创建一个归约计算（求最大值）
 Computation max;
@@ -1419,7 +1421,7 @@ builder.ReduceWindow(
 <p>变形操作（reshape）是将一个数组的维度变成另外一种维度设置。</p>
 <p><b> `Reshape(operand, new_sizes)` </b><br>
 <b> `Reshape(operand, dimensions, new_sizes)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1443,7 +1445,7 @@ builder.ReduceWindow(
 <td>新维度大小的矢量</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>从概念上看，变形操作首先将一个数组拉平为一个一维矢量，然后将此矢量展开为一个新的形状。输入参数是一个类型为 T 的任意数组，一个编译时常量的维度指标数组，以及表示结果维度大小的一个编译时常量的数组。如果给出了 <code>dimensions</code> 参数，这个矢量中的值必须是 T 的所有维度的一个置换，其默认值为 <code>{0, ..., rank - 1}</code>。<code>dimensions</code> 中的维度的顺序是从最慢变化维（最主序）到最快变化维（最次序），按照这个顺序依次将所有元素折叠到一个维度上。<code>new_sizes</code> 矢量决定了输出数组的维度大小。<code>new_sizes[0]</code> 表示第 0 维的大小，<code>new_sizes[1]</code> 表示的是第 1 维的大小，依此类推。<code>new_sizes</code> 中的维度值的乘积必须等于 operand 的维度值的乘积。将折叠的一维数组展开为由 <code>new_sizes</code> 定义的多维数组时，<code>new_sizes</code> 中的维度的顺序也是最慢变化维（最主序）到最快变化维（最次序）。</p>
 <p>比如，令 v 为包含 24 个元素的数组：</p>
 <pre><code>let v = f32[4x2x3] {{{10, 11, 12}, {15, 16, 17}},
@@ -1489,7 +1491,7 @@ Reshape(5, {}, {1,1}) == f32[1x1] {{5}};
 <h2>Rev (反转)</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Rev</code></a>。</p>
 <p><b>`Rev(operand, dimensions)`</b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1508,14 +1510,14 @@ Reshape(5, {}, {1,1}) == f32[1x1] {{5}};
 <td>待反转的维度</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>反转操作是将 <code>operand</code> 数组沿指定的维度 <code>dimensions</code> 对元素的顺序反转，产生一个形状相同的数组。operand 数组的每个元素被存储在输出数组的变换后的位置上。元素的原索引位置在每个待倒置维度上都被反转了，得到其在输出数组中的索引位置（即，如果一个大小为 N 的维度是待倒置的，则索引 i 被变换为 N-i-i）。</p>
 <p><code>Rev</code> 操作的一个用途是在神经网络的梯度计算时沿两个窗口维度对卷积权重值进行倒置。</p>
 <h2>RngNormal</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::RngNormal</code></a>。</p>
 <p>RngNormal 构造一个符合 $$(\mu, \sigma)$$ 正态随机分布的指定形状的随机数组。参数 <code>mu</code> 和 <code>sigma</code> 为 F32 类型的标量值，而输出形状为 F32 的数组。</p>
 <p><b>`RngNormal(mean, sigma, shape)`</b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1539,12 +1541,12 @@ Reshape(5, {}, {1,1}) == f32[1x1] {{5}};
 <td>类型为 F32 的输出的形状</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>RngUniform</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::RngUniform</code></a>。</p>
 <p>RngNormal 构造一个符合区间 $$[a,b)$$ 上的均匀分布的指定形状的随机数组。参数和输出形状可以是 F32、S32 或 U32，但是类型必须是一致的。此外，参数必须是标量值。如果 $$b &lt;= a$$，输出结果与具体的实现有关。</p>
 <p><b>`RngUniform(a, b, shape)`</b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1568,13 +1570,13 @@ Reshape(5, {}, {1,1}) == f32[1x1] {{5}};
 <td>类型为 T 的输出的形状</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>Select</h2>
 <p>另请参阅<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Select</code></a>.</p>
 <p>基于 predicate 数组的值，从两个输入数组构造输出数组。</p>
 <p><b> `Select(pred, on_true, on_false)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1598,7 +1600,7 @@ Reshape(5, {}, {1,1}) == f32[1x1] {{5}};
 <td>类型为 T 的数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>数组 <code>on_true</code> 和 <code>on_false</code> 的形状必须相同。这也是输出数组的形状。数组 <code>pred</code> 必须与 <code>on_true</code>、 <code>on_false</code>具有相同的维度，且值为 <code>PRED</code> 类型。</p>
 <p>对于 <code>pred</code> 的每个元素 <code>P</code>，当 <code>P</code> 值为 <code>true</code> 时，相应的输出值从 <code>on_true</code> 中获取，否则从 <code>on_false</code> 中获取。由于 <a href="broadcasting.md">broadcasting</a> 限制，<code>pred</code> 可以是类型为 <code>PRED</code> 的标量。此时，当 <code>pred</code> 值为 <code>true</code> 时，输出数组为 <code>on_true</code>，否则为 <code>on_false</code>。</p>
 <p>非标量 <code>pred</code> 的示例如下：</p>
@@ -1628,7 +1630,7 @@ Select(pred, v1, v2) = s32[4]{1, 2, 3, 4};
 <p>输出数组与 <code>operand</code> 数组的形状相同，而 <code>source</code> 数组必须与 <code>operand</code> 上应用 <code>ReduceWindow</code> 之后的形状相同。 <code>SelectAndScatter</code> 可用于神经网络池化层中梯度值的反向传播。</p>
 <p><b>`SelectAndScatter(operand, select, window_dimensions, window_strides,
 padding, source, init_value, scatter)`</b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1677,7 +1679,7 @@ padding, source, init_value, scatter)`</b></p>
 <td>类型为 <code>T, T -&gt; T</code> 的二元计算，应用于 source 的每个元素和它的目标元素</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>下图为 <code>SelectAndScatter</code> 的示例，其中 <code>select</code> 函数计算它的参数中的最大值。注意，当窗口重叠时，如图 (2) 所示，<code>operand</code> 的一个指标可能会被不同窗口多次选中。在此图中，值为 9 的元素被顶部的两个窗口（蓝色和红色）选中，从而二元加法函数 <code>scatter</code> 产生值为 8 的输出值（2+6）。</p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%"
@@ -1686,7 +1688,7 @@ padding, source, init_value, scatter)`</b></p>
 <h2>Send</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Send</code></a>。</p>
 <p><b> `Send(operand, channel_handle)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1705,7 +1707,7 @@ padding, source, init_value, scatter)`</b></p>
 <td>发送/接收 对的唯一标识符</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>将给定的 operand 数据发送到另一台计算机上共享相同通道句柄的 <code>Recv</code> 中。不返回任何数据。</p>
 <p>与 <code>Recv</code> 操纵类似，<code>Send</code> 操作的客户端 API 为同步通信，并在内部分解为 2 个 HLO 指令（<code>Send</code> 和 <code>SendDone</code>）以使用异步数据传输。另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/service/hlo_instruction.h"><code>HloInstruction::CreateSend</code> 和 <code>HloInstruction::CreateSendDone</code></a>。</p>
 <p><b>`Send(HloInstruction operand, int64 channel_id)`</b></p>
@@ -1730,7 +1732,7 @@ padding, source, init_value, scatter)`</b></p>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Slice</code></a>。</p>
 <p><code>Slice</code> 用于从输入数组中提取出一个子数组。子数组与输入数组的秩相同，它的值在输入数组的包围盒中，此包围盒的维度和指标作为 slice 操作的参数而给出。</p>
 <p><b> `Slice(operand, start_indices, limit_indices)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1754,7 +1756,7 @@ padding, source, init_value, scatter)`</b></p>
 <td>N 个整数的数组，包含每个维度的切片的结束指标（不包含）。每个维度的结束指标必须严格大于其起始指标，且小于等于维度大小</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>1-维示例：</p>
 <pre><code>let a = {0.0, 1.0, 2.0, 3.0, 4.0}
 Slice(a, {2}, {4}) produces:
@@ -1775,7 +1777,7 @@ Slice(b, {2, 1}, {4, 3}) produces:
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Sort</code></a>。</p>
 <p><code>Sort</code> 用于对输入数组中的元素进行排序。</p>
 <p><b>`Sort(operand)`</b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1789,11 +1791,11 @@ Slice(b, {2, 1}, {4, 3}) produces:
 <td>待排序数组</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>Transpose</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/reshape"><code>tf.reshape</code></a></p>
 <p><b>`Transpose(operand)`</b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1812,7 +1814,7 @@ Slice(b, {2, 1}, {4, 3}) produces:
 <td>指定维度重排列的方式</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Transpose 将 operand 数组的维度重排列，所以<br>
 <code>∀ i . 0 ≤ i &lt; rank ⇒ input_dimensions[permutation[i]] = output_dimensions[i]</code>。</p>
 <p>这等价于 Reshape(operand, permutation, Permute(permutation, operand.shape.dimensions))。</p>
@@ -1828,7 +1830,7 @@ let t: (f32[10], s32) = tuple(v, s);
 <h2>While</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::While</code></a>。</p>
 <p><b> `While(condition, body, init)` </b></p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>参数</th>
 <th>类型</th>
@@ -1852,7 +1854,7 @@ let t: (f32[10], s32) = tuple(v, s);
 <td><code>condition</code> 和 <code>body</code> 的参数的初始值</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><code>While</code> 顺序执行循环体 <code>body</code> ，直到 <code>condition</code> 失败。这类似于很多语言中的 while 循环，不过，它有如下的区别和限制：</p>
 <ul>
 <li>一个 <code>While</code> 结点有一个类型为 <code>T</code> 的返回值，它是最后一次执行 <code>body</code> 的结果。</li>

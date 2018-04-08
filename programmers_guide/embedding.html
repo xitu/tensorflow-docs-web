@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -71,9 +73,9 @@ embedded_word_ids = tf.nn.embedding_lookup(word_embeddings, word_ids)
 <p>TensorBoard 包含了 <strong>Embedding Projector</strong>，一个让你能够交互式查看 embeddings 的工具。这个工具可以从你的模型中读取 embeddings 并将它们渲染到二维或三维空间中。</p>
 <p>Embedding Projector 有三个面板：</p>
 <ul>
-<li><em>Data panel</em> 在顶部左侧，这里你可以选择运行，通过点击改变 embedding 变量，和数据列颜色或将他们打上标签。</li>
-<li><em>Projections panel</em> 在底部左侧，在这里你可以选择展示的类型。</li>
-<li><em>Inspector panel</em> 在右侧，这里你可以查询特殊的点并查看最近元素列表。</li>
+<li>Data panel 在顶部左侧，这里你可以选择运行，通过点击改变 embedding 变量，和数据列颜色或将他们打上标签。</li>
+<li>Projections panel 在底部左侧，在这里你可以选择展示的类型。</li>
+<li>Inspector panel 在右侧，这里你可以查询特殊的点并查看最近元素列表。</li>
 </ul>
 <h3>Projections</h3>
 <p>Embedding Projector 为数据集降维提供了三种方法。</p>

@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -147,7 +149,7 @@ individual Iris flowers:</p>
 </ul>
 <p>Our model will represent the label as <code>int32</code> categorical data.</p>
 <p>The following table shows three examples in the data set:</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th style="text-align:right">sepal length</th>
 <th style="text-align:right">sepal width</th>
@@ -179,7 +181,7 @@ individual Iris flowers:</p>
 <td style="text-align:center">2 (virginica)</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3>The algorithm</h3>
 <p>The program trains a Deep Neural Network classifier model having the following<br>
 topology:</p>

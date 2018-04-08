@@ -16,6 +16,12 @@ $(document).ready(() => {
     head.forEach((e, i) => {
         $(".navbar-nav").html($(".navbar-nav").html() + headNav(e.name, e.link, e.selected))
     })
+    // 封装原生 table
+    $("table").each((i, e) => {
+        if (!$(e).parent().hasClass("table-wrapper")) {
+            e.outerHTML = `<div class="table-wrapper">${e.outerHTML}</div>`
+        }
+    })
 });
 
 

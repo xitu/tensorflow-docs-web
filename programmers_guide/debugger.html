@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -90,7 +92,7 @@ sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
 <p>在执行​​运行完 <code>run</code> 之后，也可以通过运行命令 <code>lt</code> 获得张量列表。</p>
 <h3>tfdbg CLI 常用的命令</h3>
 <p>在 <code>tfdbg&gt;</code> 提示符下（参考 tensorflow / python / debug / examples / debug_mnist.py 中的代码），尝试以下命令：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th style="text-align:left">Command</th>
 <th style="text-align:left">Syntax or Option</th>
@@ -454,7 +456,7 @@ sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
 <td style="text-align:left"><code>help lt</code></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>请注意，每当您输入命令时，都会显示新的屏幕输出。 这有点类似于浏览器中的网页。 您可以通过点击命令行界面左上角附近的<code>&lt;--</code> 和 <code>--&gt;</code> 文字箭头在这些屏幕之间导航。</p>
 <h3>tfdbg CLI 的其他特性</h3>
 <p>除了以上列出的命令之外，tfdebug CLI 还提供了以下的额外特性：</p>

@@ -1,3 +1,136 @@
-.navbar-light .navbar-nav .nav-link {
-    font-size: 0.7rem;
+.navbar-light .navbar-brand {
+    color: #fff;
+}
+
+.navbar {
+    background-color: #ef6c00 !important;
+}
+
+.navbar .nav-link {
+    font-size: .7rem;
+    color: rgba(255, 255, 255, .7) !important;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+    color: #fff !important;
+}
+
+.sidebar {
+    background-color: #f7f7f7;
+    padding-top: 23px;
+}
+
+#left-nav .nav-link {
+    font-size: .8rem;
+    color: #757575;
+    margin: 8px 0;
+    line-height: 16px;
+    padding: 0;
+}
+
+#left-nav > ul:nth-child(1) > li > a {
+    color: #039be5;
+}
+
+#left-nav h6 {
+    border-top: 1px solid #cfd8dc;
+    margin: 15px -16px 0;
+    padding: 16px 16px 0;
+    color: #757575 !important;
+    font-size: .8rem !important;
+    padding-left: 0 !important;
+}
+
+#left-nav h6 span {
+    padding-left: 16px;
+}
+
+/* Content style */
+
+main {
+    color: #212121;
+}
+
+main h1 {
+    color: #757575;
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 40px 0 20px;
+}
+
+main h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 3px;
+    margin: 40px 0 20px;
+}
+
+main h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 32px 0 16px;
+}
+
+main:link {
+    color: #039be5;
+    outline: 0;
+}
+
+main .table-wrapper {
+    margin: 16px 0;
+    overflow: auto;
+}
+
+main table {
+    width: 100%;
+    text-align: left;
+}
+
+main table tr {
+    background: #78909c;
+    border: 0;
+    border-top: 1px solid #cfd8dc;
+}
+
+main table th {
+    height: 48px;
+    color: #fff;
+    padding: 8px;
+    vertical-align: middle;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+main table td {
+    background: rgba(255, 255, 255, .95);
+    vertical-align: top;
+    color: #212121;
+    padding: 7px 8px 8px;
+}
+
+main table pre {
+    background: rgba(255, 255, 255, .95);
+}
+
+main code {
+    background-color: #f7f7f7;
+}
+
+main pre {
+    font-size: .8rem;
+    background: #f7f7f7;
+    color: #37474f;
+    margin: 16px 0;
+    overflow-x: auto;
+    padding: 8px;
+}
+
+main p {
+    margin: 16px 0;
+    padding: 0;
+}
+
+main li {
+    margin: 8px 0;
 }

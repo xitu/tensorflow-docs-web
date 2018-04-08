@@ -11,17 +11,19 @@
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">TensorFlow</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
+            onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <!-- TODO: Search function-->
+        <!--<form class="form-inline my-2 my-lg-0">-->
+            <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
     </div>
 </nav>
 <script>
@@ -69,7 +71,7 @@
 <li>如果某个列的值可以是连续范围内的任何数值，则称该列为<strong>连续列</strong>。例如，一个人的资本收入（例如 $14,084）是一个连续列。</li>
 </ul>
 <p>以下是 Census Income 数据集中可用列的列表：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>列名</th>
 <th>类型      </th>
@@ -153,7 +155,7 @@
 <td>年收入分类："&gt;5万" 或 "&lt;=5万"，即此人年收入是否高于 5 万。     </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h2>将数据转化为张量</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/SparseTensor"><code>tf.SparseTensor</code></a></p>
 <ol>
@@ -205,7 +207,7 @@
     &#39;occupation&#39;, hash_bucket_size=1000)
 </code></pre>
 <p>会发生的是，当我们在训练中遇到它们时，特征列 <code>occupation</code> 中的每个可能值都将被散列为一个整数 ID。参看下面的示例插图：</p>
-<table>
+<div class="table-wrapper"><table>
 <thead><tr>
 <th>ID</th>
 <th>Feature</th>
@@ -241,7 +243,7 @@
 <td></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>无论我们选择哪种方式定义 <code>SparseColumn</code>，通过查找固定的映射或散列，每个特征字符串都将被映射为一个整数 ID。请注意，哈希碰撞是可能的，但可能不会显着影响模型质量。在底层实现上，<code>LinearModel</code> 类负责管理映射并创建 <code>tf.Variable</code> 来存储每个特征 ID 的模型参数（也称为模型权重）。模型参数将通过后面将要讨论的模型训练过程来学习。</p>
 <p>我们会做类似的技巧来定义其他的类别型特征：</p>
 <pre><code class="lang-python">education = tf.feature_column.categorical_column_with_vocabulary_list(
