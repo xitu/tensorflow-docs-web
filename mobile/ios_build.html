@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>在 iOS 中构建 TensorFlow</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': 'Overview'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'TensorFlow Lite Demo for Android'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'TensorFlow Lite 演示（iOS）'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': 'Building TensorFlow on Android'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>在 iOS 中构建 TensorFlow</h1>
+<h2>使用 CocoaPods</h2>
+<p>在 iOS 上开始使用 TensorFlow 最简单的方法是使用 CocoaPods 包管理器。你可以将 <code>TensroFlow-experimental</code> 这个 pod 添加到你的 Podfile 中，进而安装通用的二进制框架。它上手简单，但却有一些难以定制的缺点。定制对缩小二进制大小非常重要。如果你确实需要具备自定义库的能力，请查看后面的小节来了解相关方法。</p>
+<h2>创建应用</h2>
+<p>你若你想在自己的应用中增加 TensorFlow 的能力，那么：</p>
+<ul>
+<li><p>在 Xcode 中创建或加载你的应用。</p>
+</li>
+<li><p>将下面的内容添加一个命名为 Podfile 的文件到根目录下：</p>
+<pre><code>  target 'YourProjectName'
+  pod 'TensorFlow-experimental'
+</code></pre>
+</li>
+<li><p>运行 <code>pod install</code> 来下载并安装 <code>TensorFlow-experimental</code> pod。</p>
+</li>
+<li><p>打开 <code>YourProjectName.xcworkspace</code> 并添加你自己的代码。</p>
+</li>
+<li><p>在应用的 <strong>Build Settings</strong> 选项中，确保在 <strong>Other Linker Flags</strong> 和 <strong>Header Search Paths</strong>中添加 <code>$(inherited)</code> 。</p>
+</li>
+</ul>
+<h2>运行示例</h2>
+<p>你需要使用 Xcode 7.3 或更新的版本来运行我们的 iOS 示例程序。</p>
+<p>目前有三个例子，分别叫做：simple、benchmark 和 camera。现在你可以通过克隆 TensorFlow 仓库来下载示例代码（我们计划在日后将例子在单独的仓库进行提供）从 TensorFlow 文件夹根目录下载 <a href="https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip">Inception v1</a>，然后将标签和图形文件提取到 data 文件夹中（simple 和 camera 示例步骤一致）：</p>
+<pre><code>mkdir -p ~/graphs
+curl -o ~/graphs/inception5h.zip \
+ https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip \
+ &amp;&amp; unzip ~/graphs/inception5h.zip -d ~/graphs/inception5h
+cp ~/graphs/inception5h/* tensorflow/examples/ios/benchmark/data/
+cp ~/graphs/inception5h/* tensorflow/examples/ios/camera/data/
+cp ~/graphs/inception5h/* tensorflow/examples/ios/simple/data/
+</code></pre>
+<p>切换到其中一个示例的目录，下载 <a href="https://cocoapods.org/pods/TensorFlow-experimental">Tensorflow-experimental</a> pod，并打开 Xcode workspace。注意，安装 pod 的时间可能会很长（大约 450MB）。如果你想运行 Simple 示例，那么：</p>
+<pre><code>cd tensorflow/examples/ios/simple
+pod install
+open tf_simple_example.xcworkspace   # note .xcworkspace, not .xcodeproj
+                                     # this is created by pod install
+</code></pre>
+<p>在 Xcode 模拟器中运行 Simple 示例程序。你可以看到一个有着 <strong>Run Model</strong> 按钮的单屏应用。点击它，你会在下方的日志框中看到一些调试信息，这表明已经分析了目录数据中的 Grace Hopper 图像，并识别出了军装。使用相同的过程可以运行其他的样本。相机示例则需要连接一个真实的 iOS 设备。一旦构建并运行它，就能得到一个实时的相机视图，你便能够将相机对准任何对象从而获得识别的结果。</p>
+<h3>iOS 示例细节</h3>
+<p>有三个 iOS 示例程，均在 Xcode 项目中定义：<a href="https://www.tensorflow.org/code/tensorflow/examples/ios/">tensorflow/examples/ios</a>。</p>
+<ul>
+<li><p><strong>Simple</strong>：这是一个展示了如何在尽可能少的代码下加载和运行 TensorFlow 模型的简单例子。它值包含一个单一视图，并包含一个按钮，用户点击时执行模型的加载和推断。</p>
+</li>
+<li><p><strong>Camera</strong>：这个例子与 Android TF Classify 演示程序非常像。它加载了 Inception v3 并输出了估计出的最佳的标签，以显示实时相机图像中的内容。与 Android 版本一样，你可以使用 TensorFlow for Poets 来训练自定义的模型，并以最小的代码修改将其放入此示例中。</p>
+</li>
+<li><p><strong>Benchmark</strong>：它与 Simple 很接近，但它会重复运行计算图并将类似的统计信息输出到 Android 上的基准测试工具中。</p>
+</li>
+</ul>
+<h3>排错</h3>
+<ul>
+<li><p>确保你使用的是 TensorFlow-experimental pod（而不是 TensorFlow）。</p>
+</li>
+<li><p>TensorFlow-experimental pod 大约有 450MB。原因在于我们绑定了多个平台，而 pod 包含了所有平台的 TensorFlow 功能（例如：运算）。最终应用的大小很小（约为 25 MB）。使用完整的 pod 在自己的开发过程中非常方便，但请阅读下一节内容来交接如何通过构建自己定制的 TensorFlow 库来缩减大小。</p>
+</li>
+</ul>
+<h2>从源码构建 TensorFlow iOS 库</h2>
+<p>尽管 Cocoapods 是最简单快捷的入门方式，但你有时候需要更加灵活的确定你的应用程序需要附带那些 TensorFlow 组件。对于这种情况，你可以从源码构建 iOS 库，请参考<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/ios#building-the-tensorflow-ios-libraries-from-source">这篇教程</a>来了解相关操作的详细说明。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

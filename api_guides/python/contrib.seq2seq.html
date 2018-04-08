@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Seq2seq Library (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Seq2seq Library (contrib)</h1>
+<p>[TOC]</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn"><code>tf.contrib.rnn</code></a></p>
+<p>This library is composed of two primary components:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/RNNCell"><code>tf.contrib.rnn.RNNCell</code></a></li>
+<li>A new object-oriented dynamic decoding framework.</li>
+</ul>
+<h2>Attention</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/AttentionMechanism"><code>tf.contrib.seq2seq.AttentionMechanism</code></a></p>
+<h3>Attention Mechanisms</h3>
+<p>The two basic attention mechanisms are:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BahdanauAttention"><code>tf.contrib.seq2seq.BahdanauAttention</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/LuongAttention"><code>tf.contrib.seq2seq.LuongAttention</code></a></li>
+</ul>
+<p>The <code>memory</code> tensor passed the attention mechanism's constructor is expected to<br>
+be shaped <code>[batch_size, memory_max_time, memory_depth]</code>; and often an additional<br>
+<code>memory_sequence_length</code> vector is accepted.  If provided, the <code>memory</code><br>
+tensors' rows are masked with zeros past their true sequence lengths.</p>
+<p>Attention mechanisms also have a concept of depth, usually determined as a<br>
+construction parameter <code>num_units</code>.  For some kinds of attention (like<br>
+<code>BahdanauAttention</code>), both queries and memory are projected to tensors of depth<br>
+<code>num_units</code>.  For other kinds (like <code>LuongAttention</code>), <code>num_units</code> should match<br>
+the depth of the queries; and the <code>memory</code> tensor will be projected to this<br>
+depth.</p>
+<h3>Attention Wrappers</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/AttentionWrapper"><code>tf.contrib.seq2seq.AttentionWrapper</code></a></p>
+<p>At each time step, the basic calculation performed by this wrapper is:</p>
+<pre><code class="lang-python">cell_inputs = concat([inputs, prev_state.attention], -1)
+cell_output, next_cell_state = cell(cell_inputs, prev_state.cell_state)
+score = attention_mechanism(cell_output)
+alignments = softmax(score)
+context = matmul(alignments, attention_mechanism.values)
+attention = tf.layers.Dense(attention_size)(concat([cell_output, context], 1))
+next_state = AttentionWrapperState(
+  cell_state=next_cell_state,
+  attention=attention)
+output = attention
+return output, next_state
+</code></pre>
+<p>In practice, a number of the intermediate calculations are configurable.<br>
+For example, the initial concatenation of <code>inputs</code> and <code>prev_state.attention</code><br>
+can be replaced with another mixing function.  The function <code>softmax</code> can<br>
+be replaced with alternative options when calculating <code>alignments</code> from the<br>
+<code>score</code>.  Finally, the outputs returned by the wrapper can be configured to<br>
+be the value <code>cell_output</code> instead of <code>attention</code>.</p>
+<p>The benefit of using a <code>AttentionWrapper</code> is that it plays nicely with<br>
+other wrappers and the dynamic decoder described below.  For example, one can<br>
+write:</p>
+<pre><code class="lang-python">cell = tf.contrib.rnn.DeviceWrapper(LSTMCell(512), &quot;/device:GPU:0&quot;)
+attention_mechanism = tf.contrib.seq2seq.LuongAttention(512, encoder_outputs)
+attn_cell = tf.contrib.seq2seq.AttentionWrapper(
+  cell, attention_mechanism, attention_size=256)
+attn_cell = tf.contrib.rnn.DeviceWrapper(attn_cell, &quot;/device:GPU:1&quot;)
+top_cell = tf.contrib.rnn.DeviceWrapper(LSTMCell(512), &quot;/device:GPU:1&quot;)
+multi_cell = MultiRNNCell([attn_cell, top_cell])
+</code></pre>
+<p>The <code>multi_rnn</code> cell will perform the bottom layer calculations on GPU 0;<br>
+attention calculations will be performed on GPU 1 and immediately passed<br>
+up to the top layer which is also calculated on GPU 1.  The attention is<br>
+also passed forward in time to the next time step and copied to GPU 0 for the<br>
+next time step of <code>cell</code>.  (<em>Note</em>: This is just an example of use,<br>
+not a suggested device partitioning strategy.)</p>
+<h2>Dynamic Decoding</h2>
+<p>Example usage:</p>
+<pre><code class="lang-python">cell = # instance of RNNCell
+
+if mode == &quot;train&quot;:
+  helper = tf.contrib.seq2seq.TrainingHelper(
+    input=input_vectors,
+    sequence_length=input_lengths)
+elif mode == &quot;infer&quot;:
+  helper = tf.contrib.seq2seq.GreedyEmbeddingHelper(
+      embedding=embedding,
+      start_tokens=tf.tile([GO_SYMBOL], [batch_size]),
+      end_token=END_SYMBOL)
+
+decoder = tf.contrib.seq2seq.BasicDecoder(
+    cell=cell,
+    helper=helper,
+    initial_state=cell.zero_state(batch_size, tf.float32))
+outputs, _ = tf.contrib.seq2seq.dynamic_decode(
+   decoder=decoder,
+   output_time_major=False,
+   impute_finished=True,
+   maximum_iterations=20)
+</code></pre>
+<h3>Decoder base class and functions</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/Decoder"><code>tf.contrib.seq2seq.Decoder</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/dynamic_decode"><code>tf.contrib.seq2seq.dynamic_decode</code></a></li>
+</ul>
+<h3>Basic Decoder</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BasicDecoderOutput"><code>tf.contrib.seq2seq.BasicDecoderOutput</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BasicDecoder"><code>tf.contrib.seq2seq.BasicDecoder</code></a></li>
+</ul>
+<h3>Decoder Helpers</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/Helper"><code>tf.contrib.seq2seq.Helper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/CustomHelper"><code>tf.contrib.seq2seq.CustomHelper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/GreedyEmbeddingHelper"><code>tf.contrib.seq2seq.GreedyEmbeddingHelper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/ScheduledEmbeddingTrainingHelper"><code>tf.contrib.seq2seq.ScheduledEmbeddingTrainingHelper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/ScheduledOutputTrainingHelper"><code>tf.contrib.seq2seq.ScheduledOutputTrainingHelper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/TrainingHelper"><code>tf.contrib.seq2seq.TrainingHelper</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>循环神经网络</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>循环神经网络</h1>
+<h2>介绍</h2>
+<p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs">这篇文章</a>详细介绍了循环神经网络(RNN)以及 LSTM 的介绍。</p>
+<h2>语言模型</h2>
+<p>此教程将展示如何在高难度的语言模型中训练循环神经网络。该问题的目标是获得一个能确定语句概率的概率模型。它是通过之前已经给出的词语来预测后面的词语。我们将使用 <a href="https://catalog.ldc.upenn.edu/ldc99t42">PTB(Penn Tree Bank)</a> 数据集；同时因为它数据量比较小，所以训练起来也相对快速。</p>
+<p>语言模型是很多有趣难题的关键所在，比如语音识别，机器翻译，图像字幕等。更多的相关资料可以查看<a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness">这里</a>。</p>
+<p>本教程的目的是重现 <a href="https://arxiv.org/abs/1409.2329">Zaremba et al., 2014</a> (<a href="https://arxiv.org/pdf/1409.2329.pdf">pdf</a>) 的结果，它在 PTB 数据集上得到了很棒的质量。</p>
+<h2>教程文件</h2>
+<p>这篇教程使用的文件在<a href="https://github.com/tensorflow/models">我们的仓库</a>中可以找到，路径是 <code>models/tutorials/rnn/ptb</code>。</p>
+<table>
+<thead><tr>
+<th>文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ptb_word_lm.py</code></td>
+<td>用于在 PTB 数据集上训练语言模型的代码。</td>
+</tr>
+<tr>
+<td><code>reader.py</code></td>
+<td>用于读取数据集的代码。</td>
+</tr>
+</tbody>
+</table>
+<h2>下载和准备数据</h2>
+<p>本教程需要的数据在 data/ 路径下，来源于 <a href="http://www.fit.vutbr.cz/~imikolov/rnnlm/simple-examples.tgz">Tomas Mikolov 网站上的 PTB 数据集</a></p>
+<p>该数据集已经经过预处理，总共包含了 10000 个不同的词语，其中包括语句结束标记符，以及标记稀有词语的特殊符号 (<unk>) 。我们在 <code>reader.py</code> 中转换所有的词语，让他们各自有唯一的整型标识符，便于神经网络处理。</p>
+<h2>模型</h2>
+<h3>LSTM</h3>
+<p>模型的核心由一个 LSTM 单元组成。它每次处理一个词语，并计算当前语句中下一个可能词出现的概率。网络的储存状态在刚初始化时是一个全零向量初始化，随后每读取一个词语后会进行更新。而且，出于计算的考虑，我们将以 <code>batch_size</code> 为最小批量来处理数据。在这个例子中，有一个很重要的点是 <code>current_batch_of_words</code> 和一个「句子」的词语不是对应关系。每一个在 batch 里面的词语只与时间 t 对应。TensorFlow 会自动地帮你累加每个 batch 的梯度值。</p>
+<p>示例：</p>
+<pre><code> t=0  t=1    t=2  t=3     t=4
+[The, brown, fox, is,     quick]
+[The, red,   fox, jumped, high]
+
+words_in_dataset[0] = [The, The]
+words_in_dataset[1] = [brown, red]
+words_in_dataset[2] = [fox, fox]
+words_in_dataset[3] = [is, jumped]
+words_in_dataset[4] = [quick, high]
+batch_size = 2, time_steps = 5
+</code></pre>
+<p>基本的伪代码如下：</p>
+<pre><code class="lang-python">words_in_dataset = tf.placeholder(tf.float32, [time_steps, batch_size, num_features])
+lstm = tf.contrib.rnn.BasicLSTMCell(lstm_size)
+# 初始化 LSTM 存储状态。
+hidden_state = tf.zeros([batch_size, lstm.state_size])
+current_state = tf.zeros([batch_size, lstm.state_size])
+state = hidden_state, current_state
+probabilities = []
+loss = 0.0
+for current_batch_of_words in words_in_dataset:
+    # 每次处理一批词语后更新状态值。
+    output, state = lstm(current_batch_of_words, state)
+
+    # LSTM 输出可用于产生下一个词语的预测。
+    logits = tf.matmul(output, softmax_w) + softmax_b
+    probabilities.append(tf.nn.softmax(logits))
+    loss += loss_function(probabilities, target_words)
+</code></pre>
+<h3>截断反向传播</h3>
+<p>RNN 的输出结果依赖于不定长度的输入，这是它网络的特点所决定的。不幸的是，这让反向传播的计算变得很困难。为了能够学习流程易于处理，通过的做法是创建一个「unrolled」版本的网络，这个网络包含了固定数量（<code>num_steps</code>）的 LSTM 输入和输出。这样模型就可以使用近似 RNN 的方式来训练。这可以每次通过提供长度为 <code>num_steps</code> 的输入，和每次迭代完成之后进行反向传导来实现它。</p>
+<p>以下是用于创建截断反向传播图的简单代码：</p>
+<pre><code class="lang-python"># 一次给定的迭代中的输入占位符。
+words = tf.placeholder(tf.int32, [batch_size, num_steps])
+
+lstm = tf.contrib.rnn.BasicLSTMCell(lstm_size)
+# 初始化 LSTM 存储状态。
+initial_state = state = tf.zeros([batch_size, lstm.state_size])
+
+for i in range(num_steps):
+    # 每处理一批词语后更新状态值。
+    output, state = lstm(words[:, i], state)
+
+    # 其余的代码。
+    # ...
+
+final_state = state
+</code></pre>
+<p>下面展现了如何在整个数据集实现迭代：</p>
+<pre><code class="lang-python"># 一个 numpy 数组，保存每一批词语之后的 LSTM 状态。
+numpy_state = initial_state.eval()
+total_loss = 0.0
+for current_batch_of_words in words_in_dataset:
+    numpy_state, current_loss = session.run([final_state, loss],
+        # 根据上一次迭代结果初始化 LSTM 状态。
+        feed_dict={initial_state: numpy_state, words: current_batch_of_words})
+    total_loss += current_loss
+</code></pre>
+<h3>输入</h3>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/word2vec.html">单词的向量表示</a></p>
+<pre><code class="lang-python"># embedding_matrix 是一个形状张量 [vocabulary_size, embedding size]
+word_embeddings = tf.nn.embedding_lookup(embedding_matrix, word_ids)
+</code></pre>
+<p>嵌入的矩阵会被随机的初始化，模型会通过数据学会分辨不同词语的意思。</p>
+<h3>损失函数</h3>
+<p>我们想使目标词语的平均负对数概率最小</p>
+<p>$$ \text{loss} = -\frac{1}{N}\sum<em>{i=1}^{N} \ln p</em>{\text{target}_i} $$</p>
+<p>我们可以直接使用现成的 <code>sequence_loss_by_example</code> 函数，虽然这实现起来并不难。论文中的典型衡量标准是每个词语的平均困惑度（perplexity），计算式为</p>
+<p>$$e^{-\frac{1}{N}\sum<em>{i=1}^{N} \ln p</em>{\text{target}_i}} = e^{\text{loss}} $$</p>
+<p>同时我们会观察训练过程中的困惑度值（perplexity）。</p>
+<h3>多个 LSTM 层堆叠</h3>
+<p>要想给模型更强的表达能力，可以添加多层 LSTM 来处理数据。第一层的输出作为第二层的输入，以此类推。类 MultiRNNCell 可以无缝地将其实现：</p>
+<pre><code class="lang-python">def lstm_cell():
+  return tf.contrib.rnn.BasicLSTMCell(lstm_size)
+stacked_lstm = tf.contrib.rnn.MultiRNNCell(
+    [lstm_cell() for _ in range(number_of_layers)])
+
+initial_state = state = stacked_lstm.zero_state(batch_size, tf.float32)
+for i in range(num_steps):
+    # 每次处理一批词语后更新状态值。
+    output, state = stacked_lstm(words[:, i], state)
+
+    # 其余的代码。
+    # ...
+
+final_state = state
+</code></pre>
+<h2>运行代码</h2>
+<p>在运行代码之前，如教程刚开始所述那样下载 PTB 数据集。然后，在 home 目录下解压 PTB 数据集。</p>
+<pre><code class="lang-bsh">tar xvfz simple-examples.tgz -C $HOME
+</code></pre>
+<p>_(注意：在 windows 下，你可能需要其他的<br>
+<a href="https://wiki.haskell.org/How_to_unpack_a_tar_file_in_Windows">工具</a>.)_</p>
+<p>现在，从 <a href="https://github.com/tensorflow/models">TensorFlow 模型仓库</a>中克隆一份代码后，执行下面命令：</p>
+<pre><code class="lang-bsh">cd models/tutorials/rnn/ptb
+python ptb_word_lm.py --data_path=$HOME/simple-examples/data/ --model=small
+</code></pre>
+<p>这里有 3 个支持的模型配置文件在我们教程的代码里：「small」，「medium」和「large」。它们的区别在于 LSTM 的大小，以及用于训练的超参数集。模型越大，得到的结果应该更好。在测试集中 <code>small</code> 模型应该可以达到低于 120 的困惑度（perplexity），<code>large</code> 模型则是低于 80，但它可能花费数小时来训练。</p>
+<h2>除此之外</h2>
+<p>还有几个优化模型的技巧没有提到，包括：</p>
+<ul>
+<li>降低学习率计划表。</li>
+<li>在 LSTM 层间使用 dropout。</li>
+</ul>
+<p>继续学习和更改代码以进一步改善模型吧。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

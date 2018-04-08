@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow Lite 演示（iOS）</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow Lite 演示（iOS）</h1>
+<p>TensorFlow Lite 示例程序是一款相机应用，通过量子化的 MobileNet 模型来对摄像头后置摄像头所看到的内容进行分类。下面的说明想你展示了如何在 iOS 上构建和运行这个程序。</p>
+<h2>准备</h2>
+<ul>
+<li><p>你必须安装 <a href="https://developer.apple.com/xcode/">Xcode</a> 并且具有一个有效的 Apple 开发者 ID，同时还需要一个链接了你开发者账号的 iOS 设备及全部正确的证书。对于这些步骤，我们假设你已经能够载你当前开发环境中编译并将应用部署在一个 iOS 设备上。</p>
+</li>
+<li><p>演示程序需要使用相机，因此必须在一台真实的 iOS 设备上运行。你当然可以构建并使用 iPhone 模拟器运行此程序，但它不会为分类问题提供任何相机画面。</p>
+</li>
+<li><p>你不需要构建整个 TensorFlow 库来运行示例程序，但你需要克隆整个 TensorFlow 仓库：</p>
+<pre><code>  git clone https://github.com/tensorflow/tensorflow
+</code></pre>
+</li>
+<li><p>你还需要安装 Xcode 提供的命令行工具：</p>
+<pre><code>  xcode-select --install
+</code></pre>
+<p>如果你是第一次安装，那么需要先运行一次 Xcode 进行许可，才能继续。</p>
+</li>
+</ul>
+<h2>构建 iOS 示例应用</h2>
+<ol>
+<li><p>如果你没有 CocoaPods 则可以使用下面的命令进行安装:</p>
+<pre><code class="lang-bash"> sudo gem install cocoapods
+</code></pre>
+</li>
+<li><p>下载示例应用的模型文件（可以通过克隆的目录来完成）：</p>
+<pre><code> sh tensorflow/contrib/lite/examples/ios/download_models.sh
+</code></pre>
+</li>
+<li><p>下载 pod 生成的 workspace 文件：</p>
+<pre><code> cd tensorflow/contrib/lite/examples/ios/camera
+ pod install
+</code></pre>
+<p>如果你已经安装了这个 pod 并且上线的命令无效，请尝试</p>
+<pre><code> pod update
+</code></pre>
+<p>在这个步骤之后，你会具有一个名叫 <code>tflite_camera_example.xcworkspace</code> 的文件。</p>
+</li>
+<li><p>使用下面的命令在 Xcode 中打开项目：</p>
+<pre><code> open tflite_camera_example.xcworkspace
+</code></pre>
+<p>如果 <code>tflite_camera_example</code> 项目尚未打开则会启动 Xcode。</p>
+</li>
+<li><p>在 Xcode 中编译运行程序。</p>
+<p>注意，如前文所述，你必须将你的设备链接到一个开发者账户上才能完成设备的部署。</p>
+</li>
+</ol>
+<p>你还需要授权应用具有使用相机的权限。然后你就可以将设备对准各种物体，来欣赏模型如何对物体进行分类了！</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

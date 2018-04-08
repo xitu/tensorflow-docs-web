@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>How to Quantize Neural Networks with TensorFlow</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': 'Input Pipeline Performance Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': 'High-Performance Models'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}, {'type': 'parent', 'title': ' Quantization', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'How to Quantize Neural Networks with TensorFlow'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>How to Quantize Neural Networks with TensorFlow</h1>
+<p>When modern neural networks were being developed, the biggest challenge was<br>
+getting them to work at all! That meant that accuracy and speed during training<br>
+were the top priorities. Using floating point arithmetic was the easiest way to<br>
+preserve accuracy, and GPUs were well-equipped to accelerate those calculations,<br>
+so it's natural that not much attention was paid to other numerical formats.</p>
+<p>These days, we actually have a lot of models being deployed in commercial<br>
+applications. The computation demands of training grow with the number of<br>
+researchers, but the cycles needed for inference expand in proportion to users.<br>
+That means pure inference efficiency has become a burning issue for a lot of<br>
+teams.</p>
+<p>That is where quantization comes in. It's an umbrella term that covers a lot of<br>
+different techniques to store numbers and perform calculations on them in more<br>
+compact formats than 32-bit floating point. I am going to focus on eight-bit<br>
+fixed point, for reasons I'll go into more detail on later.</p>
+<p>[TOC]</p>
+<h2>Why does Quantization Work?</h2>
+<p>Training neural networks is done by applying many tiny nudges to the weights,<br>
+and these small increments typically need floating point precision to work<br>
+(though there are research efforts to use quantized representations here too).</p>
+<p>Taking a pre-trained model and running inference is very different. One of the<br>
+magical qualities of deep networks is that they tend to cope very well with high<br>
+levels of noise in their inputs. If you think about recognizing an object in a<br>
+photo you've just taken, the network has to ignore all the CCD noise, lighting<br>
+changes, and other non-essential differences between it and the training<br>
+examples it's seen before, and focus on the important similarities instead. This<br>
+ability means that they seem to treat low-precision calculations as just another<br>
+source of noise, and still produce accurate results even with numerical formats<br>
+that hold less information.</p>
+<h2>Why Quantize?</h2>
+<p>Neural network models can take up a lot of space on disk, with the original<br>
+AlexNet being over 200 MB in float format for example. Almost all of that size<br>
+is taken up with the weights for the neural connections, since there are often<br>
+many millions of these in a single model. Because they're all slightly different<br>
+floating point numbers, simple compression formats like zip don't compress them<br>
+well. They are arranged in large layers though, and within each layer the<br>
+weights tend to be normally distributed within a certain range, for example -3.0<br>
+to 6.0.</p>
+<p>The simplest motivation for quantization is to shrink file sizes by storing the<br>
+min and max for each layer, and then compressing each float value to an<br>
+eight-bit integer representing the closest real number in a linear set of 256<br>
+within the range. For example with the -3.0 to 6.0 range, a 0 byte would<br>
+represent -3.0, a 255 would stand for 6.0, and 128 would represent about 1.5.<br>
+I'll go into the exact calculations later, since there's some subtleties, but<br>
+this means you can get the benefit of a file on disk that's shrunk by 75%, and<br>
+then convert back to float after loading so that your existing floating-point<br>
+code can work without any changes.</p>
+<p>Another reason to quantize is to reduce the computational resources you need to<br>
+do the inference calculations, by running them entirely with eight-bit inputs<br>
+and outputs. This is a lot more difficult since it requires changes everywhere<br>
+you do calculations, but offers a lot of potential rewards. Fetching eight-bit<br>
+values only requires 25% of the memory bandwidth of floats, so you'll make much<br>
+better use of caches and avoid bottlenecking on RAM access. You can also<br>
+typically use SIMD operations that do many more operations per clock cycle. In<br>
+some case you'll have a DSP chip available that can accelerate eight-bit<br>
+calculations too, which can offer a lot of advantages.</p>
+<p>Moving calculations over to eight bit will help you run your models faster, and<br>
+use less power (which is especially important on mobile devices). It also opens<br>
+the door to a lot of embedded systems that can't run floating point code<br>
+efficiently, so it can enable a lot of applications in the IoT world.</p>
+<h2>Why Not Train in Lower Precision Directly?</h2>
+<p>There have been some experiments training at lower bit depths, but the results<br>
+seem to indicate that you need higher than eight bit to handle the back<br>
+propagation and gradients. That makes implementing the training more<br>
+complicated, and so starting with inference made sense. We also already have a<br>
+lot of float models already that we use and know well, so being able to convert<br>
+them directly is very convenient.</p>
+<h2>How Can You Quantize Your Models?</h2>
+<p>TensorFlow has production-grade support for eight-bit calculations built in. It<br>
+also has a process for converting many models trained in floating-point over to<br>
+equivalent graphs using quantized calculations for inference. For example,<br>
+here's how you can translate the latest GoogLeNet model into a version that uses<br>
+eight-bit computations:</p>
+<pre><code class="lang-sh">curl -L &quot;https://storage.googleapis.com/download.tensorflow.org/models/inception_v3_2016_08_28_frozen.pb.tar.gz&quot; |
+  tar -C tensorflow/examples/label_image/data -xz
+bazel build tensorflow/tools/graph_transforms:transform_graph
+bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
+  --in_graph=tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb \
+  --out_graph=/tmp/quantized_graph.pb \
+  --inputs=input \
+  --outputs=InceptionV3/Predictions/Reshape_1 \
+  --transforms=&#39;add_default_attributes strip_unused_nodes(type=float, shape=&quot;1,299,299,3&quot;)
+    remove_nodes(op=Identity, op=CheckNumerics) fold_constants(ignore_errors=true)
+    fold_batch_norms fold_old_batch_norms quantize_weights quantize_nodes
+    strip_unused_nodes sort_by_execution_order&#39;
+</code></pre>
+<p>This will produce a new model that runs the same operations as the original, but<br>
+with eight bit calculations internally, and all weights quantized as well. If<br>
+you look at the file size, you'll see it's about a quarter of the original (23MB<br>
+versus 91MB). You can still run this model using exactly the same inputs and<br>
+outputs though, and you should get equivalent results. Here's an example:</p>
+<pre><code class="lang-sh">bazel build tensorflow/examples/label_image:label_image
+bazel-bin/tensorflow/examples/label_image/label_image \
+--graph=/tmp/quantized_graph.pb \
+</code></pre>
+<p>You'll see that this runs the newly-quantized graph, and outputs a very similar<br>
+answer to the original.</p>
+<p>You can run the same process on your own models saved out as GraphDefs, with the<br>
+input and output names adapted to those your network requires. I recommend that<br>
+you run them through the freeze_graph script first, to convert checkpoints into<br>
+constants stored in the file.</p>
+<h2>How Does the Quantization Process Work?</h2>
+<p>We've implemented quantization by writing equivalent eight-bit versions of<br>
+operations that are commonly used during inference. These include convolution,<br>
+matrix multiplication, activation functions, pooling operations and<br>
+concatenation. The conversion script first replaces all the individual ops it<br>
+knows about with quantized equivalents. These are small sub-graphs that have<br>
+conversion functions before and after to move the data between float and<br>
+eight-bit. Below is an example of what they look like. First here's the original<br>
+Relu operation, with float inputs and outputs:</p>
+<p><img src="https://www.tensorflow.org/images/quantization0.png" alt="Relu Diagram"></p>
+<p>Then, this is the equivalent converted subgraph, still with float inputs and<br>
+outputs, but with internal conversions so the calculations are done in eight<br>
+bit.</p>
+<p><img src="https://www.tensorflow.org/images/quantization1.png" alt="Converted Diagram"></p>
+<p>The min and max operations actually look at the values in the input float<br>
+tensor, and then feeds them into the Dequantize operation that converts the<br>
+tensor into eight-bits. There are more details on how the quantized representation<br>
+works later on.</p>
+<p>Once the individual operations have been converted, the next stage is to remove<br>
+unnecessary conversions to and from float. If there are consecutive sequences of<br>
+operations that all have float equivalents, then there will be a lot of adjacent<br>
+Dequantize/Quantize ops. This stage spots that pattern, recognizes that they<br>
+cancel each other out, and removes them, like this:</p>
+<p><img src="https://www.tensorflow.org/images/quantization2.png" alt="Stripping Diagram"></p>
+<p>Applied on a large scale to models where all of the operations have quantized<br>
+equivalents, this gives a graph where all of the tensor calculations are done in<br>
+eight bit, without having to convert to float.</p>
+<h2>What Representation is Used for Quantized Tensors?</h2>
+<p>We approach converting floating-point arrays of numbers into eight-bit<br>
+representations as a compression problem. We know that the weights and<br>
+activation tensors in trained neural network models tend to have values that are<br>
+distributed across comparatively small ranges (for example you might have -15 to<br>
++15 for weights, -500 to 1000 for activations on an image model, though the<br>
+exact numbers will vary). We also know from experiment that neural nets tend to<br>
+be very robust in the face of noise, and so the noise-like error produced by<br>
+quantizing down to a small set of values will not hurt the precision of the<br>
+overall results very much. We also want to pick a representation that's easy to<br>
+perform calculations on, especially the large matrix multiplications that form<br>
+the bulk of the work that's needed to run a model.</p>
+<p>These led us to pick a representation that has two floats to store the overall<br>
+minimum and maximum values that are represented by the lowest and highest<br>
+quantized value. Each entry in the quantized array represents a float value in<br>
+that range, distributed linearly between the minimum and maximum. For example,<br>
+if we have minimum = -10.0, and maximum = 30.0f, and an eight-bit array, here's<br>
+what the quantized values represent:</p>
+<pre><code>Quantized | Float
+--------- | -----
+0         | -10.0
+255       | 30.0
+128       | 10.0
+</code></pre>
+<p>The advantages of this format are that it can represent arbitrary magnitudes of<br>
+ranges, they don't have to be symmetrical, it can represent signed and unsigned<br>
+values, and the linear spread makes doing multiplications straightforward. There<br>
+are alternatives like <a href="http://arxiv.org/pdf/1510.00149.pdf">Song Han's code books</a><br>
+that can use lower bit depths by non-linearly distributing the float values<br>
+across the representation, but these tend to be more expensive to calculate on.</p>
+<p>The advantage of having a strong and clear definition of the quantized format is<br>
+that it's always possible to convert back and forth from float for operations<br>
+that aren't quantization-ready, or to inspect the tensors for debugging<br>
+purposes. One implementation detail in TensorFlow that we're hoping to improve<br>
+in the future is that the minimum and maximum float values need to be passed as<br>
+separate tensors to the one holding the quantized values, so graphs can get a<br>
+bit dense!</p>
+<p>The nice thing about the minimum and maximum ranges is that they can often be<br>
+pre-calculated. Weight parameters are constants known at load time, so their<br>
+ranges can also be stored as constants. We often know the ranges for inputs (for<br>
+examples images are usually RGB values in the range 0.0 to 255.0), and many<br>
+activation functions have known ranges too. This can avoid having to analyze the<br>
+outputs of an operation to determine the range, which we need to do for math ops<br>
+like convolution or matrix multiplication which produce 32-bit accumulated<br>
+results from 8-bit inputs.</p>
+<h2>What's Next?</h2>
+<p>We've found that we can get extremely good performance on mobile and embedded<br>
+devices by using eight-bit arithmetic rather than floating-point. You can see<br>
+the framework we use to optimize matrix multiplications at<br>
+<a href="https://github.com/google/gemmlowp">gemmlowp</a>. We still need to apply all the<br>
+lessons we've learned to the TensorFlow ops to get maximum performance on<br>
+mobile, but we're actively working on that. Right now, this quantized<br>
+implementation is a reasonably fast and accurate reference implementation that<br>
+we're hoping will enable wider support for our eight-bit models on a wider<br>
+variety of devices. We also hope that this demonstration will encourage the<br>
+community to explore what's possible with low-precision neural networks.</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

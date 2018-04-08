@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>High-Performance Models</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': 'Input Pipeline Performance Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': 'High-Performance Models'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}, {'type': 'parent', 'title': ' Quantization', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'How to Quantize Neural Networks with TensorFlow'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>High-Performance Models</h1>
+<p>This document and accompanying<br>
+<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">scripts</a><br>
+detail how to build highly scalable models that target a variety of system types<br>
+and network topologies. The techniques in this document utilize some low-level<br>
+TensorFlow Python primitives. In the future, many of these techniques will be<br>
+incorporated into high-level APIs.</p>
+<h2>Input Pipeline</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/queue_runner"><code>tf.train.queue_runner</code></a></p>
+<p>Another approach, which we have implemented in the<br>
+<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">scripts</a>,<br>
+is to build an input pipeline using the native parallelism in TensorFlow. Our<br>
+implementation is made up of 3 stages:</p>
+<ul>
+<li>I/O reads: Choose and read image files from disk.</li>
+<li>Image Processing: Decode image records into images, preprocess, and organize<br>
+into mini-batches.</li>
+<li>CPU-to-GPU Data Transfer: Transfer images from CPU to GPU.</li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/FIFOQueue"><code>tf.FIFOQueue</code></a></p>
+<h3>Parallelize I/O Reads</h3>
+<p><code>data_flow_ops.RecordInput</code> is used to parallelize reading from disk. Given a<br>
+list of input files representing TFRecords, <code>RecordInput</code> continuously reads<br>
+records using background threads. The records are placed into its own large<br>
+internal pool and when it has loaded at least half of its capacity, it produces<br>
+output tensors.</p>
+<p>This op has its own internal threads that are dominated by I/O time that consume<br>
+minimal CPU, which allows it to run smoothly in parallel with the rest of the<br>
+model.</p>
+<h3>Parallelize Image Processing</h3>
+<p>After images are read from <code>RecordInput</code> they are passed as tensors to the image<br>
+processing pipeline. To make the image processing pipeline easier to explain,<br>
+assume that the input pipeline is targeting 8 GPUs with a batch size of 256 (32<br>
+per GPU).</p>
+<p>256 records are read and processed individually in parallel. This starts with<br>
+256 independent <code>RecordInput</code> read ops in the graph. Each read op is followed by<br>
+an identical set of ops for image preprocessing that are considered independent<br>
+and executed in parallel. The image preprocessing ops include operations such as<br>
+image decoding, distortion, and resizing.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/parallel_stack"><code>tf.parallel_stack</code></a></p>
+<p>When all the input tensors are finished, the output tensor is passed along in<br>
+the graph. This effectively hides all the memory latency with the long tail of<br>
+producing all the input tensors.</p>
+<h3>Parallelize CPU-to-GPU Data Transfer</h3>
+<p>Continuing with the assumption that the target is 8 GPUs with a batch size of<br>
+256 (32 per GPU). Once the input images are processed and concatenated together<br>
+by the CPU, we have 8 tensors each with a batch-size of 32.</p>
+<p>TensorFlow enables tensors from one device to be used on any other device<br>
+directly. TensorFlow inserts implicit copies to make the tensors available on<br>
+any devices where they are used. The runtime schedules the copy between devices<br>
+to run before the tensors are actually used. However, if the copy cannot finish<br>
+in time, the computation that needs those tensors will stall and result in<br>
+decreased performance.</p>
+<p>In this implementation, <code>data_flow_ops.StagingArea</code> is used to explicitly<br>
+schedule the copy in parallel. The end result is that when computation starts on<br>
+the GPU, all the tensors are already available.</p>
+<h3>Software Pipelining</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/FIFOQueue"><code>tf.FIFOQueue</code></a></p>
+<p>Before the model starts running all the stages, the input pipeline stages are<br>
+warmed up to prime the staging buffers in between with one set of data.<br>
+During each run step, one set of data is read from the staging buffers at<br>
+the beginning of each stage, and one set is pushed at the end.</p>
+<p>For example: if there are three stages: A, B and C. There are two staging areas<br>
+in between: S1 and S2. During the warm up, we run:</p>
+<pre><code>Warm up:
+Step 1: A0
+Step 2: A1  B0
+
+Actual execution:
+Step 3: A2  B1  C0
+Step 4: A3  B2  C1
+Step 5: A4  B3  C2
+</code></pre>
+<p>After the warm up, S1 and S2 each have one set of data in them. For each step of<br>
+the actual execution, one set of data is consumed from each staging area, and<br>
+one set is added to each.</p>
+<p>Benefits of using this scheme:</p>
+<ul>
+<li>All stages are non-blocking, since the staging areas always have one set of<br>
+data after the warm up.</li>
+<li>Each stage can run in parallel since they can all start immediately.</li>
+<li>The staging buffers have a fixed memory overhead. They will have at most one<br>
+extra set of data.</li>
+<li>Only a single<code>session.run()</code> call is needed to run all stages of the step,<br>
+which makes profiling and debugging much easier.</li>
+</ul>
+<h2>Best Practices in Building High-Performance Models</h2>
+<p>Collected below are a couple of additional best practices that can improve<br>
+performance and increase the flexibility of models.</p>
+<h3>Build the model with both NHWC and NCHW</h3>
+<p>Most TensorFlow operations used by a CNN support both NHWC and NCHW data format.<br>
+On GPU, NCHW is faster. But on CPU, NHWC is sometimes faster.</p>
+<p>Building a model to support both data formats keeps the model flexible and<br>
+capable of operating optimally regardless of platform. Most TensorFlow<br>
+operations used by a CNN support both NHWC and NCHW data formats. The benchmark<br>
+script was written to support both NCHW and NHWC. NCHW should always be used<br>
+when training with GPUs. NHWC is sometimes faster on CPU. A flexible model can<br>
+be trained on GPUs using NCHW with inference done on CPU using NHWC with the<br>
+weights obtained from training.</p>
+<h3>Use Fused Batch-Normalization</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/batch_norm"><code>tf.contrib.layers.batch_norm</code></a></p>
+<pre><code class="lang-python">bn = tf.contrib.layers.batch_norm(
+          input_layer, fused=True, data_format=&#39;NCHW&#39;
+          scope=scope)
+</code></pre>
+<h2>Variable Distribution and Gradient Aggregation</h2>
+<p>During training, training variable values are updated using aggregated gradients<br>
+and deltas. In the benchmark script, we demonstrate that with the flexible and<br>
+general-purpose TensorFlow primitives, a diverse range of high-performance<br>
+distribution and aggregation schemes can be built.</p>
+<p>Three examples of variable distribution and aggregation were included in the<br>
+script:</p>
+<ul>
+<li><code>parameter_server</code> where each replica of the training model reads the<br>
+variables from a parameter server and updates the variable independently.<br>
+When each model needs the variables, they are copied over through the<br>
+standard implicit copies added by the TensorFlow runtime. The example<br>
+<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">script</a><br>
+illustrates using this method for local training, distributed synchronous<br>
+training, and distributed asynchronous training.</li>
+<li><code>replicated</code> places an identical copy of each training variable on each<br>
+GPU. The forward and backward computation can start immediately as the<br>
+variable data is immediately available. Gradients are accumulated across all<br>
+GPUs, and the aggregated total is applied to each GPU's copy of the<br>
+variables to keep them in sync.</li>
+<li><code>distributed_replicated</code> places an identical copy of the training parameters<br>
+on each GPU along with a master copy on the parameter servers. The forward<br>
+and backward computation can start immediately as the variable data is<br>
+immediately available. Gradients are accumulated across all GPUs on each<br>
+server and then the per-server aggregated gradients are applied to the<br>
+master copy. After all workers do this, each worker updates its copy of the<br>
+variable from the master copy.</li>
+</ul>
+<p>Below are additional details about each approach.</p>
+<h3>Parameter Server Variables</h3>
+<p>The most common way trainable variables are managed in TensorFlow models is<br>
+parameter server mode.</p>
+<p>In a distributed system, each worker process runs the same model, and parameter<br>
+server processes own the master copies of the variables. When a worker needs a<br>
+variable from a parameter server, it refers to it directly. The TensorFlow<br>
+runtime adds implicit copies to the graph to make the variable value available<br>
+on the computation device that needs it. When a gradient is computed on a<br>
+worker, it is sent to the parameter server that owns the particular variable,<br>
+and the corresponding optimizer is used to update the variable.</p>
+<p>There are some techniques to improve throughput:</p>
+<ul>
+<li>The variables are spread among parameter servers based on their size, for<br>
+load balancing.</li>
+<li>When each worker has multiple GPUs, gradients are accumulated across the<br>
+GPUs and a single aggregated gradient is sent to the parameter server. This<br>
+reduces the network bandwidth and the amount of work done by the parameter<br>
+servers.</li>
+</ul>
+<p>For coordinating between workers, a very common mode is async updates, where<br>
+each worker updates the master copy of the variables without synchronizing with<br>
+other workers. In our model, we demonstrate that it is fairly easy to introduce<br>
+synchronization across workers so updates for all workers are finished in one<br>
+step before the next step can start.</p>
+<p>The parameter server method can also be used for local training, In this case,<br>
+instead of spreading the master copies of variables across parameters servers,<br>
+they are either on the CPU or spread across the available GPUs.</p>
+<p>Due to the simple nature of this setup, this architecture has gained a lot of<br>
+popularity within the community.</p>
+<p>This mode can be used in the script by passing<br>
+<code>--variable_update=parameter_server</code>.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:100%" alt="parameter_server mode in distributed training"
+   src="../images/perf_parameter_server_mode_doc.png">
+</div><h3>Replicated Variables</h3>
+<p>In this design, each GPU on the server has its own copy of each variable. The<br>
+values are kept in sync across GPUs by applying the fully aggregated gradient to<br>
+each GPU's copy of the variable.</p>
+<p>The variables and data are available at the start of training, so the forward<br>
+pass of training can start immediately. Gradients are aggregated across the<br>
+devices and the fully aggregated gradient is then applied to each local copy.</p>
+<p>Gradient aggregation across the server can be done in different ways:</p>
+<ul>
+<li>Using standard TensorFlow operations to accumulate the total on a single<br>
+device (CPU or GPU) and then copy it back to all GPUs.</li>
+<li>Using NVIDIA® NCCL, described below in the NCCL section.</li>
+</ul>
+<p>This mode can be used in the script by passing <code>--variable_update=replicated</code>.</p>
+<h3>Replicated Variables in Distributed Training</h3>
+<p>The replicated method for variables can be extended to distributed training. One<br>
+way to do this like the replicated mode: aggregate the gradients fully across<br>
+the cluster and apply them to each local copy of the variable. This may be shown<br>
+in a future version of this scripts; the scripts do present a different<br>
+variation, described here.</p>
+<p>In this mode, in addition to each GPU's copy of the variables, a master copy is<br>
+stored on the parameter servers. As with the replicated mode, training can start<br>
+immediately using the local copies of the variables.</p>
+<p>As the gradients of the weights become available, they are sent back to the<br>
+parameter servers and all local copies are updated:</p>
+<ol>
+<li>All the gradients from the GPU on the same worker are aggregated together.</li>
+<li>Aggregated gradients from each worker are sent to the parameter server that<br>
+owns the variable, where the specified optimizer is used to update the<br>
+master copy of the variable.</li>
+<li>Each worker updates its local copy of the variable from the master. In the<br>
+example model, this is done with a cross-replica barrier that waits for all<br>
+the workers to finish updating the variables, and fetches the new variable<br>
+only after the barrier has been released by all replicas. Once the copy<br>
+finishes for all variables, this marks the end of a training step, and a new<br>
+step can start.</li>
+</ol>
+<p>Although this sounds similar to the standard use of parameter servers, the<br>
+performance is often better in many cases. This is largely due to the fact the<br>
+computation can happen without any delay, and much of the copy latency of early<br>
+gradients can be hidden by later computation layers.</p>
+<p>This mode can be used in the script by passing<br>
+<code>--variable_update=distributed_replicated</code>.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:100%" alt="distributed_replicated mode"
+   src="../images/perf_distributed_replicated_mode_doc.png">
+</div><h4>NCCL</h4>
+<p>In order to broadcast variables and aggregate gradients across different GPUs<br>
+within the same host machine, we can use the default TensorFlow implicit copy<br>
+mechanism.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/nccl"><code>tf.contrib.nccl</code></a></p>
+<p>In our experiment, we demonstrate that although NCCL often leads to much faster<br>
+data aggregation by itself, it doesn't necessarily lead to faster training. Our<br>
+hypothesis is that the implicit copies are essentially free since they go to the<br>
+copy engine on GPU, as long as its latency can be hidden by the main computation<br>
+itself. Although NCCL can transfer data faster, it takes one SM away, and adds<br>
+more pressure to the underlying L2 cache. Our results show that for 8-GPUs, NCCL<br>
+often leads to better performance. However, for fewer GPUs, the implicit copies<br>
+often perform better.</p>
+<h4>Staged Variables</h4>
+<p>We further introduce a staged-variable mode where we use staging areas for both<br>
+the variable reads, and their updates. Similar to software pipelining of the<br>
+input pipeline, this can hide the data copy latency. If the computation time<br>
+takes longer than the copy and aggregation, the copy itself becomes essentially<br>
+free.</p>
+<p>The downside is that all the weights read are from the previous training step.<br>
+So it is a different algorithm from SGD. But it is possible to improve its<br>
+convergence by adjusting learning rate and other hyperparameters.</p>
+<h2>Executing the script</h2>
+<p>This section lists the core command line arguments and a few basic examples for<br>
+executing the main script<br>
+(<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py">tf_cnn_benchmarks.py</a>).</p>
+<blockquote><p>Note: <code>tf_cnn_benchmarks.py</code> uses the config <code>force_gpu_compatible</code>,<br>
+which was introduced after TensorFlow 1.1. Until TensorFlow 1.2 is released<br>
+building from source is advised.</p>
+</blockquote>
+<h4>Base command line arguments</h4>
+<ul>
+<li><strong><code>model</code></strong>: Model to use, e.g. <code>resnet50</code>, <code>inception3</code>, <code>vgg16</code>, and<br>
+<code>alexnet</code>.</li>
+<li><strong><code>num_gpus</code></strong>: Number of GPUs to use.</li>
+<li><strong><code>data_dir</code></strong>: Path to data to process. If not set, synthetic data is used.<br>
+To use ImageNet data use these<br>
+<a href="https://github.com/tensorflow/models/tree/master/research/inception#getting-started">instructions</a><br>
+as a starting point.</li>
+<li><strong><code>batch_size</code></strong>: Batch size for each GPU.</li>
+<li><strong><code>variable_update</code></strong>: The method for managing variables: <code>parameter_server</code><br>
+,<code>replicated</code>, <code>distributed_replicated</code>, <code>independent</code></li>
+<li><strong><code>local_parameter_device</code></strong>: Device to use as parameter server: <code>cpu</code> or<br>
+<code>gpu</code>.</li>
+</ul>
+<h4>Single instance examples</h4>
+<pre><code class="lang-bash"># VGG16 training ImageNet with 8 GPUs using arguments that optimize for
+# Google Compute Engine.
+python tf_cnn_benchmarks.py --local_parameter_device=cpu --num_gpus=8 \
+--batch_size=32 --model=vgg16 --data_dir=/home/ubuntu/imagenet/train \
+--variable_update=parameter_server --nodistortions
+
+# VGG16 training synthetic ImageNet data with 8 GPUs using arguments that
+# optimize for the NVIDIA DGX-1.
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=vgg16 --variable_update=replicated --use_nccl=True
+
+# VGG16 training ImageNet data with 8 GPUs using arguments that optimize for
+# Amazon EC2.
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=vgg16 --variable_update=parameter_server
+
+# ResNet-50 training ImageNet data with 8 GPUs using arguments that optimize for
+# Amazon EC2.
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=replicated --use_nccl=False
+</code></pre>
+<h4>Distributed command line arguments</h4>
+<ul>
+<li><strong><code>ps_hosts</code></strong>: Comma separated list of hosts to use as parameter servers<br>
+in the format of <code>&lt;host&gt;:port</code>, e.g. <code>10.0.0.2:50000</code>.</li>
+<li><strong><code>worker_hosts</code></strong>: Comma separated list of hosts to use as workers in the<br>
+format of <code>&lt;host&gt;:port</code>, e.g. <code>10.0.0.2:50001</code>.</li>
+<li><strong><code>task_index</code></strong>: Index of the host in the list of <code>ps_hosts</code> or<br>
+<code>worker_hosts</code> being started.</li>
+<li><strong><code>job_name</code></strong>: Type of job, e.g <code>ps</code> or <code>worker</code></li>
+</ul>
+<h4>Distributed examples</h4>
+<p>Below is an example of training ResNet-50 on 2 hosts: host_0 (10.0.0.1) and<br>
+host_1 (10.0.0.2). The example uses synthetic data. To use real data pass the<br>
+<code>--data_dir</code> argument.</p>
+<pre><code class="lang-bash"># Run the following commands on host_0 (10.0.0.1):
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=worker --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=0
+
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=ps --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=0
+
+
+# Run the following commands on host_1 (10.0.0.2):
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=worker --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=1
+
+python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
+--batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
+--job_name=ps --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
+--worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=1
+</code></pre>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

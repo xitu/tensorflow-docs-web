@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>使用特定的核方法改善线性模型</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>使用特定的核方法改善线性模型</h1>
+<p>注意：这篇文档使用的是已经被弃用了的 ${tf.estimator} 版本，具有${tf.contrib.learn.estimator$different interface}。它还使用了 <code>contrib</code> 方法的${$version_compat#not_covered$API may not be stable}</p>
+<p>在这篇教程里，我们将示范如何把特定核方法和线性模型结合起来在不明显增加训练和推理时间的情况下大幅度提升预测质量。与多核方法不同，特定核心方法对训练数据集的大小具有很好的可扩展性，不管是在训练和推理时间上还是在内存占用上。</p>
+<p><strong>目标读者：</strong> 尽管我们提供的只是特定核方法相关概念的一个概览，教程的主要目标读者依然要具备核方法和支持向量机的基础知识，这些知识可以参考以下的资源做一个了解：</p>
+<ul>
+<li>如果你有很强的数学背景，请参考：<a href="https://arxiv.org/pdf/math/0701907.pdf">机器学习中的核方法</a></li>
+<li>或者<a href="https://en.wikipedia.org/wiki/Kernel_method">核方法维基百科</a></li>
+</ul>
+<p>目前，TensorFlow 只支持对于密集特征的特定核映射。对于稀疏特征的支持将在后面的发布版本中提供。</p>
+<p>本教程使用 <a href="https://www.tensorflow.org/code/tensorflow/contrib/learn/python/learn">tf.contrib.learn</a>（TensorFlow 机器学习高级接口）估测器作为我们的机器学习模型。如果你对这份 API 不熟悉，可以参考<a href="https://www.tensorflow.org/get_started/estimator">tf.estimator Quickstart</a>。我们将使用 MNIST 数据集。本教程包含以下步骤：</p>
+<ul>
+<li>为分类下载和准备 MNIST 数据。</li>
+<li>构建一个简单的线性模型，训练并在评估数据上评估。</li>
+<li>用核化的线性模型替换线性模型，再次训练，评估。</li>
+</ul>
+<h2>为分类任务下载和准备 MNIST 数据</h2>
+<p>运行如下的工具命令来下载 MNIST 数据集：</p>
+<pre><code class="lang-python">data = tf.contrib.learn.datasets.mnist.load_mnist()
+</code></pre>
+<p>上面的方法下载了整个 MNIST 数据集（包含 70K 的样本），并分成大小分别为 55K, 5K 和 10K 的训练，验证和测试集。每次分割包含一个 numpy 图像数组（维度大小为 [样本大小, 784]）和一个 numpy 标签数组（shape 为 [样本大小, 1])。在本教程中，我们仅使用训练和验证集来分别训练和验证我们的模型。</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html#input_fn">Getting Started with TensorFlow</a></p>
+<pre><code class="lang-python">import numpy as np
+import tensorflow as tf
+
+def get_input_fn(dataset_split, batch_size, capacity=10000, min_after_dequeue=3000):
+
+  def _input_fn():
+    images_batch, labels_batch = tf.train.shuffle_batch(
+        tensors=[dataset_split.images, dataset_split.labels.astype(np.int32)],
+        batch_size=batch_size,
+        capacity=capacity,
+        min_after_dequeue=min_after_dequeue,
+        enqueue_many=True,
+        num_threads=4)
+    features_map = {&#39;images&#39;: images_batch}
+    return features_map, labels_batch
+
+  return _input_fn
+
+data = tf.contrib.learn.datasets.mnist.load_mnist()
+
+train_input_fn = get_input_fn(data.train, batch_size=256)
+eval_input_fn = get_input_fn(data.validation, batch_size=5000)
+</code></pre>
+<h2>训练一个简单的线性模型</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/LinearClassifier"><code>tf.contrib.learn.LinearClassifier</code></a></p>
+<pre><code class="lang-python">image_column = tf.contrib.layers.real_valued_column(&#39;images&#39;, dimension=784)
+</code></pre>
+<p>构建、训练和评估一个线性分类器估测器的完整代码如下：</p>
+<pre><code class="lang-python">import time
+
+# 指定估测器要使用的特征
+image_column = tf.contrib.layers.real_valued_column(&#39;images&#39;, dimension=784)
+estimator = tf.contrib.learn.LinearClassifier(feature_columns=[image_column], n_classes=10)
+
+# 训练
+start = time.time()
+estimator.fit(input_fn=train_input_fn, steps=2000)
+end = time.time()
+print(&#39;Elapsed time: {} seconds&#39;.format(end - start))
+
+# 评估并报告结果
+eval_metrics = estimator.evaluate(input_fn=eval_input_fn, steps=1)
+print(eval_metrics)
+</code></pre>
+<p>下面这张表总结了评估数据的结果。</p>
+<table>
+<thead><tr>
+<th style="text-align:left">metric</th>
+<th style="text-align:left">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">loss</td>
+<td style="text-align:left">0.25 to 0.30</td>
+</tr>
+<tr>
+<td style="text-align:left">accuracy</td>
+<td style="text-align:left">92.5%</td>
+</tr>
+<tr>
+<td style="text-align:left">training time</td>
+<td style="text-align:left">~25 seconds on my machine</td>
+</tr>
+</tbody>
+</table>
+<p>注意：评估结果会因各种因素的影响而不同。</p>
+<p>除了可以试验不同的批次大小和训练步骤的数量，有一些其他的因素同样可以被调优。例如，你可以通过从<a href="https://www.tensorflow.org/code/tensorflow/python/training">可用优化器列表</a>明确地选择另外的优化器，改变用于最小化损失函数的优化方法来优化评估结果。作为示例，下面的代码构造了一个使用特定学习速率和 L2 正规化的 FTRL（Follow-The-Regularized-Leader）优化策略的线性分类估测器。</p>
+<pre><code class="lang-python">optimizer = tf.train.FtrlOptimizer(learning_rate=5.0, l2_regularization_strength=1.0)
+estimator = tf.contrib.learn.LinearClassifier(
+    feature_columns=[image_column], n_classes=10, optimizer=optimizer)
+</code></pre>
+<p>不管这些参数的值，线性模型在这个数据集上能取得的最大精确度约为<strong>93%</strong>。</p>
+<h2>在线性模型上使用特定核映射</h2>
+<p>线性模型在 MNIST 数据上的相对较高的错误率（大概 7%）表明输入数据不是可线性分割的。我们将使用特定的核映射来降低分类误差。</p>
+<p><strong>直觉上：</strong> 总体思路是用一个非线性的映射关系将输入空间转换到另一个特征空间（可能有更高的维数），这个特征空间几乎是可线性分割的，然后把一个线性模型应用到这个映射特征空间里。这个过程可以通过下面这张图反映：</p>
+<div style="text-align:center">
+<img src="../images/kernel_mapping.png" />
+</div><h3>技术细节</h3>
+<p>这个例子中我们将使用 <strong>随机傅里叶特征</strong>，在 Rahimi 和 Recht 的对输入数据做映射的论文中首次引进，<a href="https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf">"大规模核机器的随机特征"</a>。随机傅里叶特征通过如下方式将矢量 \(\mathbf{x} \in \mathbb{R}^d\)映射到 \(\mathbf{x'} \in \mathbb{R}^D\)：</p>
+<p>$$<br>
+RFFM(\cdot): \mathbb{R}^d \to \mathbb{R}^D, \quad<br>
+RFFM(\mathbf{x}) =  \cos(\mathbf{\Omega} \cdot \mathbf{x}+ \mathbf{b})<br>
+$$</p>
+<p>其中 \(\mathbf{\Omega} \in \mathbb{R}^{D \times d}\), \(\mathbf{x} \in \mathbb{R}^d,\) \(\mathbf{b} \in \mathbb{R}^D\) 且余弦逐元素运算。</p>
+<p>在本例中，\(\mathbf{\Omega}\) 和 \(\mathbf{b}\) 的实体是分布中取样得来的以使映射具有如下性质：</p>
+<p>$$<br>
+RFFM(\mathbf{x})^T \cdot RFFM(\mathbf{y}) \approx<br>
+e^{-\frac{|\mathbf{x} - \mathbf{y}|^2}{2 \sigma^2}}<br>
+$$</p>
+<p>上面表达式右边的式子就是著名的 RBF （高斯）核函数。这个函数是机器学习中应用最广泛的核函数之一，相比原始函数它可以在不同和更高的维度空间中模糊地衡量相似性。</p>
+<h3>核分类器</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/kernel_methods/KernelLinearClassifier"><code>tf.contrib.kernel_methods.KernelLinearClassifier</code></a></p>
+<pre><code class="lang-python">
+# 指定估测器将要使用的特征。这和线性分类器中的代码是相同的
+image_column = tf.contrib.layers.real_valued_column(&#39;images&#39;, dimension=784)
+optimizer = tf.train.FtrlOptimizer(
+   learning_rate=50.0, l2_regularization_strength=0.001)
+
+kernel_mapper = tf.contrib.kernel_methods.RandomFourierFeatureMapper(
+  input_dim=784, output_dim=2000, stddev=5.0, name=&#39;rffm&#39;)
+kernel_mappers = {image_column: [kernel_mapper]}
+estimator = tf.contrib.kernel_methods.KernelLinearClassifier(
+   n_classes=10, optimizer=optimizer, kernel_mappers=kernel_mappers)
+
+# 训练
+start = time.time()
+estimator.fit(input_fn=train_input_fn, steps=2000)
+end = time.time()
+print(&#39;Elapsed time: {} seconds&#39;.format(end - start))
+
+# 评估和报告结果
+eval_metrics = estimator.evaluate(input_fn=eval_input_fn, steps=1)
+print(eval_metrics)
+</code></pre>
+<p>唯一增加的一个参数是传递给 <code>KernelLinearClassifier</code> 的一个字典，<br>
+这个字典提供从特征列到一组核的映射。下面的几行构造了使用随机傅立叶特征来映射初始化的 784 维图像到一个 2000 维的矢量的一个分类器，然后在经过转换的矢量上进行学习。</p>
+<pre><code class="lang-python">kernel_mapper = tf.contrib.kernel_methods.RandomFourierFeatureMapper(
+  input_dim=784, output_dim=2000, stddev=5.0, name=&#39;rffm&#39;)
+kernel_mappers = {image_column: [kernel_mapper]}
+estimator = tf.contrib.kernel_methods.KernelLinearClassifier(
+   n_classes=10, optimizer=optimizer, kernel_mappers=kernel_mappers)
+</code></pre>
+<p>注意 <code>stddev</code> 参数。它是 RBF 核近似的标准差并在分类任务里用于控制相似性衡量。<code>stddev</code> 通常通过超参数调教决定。</p>
+<p>先前代码的运行结果总结在下面这张表里。我们可以通过提高映射输出维数和对标准差调优进一步提高准确性。</p>
+<table>
+<thead><tr>
+<th style="text-align:left">metric</th>
+<th style="text-align:left">value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">loss</td>
+<td style="text-align:left">0.10</td>
+</tr>
+<tr>
+<td style="text-align:left">accuracy</td>
+<td style="text-align:left">97%</td>
+</tr>
+<tr>
+<td style="text-align:left">training time</td>
+<td style="text-align:left">~35 seconds on my machine</td>
+</tr>
+</tbody>
+</table>
+<h3>stddev</h3>
+<p>分类的质量对 stddev 的值非常敏感。下面这张表显示的是分类器在不同 stddev 上的评估数据的准确性。最优值是 stddev=5.0。注意看太大或者太小的 stddev 值是怎样迅速地降低分类的准确性的。</p>
+<table>
+<thead><tr>
+<th style="text-align:left">stddev</th>
+<th style="text-align:left">eval accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1.0</td>
+<td style="text-align:left">0.1362</td>
+</tr>
+<tr>
+<td style="text-align:left">2.0</td>
+<td style="text-align:left">0.4764</td>
+</tr>
+<tr>
+<td style="text-align:left">4.0</td>
+<td style="text-align:left">0.9654</td>
+</tr>
+<tr>
+<td style="text-align:left">5.0</td>
+<td style="text-align:left">0.9766</td>
+</tr>
+<tr>
+<td style="text-align:left">8.0</td>
+<td style="text-align:left">0.9714</td>
+</tr>
+<tr>
+<td style="text-align:left">16.0</td>
+<td style="text-align:left">0.8878</td>
+</tr>
+</tbody>
+</table>
+<h3>输出维数</h3>
+<p>直觉上，映射的输出维数越大，两个映射的矢量的内积越近似这个核，通常都会转化成更好的分类准确性。另一个思考这个问题的方式是输出维数等于线性模型的权重数；维数越大，模型的自由度越大。然而，超过一定的阈值，随着训练次数的增加，高输出维数会增加训练时间，对准确性的提升作用却变得非常小。下面两张图分别描述了评价准确性对输出维数和训练时间的函数变化</p>
+<p><img src="../images/acc_vs_outdim.png" alt="image"><br>
+<img src="../images/acc-vs-trn_time.png" alt="image"></p>
+<h2>总结</h2>
+<p>特定核映射结合了非线性模型的前瞻性和线性模型的可伸缩性的优点。与传统的多核心方法相比，特定核方法可以覆盖覆盖数百万或数亿量级的实例。当运用特定核映射时，请考虑如下几点：</p>
+<ul>
+<li>对于密集特征数据集，随机傅立叶特征特别有效</li>
+<li>核映射的参数经常是独立于数据的。模型质量对于这些参数非常敏感。使用超参数调优找到最优值。</li>
+<li>如果有多个数字特征，把他们连接到一个单独的多维特征中然后在这些连接数据上运用核映射。</li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

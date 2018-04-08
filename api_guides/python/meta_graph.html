@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Exporting and Importing a MetaGraph</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Exporting and Importing a MetaGraph</h1>
+<p>A <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto"><code>MetaGraph</code></a> contains both a TensorFlow GraphDef<br>
+as well as associated metadata necessary for running computation in a<br>
+graph when crossing a process boundary.  It can also be used for long<br>
+term storage of graphs.  The MetaGraph contains the information required<br>
+to continue training, perform evaluation, or run inference on a previously trained graph.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/import_meta_graph"><code>tf.train.import_meta_graph</code></a></p>
+<h2>What's in a MetaGraph</h2>
+<p>The information contained in a MetaGraph is expressed as a<br>
+<a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto"><code>MetaGraphDef</code></a><br>
+protocol buffer. It contains the following fields:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto"><code>MetaInfoDef</code></a> for meta information, such as version and other user information.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/core/framework/graph.proto"><code>GraphDef</code></a> for describing the graph.</li>
+<li><a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/saver.proto"><code>SaverDef</code></a> for the saver.</li>
+<li><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/QueueRunner"><code>tf.train.QueueRunner</code></a></p>
+<p>For example,</p>
+<pre><code class="lang-Python">def to_proto(self, export_scope=None):
+
+  &quot;&quot;&quot;Converts a `Variable` to a `VariableDef` protocol buffer.
+
+  Args:
+    export_scope: Optional `string`. Name scope to remove.
+
+  Returns:
+    A `VariableDef` protocol buffer, or `None` if the `Variable` is not
+    in the specified name scope.
+  &quot;&quot;&quot;
+  if (export_scope is None or
+      self._variable.name.startswith(export_scope)):
+    var_def = variable_pb2.VariableDef()
+    var_def.variable_name = ops.strip_name_scope(
+        self._variable.name, export_scope)
+    var_def.initializer_name = ops.strip_name_scope(
+        self.initializer.name, export_scope)
+    var_def.snapshot_name = ops.strip_name_scope(
+        self._snapshot.name, export_scope)
+    if self._save_slice_info:
+      var_def.save_slice_info_def.MergeFrom(self._save_slice_info.to_proto(
+          export_scope=export_scope))
+    return var_def
+  else:
+    return None
+
+@staticmethod
+def from_proto(variable_def, import_scope=None):
+  &quot;&quot;&quot;Returns a `Variable` object created from `variable_def`.&quot;&quot;&quot;
+  return Variable(variable_def=variable_def, import_scope=import_scope)
+
+ops.register_proto_function(ops.GraphKeys.GLOBAL_VARIABLES,
+                            proto_type=variable_pb2.VariableDef,
+                            to_proto=Variable.to_proto,
+                            from_proto=Variable.from_proto)
+</code></pre>
+</li>
+</ul>
+<h2>Exporting a Complete Model to MetaGraph</h2>
+<p>The API for exporting a running model as a MetaGraph is <code>export_meta_graph()</code>.</p>
+<pre><code class="lang-Python">  def export_meta_graph(filename=None, collection_list=None, as_text=False):
+    &quot;&quot;&quot;Writes `MetaGraphDef` to save_path/filename.
+
+    Args:
+      filename: Optional meta_graph filename including the path.
+      collection_list: List of string keys to collect.
+      as_text: If `True`, writes the meta_graph as an ASCII proto.
+
+    Returns:
+      A `MetaGraphDef` proto.
+    &quot;&quot;&quot;
+</code></pre>
+<p>A <code>collection</code> can contain any Python objects that users would like to<br>
+  be able to uniquely identify and easily retrieve. These objects can be<br>
+  special operations in the graph, such as <code>train_op</code>, or hyper parameters,<br>
+  such as "learning rate".  Users can specify the list of collections<br>
+  they would like to export.  If no <code>collection_list</code> is specified,<br>
+  all collections in the model will be exported.</p>
+<p>The API returns a serialized protocol buffer. If <code>filename</code> is<br>
+  specified, the protocol buffer will also be written to a file.</p>
+<p>Here are some of the typical usage models:</p>
+<ul>
+<li><p>Export the default running graph:</p>
+<pre><code class="lang-Python"># Build the model
+...
+with tf.Session() as sess:
+# Use the model
+...
+# Export the model to /tmp/my-model.meta.
+meta_graph_def = tf.train.export_meta_graph(filename=&#39;/tmp/my-model.meta&#39;)
+</code></pre>
+</li>
+<li><p>Export the default running graph and only a subset of the collections.</p>
+<pre><code class="lang-Python">meta_graph_def = tf.train.export_meta_graph(
+  filename=&#39;/tmp/my-model.meta&#39;,
+  collection_list=[&quot;input_tensor&quot;, &quot;output_tensor&quot;])
+</code></pre>
+</li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver"><code>tf.train.Saver</code></a></p>
+<h2>Import a MetaGraph</h2>
+<p>The API for importing a MetaGraph file into a graph is <code>import_meta_graph()</code>.</p>
+<p>Here are some of the typical usage models:</p>
+<ul>
+<li><p>Import and continue training without building the model from scratch.</p>
+<pre><code class="lang-Python">...
+# Create a saver.
+saver = tf.train.Saver(...variables...)
+# Remember the training_op we want to run by adding it to a collection.
+tf.add_to_collection(&#39;train_op&#39;, train_op)
+sess = tf.Session()
+for step in xrange(1000000):
+    sess.run(train_op)
+    if step % 1000 == 0:
+        # Saves checkpoint, which by default also exports a meta_graph
+        # named &#39;my-model-global_step.meta&#39;.
+        saver.save(sess, &#39;my-model&#39;, global_step=step)
+</code></pre>
+<p>Later we can continue training from this saved <code>meta_graph</code> without building<br>
+the model from scratch.</p>
+<pre><code class="lang-Python">with tf.Session() as sess:
+  new_saver = tf.train.import_meta_graph(&#39;my-save-dir/my-model-10000.meta&#39;)
+  new_saver.restore(sess, &#39;my-save-dir/my-model-10000&#39;)
+  # tf.get_collection() returns a list. In this example we only want the
+  # first one.
+  train_op = tf.get_collection(&#39;train_op&#39;)[0]
+  for step in xrange(1000000):
+    sess.run(train_op)
+</code></pre>
+</li>
+<li><p>Import and extend the graph.</p>
+<p>For example, we can first build an inference graph, export it as a meta graph:</p>
+<pre><code class="lang-Python"># Creates an inference graph.
+# Hidden 1
+images = tf.constant(1.2, tf.float32, shape=[100, 28])
+with tf.name_scope(&quot;hidden1&quot;):
+  weights = tf.Variable(
+      tf.truncated_normal([28, 128],
+                          stddev=1.0 / math.sqrt(float(28))),
+      name=&quot;weights&quot;)
+  biases = tf.Variable(tf.zeros([128]),
+                       name=&quot;biases&quot;)
+  hidden1 = tf.nn.relu(tf.matmul(images, weights) + biases)
+# Hidden 2
+with tf.name_scope(&quot;hidden2&quot;):
+  weights = tf.Variable(
+      tf.truncated_normal([128, 32],
+                          stddev=1.0 / math.sqrt(float(128))),
+      name=&quot;weights&quot;)
+  biases = tf.Variable(tf.zeros([32]),
+                       name=&quot;biases&quot;)
+  hidden2 = tf.nn.relu(tf.matmul(hidden1, weights) + biases)
+# Linear
+with tf.name_scope(&quot;softmax_linear&quot;):
+  weights = tf.Variable(
+      tf.truncated_normal([32, 10],
+                          stddev=1.0 / math.sqrt(float(32))),
+      name=&quot;weights&quot;)
+  biases = tf.Variable(tf.zeros([10]),
+                       name=&quot;biases&quot;)
+  logits = tf.matmul(hidden2, weights) + biases
+  tf.add_to_collection(&quot;logits&quot;, logits)
+
+init_all_op = tf.global_variables_initializer()
+
+with tf.Session() as sess:
+  # Initializes all the variables.
+  sess.run(init_all_op)
+  # Runs to logit.
+  sess.run(logits)
+  # Creates a saver.
+  saver0 = tf.train.Saver()
+  saver0.save(sess, &#39;my-save-dir/my-model-10000&#39;)
+  # Generates MetaGraphDef.
+  saver0.export_meta_graph(&#39;my-save-dir/my-model-10000.meta&#39;)
+</code></pre>
+<p>Then later import it and extend it to a training graph.</p>
+<pre><code class="lang-Python">with tf.Session() as sess:
+  new_saver = tf.train.import_meta_graph(&#39;my-save-dir/my-model-10000.meta&#39;)
+  new_saver.restore(sess, &#39;my-save-dir/my-model-10000&#39;)
+  # Addes loss and train.
+  labels = tf.constant(0, tf.int32, shape=[100], name=&quot;labels&quot;)
+  batch_size = tf.size(labels)
+  logits = tf.get_collection(&quot;logits&quot;)[0]
+  loss = tf.losses.sparse_softmax_cross_entropy(labels=labels,
+                                                logits=logits)
+
+  tf.summary.scalar(&#39;loss&#39;, loss)
+  # Creates the gradient descent optimizer with the given learning rate.
+  optimizer = tf.train.GradientDescentOptimizer(0.01)
+
+  # Runs train_op.
+  train_op = optimizer.minimize(loss)
+  sess.run(train_op)
+</code></pre>
+</li>
+<li><p>Import a graph with preset devices.</p>
+<p>Sometimes an exported meta graph is from a training environment that the<br>
+importer doesn't have. For example, the model might have been trained<br>
+on GPUs, or in a distributed environment with replicas. When importing<br>
+such models, it's useful to be able to clear the device settings in<br>
+the graph so that we can run it on locally available devices. This can<br>
+be achieved by calling <code>import_meta_graph</code> with the <code>clear_devices</code><br>
+option set to <code>True</code>.</p>
+<pre><code class="lang-Python">with tf.Session() as sess:
+  new_saver = tf.train.import_meta_graph(&#39;my-save-dir/my-model-10000.meta&#39;,
+      clear_devices=True)
+  new_saver.restore(sess, &#39;my-save-dir/my-model-10000&#39;)
+  ...
+</code></pre>
+</li>
+<li><p>Import within the default graph.</p>
+<p>Sometimes you might want to run <code>export_meta_graph</code> and <code>import_meta_graph</code><br>
+in codelab using the default graph. In that case, you need to reset<br>
+the default graph by calling <code>tf.reset_default_graph()</code> first before<br>
+running import.</p>
+<pre><code class="lang-Python">meta_graph_def = tf.train.export_meta_graph()
+...
+tf.reset_default_graph()
+...
+tf.train.import_meta_graph(meta_graph_def)
+...
+</code></pre>
+</li>
+<li><p>Retrieve Hyper Parameters</p>
+<pre><code class="lang-Python">filename = &quot;.&quot;.join([tf.train.latest_checkpoint(train_dir), &quot;meta&quot;])
+tf.train.import_meta_graph(filename)
+hparams = tf.get_collection(&quot;hparams&quot;)
+</code></pre>
+</li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

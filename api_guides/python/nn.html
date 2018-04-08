@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Neural Network</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Neural Network</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
+<p>[TOC]</p>
+<h2>Activation Functions</h2>
+<p>The activation ops provide different types of nonlinearities for use in neural<br>
+networks. These include smooth nonlinearities (<code>sigmoid</code>, <code>tanh</code>, <code>elu</code>, <code>selu</code>,<br>
+<code>softplus</code>, and <code>softsign</code>), continuous but not everywhere differentiable<br>
+functions (<code>relu</code>, <code>relu6</code>, <code>crelu</code> and <code>relu_x</code>), and random regularization<br>
+(<code>dropout</code>).</p>
+<p>All activation ops apply componentwise, and produce a tensor of the same<br>
+shape as the input tensor.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/relu"><code>tf.nn.relu</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/relu6"><code>tf.nn.relu6</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/crelu"><code>tf.nn.crelu</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/elu"><code>tf.nn.elu</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/selu"><code>tf.nn.selu</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softplus"><code>tf.nn.softplus</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softsign"><code>tf.nn.softsign</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/dropout"><code>tf.nn.dropout</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/bias_add"><code>tf.nn.bias_add</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sigmoid"><code>tf.sigmoid</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/tanh"><code>tf.tanh</code></a></li>
+</ul>
+<h2>Convolution</h2>
+<p>The convolution ops sweep a 2-D filter over a batch of images, applying the<br>
+filter to each window of each image of the appropriate size.  The different<br>
+ops trade off between generic vs. specific filters:</p>
+<ul>
+<li><code>conv2d</code>: Arbitrary filters that can mix channels together.</li>
+<li><code>depthwise_conv2d</code>: Filters that operate on each channel independently.</li>
+<li><code>separable_conv2d</code>: A depthwise spatial filter followed by a pointwise filter.</li>
+</ul>
+<p>Note that although these ops are called "convolution", they are strictly<br>
+speaking "cross-correlation" since the filter is combined with an input window<br>
+without reversing the filter.  For details, see <a href="https://en.wikipedia.org/wiki/Cross-correlation#Properties">the properties of<br>
+cross-correlation</a>.</p>
+<p>The filter is applied to image patches of the same size as the filter and<br>
+strided according to the <code>strides</code> argument.  <code>strides = [1, 1, 1, 1]</code> applies<br>
+the filter to a patch at every offset, <code>strides = [1, 2, 2, 1]</code> applies the<br>
+filter to every other image patch in each dimension, etc.</p>
+<p>Ignoring channels for the moment, assume that the 4-D <code>input</code> has shape<br>
+<code>[batch, in_height, in_width, ...]</code> and the 4-D <code>filter</code> has shape<br>
+<code>[filter_height, filter_width, ...]</code>. The spatial semantics of the<br>
+convolution ops depend on the padding scheme chosen: <code>'SAME'</code> or <code>'VALID'</code>.<br>
+Note that the padding values are always zero.</p>
+<p>First, consider the <code>'SAME'</code> padding scheme. A detailed explanation of the<br>
+reasoning behind it is given in<br>
+<a href="#Notes_on_SAME_Convolution_Padding">these notes</a>. Here, we summarize the<br>
+mechanics of this padding scheme. When using <code>'SAME'</code>, the output height and<br>
+width are computed as:</p>
+<pre><code>out_height = ceil(float(in_height) / float(strides[1]))
+out_width  = ceil(float(in_width) / float(strides[2]))
+</code></pre>
+<p>The total padding applied along the height and width is computed as:</p>
+<pre><code>if (in_height % strides[1] == 0):
+  pad_along_height = max(filter_height - strides[1], 0)
+else:
+  pad_along_height = max(filter_height - (in_height % strides[1]), 0)
+if (in_width % strides[2] == 0):
+  pad_along_width = max(filter_width - strides[2], 0)
+else:
+  pad_along_width = max(filter_width - (in_width % strides[2]), 0)
+</code></pre>
+<p>Finally, the padding on the top, bottom, left and right are:</p>
+<pre><code>pad_top = pad_along_height // 2
+pad_bottom = pad_along_height - pad_top
+pad_left = pad_along_width // 2
+pad_right = pad_along_width - pad_left
+</code></pre>
+<p>Note that the division by 2 means that there might be cases when the padding on<br>
+both sides (top vs bottom, right vs left) are off by one. In this case, the<br>
+bottom and right sides always get the one additional padded pixel. For example,<br>
+when <code>pad_along_height</code> is 5, we pad 2 pixels at the top and 3 pixels at the<br>
+bottom. Note that this is different from existing libraries such as cuDNN and<br>
+Caffe, which explicitly specify the number of padded pixels and always pad the<br>
+same number of pixels on both sides.</p>
+<p>For the <code>'VALID</code>' scheme, the output height and width are computed as:</p>
+<pre><code>out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+</code></pre>
+<p>and no padding is used.</p>
+<p>Given the output size and the padding, the output can be computed as</p>
+<pre><code>output[b, i, j, :] =
+    sum_{di, dj} input[b, strides[1] * i + di - pad_top,
+                       strides[2] * j + dj - pad_left, ...] *
+                 filter[di, dj, ...]
+</code></pre>
+<p>where any value outside the original input image region are considered zero (<br>
+i.e. we pad zero values around the border of the image).</p>
+<p>Since <code>input</code> is 4-D, each <code>input[b, i, j, :]</code> is a vector.  For <code>conv2d</code>, these<br>
+vectors are multiplied by the <code>filter[di, dj, :, :]</code> matrices to produce new<br>
+vectors.  For <code>depthwise_conv_2d</code>, each scalar component <code>input[b, i, j, k]</code><br>
+is multiplied by a vector <code>filter[di, dj, k]</code>, and all the vectors are<br>
+concatenated.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/convolution"><code>tf.nn.convolution</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d"><code>tf.nn.conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d"><code>tf.nn.depthwise_conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d_native"><code>tf.nn.depthwise_conv2d_native</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/separable_conv2d"><code>tf.nn.separable_conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/atrous_conv2d"><code>tf.nn.atrous_conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/atrous_conv2d_transpose"><code>tf.nn.atrous_conv2d_transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d_transpose"><code>tf.nn.conv2d_transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv1d"><code>tf.nn.conv1d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv3d"><code>tf.nn.conv3d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv3d_transpose"><code>tf.nn.conv3d_transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d_backprop_filter"><code>tf.nn.conv2d_backprop_filter</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d_backprop_input"><code>tf.nn.conv2d_backprop_input</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv3d_backprop_filter_v2"><code>tf.nn.conv3d_backprop_filter_v2</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d_native_backprop_filter"><code>tf.nn.depthwise_conv2d_native_backprop_filter</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d_native_backprop_input"><code>tf.nn.depthwise_conv2d_native_backprop_input</code></a></li>
+</ul>
+<h2>Pooling</h2>
+<p>The pooling ops sweep a rectangular window over the input tensor, computing a<br>
+reduction operation for each window (average, max, or max with argmax).  Each<br>
+pooling op uses rectangular windows of size <code>ksize</code> separated by offset<br>
+<code>strides</code>.  For example, if <code>strides</code> is all ones every window is used, if<br>
+<code>strides</code> is all twos every other window is used in each dimension, etc.</p>
+<p>In detail, the output is</p>
+<pre><code>output[i] = reduce(value[strides * i:strides * i + ksize])
+</code></pre>
+<p>where the indices also take into consideration the padding values. Please refer<br>
+to the <code>Convolution</code> section for details about the padding calculation.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/avg_pool"><code>tf.nn.avg_pool</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool"><code>tf.nn.max_pool</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool_with_argmax"><code>tf.nn.max_pool_with_argmax</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/avg_pool3d"><code>tf.nn.avg_pool3d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool3d"><code>tf.nn.max_pool3d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/fractional_avg_pool"><code>tf.nn.fractional_avg_pool</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/fractional_max_pool"><code>tf.nn.fractional_max_pool</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/pool"><code>tf.nn.pool</code></a></li>
+</ul>
+<h2>Morphological filtering</h2>
+<p>Morphological operators are non-linear filters used in image processing.</p>
+<p><a href="https://en.wikipedia.org/wiki/Dilation_(morphology">Greyscale morphological dilation</a>)<br>
+is the max-sum counterpart of standard sum-product convolution:</p>
+<pre><code>output[b, y, x, c] =
+    max_{dy, dx} input[b,
+                       strides[1] * y + rates[1] * dy,
+                       strides[2] * x + rates[2] * dx,
+                       c] +
+                 filter[dy, dx, c]
+</code></pre>
+<p>The <code>filter</code> is usually called structuring function. Max-pooling is a special<br>
+case of greyscale morphological dilation when the filter assumes all-zero<br>
+values (a.k.a. flat structuring function).</p>
+<p><a href="https://en.wikipedia.org/wiki/Erosion_(morphology">Greyscale morphological erosion</a>)<br>
+is the min-sum counterpart of standard sum-product convolution:</p>
+<pre><code>output[b, y, x, c] =
+    min_{dy, dx} input[b,
+                       strides[1] * y - rates[1] * dy,
+                       strides[2] * x - rates[2] * dx,
+                       c] -
+                 filter[dy, dx, c]
+</code></pre>
+<p>Dilation and erosion are dual to each other. The dilation of the input signal<br>
+<code>f</code> by the structuring signal <code>g</code> is equal to the negation of the erosion of<br>
+<code>-f</code> by the reflected <code>g</code>, and vice versa.</p>
+<p>Striding and padding is carried out in exactly the same way as in standard<br>
+convolution. Please refer to the <code>Convolution</code> section for details.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/dilation2d"><code>tf.nn.dilation2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/erosion2d"><code>tf.nn.erosion2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/with_space_to_batch"><code>tf.nn.with_space_to_batch</code></a></li>
+</ul>
+<h2>Normalization</h2>
+<p>Normalization is useful to prevent neurons from saturating when inputs may<br>
+have varying scale, and to aid generalization.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/l2_normalize"><code>tf.nn.l2_normalize</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/local_response_normalization"><code>tf.nn.local_response_normalization</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sufficient_statistics"><code>tf.nn.sufficient_statistics</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/normalize_moments"><code>tf.nn.normalize_moments</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/moments"><code>tf.nn.moments</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/weighted_moments"><code>tf.nn.weighted_moments</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/fused_batch_norm"><code>tf.nn.fused_batch_norm</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/batch_normalization"><code>tf.nn.batch_normalization</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/batch_norm_with_global_normalization"><code>tf.nn.batch_norm_with_global_normalization</code></a></li>
+</ul>
+<h2>Losses</h2>
+<p>The loss ops measure error between two tensors, or between a tensor and zero.<br>
+These can be used for measuring accuracy of a network in a regression task<br>
+or for regularization purposes (weight decay).</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/l2_loss"><code>tf.nn.l2_loss</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/log_poisson_loss"><code>tf.nn.log_poisson_loss</code></a></li>
+</ul>
+<h2>Classification</h2>
+<p>TensorFlow provides several operations that help you perform classification.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits"><code>tf.nn.sigmoid_cross_entropy_with_logits</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax"><code>tf.nn.softmax</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/log_softmax"><code>tf.nn.log_softmax</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits"><code>tf.nn.softmax_cross_entropy_with_logits</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits_v2"><code>tf.nn.softmax_cross_entropy_with_logits_v2</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits"><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/weighted_cross_entropy_with_logits"><code>tf.nn.weighted_cross_entropy_with_logits</code></a></li>
+</ul>
+<h2>Embeddings</h2>
+<p>TensorFlow provides library support for looking up values in embedding<br>
+tensors.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/embedding_lookup"><code>tf.nn.embedding_lookup</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/embedding_lookup_sparse"><code>tf.nn.embedding_lookup_sparse</code></a></li>
+</ul>
+<h2>Recurrent Neural Networks</h2>
+<p>TensorFlow provides a number of methods for constructing Recurrent<br>
+Neural Networks.  Most accept an <code>RNNCell</code>-subclassed object<br>
+(see the documentation for <code>tf.contrib.rnn</code>).</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/dynamic_rnn"><code>tf.nn.dynamic_rnn</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/bidirectional_dynamic_rnn"><code>tf.nn.bidirectional_dynamic_rnn</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/raw_rnn"><code>tf.nn.raw_rnn</code></a></li>
+</ul>
+<h2>Connectionist Temporal Classification (CTC)</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/ctc_loss"><code>tf.nn.ctc_loss</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/ctc_greedy_decoder"><code>tf.nn.ctc_greedy_decoder</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/ctc_beam_search_decoder"><code>tf.nn.ctc_beam_search_decoder</code></a></li>
+</ul>
+<h2>Evaluation</h2>
+<p>The evaluation ops are useful for measuring the performance of a network.<br>
+They are typically used at evaluation time.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/top_k"><code>tf.nn.top_k</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/in_top_k"><code>tf.nn.in_top_k</code></a></li>
+</ul>
+<h2>Candidate Sampling</h2>
+<p>Do you want to train a multiclass or multilabel model with thousands<br>
+or millions of output classes (for example, a language model with a<br>
+large vocabulary)?  Training with a full Softmax is slow in this case,<br>
+since all of the classes are evaluated for every training example.<br>
+Candidate Sampling training algorithms can speed up your step times by<br>
+only considering a small randomly-chosen subset of contrastive classes<br>
+(called candidates) for each batch of training examples.</p>
+<p>See our<br>
+<a href="https://www.tensorflow.org/extras/candidate_sampling.pdf">Candidate Sampling Algorithms<br>
+Reference</a></p>
+<h3>Sampled Loss Functions</h3>
+<p>TensorFlow provides the following sampled loss functions for faster training.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/nce_loss"><code>tf.nn.nce_loss</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sampled_softmax_loss"><code>tf.nn.sampled_softmax_loss</code></a></li>
+</ul>
+<h3>Candidate Samplers</h3>
+<p>TensorFlow provides the following samplers for randomly sampling candidate<br>
+classes when using one of the sampled loss functions above.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/uniform_candidate_sampler"><code>tf.nn.uniform_candidate_sampler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/log_uniform_candidate_sampler"><code>tf.nn.log_uniform_candidate_sampler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/learned_unigram_candidate_sampler"><code>tf.nn.learned_unigram_candidate_sampler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/fixed_unigram_candidate_sampler"><code>tf.nn.fixed_unigram_candidate_sampler</code></a></li>
+</ul>
+<h3>Miscellaneous candidate sampling utilities</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/compute_accidental_hits"><code>tf.nn.compute_accidental_hits</code></a></li>
+</ul>
+<h3>Quantization ops</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_conv2d"><code>tf.nn.quantized_conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_relu_x"><code>tf.nn.quantized_relu_x</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_max_pool"><code>tf.nn.quantized_max_pool</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_avg_pool"><code>tf.nn.quantized_avg_pool</code></a></li>
+</ul>
+<h2>Notes on SAME Convolution Padding</h2>
+<p>In these notes, we provide more background on the use of the <code>'SAME'</code> padding<br>
+scheme for convolution operations.</p>
+<p>Tensorflow uses the smallest possible padding to achieve the desired output<br>
+size. To understand what is done, consider the \(1\)-dimensional case. Denote<br>
+\(n_i\) and \(n_o\) the input and output sizes, respectively, and denote the<br>
+kernel size \(k\) and stride \(s\). As discussed in the<br>
+<a href="#Convolution">Convolution section</a>, for <code>'SAME'</code>,<br>
+\(n_o = \left \lceil{\frac{n_i}{s}}\right \rceil\).</p>
+<p>To achieve a desired output size \(n_o\), we need to pad the input such that the<br>
+output size after a <code>'VALID'</code> convolution is \(n_o\). In other words, we need to<br>
+have padding \(p_i\) such that:</p>
+<p>\begin{equation}<br>
+\left \lceil{\frac{n_i + p_i - k + 1}{s}}\right \rceil = n_o<br>
+\label{eq:tf_pad_1}<br>
+\end{equation}</p>
+<p>What is the smallest \(p_i\) that we could possibly use? In general, \(\left<br>
+\lceil{\frac{x}{a}}\right \rceil = b\) (with \(a &gt; 0\)) means that \(b-1 &lt;<br>
+\frac{x}{a} \leq b\), and the smallest integer \(x\) we can choose to satisfy<br>
+this is \(x = a\cdot (b-1) + 1\). The same applies to our problem; we need<br>
+\(p_i\) such that:</p>
+<p>\begin{equation}<br>
+n_i + p_i - k + 1 = s\cdot (n_o - 1) + 1<br>
+\label{eq:tf_pad_2}<br>
+\end{equation}</p>
+<p>which leads to:</p>
+<p>\begin{equation}<br>
+p_i = s\cdot (n_o - 1) + k - n_i<br>
+\label{eq:tf_pad_3}<br>
+\end{equation}</p>
+<p>Note that this might lead to negative \(p_i\), since in some cases we might<br>
+already have more input samples than we actually need. Thus,</p>
+<p>\begin{equation}<br>
+p_i = max(s\cdot (n_o - 1) + k - n_i, 0)<br>
+\label{eq:tf_pad_4}<br>
+\end{equation}</p>
+<p>Remember that, for <code>'SAME'</code> padding,<br>
+\(n_o = \left \lceil{\frac{n_i}{s}}\right \rceil\), as mentioned above.<br>
+We need to analyze in detail two cases:</p>
+<ul>
+<li>\(n_i \text{ mod } s = 0\)</li>
+</ul>
+<p>In this simple case, \(n_o = \frac{n_i}{s}\), and the expression for \(p_i\)<br>
+becomes:</p>
+<p>\begin{equation}<br>
+p_i = max(k - s, 0)<br>
+\label{eq:tf_pad_5}<br>
+\end{equation}</p>
+<ul>
+<li>\(n_i \text{ mod } s \neq 0\)</li>
+</ul>
+<p>This case is more involved to parse. First, we write:</p>
+<p>\begin{equation}<br>
+n_i = s\cdot\left \lceil{\frac{n_i}{s}}\right \rceil</p>
+<ul>
+<li>s \left(\left \lceil{\frac{n_i}{s}}\right \rceil -<pre><code>    \left \lfloor{\frac{n_i}{s}}\right \rfloor\right)
+</code></pre>
+</li>
+<li>(n_i \text{ mod } s)<br>
+\label{eq:tf_pad_6}<br>
+\end{equation}</li>
+</ul>
+<p>For the case where \((n_i \text{ mod } s) \neq 0\), we have \(\left<br>
+\lceil{\frac{n_i}{s}}\right \rceil -\left \lfloor{\frac{n_i}{s}}\right \rfloor =<br>
+1\), leading to:</p>
+<p>\begin{equation}<br>
+n_i = s\cdot\left \lceil{\frac{n_i}{s}}\right \rceil</p>
+<ul>
+<li>s</li>
+<li>(n_i \text{ mod } s)<br>
+\label{eq:tf_pad_7}<br>
+\end{equation}</li>
+</ul>
+<p>We can use this expression to substitute \(n_o = \left<br>
+\lceil{\frac{n_i}{s}}\right \rceil\) and get:</p>
+<p>$$\begin{align}<br>
+p_i &amp;= max\left(s\cdot \left(\frac{n_i + s - (n_i \text{ mod } s)}{s}</p>
+<ul>
+<li>1\right) + k - n_i, 0\right) \nonumber\<br>
+&amp;= max(n_i + s - (n_i \text{ mod } s) - s + k - n_i,0) \nonumber \<br>
+&amp;= max(k - (n_i \text{ mod } s),0)<br>
+\label{eq:tf_pad_8}<br>
+\end{align}$$</li>
+</ul>
+<h3>Final expression</h3>
+<p>Putting all together, the total padding used by tensorflow's convolution with<br>
+<code>'SAME'</code> mode is:</p>
+<p>$$\begin{align}<br>
+p_i =<br>
+ \begin{cases}<br>
+ max(k - s, 0),  &amp; \text{if $(n_i \text{ mod } s) = 0$} \<br>
+ max(k - (n_i \text{ mod } s),0), &amp; \text{if $(n_i \text{ mod } s) \neq 0$}<br>
+ \end{cases}<br>
+ \label{eq:tf_pad_9}<br>
+\end{align}$$</p>
+<p>This expression is exactly equal to the ones presented for <code>pad_along_height</code><br>
+and <code>pad_along_width</code> in the <a href="#Convolution">Convolution section</a>.</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow 调试器</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow 调试器</h1>
+<p>TensorFlow 调试器（<strong>tfdbg</strong>）是 TensorFlow 的专用调试器。 它允许您在训练和推理期间查看运行 TensorFlow 图的内部结构和状态，由于 TensorFlow 采用计算图模式，通用调试器（如 Python 的 pdb）是很难调试的。</p>
+<blockquote><p>注意：TensorFlow 调试器使用基于 <a href="https://en.wikipedia.org/wiki/Curses_\(programming_library\">curses</a> 的文本用户界面。在 Mac OS X，<code>ncurses</code> 库是必须的并可以使用 <code>brew install homebrew/dupes/ncurses</code> 命令安装。在 Windows 上，<code>ncurses</code> 不能完美支持。所以通过 pip 安装 <code>pyreadline</code> 来使用一个基于 <a href="https://en.wikipedia.org/wiki/GNU_Readline">readline</a> 能够使用 tfdbg 的交互界面。如果你使用 Anaconda3，可以使用 <code>"C:\Program Files\Anaconda3\Scripts\pip.exe" install pyreadline</code> 这样的命令行。<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses">这里</a>可以下载非官方的 Windows curses 安装包，但是不管怎样， curses 在 Windows 环境下没有在 Linux 或 Mac 运行稳定。</p>
+</blockquote>
+<p>本教程演示了如何使用 tfdbg 命令行界面（CLI）来调试 <a href="https://en.wikipedia.org/wiki/NaN"><code>nan</code>s</a> 和 <a href="https://en.wikipedia.org/wiki/Infinity"><code>inf</code>s</a> 错误，这是 TensorFlow 模型开发中经常遇到的错误类型。 以下示例适用于使用 TensorFlow 的底层 <a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>Session</code></a> API 的用户。 本文档的后续部分描述了如何在更高层次的 API（即 <code>tf-learn</code> 中的 <code>Estimator</code> 和 <code>Experiment</code>）中来使用 tfdbg。要<strong>观察</strong>这个问题，请运行以下命令而不使用调试器（源代码可以在<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/debug/examples/debug_mnist.py">这里</a>可找到）</p>
+<pre><code class="lang-none">python -m tensorflow.python.debug.examples.debug_mnist
+</code></pre>
+<p>该代码训练一个简单的神经网络用于MNIST数字图像识别。 请注意，在第二次迭代训练后（step 1）训练之后，准确度就虽然还略有提高，但都是在 0.098 附近徘徊，变化已经不大了。</p>
+<pre><code class="lang-none">Accuracy at step 0: 0.1113
+Accuracy at step 1: 0.3183
+Accuracy at step 2: 0.098
+Accuracy at step 3: 0.098
+Accuracy at step 4: 0.098
+</code></pre>
+<p>想知道可能出了什么问题，你怀疑计算图在训练时中的某些节点产生了不良的数值，例如 <code>inf</code>s 和 <code>nan</code>s，因为这是训练失败的一个常见原因。 让我们用 tfdbg 来调试这个问题，并确定第一次出现这种数值问题的图结点的确切位置。</p>
+<h2>使用 tfdbg 包装 TensorFlow 会话（Sessions）</h2>
+<p>要在我们的示例中添加对 tfdbg 的支持，所需要的是添加以下代码行，并使用调试器包装器包装 Session 对象。 此代码已添加到 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/debug/examples/debug_mnist.py">debug_mnist.py</a> 中，因此您可以在命令行中使用 <code>--debug</code> 标志来激活 tfdbg 命令行界面（下文都将简称为 tfdbg CLI）。</p>
+<pre><code class="lang-python"># 编译TensorFlow时，让你的构建（BUILD）目标依赖于 &quot;//tensorflow/python/debug:debug_py&quot;
+# （只要你是使用 pip install 来安装开源 TensorFlow 的，就不需要担心构建时的依赖问题）
+from tensorflow.python import debug as tf_debug
+
+sess = tf_debug.LocalCLIDebugWrapperSession(sess)
+sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
+</code></pre>
+<p>该包装器具有与 Session 相同的接口，因此启动调试不需要对代码进行任何修改。包装器提供了额外的特性，包括：</p>
+<ul>
+<li>在 <code>Session.run()</code> 之前和之后显示一个命令行界面，让你控制执行，并检查图的内部状态。</li>
+<li>允许您为张量值注册特殊的过滤器，以便于诊断问题。</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/tfdbg.html#Classes_for_debug_dump_data_and_directories">TensorFlow Debugger</a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tfdbg/DebugDumpDir/find"><code>tfdbg.DebugDumpDir.find</code></a></p>
+<h2>使用 tfdbg 调试模型训练</h2>
+<p>让我们再次训练模型，但这次带上了 <code>--debug</code> 标志：</p>
+<pre><code class="lang-none">python -m tensorflow.python.debug.examples.debug_mnist --debug
+</code></pre>
+<p>调试包装器会话将在您要调用第一个 Session.run() 时提示您，并在屏幕上显示一些值，其中包含有关获取的张量（Fetches）的信息，以及供给数据所对应的字典参数（Feeds）。</p>
+<p><img src="https://www.tensorflow.org/images/tfdbg_screenshot_run_start.png" alt="tfdbg run-start UI"></p>
+<p>这就是我们所说的 <strong>run-start CLI</strong>。 在执行任何操作之前，它会将 <code>Session.run</code> 调用所需要输入的 Fetch 和 Feed 张量列出来。</p>
+<p>如果屏幕尺寸太小，无法完整显示消息的内容，您可以调整其大小。</p>
+<p>使用 <strong>PageUp</strong> / <strong>PageDown</strong> / <strong>Home</strong> / <strong>End</strong> 键来导航屏幕输出，当然也可以使用 <strong>Fn + Up</strong> /<br>
+<strong>Fn + Down</strong> / <strong>Fn + Right</strong> / <strong>Fn + Left</strong>，虽然很多键盘没有这些键。</p>
+<p>在命令提示符下输入 <code>run</code> 命令（或者只是 <code>r</code>）让终端继续运行：</p>
+<pre><code>tfdbg&gt; run
+</code></pre>
+<p><code>run</code> 命令会导致 <code>tfdbg</code> 执行，直到下一个 <code>Session.run()</code> 调用结束，该调用使用测试数据集计算模型的准确性。 <code>tfdbg</code> 加载运行时图时转储所有中间张量。运行结束后，<code>tfdbg</code> 将显示运行结束后在命令行界面中显示所有的中间张量值。 例如：</p>
+<p><img src="https://www.tensorflow.org/images/tfdbg_screenshot_run_end_accuracy.png" alt="tfdbg run-end UI: accuracy"></p>
+<p>在执行​​运行完 <code>run</code> 之后，也可以通过运行命令 <code>lt</code> 获得张量列表。</p>
+<h3>tfdbg CLI 常用的命令</h3>
+<p>在 <code>tfdbg&gt;</code> 提示符下（参考 tensorflow / python / debug / examples / debug_mnist.py 中的代码），尝试以下命令：</p>
+<table>
+<thead><tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Syntax or Option</th>
+<th style="text-align:left">Explanation</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>lt</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>列出转储中间张量</strong></td>
+<td style="text-align:left"><code>lt</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-n &lt;name_pattern&gt;</code></td>
+<td style="text-align:left">列出名称与给定正则表达式模式匹配的转储张量。</td>
+<td style="text-align:left"><code>lt -n Softmax.*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-t &lt;op_pattern&gt;</code></td>
+<td style="text-align:left">列出操作类型与给定正则表达式模式匹配的转储张量。</td>
+<td style="text-align:left"><code>lt -t MatMul</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-f &lt;filter_name&gt;</code></td>
+<td style="text-align:left">列出与给定字符串匹配的转储张量。</td>
+<td style="text-align:left"><code>lt -f has_inf_or_nan</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-s &lt;sort_key&gt;</code></td>
+<td style="text-align:left">根据 sort_key 对输出排序，sort_key 可能的值为 <code>timestamp（默认）</code>，<code>dump_size</code>，<code>op_type</code> 和 <code>tensor_name</code>。</td>
+<td style="text-align:left"><code>lt -s dump_size</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-r</code></td>
+<td style="text-align:left">按相反顺序排列。</td>
+<td style="text-align:left"><code>lt -r -s dump_size</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>pt</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>打印转储张量的值。</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>pt &lt;tensor&gt;</code></td>
+<td style="text-align:left">打印张量值。</td>
+<td style="text-align:left"><code>pt hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>pt &lt;tensor&gt;[slicing]</code></td>
+<td style="text-align:left">使用 <a href="http://www.numpy.org/">numpy</a>-style数组切片来打印张量中的子数组。</td>
+<td style="text-align:left"><code>pt hidden/Relu:0[0:50,:]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-a</code></td>
+<td style="text-align:left">不截断打印结果很长的张量。（大的张量可能需要花很长的时间来打印）</td>
+<td style="text-align:left"><code>pt -a hidden/Relu:0[0:50,:]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-r &lt;range&gt;</code></td>
+<td style="text-align:left">筛选出指定数值区间内的元素。如果有多个区间可以结合使用。</td>
+<td style="text-align:left"><code>pt hidden/Relu:0 -a -r [[-inf,-1],[1,inf]]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-n &lt;number&gt;</code></td>
+<td style="text-align:left">Print dump corresponding to specified 0-based dump number. Required for tensors with multiple dumps.</td>
+<td style="text-align:left"><code>pt -n 0 hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-s</code></td>
+<td style="text-align:left">打印数值张量的摘要（仅适用于布尔型和数字类型的非空张量，如 <code>int *</code> 和 <code>float *</code>）</td>
+<td style="text-align:left"><code>pt -s hidden/Relu:0[0:50,:]</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-w</code></td>
+<td style="text-align:left">使用 <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.save.html"><code>numpy.save()</code></a> 将张量（可能已分片）的值写入一个 Numpy 文件</td>
+<td style="text-align:left"><code>pt -s hidden/Relu:0 -w /tmp/relu.npy</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>@[coordinates]</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">根据坐标值导航到 <code>pt</code> 命令输出值的指定位置。</td>
+<td style="text-align:left"><code>@[10,0]</code> or <code>@10,0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>/regex</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><a href="https://linux.die.net/man/1/less">less</a> 风格的正则表达式搜索</td>
+<td style="text-align:left"><code>/inf</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>/</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">滚动到下一个正则表达式匹配的结果（如果有）。</td>
+<td style="text-align:left"><code>/</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>pf</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>打印 <code>Session.run</code> 的参数 <code>feed_dict</code>。</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>pf &lt;feed_tensor_name&gt;</code></td>
+<td style="text-align:left">打印供给数据的值。 还要注意，<code>pf</code> 命令具有 <code>-a</code>，<code>-r</code> 和 <code>-s</code> 标志（未在下面列出） ，这些标志与 <code>pt</code> 命令的那些同名标志具有相同的语法和语义。</td>
+<td style="text-align:left"><code>pf input_xs:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>eval</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>运行 Python 和 numpy 表达式。</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>eval &lt;expression&gt;</code></td>
+<td style="text-align:left">运行 Python / numpy 表达式，用 np 来表示 numpy，调试的张量名需要加上到引号。</td>
+<td style="text-align:left"><code>eval "np.matmul((`output/Identity:0` / `Softmax:0`).T, `Softmax:0`)"</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-a</code></td>
+<td style="text-align:left">打印表达式返回的结果，就算结果很长也不截断。</td>
+<td style="text-align:left"><code>eval -a 'np.sum(`Softmax:0`, axis=1)'</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-w</code></td>
+<td style="text-align:left">使用 <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.save.html"><code>numpy.save()</code></a> 将评估器的结果写入一个 Numpy 文件</td>
+<td style="text-align:left"><code>eval -a 'np.sum(`Softmax:0`, axis=1)' -w /tmp/softmax_sum.npy</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ni</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>显示结点信息</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-a</code></td>
+<td style="text-align:left">在输出中包含结点属性。</td>
+<td style="text-align:left"><code>ni -a hidden/Relu</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-d</code></td>
+<td style="text-align:left">列出结点可用的调试转储。</td>
+<td style="text-align:left"><code>ni -d hidden/Relu</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-t</code></td>
+<td style="text-align:left">显示结点创建时，Python 堆栈的变化。</td>
+<td style="text-align:left"><code>ni -t hidden/Relu</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>li</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>列出结点的输入</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-r</code></td>
+<td style="text-align:left">递归的列出结点的输入（输入树）。</td>
+<td style="text-align:left"><code>li -r hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-d &lt;max_depth&gt;</code></td>
+<td style="text-align:left">限制 -r 模式下的递归深度。</td>
+<td style="text-align:left"><code>li -r -d 3 hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-c</code></td>
+<td style="text-align:left">包含控制输入</td>
+<td style="text-align:left"><code>li -c -r hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-t</code></td>
+<td style="text-align:left">显示输入节点的操作类型</td>
+<td style="text-align:left"><code>li -t -r hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>lo</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>列出结点输出的接收者</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-r</code></td>
+<td style="text-align:left">递归地列出节点的输出接收者（输出树）。</td>
+<td style="text-align:left"><code>lo -r hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-d &lt;max_depth&gt;</code></td>
+<td style="text-align:left">限制 <code>-r</code> 模式下的递归深度。</td>
+<td style="text-align:left"><code>lo -r -d 3 hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-c</code></td>
+<td style="text-align:left">通过控制边缘列出多个接收者。</td>
+<td style="text-align:left"><code>lo -c -r hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-t</code></td>
+<td style="text-align:left">Show op types of recipient nodes.</td>
+<td style="text-align:left"><code>lo -t -r hidden/Relu:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ls</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>列出创建结点时所涉及的 Python 源文件。</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-p &lt;path_pattern&gt;</code></td>
+<td style="text-align:left">输出匹配给定正则表达式路径的源文件。</td>
+<td style="text-align:left"><code>ls -p .*debug_mnist.*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-n</code></td>
+<td style="text-align:left">输出匹配给定正则表达式的节点名称。</td>
+<td style="text-align:left"><code>ls -n Softmax.*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ps</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>打印 Python 源文件</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>ps &lt;file_path&gt;</code></td>
+<td style="text-align:left">打印 Python 源文件 source.py，并标记创建了结点（如果有的话）的那些代码行。</td>
+<td style="text-align:left"><code>ps /path/to/source.py</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-t</code></td>
+<td style="text-align:left">打印张量的注释，而不是默认的节点。</td>
+<td style="text-align:left"><code>ps -t /path/to/source.py</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-b &lt;line_number&gt;</code></td>
+<td style="text-align:left">从给定行开始标记源码 source.py。</td>
+<td style="text-align:left"><code>ps -b 30 /path/to/source.py</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-m &lt;max_elements&gt;</code></td>
+<td style="text-align:left">限制每行标记处显示的最大元素个数。</td>
+<td style="text-align:left"><code>ps -m 100 /path/to/source.py</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>run</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>继续下一个 Session.run()</strong></td>
+<td style="text-align:left"><code>run</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-n</code></td>
+<td style="text-align:left">执行下一个 Session.run 而不进行调试，<code>-n</code> 添加到 <code>run</code> 命令的右边。</td>
+<td style="text-align:left"><code>run -n</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-t &lt;T&gt;</code></td>
+<td style="text-align:left">在没有调试的情况下执行 <code>Session.run</code> <code>T - 1</code> 次，然后运行调试。 <code>-t</code> 添加到 <code>run</code> 命令的右边。</td>
+<td style="text-align:left"><code>run -t 10</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-f &lt;filter_name&gt;</code></td>
+<td style="text-align:left">继续执行 <code>Session.run</code>，直到任何中间张量触发指定的 Tensor 过滤器（导致过滤器返回 <code>True</code>）。</td>
+<td style="text-align:left"><code>run -f has_inf_or_nan</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>--node_name_filter &lt;pattern&gt;</code></td>
+<td style="text-align:left">执行下一个 <code>Session.run</code>，只查看名称与给定正则表达式模式匹配的结点。</td>
+<td style="text-align:left"><code>run --node_name_filter Softmax.*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>--op_type_filter &lt;pattern&gt;</code></td>
+<td style="text-align:left">执行下一个 <code>Session.run</code>，只查看符合给定正则表达式模式的操作类型的结点。</td>
+<td style="text-align:left"><code>run --op_type_filter Variable.*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>--tensor_dtype_filter &lt;pattern&gt;</code></td>
+<td style="text-align:left">执行下一个 <code>Session.run</code>，仅列出与给定正则表达式模式匹配的数据类型（<code>dtype</code>s）的转储张量。</td>
+<td style="text-align:left"><code>run --tensor_dtype_filter int.*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>-p</code></td>
+<td style="text-align:left">在性能分析模式下执行下一个 <code>Session.run</code></td>
+<td style="text-align:left"><code>run -p</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>ri</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>显示当前运行的信息，包含获取的张量和输入（feed）的张量。</strong></td>
+<td style="text-align:left"><code>ri</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>config</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>设置或显示 TFDBG UI 当前的配置信息。</strong></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>set</code></td>
+<td style="text-align:left">设置配置项，譬如 {<code>graph_recursion_depth</code>, <code>mouse_mode</code>}。</td>
+<td style="text-align:left"><code>config set graph_recursion_depth 3</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>show</code></td>
+<td style="text-align:left">显示当前的 UI 配置信息。</td>
+<td style="text-align:left"><code>config show</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>help</code></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>打印通用的帮助信息</strong></td>
+<td style="text-align:left"><code>help</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>help &lt;command&gt;</code></td>
+<td style="text-align:left">打印命令所对应的帮助信息</td>
+<td style="text-align:left"><code>help lt</code></td>
+</tr>
+</tbody>
+</table>
+<p>请注意，每当您输入命令时，都会显示新的屏幕输出。 这有点类似于浏览器中的网页。 您可以通过点击命令行界面左上角附近的<code>&lt;--</code> 和 <code>--&gt;</code> 文字箭头在这些屏幕之间导航。</p>
+<h3>tfdbg CLI 的其他特性</h3>
+<p>除了以上列出的命令之外，tfdebug CLI 还提供了以下的额外特性：</p>
+<ul>
+<li>要导航到之前输入的 tfdbg 命令，可输入几个字符后，使用向上或向下按键。tfdbg 将显示以这些字符开头的命令的历史记录。</li>
+<li>要浏览屏幕输出的历史记录，请执行以下操作之一：<ul>
+<li>使用 <code>prev</code> 和 <code>next</code> 命令。 </li>
+<li>点击屏幕左上角附近的带下划线的  <code>&lt;--</code> 和 <code>--&gt;</code> 链接。</li>
+</ul>
+</li>
+<li>使用 Tab 自动补全命令和一些命令的参数。</li>
+<li><p>要将屏幕输出重定向到文件而不是屏幕，可以 bash 样式重定向输出。例如，下面命令将 pt 命令的输出重定向到 <code>/tmp/xent_value_slices.txt</code> 文件：</p>
+<pre><code class="lang-bash">tfdbg&gt; pt cross_entropy/Log:0[:, 0:10] &gt; /tmp/xent_value_slices.txt
+</code></pre>
+</li>
+</ul>
+<h3>找到 <code>nan</code>s 和 <code>inf</code>s</h3>
+<p>在第一个 <code>Session.run()</code> 调用中，碰巧没有出现有问题的数值。 您可以使用命令 run 或 r 进入下一次运行。</p>
+<blockquote><p>提示：如果您反复输入 <code>run</code> 或 <code>r</code>，则可以依次的调用 Session.run()。</p>
+<p>你也可以使用 -t 标志来调用多次 Session.run()，例如：</p>
+<pre><code>tfdbg&gt; run -t 10
+</code></pre>
+</blockquote>
+<p>不必在每次 <code>Session.run()</code> 之后，在 run-end 界面中重复输入 run 并手动搜索 <code>nan</code>s 和 <code>inf</code>s（例如，通过使用上表中所示的 <code>pt</code> 命令），您可以使用以下命令让调试器重复执行 Session.run() 直到第一个 <code>nan</code> 或 <code>inf</code> 值显示在图中。 这在某些程序语言调试器中类似于<strong>条件断点</strong>：</p>
+<pre><code class="lang-none">tfdbg&gt; run -f has_inf_or_nan
+</code></pre>
+<blockquote><p>注意：上述命令可以正常工作，因为我们已经注册了一个名为 <code>has_inf_or_nan</code>的 <code>nan</code>s 和 <code>inf</code>s 的过滤器<br>
+（如前所述）。<br>
+如果您已经注册了其他过滤器，您可以使用 “run -f” 来运行 tfdbg，直到任何张量器触发该过滤器（导致过滤器返回<br>
+True）。</p>
+<pre><code class="lang-python">def my_filter_callable(datum, tensor):
+  # A filter that detects zero-valued scalars.
+  return len(tensor.shape) == 0 and tensor == 0.0
+
+sess.add_tensor_filter(&#39;my_filter&#39;, my_filter_callable)
+</code></pre>
+<p>然后在 tfdbg run-start 提示符下继续运行，直到您的过滤器被触发：</p>
+<pre><code class="lang-shell">tfdbg&gt; run -f my_filter
+</code></pre>
+</blockquote>
+<p>有关 <code>add_tensor_filter()</code> 传入的 <code>Callable</code> 的返回值和签名的更多信息，请参见<a href="https://www.tensorflow.org/api_docs/python/tfdbg/DebugDumpDir#find">此API文档</a>。</p>
+<p><img src="https://www.tensorflow.org/images/tfdbg_screenshot_run_end_inf_nan.png" alt="tfdbg run-end UI: infs 和 nans"></p>
+<p>当屏幕显示在第一行显示时，在第四次 <code>Session.run()</code> 调用期间首先触发 <code>has_inf_or_nan</code> 过滤器：计算图上运行的一个 <a href="https://www.tensorflow.org/api_docs/python/tf/train/AdamOptimizer">Adam Optimizer</a> 前向-反向训练过程。 在这次运行中，36个（总共 95 个）中间张量包含 <code>nan</code> 或 <code>inf</code> 值。 这些张量按时间顺序列出，其时间戳显示在左侧。 在列表的顶部，您可以看到第一个张量，其中首先出现错误的数值是：cross_entropy / Log：0。</p>
+<p>要查看张量的值，请单击带下划线的张量名称 <code>cross_entropy / Log：0</code> 或输入等效命令：</p>
+<pre><code class="lang-none">tfdbg&gt; pt cross_entropy/Log:0
+</code></pre>
+<p>向下滚动一点，你会注意到一些分散的 <code>inf</code> 值。 如果 <code>inf</code> 和 <code>nan</code> 的实例难以察觉，您可以使用以下命令执行正则表达式搜索并高亮显示输出：</p>
+<pre><code class="lang-none">tfdbg&gt; /inf
+</code></pre>
+<p>或者，以下面这种方式搜索:</p>
+<pre><code class="lang-none">tfdbg&gt; /(inf|nan)
+</code></pre>
+<p>您还可以使用 <code>-s</code> 或 <code>--numeric_summary</code> 命令得到张量数值类型的快速摘要：</p>
+<pre><code class="lang-none">tfdbg&gt; pt -s cross_entropy/Log:0
+</code></pre>
+<p>从摘要中，你可以看到 <code>cross_entropy / Log：0</code> 张量的 1000 个元素中有几个元素是 <code>-inf</code>s（负的无穷大）</p>
+<p>为什么这些负无穷大的值会出现？要进一步调试，请通过单击顶部下划线的 <code>node_info</code> 菜单项来显示有关结点的 <code>cross_entropy / Log</code> 的更多信息，或输入等效的 node_info（<code>ni</code>）命令：</p>
+<pre><code class="lang-none">tfdbg&gt; ni cross_entropy/Log
+</code></pre>
+<p><img src="https://www.tensorflow.org/images/tfdbg_screenshot_run_end_node_info.png" alt="tfdbg run-end UI: infs and nans"></p>
+<p>您可以看到该结点的操作类型为 <code>Log</code>，并且结点的输入是 Softmax。 运行以下命令，仔细观察输入张量：</p>
+<pre><code class="lang-none">tfdbg&gt; pt Softmax:0
+</code></pre>
+<p>检查输入张量中的值，搜索零：</p>
+<pre><code class="lang-none">tfdbg&gt; /0\.000
+</code></pre>
+<p>确实有零。现在很清楚，不良数值的起源是采用零日志的结点 cross_entropy / Log。 要了解 Python 源代码中的罪魁祸首行，请使用 <code>ni</code> 命令的 <code>-t</code> 标记来追溯构造此结点的代码位置：</p>
+<pre><code class="lang-none">tfdbg&gt; ni -t cross_entropy/Log
+</code></pre>
+<p>如果您点击屏幕顶部的 “node_info”，tfdbg 会自动显示此结点构造的回溯。</p>
+<p>从追溯中，你可以看到，此操作结点是在下面这一行中创建的：<a href="https://www.tensorflow.org/code/tensorflow/python/debug/examples/debug_mnist.py">debug_mnist.py</a>：</p>
+<pre><code class="lang-python">diff = y_ * tf.log(y)
+</code></pre>
+<p><strong>tfdbg</strong> 有一个特性，可以轻松跟踪张量和操作是起源于 Python 源文件中的哪一行。<strong>tfdbg</strong> 可以在产生错误的代码行下面标记它产生的张量或者操作。要使用此特性，只需单击 <code>ni -t &lt;op_name&gt;</code> 命令的堆栈跟踪输出中的下划线行号，或使用 <code>ps</code>（或 <code>print_source</code>）命令，例如：<code>ps /path/to/source.py</code>。 例如，以下屏幕截图显示了 <code>ps</code> 命令的输出。</p>
+<p><img src="https://www.tensorflow.org/images/tfdbg_screenshot_run_end_annotated_source.png" alt="tfdbg run-end UI: annotated Python source file"></p>
+<h3>解决问题</h3>
+<p>要解决此问题，将 debug_mnist.py 错误行的代码：</p>
+<pre><code class="lang-python">diff = -(y_ * tf.log(y))
+</code></pre>
+<p>修改为系统内建的 softmax 交叉熵函数：</p>
+<pre><code class="lang-python">diff = tf.losses.sparse_softmax_cross_entropy(labels=y_, logits=logits)
+</code></pre>
+<p>带上 <code>--debug</code> 标记，重新运行：</p>
+<pre><code class="lang-none">python -m tensorflow.python.debug.examples.debug_mnist --debug
+</code></pre>
+<p>在 <code>tfdbg</code> 提示符下，输入以下命令：</p>
+<pre><code class="lang-none">run -f has_inf_or_nan`
+</code></pre>
+<p>确认没有张量被标记为包含 <code>nan</code> 或 <code>inf</code> 值，并且准确度现在继续上升而不是卡住，意味着我们的修改是成功的。</p>
+<h2>调试 tf-learn 中的 Estimators 和 Experiments</h2>
+<p>这个章节解释了如何调试使用了 <code>Estimator</code> 和 <code>Experiment</code> API 来调试 TensorFlow 程序。这些 API 的便利之处部分在于它们是内部管理 <code>Session</code>。 这使得前面部分中描述的 <code>LocalCLIDebugWrapperSession</code> 不适用。 幸运的是，您仍然可以使用 <code>tfdbg</code> 提供的特殊钩子进行调试。</p>
+<h3>调试 tf.contrib.learn 评估器对象（Estimator）</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/BaseEstimator/evaluate"><code>tf.contrib.learn.BaseEstimator.evaluate</code></a></p>
+<pre><code class="lang-python"># 首先，让编译时的构建（BUILD）目标依赖于 &quot;//tensorflow/python/debug:debug_py&quot;
+# （如果你是使用 pip install 安装的 TensorFlow，那么你就不需要担心构建时的依赖的问题）
+
+from tensorflow.python import debug as tf_debug
+
+# 创建一个 LocalCLIDebugHook 并作为 monitor 参数的值传递给函数 fit()。
+hooks = [tf_debug.LocalCLIDebugHook()]
+
+classifier.fit(x=training_set.data,
+               y=training_set.target,
+               steps=1000,
+               monitors=hooks)
+</code></pre>
+<p>若是调试 <code>Estimator.evaluate()</code>，可以将 hooks 作为 <code>hooks</code> 参数的值，如下代码所示：</p>
+<pre><code class="lang-python">accuracy_score = classifier.evaluate(x=test_set.data,
+                                     y=test_set.target,
+                                     hooks=hooks)[&quot;accuracy&quot;]
+</code></pre>
+<p><a href="https://www.tensorflow.org/code/tensorflow/python/debug/examples/debug_tflearn_iris.py">debug_tflearn_iris.py</a> 中的代码是基于 {$tflearn$tf-learn's iris 教程}，里面包含了如何将 <code>tfdbg</code> 与评估器一起使用的完整示例。要运行这个例子，请输入下面的命令：</p>
+<pre><code class="lang-none">python -m tensorflow.python.debug.examples.debug_tflearn_iris --debug
+</code></pre>
+<h3>调试 tf.contrib.learn 中的 Experiments 对象</h3>
+<p><code>Experiment</code> 是 <code>tf.contrib.learn</code> 模块中比 <code>Estimator</code> 更加高层的 API 。它提供了一个训练和评估模型的界面。 要调试 <code>Experiment</code> 对象的 <code>train()</code> 和 <code>evaluate()</code> 调用，可以调用其构造函数时分别使用 <code>train_monitors</code> 和 <code>eval_hooks</code> 参数。</p>
+<pre><code class="lang-python"># 首先，让编译时的构建（BUILD）目标依赖于 &quot;//tensorflow/python/debug:debug_py&quot;
+# （如果你是使用 pip install 安装的 TensorFlow，那么你就不需要担心构建时的依赖的问题）
+from tensorflow.python import debug as tf_debug
+
+hooks = [tf_debug.LocalCLIDebugHook()]
+
+ex = experiment.Experiment(classifier,
+                           train_input_fn=iris_input_fn,
+                           eval_input_fn=iris_input_fn,
+                           train_steps=FLAGS.train_steps,
+                           eval_delay_secs=0,
+                           eval_steps=1,
+                           train_monitors=hooks,
+                           eval_hooks=hooks)
+
+ex.train()
+accuracy_score = ex.evaluate()[&quot;accuracy&quot;]
+</code></pre>
+<p>为了以 <code>Experiment</code> 模式来构建和运行 <code>debug_tflearn_iris</code> 样例，请在终端键入以下命令：</p>
+<pre><code class="lang-none">python -m tensorflow.python.debug.examples.debug_tflearn_iris \
+    --use_experiment --debug
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tfdbg/DumpingDebugWrapperSession/__init__"><code>tfdbg.DumpingDebugWrapperSession.__init__</code></a></p>
+<h2>使用 TFDBG 调试 Keras 模型</h2>
+<p>要在 <a href="https://keras.io/">Keras</a> 中使用 TFDBG，需要让 Keras 后端使用一个 TFDBG-wrapped 的 Session 对象。下面是一个使用命令行界面包装器的例子：</p>
+<pre><code class="lang-python">import tensorflow as tf
+from keras import backend as keras_backend
+from tensorflow.python import debug as tf_debug
+
+keras_backend.set_session(tf_debug.LocalCLIDebugWrapperSession(tf.Session()))
+
+# 定义你的 keras 模型，变量名称为 “model”。
+model.fit(...)  # 这里将会调试进入 TFDBG CLI。
+</code></pre>
+<h2>使用 TFDBG 调试 tf-slim</h2>
+<p>TFDBG 支持使用 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/slim">tf-slim</a> 调试训练和评估。详述如下，训练和评估需要稍微有点不同的调试工作流</p>
+<h3>在 tf-slim 中调试训练</h3>
+<p>为了调试训练过程，我们为 <code>slim.learning.train()</code> 中的 <code>session_wrapper</code> 参数提供了 <code>LocalCLIDebugWrapperSession</code> 对象，例子如下：</p>
+<pre><code class="lang-python">import tensorflow as tf
+from tensorflow.python import debug as tf_debug
+
+# ... 创建图和训练操作的代码 ...
+tf.contrib.slim.learning.train(
+    train_op,
+    logdir,
+    number_of_steps=10,
+    session_wrapper=tf_debug.LocalCLIDebugWrapperSession)
+</code></pre>
+<h3>在 tf-slim 中调试评估</h3>
+<p>为了调试评估过程，TensorFlow 提供了 <code>LocalCLIDebugHook</code> 填入 <code>slim.evaluation.evaluate_once()</code> 的 <code>hooks</code> 参数。比如：</p>
+<pre><code class="lang-python">import tensorflow as tf
+from tensorflow.python import debug as tf_debug
+
+# ... 用来创建流图，验证和最终的操作....
+tf.contrib.slim.evaluation.evaluate_once(
+    &#39;&#39;,
+    checkpoint_path,
+    logdir,
+    eval_op=my_eval_op,
+    final_op=my_value_op,
+    hooks=[tf_debug.LocalCLIDebugHook()])
+</code></pre>
+<h2>离线调试远程运行的 Session</h2>
+<p>很多时候，你的模型正运行在远程机器上，或你无法用终端访问一个进程。为了在这种情况下调试模型，你可以使用 tfdbg 中的 offline_analyzer 库（下面将会描述）。 它可以对转储张量的文件夹进行操作，并且兼容低层的 <code>Session</code> API 和高层的 <code>Estimators</code> 和 <code>Experiment</code> APIs。</p>
+<h3>调试远程的 tf.Sessions</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tfdbg/watch_graph"><code>tfdbg.watch_graph</code></a></p>
+<pre><code class="lang-python">from tensorflow.python import debug as tf_debug
+
+# ... 初始化计算图和会话的代码...
+
+run_options = tf.RunOptions()
+tf_debug.watch_graph(
+      run_options,
+      session.graph,
+      debug_urls=[&quot;file:///shared/storage/location/tfdbg_dumps_1&quot;])
+# 确定已经为不同的 run() 调用指定不同的目录。
+
+session.run(fetches, feed_dict=feeds, options=run_options)
+</code></pre>
+<p>之后，在终端访问的环境中（例如，可以访问上面代码中指定的共享存储位置的本地计算机），您可以使用 tfdbg 中的 <code>offline_analyzer</code> 模块来加载和检查共享存储中的转储目录中的数据。例子如下：</p>
+<pre><code class="lang-none">python -m tensorflow.python.debug.cli.offline_analyzer \
+    --dump_dir=/shared/storage/location/tfdbg_dumps_1
+</code></pre>
+<p><code>Session</code> 的 DumpingDebugWrapperSession 包装器提供了一种更简单，更灵活的方法来生成可以离线分析的文件系统转储。 要使用它，只需将你的会话包装在一个 <code>tf_debug.DumpingDebugWrapperSession</code> 中。 例如：</p>
+<pre><code class="lang-python"># 首先，让你编译时构建（BUILD）目标依赖于 &quot;//tensorflow/python/debug:debug_py&quot;
+# （如果你是使用 pip install 安装的 TensorFlow，那么你就不需要担心构建时的依赖的问题）
+from tensorflow.python import debug as tf_debug
+
+sess = tf_debug.DumpingDebugWrapperSession(
+    sess, &quot;/shared/storage/location/tfdbg_dumps_1/&quot;, watch_fn=my_watch_fn)
+</code></pre>
+<p><code>watch_fn</code> 接受一个 <code>Callable</code> 来允许你来监视特定 <code>Tensor</code>s 在不同次 <code>Session.run()</code> 调用之间的变化，而这个函数需要和 <code>fetch</code> 和 <code>feed_dict</code> 其他状态一样传递到 <code>run</code> 调用中。</p>
+<h3>C++ 和其他语言</h3>
+<p>如果您的模型代码用 C ++ 或其他语言编写，您还可以修改 <code>RunOptions</code> 的 <code>debug_options</code> 字段来生成可以离线检查的调试转储。有关详细信息，请参阅此<a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/debug.proto">协议(proto)</a>的定义。</p>
+<h3>调试远程运行的 Estimator 和 Experiments</h3>
+<p>如果您的远程 TensorFlow 服务器运行着 Estimator，则可以使用非交互式 <code>DumpingDebugHook</code>。 例子如下：</p>
+<pre><code class="lang-python"># 首先，让你的 BUILD 对象依赖于 &quot;//tensorflow/python/debug:debug_py&quot;
+# （如果你是使用 pip install 安装的 TensorFlow，那么你就不需要担心构建时的依赖的问题）
+from tensorflow.python import debug as tf_debug
+
+hooks = [tf_debug.DumpingDebugHook(&quot;/shared/storage/location/tfdbg_dumps_1&quot;)]
+</code></pre>
+<p>那么这个钩子可以像本文前面所述的 <code>LocalCLIDebugHook</code> 示例一样来使用。 当 <code>Estimator</code> 或 <code>Experiment</code> 开始训练或求值时，tfdbg 会创建具有如下命名模式的目录：/ shared / storage / location / tfdbg_dumps<em>1 / run</em><epoch_timestamp_microsec>_<uuid>。 每个目录对应于一次 <code>Session.run()</code> 调用，进而调用 <code>fit()</code> 或 <code>evaluate()</code>。 您可以使用 tfdbg 提供的 offline_analyzer 以离线方式加载这些目录并在命令行界面中进行检查。 例如：</p>
+<pre><code class="lang-bash">python -m tensorflow.python.debug.cli.offline_analyzer \
+    --dump_dir=&quot;/shared/storage/location/tfdbg_dumps_1/run_&lt;epoch_timestamp_microsec&gt;_&lt;uuid&gt;&quot;
+</code></pre>
+<h2>常见问题</h2>
+<p><strong>Q</strong>: 执行 <code>lt</code> 命令输出内容时，其左侧的时间戳可以反映非调试情况下 Session 中的实际性能吗？</p>
+<p><strong>A</strong>: 不可以的，调试器将附加的专用调试结点插入计算图中以记录中间张量的值。这些结点会减慢计算图的执行。 如果您对分析您模型的性能感兴趣，请参考下列方法</p>
+<ol>
+<li>tfdbg 的性能分析模式：<code>tfdbg&gt; run -p</code>。</li>
+<li><a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler">tfprof</a> 和其他的 TensorFlow 性能分析工具。</li>
+</ol>
+<p><strong>Q</strong>: 如何在 Bazel 中将 tfdbg 与我的 <code>Session</code> 链接？ 为什么会看到诸如 “ImportError：cannot import name debug” 之类的错误？</p>
+<p><strong>A</strong>: 在您编译构建（BUILD）的规则中，声明依赖关系：“/ tensorflow：tensorflow_py” 和 “// tensorflow / python / debug：debug_py” 。 其中，第一个依赖是您使用 TensorFlow 即使没有调试器支持的依赖关系；第二个依赖是用来启用调试器的。 然后，在你的 Python 文件中，添加下面的代码：</p>
+<pre><code class="lang-python">from tensorflow.python import debug as tf_debug
+
+# 然后用 local-CLI 包装器包装您的 TensorFlow 会话。
+sess = tf_debug.LocalCLIDebugWrapperSession(sess)
+</code></pre>
+<p><strong>Q</strong>: tfdbg 是否可以帮助调试运行时的错误，如形状不匹配？</p>
+<p><strong>A</strong>: 是的。 tfdbg 拦截运行时由操作生成的错误，并在命令行界面中向用户显示带有一些调试指令的错误。参见示例：</p>
+<pre><code class="lang-none"># 调试矩阵乘法中的形状不匹配
+python -m tensorflow.python.debug.examples.debug_errors \
+    --error shape_mismatch --debug
+
+# 调试未初始化的变量
+python -m tensorflow.python.debug.examples.debug_errors \
+    --error uninitialized_variable --debug
+</code></pre>
+<p><strong>Q</strong>: 如何让 tfdbg 包装的 Sessions 或钩子仅对主线程进行调试呢？</p>
+<p><strong>A</strong>: 这是一个常见的用例，其中 Session 对象同时从多个线程使用。 通常来说，子线程处理后台任务，例如执行入队操作。这时，您一般只想调试主线程（或者只是一个子线程）。 你可以使用 <code>LocalCLIDebugWrapperSession</code> 中的 <code>thread_name_filter</code> 参数来实现线程选择性调试。 例如，想要只调试主线程，构造一个包装的会话，如下所示：</p>
+<pre><code class="lang-python">sess = tf_debug.LocalCLIDebugWrapperSession(sess, thread_name_filter=&quot;MainThread$&quot;)
+</code></pre>
+<p>上述示例依赖于一个事实，即 Python 主线程的默认名称为 <code>MainThread</code>。</p>
+<p><strong>Q</strong>: 我正在调试的模型非常大。 tfdbg 转储的数据填满了我磁盘空闲的空间。 我该怎么办？</p>
+<p><strong>A</strong>:<br>
+在以下情况下，您可能会遇到此问题：</p>
+<ul>
+<li>具有许多中间张量的模型</li>
+<li>非常大的中间张量</li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/while_loop"><code>tf.while_loop</code></a></li>
+</ul>
+<p>有三种可能的解决方法或解决方案：</p>
+<ul>
+<li><p><code>LocalCLIDebugWrapperSession</code> 和 <code>LocalCLIDebugHook</code> 的构造函数提供一个参数 <code>dump_root</code>，以指定 tfdbg 转储调试数据的路径。您可以使用它来让 tfdbg 将调试数据转储在具有较大可用空间的磁盘上。 例如：</p>
+<pre><code class="lang-python"># LocalCLIDebugWrapperSession
+sess = tf_debug.LocalCLIDebugWrapperSession(dump_root=&quot;/with/lots/of/space&quot;)
+
+# LocalCLIDebugHook
+hooks = [tf_debug.LocalCLIDebugHook(dump_root=&quot;/with/lots/of/space&quot;)]
+</code></pre>
+<p>确保 dump_root 指向的目录为空或不存在。 tfdbg 会在退出之前清理转储目录。</p>
+</li>
+<li><p>减小运行期间使用的 batch 大小。</p>
+</li>
+<li><p>使用 tfdbg 的 <code>run</code> 命令中的过滤选项，即只观察计算图中的特定结点。 例如：</p>
+<pre><code>tfdbg&gt; run --node_name_filter .*hidden.*
+tfdbg&gt; run --op_type_filter Variable.*
+tfdbg&gt; run --tensor_dtype_filter int.*
+</code></pre>
+<p>上面的第一个命令仅监视其名称与正则表达式模式（<code>.*hidden.*</code>）匹配的结点。 第二个命令只监视名称与模式（<code>Variable.*</code>）匹配的操作结点。第三个只监视 <code>dtype</code> 与模式（<code>int.*</code>）匹配的张量（例如，int32）。</p>
+</li>
+</ul>
+<p><strong>Q</strong>: 为什么无法在 tfdbg CLI 中选择文本？</p>
+<p><strong>A</strong>: 这是因为 tfdbg CLI 默认启用终端中的鼠标事件。 这种<a href="https://linux.die.net/man/3/mousemask">鼠标掩码</a>模式覆盖了默认终端交互过程，包括文本选择。您可以使用命令 <code>mouse off</code> 或 <code>m off</code> 重新启用文本选择。</p>
+<p><strong>Q</strong>: 为什么当我调试如下代码时，tfdbg CLI 没有显示转储张量？</p>
+<pre><code class="lang-python">a = tf.ones([10], name=&quot;a&quot;)
+b = tf.add(a, a, name=&quot;b&quot;)
+sess = tf.Session()
+sess = tf_debug.LocalCLIDebugWrapperSession(sess)
+sess.run(b)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Variable"><code>tf.Variable</code></a></p>
+<pre><code class="lang-python">import numpy as np
+
+a = tf.Variable(np.ones[10], name=&quot;a&quot;)
+b = tf.add(a, a, name=&quot;b&quot;)
+sess = tf.Session()
+sess.run(tf.global_variables_initializer())
+sess = tf_debug.LocalCLIDebugWrapperSession(sess)
+sess.run(b)
+</code></pre>
+<p>则不会发生常数折叠，tfdbg 应该是会显示转储的中间张量的。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

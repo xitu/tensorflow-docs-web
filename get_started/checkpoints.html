@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>检查点</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>检查点</h1>
+<p>本文介绍如何保存和恢复编译有 Estimator 的 TensorFlow 模型。TensorFlow 提供两种模型格式：</p>
+<ul>
+<li>  检查点（checkpoints）：这是一种依赖于创建模型代码的格式。</li>
+<li>  SavedModel：这是一种与创建模型代码无关的格式。</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html">保存和恢复</a></p>
+<h2>示例代码</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<pre><code class="lang-shell">git clone https://github.com/tensorflow/models/
+cd models/samples/core/get_started
+</code></pre>
+<p>本文中大部分代码片断都是在 <code>premade_estimator.py</code> 基础上少量修改的版本。</p>
+<h2>保存未训练完的模型</h2>
+<p>Estimators 自动将下列内容写到磁盘上：</p>
+<ul>
+<li>  <strong>检查点</strong>：训练过程中生成的不同版本的模型。</li>
+<li>  <strong>事件文件</strong>：包含一些用于 <a href="https://developers.google.com/machine-learning/glossary/#TensorBoard">TensorBoard</a> 可视化的信息</li>
+</ul>
+<p>为指定 Estimator 存储信息的顶层目录，将其赋值给任何一个 Estimator 的构造函数的可选参数 <code>model_dir</code>。比如  ，下列代码将 <code>model_dir</code> 参数设置为 <code>models/iris</code> 目录：</p>
+<pre><code class="lang-python">classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    hidden_units=[10, 10],
+    n_classes=3,
+    model_dir=&#39;models/iris&#39;)
+</code></pre>
+<p>假定你调用 Estimator 的 <code>train</code> 方法。比如：</p>
+<pre><code class="lang-python">classifier.train(
+        input_fn=lambda:train_input_fn(train_x, train_y, batch_size=100),
+                steps=200)
+</code></pre>
+<p>如下列图表所示，第一次调用 <code>train</code> 将检查点和其它文件添加到 <code>model_dir</code> 目录中：</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/first_train_calls.png">
+</div>
+<div style="text-align: center">
+第一次调用 train()。
+</div><p>在一个类 UNIX 系统中，可用命令 <code>ls</code> 来查看 <code>model_dir</code> 目录中的对象：</p>
+<pre><code class="lang-none">$ ls -1 models/iris
+checkpoint
+events.out.tfevents.timestamp.hostname
+graph.pbtxt
+model.ckpt-1.data-00000-of-00001
+model.ckpt-1.index
+model.ckpt-1.meta
+model.ckpt-200.data-00000-of-00001
+model.ckpt-200.index
+model.ckpt-200.meta
+</code></pre>
+<p>上面的 <code>ls</code> 命令显示，此 Estimator 在第 1 步（训练开始时）和第 200 步（训练结束时）生成了检查点。</p>
+<h3>默认检查点目录</h3>
+<p>如果你在一个 Estimator 构造函数中指定 <code>model_dir</code> 参数，此 Estimator 将检查点文件写到一个临时目录中，此目录由 Python 的 <a href="https://docs.python.org/3/library/tempfile.html#tempfile.mkdtemp">tempfile.mkdtemp</a> 函数指定。比如，下面的 Estimator 构造函数并没有指定 <code>model_dir</code> 参数：</p>
+<pre><code class="lang-python">classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    hidden_units=[10, 10],
+    n_classes=3)
+
+print(classifier.model_dir)
+</code></pre>
+<p><code>tempfile.mkdtemp</code> 函数会为你在操作系统中选择一个安全的临时目录。比如，在 macOS 操作系统中，一个典型的临时目录为：</p>
+<pre><code class="lang-None">/var/folders/0s/5q9kfzfj3gx2knj0vj8p68yc00dhcr/T/tmpYm1Rwa
+</code></pre>
+<h3>检查点的保存频率</h3>
+<p>默认情况下， Estimator 会在 <code>model_dir</code> 目录中保存 <a href="https://developers.google.com/machine-learning/glossary/#checkpoint">检查点</a>，并且采用如下策略：</p>
+<ul>
+<li>  每隔 10 分钟保存一个检查点（即 600 秒）。</li>
+<li>  当 <code>train</code> 方法开始执行（即第一次循环）和执行结束（最后一次循环）时，会各保存一个检查点。</li>
+<li>  保留目录中最近 5 个检查点。</li>
+</ul>
+<p>你可以用如下步骤改变上述默认策略：</p>
+<ol>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/RunConfig"><code>tf.estimator.RunConfig</code></a></li>
+<li>当实例化 Estimator 时，将此 <code>RunConfig</code> 对象传递给 Estimator 的 <code>config</code> 参数。</li>
+</ol>
+<p>比如，下面的代码将检查点保存策略修改为每隔 20 分钟保存一次，且保留最近 10 个检查点：</p>
+<pre><code class="lang-python">my_checkpointing_config = tf.estimator.RunConfig(
+    save_checkpoints_secs = 20*60,  # Save checkpoints every 20 minutes.
+    keep_checkpoint_max = 10,       # Retain the 10 most recent checkpoints.
+)
+
+classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    hidden_units=[10, 10],
+    n_classes=3,
+    model_dir=&#39;models/iris&#39;,
+    config=my_checkpointing_config)
+</code></pre>
+<h2>恢复你的模型</h2>
+<p>当第一次调用一个 Estimator 的 <code>train</code> 方法时，TensorFlow 会在 <code>model_dir</code> 目录中保存一个检查点。后续每调用一次 Estimator 的 <code>train</code> 、 <code>eval</code> 或 <code>predict</code> 方法，都会发生如下的行为：</p>
+<ol>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+<li>这个 Estimator 从最近的检查点中恢复出数据，用于初始化新模型的权重值。</li>
+</ol>
+<p>换句话说，如下图所示，一旦检查点文件存在，TensorFlow 总会在你调用 <code>train()</code> 、 <code>evaluation()</code> 或 <code>predict()</code> 时重建模型。</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/subsequent_calls.png">
+</div>
+<div style="text-align: center">
+后续对 train()、evaluate() 或 predict() 的调用
+</div><h3>避免不好的恢复</h3>
+<p>只有当模型与检查点兼容时，我们才可以从这个检查点中恢复出模型的状态。比如，假设你训练了一个称为 <code>DNNClassifier</code> 的 Estimator，它包含两个隐藏层，每个有 10 个结点：</p>
+<pre><code class="lang-python">classifier = tf.estimator.DNNClassifier(
+    feature_columns=feature_columns,
+    hidden_units=[10, 10],
+    n_classes=3,
+    model_dir=&#39;models/iris&#39;)
+
+classifier.train(
+    input_fn=lambda:train_input_fn(train_x, train_y, batch_size=100),
+        steps=200)
+</code></pre>
+<p>经过训练之后（当然，也会同时在 <code>models/iris</code> 目录中创建检查点），假如你将每个隐藏层中的 10 个结点改成 20 个，然后再尝试恢复模型：</p>
+<pre><code class="lang-python">classifier2 = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    hidden_units=[20, 20],  # 修改模型中的神经元个数
+    n_classes=3,
+    model_dir=&#39;models/iris&#39;)
+
+classifier.train(
+    input_fn=lambda:train_input_fn(train_x, train_y, batch_size=100),
+        steps=200)
+</code></pre>
+<p>因为检查点的状态与 <code>classifier2</code> 所描述的模型的状态不兼容，恢复模型会失败，错误信息如下：</p>
+<pre><code class="lang-None">...
+InvalidArgumentError (see above for traceback): tensor_name =
+dnn/hiddenlayer_1/bias/t_0/Adagrad; shape in shape_and_slice spec [10]
+does not match the shape stored in checkpoint: [20]
+</code></pre>
+<p>当你在做实验时训练并比较版本稍有不同的模型时，记得保存创建每个 <code>model_dir</code> 的代码。比如，你可以为每个版本创建一个独立的 git 分支。这种分隔的做法可以保证你的检查点是可恢复的。</p>
+<h2>总结</h2>
+<p>检查点提供了一种容易的保存和恢复由 Estimator 生成的模型的自动化机制。</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html">保存和恢复</a></p>
+<ul>
+<li>  使用底层 TensorFlow API 来保存和恢复模型。</li>
+<li>  在 SavedModel 模式中导出和导入模型，这是一种语言无关、可恢复、可序列化格式。</li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

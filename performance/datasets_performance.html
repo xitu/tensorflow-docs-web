@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Input Pipeline Performance Guide</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': 'Input Pipeline Performance Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': 'High-Performance Models'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}, {'type': 'parent', 'title': ' Quantization', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'How to Quantize Neural Networks with TensorFlow'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Input Pipeline Performance Guide</h1>
+<p>GPUs and TPUs can radically reduce the time required to execute a single<br>
+training step. Achieving peak performance requires an efficient input pipeline<br>
+that delivers data for the next step before the current step has finished. The<br>
+<code>tf.data</code> API helps to build flexible and efficient input pipelines. This<br>
+document explains the <code>tf.data</code> API's features and best practices for building<br>
+high performance TensorFlow input pipelines across a variety of models and<br>
+accelerators.</p>
+<p>This guide does the following:</p>
+<ul>
+<li>Illustrates that TensorFlow input pipelines are essentially an<br>
+<a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">ETL</a> process.</li>
+<li>Describes common performance optimizations in the context of the <code>tf.data</code><br>
+API.</li>
+<li>Discusses the performance implications of the order in which you apply<br>
+transformations.</li>
+<li>Summarizes the best practices for designing performant TensorFlow input<br>
+pipelines.</li>
+</ul>
+<h2>Input Pipeline Structure</h2>
+<p>A typical TensorFlow training input pipeline can be framed as an ETL process:</p>
+<ol>
+<li><strong>Extract</strong>: Read data from persistent storage -- either local (e.g. HDD or<br>
+SSD) or remote (e.g. <a href="https://cloud.google.com/storage/">GCS</a> or<br>
+<a href="https://en.wikipedia.org/wiki/Apache_Hadoop#Hadoop_distributed_file_system">HDFS</a>).</li>
+<li><strong>Transform</strong>: Use CPU cores to parse and perform preprocessing operations<br>
+on the data such as image decompression, data augmentation transformations<br>
+(such as random crop, flips, and color distortions), shuffling, and batching.</li>
+<li><strong>Load</strong>: Load the transformed data onto the accelerator device(s) (for<br>
+example, GPU(s) or TPU(s)) that execute the machine learning model.</li>
+</ol>
+<p>This pattern effectively utilizes the CPU, while reserving the accelerator for<br>
+the heavy lifting of training your model. In addition, viewing input pipelines<br>
+as an ETL process provides structure that facilitates the application of<br>
+performance optimizations.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/train"><code>tf.estimator.Estimator.train</code></a></p>
+<pre><code>def parse_fn(example):
+  "Parse TFExample records and perform simple data augmentation."
+  example_fmt = {
+    "image": tf.FixedLengthFeature((), tf.string, ""),
+    "label": tf.FixedLengthFeature((), tf.int64, -1)
+  }
+  parsed = tf.parse_single_example(example, example_fmt)
+  image = tf.image.decode_image(parsed["image"])
+  image = _augment_helper(image)  # augments image using slice, reshape, resize_bilinear
+  return image, parsed["label"]
+
+def input_fn():
+  files = tf.data.Dataset.list_files("/path/to/dataset/train-*.tfrecord")
+  dataset = files.interleave(tf.data.TFRecordDataset)
+  dataset = dataset.shuffle(buffer_size=FLAGS.shuffle_buffer_size)
+  dataset = dataset.map(map_func=parse_fn)
+  dataset = dataset.batch(batch_size=FLAGS.batch_size)
+  return dataset
+</code></pre>
+<p>The next section builds on this input pipeline, adding performance<br>
+optimizations.</p>
+<h2>Optimizing Performance</h2>
+<p>As new computing devices (such as GPUs and TPUs) make it possible to train<br>
+neural networks at an increasingly fast rate, the CPU processing is prone to<br>
+becoming the bottleneck. The <code>tf.data</code> API provides users with building blocks<br>
+to design input pipelines that effectively utilize the CPU, optimizing each step<br>
+of the ETL process.</p>
+<h3>Pipelining</h3>
+<p>To perform a training step, you must first extract and transform the training<br>
+data and then feed it to a model running on an accelerator. However, in a naive<br>
+synchronous implementation, while the CPU is preparing the data, the accelerator<br>
+is sitting idle. Conversely, while the accelerator is training the model, the<br>
+CPU is sitting idle. The training step time is thus the sum of both CPU<br>
+pre-processing time and the accelerator training time.</p>
+<p><strong>Pipelining</strong> overlaps the preprocessing and model execution of a training<br>
+step. While the accelerator is performing training step <code>N</code>, the CPU is<br>
+preparing the data for step <code>N+1</code>. Doing so reduces the step time to the maximum<br>
+(as opposed to the sum) of the training and the time it takes to extract and<br>
+transform the data.</p>
+<p>Without pipelining, the CPU and the GPU/TPU sit idle much of the time:</p>
+<p><img src="https://www.tensorflow.org/images/datasets_without_pipelining.png" alt="without pipelining"></p>
+<p>With pipelining, idle time diminishes significantly:</p>
+<p><img src="https://www.tensorflow.org/images/datasets_with_pipelining.png" alt="with pipelining"></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/prefetch"><code>tf.data.Dataset.prefetch</code></a></p>
+<p>To apply this change to our running example, change:</p>
+<pre><code>dataset = dataset.batch(batch_size=FLAGS.batch_size)
+return dataset
+</code></pre>
+<p>to:</p>
+<pre><code>dataset = dataset.batch(batch_size=FLAGS.batch_size)
+dataset = dataset.prefetch(buffer_size=FLAGS.prefetch_buffer_size)
+return dataset
+</code></pre>
+<p>Note that the prefetch transformation will yield benefits any time there is an<br>
+opportunity to overlap the work of a "producer" with the work of a "consumer."<br>
+The preceding recommendation is simply the most common application.</p>
+<h3>Parallelize Data Transformation</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
+<p><img src="https://www.tensorflow.org/images/datasets_parallel_map.png" alt="parallel map"></p>
+<p>Choosing the best value for the <code>num_parallel_calls</code> argument depends on your<br>
+hardware, characteristics of your training data (such as its size and shape),<br>
+the cost of your map function, and what other processing is happening on the<br>
+CPU at the same time; a simple heuristic is to use the number of available CPU<br>
+cores. For instance, if the machine executing the example above had 4 cores, it<br>
+would have been more efficient to set <code>num_parallel_calls=4</code>. On the other hand,<br>
+setting <code>num_parallel_calls</code> to a value much greater than the number of<br>
+available CPUs can lead to inefficient scheduling, resulting in a slowdown.</p>
+<p>To apply this change to our running example, change:</p>
+<pre><code>dataset = dataset.map(map_func=parse_fn)
+</code></pre>
+<p>to:</p>
+<pre><code>dataset = dataset.map(map_func=parse_fn, num_parallel_calls=FLAGS.num_parallel_calls)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/map_and_batch"><code>tf.contrib.data.map_and_batch</code></a></p>
+<p>To apply this change to our running example, change:</p>
+<pre><code>dataset = dataset.map(map_func=parse_fn, num_parallel_calls=FLAGS.num_parallel_calls)
+dataset = dataset.batch(batch_size=FLAGS.batch_size)
+</code></pre>
+<p>to:</p>
+<pre><code>dataset = dataset.apply(tf.contrib.data.map_and_batch(
+    map_func=parse_fn, batch_size=FLAGS.batch_size))
+</code></pre>
+<h3>Parallelize Data Extraction</h3>
+<p>In a real-world setting, the input data may be stored remotely (for example,<br>
+GCS or HDFS), either because the input data would not fit locally or because the<br>
+training is distributed and it would not make sense to replicate the input data<br>
+on every machine. A dataset pipeline that works well when reading data locally<br>
+might become bottlenecked on I/O when reading data remotely because of the<br>
+following differences between local and remote storage:</p>
+<ul>
+<li><strong>Time-to-first-byte:</strong> Reading the first byte of a file from remote storage<br>
+can take orders of magnitude longer than from local storage.</li>
+<li><strong>Read throughput:</strong> While remote storage typically offers large aggregate<br>
+bandwidth, reading a single file might only be able to utilize a small<br>
+fraction of this bandwidth.</li>
+</ul>
+<p>In addition, once the raw bytes are read into memory, it may also be necessary<br>
+to deserialize or decrypt the data<br>
+(e.g. <a href="https://developers.google.com/protocol-buffers/">protobuf</a>), which adds<br>
+additional overhead. This overhead is present irrespective of whether the data<br>
+is stored locally or remotely, but can be worse in the remote case if data is<br>
+not prefetched effectively.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/parallel_interleave"><code>tf.contrib.data.parallel_interleave</code></a></p>
+<p>The following diagram illustrates the effect of supplying <code>cycle_length=2</code> to<br>
+the <code>parallel_interleave</code> transformation:</p>
+<p><img src="https://www.tensorflow.org/images/datasets_parallel_io.png" alt="parallel io"></p>
+<p>To apply this change to our running example, change:</p>
+<pre><code>dataset = files.interleave(tf.data.TFRecordDataset)
+</code></pre>
+<p>to:</p>
+<pre><code>dataset = files.apply(tf.contrib.data.parallel_interleave(
+    tf.data.TFRecordDataset, cycle_length=FLAGS.num_parallel_readers))
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/parallel_interleave"><code>tf.contrib.data.parallel_interleave</code></a></p>
+<p>By default, the <code>parallel_interleave</code> transformation provides a deterministic<br>
+ordering of elements to aid reproducibility. As an alternative to prefetching<br>
+(which may be ineffective in some cases), the <code>parallel_interleave</code><br>
+transformation also provides an option that can boost performance at the expense<br>
+of ordering guarantees. In particular, if the <code>sloppy</code> argument is set to true,<br>
+the transformation may depart from its otherwise deterministic ordering, by<br>
+temporarily skipping over files whose elements are not available when the next<br>
+element is requested.</p>
+<h2>Performance Considerations</h2>
+<p>The <code>tf.data</code> API is designed around composable transformations to provide its<br>
+users with flexibility. Although many of these transformations are commutative,<br>
+the ordering of certain transformations has performance implications.</p>
+<h3>Map and Batch</h3>
+<p>Invoking the user-defined function passed into the <code>map</code> transformation has<br>
+overhead related to scheduling and executing the user-defined function.<br>
+Normally, this overhead is small compared to the amount of computation performed<br>
+by the function. However, if <code>map</code> does little work, this overhead can dominate<br>
+the total cost. In such cases, we recommend vectorizing the user-defined<br>
+function (that is, have it operate over a batch of inputs at once) and apply the<br>
+<code>batch</code> transformation <em>before</em> the <code>map</code> transformation.</p>
+<h3>Map and Cache</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/cache"><code>tf.data.Dataset.cache</code></a></p>
+<h3>Map and Interleave / Prefetch / Shuffle</h3>
+<p>A number of transformations, including <code>interleave</code>, <code>prefetch</code>, and <code>shuffle</code>,<br>
+maintain an internal buffer of elements. If the user-defined function passed<br>
+into the <code>map</code> transformation changes the size of the elements, then the<br>
+ordering of the map transformation and the transformations that buffer elements<br>
+affects the memory usage. In general, we recommend choosing the order that<br>
+results in lower memory footprint, unless different ordering is desirable for<br>
+performance (for example, to enable fusing of the map and batch transformations).</p>
+<h3>Repeat and Shuffle</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/shuffle"><code>tf.data.Dataset.shuffle</code></a></p>
+<p>If the <code>repeat</code> transformation is applied before the <code>shuffle</code> transformation,<br>
+then the epoch boundaries are blurred. That is, certain elements can be repeated<br>
+before other elements appear even once. On the other hand, if the <code>shuffle</code><br>
+transformation is applied before the repeat transformation, then performance<br>
+might slow down at the beginning of each epoch related to initialization of the<br>
+internal state of the <code>shuffle</code> transformation. In other words, the former<br>
+(<code>repeat</code> before <code>shuffle</code>) provides better performance, while the latter<br>
+(<code>shuffle</code> before <code>repeat</code>) provides stronger ordering guarantees.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/shuffle_and_repeat"><code>tf.contrib.data.shuffle_and_repeat</code></a></p>
+<h2>Summary of Best Practices</h2>
+<p>Here is a summary of the best practices for designing input pipelines:</p>
+<ul>
+<li>Use the <code>prefetch</code> transformation to overlap the work of a producer and<br>
+consumer. In particular, we recommend adding prefetch(n) (where n is the<br>
+number of elements / batches consumed by a training step) to the end of your<br>
+input pipeline to overlap the transformations performed on the CPU with the<br>
+training done on the accelerator.</li>
+<li>Parallelize the <code>map</code> transformation by setting the <code>num_parallel_calls</code><br>
+argument. We recommend using the number of available CPU cores for its value.</li>
+<li>If you are combining pre-processed elements into a batch using the <code>batch</code><br>
+transformation, we recommend using the fused <code>map_and_batch</code> transformation;<br>
+especially if you are using large batch sizes.</li>
+<li>If you are working with data stored remotely and / or requiring<br>
+deserialization, we recommend using the <code>parallel_interleave</code><br>
+transformation to overlap the reading (and deserialization) of data from<br>
+different files.</li>
+<li>Vectorize cheap user-defined functions passed in to the <code>map</code> transformation<br>
+to amortize the overhead associated with scheduling and executing the<br>
+function.</li>
+<li>If your data can fit into memory, use the <code>cache</code> transformation to cache it<br>
+in memory during the first epoch, so that subsequent epochs can avoid the<br>
+overhead associated with reading, parsing, and transforming it.</li>
+<li>If your pre-processing increases the size of your data, we recommend<br>
+applying the <code>interleave</code>, <code>prefetch</code>, and <code>shuffle</code> first (if possible) to<br>
+reduce memory usage.</li>
+<li>We recommend applying the <code>shuffle</code> transformation <em>before</em> the <code>repeat</code><br>
+transformation, ideally using the fused <code>shuffle_and_repeat</code> transformation.</li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

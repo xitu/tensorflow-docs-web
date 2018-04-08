@@ -1,0 +1,525 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>数据导入</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>数据导入</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
+<p><code>tf.data</code> API 为 TensorFlow 引入了两种新的抽象：</p>
+<ul>
+<li><p><code>tf.data.Dataset</code> 是一个基本元素的序列，每一个基本元素中包含了一个或者多个 <code>Tensor</code> 对象。例如，在一个图像输入总线中，一个基本元素可能是一个单独的训练样本，它包含了一对 Tensor 对象，分别代表图像数据和一个标签。创建一个数据集有两种不同的方法：</p>
+<p> * 根据一个或者多个 <code>tf.Tensor</code> 对象创建一个 <strong>source</strong> （例如  <code>Dataset.from_tensor_slices()</code>）方法来构造一个数据集。</p>
+<p> * 根据一个或多个 <code>tf.data.Dataset</code> 对象应用一种 <strong>transformation</strong> （例如 <code>Dataset.batch()</code>）来构造一个数据集。</p>
+</li>
+<li><p><code>tf.data.Iterator</code> 提供了从一个数据集中提取基本元素的主要方法。由 <code>Iterator.get_next()</code> 返回的操作在执行时会给予 <code>DataSet</code> 的下一个基本元素，它通常作为输入总线代码和模型之间的接口。这个最简单的迭代器是 "one-shot iterator"，它关联到一个 <code>Dataset</code> 并遍历它一次。在更复杂的情况下，<code>Iterator.initializer</code> 操作能够将一个迭代器根据不同的数据集重新初始化并设定参数，所以举例来说，你可以在同样一个程序中多次迭代训练数据和验证数据。</p>
+</li>
+</ul>
+<h2>基本结构</h2>
+<p>教程的这个部分描述了创建不同类型 <code>Dataset</code> 和 <code>Iterator</code> 对象的基本原理和怎样从它们之中提取数据。</p>
+<p>要构建一个基本的输入总线，你必须先定义一个 <strong>source</strong>。例如，要从内存中的一些 tensor 对象中构造一个 <code>Dataset</code> ，你能够使用 <code>tf.data.Dataset.from_tensors()</code> 或者 <code>tf.data.Dataset.from_tensor_slices()</code>。或者，如果你的输入数据按照推荐的 TFRecord 格式存储在硬盘中的话，你可以构造一个 <code>tf.data.TFRecordDataset</code>。</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
+<p>要遍历来自一个 <code>Dataset</code> 中的内容一个最普通的方法是建立一个 <strong>迭代器</strong> 对象，它提供了每次获取数据集中一个元素的方法（比如，通过调用  <code>Dataset.make_one_shot_iterator()</code>）。<code>tf.data.Iterator</code> 提供了两种操作：<code>Iterator.initializer</code> 用作（重新）初始化迭代器的状态；<code>Iterator.get_next()</code> 返回符合下一元素标志的  <code>tf.Tensor</code> 对象。你可能会根据你的用例采用不同的迭代器，这些选项在下面会有概括。</p>
+<h3>数据集结构</h3>
+<p>一个数据集由具有相同结构的元素组成。一个元素包含一个或者多个 <code>tf.Tensor</code> 对象，它叫做 <strong>组件</strong>。每一个组件都有表示 tensor 中元素类型的 <code>tf.DType</code> 和代表元素静态类型（可能是部分指定）的 <code>tf.TensorShape</code>。<code>Dataset.output_types</code> 和 <code>Dataset.output_shapes</code> 属性可以检查一个数据集元素中每个组件的推测类型。这些属性的<strong>嵌套结构</strong>映射到一个元素的结构中，可能是一个单一的 tensor，一组 tensor，或者一组嵌套结构的 tensor。例如：</p>
+<pre><code class="lang-python">dataset1 = tf.data.Dataset.from_tensor_slices(tf.random_uniform([4, 10]))
+print(dataset1.output_types)  # ==&gt; &quot;tf.float32&quot;
+print(dataset1.output_shapes)  # ==&gt; &quot;(10,)&quot;
+
+dataset2 = tf.data.Dataset.from_tensor_slices(
+   (tf.random_uniform([4]),
+    tf.random_uniform([4, 100], maxval=100, dtype=tf.int32)))
+print(dataset2.output_types)  # ==&gt; &quot;(tf.float32, tf.int32)&quot;
+print(dataset2.output_shapes)  # ==&gt; &quot;((), (100,))&quot;
+
+dataset3 = tf.data.Dataset.zip((dataset1, dataset2))
+print(dataset3.output_types)  # ==&gt; (tf.float32, (tf.float32, tf.int32))
+print(dataset3.output_shapes)  # ==&gt; &quot;(10, ((), (100,)))&quot;
+</code></pre>
+<p>给一个元素中的每一个组件起个名字是个很实用的方法，例如它们可以代表一个训练样本的不同特征。除了元组之外，你也能使用 <code>collections.namedtuple</code> 或者一个字符串映射到 tensor 的字典表示一个 <code>Dataset</code> 中的一个元素。</p>
+<pre><code class="lang-python">dataset = tf.data.Dataset.from_tensor_slices(
+   {&quot;a&quot;: tf.random_uniform([4]),
+    &quot;b&quot;: tf.random_uniform([4, 100], maxval=100, dtype=tf.int32)})
+print(dataset.output_types)  # ==&gt; &quot;{&#39;a&#39;: tf.float32, &#39;b&#39;: tf.int32}&quot;
+print(dataset.output_shapes)  # ==&gt; &quot;{&#39;a&#39;: (), &#39;b&#39;: (100,)}&quot;
+</code></pre>
+<p><code>Dataset</code> 转换支持任何结构的数据集，当使用 <code>Dataset.map()</code>, <code>Dataset.flat_map()</code> 和 <code>Dataset.filter()</code> 转换时，它们为每个元素请求一个函数，元素的结构决定这个函数的参数：</p>
+<pre><code class="lang-python">dataset1 = dataset1.map(lambda x: ...)
+
+dataset2 = dataset2.flat_map(lambda x, y: ...)
+
+# 注意：Python 3 中不支持参数解构。
+dataset3 = dataset3.filter(lambda x, (y, z): ...)
+</code></pre>
+<h3>创建 iterator</h3>
+<p>一旦你创建了一个代表你输入数据的 <code>Dataset</code>，下一步就是创建一个 <code>Iterator</code> 来访问每个来自数据集中元素的。<code>tf.data</code> API 当前支持下面几种迭代器，它们的复杂度依次递增：</p>
+<ul>
+<li><strong>one-shot</strong>,</li>
+<li><strong>initializable</strong>,</li>
+<li><strong>reinitializable</strong>, 和</li>
+<li><strong>feedable</strong>.</li>
+</ul>
+<p><strong>one-shot</strong>迭代器是最简单的一种迭代器，它只支持在一个数据集中进行一次迭代，并且不需要显式初始化。它几乎处理了所有为基于队列的输入总线提供支持的情况，但是它不支持参数化。使用 <code>Dataset.range()</code> 的示例如下：</p>
+<pre><code class="lang-python">dataset = tf.data.Dataset.range(100)
+iterator = dataset.make_one_shot_iterator()
+next_element = iterator.get_next()
+
+for i in range(100):
+  value = sess.run(next_element)
+  assert i == value
+</code></pre>
+<p>注意：现在  one-shot 迭代器是唯一可以使用 <code>Estimator</code> 的迭代器类型。</p>
+<p><strong>initializable</strong> 迭代器在使用它之前需要使用一个 <code>iterator.initializer</code> 操作，虽然有些不便，但它允许你对数据集的定义进行<strong>参数化</strong>，在初始化迭代器时，通过使用一个或者多个 <code>tf.placeholder()</code> tensor 传入。下面依然是 <code>Dataset.range()</code> 的样例：</p>
+<pre><code class="lang-python">max_value = tf.placeholder(tf.int64, shape=[])
+dataset = tf.data.Dataset.range(max_value)
+iterator = dataset.make_initializable_iterator()
+next_element = iterator.get_next()
+
+# 初始化一个处理十个元素的数据集的迭代器。
+sess.run(iterator.initializer, feed_dict={max_value: 10})
+for i in range(10):
+  value = sess.run(next_element)
+  assert i == value
+
+# 初始化同样一个可以处理一百个元素的数据集的迭代器
+sess.run(iterator.initializer, feed_dict={max_value: 100})
+for i in range(100):
+  value = sess.run(next_element)
+  assert i == value
+</code></pre>
+<p><strong>reinitializable</strong> 迭代器能够从不同的 <code>Dataset</code> 对象中被初始化。例如，你可能会有一个使用训练输入总线，它对输入图像做随机扰动来提升泛化范围，还有一个用于验证的输入总线，它使用未经修改的数据对预测结果进行评估。这些输入总线通常会使用不同的 <code>Dataset</code> 对象，但它们拥有相同的结构（例如：每个组件都有相同的类型和兼容的形态）。</p>
+<pre><code class="lang-python"># 将训练集和验证集设定成相同的结构
+training_dataset = tf.data.Dataset.range(100).map(
+    lambda x: x + tf.random_uniform([], -10, 10, tf.int64))
+validation_dataset = tf.data.Dataset.range(50)
+
+# reinitializable 迭代器由它的结构定义。我们可以使用不论是在
+# `training_dataset` 或者还是在 `validation_dataset` 中的
+# `output_types` 和 `output_shapes`，因为它们是兼容的。
+iterator = tf.data.Iterator.from_structure(training_dataset.output_types,
+                                           training_dataset.output_shapes)
+next_element = iterator.get_next()
+
+training_init_op = iterator.make_initializer(training_dataset)
+validation_init_op = iterator.make_initializer(validation_dataset)
+
+# 在训练集中运行 20 轮，然后是训练集
+for _ in range(20):
+  # 初始化训练集的迭代器。
+  sess.run(training_init_op)
+  for _ in range(100):
+    sess.run(next_element)
+
+  # 初始化验证集的迭代器。
+  sess.run(validation_init_op)
+  for _ in range(50):
+    sess.run(next_element)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator/from_string_handle"><code>tf.data.Iterator.from_string_handle</code></a></p>
+<pre><code class="lang-python"># 将训练集和验证集设定成相同的结构
+training_dataset = tf.data.Dataset.range(100).map(
+    lambda x: x + tf.random_uniform([], -10, 10, tf.int64)).repeat()
+validation_dataset = tf.data.Dataset.range(50)
+
+# 一个 feedable 迭代器是由一个句柄占位符和它的结构定义的。
+# 不论是在 training_dataset 还是在validation_dataset 中，
+# 我们都可以使用 output_types 和 output_shapes 属性，
+# 因为它们 (dataset) 有完全一致的结构。
+handle = tf.placeholder(tf.string, shape=[])
+iterator = tf.data.Iterator.from_string_handle(
+    handle, training_dataset.output_types, training_dataset.output_shapes)
+next_element = iterator.get_next()
+
+# 你能和 feeable 迭代器一起使用各种各样的迭代器
+# （比如 one-shot 和 initializable 迭代器）。
+training_iterator = training_dataset.make_one_shot_iterator()
+validation_iterator = validation_dataset.make_initializable_iterator()
+
+# `Iterator.string_handle()` 方法返回一个可以被取值的 tensor，
+# 它能被用于输入到“句柄”占位符。
+training_handle = sess.run(training_iterator.string_handle())
+validation_handle = sess.run(validation_iterator.string_handle())
+
+# 一直在训练集和验证集之间循环交替。
+while True:
+  # 使用训练集运行 200 轮。注意训练集是无限的，我们从前一个
+  # `while` 循环迭代暂停的地方继续运行。
+  for _ in range(200):
+    sess.run(next_element, feed_dict={handle: training_handle})
+
+  # 在验证数据集上运行一遍
+  sess.run(validation_iterator.initializer)
+  for _ in range(50):
+    sess.run(next_element, feed_dict={handle: validation_handle})
+</code></pre>
+<h3>如何使用迭代器</h3>
+<p><code>Iterator.get_next()</code> 方法返回一个或多个 <code>tf.Tensor</code> 对象，它们对应一个迭代器中下一个元素的标志。每次这些 tensor 被评估时，它们会从底层的数据集中取出下一个元素的值。（注意：类似 TensorFlow 中其他有状态对象，调用 <code>Iterator.get_next()</code> 不能立即使迭代器增加向前运行。相反的，你需要使用一个 TensorFlow 表达式中返回的 <code>tf.Tensor</code> 对象，并将这个表达式的结果传递到 <code>tf.Session.run()</code> 中，得到下一个元素，使迭代器进入下一步。）</p>
+<p>如果迭代器到达了数据的结尾，执行 <code>Iterator.get_next()</code> 操作会抛出一个 <code>tf.errors.OutOfRangeError</code>。在这之后，迭代器会是一个不可用的状态，如果还想使用它你需要再次将它初始化。</p>
+<pre><code class="lang-python">dataset = tf.data.Dataset.range(5)
+iterator = dataset.make_initializable_iterator()
+next_element = iterator.get_next()
+
+# 通常 `result` 会输出一个模型，或者一个优化器的训练操作
+result = tf.add(next_element, next_element)
+
+sess.run(iterator.initializer)
+print(sess.run(result))  # ==&gt; &quot;0&quot;
+print(sess.run(result))  # ==&gt; &quot;2&quot;
+print(sess.run(result))  # ==&gt; &quot;4&quot;
+print(sess.run(result))  # ==&gt; &quot;6&quot;
+print(sess.run(result))  # ==&gt; &quot;8&quot;
+try:
+  sess.run(result)
+except tf.errors.OutOfRangeError:
+  print(&quot;End of dataset&quot;)  # ==&gt; &quot;数据集的结尾&quot;
+</code></pre>
+<p>一个常用的模式是将"训练循环" 封装到一个  <code>try</code>-<code>except</code> 模块中：</p>
+<pre><code class="lang-python">sess.run(iterator.initializer)
+while True:
+  try:
+    sess.run(result)
+  except tf.errors.OutOfRangeError:
+    break
+</code></pre>
+<p>如果数据集中的每一个元素都有一个嵌套的结构，<code>Iterator.get_next()</code>的返回值会是一个或者多个具有相同嵌套结构的 <code>tf.Tensor</code> 对象</p>
+<pre><code class="lang-python">dataset1 = tf.data.Dataset.from_tensor_slices(tf.random_uniform([4, 10]))
+dataset2 = tf.data.Dataset.from_tensor_slices((tf.random_uniform([4]), tf.random_uniform([4, 100])))
+dataset3 = tf.data.Dataset.zip((dataset1, dataset2))
+
+iterator = dataset3.make_initializable_iterator()
+
+sess.run(iterator.initializer)
+next1, (next2, next3) = iterator.get_next()
+</code></pre>
+<p>需要注意的是评估<strong>任何</strong>的 <code>next1</code>, <code>next2</code> 或者<code>next3</code> 都会使所有组件的迭代器前行，一个典型的迭代器消费者（例如，另一段调用该迭代器数据的代码）会把所有组件（迭代进入下一步需要的信息）封装进一个表达式中。</p>
+<h2>读取输入数据</h2>
+<h3>使用 NumPy 数组</h3>
+<p>如果你所有的数据都加载到内存中了，从中创建一个 <code>Dataset</code> 的最简单方法就是将它们转换为 <code>tf.Tensor</code> 对象再使用 <code>Dataset.from_tensor_slices()</code>。</p>
+<pre><code class="lang-python"># 将训练数据加载进两个 NumPy 数组，例如使用  `np.load()`。
+with np.load(&quot;/var/data/training_data.npy&quot;) as data:
+  features = data[&quot;features&quot;]
+  labels = data[&quot;labels&quot;]
+
+# 假设 `features` 的每一行都对应与 `labels` 相同的行。
+assert features.shape[0] == labels.shape[0]
+
+dataset = tf.data.Dataset.from_tensor_slices((features, labels))
+</code></pre>
+<p>注意，以上代码片段会将 <code>features</code> 和 <code>labels</code> 数组当做 <code>tf.constant()</code> 操作嵌套进你的 Tensor 图中。这在小数据集中能够良好运行，但会浪费内存，因为数组中的内容会被多次复制，会达到 <code>tf.GraphDef</code> 协议缓冲区的 2 GB 限制。</p>
+<p>另外，你可以按照 <code>tf.placeholder()</code> tensor 定义 <code>Dataset</code> ，并在使用这个数据集初始化一个<code>Iterator</code> 时<strong>传入</strong>这些 NumPy 数组。</p>
+<pre><code class="lang-python"># 将训练数据加载进两个 NumPy 数组，例如使用  `np.load()`。
+with np.load(&quot;/var/data/training_data.npy&quot;) as data:
+  features = data[&quot;features&quot;]
+  labels = data[&quot;labels&quot;]
+
+# 假设 `features` 的每一行都对应与 `labels` 相同的行。
+assert features.shape[0] == labels.shape[0]
+
+features_placeholder = tf.placeholder(features.dtype, features.shape)
+labels_placeholder = tf.placeholder(labels.dtype, labels.shape)
+
+dataset = tf.data.Dataset.from_tensor_slices((features_placeholder, labels_placeholder))
+# [其他 `dataset` 中的转换]
+dataset = ...
+iterator = dataset.make_initializable_iterator()
+
+sess.run(iterator.initializer, feed_dict={features_placeholder: features,
+                                          labels_placeholder: labels})
+</code></pre>
+<h3>使用 TFRecord 数据</h3>
+<p><code>tf.data</code> API 支持很多种文件格式，所以你能够处理无法放入内存的大数据集。例如，TFRecord 文件格式是一种简单的面向记录的二进制格式，许多 TensorFlow 应用都用它来存储训练数据。<code>tf.data.TFRecordDataset</code> 类允许你将一个或者多个 TFRecord 格式文件串流化，并将它们当做一个输入总线的一部分。</p>
+<pre><code class="lang-python"># 创建一个从两个文件中读取所有例子的数据集
+filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+dataset = tf.data.TFRecordDataset(filenames)
+</code></pre>
+<p><code>TFRecordDataset</code> 初始化时的 <code>filenames</code> 参数可以是一个字符串，一个字符串列表，或者一个 <code>tf.Tensor</code> 的字符串。因此，如果你有两个文件集合，分别用作训练和验证，你可以使用一个 <code>tf.placeholder(tf.string)</code> 来代表文件名，并使用一个合适的文件名来初始化一个迭代器：</p>
+<pre><code class="lang-python">filenames = tf.placeholder(tf.string, shape=[None])
+dataset = tf.data.TFRecordDataset(filenames)
+dataset = dataset.map(...)  # 将记录解析为 tensor。
+dataset = dataset.repeat()  # 无限重复输入。
+dataset = dataset.batch(32)
+iterator = dataset.make_initializable_iterator()
+
+# 你可以向迭代器中传入适用于当前操作的文
+# 件名，比如 training 或者 validation
+
+# 初始化训练数据的 `iterator`。
+training_filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+sess.run(iterator.initializer, feed_dict={filenames: training_filenames})
+
+# 初始化验证数据的  `iterator`。
+validation_filenames = [&quot;/var/data/validation1.tfrecord&quot;, ...]
+sess.run(iterator.initializer, feed_dict={filenames: validation_filenames})
+</code></pre>
+<h3>使用文本数据</h3>
+<p>许多数据集分布在一个或者多个文本文件中。<code>tf.data.TextLineDataset</code> 提供了一种从一个或多个文本文件抽取行的简易方法。传递一个或多个文件名，<code>TextLineDataset</code> 会为这些文件的每一行生成一个字符串格式的元素。例如 <code>TFRecordDataset</code> ， <code>TextLineDataset</code> 接收一个 <code>filenames</code> 当做 <code>tf.Tensor</code>，所以你能通过传递一个 <code>tf.placeholder(tf.string)</code> 对其参数化。</p>
+<pre><code class="lang-python">filenames = [&quot;/var/data/file1.txt&quot;, &quot;/var/data/file2.txt&quot;]
+dataset = tf.data.TextLineDataset(filenames)
+</code></pre>
+<p>默认的 <code>TextLineDataset</code> 产出每个文件的<strong>每一</strong>行，这也许并不是我们期望的，例如如果这个文件开始于一个标题行或者包含了注释。这些行可以通过 <code>Dataset.skip()</code> 和 <code>Dataset.filter()</code> 转换来移除。为了单独的对每一个文件进行这样的转换，我们使用 <code>Dataset.flat_map()</code> 来为每一个文件创建一个嵌套的 <code>Dataset</code>。</p>
+<pre><code class="lang-python">filenames = [&quot;/var/data/file1.txt&quot;, &quot;/var/data/file2.txt&quot;]
+
+dataset = tf.data.Dataset.from_tensor_slices(filenames)
+
+# 使用 `Dataset.flat_map()` 来将每个文件转换成一个单独的嵌套数据集，
+# 然后连接他们的内容然后放入一个“扁平的”数据集。
+# * 跳过第一行（标题行）。
+# * 过滤以 &quot;#&quot; 开始的行（注释）。
+dataset = dataset.flat_map(
+    lambda filename: (
+        tf.data.TextLineDataset(filename)
+        .skip(1)
+        .filter(lambda line: tf.not_equal(tf.substr(line, 0, 1), &quot;#&quot;))))
+</code></pre>
+<!--
+TODO(mrry): Add these sections.
+
+### 处理来自 Python 生成器的数据
+-->
+
+<h2>使用 <code>Dataset.map()</code> 预处理数据</h2>
+<p><code>Dataset.map(f)</code> 通过对输入数据集中每一个元素使用一个给定的 <code>f</code> 函数生成一个新的数据集。它基于 <a href="https://en.wikipedia.org/wiki/Map_(higher-order_function"><code>map()</code> 函数</a>)，这种函数通常在函数式编程语言中用于处理列表（和其他的一些数据结构）。函数 <code>f</code> 取用代表输入数据集中一个元素的 <code>tf.Tensor</code> 对象，并返回代表新数据集中一个元素的 <code>tf.Tensor</code> 对象。它的实现使用标准的 TensorFlow 操作来将一个元素转换成另一个。</p>
+<p>这一节包含如何使用 <code>Dataset.map()</code> 的一般样例。</p>
+<h3>解析 tf.Example 协议缓冲区的消息</h3>
+<p>许多输入总线会从一个 TFRecord 格式文件中抽取 <code>tf.train.Example</code> 协议缓冲信息（例如，使用 <code>tf.python_io.TFRecordWriter</code>）。每一个 <code>tf.train.Example</code> 记录包含一个或者多个“特性”，并且输入总线通常会将这些特性转换为 tensors。</p>
+<pre><code class="lang-python"># 将一个字符串标量 `example_proto` 转换到一个字符串标量和
+# 一个整数标量，分别代表一个图像和它的标签。
+def _parse_function(example_proto):
+  features = {&quot;image&quot;: tf.FixedLenFeature((), tf.string, default_value=&quot;&quot;),
+              &quot;label&quot;: tf.FixedLenFeature((), tf.int32, default_value=0)}
+  parsed_features = tf.parse_single_example(example_proto, features)
+  return parsed_features[&quot;image&quot;], parsed_features[&quot;label&quot;]
+
+# 创建一个读取从两个文件中所有样例的数据集，并提取图像和特征标签。
+filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+dataset = tf.data.TFRecordDataset(filenames)
+dataset = dataset.map(_parse_function)
+</code></pre>
+<h3>解析图像数据并重设大小</h3>
+<p>在使用一个真实世界的图像数据来训练一个神经网络时，通常需要将不同尺寸的图像转换成同一尺寸，所以它们需要批量转换成一个固定的尺寸。</p>
+<pre><code class="lang-python"># 从一个文件中读取图像，将它解码到一个稠密的 tensor 中，并且
+# 将它重设到一个固定的尺寸。
+def _parse_function(filename, label):
+  image_string = tf.read_file(filename)
+  image_decoded = tf.image.decode_image(image_string)
+  image_resized = tf.image.resize_images(image_decoded, [28, 28])
+  return image_resized, label
+
+# 一个包含所有文件名的向量
+filenames = tf.constant([&quot;/var/data/image1.jpg&quot;, &quot;/var/data/image2.jpg&quot;, ...])
+
+# `labels[i]` 是  `filenames[i]` 图像的标签。
+labels = tf.constant([0, 37, ...])
+
+dataset = tf.data.Dataset.from_tensor_slices((filenames, labels))
+dataset = dataset.map(_parse_function)
+</code></pre>
+<h3>使用 <code>tf.py_func()</code> 调用 Python 库</h3>
+<p>出于性能的原因，我们推荐你尽可能的使用 TensorFlow 操作预处理数据。然而，在解析输入数据时，有时调用一些原生的 Python 库会很有效。我们可以通过在一个 <code>Dataset.map()</code> 转换中调用 <code>tf.py_func()</code> 操作来实现这一点。</p>
+<pre><code class="lang-python">import cv2
+
+# 使用一个自定义的 OpenCV 函数读取图像，来替代标准的
+# TensorFlow 的 `tf.read_file()` 操作。
+def _read_py_function(filename, label):
+  image_decoded = cv2.imread(filename.decode(), cv2.IMREAD_GRAYSCALE)
+  return image_decoded, label
+
+# 使用一个标准的 TensorFlow 操作来重设图像到一个固定的大小。
+def _resize_function(image_decoded, label):
+  image_decoded.set_shape([None, None, None])
+  image_resized = tf.image.resize_images(image_decoded, [28, 28])
+  return image_resized, label
+
+filenames = [&quot;/var/data/image1.jpg&quot;, &quot;/var/data/image2.jpg&quot;, ...]
+labels = [0, 37, 29, 1, ...]
+
+dataset = tf.data.Dataset.from_tensor_slices((filenames, labels))
+dataset = dataset.map(
+    lambda filename, label: tuple(tf.py_func(
+        _read_py_function, [filename, label], [tf.uint8, label.dtype])))
+dataset = dataset.map(_resize_function)
+</code></pre>
+<!--
+TODO(mrry): Add this section.
+
+### 处理超常大小的文本数据
+-->
+
+<h2>打包元素成数据集</h2>
+<h3>简单打包</h3>
+<p>打包的最简单方式是将一个数据集中 <code>n</code> 个连续元素堆叠进一个单一元素中。<code>Dataset.batch()</code> 函数就是用来做这样一个变换的 —— 它和 <code>tf.stack()</code> 操作有相同的约束条件，同时它作用于元素的每个组件上：例如，对于每个组件 i，所有的元素必须具有一个一致形态的 tensor。</p>
+<pre><code class="lang-python">inc_dataset = tf.data.Dataset.range(100)
+dec_dataset = tf.data.Dataset.range(0, -100, -1)
+dataset = tf.data.Dataset.zip((inc_dataset, dec_dataset))
+batched_dataset = dataset.batch(4)
+
+iterator = batched_dataset.make_one_shot_iterator()
+next_element = iterator.get_next()
+
+print(sess.run(next_element))  # ==&gt; ([0, 1, 2,   3],   [ 0, -1,  -2,  -3])
+print(sess.run(next_element))  # ==&gt; ([4, 5, 6,   7],   [-4, -5,  -6,  -7])
+print(sess.run(next_element))  # ==&gt; ([8, 9, 10, 11],   [-8, -9, -10, -11])
+</code></pre>
+<h3>使用填充打包 tensor</h3>
+<p>上面的方法需要所有的 tensor 都是相同的标准。但是，许多模型（比如，序列模型）的输入数据的标准变化多样（例如：序列有不同的长度）。为了处理这种情况，<code>Dataset.padded_batch()</code> 转换通过指定一个或多个它们可能的标准来将不同的形态的 tensor 填充。</p>
+<pre><code class="lang-python">dataset = tf.data.Dataset.range(100)
+dataset = dataset.map(lambda x: tf.fill([tf.cast(x, tf.int32)], x))
+dataset = dataset.padded_batch(4, padded_shapes=[None])
+
+iterator = dataset.make_one_shot_iterator()
+next_element = iterator.get_next()
+
+print(sess.run(next_element))  # ==&gt; [[0, 0, 0], [1, 0, 0], [2, 2, 0], [3, 3, 3]]
+print(sess.run(next_element))  # ==&gt; [[4, 4, 4, 4, 0, 0, 0],
+                               #      [5, 5, 5, 5, 5, 0, 0],
+                               #      [6, 6, 6, 6, 6, 6, 0],
+                               #      [7, 7, 7, 7, 7, 7, 7]]
+</code></pre>
+<p><code>Dataset.padded_batch()</code> 转换允许你为每一个组件的每一种尺寸设置不同的填充，并且它可以是可变长度的（在上面的样例中就被指定为 <code>None</code> ）或者恒定长度。它也可以重设默认值为 0 的填充值。</p>
+<!--
+TODO(mrry): Add this section.
+
+### 密集不规则 -> tf.SparseTensor
+-->
+
+<h2>训练工作流</h2>
+<h3>多次循环处理</h3>
+<p><code>tf.data</code> API 提供了两种主要方法来处理同一数据多次循环。</p>
+<p>最简单的多次循环迭代一个数据集的方法是使用 <code>Dataset.repeat()</code> 转换。例如，创建一个重复输入数据10次的数据集：</p>
+<pre><code class="lang-python">filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+dataset = tf.data.TFRecordDataset(filenames)
+dataset = dataset.map(...)
+dataset = dataset.repeat(10)
+dataset = dataset.batch(32)
+</code></pre>
+<p>不设置参数使用 <code>Dataset.repeat()</code> 转换的话会导致无限次重复的输入。<code>Dataset.repeat()</code> 转换将它的参数连接，无需在一轮结束处与下一轮开始处发出信号。</p>
+<p>如果你想要在每一轮的结尾处接收到一个信号，你可以编写一个训练循环，用于在数据集结尾处捕获 <code>tf.errors.OutOfRangeError</code>。在那个地方，你可以收集到该轮的一些统计信息（例如：验证错误）</p>
+<pre><code class="lang-python">filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+dataset = tf.data.TFRecordDataset(filenames)
+dataset = dataset.map(...)
+dataset = dataset.batch(32)
+iterator = dataset.make_initializable_iterator()
+next_element = iterator.get_next()
+
+# 进行 100 轮的计算
+for _ in range(100):
+  sess.run(iterator.initializer)
+  while True:
+    try:
+      sess.run(next_element)
+    except tf.errors.OutOfRangeError:
+      break
+
+  # [这里展现一轮结束的操作]
+</code></pre>
+<h3>随机混排输入数据</h3>
+<p><code>Dataset.shuffle()</code> 转换使用一个与 <code>tf.RandomShuffleQueue</code> 相似的算法随机混排输入数据集：它会维护一个固定大小的缓冲区并从该缓冲区中随机挑选下一个元素。</p>
+<pre><code class="lang-python">filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+dataset = tf.data.TFRecordDataset(filenames)
+dataset = dataset.map(...)
+dataset = dataset.shuffle(buffer_size=10000)
+dataset = dataset.batch(32)
+dataset = dataset.repeat()
+</code></pre>
+<h3>使用高级 API</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError"><code>tf.errors.OutOfRangeError</code></a></p>
+<pre><code class="lang-python">filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+dataset = tf.data.TFRecordDataset(filenames)
+dataset = dataset.map(...)
+dataset = dataset.shuffle(buffer_size=10000)
+dataset = dataset.batch(32)
+dataset = dataset.repeat(num_epochs)
+iterator = dataset.make_one_shot_iterator()
+
+next_example, next_label = iterator.get_next()
+loss = model_function(next_example, next_label)
+
+training_op = tf.train.AdagradOptimizer(...).minimize(loss)
+
+with tf.train.MonitoredTrainingSession(...) as sess:
+  while not sess.should_stop():
+    sess.run(training_op)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
+<pre><code class="lang-python">def dataset_input_fn():
+  filenames = [&quot;/var/data/file1.tfrecord&quot;, &quot;/var/data/file2.tfrecord&quot;]
+  dataset = tf.data.TFRecordDataset(filenames)
+
+  # 使用 `tf.parse_single_example()` 来从一个 `tf.Example` 协议缓冲区
+  # 提取数据，并额外完成每个记录的预处理。
+   def parser(record):
+    keys_to_features = {
+        &quot;image_data&quot;: tf.FixedLenFeature((), tf.string, default_value=&quot;&quot;),
+        &quot;date_time&quot;: tf.FixedLenFeature((), tf.int64, default_value=&quot;&quot;),
+        &quot;label&quot;: tf.FixedLenFeature((), tf.int64,
+                                    default_value=tf.zeros([], dtype=tf.int64)),
+    }
+    parsed = tf.parse_single_example(record, keys_to_features)
+
+    # 完成在解析数据中的额外预处理
+    image = tf.image.decode_jpeg(parsed[&quot;image_data&quot;])
+    image = tf.reshape(image, [299, 299, 1])
+    label = tf.cast(parsed[&quot;label&quot;], tf.int32)
+
+    return {&quot;image_data&quot;: image, &quot;date_time&quot;: parsed[&quot;date_time&quot;]}, label
+
+  # 使用 `Dataset.map()` 为每个样例建立一个特征字典和
+  # 一个标签 tensor 的数据组。
+  dataset = dataset.map(parser)
+  dataset = dataset.shuffle(buffer_size=10000)
+  dataset = dataset.batch(32)
+  dataset = dataset.repeat(num_epochs)
+  iterator = dataset.make_one_shot_iterator()
+
+  # `features` 是一个字典，它里面是这个特征的一系列数据；
+  #  `labels` 是一系列的标签
+  features, labels = iterator.get_next()
+  return features, labels
+</code></pre>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

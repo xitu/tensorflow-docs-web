@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Creating Custom Estimators</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Creating Custom Estimators</h1>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<p>To download and access the example code invoke the following two commands:</p>
+<pre><code class="lang-shell">git clone https://github.com/tensorflow/models/
+cd models/samples/core/get_started
+</code></pre>
+<p>In this document we will be looking at<br>
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/custom_estimator.py"><code>custom_estimator.py</code></a>.<br>
+You can run it with the following command:</p>
+<pre><code class="lang-bsh">python custom_estimator.py
+</code></pre>
+<p>If you are feeling impatient, feel free to compare and contrast<br>
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/custom_estimator.py"><code>custom_estimator.py</code></a><br>
+with<br>
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a>.<br>
+(which is in the same directory).</p>
+<h2>Pre-made vs. custom</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="Premade estimators are sub-classes of `Estimator`. Custom Estimators are usually (direct) instances of `Estimator`"
+  src="../images/custom_estimators/estimator_types.png">
+</div>
+<div style="text-align: center">
+Pre-made and custom Estimators are all Estimators.
+</div><p>Pre-made Estimators are fully baked. Sometimes though, you need more control<br>
+over an Estimator's behavior.  That's where custom Estimators come in. You can<br>
+create a custom Estimator to do just about anything. If you want hidden layers<br>
+connected in some unusual fashion, write a custom Estimator. If you want to<br>
+calculate a unique<br>
+<a href="https://developers.google.com/machine-learning/glossary/#metric">metric</a><br>
+for your model, write a custom Estimator.  Basically, if you want an Estimator<br>
+optimized for your specific problem, write a custom Estimator.</p>
+<p>A model function (or <code>model_fn</code>) implements the ML algorithm. The<br>
+only difference between working with pre-made Estimators and custom Estimators<br>
+is:</p>
+<ul>
+<li>With pre-made Estimators, someone already wrote the model function for you.</li>
+<li>With custom Estimators, you must write the model function.</li>
+</ul>
+<p>Your model function could implement a wide range of algorithms, defining all<br>
+sorts of hidden layers and metrics.  Like input functions, all model functions<br>
+must accept a standard group of input parameters and return a standard group of<br>
+output values. Just as input functions can leverage the Dataset API, model<br>
+functions can leverage the Layers API and the Metrics API.</p>
+<p>Let's see how to solve the Iris problem with a custom Estimator. A quick<br>
+reminder--here's the organization of the Iris model that we're trying to mimic:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="A diagram of the network architecture: Inputs, 2 hidden layers, and outputs"
+  src="../images/custom_estimators/full_network.png">
+</div>
+<div style="text-align: center">
+Our implementation of Iris contains four features, two hidden layers,
+and a logits output layer.
+</div><h2>Write an Input function</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
+    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle, repeat, and batch the examples.
+    dataset = dataset.shuffle(1000).repeat().batch(batch_size)
+
+    # Return the read end of the pipeline.
+    return dataset.make_one_shot_iterator().get_next()
+</code></pre>
+<p>This input function builds an input pipeline that yields batches of<br>
+<code>(features, labels)</code> pairs, where <code>features</code> is a dictionary features.</p>
+<h2>Create feature columns</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">Feature Columns</a></p>
+<p>The following code creates a simple <code>numeric_column</code> for each input feature,<br>
+indicating that the value of the input feature should be used directly as an<br>
+input to the model:</p>
+<pre><code class="lang-python"># Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train_x.keys():
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+</code></pre>
+<h2>Write a model function</h2>
+<p>The model function we'll use has the following call signature:</p>
+<pre><code class="lang-python">def my_model_fn(
+   features, # This is batch_features from input_fn
+   labels,   # This is batch_labels from input_fn
+   mode,     # An instance of tf.estimator.ModeKeys
+   params):  # Additional configuration
+</code></pre>
+<p>The first two arguments are the batches of features and labels returned from<br>
+the input function; that is, <code>features</code> and <code>labels</code> are the handles to the<br>
+data your model will use. The <code>mode</code> argument indicates whether the caller is<br>
+requesting training, predicting, or evaluation.</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<pre><code class="lang-python">classifier = tf.estimator.Estimator(
+    model_fn=my_model,
+    params={
+        &#39;feature_columns&#39;: my_feature_columns,
+        # Two hidden layers of 10 nodes each.
+        &#39;hidden_units&#39;: [10, 10],
+        # The model must choose between 3 classes.
+        &#39;n_classes&#39;: 3,
+    })
+</code></pre>
+<p>To implement a typical model function, you must do the following:</p>
+<ul>
+<li>(Define the model)[#define_the_model].</li>
+<li>Specify additional calculations for each of<br>
+the <a href="#modes">three different modes</a>:<ul>
+<li><a href="#predict">Predict</a></li>
+<li><a href="#evaluate">Evaluate</a></li>
+<li><a href="#train">Train</a></li>
+</ul>
+</li>
+</ul>
+<h2>Define the model</h2>
+<p>The basic deep neural network model must define the following three sections:</p>
+<ul>
+<li>An <a href="https://developers.google.com/machine-learning/glossary/#input_layer">input layer</a></li>
+<li>One or more <a href="https://developers.google.com/machine-learning/glossary/#hidden_layer">hidden layers</a></li>
+<li>An <a href="https://developers.google.com/machine-learning/glossary/#output_layer">output layer</a></li>
+</ul>
+<h3>Define the input layer</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column/input_layer"><code>tf.feature_column.input_layer</code></a></p>
+<pre><code class="lang-python">    # Use `input_layer` to apply the feature columns.
+    net = tf.feature_column.input_layer(features, params[&#39;feature_columns&#39;])
+</code></pre>
+<p>The preceding line applies the transformations defined by your feature columns,<br>
+creating the model's input layer.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="A diagram of the input layer, in this case a 1:1 mapping from raw-inputs to features."
+  src="../images/custom_estimators/input_layer.png">
+</div><h3>Hidden Layers</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
+<pre><code class="lang-python">    # Build the hidden layers, sized according to the &#39;hidden_units&#39; param.
+    for units in params[&#39;hidden_units&#39;]:
+        net = tf.layers.dense(net, units=units, activation=tf.nn.relu)
+</code></pre>
+<ul>
+<li>The <code>units</code> parameter defines the number of output neurons in a given layer.</li>
+<li>The <code>activation</code> parameter defines the <a href="https://developers.google.com/machine-learning/glossary/#a">activation function</a> —<br>
+<a href="https://developers.google.com/machine-learning/glossary/#ReLU">Relu</a> in this<br>
+case.</li>
+</ul>
+<p>The variable <code>net</code> here signifies the current top layer of the network. During<br>
+the first iteration, <code>net</code> signifies the input layer. On each loop iteration<br>
+<code>tf.layers.dense</code> creates a new layer, which takes the previous layer's output<br>
+as its input, using the variable <code>net</code>.</p>
+<p>After creating two hidden layers, our network looks as follows. For<br>
+simplicity, the figure does not show all the units in each layer.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="The input layer with two hidden layers added."
+  src="../images/custom_estimators/add_hidden_layer.png">
+</div><p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
+<h3>Output Layer</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
+<pre><code class="lang-python">    # Compute logits (1 per class).
+    logits = tf.layers.dense(net, params[&#39;n_classes&#39;], activation=None)
+</code></pre>
+<p>Here, <code>net</code> signifies the final hidden layer. Therefore, the full set of layers<br>
+is now connected as follows:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="A logit output layer connected to the top hidden layer"
+  src="../images/custom_estimators/add_logits.png">
+</div>
+<div style="text-align: center">
+The final hidden layer feeds into the output layer.
+</div><p>When defining an output layer, the <code>units</code> parameter specifies the number of<br>
+outputs. So, by setting <code>units</code> to <code>params['n_classes']</code>, the model produces<br>
+one output value per class. Each element of the output vector will contain the<br>
+score, or "logit", calculated for the associated class of Iris: Setosa,<br>
+Versicolor, or Virginica, respectively.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax"><code>tf.nn.softmax</code></a></p>
+<h2>Implement training, evaluation, and prediction {#modes}</h2>
+<p>The final step in creating a model function is to write branching code that<br>
+implements prediction, evaluation, and training.</p>
+<p>The model function gets invoked whenever someone calls the Estimator's <code>train</code>,<br>
+<code>evaluate</code>, or <code>predict</code> methods. Recall that the signature for the model<br>
+function looks like this:</p>
+<pre><code class="lang-python">def my_model_fn(
+   features, # This is batch_features from input_fn
+   labels,   # This is batch_labels from input_fn
+   mode,     # An instance of tf.estimator.ModeKeys, see below
+   params):  # Additional configuration
+</code></pre>
+<p>Focus on that third argument, mode. As the following table shows, when someone<br>
+calls <code>train</code>, <code>evaluate</code>, or <code>predict</code>, the Estimator framework invokes your model<br>
+function with the mode parameter set as follows:</p>
+<table>
+<thead><tr>
+<th style="text-align:left">Estimator method</th>
+<th style="text-align:left">Estimator Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/train"><code>tf.estimator.Estimator.train</code></a></td>
+<td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/ModeKeys/TRAIN"><code>tf.estimator.ModeKeys.TRAIN</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/evaluate"><code>tf.estimator.Estimator.evaluate</code></a></td>
+<td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/ModeKeys/EVAL"><code>tf.estimator.ModeKeys.EVAL</code></a></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/predict"><code>tf.estimator.Estimator.predict</code></a></td>
+<td style="text-align:left"><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/ModeKeys/PREDICT"><code>tf.estimator.ModeKeys.PREDICT</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>For example, suppose you instantiate a custom Estimator to generate an object<br>
+named <code>classifier</code>. Then, you make the following call:</p>
+<pre><code class="lang-python">classifier = tf.estimator.Estimator(...)
+classifier.train(input_fn=lambda: my_input_fn(FILE_TRAIN, True, 500))
+</code></pre>
+<p>The Estimator framework then calls your model function with mode set to<br>
+<code>ModeKeys.TRAIN</code>.</p>
+<p>Your model function must provide code to handle all three of the mode values.<br>
+For each mode value, your code must return an instance of<br>
+<code>tf.estimator.EstimatorSpec</code>, which contains the information the caller<br>
+requires. Let's examine each mode.</p>
+<h3>Predict</h3>
+<p>When the Estimator's <code>predict</code> method is called, the <code>model_fn</code> receives<br>
+<code>mode = ModeKeys.PREDICT</code>. In this case, the model function must return a<br>
+<code>tf.estimator.EstimatorSpec</code> containing the prediction.</p>
+<p>The model must have been trained prior to making a prediction. The trained model<br>
+is stored on disk in the <code>model_dir</code> directory established when you<br>
+instantiated the Estimator.</p>
+<p>The code to generate the prediction for this model looks as follows:</p>
+<pre><code class="lang-python"># Compute predictions.
+predicted_classes = tf.argmax(logits, 1)
+if mode == tf.estimator.ModeKeys.PREDICT:
+    predictions = {
+        &#39;class_ids&#39;: predicted_classes[:, tf.newaxis],
+        &#39;probabilities&#39;: tf.nn.softmax(logits),
+        &#39;logits&#39;: logits,
+    }
+    return tf.estimator.EstimatorSpec(mode, predictions=predictions)
+</code></pre>
+<p>The prediction dictionary contains everything that your model returns when run<br>
+in prediction mode.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="Additional outputs added to the output layer."
+  src="../images/custom_estimators/add_predictions.png">
+</div><p>The <code>predictions</code> holds the following three key/value pairs:</p>
+<ul>
+<li><code>class_ids</code> holds the class id (0, 1, or 2) representing the model's<br>
+prediction of the most likely species for this example.</li>
+<li><code>probabilities</code> holds the three probabilities (in this example, 0.02, 0.95,<br>
+and 0.03)</li>
+<li><code>logit</code> holds the raw logit values (in this example, -1.3, 2.6, and -0.9)</li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/predict"><code>tf.estimator.Estimator.predict</code></a></p>
+<h3>Calculate the loss</h3>
+<p>For both <a href="#train">training</a> and <a href="#evaluate">evaluation</a> we need to calculate the<br>
+model's loss. This is the<br>
+<a href="https://developers.google.com/machine-learning/glossary/#objective">objective</a><br>
+that will be optimized.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/losses/sparse_softmax_cross_entropy"><code>tf.losses.sparse_softmax_cross_entropy</code></a></p>
+<p>This function returns the average over the whole batch.</p>
+<pre><code class="lang-python"># Compute loss.
+loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
+</code></pre>
+<h3>Evaluate</h3>
+<p>When the Estimator's <code>evaluate</code> method is called, the <code>model_fn</code> receives<br>
+<code>mode = ModeKeys.EVAL</code>. In this case, the model function must return a<br>
+<code>tf.estimator.EstimatorSpec</code> containing the model's loss and optionally one<br>
+or more metrics.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/metrics/accuracy"><code>tf.metrics.accuracy</code></a></p>
+<pre><code class="lang-python"># Compute evaluation metrics.
+accuracy = tf.metrics.accuracy(labels=labels,
+                               predictions=predicted_classes,
+                               name=&#39;acc_op&#39;)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec"><code>tf.estimator.EstimatorSpec</code></a></p>
+<ul>
+<li><code>loss</code>, which is the model's loss</li>
+<li><code>eval_metric_ops</code>, which is an optional dictionary of metrics.</li>
+</ul>
+<p>So, we'll create a dictionary containing our sole metric. If we had calculated<br>
+other metrics, we would have added them as additional key/value pairs to that<br>
+same dictionary.  Then, we'll pass that dictionary in the <code>eval_metric_ops</code><br>
+argument of <code>tf.estimator.EstimatorSpec</code>. Here's the code:</p>
+<pre><code class="lang-python">metrics = {&#39;accuracy&#39;: accuracy}
+tf.summary.scalar(&#39;accuracy&#39;, accuracy[1])
+
+if mode == tf.estimator.ModeKeys.EVAL:
+    return tf.estimator.EstimatorSpec(
+        mode, loss=loss, eval_metric_ops=metrics)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/summary/scalar"><code>tf.summary.scalar</code></a></p>
+<h3>Train</h3>
+<p>When the Estimator's <code>train</code> method is called, the <code>model_fn</code> is called<br>
+with <code>mode = ModeKeys.TRAIN</code>. In this case, the model function must return an<br>
+<code>EstimatorSpec</code> that contains the loss and a training operation.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/AdagradOptimizer"><code>tf.train.AdagradOptimizer</code></a></p>
+<p>Here is the code that builds the optimizer:</p>
+<pre><code class="lang-python">optimizer = tf.train.AdagradOptimizer(learning_rate=0.1)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Optimizer/minimize"><code>tf.train.Optimizer.minimize</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/get_global_step"><code>tf.train.get_global_step</code></a></p>
+<p>Here's the code to train the model:</p>
+<pre><code class="lang-python">train_op = optimizer.minimize(loss, global_step=tf.train.get_global_step())
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec"><code>tf.estimator.EstimatorSpec</code></a></p>
+<ul>
+<li><code>loss</code>, which contains the value of the loss function.</li>
+<li><code>train_op</code>, which executes a training step.</li>
+</ul>
+<p>Here's our code to call <code>EstimatorSpec</code>:</p>
+<pre><code class="lang-python">return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
+</code></pre>
+<p>The model function is now complete.</p>
+<h2>The custom Estimator</h2>
+<p>Instantiate the custom Estimator through the Estimator base class as follows:</p>
+<pre><code class="lang-python">    # Build 2 hidden layer DNN with 10, 10 units respectively.
+    classifier = tf.estimator.Estimator(
+        model_fn=my_model,
+        params={
+            &#39;feature_columns&#39;: my_feature_columns,
+            # Two hidden layers of 10 nodes each.
+            &#39;hidden_units&#39;: [10, 10],
+            # The model must choose between 3 classes.
+            &#39;n_classes&#39;: 3,
+        })
+</code></pre>
+<p>Here the <code>params</code> dictionary serves the same purpose as the key-word<br>
+arguments of <code>DNNClassifier</code>; that is, the <code>params</code> dictionary lets you<br>
+configure your Estimator without modifying the code in the <code>model_fn</code>.</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<pre><code class="lang-python"># Train the Model.
+classifier.train(
+    input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
+    steps=args.train_steps)
+</code></pre>
+<h2>TensorBoard</h2>
+<p>You can view training results for your custom Estimator in TensorBoard. To see<br>
+this reporting, start TensorBoard from your command line as follows:</p>
+<pre><code class="lang-bsh"># Replace PATH with the actual path passed as model_dir
+tensorboard --logdir=PATH
+</code></pre>
+<p>Then, open TensorBoard by browsing to: <a href="http://localhost:6006">http://localhost:6006</a></p>
+<p>All the pre-made Estimators automatically log a lot of information to<br>
+TensorBoard. With custom Estimators, however, TensorBoard only provides one<br>
+default log (a graph of the loss) plus the information you explicitly tell<br>
+TensorBoard to log. For the custom Estimator you just created, TensorBoard<br>
+generates the following:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+
+<img style="display:block; margin: 0 auto"
+  alt="Accuracy, 'scalar' graph from tensorboard"
+  src="../images/custom_estimators/accuracy.png">
+
+<img style="display:block; margin: 0 auto"
+  alt="loss 'scalar' graph from tensorboard"
+  src="../images/custom_estimators/loss.png">
+
+<img style="display:block; margin: 0 auto"
+  alt="steps/second 'scalar' graph from tensorboard"
+  src="../images/custom_estimators/steps_per_second.png">
+</div><div style="text-align: center">
+TensorBoard displays three graphs.
+</div><p>In brief, here's what the three graphs tell you:</p>
+<ul>
+<li><p>global_step/sec: A performance indicator showing how many batches (gradient<br>
+updates) we processed per second as the model trains.</p>
+</li>
+<li><p>loss: The loss reported.</p>
+</li>
+<li><p>accuracy: The accuracy is recorded by the following two lines:</p>
+<ul>
+<li><code>eval_metric_ops={'my_accuracy': accuracy})</code>, during evaluation.</li>
+<li><code>tf.summary.scalar('accuracy', accuracy[1])</code>, during training.</li>
+</ul>
+</li>
+</ul>
+<p>These tensorboard graphs are one of the main reasons it's important to pass a<br>
+<code>global_step</code> to your optimizer's <code>minimize</code> method. The model can't record<br>
+the x-coordinate for these graphs without it.</p>
+<p>Note the following in the <code>my_accuracy</code> and <code>loss</code> graphs:</p>
+<ul>
+<li>The orange line represents training.</li>
+<li>The blue dot represents evaluation.</li>
+</ul>
+<p>During training, summaries (the orange line) are recorded periodically as<br>
+batches are processed, which is why it becomes a graph spanning x-axis range.</p>
+<p>By contrast, evaluation produces only a single point on the graph for each call<br>
+to <code>evaluate</code>. This point contains the average over the entire evaluation call.<br>
+This has no width on the graph as it is evaluated entirely from the model state<br>
+at a particular training step (from a single checkpoint).</p>
+<p>As suggested in the following figure, you may see and also selectively<br>
+disable/enable the reporting using the controls on the left side.</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="display:block; margin: 0 auto"
+  alt="Check-boxes allowing the user to select which runs are shown."
+  src="../images/custom_estimators/select_run.jpg">
+</div>
+<div style="text-align: center">
+Enable or disable reporting.
+</div><h2>Summary</h2>
+<p>Although pre-made Estimators can be an effective way to quickly create new<br>
+models, you will often need the additional flexibility that custom Estimators<br>
+provide. Fortunately, pre-made and custom Estimators follow the same<br>
+programming model. The only practical difference is that you must write a model<br>
+function for custom Estimators; everything else is the same.</p>
+<p>For more details, be sure to check out:</p>
+<ul>
+<li>The<br>
+<a href="https://github.com/tensorflow/models/tree/master/official/mnist">official TensorFlow implementation of MNIST</a>,<br>
+which uses a custom estimator.</li>
+<li>The TensorFlow<br>
+<a href="https://github.com/tensorflow/models/tree/master/official">official models repository</a>,<br>
+which contains more curated examples using custom estimators.</li>
+<li>This <a href="https://youtu.be/eBbEDRsCmv4">TensorBoard video</a>, which introduces<br>
+TensorBoard.</li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html">底层 API 编程介绍</a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

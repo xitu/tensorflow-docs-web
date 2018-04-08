@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Getting Started with TensorFlow</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Getting Started with TensorFlow</h1>
+<p>This document introduces the TensorFlow programming environment and shows you<br>
+how to solve the Iris classification problem in TensorFlow.</p>
+<h2>Prerequisites</h2>
+<p>Prior to using the sample code in this document, you'll need to do the<br>
+following:</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></li>
+<li>If you installed TensorFlow with virtualenv or Anaconda, activate your<br>
+TensorFlow environment.</li>
+<li><p>Install or upgrade pandas by issuing the following command:</p>
+<pre><code>  pip install pandas
+</code></pre>
+</li>
+</ul>
+<h2>Getting the sample code</h2>
+<p>Take the following steps to get the sample code we'll be going through:</p>
+<ol>
+<li><p>Clone the TensorFlow Models repository from GitHub by entering the following<br>
+command:</p>
+<pre><code> git clone https://github.com/tensorflow/models
+</code></pre>
+</li>
+<li><p>Change directory within that branch to the location containing the examples<br>
+used in this document:</p>
+<pre><code> cd models/samples/core/get_started/
+</code></pre>
+</li>
+</ol>
+<p>The program described in this document is<br>
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a>.<br>
+This program uses<br>
+<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a><br>
+to fetch its training data.</p>
+<h3>Running the program</h3>
+<p>You run TensorFlow programs as you would run any Python program. For example:</p>
+<pre><code class="lang-bsh">python premade_estimator.py
+</code></pre>
+<p>The program should output training logs followed by some predictions against<br>
+the test set. For example, the first line in the following output shows that<br>
+the model thinks there is a 99.6% chance that the first example in the test<br>
+set is a Setosa. Since the test set expected Setosa, this appears to be<br>
+a good prediction.</p>
+<pre><code class="lang-None">...
+Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
+
+Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
+
+Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
+</code></pre>
+<p>If the program generates errors instead of answers, ask yourself the following<br>
+questions:</p>
+<ul>
+<li>Did you install TensorFlow properly?</li>
+<li>Are you using the correct version of TensorFlow?</li>
+<li>Did you activate the environment you installed TensorFlow in? (This is<br>
+only relevant in certain installation mechanisms.)</li>
+</ul>
+<h2>The programming stack</h2>
+<p>Before getting into the details of the program itself, let's investigate the<br>
+programming environment. As the following illustration shows, TensorFlow<br>
+provides a programming stack consisting of multiple API layers:</p>
+<div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/tensorflow_programming_environment.png">
+</div><p>We strongly recommend writing TensorFlow programs with the following APIs:</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html">评估器</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">Datasets Quick Start</a></li>
+</ul>
+<h2>Classifying irises: an overview</h2>
+<p>The sample program in this document builds and tests a model that<br>
+classifies Iris flowers into three different species based on the size of their<br>
+<a href="https://en.wikipedia.org/wiki/Sepal">sepals</a> and<br>
+<a href="https://en.wikipedia.org/wiki/Petal">petals</a>.</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="Petal geometry compared for three iris species: Iris setosa, Iris virginica, and Iris versicolor"
+  src="../images/iris_three_species.jpg">
+</div><p><strong>From left to right,<br>
+<a href="https://commons.wikimedia.org/w/index.php?curid=170298"><em>Iris setosa</em></a> (by<br>
+<a href="https://commons.wikimedia.org/wiki/User:Radomil">Radomil</a>, CC BY-SA 3.0),<br>
+<a href="https://commons.wikimedia.org/w/index.php?curid=248095"><em>Iris versicolor</em></a> (by<br>
+<a href="https://commons.wikimedia.org/wiki/User:Dlanglois">Dlanglois</a>, CC BY-SA 3.0),<br>
+and <a href="https://www.flickr.com/photos/33397993@N05/3352169862"><em>Iris virginica</em></a><br>
+(by <a href="https://www.flickr.com/photos/33397993@N05">Frank Mayfield</a>, CC BY-SA<br>
+2.0).</strong></p>
+<h3>The data set</h3>
+<p>The Iris data set contains four features and one<br>
+<a href="https://developers.google.com/machine-learning/glossary/#label">label</a>.<br>
+The four features identify the following botanical characteristics of<br>
+individual Iris flowers:</p>
+<ul>
+<li>sepal length</li>
+<li>sepal width</li>
+<li>petal length</li>
+<li>petal width</li>
+</ul>
+<p>Our model will represent these features as <code>float32</code> numerical data.</p>
+<p>The label identifies the Iris species, which must be one of the following:</p>
+<ul>
+<li>Iris setosa (0)</li>
+<li>Iris versicolor (1)</li>
+<li>Iris virginica (2)</li>
+</ul>
+<p>Our model will represent the label as <code>int32</code> categorical data.</p>
+<p>The following table shows three examples in the data set:</p>
+<table>
+<thead><tr>
+<th style="text-align:right">sepal length</th>
+<th style="text-align:right">sepal width</th>
+<th style="text-align:right">petal length</th>
+<th style="text-align:right">petal width</th>
+<th style="text-align:center">species (label)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">5.1</td>
+<td style="text-align:right">3.3</td>
+<td style="text-align:right">1.7</td>
+<td style="text-align:right">0.5</td>
+<td style="text-align:center">0 (Setosa)</td>
+</tr>
+<tr>
+<td style="text-align:right">5.0</td>
+<td style="text-align:right">2.3</td>
+<td style="text-align:right">3.3</td>
+<td style="text-align:right">1.0</td>
+<td style="text-align:center">1 (versicolor)</td>
+</tr>
+<tr>
+<td style="text-align:right">6.4</td>
+<td style="text-align:right">2.8</td>
+<td style="text-align:right">5.6</td>
+<td style="text-align:right">2.2</td>
+<td style="text-align:center">2 (virginica)</td>
+</tr>
+</tbody>
+</table>
+<h3>The algorithm</h3>
+<p>The program trains a Deep Neural Network classifier model having the following<br>
+topology:</p>
+<ul>
+<li>2 hidden layers.</li>
+<li>Each hidden layer contains 10 nodes.</li>
+</ul>
+<p>The following figure illustrates the features, hidden layers, and predictions<br>
+(not all of the nodes in the hidden layers are shown):</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="A diagram of the network architecture: Inputs, 2 hidden layers, and outputs"
+  src="../images/custom_estimators/full_network.png">
+</div><h3>Inference</h3>
+<p>Running the trained model on an unlabeled example yields three predictions,<br>
+namely, the likelihood that this flower is the given Iris species. The sum of<br>
+those output predictions will be 1.0. For example, the prediction on an<br>
+unlabeled example might be something like the following:</p>
+<ul>
+<li>0.03 for Iris Setosa</li>
+<li>0.95 for Iris Versicolor</li>
+<li>0.02 for Iris Virginica</li>
+</ul>
+<p>The preceding prediction indicates a 95% probability that the given unlabeled<br>
+example is an Iris Versicolor.</p>
+<h2>Overview of programming with Estimators</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html">评估器</a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
+<p>To write a TensorFlow program based on pre-made Estimators, you must perform the<br>
+following tasks:</p>
+<ul>
+<li>Create one or more input functions.</li>
+<li>Define the model's feature columns.</li>
+<li>Instantiate an Estimator, specifying the feature columns and various<br>
+hyperparameters.</li>
+<li>Call one or more methods on the Estimator object, passing the appropriate<br>
+input function as the source of the data.</li>
+</ul>
+<p>Let's see how those tasks are implemented for Iris classification.</p>
+<h2>Create input functions</h2>
+<p>You must create input functions to supply data for training,<br>
+evaluating, and prediction.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
+<ul>
+<li><a href="https://developers.google.com/machine-learning/glossary/#feature"><code>features</code></a> - A Python dictionary in which:<ul>
+<li>Each key is the name of a feature.</li>
+<li>Each value is an array containing all of that feature's values.</li>
+</ul>
+</li>
+<li><code>label</code> - An array containing the values of the<br>
+<a href="https://developers.google.com/machine-learning/glossary/#label">label</a> for<br>
+every example.</li>
+</ul>
+<p>Just to demonstrate the format of the input function, here's a simple<br>
+implementation:</p>
+<pre><code class="lang-python">def input_evaluation_set():
+    features = {&#39;SepalLength&#39;: np.array([6.4, 5.0]),
+                &#39;SepalWidth&#39;:  np.array([2.8, 2.3]),
+                &#39;PetalLength&#39;: np.array([5.6, 3.3]),
+                &#39;PetalWidth&#39;:  np.array([2.2, 1.0])}
+    labels = np.array([2, 1])
+    return features, labels
+</code></pre>
+<p>Your input function may generate the <code>features</code> dictionary and <code>label</code> list any<br>
+way you like. However, we recommend using TensorFlow's Dataset API, which can<br>
+parse all sorts of data. At a high level, the Dataset API consists of the<br>
+following classes:</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="A diagram showing subclasses of the Dataset class"
+  src="../images/dataset_classes.png">
+</div><p>Where the individual members are:</p>
+<ul>
+<li><code>Dataset</code> - Base class containing methods to create and transform<br>
+datasets. Also allows you to initialize a dataset from data in memory, or from<br>
+a Python generator.</li>
+<li><code>TextLineDataset</code> - Reads lines from text files.</li>
+<li><code>TFRecordDataset</code> - Reads records from TFRecord files.</li>
+<li><code>FixedLengthRecordDataset</code> - Reads fixed size records from binary files.</li>
+<li><code>Iterator</code> - Provides a way to access one data set element at a time.</li>
+</ul>
+<p>The Dataset API can handle a lot of common cases for you. For example,<br>
+using the Dataset API, you can easily read in records from a large collection<br>
+of files in parallel and join them into a single stream.</p>
+<p>To keep things simple in this example we are going to load the data with<br>
+<a href="https://pandas.pydata.org/">pandas</a>, and build our input pipeline from this<br>
+in-memory data.</p>
+<p>Here is the input function used for training in this program, which is available<br>
+in <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a>:</p>
+<pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
+    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle, repeat, and batch the examples.
+    return dataset.shuffle(1000).repeat().batch(batch_size)
+</code></pre>
+<h2>Define the feature columns</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column"><code>tf.feature_column</code></a></p>
+<p>For Iris, the 4 raw features are numeric values, so we'll build a list of<br>
+feature columns to tell the Estimator model to represent each of the four<br>
+features as 32-bit floating-point values. Therefore, the code to create the<br>
+feature column is:</p>
+<pre><code class="lang-python"># Feature columns describe how to use the input.
+my_feature_columns = []
+for key in train_x.keys():
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">Feature Columns</a></p>
+<p>Now that we have the description of how we want the model to represent the raw<br>
+features, we can build the estimator.</p>
+<h2>Instantiate an estimator</h2>
+<p>The Iris problem is a classic classification problem. Fortunately, TensorFlow<br>
+provides several pre-made classifier Estimators, including:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/DNNClassifier"><code>tf.estimator.DNNClassifier</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/DNNLinearCombinedClassifier"><code>tf.estimator.DNNLinearCombinedClassifier</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/LinearClassifier"><code>tf.estimator.LinearClassifier</code></a></li>
+</ul>
+<p>For the Iris problem, <code>tf.estimator.DNNClassifier</code> seems like the best choice.<br>
+Here's how we instantiated this Estimator:</p>
+<pre><code class="lang-python"># Build a DNN with 2 hidden layers and 10 nodes in each hidden layer.
+classifier = tf.estimator.DNNClassifier(
+    feature_columns=my_feature_columns,
+    # Two hidden layers of 10 nodes each.
+    hidden_units=[10, 10],
+    # The model must choose between 3 classes.
+    n_classes=3)
+</code></pre>
+<h2>Train, Evaluate, and Predict</h2>
+<p>Now that we have an Estimator object, we can call methods to do the following:</p>
+<ul>
+<li>Train the model.</li>
+<li>Evaluate the trained model.</li>
+<li>Use the trained model to make predictions.</li>
+</ul>
+<h3>Train the model</h3>
+<p>Train the model by calling the Estimator's <code>train</code> method as follows:</p>
+<pre><code class="lang-python"># Train the Model.
+classifier.train(
+    input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
+    steps=args.train_steps)
+</code></pre>
+<p>Here we wrap up our <code>input_fn</code> call in a<br>
+<a href="https://docs.python.org/3/tutorial/controlflow.html"><code>lambda</code></a><br>
+to capture the arguments while providing an input function that takes no<br>
+arguments, as expected by the Estimator. The <code>steps</code> argument tells the method<br>
+to stop training after a number of training steps.</p>
+<h3>Evaluate the trained model</h3>
+<p>Now that the model has been trained, we can get some statistics on its<br>
+performance. The following code block evaluates the accuracy of the trained<br>
+model on the test data:</p>
+<pre><code class="lang-python"># Evaluate the model.
+eval_result = classifier.evaluate(
+    input_fn=lambda:iris_data.eval_input_fn(test_x, test_y, args.batch_size))
+
+print(&#39;\nTest set accuracy: {accuracy:0.3f}\n&#39;.format(**eval_result))
+</code></pre>
+<p>Unlike our call to the <code>train</code> method, we did not pass the <code>steps</code><br>
+argument to evaluate. Our <code>eval_input_fn</code> only yields a single<br>
+<a href="https://developers.google.com/machine-learning/glossary/#epoch">epoch</a> of data.</p>
+<p>Running this code yields the following output (or something similar):</p>
+<pre><code class="lang-none">Test set accuracy: 0.967
+</code></pre>
+<h3>Making predictions (inferring) from the trained model</h3>
+<p>We now have a trained model that produces good evaluation results.<br>
+We can now use the trained model to predict the species of an Iris flower<br>
+based on some unlabeled measurements. As with training and evaluation, we make<br>
+predictions using a single function call:</p>
+<pre><code class="lang-python"># Generate predictions from the model
+expected = [&#39;Setosa&#39;, &#39;Versicolor&#39;, &#39;Virginica&#39;]
+predict_x = {
+    &#39;SepalLength&#39;: [5.1, 5.9, 6.9],
+    &#39;SepalWidth&#39;: [3.3, 3.0, 3.1],
+    &#39;PetalLength&#39;: [1.7, 4.2, 5.4],
+    &#39;PetalWidth&#39;: [0.5, 1.5, 2.1],
+}
+
+predictions = classifier.predict(
+    input_fn=lambda:iris_data.eval_input_fn(predict_x,
+                                            batch_size=args.batch_size))
+</code></pre>
+<p>The <code>predict</code> method returns a Python iterable, yielding a dictionary of<br>
+prediction results for each example. The following code prints a few<br>
+predictions and their probabilities:</p>
+<pre><code class="lang-python">for pred_dict, expec in zip(predictions, expected):
+    template = (&#39;\nPrediction is &quot;{}&quot; ({:.1f}%), expected &quot;{}&quot;&#39;)
+
+    class_id = pred_dict[&#39;class_ids&#39;][0]
+    probability = pred_dict[&#39;probabilities&#39;][class_id]
+
+    print(template.format(iris_data.SPECIES[class_id],
+                          100 * probability, expec))
+</code></pre>
+<p>Running the preceding code yields the following output:</p>
+<pre><code class="lang-None">...
+Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
+
+Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
+
+Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
+</code></pre>
+<h2>Summary</h2>
+<p>Pre-made Estimators are an effective way to quickly create standard models.</p>
+<p>Now that you've gotten started writing TensorFlow programs, consider the<br>
+following material:</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/checkpoints.html">检查点</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">Datasets Quick Start</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

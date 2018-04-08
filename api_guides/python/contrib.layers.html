@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Layers (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Layers (contrib)</h1>
+<p>[TOC]</p>
+<p>Ops for building neural network layers, regularizers, summaries, etc.</p>
+<h2>Higher level ops for building neural network layers</h2>
+<p>This package provides several ops that take care of creating variables that are<br>
+used internally in a consistent way and provide the building blocks for many<br>
+common machine learning algorithms.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/avg_pool2d"><code>tf.contrib.layers.avg_pool2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/batch_norm"><code>tf.contrib.layers.batch_norm</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/convolution2d"><code>tf.contrib.layers.convolution2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/conv2d_in_plane"><code>tf.contrib.layers.conv2d_in_plane</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/convolution2d_in_plane"><code>tf.contrib.layers.convolution2d_in_plane</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d_transpose"><code>tf.nn.conv2d_transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/convolution2d_transpose"><code>tf.contrib.layers.convolution2d_transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/dropout"><code>tf.nn.dropout</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/flatten"><code>tf.contrib.layers.flatten</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/fully_connected"><code>tf.contrib.layers.fully_connected</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/layer_norm"><code>tf.contrib.layers.layer_norm</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/max_pool2d"><code>tf.contrib.layers.max_pool2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/one_hot_encoding"><code>tf.contrib.layers.one_hot_encoding</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/relu"><code>tf.nn.relu</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/relu6"><code>tf.nn.relu6</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/repeat"><code>tf.contrib.layers.repeat</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/safe_embedding_lookup_sparse"><code>tf.contrib.layers.safe_embedding_lookup_sparse</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/separable_conv2d"><code>tf.nn.separable_conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/separable_convolution2d"><code>tf.contrib.layers.separable_convolution2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax"><code>tf.nn.softmax</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/stack"><code>tf.stack</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/unit_norm"><code>tf.contrib.layers.unit_norm</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/embed_sequence"><code>tf.contrib.layers.embed_sequence</code></a></li>
+</ul>
+<p>Aliases for fully_connected which set a default activation function are<br>
+available: <code>relu</code>, <code>relu6</code> and <code>linear</code>.</p>
+<p><code>stack</code> operation is also available. It builds a stack of layers by applying<br>
+a layer repeatedly.</p>
+<h2>Regularizers</h2>
+<p>Regularization can help prevent overfitting. These have the signature<br>
+<code>fn(weights)</code>. The loss is typically added to<br>
+<code>tf.GraphKeys.REGULARIZATION_LOSSES</code>.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/apply_regularization"><code>tf.contrib.layers.apply_regularization</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/l1_regularizer"><code>tf.contrib.layers.l1_regularizer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/l2_regularizer"><code>tf.contrib.layers.l2_regularizer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sum_regularizer"><code>tf.contrib.layers.sum_regularizer</code></a></li>
+</ul>
+<h2>Initializers</h2>
+<p>Initializers are used to initialize variables with sensible values given their<br>
+size, data type, and purpose.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/xavier_initializer"><code>tf.contrib.layers.xavier_initializer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/xavier_initializer_conv2d"><code>tf.contrib.layers.xavier_initializer_conv2d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/variance_scaling_initializer"><code>tf.contrib.layers.variance_scaling_initializer</code></a></li>
+</ul>
+<h2>Optimization</h2>
+<p>Optimize weights given a loss.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/optimize_loss"><code>tf.contrib.layers.optimize_loss</code></a></li>
+</ul>
+<h2>Summaries</h2>
+<p>Helper functions to summarize specific variables or ops.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_activation"><code>tf.contrib.layers.summarize_activation</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_tensor"><code>tf.contrib.layers.summarize_tensor</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_tensors"><code>tf.contrib.layers.summarize_tensors</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_collection"><code>tf.contrib.layers.summarize_collection</code></a></li>
+</ul>
+<p>The layers module defines convenience functions <code>summarize_variables</code>,<br>
+<code>summarize_weights</code> and <code>summarize_biases</code>, which set the <code>collection</code> argument<br>
+of <code>summarize_collection</code> to <code>VARIABLES</code>, <code>WEIGHTS</code> and <code>BIASES</code>, respectively.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_activations"><code>tf.contrib.layers.summarize_activations</code></a></li>
+</ul>
+<h2>Feature columns</h2>
+<p>Feature columns provide a mechanism to map data to a model.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/bucketized_column"><code>tf.contrib.layers.bucketized_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/check_feature_columns"><code>tf.contrib.layers.check_feature_columns</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/create_feature_spec_for_parsing"><code>tf.contrib.layers.create_feature_spec_for_parsing</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/crossed_column"><code>tf.contrib.layers.crossed_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/embedding_column"><code>tf.contrib.layers.embedding_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/scattered_embedding_column"><code>tf.contrib.layers.scattered_embedding_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/input_from_feature_columns"><code>tf.contrib.layers.input_from_feature_columns</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/joint_weighted_sum_from_feature_columns"><code>tf.contrib.layers.joint_weighted_sum_from_feature_columns</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/make_place_holder_tensors_for_base_features"><code>tf.contrib.layers.make_place_holder_tensors_for_base_features</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/multi_class_target"><code>tf.contrib.layers.multi_class_target</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/one_hot_column"><code>tf.contrib.layers.one_hot_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/parse_feature_columns_from_examples"><code>tf.contrib.layers.parse_feature_columns_from_examples</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/parse_feature_columns_from_sequence_examples"><code>tf.contrib.layers.parse_feature_columns_from_sequence_examples</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/real_valued_column"><code>tf.contrib.layers.real_valued_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/shared_embedding_columns"><code>tf.contrib.layers.shared_embedding_columns</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sparse_column_with_hash_bucket"><code>tf.contrib.layers.sparse_column_with_hash_bucket</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sparse_column_with_integerized_feature"><code>tf.contrib.layers.sparse_column_with_integerized_feature</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sparse_column_with_keys"><code>tf.contrib.layers.sparse_column_with_keys</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sparse_column_with_vocabulary_file"><code>tf.contrib.layers.sparse_column_with_vocabulary_file</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/weighted_sparse_column"><code>tf.contrib.layers.weighted_sparse_column</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/weighted_sum_from_feature_columns"><code>tf.contrib.layers.weighted_sum_from_feature_columns</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/infer_real_valued_columns"><code>tf.contrib.layers.infer_real_valued_columns</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sequence_input_from_feature_columns"><code>tf.contrib.layers.sequence_input_from_feature_columns</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

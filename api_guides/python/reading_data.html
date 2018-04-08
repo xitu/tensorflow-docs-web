@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Reading data</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Reading data</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
+<p>There are four methods of getting data into a TensorFlow program:</p>
+<ul>
+<li><code>tf.data</code> API: Easily construct a complex input pipeline. (preferred method)</li>
+<li>Feeding: Python code provides the data when running each step.</li>
+<li><code>QueueRunner</code>: a queue-based input pipeline reads the data from files<br>
+at the beginning of a TensorFlow graph.</li>
+<li>Preloaded data: a constant or variable in the TensorFlow graph holds<br>
+all the data (for small data sets).</li>
+</ul>
+<p>[TOC]</p>
+<h2><code>tf.data</code> API</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
+<h2>Feeding</h2>
+<p>Warning: "Feeding" is the least efficient way to feed data into a TensorFlow<br>
+program and should only be used for small experiments and debugging.</p>
+<p>TensorFlow's feed mechanism lets you inject data into any Tensor in a<br>
+computation graph. A Python computation can thus feed data directly into the<br>
+graph.</p>
+<p>Supply feed data through the <code>feed_dict</code> argument to a run() or eval() call<br>
+that initiates computation.</p>
+<pre><code class="lang-python">with tf.Session():
+  input = tf.placeholder(tf.float32)
+  classifier = ...
+  print(classifier.eval(feed_dict={input: my_python_preprocessing_fn()}))
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/placeholder"><code>tf.placeholder</code></a></p>
+<p>An example using <code>placeholder</code> and feeding to train on MNIST data can be found<br>
+in<br>
+<a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/fully_connected_feed.py"><code>tensorflow/examples/tutorials/mnist/fully_connected_feed.py</code></a>.</p>
+<h2><code>QueueRunner</code></h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
+<p>A typical queue-based pipeline for reading records from files has the following stages:</p>
+<ol>
+<li>The list of filenames</li>
+<li><em>Optional</em> filename shuffling</li>
+<li><em>Optional</em> epoch limit</li>
+<li>Filename queue</li>
+<li>A Reader for the file format</li>
+<li>A decoder for a record read by the reader</li>
+<li><em>Optional</em> preprocessing</li>
+<li>Example queue</li>
+</ol>
+<h3>Filenames, shuffling, and epoch limits</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/match_filenames_once"><code>tf.train.match_filenames_once</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/string_input_producer"><code>tf.train.string_input_producer</code></a></p>
+<p><code>string_input_producer</code> has options for shuffling and setting a maximum number<br>
+of epochs. A queue runner adds the whole list of filenames to the queue once<br>
+for each epoch, shuffling the filenames within an epoch if <code>shuffle=True</code>.<br>
+This procedure provides a uniform sampling of files, so that examples are not<br>
+under- or over- sampled relative to each other.</p>
+<p>The queue runner works in a thread separate from the reader that pulls<br>
+filenames from the queue, so the shuffling and enqueuing process does not<br>
+block the reader.</p>
+<h3>File formats</h3>
+<p>Select the reader that matches your input file format and pass the filename<br>
+queue to the reader's read method.  The read method outputs a key identifying<br>
+the file and record (useful for debugging if you have some weird records), and<br>
+a scalar string value. Use one (or more) of the decoder and conversion ops to<br>
+decode this string into the tensors that make up an example.</p>
+<h4>CSV files</h4>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
+<pre><code class="lang-python">filename_queue = tf.train.string_input_producer([&quot;file0.csv&quot;, &quot;file1.csv&quot;])
+
+reader = tf.TextLineReader()
+key, value = reader.read(filename_queue)
+
+# Default values, in case of empty columns. Also specifies the type of the
+# decoded result.
+record_defaults = [[1], [1], [1], [1], [1]]
+col1, col2, col3, col4, col5 = tf.decode_csv(
+    value, record_defaults=record_defaults)
+features = tf.stack([col1, col2, col3, col4])
+
+with tf.Session() as sess:
+  # Start populating the filename queue.
+  coord = tf.train.Coordinator()
+  threads = tf.train.start_queue_runners(coord=coord)
+
+  for i in range(1200):
+    # Retrieve a single instance:
+    example, label = sess.run([features, col5])
+
+  coord.request_stop()
+  coord.join(threads)
+</code></pre>
+<p>Each execution of <code>read</code> reads a single line from the file. The<br>
+<code>decode_csv</code> op then parses the result into a list of tensors. The<br>
+<code>record_defaults</code> argument determines the type of the resulting tensors and<br>
+sets the default value to use if a value is missing in the input string.</p>
+<p>You must call <code>tf.train.start_queue_runners</code> to populate the queue before<br>
+you call <code>run</code> or <code>eval</code> to execute the <code>read</code>. Otherwise <code>read</code> will<br>
+block while it waits for filenames from the queue.</p>
+<h4>Fixed length records</h4>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_raw"><code>tf.decode_raw</code></a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html#prepare-the-data">卷积神经网络</a></p>
+<h4>Standard TensorFlow format</h4>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/python_io/TFRecordWriter"><code>tf.python_io.TFRecordWriter</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></p>
+<pre><code class="lang-python">    dataset = tf.data.TFRecordDataset(filename)
+    dataset = dataset.repeat(num_epochs)
+
+    # map takes a python function and applies it to every sample
+    dataset = dataset.map(decode)
+</code></pre>
+<p>To acomplish the same task with a queue based input pipeline requires the following code<br>
+(using the same <code>decode</code> function from the above example):</p>
+<pre><code class="lang-python">  filename_queue = tf.train.string_input_producer([filename], num_epochs=num_epochs)
+  reader = tf.TFRecordReader()
+  _, serialized_example = reader.read(filename_queue)
+  image,label = decode(serialized_example)
+</code></pre>
+<h3>Preprocessing</h3>
+<p>You can then do any preprocessing of these examples you want. This would be any<br>
+processing that doesn't depend on trainable parameters. Examples include<br>
+normalization of your data, picking a random slice, adding noise or distortions,<br>
+etc.  See<br>
+<a href="https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10/cifar10_input.py"><code>tensorflow_models/tutorials/image/cifar10/cifar10_input.py</code></a><br>
+for an example.</p>
+<h3>Batching</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch"><code>tf.train.shuffle_batch</code></a></p>
+<p>Example:</p>
+<pre><code>def read_my_file_format(filename_queue):
+  reader = tf.SomeReader()
+  key, record_string = reader.read(filename_queue)
+  example, label = tf.some_decoder(record_string)
+  processed_example = some_processing(example)
+  return processed_example, label
+
+def input_pipeline(filenames, batch_size, num_epochs=None):
+  filename_queue = tf.train.string_input_producer(
+      filenames, num_epochs=num_epochs, shuffle=True)
+  example, label = read_my_file_format(filename_queue)
+  # min_after_dequeue defines how big a buffer we will randomly sample
+  #   from -- bigger means better shuffling but slower start up and more
+  #   memory used.
+  # capacity must be larger than min_after_dequeue and the amount larger
+  #   determines the maximum we will prefetch.  Recommendation:
+  #   min_after_dequeue + (num_threads + a small safety margin) * batch_size
+  min_after_dequeue = 10000
+  capacity = min_after_dequeue + 3 * batch_size
+  example_batch, label_batch = tf.train.shuffle_batch(
+      [example, label], batch_size=batch_size, capacity=capacity,
+      min_after_dequeue=min_after_dequeue)
+  return example_batch, label_batch
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch_join"><code>tf.train.shuffle_batch_join</code></a></p>
+<pre><code>def read_my_file_format(filename_queue):
+  # Same as above
+
+def input_pipeline(filenames, batch_size, read_threads, num_epochs=None):
+  filename_queue = tf.train.string_input_producer(
+      filenames, num_epochs=num_epochs, shuffle=True)
+  example_list = [read_my_file_format(filename_queue)
+                  for _ in range(read_threads)]
+  min_after_dequeue = 10000
+  capacity = min_after_dequeue + 3 * batch_size
+  example_batch, label_batch = tf.train.shuffle_batch_join(
+      example_list, batch_size=batch_size, capacity=capacity,
+      min_after_dequeue=min_after_dequeue)
+  return example_batch, label_batch
+</code></pre>
+<p>You still only use a single filename queue that is shared by all the readers.<br>
+That way we ensure that the different readers use different files from the same<br>
+epoch until all the files from the epoch have been started.  (It is also usually<br>
+sufficient to have a single thread filling the filename queue.)</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch"><code>tf.train.shuffle_batch</code></a></p>
+<ul>
+<li>If you have more reading threads than input files, to avoid the risk that<br>
+you will have two threads reading the same example from the same file near<br>
+each other.</li>
+<li>Or if reading N files in parallel causes too many disk seeks.</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html">Tensorboard：可视化学习面板</a></p>
+<h3>Creating threads to prefetch using <code>QueueRunner</code> objects</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
+<pre><code class="lang-python"># Create the graph, etc.
+init_op = tf.global_variables_initializer()
+
+# Create a session for running operations in the Graph.
+sess = tf.Session()
+
+# Initialize the variables (like the epoch counter).
+sess.run(init_op)
+
+# Start input enqueue threads.
+coord = tf.train.Coordinator()
+threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+
+try:
+    while not coord.should_stop():
+        # Run training steps or whatever
+        sess.run(train_op)
+
+except tf.errors.OutOfRangeError:
+    print(&#39;Done training -- epoch limit reached&#39;)
+finally:
+    # When done, ask the threads to stop.
+    coord.request_stop()
+
+# Wait for threads to finish.
+coord.join(threads)
+sess.close()
+</code></pre>
+<h4>Aside: What is happening here?</h4>
+<p>First we create the graph. It will have a few pipeline stages that are<br>
+connected by queues. The first stage will generate filenames to read and enqueue<br>
+them in the filename queue. The second stage consumes filenames (using a<br>
+<code>Reader</code>), produces examples, and enqueues them in an example queue. Depending<br>
+on how you have set things up, you may actually have a few independent copies of<br>
+the second stage, so that you can read from multiple files in parallel. At the<br>
+end of these stages is an enqueue operation, which enqueues into a queue that<br>
+the next stage dequeues from. We want to start threads running these enqueuing<br>
+operations, so that our training loop can dequeue examples from the example<br>
+queue.</p>
+<div style="width:70%; margin-left:12%; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/AnimatedFileQueues.gif">
+</div><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/start_queue_runners"><code>tf.train.start_queue_runners</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError"><code>tf.errors.OutOfRangeError</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/threading_and_queues.html">Threading and Queues</a></p>
+<h4>Aside: How clean shut-down when limiting epochs works</h4>
+<p>Imagine you have a model that has set a limit on the number of epochs to train<br>
+on.  That means that the thread generating filenames will only run that many<br>
+times before generating an <code>OutOfRange</code> error. The QueueRunner will catch that<br>
+error, close the filename queue, and exit the thread. Closing the queue does two<br>
+things:</p>
+<ul>
+<li>Any future attempt to enqueue in the filename queue will generate an error.<br>
+At this point there shouldn't be any threads trying to do that, but this<br>
+is helpful when queues are closed due to other errors.</li>
+<li>Any current or future dequeue will either succeed (if there are enough<br>
+elements left) or fail (with an <code>OutOfRange</code> error) immediately.  They won't<br>
+block waiting for more elements to be enqueued, since by the previous point<br>
+that can't happen.</li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator/join"><code>tf.train.Coordinator.join</code></a></p>
+<h3>Filtering records or producing multiple examples per record</h3>
+<p>Instead of examples with shapes <code>[x, y, z]</code>, you will produce a batch of<br>
+examples with shape <code>[batch, x, y, z]</code>.  The batch size can be 0 if you want to<br>
+filter this record out (maybe it is in a hold-out set?), or bigger than 1 if you<br>
+are producing multiple examples per record.  Then simply set <code>enqueue_many=True</code><br>
+when calling one of the batching functions (such as <code>shuffle_batch</code> or<br>
+<code>shuffle_batch_join</code>).</p>
+<h3>Sparse input data</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/parse_example"><code>tf.parse_example</code></a></p>
+<h2>Preloaded data</h2>
+<p>This is only used for small data sets that can be loaded entirely in memory.<br>
+There are two approaches:</p>
+<ul>
+<li>Store the data in a constant.</li>
+<li>Store the data in a variable, that you initialize (or assign to) and then<br>
+never change.</li>
+</ul>
+<p>Using a constant is a bit simpler, but uses more memory (since the constant is<br>
+stored inline in the graph data structure, which may be duplicated a few times).</p>
+<pre><code class="lang-python">training_data = ...
+training_labels = ...
+with tf.Session():
+  input_data = tf.constant(training_data)
+  input_labels = tf.constant(training_labels)
+  ...
+</code></pre>
+<p>To instead use a variable, you need to also initialize it after the graph has been built.</p>
+<pre><code class="lang-python">training_data = ...
+training_labels = ...
+with tf.Session() as sess:
+  data_initializer = tf.placeholder(dtype=training_data.dtype,
+                                    shape=training_data.shape)
+  label_initializer = tf.placeholder(dtype=training_labels.dtype,
+                                     shape=training_labels.shape)
+  input_data = tf.Variable(data_initializer, trainable=False, collections=[])
+  input_labels = tf.Variable(label_initializer, trainable=False, collections=[])
+  ...
+  sess.run(input_data.initializer,
+           feed_dict={data_initializer: training_data})
+  sess.run(input_labels.initializer,
+           feed_dict={label_initializer: training_labels})
+</code></pre>
+<p>Setting <code>trainable=False</code> keeps the variable out of the<br>
+<code>GraphKeys.TRAINABLE_VARIABLES</code> collection in the graph, so we won't try and<br>
+update it when training.  Setting <code>collections=[]</code> keeps the variable out of the<br>
+<code>GraphKeys.GLOBAL_VARIABLES</code> collection used for saving and restoring checkpoints.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/batch"><code>tf.train.batch</code></a></p>
+<p>An MNIST example that preloads the data using constants can be found in<br>
+<a href="https://www.tensorflow.org/code/tensorflow/examples/how_tos/reading_data/fully_connected_preloaded.py"><code>tensorflow/examples/how_tos/reading_data/fully_connected_preloaded.py</code></a>, and one that preloads the data using variables can be found in<br>
+<a href="https://www.tensorflow.org/code/tensorflow/examples/how_tos/reading_data/fully_connected_preloaded_var.py"><code>tensorflow/examples/how_tos/reading_data/fully_connected_preloaded_var.py</code></a>,<br>
+You can compare these with the <code>fully_connected_feed</code> and<br>
+<code>fully_connected_reader</code> versions above.</p>
+<h2>Multiple input pipelines</h2>
+<p>Commonly you will want to train on one dataset and evaluate (or "eval") on<br>
+another.  One way to do this is to actually have two separate graphs and<br>
+sessions, maybe in separate processes:</p>
+<ul>
+<li>The training process reads training input data and periodically writes<br>
+checkpoint files with all the trained variables.</li>
+<li>The evaluation process restores the checkpoint files into an inference<br>
+model that reads validation input data.</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html#save-and-restore-checkpoints">卷积神经网络</a></p>
+<ul>
+<li>The eval is performed on a single snapshot of the trained variables.</li>
+<li>You can perform the eval even after training has completed and exited.</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html">变量</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html#creating_an_iterator">数据导入</a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dropout"><code>tf.layers.dropout</code></a></p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

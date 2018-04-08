@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow 版本兼容性</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow 版本兼容性</h1>
+<p>本文适用于需要保持不同版本 TensorFlow 代码及数据向后兼容性的使用者，以及旨在修改 TensorFlow 的同时保持兼容性的开发人员。</p>
+<h2>语义化版本 2.0</h2>
+<p>TensorFlow 的公共 API 沿袭自语义化版本 2.0（<a href="http://semver.org">semver</a>）。 每个 TensorFlow 发布版本号都以 <code>MAJOR.MINOR.PATCH</code> 的形式命名（译注：“主版本.副版本.补丁版本”）。<br>
+例如，TensorFlow 1.2.3 版本的 <code>MAJOR</code> 为 1，<code>MINOR</code> 为 2，<code>PATCH</code> 为 3。每个版本号的更改具有以下含义：</p>
+<ul>
+<li><p><strong>MAJOR</strong>： 更改可能不具有向后兼容性。之前发布的版本中所运行的代码和数据在新版本中用不上了。然而，有些情况下现有的 TensorFlow 图和检验点最好可以迁移到新版本。查看 <a href="#compatibility_of_graphs_and_checkpoints">Compatibility of graphs and checkpoints</a> 以获取数据兼容性的细节。</p>
+</li>
+<li><p><strong>MINOR</strong>：向后兼容特性和速度的改善等。之前发布的版本中所运行的代码和数据仅依赖于公共 API，它们将不加改动地继续运行。如果想查阅公共 API 和非公共 API 的细节信息，请移步 <a href="#what_is_covered">What is covered</a>。</p>
+</li>
+<li><p><strong>PATCH</strong>：向后兼容性bug的修复。</p>
+</li>
+</ul>
+<p>例如 1.0.0 发布版本基于 0.12.1 发布版本引入了不具有向后兼容性的改动。然而，1.1.1 发布版本则向后兼容 1.0.0 发布版本。</p>
+<h2>涉及的内容</h2>
+<p>TensorFlow 中只有公共 APIs 在副版本和补丁版本之间兼容。公共 APIs 由以下几部分组成：</p>
+<ul>
+<li><p><code>tensorflow</code>模块及其子模块中记录在册的全部 <a href="../api_docs/python">Python</a> 函数和类，除了：</p>
+<ul>
+<li><code>tf.contrib</code> 中的函数和类；</li>
+<li>以 <code>_</code> 开头命名的函数和类（因为它们是私有的）。<br>
+请注意 <code>examples/</code> 和 <code>tools/</code> 路径下的代码无法通过 <code>tensorflow</code> 的 Python 模块访问，因此无法保证其兼容性。</li>
+</ul>
+<p>如果某个符号可以被 <code>tensorflow</code> 模块及其子模块调用但没有被记录在册，它被认为不属于公共 API 的一部分。</p>
+</li>
+<li><p><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/c/c_api.h">C API</a>。</p>
+</li>
+<li><p>下列 protocol buffer 文件：</p>
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/attr_value.proto"><code>attr_value</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/protobuf/config.proto"><code>config</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/event.proto"><code>event</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/graph.proto"><code>graph</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/op_def.proto"><code>op_def</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/reader_base.proto"><code>reader_base</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/summary.proto"><code>summary</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/tensor.proto"><code>tensor</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/tensor_shape.proto"><code>tensor_shape</code></a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/types.proto"><code>types</code></a></li>
+</ul>
+</li>
+</ul>
+<h2>未涉及的内容 {not_covered}</h2>
+<p>某些 API 函数被显式标记为“实验性”，它们可以在不同副版本之间进行非兼容性改动，包括：</p>
+<ul>
+<li><p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib"><code>tf.contrib</code></a></p>
+</li>
+<li><p><strong>其他语言</strong>：除 Python 和 C 外的其他语言编写的 TensorFlow APIs，这些语言包括：</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/api_guides/cc/guide.html">C++ API</a></li>
+<li><a href="../api_docs/java/reference/org/tensorflow/package-summary">Java</a>，</li>
+<li><a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go">Go</a></li>
+</ul>
+</li>
+<li><p><strong>组合操作的细节</strong>：许多 Python 中的公共函数扩展为图中的若干原语，这些细节将会是任何以 <code>GraphDef</code> 形式保存到磁盘中的图的一部分。这些细节可能在副版本之间发生改动。 特别地，即使图的行为并未发生变化且存在将要运行的检验点，回归测试也可能跨副版本以检测各图之间的严格适配性。</p>
+</li>
+<li><p><strong>浮点数细节</strong>：操作数计算所得的具体浮点数随时可能发生改变。使用者应该仅依赖于浮点数的大约的精度特性和数值稳定性，而不是具体的按位计算。在副版本或在补丁版本中改变数值计算公式应得到同样或更高的精度。额外说明一下，在机器学习中，提高特定公式的精度可能会使整体系统精度下降。</p>
+</li>
+<li><p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/constant_op.html#Random_Tensors">Constants, Sequences, and Random Values</a></p>
+</li>
+<li><p><strong>分布式 Tensorflow 中的版本偏差</strong>： 不支持在同一个群集中运行两种不同的 TensorFlow 版本。多从机通信有线协议不会保证向后兼容性。</p>
+</li>
+<li><p><strong>Bugs</strong>：如果当前的实现明显出现故障，也就是说，实现与文档矛盾或由于 bug 而无法恰当地表现出已知且明确的预期行为。在这种情况下，我们保留修改向后不兼容行为（并非由API实现）的权利。例如，如果一个已知的算法优化程序因为 bug 的存在而无法适配那个算法，我们就会修复这个程序。我们将根据错误行为侵入代码并定位到错误源头。我们将会在发布版本中记录这种改变。</p>
+</li>
+<li><p><strong>错误信息</strong>：我们保留改变错误信息文本的权利。另外，只有那些在文档中记录的特定错误类型才可能发生改变。例如在文档中，可能抛出 <code>InvalidArgument</code> 异常的某个函数仍然会抛出  <code>InvalidArgument</code> 异常，改变的只是供我们阅读的信息内容。</p>
+</li>
+</ul>
+<h2>图和检验点的兼容性</h2>
+<p>有时你需要保留图形和检验点。<br>
+图形描述训练期间将被执行的操作的数据流和训练结果，检验点包含图中已保存的变量的张量值。</p>
+<p>许多 TensorFlow 使用者将图和训练好的模型保存到磁盘以期为后续评估或另外的训练所使用，最终却在后续发布版本中运行它们。遵从语义版本的约定，TensorFlow 生成的任何图或检验点能够被后续相同主版本号的 TensorFlow 加载和评估。然而，如果可能的话，我们甚至会在不同主版本号之间尽力保留向后兼容性，以使序列化文件能够长期使用。</p>
+<p>图形可以通过 <code>GraphDef</code> protocol buffer 序列化。为了推进图的向后不兼容改变的实行（极少出现这种情况），每个 <code>GraphDef</code> 都有一个独立于 TensorFlow 版本的版本号。例如，<code>GraphDef</code> 版本 17 不推荐使用 <code>inv</code> 操作，而推荐使用 <code>reciprocal</code>。它有以下语义：</p>
+<ul>
+<li><p>每个 TensorFlow 版本支持 GraphDef 间隔版本。间隔版本不随补丁版本发布而改变，只有副版本发布时才会改变。在 TensorFlow 主版本发布时，才会发生放弃对某个 <code>GraphDef</code> 版本的支持这种情况。</p>
+</li>
+<li><p>新建的图会分配到最新的 <code>GraphDef</code> 版本号。</p>
+</li>
+<li><p>如果某个给定的 TensorFlow 版本支持一个图的  <code>GraphDef</code> 版本，它将会以和当初生成这个图的 TensorFlow 版本同样的行为加载并评估它（浮点数数值细节和随机数除外），不论 TensorFlow 的主版本是多少。尤其要注意，所有的检验点文件将会是兼容的。</p>
+</li>
+<li><p>如果一个发布版（副版本）中的 <code>GraphDef</code> 增加到了上限 X，那么要等下限增加到 X,至少需要六个月。例如（在这里，版本号是我们假定的）：</p>
+<ul>
+<li>TensorFlow 1.2 版本可能支持 4 到 7 版本号的 <code>GraphDef</code> 版本。</li>
+<li>TensorFlow 1.3 可以添加 <code>GraphDef</code> 版本 8 并且支持 4 to 8 版本号的版本。</li>
+<li>至少六个月后，TensorFlow 2.0.0 才能放弃支持 4 到 7 版本号的 <code>GraphDef</code> 版本而仅保留版本 8的 <code>GraphDef</code>。</li>
+</ul>
+</li>
+</ul>
+<p>最后，当 <code>GraphDef</code> 版本不再被支持时，我们将会尝试提供一系列工具用以将图自动转换为更新的被支持的 <code>GraphDef</code> 版本。</p>
+<h2>扩展 TensorFlow 时的图和检验点兼容性</h2>
+<p>只有 <code>GraphDef</code> 格式产生不兼容的更改时，本节内容才具有相关性。这些更改包括添加操作、移除操作以及更改现有操作的功能。对于多数使用者，前面几节已经足够。</p>
+<h3>向后兼容性和部分向前兼容性</h3>
+<p>我们的版本体系有三个要求：</p>
+<ul>
+<li><strong>向后兼容性</strong>应支持加载由老版本 TensorFlow 创建的图和检验点。</li>
+<li><strong>向前兼容性</strong>应支持图和检验点的生产者先于消费者升级 TensorFlow 的版本这种情况。</li>
+<li>能够以不兼容方式更迭。例如，移除操作、增加属性以及移除属性。</li>
+</ul>
+<p>需要注意的是，虽然 <code>GraphDef</code> 版本机制独立于 TensorFlow 版本，不向后兼容的 <code>GraphDef</code> 格式改变仍受限于语义化版本号。这意味着只能在主版本之间移除或更改功能，比如 <code>1.7</code> 版本升至 <code>2.0</code> 版本。此外，各个补丁版本之间被强制保持向前兼容性，比如 <code>1.x.1</code> 版本升至 <code>1.x.2</code> 版本。</p>
+<p>为了实现向后和向前兼容性，并且为了解何时该强制改变格式，图和检验点拥有描述自己何时生成的元数据。下节将详述 <code>GraphDef</code> 的 TensorFlow 实现和版本更迭指南。</p>
+<h3>独立数据版本体系</h3>
+<p>图和检验点有不同的数据版本。这两种数据格式的更迭速率彼此不同，也不同于 TensorFlow 的更迭速率。两种版本系统均定义于 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/public/version.h"><code>core/public/version.h</code></a>。<br>
+每添加一个新版本，就会有一条记录被添加到头文件以详细描述更改的内容以及更改日期。</p>
+<h3>数据、生产者以及消费者</h3>
+<p>我们会区分以下种类的数据版本信息：</p>
+<ul>
+<li><strong>生产者</strong>：生产数据的二进制文件。生产者拥有一个（<code>producer</code>）版本，以及一个和（<code>min_consumer</code>）兼容的最低消费者版本。</li>
+<li><strong>消费者</strong>：生产数据的二进制文件。消费者有一个（<code>consumer</code>）版本，以及一个和（<code>min_producer</code>）兼容的最低生产者版本。</li>
+</ul>
+<p>每个版本数据段都有一个 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/versions.proto"><code>VersionDef
+versions</code></a> 字段用于记录生成这些数据的 <code>producer</code>、与之兼容的 <code>min_consumer</code>，以及一个不被接受的 <code>bad_consumers</code> 版本列表。</p>
+<p>默认情况下，当一名生产者生成一些数据，这些数据会继承生产者的 <code>producer</code> 和 <code>min_consumer</code> 版本。如果已经知道特定版本包含 bugs 且必须被避免，也可以设置 <code>bad_consumers</code> 。如果下列条件全部成立，消费者就可以接受数据段：</p>
+<ul>
+<li><code>consumer</code> &gt;= 数据的 <code>min_consumer</code></li>
+<li>数据的 <code>producer</code> &gt;= 消费者的 <code>min_producer</code></li>
+<li><code>consumer</code> 不存在于数据的 <code>bad_consumers</code> 内</li>
+</ul>
+<p>由于生产者和消费者均来源于 TensorFlow 代码库，<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/public/version.h"><code>core/public/version.h</code></a> 包含一个视上下文及其 <code>min_consumer</code> 和  <code>min_producer</code>（分别为生产者和消费者所需）情况而解析为 <code>producer</code> 或 <code>consumer</code> 的主数据版本。特别地，</p>
+<ul>
+<li>对于 <code>GraphDef</code> 版本，我们使用 <code>TF_GRAPH_DEF_VERSION</code>、 <code>TF_GRAPH_DEF_VERSION_MIN_CONSUMER</code>，以及 <code>TF_GRAPH_DEF_VERSION_MIN_PRODUCER</code> 标识。</li>
+<li>对于检验点版本，我们使用 <code>TF_CHECKPOINT_VERSION</code>、<code>TF_CHECKPOINT_VERSION_MIN_CONSUMER</code>，以及 <code>TF_CHECKPOINT_VERSION_MIN_PRODUCER</code> 标识。</li>
+</ul>
+<h3>GraphDef 版本更迭</h3>
+<p>本节将阐述如何利用版本机制来区分 <code>GraphDef</code> 格式的改变。</p>
+<h4>增加一个操作</h4>
+<p>同时为消费者和生产者添加一个新操作，并且不改变任何 <code>GraphDef</code> 版本。这种类型的改变自动向后兼容，而且不影响向前兼容性计划，因为现有生产者脚本不会突然使用新功能。</p>
+<h4>增加一个操作并使现有 Python 包装器转而使用它</h4>
+<ol>
+<li>实现新的消费者功能并递增 <code>GraphDef</code> 版本。</li>
+<li>如果能使包装器使用过去没有的新功能，那么可以立刻更新包装器。</li>
+<li>更改 Python 包装器以使用新功能。不要递增 <code>min_consumer</code> ，因为未使用新功能的机型并不会停止运行。</li>
+</ol>
+<h4>移除或限制某个操作的功能</h4>
+<ol>
+<li>修复全部生产者脚本（不是 TensorFlow 本身）以避免使用禁用的操作和功能。</li>
+<li>递增 <code>GraphDef</code> 版本，实现新的禁止在新版本及其后续版本中移除 GraphDefs 操作或功能的消费者功能。可能的话，可以使用禁用功能使 TensorFlow 不生成 <code>GraphDefs</code>。想要这么做的话，请添加 <a href="https://github.com/tensorflow/tensorflow/blob/b289bc7a50fc0254970c60aaeba01c33de61a728/tensorflow/core/ops/array_ops.cc#L1009"><code>REGISTER_OP(...).Deprecated(deprecated_at_version,message)</code></a>。</li>
+<li>等待兼顾向后兼容性的主版本的发布。</li>
+<li>在第（2）点中递增 GraphDef 的 <code>min_producer</code>，并且完全移除其功能。</li>
+</ol>
+<h4>更改某个操作的功能</h4>
+<ol>
+<li>增加一个新的名为 <code>SomethingV2</code> 或 similer 的相似操作，并经历添加且使现有 Python 包装器转而使用它的过程，如果希望保持向前兼容性，这将花费三周。</li>
+<li>移除旧操作（由于要保持向后兼容性，只能改变主版本号）。</li>
+<li>递增 <code>min_consumer</code> 以使消费者无法使用旧操作，将旧操作以别名 <code>SomethingV2</code> 添加回去，并经历添加且使现有 Python 包装器转而使用它的过程。</li>
+<li>经历移除 <code>SomethingV2</code> 的过程。</li>
+</ol>
+<h4>禁用单一不安全版本</h4>
+<ol>
+<li>为全部的新 GraphDef 替换掉 <code>GraphDef</code> 版本，并且在 <code>bad_consumers</code> 中添加错误版本。如果可能的话，只为包含确定操作或相似操作的 GraphDef 添加 <code>bad_consumers</code>。</li>
+<li>如果现有消费者拥有错误版本，请尽快淘汰这些版本。</li>
+</ol>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

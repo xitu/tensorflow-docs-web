@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Graph Editor (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Graph Editor (contrib)</h1>
+<p>[TOC]</p>
+<p>TensorFlow Graph Editor.</p>
+<p>The TensorFlow Graph Editor library allows for modification of an existing<br>
+<code>tf.Graph</code> instance in-place.</p>
+<p>The author's github username is <a href="https://github.com/purpledog">purpledog</a>.</p>
+<h2>Library overview</h2>
+<p>Appending new nodes is the only graph editing operation allowed by the<br>
+TensorFlow core library. The Graph Editor library is an attempt to allow for<br>
+other kinds of editing operations, namely, <em>rerouting</em> and <em>transforming</em>.</p>
+<ul>
+<li><em>rerouting</em> is a local operation consisting in re-plugging existing tensors<br>
+(the edges of the graph). Operations (the nodes) are not modified by this<br>
+operation. For example, rerouting can be used to insert an operation adding<br>
+noise in place of an existing tensor.</li>
+<li><em>transforming</em> is a global operation consisting in transforming a graph into<br>
+another. By default, a transformation is a simple copy but it can be<br>
+customized to achieved other goals. For instance, a graph can be transformed<br>
+into another one in which noise is added after all the operations of a<br>
+specific type.</li>
+</ul>
+<p><strong>Important: modifying a graph in-place with the Graph Editor must be done<br>
+<code>offline</code>, that is, without any active sessions.</strong></p>
+<p>Of course new operations can be appended online but Graph Editor specific<br>
+operations like rerouting and transforming can currently only be done offline.</p>
+<p>Here is an example of what you <strong>cannot</strong> do:</p>
+<ul>
+<li>Build a graph.</li>
+<li>Create a session and run the graph.</li>
+<li>Modify the graph with the Graph Editor.</li>
+<li>Re-run the graph with the <code>same</code> previously created session.</li>
+</ul>
+<p>To edit an already running graph, follow these steps:</p>
+<ul>
+<li>Build a graph.</li>
+<li>Create a session and run the graph.</li>
+<li>Save the graph state and terminate the session</li>
+<li>Modify the graph with the Graph Editor.</li>
+<li>create a new session and restore the graph state</li>
+<li>Re-run the graph with the newly created session.</li>
+</ul>
+<p>Note that this procedure is very costly because a new session must be created<br>
+after any modifications. Among other things, it takes time because the entire<br>
+graph state must be saved and restored again.</p>
+<h2>Sub-graph</h2>
+<p>Most of the functions in the Graph Editor library operate on <em>sub-graph</em>.<br>
+More precisely, they take as input arguments instances of the SubGraphView class<br>
+(or anything which can be converted to it). Doing so allows the same function<br>
+to transparently operate on single operations as well as sub-graph of any size.</p>
+<p>A subgraph can be created in several ways:</p>
+<ul>
+<li>using a list of ops:</li>
+</ul>
+<pre><code class="lang-python">my_sgv = ge.sgv(ops)
+</code></pre>
+<ul>
+<li>from a name scope:</li>
+</ul>
+<pre><code class="lang-python">my_sgv = ge.sgv_scope(&quot;foo/bar&quot;, graph=tf.get_default_graph())
+</code></pre>
+<ul>
+<li>using regular expression:</li>
+</ul>
+<pre><code class="lang-python">my_sgv = ge.sgv(&quot;foo/.*/.*read$&quot;, graph=tf.get_default_graph())
+</code></pre>
+<p>Note that the Graph Editor is meant to manipulate several graphs at the same<br>
+time, typically during transform or copy operation. For that reason,<br>
+to avoid any confusion, the default graph is never used and the graph on<br>
+which to operate must always be given explicitly. This is the reason why<br>
+<em><code>graph=tf.get_default_graph()</code></em> is used in the code snippets above.</p>
+<h2>Modules overview</h2>
+<ul>
+<li>util: utility functions.</li>
+<li>select: various selection methods of TensorFlow tensors and operations.</li>
+<li>match: TensorFlow graph matching. Think of this as regular expressions for<br>
+graphs (but not quite yet).</li>
+<li>reroute: various ways of rerouting tensors to different consuming ops like<br>
+<em>swap</em> or <em>reroute_a2b</em>.</li>
+<li>subgraph: the SubGraphView class, which enables subgraph manipulations in a<br>
+TensorFlow <code>tf.Graph</code>.</li>
+<li>edit: various editing functions operating on subgraphs like <em>detach</em>,<br>
+<em>connect</em> or <em>bypass</em>.</li>
+<li>transform: the Transformer class, which enables transforming<br>
+(or simply copying) a subgraph into another one.</li>
+</ul>
+<h2>Module: util</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_list_of_op"><code>tf.contrib.graph_editor.make_list_of_op</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_tensors"><code>tf.contrib.graph_editor.get_tensors</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_list_of_t"><code>tf.contrib.graph_editor.make_list_of_t</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_generating_ops"><code>tf.contrib.graph_editor.get_generating_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_consuming_ops"><code>tf.contrib.graph_editor.get_consuming_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/ControlOutputs"><code>tf.contrib.graph_editor.ControlOutputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/placeholder_name"><code>tf.contrib.graph_editor.placeholder_name</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_placeholder_from_tensor"><code>tf.contrib.graph_editor.make_placeholder_from_tensor</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_placeholder_from_dtype_and_shape"><code>tf.contrib.graph_editor.make_placeholder_from_dtype_and_shape</code></a></li>
+</ul>
+<h2>Module: select</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/filter_ts"><code>tf.contrib.graph_editor.filter_ts</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/filter_ts_from_regex"><code>tf.contrib.graph_editor.filter_ts_from_regex</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/filter_ops"><code>tf.contrib.graph_editor.filter_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/filter_ops_from_regex"><code>tf.contrib.graph_editor.filter_ops_from_regex</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_name_scope_ops"><code>tf.contrib.graph_editor.get_name_scope_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/check_cios"><code>tf.contrib.graph_editor.check_cios</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_ops_ios"><code>tf.contrib.graph_editor.get_ops_ios</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/compute_boundary_ts"><code>tf.contrib.graph_editor.compute_boundary_ts</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_within_boundary_ops"><code>tf.contrib.graph_editor.get_within_boundary_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_forward_walk_ops"><code>tf.contrib.graph_editor.get_forward_walk_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_backward_walk_ops"><code>tf.contrib.graph_editor.get_backward_walk_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_walks_intersection_ops"><code>tf.contrib.graph_editor.get_walks_intersection_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_walks_union_ops"><code>tf.contrib.graph_editor.get_walks_union_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/select_ops"><code>tf.contrib.graph_editor.select_ops</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/select_ts"><code>tf.contrib.graph_editor.select_ts</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/select_ops_and_ts"><code>tf.contrib.graph_editor.select_ops_and_ts</code></a></li>
+</ul>
+<h2>Module: subgraph</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/SubGraphView"><code>tf.contrib.graph_editor.SubGraphView</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_view"><code>tf.contrib.graph_editor.make_view</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_view_from_scope"><code>tf.contrib.graph_editor.make_view_from_scope</code></a></li>
+</ul>
+<h2>Module: reroute</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/swap_ts"><code>tf.contrib.graph_editor.swap_ts</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/reroute_ts"><code>tf.contrib.graph_editor.reroute_ts</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/swap_inputs"><code>tf.contrib.graph_editor.swap_inputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/reroute_inputs"><code>tf.contrib.graph_editor.reroute_inputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/swap_outputs"><code>tf.contrib.graph_editor.swap_outputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/reroute_outputs"><code>tf.contrib.graph_editor.reroute_outputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/swap_ios"><code>tf.contrib.graph_editor.swap_ios</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/reroute_ios"><code>tf.contrib.graph_editor.reroute_ios</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/remove_control_inputs"><code>tf.contrib.graph_editor.remove_control_inputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/add_control_inputs"><code>tf.contrib.graph_editor.add_control_inputs</code></a></li>
+</ul>
+<h2>Module: edit</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach_control_inputs"><code>tf.contrib.graph_editor.detach_control_inputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach_control_outputs"><code>tf.contrib.graph_editor.detach_control_outputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach_inputs"><code>tf.contrib.graph_editor.detach_inputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach_outputs"><code>tf.contrib.graph_editor.detach_outputs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach"><code>tf.contrib.graph_editor.detach</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/connect"><code>tf.contrib.graph_editor.connect</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/bypass"><code>tf.contrib.graph_editor.bypass</code></a></li>
+</ul>
+<h2>Module: transform</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/replace_t_with_placeholder_handler"><code>tf.contrib.graph_editor.replace_t_with_placeholder_handler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/keep_t_if_possible_handler"><code>tf.contrib.graph_editor.keep_t_if_possible_handler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/assign_renamed_collections_handler"><code>tf.contrib.graph_editor.assign_renamed_collections_handler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/transform_op_if_inside_handler"><code>tf.contrib.graph_editor.transform_op_if_inside_handler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/copy_op_handler"><code>tf.contrib.graph_editor.copy_op_handler</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/Transformer"><code>tf.contrib.graph_editor.Transformer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/copy"><code>tf.contrib.graph_editor.copy</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/copy_with_input_replacements"><code>tf.contrib.graph_editor.copy_with_input_replacements</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/graph_replace"><code>tf.contrib.graph_editor.graph_replace</code></a></li>
+</ul>
+<h2>Useful aliases</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/ph"><code>tf.contrib.graph_editor.ph</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/sgv"><code>tf.contrib.graph_editor.sgv</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/sgv_scope"><code>tf.contrib.graph_editor.sgv_scope</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

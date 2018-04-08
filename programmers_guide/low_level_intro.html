@@ -1,0 +1,365 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>底层 API 编程介绍</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>底层 API 编程介绍</h1>
+<p>这篇指南将帮助你使用底层的 TensorFlow 核心 API 进行编程，会涉及到以下几个部分：</p>
+<ul>
+<li>管理你的 TensorFlow 程序（一张 TensorFlow 计算图，<code>tf.Graph</code>）以及 TensorFlow 运行时（一个 TensorFlow 会话，<code>tf.Session</code>），而不是依赖 Estimators 来管理它们</li>
+<li>使用 <code>tf.Session</code> 运行 TensorFlow 操作<br>
+ * 在底层环境中使用高级的组件（<a href="#datasets">datasets</a>, <a href="#layers">layers</a>, 以及 <a href="#feature_columns">特征列</a>）</li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html">Getting Started with TensorFlow</a></li>
+</ul>
+<p>我们推荐尽量使用更高层次的 API 来构建模型，但了解 TensorFlow 核心 API 有以下几个优点：</p>
+<ul>
+<li>使用低级 TensorFlow 的操作能帮你更加切中肯綮地进行实验和 debug<br>
+ * 在使用高层次 API 的时候，你能够知道其内部是如何运作的</li>
+</ul>
+<h2>配置</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></p>
+<p>理解本指南的大部分内容需要你有以下知识储备：</p>
+<ul>
+<li>  会使用 Python 进行编程</li>
+<li>关于数组的一些知识</li>
+<li>最好了解一些机器学习的内容</li>
+</ul>
+<p>启动 <code>python</code> 然后跟着一起来实操吧!</p>
+<p>运行下列代码来配置你的 Python 环境：</p>
+<pre><code class="lang-python">from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import numpy as np
+import tensorflow as tf
+</code></pre>
+<h2>张量值</h2>
+<p>TensorFlow 核心的数据单元是<strong>张量</strong>（Tensor），一个张量由一个基本数据类型的多维数组来表示。张量的<strong>秩</strong>指的是它的维度数量，它的<strong>形状</strong>是一个整数元组，指定了各个维度的数组长度。下面一些张量值的例子：</p>
+<pre><code class="lang-python">3. # 秩为 0 的张量，形为 [] 的标量
+[1., 2., 3.] # 秩为 1 的张量，形为 [3] 的向量
+[[1., 2., 3.], [4., 5., 6.]] # 秩为 2 的张量，形为 [2, 3] 的矩阵
+[[[1., 2., 3.]], [[7., 8., 9.]]] # 秩为 3 的张量，形为 [2, 1, 3]
+</code></pre>
+<p>TensorFlow 使用 numpy 数组来表示张量的<strong>值</strong>。</p>
+<h2>TensorFlow 核心 API 实战</h2>
+<p>使用 TensorFlow 核心 API 编程由以下两部分组成：</p>
+<ol>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></li>
+</ol>
+<h3>计算图</h3>
+<p><strong>计算图</strong>是一组定义在图中的 TensorFlow 操作，该图由两种类型的对象组成：</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/Operation"><code>tf.Operation</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/Tensor"><code>tf.Tensor</code></a></li>
+</ul>
+<p>重点：<code>tf.Tensors</code> 并不包含值，而只是操作图中各个部分的工具。</p>
+<p>让我们来构建一张简单的计算图。图中最基础的操作就是常量操作，<code>tf.constant()</code>这个 Python 函数以一个张量值作为输入，其产生结果不需要额外的输入。当我们调用它时，它会输出传递给构造器的那个值。</p>
+<p>我们可以创建两个浮点类型的常量 <code>a</code> 和 <code>b</code> 如下列代码所示：</p>
+<pre><code class="lang-python">a = tf.constant(3.0, dtype=tf.float32)
+b = tf.constant(4.0) # 隐式的创建一个浮点类型
+total = a + b
+print(a)
+print(b)
+print(total)
+</code></pre>
+<p><code>print</code> 语句的结果如下：</p>
+<pre><code>Tensor("Const:0", shape=(), dtype=float32)
+Tensor("Const_1:0", shape=(), dtype=float32)
+Tensor("add:0", shape=(), dtype=float32)
+</code></pre>
+<p>注意，张量的打印结果并不是如你所想的 <code>3.0</code>，<code>4.0</code> 和 <code>7.0</code>。上述语句只是构建了计算图，这些 <code>tf.Tesor</code> 对象只代表了将要进行的操作的结果。</p>
+<p>计算图中的每个操作都会被赋予一个唯一的名称，这个名称和 Python 对象的名称无关。张量的命名规则是<code>"操作名 + 输出序号"</code>，如上面的 <code>"add:0"</code>。</p>
+<h3>TensorBoard</h3>
+<p>TensorFlow 提供了一个名为 TensorBoard 的工具。TensorBoard 的功能之一就是可视化一张计算图，几个简单的命令就能实现它。</p>
+<p>首先，需要将计算图存为 TensorBoard 的总结文件，代码如下所示：</p>
+<pre><code>writer = tf.summary.FileWriter('.')
+writer.add_graph(tf.get_default_graph())
+</code></pre>
+<p>你会在当前目录下得到一个 <code>.event</code> 后缀的文件，其命名格式如下：</p>
+<pre><code>events.out.tfevents.{timestamp}.{hostname}
+</code></pre>
+<p>接下来，在一个新的终端里，使用下面的命令启动 TensorBoard：</p>
+<pre><code class="lang-bsh">tensorboard --logdir .
+</code></pre>
+<p>你可以在你的浏览器里打开 TensorBoard 的<a href="http://localhost:6006/#graphs">计算图页面</a>，你应该会看到和下面类似的一张图</p>
+<p><img src="https://www.tensorflow.org/images/getting_started_add.png" alt="TensorBoard screenshot"></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/graph_viz.html">TensorBoard: 图形可视化</a></p>
+<h3>会话</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></p>
+<p>下面的代码创建了一个 <code>tf.Session</code> 对象，并且调用了它的 <code>run</code> 方法来对我们先前创建的 <code>total</code> 张量求值：</p>
+<pre><code class="lang-python">sess = tf.Session()
+print(sess.run(total))
+</code></pre>
+<p>当你使用 <code>Session.run</code> 方法来获取一个节点的输出时，TensorFlow 回溯计算图，并先计算出所获取节点需要的输入（如果是某个节点的输出，则计算之），然后输出结果。所以打印的结果是 7.0：</p>
+<pre><code>7.0
+</code></pre>
+<p>你可以同时传递给 <code>tf.Session.run</code> 多个张量，<code>run</code> 方法会自动处理任意元组或者是字典的组合，如下面的例子所示：</p>
+<pre><code class="lang-python">print(sess.run({&#39;ab&#39;:(a, b), &#39;total&#39;:total}))
+</code></pre>
+<p>方法返回的结果和输入具有相同的结构：</p>
+<pre><code class="lang-None">{&#39;total&#39;: 7.0, &#39;ab&#39;: (3.0, 4.0)}
+</code></pre>
+<p>在调用 <code>tf.Seeion.run</code> 的过程中，每一个 <code>tf.Tensor</code> 张量对象具有唯一的值。比如，下面的代码调用了 <code>tf.random_uniform</code> 函数来产生一个服从均一分布的 3 个元素的随机向量（值介于 <code>[0, 1]</code>）：</p>
+<pre><code class="lang-python">vec = tf.random_uniform(shape=(3,))
+out1 = vec + 1
+out2 = vec + 2
+print(sess.run(vec))
+print(sess.run(vec))
+print(sess.run((out1, out2)))
+</code></pre>
+<p>结果显示了每次调用 <code>run</code>，都会产生不同的结果，但是在一次调用中，<code>vec</code> 的值保持不变（<code>out1</code> 和 <code>out2</code> 接收同一个随机的输入）：</p>
+<pre><code>[ 0.52917576  0.64076328  0.68353939]
+[ 0.66192627  0.89126778  0.06254101]
+(
+  array([ 1.88408756,  1.87149239,  1.84057522], dtype=float32),
+  array([ 2.88408756,  2.87149239,  2.84057522], dtype=float32)
+)
+</code></pre>
+<p>一些 TensorFlow 函数会返回 <code>tf.Operations</code> 对象而不是 <code>tf.Tensors</code>，在一个 Operation（操作） 上调用 <code>run</code> 的结果是 <code>None</code>。运行一个操作的结果不会获取值，但是会产生一系列的副作用，像<a href="#Initializing Layers">初始化</a>以及<a href="#Training">训练</a>操作，这些内容会在后面的部分谈到。</p>
+<h3>赋值</h3>
+<p>如果计算图始终只能产生常量结果的话，那就没什么意思了。计算图能够通过使用<strong>占位符</strong>（placeholder）来接收外部的输入，<strong>占位符</strong>像是一个函数的参数，能够在之后的操作中进行赋值。</p>
+<pre><code class="lang-python">x = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32)
+z = x + y
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Session/run"><code>tf.Session.run</code></a></p>
+<pre><code class="lang-python">print(sess.run(z, feed_dict={x: 3, y: 4.5}))
+print(sess.run(z, feed_dict={x: [1, 3], y: [2, 4]}))
+</code></pre>
+<p>结果的输出如下：</p>
+<pre><code>7.5
+[ 3.  7.]
+</code></pre>
+<p>需要注意，<code>feed_dict</code> 参数可以用来覆盖计算图中的任何张量。占位符和 <code>tf.Tensors</code> 的唯一区别就在于如果占位符没有被赋值，则使用时会抛出错误。</p>
+<h2>数据集</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator/get_next"><code>tf.data.Iterator.get_next</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/make_one_shot_iterator"><code>tf.data.Dataset.make_one_shot_iterator</code></a></p>
+<pre><code class="lang-python">my_data = [
+    [0, 1,],
+    [2, 3,],
+    [4, 5,],
+    [6, 7,],
+]
+slices = tf.data.Dataset.from_tensor_slices(my_data)
+next_item = slices.make_one_shot_iterator().get_next()
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError"><code>tf.errors.OutOfRangeError</code></a></p>
+<pre><code class="lang-python">while True:
+  try:
+    print(sess.run(next_item))
+  except tf.errors.OutOfRangeError:
+    break
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/datasets.html">数据导入</a></p>
+<h2>网络层</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers"><code>tf.layers</code></a></p>
+<p>网络层封装了变量和作用其上的操作。比如，<a href="https://developers.google.com/machine-learning/glossary/#fully_connected_layer">全连接层</a>)对输入进行一个加权求和的操作，并且可以作用一个可选择的<a href="https://developers.google.com/machine-learning/glossary/#activation_function">激活函数</a>。连接的权重和偏置都由网络层对象来管理。</p>
+<h3>创建网络层</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/Dense"><code>tf.layers.Dense</code></a></p>
+<pre><code class="lang-python">x = tf.placeholder(tf.float32, shape=[None, 3])
+linear_model = tf.layers.Dense(units=1)
+y = linear_model(x)
+</code></pre>
+<p>网络层根据输入来决定内部的变量的形状大小，所以我们必须设置 <code>x</code> 这一占位符的形状，从而能够让网络层推断出正确的参数形状。</p>
+<p>定义了输出的操作 <code>y</code> 之后，在我们运行之前，还有一点需要注意。</p>
+<h3>初始化网络层</h3>
+<p>网络层中的变量在使用之前，必须要<strong>初始化</strong>。你可以逐一的初始化每个变量，同样也能够和下面一样，简单地用一行代码初始化计算图中所有的变量：</p>
+<pre><code class="lang-python">init = tf.global_variables_initializer()
+sess.run(init)
+</code></pre>
+<p>重点：调用 <code>tf.global_variables_initializer</code> 创建并返回一个 TensorFlow 操作的句柄，当使用  <code>tf.Session.run</code> 来运行它时，这个操作将会初始化所有的全局变量。</p>
+<p>还有一点需要注意，<code>global_variables_initializer</code> 只会初始化已经在计算图中定义的变量。所以初始化操作应该是构建计算图的最后一步操作。</p>
+<h3>执行网络层</h3>
+<p>网络层初始化之后，和其他张量一样，我们可以对 <code>linear_model</code> 的输出张量进行求值。如下面的代码所示：</p>
+<pre><code class="lang-python">print(sess.run(y, {x: [[1, 2, 3],[4, 5, 6]]}))
+</code></pre>
+<p>结果是含有两个元素的向量：</p>
+<pre><code>[[-3.41378999]
+ [-9.14999008]]
+</code></pre>
+<h3>网络层函数快捷键</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
+<pre><code class="lang-python">x = tf.placeholder(tf.float32, shape=[None, 3])
+y = tf.layers.dense(x, units=1)
+
+init = tf.global_variables_initializer()
+sess.run(init)
+
+print(sess.run(y, {x: [[1, 2, 3], [4, 5, 6]]}))
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/Layer"><code>tf.layers.Layer</code></a></p>
+<h2>特征列</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column/indicator_column"><code>tf.feature_column.indicator_column</code></a></p>
+<pre><code class="lang-python">features = {
+    &#39;sales&#39; : [[5], [10], [8], [9]],
+    &#39;department&#39;: [&#39;sports&#39;, &#39;sports&#39;, &#39;gardening&#39;, &#39;gardening&#39;]}
+
+department_column = tf.feature_column.categorical_column_with_vocabulary_list(
+        &#39;department&#39;, [&#39;sports&#39;, &#39;gardening&#39;])
+department_column = tf.feature_column.indicator_column(department_column)
+
+columns = [
+    tf.feature_column.numeric_column(&#39;sales&#39;),
+    department_column
+]
+
+inputs = tf.feature_column.input_layer(features, columns)
+</code></pre>
+<p>运行 <code>inputs</code> 会把 <code>features</code> 变成一系列向量。</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/tables_initializer"><code>tf.tables_initializer</code></a></p>
+<pre><code class="lang-python">var_init = tf.global_variables_initializer()
+table_init = tf.tables_initializer()
+sess = tf.Session()
+sess.run((var_init, table_init))
+</code></pre>
+<p>内部状态初始化之后，就可以和其他张量一样运行 <code>inputs</code> ：</p>
+<pre><code class="lang-python">print(sess.run(inputs))
+</code></pre>
+<p>这展示了特征列是如何对输入的向量进行编码：“部门”属性使用 one-hot 进行编码，占据每一个向量的前面两个索引（[1., 0.] 代表”sports"，[0., 1.] 代表“gardening”），“销量”属性则由第三个索引来表示：</p>
+<pre><code class="lang-None">[[  1.   0.   5.]
+ [  1.   0.  10.]
+ [  0.   1.   8.]
+ [  0.   1.   9.]]
+</code></pre>
+<h2>训练</h2>
+<p>熟悉了 TensorFlow 的核心操作之后，一起来动手训练一个小的回归模型吧。</p>
+<h3>定义数据</h3>
+<p>先来定义一些输入，<code>x</code>，以及对应的输出 <code>y_true</code>：</p>
+<pre><code class="lang-python">x = tf.constant([[1], [2], [3], [4]], dtype=tf.float32)
+y_true = tf.constant([[0], [-1], [-2], [-3]], dtype=tf.float32)
+</code></pre>
+<h3>定义模型</h3>
+<p>接下来，构建一个简单的线性模型，输出为一个值：</p>
+<pre><code class="lang-python">linear_model = tf.layers.Dense(units=1)
+
+y_pred = linear_model(x)
+</code></pre>
+<p>你可以对模型的预测进行求值，如下面的代码所示：</p>
+<pre><code class="lang-python">sess = tf.Session()
+init = tf.global_variables_initializer()
+sess.run(init)
+
+print(sess.run(y_pred))
+</code></pre>
+<p>模型还没有经过训练，所以四个预测值和实际值相去甚远。下面是我们的结果，你的结果可能有些不一样：</p>
+<pre><code class="lang-None">[[ 0.02631879]
+ [ 0.05263758]
+ [ 0.07895637]
+ [ 0.10527515]]
+</code></pre>
+<h3>损失函数</h3>
+<p>为了优化一个模型，你需要先定义损失函数。我们使用经常应用在回归问题中的平方差作为损失函数。</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/losses"><code>tf.losses</code></a></p>
+<pre><code class="lang-python">loss = tf.losses.mean_squared_error(labels=y_true, predictions=y_pred)
+
+print(sess.run(loss))
+</code></pre>
+<p>这会打印出损失函数的值，比如：</p>
+<pre><code class="lang-None">2.23962
+</code></pre>
+<h3>训练</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/GradientDescentOptimizer"><code>tf.train.GradientDescentOptimizer</code></a></p>
+<pre><code class="lang-python">optimizer = tf.train.GradientDescentOptimizer(0.01)
+train = optimizer.minimize(loss)
+</code></pre>
+<p>上面的代码构建了优化过程所需的所有计算图的组件，并且返回了一个训练操作。运行这一操作，计算图中的所有变量会被更新，你可以像下面一样运行：</p>
+<pre><code class="lang-python">for i in range(100):
+  _, loss_value = sess.run((train, loss))
+  print(loss_value)
+</code></pre>
+<p>因为 <code>train</code> 是一个操作，而不是一个张量，所以运行的结果并不会返回值。我们可以运行 <code>loss_value</code> 张量来获知训练的过程，结果如下：</p>
+<pre><code class="lang-None">1.35659
+1.00412
+0.759167
+0.588829
+0.470264
+0.387626
+0.329918
+0.289511
+0.261112
+0.241046
+...
+</code></pre>
+<h3>完整程序</h3>
+<pre><code class="lang-python">x = tf.constant([[1], [2], [3], [4]], dtype=tf.float32)
+y_true = tf.constant([[0], [-1], [-2], [-3]], dtype=tf.float32)
+
+linear_model = tf.layers.Dense(units=1)
+
+y_pred = linear_model(x)
+loss = tf.losses.mean_squared_error(labels=y_true, predictions=y_pred)
+
+optimizer = tf.train.GradientDescentOptimizer(0.01)
+train = optimizer.minimize(loss)
+
+init = tf.global_variables_initializer()
+
+sess = tf.Session()
+sess.run(init)
+for i in range(100):
+  _, loss_value = sess.run((train, loss))
+  print(loss_value)
+
+print(sess.run(y_pred))
+</code></pre>
+<h2>接下来</h2>
+<p>想要学习更多关于使用 TensorFlow 构建模型的内容，你可以参考一下内容：</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+</ul>
+<p>如果你想要学习更多 TensorFlow 内部的工作原理，你可以参考下列文档，其中对我们涉及的话题有更深入的介绍：</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/graphs.html">流图与会话</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/tensors.html">张量</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/variables.html">变量</a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

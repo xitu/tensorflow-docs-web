@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Preparing models for mobile deployment</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': 'Overview'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'TensorFlow Lite Demo for Android'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'TensorFlow Lite 演示（iOS）'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': 'Building TensorFlow on Android'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Preparing models for mobile deployment</h1>
+<p>The requirements for storing model information during training are very<br>
+different from when you want to release it as part of a mobile app. This section<br>
+covers the tools involved in converting from a training model to something<br>
+releasable in production.</p>
+<h2>What is up with all the different saved file formats?</h2>
+<p>You may find yourself getting very confused by all the different ways that<br>
+TensorFlow can save out graphs. To help, here’s a rundown of some of the<br>
+different components, and what they are used for. The objects are mostly defined<br>
+and serialized as protocol buffers:</p>
+<ul>
+<li><p><a href="https://www.tensorflow.org/code/tensorflow/core/framework/node_def.proto">NodeDef</a>:<br>
+Defines a single operation in a model. It has a unique name, a list of the<br>
+names of other nodes it pulls inputs from, the operation type it implements<br>
+(for example <code>Add</code>, or <code>Mul</code>), and any attributes that are needed to control<br>
+that operation. This is the basic unit of computation for TensorFlow, and all<br>
+work is done by iterating through a network of these nodes, applying each one<br>
+in turn. One particular operation type that’s worth knowing about is <code>Const</code>,<br>
+since this holds information about a constant. This may be a single, scalar<br>
+number or string, but it can also hold an entire multi-dimensional tensor<br>
+array. The values for a <code>Const</code> are stored inside the <code>NodeDef</code>, and so large<br>
+constants can take up a lot of room when serialized.</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/code/tensorflow/core/util/tensor_bundle/tensor_bundle.h">Checkpoint</a>. Another<br>
+way of storing values for a model is by using <code>Variable</code> ops. Unlike <code>Const</code><br>
+ops, these don’t store their content as part of the <code>NodeDef</code>, so they take up<br>
+very little space within the <code>GraphDef</code> file. Instead their values are held in<br>
+RAM while a computation is running, and then saved out to disk as checkpoint<br>
+files periodically. This typically happens as a neural network is being<br>
+trained and weights are updated, so it’s a time-critical operation, and it may<br>
+happen in a distributed fashion across many workers, so the file format has to<br>
+be both fast and flexible. They are stored as multiple checkpoint files,<br>
+together with metadata files that describe what’s contained within the<br>
+checkpoints. When you’re referring to a checkpoint in the API (for example<br>
+when passing a filename in as a command line argument), you’ll use the common<br>
+prefix for a set of related files. If you had these files:</p>
+<pre><code>  /tmp/model/model-chkpt-1000.data-00000-of-00002
+  /tmp/model/model-chkpt-1000.data-00001-of-00002
+  /tmp/model/model-chkpt-1000.index
+  /tmp/model/model-chkpt-1000.meta
+</code></pre>
+<p>You would refer to them as <code>/tmp/model/chkpt-1000</code>.</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/code/tensorflow/core/framework/graph.proto">GraphDef</a>:<br>
+Has a list of <code>NodeDefs</code>, which together define the computational graph to<br>
+execute. During training, some of these nodes will be <code>Variables</code>, and so if<br>
+you want to have a complete graph you can run, including the weights, you’ll<br>
+need to call a restore operation to pull those values from<br>
+checkpoints. Because checkpoint loading has to be flexible to deal with all of<br>
+the training requirements, this can be tricky to implement on mobile and<br>
+embedded devices, especially those with no proper file system available like<br>
+iOS. This is where<br>
+the<br>
+<a href="https://www.tensorflow.org/code/tensorflow/python/tools/freeze_graph.py"><code>freeze_graph.py</code></a> script<br>
+comes in handy. As mentioned above, <code>Const</code> ops store their values as part of<br>
+the <code>NodeDef</code>, so if all the <code>Variable</code> weights are converted to <code>Const</code> nodes,<br>
+then we only need a single <code>GraphDef</code> file to hold the model architecture and<br>
+the weights. Freezing the graph handles the process of loading the<br>
+checkpoints, and then converts all Consts to Variables. You can then load the<br>
+resulting file in a single call, without having to restore variable values<br>
+from checkpoints. One thing to watch out for with <code>GraphDef</code> files is that<br>
+sometimes they’re stored in text format for easy inspection. These versions<br>
+usually have a ‘.pbtxt’ filename suffix, whereas the binary files end with<br>
+‘.pb’.</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/code/tensorflow/core/framework/function.proto">FunctionDefLibrary</a>:<br>
+This appears in <code>GraphDef</code>, and is effectively a set of sub-graphs, each with<br>
+information about their input and output nodes. Each sub-graph can then be<br>
+used as an op in the main graph, allowing easy instantiation of different<br>
+nodes, in a similar way to how functions encapsulate code in other languages.</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto">MetaGraphDef</a>:<br>
+A plain <code>GraphDef</code> only has information about the network of computations, but<br>
+doesn’t have any extra information about the model or how it can be<br>
+used. <code>MetaGraphDef</code> contains a <code>GraphDef</code> defining the computation part of<br>
+the model, but also includes information like ‘signatures’, which are<br>
+suggestions about which inputs and outputs you may want to call the model<br>
+with, data on how and where any checkpoint files are saved, and convenience<br>
+tags for grouping ops together for ease of use.</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/saved_model.proto">SavedModel</a>:<br>
+It’s common to want to have different versions of a graph that rely on a<br>
+common set of variable checkpoints. For example, you might need a GPU and a<br>
+CPU version of the same graph, but keep the same weights for both. You might<br>
+also need some extra files (like label names) as part of your<br>
+model. The<br>
+<a href="https://www.tensorflow.org/code/tensorflow/python/saved_model/README.md">SavedModel</a> format<br>
+addresses these needs by letting you save multiple versions of the same graph<br>
+without duplicating variables, and also storing asset files in the same<br>
+bundle. Under the hood, it uses <code>MetaGraphDef</code> and checkpoint files, along<br>
+with extra metadata files. It’s the format that you’ll want to use if you’re<br>
+deploying a web API using TensorFlow Serving, for example.</p>
+</li>
+</ul>
+<h2>How do you get a model you can use on mobile?</h2>
+<p>In most situations, training a model with TensorFlow will give you a folder<br>
+containing a <code>GraphDef</code> file (usually ending with the <code>.pb</code> or <code>.pbtxt</code> extension) and<br>
+a set of checkpoint files. What you need for mobile or embedded deployment is a<br>
+single <code>GraphDef</code> file that’s been ‘frozen’, or had its variables converted into<br>
+inline constants so everything’s in one file.  To handle the conversion, you’ll<br>
+need the <code>freeze_graph.py</code> script, that’s held in<br>
+<a href="https://www.tensorflow.org/code/tensorflow/python/tools/freeze_graph.py"><code>tensorflow/python/tools/freeze_graph.py</code></a>. You’ll run it like this:</p>
+<pre><code>bazel build tensorflow/tools:freeze_graph
+bazel-bin/tensorflow/tools/freeze_graph \
+--input_graph=/tmp/model/my_graph.pb \
+--input_checkpoint=/tmp/model/model.ckpt-1000 \
+--output_graph=/tmp/frozen_graph.pb \
+--output_node_names=output_node \
+</code></pre>
+<p>The <code>input_graph</code> argument should point to the <code>GraphDef</code> file that holds your<br>
+model architecture. It’s possible that your <code>GraphDef</code> has been stored in a text<br>
+format on disk, in which case it’s likely to end in <code>.pbtxt</code> instead of <code>.pb</code>,<br>
+and you should add an extra <code>--input_binary=false</code> flag to the command.</p>
+<p>The <code>input_checkpoint</code> should be the most recent saved checkpoint. As mentioned<br>
+in the checkpoint section, you need to give the common prefix to the set of<br>
+checkpoints here, rather than a full filename.</p>
+<p><code>output_graph</code> defines where the resulting frozen <code>GraphDef</code> will be<br>
+saved. Because it’s likely to contain a lot of weight values that take up a<br>
+large amount of space in text format, it’s always saved as a binary protobuf.</p>
+<p><code>output_node_names</code> is a list of the names of the nodes that you want to extract<br>
+the results of your graph from. This is needed because the freezing process<br>
+needs to understand which parts of the graph are actually needed, and which are<br>
+artifacts of the training process, like summarization ops. Only ops that<br>
+contribute to calculating the given output nodes will be kept. If you know how<br>
+your graph is going to be used, these should just be the names of the nodes you<br>
+pass into <code>Session::Run()</code> as your fetch targets. The easiest way to find the<br>
+node names is to inspect the Node objects while building your graph in python.<br>
+Inspecting your graph in TensorBoard is another simple way.  You can get some<br>
+suggestions on likely outputs by running the <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/graph_transforms/README.md#inspecting-graphs"><code>summarize_graph</code> tool</a>.</p>
+<p>Because the output format for TensorFlow has changed over time, there are a<br>
+variety of other less commonly used flags available too, like <code>input_saver</code>, but<br>
+hopefully you shouldn’t need these on graphs trained with modern versions of the<br>
+framework.</p>
+<h2>Using the Graph Transform Tool</h2>
+<p>A lot of the things you need to do to efficiently run a model on device are<br>
+available through the <a href="https://www.tensorflow.org/code/tensorflow/tools/graph_transforms/README.md">Graph Transform<br>
+Tool</a>. This<br>
+command-line tool takes an input <code>GraphDef</code> file, applies the set of rewriting<br>
+rules you request, and then writes out the result as a <code>GraphDef</code>. See the<br>
+documentation for more information on how to build and run this tool.</p>
+<h3>Removing training-only nodes</h3>
+<p>TensorFlow <code>GraphDefs</code> produced by the training code contain all of the<br>
+computation that’s needed for back-propagation and updates of weights, as well<br>
+as the queuing and decoding of inputs, and the saving out of checkpoints. All of<br>
+these nodes are no longer needed during inference, and some of the operations<br>
+like checkpoint saving aren’t even supported on mobile platforms. To create a<br>
+model file that you can load on devices you need to delete those unneeded<br>
+operations by running the <code>strip_unused_nodes</code> rule in the Graph Transform Tool.</p>
+<p>The trickiest part of this process is figuring out the names of the nodes you<br>
+want to use as inputs and outputs during inference.  You'll need these anyway<br>
+once you start to run inference, but you also need them here so that the<br>
+transform can calculate which nodes are not needed on the inference-only<br>
+path. These may not be obvious from the training code. The easiest way to<br>
+determine the node name is to explore the graph with TensorBoard.</p>
+<p>Remember that mobile applications typically gather their data from sensors and<br>
+have it as arrays in memory, whereas training typically involves loading and<br>
+decoding representations of the data stored on disk. In the case of Inception v3<br>
+for example, there’s a <code>DecodeJpeg</code> op at the start of the graph that’s designed<br>
+to take JPEG-encoded data from a file retrieved from disk and turn it into an<br>
+arbitrary-sized image. After that there’s a <code>BilinearResize</code> op to scale it to<br>
+the expected size, followed by a couple of other ops that convert the byte data<br>
+into float and scale the value magnitudes it in the way the rest of the graph<br>
+expects. A typical mobile app will skip most of these steps because it’s getting<br>
+its input directly from a live camera, so the input node you will actually<br>
+supply will be the output of the <code>Mul</code> node in this case.</p>
+<p>&lt;img src ="../images/inception_input.png" width="300"&gt;</p>
+<p>You’ll need to do a similar process of inspection to figure out the correct<br>
+output nodes.</p>
+<p>If you’ve just been given a frozen <code>GraphDef</code> file, and are not sure about the<br>
+contents, try using the <code>summarize_graph</code> tool to print out information<br>
+about the inputs and outputs it finds from the graph structure. Here’s an<br>
+example with the original Inception v3 file:</p>
+<pre><code>bazel run tensorflow/tools/graph_transforms:summarize_graph --
+--in_graph=tensorflow_inception_graph.pb
+</code></pre>
+<p>Once you have an idea of what the input and output nodes are, you can feed them<br>
+into the graph transform tool as the <code>--input_names</code> and <code>--output_names</code><br>
+arguments, and call the <code>strip_unused_nodes</code> transform, like this:</p>
+<pre><code>bazel run tensorflow/tools/graph_transforms:transform_graph --
+--in_graph=tensorflow_inception_graph.pb
+--out_graph=optimized_inception_graph.pb --inputs='Mul' --outputs='softmax'
+--transforms='
+  strip_unused_nodes(type=float, shape="1,299,299,3")
+  fold_constants(ignore_errors=true)
+  fold_batch_norms
+  fold_old_batch_norms'
+</code></pre>
+<p>One thing to look out for here is that you need to specify the size and type<br>
+that you want your inputs to be. This is because any values that you’re going to<br>
+be passing in as inputs to inference need to be fed to special <code>Placeholder</code> op<br>
+nodes, and the transform may need to create them if they don’t already exist. In<br>
+the case of Inception v3 for example, a <code>Placeholder</code> node replaces the old<br>
+<code>Mul</code> node that used to output the resized and rescaled image array, since we’re<br>
+going to be doing that processing ourselves before we call TensorFlow. It keeps<br>
+the original name though, which is why we always feed in inputs to <code>Mul</code> when we<br>
+run a session with our modified Inception graph.</p>
+<p>After you’ve run this process, you’ll have a graph that only contains the actual<br>
+nodes you need to run your prediction process. This is the point where it<br>
+becomes useful to run metrics on the graph, so it’s worth running<br>
+<code>summarize_graph</code> again to understand what’s in your model.</p>
+<h2>What ops should you include on mobile?</h2>
+<p>There are hundreds of operations available in TensorFlow, and each one has<br>
+multiple implementations for different data types. On mobile platforms, the size<br>
+of the executable binary that’s produced after compilation is important, because<br>
+app download bundles need to be as small as possible for the best user<br>
+experience. If all of the ops and data types are compiled into the TensorFlow<br>
+library then the total size of the compiled library can be tens of megabytes, so<br>
+by default only a subset of ops and data types are included.</p>
+<p>That means that if you load a model file that’s been trained on a desktop<br>
+machine, you may see the error “No OpKernel was registered to support Op” when<br>
+you load it on mobile. The first thing to try is to make sure you’ve stripped<br>
+out any training-only nodes, since the error will occur at load time even if the<br>
+op is never executed. If you’re still hitting the same problem once that’s done,<br>
+you’ll need to look at adding the op to your built library.</p>
+<p>The criteria for including ops and types fall into several categories:</p>
+<ul>
+<li><p>Are they only useful in back-propagation, for gradients? Since mobile is<br>
+focused on inference, we don’t include these.</p>
+</li>
+<li><p>Are they useful mainly for other training needs, such as checkpoint saving?<br>
+These we leave out.</p>
+</li>
+<li><p>Do they rely on frameworks that aren’t always available on mobile, such as<br>
+libjpeg? To avoid extra dependencies we don’t include ops like <code>DecodeJpeg</code>.</p>
+</li>
+<li><p>Are there types that aren’t commonly used? We don’t include boolean variants<br>
+of ops for example, since we don’t see much use of them in typical inference<br>
+graphs.</p>
+</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./mobile/optimizing.html#binary_size">移动端优化</a></p>
+<h3>Locate the implementation</h3>
+<p>Operations are broken into two parts. The first is the op definition, which<br>
+declares the signature of the operation, which inputs, outputs, and attributes<br>
+it has. These take up very little space, and so all are included by default. The<br>
+implementations of the op computations are done in kernels, which live in the<br>
+<code>tensorflow/core/kernels</code> folder. You need to compile the C++ file containing<br>
+the kernel implementation of the op you need into the library. To figure out<br>
+which file that is, you can search for the operation name in the source<br>
+files.</p>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=repo%3Atensorflow%2Ftensorflow+extension%3Acc+path%3Atensorflow%2Fcore%2Fkernels+REGISTER+Mul&amp;type=Code&amp;ref=searchresults">Here’s an example search in github</a>.</p>
+<p>You’ll see that this search is looking for the <code>Mul</code> op implementation, and it<br>
+finds it in <code>tensorflow/core/kernels/cwise_op_mul_1.cc</code>. You need to look for<br>
+macros beginning with <code>REGISTER</code>, with the op name you care about as one of the<br>
+string arguments.</p>
+<p>In this case, the implementations are actually broken up across multiple <code>.cc</code><br>
+files, so you’d need to include all of them in your build. If you’re more<br>
+comfortable using the command line for code search, here’s a grep command that<br>
+also locates the right files if you run it from the root of your TensorFlow<br>
+repository:</p>
+<p><code>grep 'REGISTER.*"Mul"' tensorflow/core/kernels/*.cc</code></p>
+<h3>Add the implementation to the build</h3>
+<p>If you’re using Bazel, and building for Android, you’ll want to add the files<br>
+you’ve found to<br>
+the<br>
+<a href="https://www.tensorflow.org/code/tensorflow/core/kernels/BUILD#L3565"><code>android_extended_ops_group1</code></a> or<br>
+<a href="https://www.tensorflow.org/code/tensorflow/core/kernels/BUILD#L3632"><code>android_extended_ops_group2</code></a> targets. You<br>
+may also need to include any .cc files they depend on in there. If the build<br>
+complains about missing header files, add the .h’s that are needed into<br>
+the<br>
+<a href="https://www.tensorflow.org/code/tensorflow/core/kernels/BUILD#L3525"><code>android_extended_ops</code></a> target.</p>
+<p>If you’re using a makefile targeting iOS, Raspberry Pi, etc, go to<br>
+<a href="https://www.tensorflow.org/code/tensorflow/contrib/makefile/tf_op_files.txt"><code>tensorflow/contrib/makefile/tf_op_files.txt</code></a> and<br>
+add the right implementation files there.</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

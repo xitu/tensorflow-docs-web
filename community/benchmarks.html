@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Defining and Running Benchmarks</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': 'Community'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/welcome.html', 'title': 'Welcome to the TensorFlow Community'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': 'Defining and Running Benchmarks'}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Defining and Running Benchmarks</h1>
+<p>This guide contains instructions for defining and running a TensorFlow benchmark. These benchmarks store output in <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/test_log.proto">TestResults</a> format. If these benchmarks are added to TensorFlow github repo, then we will run them daily with our continuous build and display a graph on our dashboard: <a href="https://benchmarks-dot-tensorflow-testing.appspot.com/">https://benchmarks-dot-tensorflow-testing.appspot.com/</a>.</p>
+<p>[TOC]</p>
+<h2>Defining a Benchmark</h2>
+<p>Defining a TensorFlow benchmark requires extending from <code>tf.test.Benchmark</code><br>
+class and calling <code>self.report_benchmark</code> method. For example, take a look at the sample benchmark code below:</p>
+<pre><code class="lang-python">import time
+
+import tensorflow as tf
+
+
+# Define a class that extends from tf.test.Benchmark.
+class SampleBenchmark(tf.test.Benchmark):
+
+  # Note: benchmark method name must start with `benchmark`.
+  def benchmarkSum(self):
+    with tf.Session() as sess:
+      x = tf.constant(10)
+      y = tf.constant(5)
+      result = tf.add(x, y)
+
+      iters = 100
+      start_time = time.time()
+      for _ in range(iters):
+        sess.run(result)
+      total_wall_time = time.time() - start_time
+
+      # Call report_benchmark to report a metric value.
+      self.report_benchmark(
+          name=&quot;sum_wall_time&quot;,
+          # This value should always be per iteration.
+          wall_time=total_wall_time/iters,
+          iters=iters)
+
+if __name__ == &quot;__main__&quot;:
+  tf.test.main()
+</code></pre>
+<p>See the full example for <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/benchmark/">SampleBenchmark</a>.</p>
+<p>Key points to note in the example above:</p>
+<ul>
+<li>Benchmark class extends from <code>tf.test.Benchmark</code>.</li>
+<li>Each benchmark method should start with <code>benchmark</code> prefix.</li>
+<li>Benchmark method calls <code>report_benchmark</code> to report the metric value.</li>
+</ul>
+<h2>Running with Python</h2>
+<p>Use the <code>--benchmarks</code> flag to run the benchmark with python. A <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/util/test_log.proto">BenchmarkEntries</a> proto will be printed.</p>
+<pre><code>python sample_benchmark.py --benchmarks=SampleBenchmark
+</code></pre>
+<p>Setting the flag as <code>--benchmarks=.</code> or <code>--benchmarks=all</code> would work as well.</p>
+<p>(Please ensure that Tensorflow is installed to successfully import the package in the line <code>import tensorflow as tf</code>. For installation instructions, see <a href="https://www.tensorflow.org/install/">Installing TensorFlow</a>. This step is not necessary when running with bazel.)</p>
+<h2>Adding a <code>bazel</code> Target</h2>
+<p>We have a special target called <code>tf_py_logged_benchmark</code> for benchmarks defined under TensorFlow github repo. <code>tf_py_logged_benchmark</code> should wrap around a regular <code>py_test</code> target. Running a <code>tf_py_logged_benchmark</code> would print a <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/test_log.proto">TestResults</a> proto. Defining a <code>tf_py_logged_benchmark</code> also lets us run it with TensorFlow continuous build.</p>
+<p>First, define a regular <code>py_test</code> target. See example below:</p>
+<pre><code class="lang-build">py_test(
+  name = &quot;sample_benchmark&quot;,
+  srcs = [&quot;sample_benchmark.py&quot;],
+  srcs_version = &quot;PY2AND3&quot;,
+  deps = [
+    &quot;//tensorflow:tensorflow_py&quot;,
+  ],
+)
+</code></pre>
+<p>You can run benchmarks in a <code>py_test</code> target by passing <code>--benchmarks</code> flag. The benchmark should just print out a <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/util/test_log.proto">BenchmarkEntries</a> proto.</p>
+<pre><code class="lang-shell">bazel test :sample_benchmark --test_arg=--benchmarks=all
+</code></pre>
+<p>Now, add the <code>tf_py_logged_benchmark</code> target (if available). This target would<br>
+pass in <code>--benchmarks=all</code> to the wrapped <code>py_test</code> target and provide a way to store output for our TensorFlow continuous build. <code>tf_py_logged_benchmark</code> target should be available in TensorFlow repository.</p>
+<pre><code class="lang-build">load(&quot;//tensorflow/tools/test:performance.bzl&quot;, &quot;tf_py_logged_benchmark&quot;)
+
+tf_py_logged_benchmark(
+    name = &quot;sample_logged_benchmark&quot;,
+    target = &quot;//tensorflow/examples/benchmark:sample_benchmark&quot;,
+)
+</code></pre>
+<p>Use the following command to run the benchmark target:</p>
+<pre><code class="lang-shell">bazel test :sample_logged_benchmark
+</code></pre>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

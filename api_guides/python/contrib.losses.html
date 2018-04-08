@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Losses (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Losses (contrib)</h1>
+<h2>Deprecated</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/losses"><code>tf.losses</code></a></p>
+<h2>Loss operations for use in neural networks.</h2>
+<p>Note: By default, all the losses are collected into the <code>GraphKeys.LOSSES</code><br>
+collection.</p>
+<p>All of the loss functions take a pair of predictions and ground truth labels,<br>
+from which the loss is computed. It is assumed that the shape of both these<br>
+tensors is of the form [batch_size, d1, ... dN] where <code>batch_size</code> is the number<br>
+of samples in the batch and <code>d1</code> ... <code>dN</code> are the remaining dimensions.</p>
+<p>It is common, when training with multiple loss functions, to adjust the relative<br>
+strengths of individual losses. This is performed by rescaling the losses via<br>
+a <code>weight</code> parameter passed to the loss functions. For example, if we were<br>
+training with both log_loss and mean_squared_error, and we wished that the<br>
+log_loss penalty be twice as severe as the mean_squared_error, we would<br>
+implement this as:</p>
+<pre><code class="lang-python">  # Explicitly set the weight.
+  tf.contrib.losses.log(predictions, labels, weight=2.0)
+
+  # Uses default weight of 1.0
+  tf.contrib.losses.mean_squared_error(predictions, labels)
+
+  # All the losses are collected into the `GraphKeys.LOSSES` collection.
+  losses = tf.get_collection(tf.GraphKeys.LOSSES)
+</code></pre>
+<p>While specifying a scalar loss rescales the loss over the entire batch,<br>
+we sometimes want to rescale the loss per batch sample. For example, if we have<br>
+certain examples that matter more to us to get correctly, we might want to have<br>
+a higher loss that other samples whose mistakes matter less. In this case, we<br>
+can provide a weight vector of length <code>batch_size</code> which results in the loss<br>
+for each sample in the batch being scaled by the corresponding weight element.<br>
+For example, consider the case of a classification problem where we want to<br>
+maximize our accuracy but we especially interested in obtaining high accuracy<br>
+for a specific class:</p>
+<pre><code class="lang-python">  inputs, labels = LoadData(batch_size=3)
+  logits = MyModelPredictions(inputs)
+
+  # Ensures that the loss for examples whose ground truth class is `3` is 5x
+  # higher than the loss for all other examples.
+  weight = tf.multiply(4, tf.cast(tf.equal(labels, 3), tf.float32)) + 1
+
+  onehot_labels = tf.one_hot(labels, num_classes=5)
+  tf.contrib.losses.softmax_cross_entropy(logits, onehot_labels, weight=weight)
+</code></pre>
+<p>Finally, in certain cases, we may want to specify a different loss for every<br>
+single measurable value. For example, if we are performing per-pixel depth<br>
+prediction, or per-pixel denoising, a single batch sample has P values where P<br>
+is the number of pixels in the image. For many losses, the number of measurable<br>
+values matches the number of elements in the predictions and labels tensors.<br>
+For others, such as softmax_cross_entropy and cosine_distance, the<br>
+loss functions reduces the dimensions of the inputs to produces a tensor of<br>
+losses for each measurable value. For example, softmax_cross_entropy takes as<br>
+input predictions and labels of dimension [batch_size, num_classes] but the<br>
+number of measurable values is [batch_size]. Consequently, when passing a weight<br>
+tensor to specify a different loss for every measurable value, the dimension of<br>
+the tensor will depend on the loss being used.</p>
+<p>For a concrete example, consider the case of per-pixel depth prediction where<br>
+certain ground truth depth values are missing (due to sensor noise in the<br>
+capture process). In this case, we want to assign zero weight to losses for<br>
+these predictions.</p>
+<pre><code class="lang-python">  # &#39;depths&#39; that are missing have a value of 0:
+  images, depths = LoadData(...)
+  predictions = MyModelPredictions(images)
+
+  weight = tf.cast(tf.greater(depths, 0), tf.float32)
+  loss  = tf.contrib.losses.mean_squared_error(predictions, depths, weight)
+</code></pre>
+<p>Note that when using weights for the losses, the final average is computed<br>
+by rescaling the losses by the weights and then dividing by the total number of<br>
+non-zero samples. For an arbitrary set of weights, this may not necessarily<br>
+produce a weighted average. Instead, it simply and transparently rescales the<br>
+per-element losses before averaging over the number of observations. For example<br>
+if the losses computed by the loss function is an array [4, 1, 2, 3] and the<br>
+weights are an array [1, 0.5, 3, 9], then the average loss is:</p>
+<pre><code class="lang-python">  (4*1 + 1*0.5 + 2*3 + 3*9) / 4
+</code></pre>
+<p>However, with a single loss function and an arbitrary set of weights, one can<br>
+still easily create a loss function such that the resulting loss is a<br>
+weighted average over the individual prediction errors:</p>
+<pre><code class="lang-python">  images, labels = LoadData(...)
+  predictions = MyModelPredictions(images)
+
+  weight = MyComplicatedWeightingFunction(labels)
+  weight = tf.div(weight, tf.size(weight))
+  loss = tf.contrib.losses.mean_squared_error(predictions, depths, weight)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/losses/sparse_softmax_cross_entropy"><code>tf.contrib.losses.sparse_softmax_cross_entropy</code></a></p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

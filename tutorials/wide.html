@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow 线性模型</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow 线性模型</h1>
+<p>在本教程中，我们将会使用 TensorFlow 中的 tf.estimator API 来解决一个二分类问题：给定人口普查数据，有关一个人的如年龄，教育程度，婚姻状况和职业等信息（特征），我们将尝试预测该人每年是否收入超过 5 万美元（目标标签）。我们将训练一个<strong>逻辑回归</strong>模型，给定一个个体的信息，我们的模型会输出一个0到1之间的数，这个数可以解释成此个体年收入超过 5 万美元的概率。</p>
+<h2>快速构建</h2>
+<p>可以通过如下步骤尝试本教程的代码:</p>
+<ol>
+<li><p><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></p>
+</li>
+<li><p>下载<a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/">教程代码</a>。</p>
+</li>
+<li><p>执行我们提供的数据下载程序：</p>
+<pre><code> $ python data_download.py
+</code></pre>
+</li>
+<li><p>使用如下命令执行本教程的代码，训练一个教程中描述的线性模型：</p>
+<pre><code> $ python wide_deep.py --model_type=wide
+</code></pre>
+</li>
+</ol>
+<p>继续阅读可以了解此代码是如何构建其线性模型的。</p>
+<h2>读取 Census 数据</h2>
+<p>我们将要使用的数据集是 <a href="https://archive.ics.uci.edu/ml/datasets/Census+Income">Census Income 数据集</a>。我们提供了 <a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/data_download.py">data_download.py</a> 来下载数据并进行一些清理。</p>
+<p>由于该任务是一个二元分类问题，我们将构造一个名为 “label” 的标签列，如果收入超过 5 万美元，那么它的值为 1，否则为 0。有关参考，请参阅 <a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/wide_deep.py">wide_deep.py</a>。</p>
+<p>接下来，让我们看看数据结构，看看我们可以使用哪些列来预测目标标签。这些列可以分为两类：类别列和连续列：</p>
+<ul>
+<li>如果某列的值只能是有限集合中的某个类别，则称该列为<strong>类别列</strong>。例如，一个人的关系状况（妻子，丈夫，未婚等）或教育水平（高中，大学等）都是类别列。</li>
+<li>如果某个列的值可以是连续范围内的任何数值，则称该列为<strong>连续列</strong>。例如，一个人的资本收入（例如 $14,084）是一个连续列。</li>
+</ul>
+<p>以下是 Census Income 数据集中可用列的列表：</p>
+<table>
+<thead><tr>
+<th>列名</th>
+<th>类型      </th>
+<th>描述                                                </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>age        </td>
+<td>连续型</td>
+<td>此人的年龄。                                </td>
+</tr>
+<tr>
+<td>workclass  </td>
+<td>类别型</td>
+<td>其雇主类型 (政府、军队、 私企 等)。</td>
+</tr>
+<tr>
+<td>fnlwgt        </td>
+<td>连续型</td>
+<td>普查者认为本样本所能代表的人数（样本权重）。最终权重不会被用到。  </td>
+</tr>
+<tr>
+<td>education    </td>
+<td>类别型</td>
+<td>此人最高学历。 </td>
+</tr>
+<tr>
+<td>education_num</td>
+<td>连续型</td>
+<td>最高学历数值表示。</td>
+</tr>
+<tr>
+<td>marital_status</td>
+<td>类别型</td>
+<td>婚姻状态。</td>
+</tr>
+<tr>
+<td>occupation    </td>
+<td>类别型</td>
+<td>职业。</td>
+</tr>
+<tr>
+<td>relationship  </td>
+<td>类别型</td>
+<td>家庭关系：Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried。        </td>
+</tr>
+<tr>
+<td>race          </td>
+<td>类别型</td>
+<td>种族：White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black。</td>
+</tr>
+<tr>
+<td>gender        </td>
+<td>类别型</td>
+<td>性别：Female, Male。                    </td>
+</tr>
+<tr>
+<td>capital_gain  </td>
+<td>连续型</td>
+<td>登记资本增值。       </td>
+</tr>
+<tr>
+<td>capital_loss  </td>
+<td>连续型</td>
+<td>登记资本亏损。       </td>
+</tr>
+<tr>
+<td>hours_per_week</td>
+<td>连续型</td>
+<td>每周工作时长。</td>
+</tr>
+<tr>
+<td>native_country</td>
+<td>类别型</td>
+<td>原国籍。</td>
+</tr>
+<tr>
+<td>income_bracket</td>
+<td>类别型</td>
+<td>年收入分类："&gt;5万" 或 "&lt;=5万"，即此人年收入是否高于 5 万。     </td>
+</tr>
+</tbody>
+</table>
+<h2>将数据转化为张量</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/SparseTensor"><code>tf.SparseTensor</code></a></p>
+<ol>
+<li><code>features</code>：一个由特征列名到 <code>Tensors</code> 或 <code>SparseTensors</code> 的映射。</li>
+<li><code>labels</code>：一个包含标签列的 <code>Tensor</code>。</li>
+</ol>
+<p><code>features</code> 的键将用于构建下一节中提到的列。由于我们想在调用 <code>train</code> 和 <code>evaluate</code> 方法时使用不同的数据，所以我们定义一个方法，它根据给定的数据返回一个输入函数。 请注意，返回的输入函数将在构建 TensorFlow 计算图时调用，而不是在运行计算图时调用。它返回的是输入数据作为 <code>Tensor</code>（或 <code>SparseTensor</code>）的表示，即 TensorFlow 计算的基本单位。</p>
+<p>训练集和测试集中的每个连续列都将被转换成 <code>Tensor</code>，这通常是表示稠密数据的良好格式。对于类别型数据，我们必须将数据表示为 <code>SparseTensor</code>。这种数据格式适合表示稀疏数据。我们的 <code>input_fn</code> 使用 <code>tf.data</code> API，可以很容易地将转换我们的数据集：</p>
+<pre><code class="lang-python">def input_fn(data_file, num_epochs, shuffle, batch_size):
+  &quot;&quot;&quot;为 Estimator 生成输入函数&quot;&quot;&quot;
+  assert tf.gfile.Exists(data_file), (
+      &#39;%s not found. Please make sure you have either run data_download.py or &#39;
+      &#39;set both arguments --train_data and --test_data.&#39; % data_file)
+
+  def parse_csv(value):
+    print(&#39;Parsing&#39;, data_file)
+    columns = tf.decode_csv(value, record_defaults=_CSV_COLUMN_DEFAULTS)
+    features = dict(zip(_CSV_COLUMNS, columns))
+    labels = features.pop(&#39;income_bracket&#39;)
+    return features, tf.equal(labels, &#39;&gt;50K&#39;)
+
+  # 使用 Dataset API 从输入文件中提取行
+  dataset = tf.data.TextLineDataset(data_file)
+
+  if shuffle:
+    dataset = dataset.shuffle(buffer_size=_SHUFFLE_BUFFER)
+
+  dataset = dataset.map(parse_csv, num_parallel_calls=5)
+
+  # 我们在 shuffle 之后调用 repeat，而不是在之前调用，以防止不同的 epoch 混到一起。
+  dataset = dataset.repeat(num_epochs)
+  dataset = dataset.batch(batch_size)
+
+  iterator = dataset.make_one_shot_iterator()
+  features, labels = iterator.get_next()
+  return features, labels
+</code></pre>
+<h2>模型的选择和特征工程</h2>
+<p>选择和制定正确的特征列是学习一个有效模型的关键。一个 <strong>feature column</strong> 可以是原始 Dataframe 中的原始列之一（我们称之为<strong>基本特征列</strong>），也可以是基于在一个或多个基本列上定义的某些变换创建的任何新列（让我们 称他们<strong>派生特征列</strong>）。基本上，“feature column” 是任何可用于预测目标标签的原始或派生变量的抽象概念。</p>
+<h3>基本的类别型特征列</h3>
+<p>要为类别型特征定义特征列，我们可以使用 tf.feature_column API 创建一个 <code>CategoricalColumn</code>。如果你知道一列中所有可能的特征值的集合，并且只有少数几个，你可以使用 <code>categorical_column_with_vocabulary_list</code>。列表中的每个键都将被分配一个从 0 开始的自动增长的 ID。例如，对于 <code>relationship</code> 列，通过以下操作，我们可以为特征字符串 “Husband” 分配给一个整数 0 作为 ID ，为 “Not-in-family” 设置 1 作为 ID 等等：</p>
+<pre><code class="lang-python">relationship = tf.feature_column.categorical_column_with_vocabulary_list(
+    &#39;relationship&#39;, [
+        &#39;Husband&#39;, &#39;Not-in-family&#39;, &#39;Wife&#39;, &#39;Own-child&#39;, &#39;Unmarried&#39;,
+        &#39;Other-relative&#39;])
+</code></pre>
+<p>但是若我们事先并不知道所有可能值的集合呢？也不成问题，我们可以使用 <code>categorical_column_with_hash_bucket</code> 来代替：</p>
+<pre><code class="lang-python">occupation = tf.feature_column.categorical_column_with_hash_bucket(
+    &#39;occupation&#39;, hash_bucket_size=1000)
+</code></pre>
+<p>会发生的是，当我们在训练中遇到它们时，特征列 <code>occupation</code> 中的每个可能值都将被散列为一个整数 ID。参看下面的示例插图：</p>
+<table>
+<thead><tr>
+<th>ID</th>
+<th>Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>"Machine-op-inspct"</code></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+<tr>
+<td>103</td>
+<td><code>"Farming-fishing"</code></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+<tr>
+<td>375</td>
+<td><code>"Protective-serv"</code></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>无论我们选择哪种方式定义 <code>SparseColumn</code>，通过查找固定的映射或散列，每个特征字符串都将被映射为一个整数 ID。请注意，哈希碰撞是可能的，但可能不会显着影响模型质量。在底层实现上，<code>LinearModel</code> 类负责管理映射并创建 <code>tf.Variable</code> 来存储每个特征 ID 的模型参数（也称为模型权重）。模型参数将通过后面将要讨论的模型训练过程来学习。</p>
+<p>我们会做类似的技巧来定义其他的类别型特征：</p>
+<pre><code class="lang-python">education = tf.feature_column.categorical_column_with_vocabulary_list(
+    &#39;education&#39;, [
+        &#39;Bachelors&#39;, &#39;HS-grad&#39;, &#39;11th&#39;, &#39;Masters&#39;, &#39;9th&#39;, &#39;Some-college&#39;,
+        &#39;Assoc-acdm&#39;, &#39;Assoc-voc&#39;, &#39;7th-8th&#39;, &#39;Doctorate&#39;, &#39;Prof-school&#39;,
+        &#39;5th-6th&#39;, &#39;10th&#39;, &#39;1st-4th&#39;, &#39;Preschool&#39;, &#39;12th&#39;])
+
+marital_status = tf.feature_column.categorical_column_with_vocabulary_list(
+    &#39;marital_status&#39;, [
+        &#39;Married-civ-spouse&#39;, &#39;Divorced&#39;, &#39;Married-spouse-absent&#39;,
+        &#39;Never-married&#39;, &#39;Separated&#39;, &#39;Married-AF-spouse&#39;, &#39;Widowed&#39;])
+
+relationship = tf.feature_column.categorical_column_with_vocabulary_list(
+    &#39;relationship&#39;, [
+        &#39;Husband&#39;, &#39;Not-in-family&#39;, &#39;Wife&#39;, &#39;Own-child&#39;, &#39;Unmarried&#39;,
+        &#39;Other-relative&#39;])
+
+workclass = tf.feature_column.categorical_column_with_vocabulary_list(
+    &#39;workclass&#39;, [
+        &#39;Self-emp-not-inc&#39;, &#39;Private&#39;, &#39;State-gov&#39;, &#39;Federal-gov&#39;,
+        &#39;Local-gov&#39;, &#39;?&#39;, &#39;Self-emp-inc&#39;, &#39;Without-pay&#39;, &#39;Never-worked&#39;])
+
+# 举个哈希的例子:
+occupation = tf.feature_column.categorical_column_with_hash_bucket(
+    &#39;occupation&#39;, hash_bucket_size=1000)
+</code></pre>
+<h3>基本的连续型特征列</h3>
+<p>同样，我们可以为我们想要在模型中使用的每个连续特征列定义一个 <code>NumericColumn</code>：</p>
+<pre><code class="lang-python">age = tf.feature_column.numeric_column(&#39;age&#39;)
+education_num = tf.feature_column.numeric_column(&#39;education_num&#39;)
+capital_gain = tf.feature_column.numeric_column(&#39;capital_gain&#39;)
+capital_loss = tf.feature_column.numeric_column(&#39;capital_loss&#39;)
+hours_per_week = tf.feature_column.numeric_column(&#39;hours_per_week&#39;)
+</code></pre>
+<h3>通过分桶使连续特征类别化</h3>
+<p>有时连续特征和标签之间的关系不是线性的。 假设这么一个例子，一个人的收入可能会在职业生涯的早期阶段随着年龄的增长而增长，然后增长可能会放缓，最终退休后的收入会减少。 在这种情况下，使用原始的 <code>age</code> 作为实值特征列可能不是一个好选择，因为模型只能学习三种情况之一：</p>
+<ol>
+<li>随着年龄增长，收入总是以某种速度增加（正相关），</li>
+<li>随着年龄增长，收入总是以某种速度减少（负相关），或者</li>
+<li>无论年龄多少，收入都保持不变（不相关）</li>
+</ol>
+<p>如果我们想分别学习收入和各个年龄组之间的细微关联，我们可以利用 <strong>bucketization</strong>。 分桶是将连续特征的整个范围划分为一组连续的桶，然后根据该值落入哪个桶将原始数值特征转换为桶 ID（作为类别型特征）。所以，我们可以在 <code>age</code> 上定义 <code>bucketized_column</code> 为：</p>
+<pre><code class="lang-python">age_buckets = tf.feature_column.bucketized_column(
+    age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
+</code></pre>
+<p>这里的 <code>boundaries</code> 是一个桶边界的列表。在这个例子中，有 10 个边界，导致有 11 个桶（从 17 岁以下，18-24 岁，25-29 岁......到 65 岁以上）。</p>
+<h3>用 CrossedColumn 交叉多列</h3>
+<p>单独使用每个基本特征列可能不足以解释数据。例如，不同职业的人的教育程度与标签（收入 &gt; 50,000 美元）之间的关联可能不同。 因此，如果我们只为<code>教育=“学士”</code>和<code>教育=“硕士”</code>学习一个单一的模型权重，我们将无法捕捉每一个教育-职业组合（例如区分<code>教育=“学士”和职业=“执行管理”</code>和<code>教育=“学士”和职业=“工艺修理”</code>）。要了解不同特征组合之间的差异，我们可以将<strong>交叉特征列</strong>添加到模型中。</p>
+<pre><code class="lang-python">education_x_occupation = tf.feature_column.crossed_column(
+    [&#39;education&#39;, &#39;occupation&#39;], hash_bucket_size=1000)
+</code></pre>
+<p>我们也可以在两列以上创建一个 <code>CrossedColumn</code>。 每个组成列可以是类别型的基本特征列（<code>SparseColumn</code>），实值特征列（<code>BucketizedColumn</code>），甚至是另一个 <code>CrossColumn</code>。下面是一个例子：</p>
+<pre><code class="lang-python">age_buckets_x_education_x_occupation = tf.feature_column.crossed_column(
+    [age_buckets, &#39;education&#39;, &#39;occupation&#39;], hash_bucket_size=1000)
+</code></pre>
+<h2>定义逻辑回归模型</h2>
+<p>处理完输入数据并定义所有特征列后，我们现在准备将它们放在一起并构建逻辑回归模型。在上一节中，我们已经看到了几种基本的和派生的特征列，其中包括：</p>
+<ul>
+<li><code>CategoricalColumn</code></li>
+<li><code>NumericColumn</code></li>
+<li><code>BucketizedColumn</code></li>
+<li><code>CrossedColumn</code></li>
+</ul>
+<p>他们都是抽象类 <code>FeatureColumn</code> 的子类，都可以添加到模型的 <code>feature_columns</code> 字段中：</p>
+<pre><code class="lang-python">base_columns = [
+    education, marital_status, relationship, workclass, occupation,
+    age_buckets,
+]
+crossed_columns = [
+    tf.feature_column.crossed_column(
+        [&#39;education&#39;, &#39;occupation&#39;], hash_bucket_size=1000),
+    tf.feature_column.crossed_column(
+        [age_buckets, &#39;education&#39;, &#39;occupation&#39;], hash_bucket_size=1000),
+]
+
+model_dir = tempfile.mkdtemp()
+model = tf.estimator.LinearClassifier(
+    model_dir=model_dir, feature_columns=base_columns + crossed_columns)
+</code></pre>
+<p>该模型还会自动学习一个偏差项，它可以控制在不观察任何特征的情况下进行的预测（有关更多解释，请参见“逻辑回归的工作原理”一节）。学习的模型文件将被存储在 <code>model_dir</code> 中。</p>
+<h2>训练和评估我们的模型</h2>
+<p>将所有特征添加到模型后，现在让我们看看如何实际训练模型。使用 tf.estimator API 训练模型仅需用一个命令：</p>
+<pre><code class="lang-python">model.train(input_fn=lambda: input_fn(train_data, num_epochs, True, batch_size))
+</code></pre>
+<p>模型训练完后，我们就可以评估到底我们的模型在预测留出数据的标签上表现有多好了。</p>
+<pre><code class="lang-python">results = model.evaluate(input_fn=lambda: input_fn(
+    test_data, 1, False, batch_size))
+for key in sorted(results):
+  print(&#39;%s: %s&#39; % (key, results[key]))
+</code></pre>
+<p>最终输出的第一行应该类似于 <code>accuracy: 0.83557522</code>，这意味着准确率为 83.6%。自由地尝试更多的特征和转换，你能做得更好！</p>
+<p>在堆模型进行评估之后，我们可以使用该模型对个人年收入是否超过五万美元进行预测。</p>
+<pre><code class="lang-python">pred_iter = model.predict(input_fn=lambda: input_fn(FLAGS.test_data, 1, False, 1))
+for pred in pred_iter:
+  print(pred[&#39;classes&#39;])
+</code></pre>
+<p>模型的预测结果类似于 <code>b['1']</code> 或者 <code>b['0']</code>，分别表示个人年收入超过五万美元或没有超过五万美元。</p>
+<p>如果您希望看到一个可用的端到端示例，则可以下载我们的<a href="https://github.com/tensorflow/models/tree/master/official/wide_deep/wide_deep.py">样例代码</a>并设置 <code>model_type</code> 为 <code>wide</code>。</p>
+<h2>加入正则化以防止过拟合</h2>
+<p>正则化是一种用来避免<strong>过拟合</strong>的技术。当模型在训练数据上表现良好，但在模型以前从未见过的测试数据（如实时交通）上却更糟糕时，过拟合就发生了。过拟合通常发生在模型过于复杂时，例如相比于观察到的训练数据的数量太多的参数。正则化允许你控制模型的复杂性，并使模型在未见数据上具有更强的泛化能力。</p>
+<p>在线性模型库中，你可以将L1和L2正则化添加到模型中，如下所示：</p>
+<pre><code class="lang-python">model = tf.estimator.LinearClassifier(
+    model_dir=model_dir, feature_columns=base_columns + crossed_columns,
+    optimizer=tf.train.FtrlOptimizer(
+        learning_rate=0.1,
+        l1_regularization_strength=1.0,
+        l2_regularization_strength=1.0))
+</code></pre>
+<p>L1 和 L2 正则化之间的一个重要区别是，L1 正则化倾向于使模型权重保持为零，从而创建更稀疏的模型，而 L2 正则化也尝试使模型权重接近于零，但不一定为零。因此，如果增加 L1 正则化的强度，你将获得一个更小的模型，因为模型的许多权重将为零。如果特征空间非常大但稀疏，并且存在资源限制，从而无法训练和上线太大的模型时，这通常是可取的。</p>
+<p>在实践中，你应该尝试 L1，L2 正则化强度的各种组合，找到最佳参数以最优地控制过拟合并给你理想的模型大小。</p>
+<h2>逻辑回归是如何工作的？</h2>
+<p>最后，让我们花点时间谈一谈 Logistic 回归模型实际上是什么样子，以防你不熟悉它。我们将标签表示为 \(Y\)，并将观察到的特征集合表示为特征向量<br>
+\(\mathbf{x}=[x_1, x_2, ..., x_d]\)。我们定义 \(Y=1\) 表示一个个体年薪超过 50,000 美元，否则 \(Y=0\)。在逻辑回归中，给定特征 \(\mathbf{x}\) 的标签为正的概率 (\(Y=1\)) 给出如下：</p>
+<p>$$ P(Y=1|\mathbf{x}) = \frac{1}{1+\exp(-(\mathbf{w}^T\mathbf{x}+b))}$$</p>
+<p>这里 \(\mathbf{w}=[w_1, w_2, ..., w_d]\) 是特征 \(\mathbf{x}=[x_1, x_2, ..., x_d]\) 的模型权重。\(b\) 是常数，通常称为模型的“偏差”。<br>
+模型分为两部分 -- 一个线性模型和一个 Logistic 函数：</p>
+<ul>
+<li><p>  <strong>线性模型</strong>：首先我们可以看到 \(\mathbf{w}^T\mathbf{x}+b = b + w_1x_1 + ... +w_dx_d\) 是一个线性模型，它的输出是一个输入特征 \(\mathbf{x}\) 的线性函数。偏差 \(b\) 是在未观察任何特征做出来的预测。模型权重 \(w_i\) 反映了特征 \(x_i\) 和正类标签具有怎样的相关关系。如果 \(x_i\) 与正类标签是正相关的，权重 \(w_i\) 增加，并且概率 \(P(Y=1|\mathbf{x})\) 会接近于 1。另一方面，如果 \(x_i\) 与正类标签是负相关的，权重 \(w_i\) 会降低，概率 \(P(Y=1|\mathbf{x})\) 会接近于 0。</p>
+</li>
+<li><p>  <strong>Logistic函数</strong>：第二，我们可以看到这有一个 Logistic 函数（也叫作 Sigmoid 函数）\(S(t) = 1/(1+\exp(-t))\)应用到了线性模型上。Logistic 函数是用来将线性模型的输出 \(\mathbf{w}^T\mathbf{x}+b\) 从任意实数转换到 \([0, 1]\) 这个范围的，转化的结果也被视作概率。</p>
+</li>
+</ul>
+<p>模型训练是一个优化问题：目标是找到一组模型权重（即模型参数），以最小化定义在训练数据上的<strong>损失函数</strong>，例如逻辑回归模型的逻辑损失。损失函数衡量真实标签与模型预测之间的差异。如果预测与真实标签非常接近，损失值将会很低；如果预测离标签很远，那么损失值会很高。</p>
+<h2>深入学习</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/wide_and_deep.html">TensorFlow 宽深学习</a></p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

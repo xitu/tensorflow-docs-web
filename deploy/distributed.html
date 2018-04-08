@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>分布式 TensorFlow</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'title': '部署'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/distributed.html', 'title': '分布式 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/hadoop.html', 'title': '如何在 Hadoop 上运行 Tensorflow'}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>分布式 TensorFlow</h1>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html">底层 API 编程介绍</a></p>
+<h2>你好，分布式 TensorFlow ！</h2>
+<p>要查看一个简单的 TensorFlow 集群，请执行以下操作：</p>
+<pre><code class="lang-shell"># 以单进程“集群”模式启动一个 TensorFlow 服务器
+$ python
+&gt;&gt;&gt; import tensorflow as tf
+&gt;&gt;&gt; c = tf.constant(&quot;Hello, distributed TensorFlow!&quot;)
+&gt;&gt;&gt; server = tf.train.Server.create_local_server()
+&gt;&gt;&gt; sess = tf.Session(server.target)  # 在服务器上创建一个会话
+&gt;&gt;&gt; sess.run(c)
+&#39;Hello, distributed TensorFlow!&#39;
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Server/create_local_server"><code>tf.train.Server.create_local_server</code></a></p>
+<h2>创建一个集群</h2>
+<div class="video-wrapper">
+  <iframe class="devsite-embedded-youtube-video" data-video-id="la_M6bCV91M"
+          data-autohide="1" data-showinfo="0" frameborder="0" allowfullscreen>
+  </iframe>
+</div><p>TensorFlow “集群”是一组参与分布式执行 TensorFlow 计算图的“任务（Task）”集合。每个任务都与一个 TensorFlow 服务器（Server） 相关联，TensorFlow 服务器中包含一个可以用来创建会话（sessions）的<code>Master</code>，和一个在计算图中执行命令的<code>Worker</code>。一个集群同样可以被分为一个或多个“作业（Job）”，每个作业又包含一个或多个任务。（译者注：集群由任务组成，任务被包含在特定作业中）</p>
+<p>要创建一个群集，我们在群集中为每个任务启动一个 TensorFlow 服务器。通常每个任务运行在不同的机器上，但是这里我们在一台机器上运行多个任务（例如，控制不同的GPU设备）。 我们在每个任务中都做如下操作：</p>
+<ol>
+<li><p>在集群中<strong>创建一个描述所有任务的 <code>tf.train.ClusterSpec</code></strong>。它对每个任务而言都应该是相同的。</p>
+</li>
+<li><p><strong>创建一个 <code>tf.train.Server</code></strong>，将 <code>tf.train.ClusterSpec</code> 传给构造函数，并用工作名称标识本地任务和任务索引。</p>
+</li>
+</ol>
+<h3>创建一个 <code>tf.train.ClusterSpec</code> 来描述集群</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/ClusterSpec"><code>tf.train.ClusterSpec</code></a></p>
+<table>
+  <tr><th><code>tf.train.ClusterSpec</code> construction</th><th>Available tasks</th>
+  <tr>
+    <td><pre>
+tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+</pre></td>
+<td><code>/job:local/task:0<br/>/job:local/task:1</code></td>
+  </tr>
+  <tr>
+    <td><pre>
+tf.train.ClusterSpec({
+    "worker": [
+        "worker0.example.com:2222",
+        "worker1.example.com:2222",
+        "worker2.example.com:2222"
+    ],
+    "ps": [
+        "ps0.example.com:2222",
+        "ps1.example.com:2222"
+    ]})
+</pre></td><td><code>/job:worker/task:0</code><br/><code>/job:worker/task:1</code><br/><code>/job:worker/task:2</code><br/><code>/job:ps/task:0</code><br/><code>/job:ps/task:1</code></td>
+  </tr>
+</table><h3>在每个任务中创建一个 <code>tf.train.Server</code> 实例</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></p>
+<p>例如，启动一个运行在 <code>localhost：2222</code> 和 <code>localhost：2223</code> 两台服务器上的集群，在本地机器的两个不同进程上运行以下代码：</p>
+<pre><code class="lang-python"># 任务 0 中:
+cluster = tf.train.ClusterSpec({&quot;local&quot;: [&quot;localhost:2222&quot;, &quot;localhost:2223&quot;]})
+server = tf.train.Server(cluster, job_name=&quot;local&quot;, task_index=0)
+</code></pre>
+<pre><code class="lang-python"># 任务 1 中:
+cluster = tf.train.ClusterSpec({&quot;local&quot;: [&quot;localhost:2222&quot;, &quot;localhost:2223&quot;]})
+server = tf.train.Server(cluster, job_name=&quot;local&quot;, task_index=1)
+</code></pre>
+<p><strong>注意：</strong> 手动指定这些集群规范可能很乏味，特别是对于大型集群。我们正在开发可编程的任务启动工具，例如类似 <a href="http://kubernetes.io">Kubernetes</a> 的集群管理器。如果你希望 Tensorflow 支持某种特定的集群管理器，请提出一个 <a href="https://github.com/tensorflow/tensorflow/issues">GitHub issue</a>。</p>
+<h2>指定模型中的分布式设备</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/device"><code>tf.device</code></a></p>
+<pre><code class="lang-python">with tf.device(&quot;/job:ps/task:0&quot;):
+  weights_1 = tf.Variable(...)
+  biases_1 = tf.Variable(...)
+
+with tf.device(&quot;/job:ps/task:1&quot;):
+  weights_2 = tf.Variable(...)
+  biases_2 = tf.Variable(...)
+
+with tf.device(&quot;/job:worker/task:7&quot;):
+  input, labels = ...
+  layer_1 = tf.nn.relu(tf.matmul(input, weights_1) + biases_1)
+  logits = tf.nn.relu(tf.matmul(layer_1, weights_2) + biases_2)
+  # ...
+  train_op = ...
+
+with tf.Session(&quot;grpc://worker7.example.com:2222&quot;) as sess:
+  for _ in range(10000):
+    sess.run(train_op)
+</code></pre>
+<p>在上面的例子中，变量是在 <code>ps</code> 作业中的两个任务上创建的，模型的计算密集部分是在 <code>worker</code> 作业中创建的。TensorFlow 将在作业之间插入适当的数据传输（正向传递时从 <code>ps</code> 到 <code>worker</code>，反向传递时从 <code>worker</code> 到 <code>ps</code>）。</p>
+<h2>重复训练</h2>
+<p>一种通用训练的配置，也被称为“并行数据”，包含了使用不同 mini-batch 来训练相同模型的 <code>Worker</code> 作业中的多个任务，更新 <code>ps</code> 作业中一个或多个任务里的共享参数。所有任务通常在不同的机器上运行。在 TensorFlow 中有很多方法可以指定任务分配的结构，我们正在开发简化指定复制模型工作的库。可能的方法包括：</p>
+<ul>
+<li><p><strong>图内复制</strong> 在这种方法中，客户端构建一个包含一组参数（在 <code>tf.Variable</code> 节点上固定<br>
+   到 <code>/job:ps</code> ）的 <code>tf.Graph</code>; 以及模型的计算密集型部分的多个副本，<br>
+   每个副本固定对应到 <code>/job:worker</code> 中不同的任务上。</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/replica_device_setter"><code>tf.train.replica_device_setter</code></a></p>
+</li>
+<li><p><strong>异步训练</strong> 在这种方法中，图的每个副本都有一个没有独立训练循环，不做协调就可以执行。它是兼容的以上两种形式的复制。</p>
+</li>
+<li><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/SyncReplicasOptimizer"><code>tf.train.SyncReplicasOptimizer</code></a></p>
+</li>
+</ul>
+<h3>总结：示例训练程序</h3>
+<p>以下代码显示了分布式训练程序的框架，实现<strong>图间复制</strong>和<strong>异步训练</strong>。它包括参数服务器和 <code>Worker</code> 任务的代码。</p>
+<pre><code class="lang-python">import argparse
+import sys
+
+import tensorflow as tf
+
+FLAGS = None
+
+
+def main(_):
+  ps_hosts = FLAGS.ps_hosts.split(&quot;,&quot;)
+  worker_hosts = FLAGS.worker_hosts.split(&quot;,&quot;)
+
+  # 从参数服务器和工作主机创建一个集群
+  cluster = tf.train.ClusterSpec({&quot;ps&quot;: ps_hosts, &quot;worker&quot;: worker_hosts})
+
+  # 创建并启动本地任务的服务器
+  server = tf.train.Server(cluster,
+                           job_name=FLAGS.job_name,
+                           task_index=FLAGS.task_index)
+
+  if FLAGS.job_name == &quot;ps&quot;:
+    server.join()
+  elif FLAGS.job_name == &quot;worker&quot;:
+
+    # 默认情况下将操作分配给本地Worker
+    with tf.device(tf.train.replica_device_setter(
+        worker_device=&quot;/job:worker/task:%d&quot; % FLAGS.task_index,
+        cluster=cluster)):
+
+      # 建立模型...
+      loss = ...
+      global_step = tf.contrib.framework.get_or_create_global_step()
+
+      train_op = tf.train.AdagradOptimizer(0.01).minimize(
+          loss, global_step=global_step)
+
+    # StopAtStepHook 在运行给定步骤后处理停止
+    hooks=[tf.train.StopAtStepHook(last_step=1000000)]
+
+    # MonitoredTrainingSession 负责会话初始化
+    # 从检查点恢复，保存到检查点，一旦完成或报错就关闭
+    with tf.train.MonitoredTrainingSession(master=server.target,
+                                           is_chief=(FLAGS.task_index == 0),
+                                           checkpoint_dir=&quot;/tmp/train_logs&quot;,
+                                           hooks=hooks) as mon_sess:
+      while not mon_sess.should_stop():
+        # 异步运行训练
+        # 有关如何执行同步训练的更多信息，请参见 `tf.train.SyncReplicasOptimizer`
+        # mon_sess.run 在被抢占 PS 的情况下处理 AbortedError
+        mon_sess.run(train_op)
+
+
+if __name__ == &quot;__main__&quot;:
+  parser = argparse.ArgumentParser()
+  parser.register(&quot;type&quot;, &quot;bool&quot;, lambda v: v.lower() == &quot;true&quot;)
+  # 用于定义 tf.train.ClusterSpec 的标志
+  parser.add_argument(
+      &quot;--ps_hosts&quot;,
+      type=str,
+      default=&quot;&quot;,
+      help=&quot;Comma-separated list of hostname:port pairs&quot;
+  )
+  parser.add_argument(
+      &quot;--worker_hosts&quot;,
+      type=str,
+      default=&quot;&quot;,
+      help=&quot;Comma-separated list of hostname:port pairs&quot;
+  )
+  parser.add_argument(
+      &quot;--job_name&quot;,
+      type=str,
+      default=&quot;&quot;,
+      help=&quot;One of &#39;ps&#39;, &#39;worker&#39;&quot;
+  )
+  # Flags for defining the tf.train.Server
+  parser.add_argument(
+      &quot;--task_index&quot;,
+      type=int,
+      default=0,
+      help=&quot;Index of task within the job&quot;
+  )
+  FLAGS, unparsed = parser.parse_known_args()
+  tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
+</code></pre>
+<p>要启动两个参数服务器和两个 <code>Worker</code> 的训练，请使用下面的命令行脚本（假设脚本被称为 <code>trainer.py</code>）</p>
+<pre><code class="lang-shell"># On ps0.example.com:
+$ python trainer.py \
+     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \
+     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \
+     --job_name=ps --task_index=0
+# On ps1.example.com:
+$ python trainer.py \
+     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \
+     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \
+     --job_name=ps --task_index=1
+# On worker0.example.com:
+$ python trainer.py \
+     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \
+     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \
+     --job_name=worker --task_index=0
+# On worker1.example.com:
+$ python trainer.py \
+     --ps_hosts=ps0.example.com:2222,ps1.example.com:2222 \
+     --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \
+     --job_name=worker --task_index=1
+</code></pre>
+<h2>Glossary</h2>
+<p><strong>客户端</strong></p>
+<p>客户端通常是一个程序，用来构建 TensorFlow 计算图和创建用于与集群交互的会话 <code>tensorflow::Session</code>。通常用 Python 或 C++ 编写。一个客户端进程可以直接与多个 TensorFlow 服务器交互（参阅上面的“重复训练”），一台服务器可为多个客户端服务。</p>
+<p><strong>集群</strong></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/ClusterSpec"><code>tf.train.ClusterSpec</code></a></p>
+<p><strong>作业</strong></p>
+<p>一份作业包括一份“任务”清单，通常用于一个共同的目的。例如，名为 <code>ps</code>（即 parameter server，参数服务器）的作业通常包括存储和更新变量的节点; 而名为 <code>worker</code> 的作业通常包括执行计算密集型任务的无状态节点。工作中的任务通常运行在不同的机器上。这套工作角色是灵活的：例如，<code>Worker</code> 可能会保持某种状态。</p>
+<p><strong>主服务</strong></p>
+<p>提供远程调用控制一组分布式设备的 RPC 服务，并作为会话目标。 主服务实现了 <code>tensorflow::Session</code> 接口，负责协调一个或多个 <code>worker服务</code>。所有的 TensorFlow 服务器都实现了 Master 服务。</p>
+<p><strong>任务</strong></p>
+<p>任务对应于特定的 TensorFlow 服务器，并且通常对应于到一个进程。一个任务属于一个特定的“作业”，并在该作业列表的索引中被唯一标识。</p>
+<p><strong>TensorFlow 服务器</strong></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Server"><code>tf.train.Server</code></a></p>
+<p><strong>Worker 服务</strong></p>
+<p>一个使用本地设备执行 TensorFlow 计算图中部分命令的 RPC 服务。Worker 服务实现了 <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/worker_service.proto">worker_service.proto</a>。所有的 TensorFlow 服务器都实现了 Worker 服务。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

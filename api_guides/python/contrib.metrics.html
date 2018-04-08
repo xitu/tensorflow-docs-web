@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Metrics (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Metrics (contrib)</h1>
+<p>[TOC]</p>
+<h2>Ops for evaluation metrics and summary statistics.</h2>
+<h3>API</h3>
+<p>This module provides functions for computing streaming metrics: metrics computed<br>
+on dynamically valued <code>Tensors</code>. Each metric declaration returns a<br>
+"value_tensor", an idempotent operation that returns the current value of the<br>
+metric, and an "update_op", an operation that accumulates the information<br>
+from the current value of the <code>Tensors</code> being measured as well as returns the<br>
+value of the "value_tensor".</p>
+<p>To use any of these metrics, one need only declare the metric, call <code>update_op</code><br>
+repeatedly to accumulate data over the desired number of <code>Tensor</code> values (often<br>
+each one is a single batch) and finally evaluate the value_tensor. For example,<br>
+to use the <code>streaming_mean</code>:</p>
+<pre><code class="lang-python">value = ...
+mean_value, update_op = tf.contrib.metrics.streaming_mean(values)
+sess.run(tf.local_variables_initializer())
+
+for i in range(number_of_batches):
+  print(&#39;Mean after batch %d: %f&#39; % (i, update_op.eval())
+print(&#39;Final Mean: %f&#39; % mean_value.eval())
+</code></pre>
+<p>Each metric function adds nodes to the graph that hold the state necessary to<br>
+compute the value of the metric as well as a set of operations that actually<br>
+perform the computation. Every metric evaluation is composed of three steps</p>
+<ul>
+<li>Initialization: initializing the metric state.</li>
+<li>Aggregation: updating the values of the metric state.</li>
+<li>Finalization: computing the final metric value.</li>
+</ul>
+<p>In the above example, calling streaming_mean creates a pair of state variables<br>
+that will contain (1) the running sum and (2) the count of the number of samples<br>
+in the sum.  Because the streaming metrics use local variables,<br>
+the Initialization stage is performed by running the op returned<br>
+by <code>tf.local_variables_initializer()</code>. It sets the sum and count variables to<br>
+zero.</p>
+<p>Next, Aggregation is performed by examining the current state of <code>values</code><br>
+and incrementing the state variables appropriately. This step is executed by<br>
+running the <code>update_op</code> returned by the metric.</p>
+<p>Finally, finalization is performed by evaluating the "value_tensor"</p>
+<p>In practice, we commonly want to evaluate across many batches and multiple<br>
+metrics. To do so, we need only run the metric computation operations multiple<br>
+times:</p>
+<pre><code class="lang-python">labels = ...
+predictions = ...
+accuracy, update_op_acc = tf.contrib.metrics.streaming_accuracy(
+    labels, predictions)
+error, update_op_error = tf.contrib.metrics.streaming_mean_absolute_error(
+    labels, predictions)
+
+sess.run(tf.local_variables_initializer())
+for batch in range(num_batches):
+  sess.run([update_op_acc, update_op_error])
+
+accuracy, error = sess.run([accuracy, error])
+</code></pre>
+<p>Note that when evaluating the same metric multiple times on different inputs,<br>
+one must specify the scope of each metric to avoid accumulating the results<br>
+together:</p>
+<pre><code class="lang-python">labels = ...
+predictions0 = ...
+predictions1 = ...
+
+accuracy0 = tf.contrib.metrics.accuracy(labels, predictions0, name=&#39;preds0&#39;)
+accuracy1 = tf.contrib.metrics.accuracy(labels, predictions1, name=&#39;preds1&#39;)
+</code></pre>
+<p>Certain metrics, such as streaming_mean or streaming_accuracy, can be weighted<br>
+via a <code>weights</code> argument. The <code>weights</code> tensor must be the same size as the<br>
+labels and predictions tensors and results in a weighted average of the metric.</p>
+<h2>Metric <code>Ops</code></h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_accuracy"><code>tf.contrib.metrics.streaming_accuracy</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean"><code>tf.contrib.metrics.streaming_mean</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_recall"><code>tf.contrib.metrics.streaming_recall</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_recall_at_thresholds"><code>tf.contrib.metrics.streaming_recall_at_thresholds</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_precision"><code>tf.contrib.metrics.streaming_precision</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_precision_at_thresholds"><code>tf.contrib.metrics.streaming_precision_at_thresholds</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_auc"><code>tf.contrib.metrics.streaming_auc</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_recall_at_k"><code>tf.contrib.metrics.streaming_recall_at_k</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean_absolute_error"><code>tf.contrib.metrics.streaming_mean_absolute_error</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean_iou"><code>tf.contrib.metrics.streaming_mean_iou</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean_relative_error"><code>tf.contrib.metrics.streaming_mean_relative_error</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean_squared_error"><code>tf.contrib.metrics.streaming_mean_squared_error</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean_tensor"><code>tf.contrib.metrics.streaming_mean_tensor</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_root_mean_squared_error"><code>tf.contrib.metrics.streaming_root_mean_squared_error</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_covariance"><code>tf.contrib.metrics.streaming_covariance</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_pearson_correlation"><code>tf.contrib.metrics.streaming_pearson_correlation</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean_cosine_distance"><code>tf.contrib.metrics.streaming_mean_cosine_distance</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_percentage_less"><code>tf.contrib.metrics.streaming_percentage_less</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_sensitivity_at_specificity"><code>tf.contrib.metrics.streaming_sensitivity_at_specificity</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_sparse_average_precision_at_k"><code>tf.contrib.metrics.streaming_sparse_average_precision_at_k</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_sparse_precision_at_k"><code>tf.contrib.metrics.streaming_sparse_precision_at_k</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_sparse_precision_at_top_k"><code>tf.contrib.metrics.streaming_sparse_precision_at_top_k</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_sparse_recall_at_k"><code>tf.contrib.metrics.streaming_sparse_recall_at_k</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_specificity_at_sensitivity"><code>tf.contrib.metrics.streaming_specificity_at_sensitivity</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_concat"><code>tf.contrib.metrics.streaming_concat</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_false_negatives"><code>tf.contrib.metrics.streaming_false_negatives</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_false_negatives_at_thresholds"><code>tf.contrib.metrics.streaming_false_negatives_at_thresholds</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_false_positives"><code>tf.contrib.metrics.streaming_false_positives</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_false_positives_at_thresholds"><code>tf.contrib.metrics.streaming_false_positives_at_thresholds</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_true_negatives"><code>tf.contrib.metrics.streaming_true_negatives</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_true_negatives_at_thresholds"><code>tf.contrib.metrics.streaming_true_negatives_at_thresholds</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_true_positives"><code>tf.contrib.metrics.streaming_true_positives</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_true_positives_at_thresholds"><code>tf.contrib.metrics.streaming_true_positives_at_thresholds</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/auc_using_histogram"><code>tf.contrib.metrics.auc_using_histogram</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/accuracy"><code>tf.contrib.metrics.accuracy</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/aggregate_metrics"><code>tf.contrib.metrics.aggregate_metrics</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/aggregate_metric_map"><code>tf.contrib.metrics.aggregate_metric_map</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/confusion_matrix"><code>tf.contrib.metrics.confusion_matrix</code></a></li>
+</ul>
+<h2>Set <code>Ops</code></h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/set_difference"><code>tf.contrib.metrics.set_difference</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/set_intersection"><code>tf.contrib.metrics.set_intersection</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/set_size"><code>tf.contrib.metrics.set_size</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/set_union"><code>tf.contrib.metrics.set_union</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

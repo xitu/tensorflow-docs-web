@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow In Use</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'title': 'About TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/uses.html', 'title': 'TensorFlow In Use'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/bib.html', 'title': 'TensorFlow White Papers'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/attribution.html', 'title': 'Attribution'}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow In Use</h1>
+<p>This page highlights TensorFlow models in real world use.</p>
+<h2>Model zoo</h2>
+<p>Please visit our collection of TensorFlow models in the<br>
+<a href="https://github.com/tensorflow/models">TensorFlow Zoo</a>.</p>
+<p>If you have built a model with TensorFlow, please consider publishing it in<br>
+the Zoo.</p>
+<h2>Current uses</h2>
+<p>This section describes some of the current uses of the TensorFlow system.</p>
+<blockquote><p>If you are using TensorFlow for research, for education, or for production<br>
+usage in some product, we would love to add something about your usage here.<br>
+Please feel free to email us a brief description of how you're using<br>
+TensorFlow, or even better, send us a pull request to add an entry to this<br>
+file.</p>
+</blockquote>
+<ul>
+<li><p><strong>Deep Speech</strong></p>
+<ul>
+ <li>**Organization**: Mozilla</li>
+ <li> **Domain**: Speech Recognition</li>
+ <li> **Description**:  A TensorFlow implementation motivated by Baidu's Deep Speech architecture.</li>
+ <li> **More info**: [GitHub Repo](https://github.com/mozilla/deepspeech)</li>
+</ul></li>
+<li><p><strong>RankBrain</strong></p>
+<ul>
+ <li>**Organization**: Google</li>
+ <li> **Domain**: Information Retrieval</li>
+ <li> **Description**:  A large-scale deployment of deep neural nets for search ranking on www.google.com.</li>
+ <li> **More info**: ["Google Turning Over Its Lucrative Search to AI Machines"](http://www.bloomberg.com/news/articles/2015-10-26/google-turning-its-lucrative-web-search-over-to-ai-machines)</li>
+</ul></li>
+<li><p><strong>Inception Image Classification Model</strong></p>
+<ul>
+ <li> **Organization**: Google</li>
+ <li> **Description**: Baseline model and follow on research into highly accurate computer vision models, starting with the model that won the 2014 Imagenet image classification challenge</li>
+ <li> **More Info**: Baseline model described in [Arxiv paper](http://arxiv.org/abs/1409.4842)</li>
+</ul></li>
+<li><p><strong>SmartReply</strong></p>
+<ul>
+<li> **Organization**: Google</li>
+<li> **Description**: Deep LSTM model to automatically generate email responses</li>
+<li> **More Info**: [Google research blog post](http://googleresearch.blogspot.com/2015/11/computer-respond-to-this-email.html)</li>
+</ul></li>
+<li><p><strong>Massively Multitask Networks for Drug Discovery</strong></p>
+<ul>
+<li> **Organization**: Google and Stanford University</li>
+<li> **Domain**: Drug discovery</li>
+<li> **Description**:  A deep neural network model for identifying promising drug candidates.</li>
+<li> **More info**: [Arxiv paper](http://arxiv.org/abs/1502.02072)</li>
+</ul></li>
+<li><p><strong>On-Device Computer Vision for OCR</strong></p>
+<ul>
+<li> **Organization**: Google</li>
+<li> **Description**: On-device computer vision model to do optical character recognition to enable real-time translation.</li>
+<li> **More info**: [Google Research blog post](http://googleresearch.blogspot.com/2015/07/how-google-translate-squeezes-deep.html)</li>
+</ul></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>安装 Go 版本 Tensorflow</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装 TensorFlow C 语言版'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>安装 Go 版本 Tensorflow</h1>
+<p>TensorFlow 提供了 Go 程序中可以调用的 API。这些 API 非常适合加载 Python 创建的模型以及在 Go 应用中执行。本文将介绍如何安装和配置 <a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go">TensorFlow Go 包</a>。</p>
+<p>警告： TensorFlow Go 语言 API <strong>不</strong>属于 TensorFlow <a href="https://www.tensorflow.org/programmers_guide/version_semantics">API 稳定性保障</a>。</p>
+<h2>支持的平台</h2>
+<p>这篇教程主要讲述如何安装 Go 版本 TensorFlow。虽然这些命令可能适用于其他平台，但我们现在仅在以下配置环境下进行过测试：</p>
+<ul>
+<li>Linux, 64-bit, x86</li>
+<li>macOS X, 10.11 (El Capitan) 或更高版本</li>
+</ul>
+<h2>安装</h2>
+<p>Go 版本 TensorFlow 依赖于 TensorFlow C 语言库。按照下面的步骤安装这个库并启用 TensorFlow：</p>
+<ol>
+<li><p>决定在运行 TensorFlow 时仅仅启用 CPU 还是和 GPU 一起启用。为了帮助你做这个决定，请阅读以下指南中的“决定安装哪个 TensorFlow ”部分：</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./install/install_linux.html#determine_which_tensorflow_to_install">在 Ubuntu 上安装 TensorFlow</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./install/install_mac.html#determine_which_tensorflow_to_install">在 macOS 中安装 TensorFlow</a></li>
+</ul>
+</li>
+<li><p>通过执行以下命令下载并解压 TensorFlow C 语言库到 <code>/usr/local/lib</code> 目录:</p>
+<pre><code>TF_TYPE="cpu" # Change to "gpu" for GPU support
+TARGET_DIRECTORY='/usr/local'
+curl -L \
+  "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-${TF_TYPE}-$(go env GOOS)-x86_64-1.6.0.tar.gz" |
+sudo tar -C $TARGET_DIRECTORY -xz
+</code></pre>
+<p><code>tar</code> 命令会解压 TensorFlow C 语言库到 <code>TARGET_DIRECTORY</code> 的子目录 <code>lib</code>。比如，指定 <code>/usr/local</code> 作为 <code>TARGET_DIRECTORY</code> 使得 <code>tar</code> 命令可以将 TensorFlow C 语言库解压到 <code>/usr/local/lib</code>。<br>
+如果你想把库文件解压到其他目录，更换 <code>TARGET_DIRECTORY</code> 就可以了。</p>
+</li>
+<li><p>在第二步中，如果你指定了一个系统目录（比如 <code>/usr/local</code>）作为 <code>TARGET_DIRECTORY</code>，那么需要运行 <code>ldconfig</code> 来配置链接。例如：</p>
+<pre><b>sudo ldconfig</b></pre><p>如果你指定的 <code>TARGET_DIRECTORY</code> 不是一个系统目录（比如 <code>~/mydir</code>），那么你必须要将这个解压目录（比如 <code>~/mydir/lib</code>）添加到下面这两个环境变量中：</p>
+<pre> <b>export LIBRARY_PATH=$LIBRARY_PATH:~/mydir/lib</b> # 用于 Linux 和 macOS X
+<b>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/mydir/lib</b> # 仅用于 Linux
+<b>export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:~/mydir/lib</b> # 仅用于 macOS</pre></li>
+<li><p>现在 TensorFlow C 语言库已经安装好了，执行 <code>go get</code> 来下载对应的包和相应的依赖：</p>
+<pre><b>go get github.com/tensorflow/tensorflow/tensorflow/go</b></pre></li>
+<li><p>执行 <code>go test</code> 来验证 Go 版本 TensorFlow 是否安装成功：</p>
+<pre><b>go test github.com/tensorflow/tensorflow/tensorflow/go</b></pre></li>
+</ol>
+<p>如果 <code>go get</code> 或者 <code>go test</code> 产生错误信息了，可以在 <a href="http://www.stackoverflow.com/questions/tagged/tensorflow">StackOverflow</a> 上通过搜索和提问来获取可能的解决方法。</p>
+<h2>Hello World</h2>
+<p>安装完 Go 版本 TensorFlow 之后，在 <code>hello_tf.go</code> 文件中输入下面的代码：</p>
+<pre><code class="lang-go">package main
+
+import (
+    tf &quot;github.com/tensorflow/tensorflow/tensorflow/go&quot;
+    &quot;github.com/tensorflow/tensorflow/tensorflow/go/op&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    // Construct a graph with an operation that produces a string constant.
+    s := op.NewScope()
+    c := op.Const(s, &quot;Hello from TensorFlow version &quot; + tf.Version())
+    graph, err := s.Finalize()
+    if err != nil {
+        panic(err)
+    }
+
+    // Execute the graph in a session.
+    sess, err := tf.NewSession(graph, nil)
+    if err != nil {
+        panic(err)
+    }
+    output, err := sess.Run(nil, []tf.Output{c}, nil)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(output[0].Value())
+}
+</code></pre>
+<p>关于 TensorFlow Go 语言的进阶示例请查看 <a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go#ex-package">example in the API documentation</a>，这个例子使用了一个通过 TensorFlow 预训练的模型来标记图片的内容。</p>
+<h3>运行</h3>
+<p>通过调用下面的命令来运行 <code>hello_tf.go</code>：</p>
+<pre><b>go run hello_tf.go</b>
+Hello from TensorFlow version <i>number</i></pre><p>这个程序可能会输出类似下面的警告信息，你可以忽略它们：</p>
+<pre>W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library
+wasn't compiled to use *Type* instructions, but these are available on your
+machine and could speed up CPU computations.</pre><h2>使用源码编译</h2>
+<p>TensorFlow 是开源的。你可以按照这个<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md">单独的文档</a>中的指引使用 TensorFlow 的源码来编译 Go 版本 TensorFlow 。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>使用 TPU</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>使用 TPU</h1>
+<p>这份文档说明了有效使用 <a href="https://cloud.google.com/tpu/">Cloud TPU</a> 时必需使用的关键 TensorFlow APIs，并强调了常规的 TensorFlow 和在 TPU 上使用区别。</p>
+<p>这份文档针对以下用户：</p>
+<ul>
+<li>熟悉 TensorFlow 的 <code>Estimator</code> 和 <code>Dataset</code> APIs</li>
+<li>使用一个已有模型<a href="https://cloud.google.com/tpu/docs/quickstart">尝试使用过 Cloud TPU</a></li>
+<li>浏览过 TPU 模型的样例代码 <a href="https://github.com/tensorflow/models/blob/master/official/mnist/mnist_tpu.py">[1]</a> <a href="https://github.com/tensorflow/tpu-demos/tree/master/cloud_tpu/models">[2]</a></li>
+<li>对将一个现有的 <code>Estimator</code> 模型移植到 Cloud TPU 上运行感兴趣</li>
+</ul>
+<h2>TPUEstimator</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/tpu/TPUEstimator"><code>tf.contrib.tpu.TPUEstimator</code></a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">Creating Custom Estimators</a></p>
+<p><code>TPUEstimator</code> 类和 <code>Estimator</code> 之间多少有些不一样。</p>
+<p>要使一个模型可以在 CPU/GPU 或 Cloud TPU 上运行的最简单方法是在 <code>model_fn</code> 外定义模型的推理过程（从输入到预测）。然后继续分离 <code>Estimator</code> 设置和 <code>model_fn</code>，都包含这个推理步骤。这种模式的一个样例是 <a href="https://github.com/tensorflow/models/tree/master/official/mnist">tensorflow/models</a> 中比较 <code>mnist.py</code> 和 <code>mnist_tpu.py</code> 的实现。</p>
+<h3>本地运行 <code>TPUEstimator</code></h3>
+<p>要创建一个标准的 <code>Estimator</code> 你可以调用构造函数，并将它传递给 <code>model_fn</code>，例如：</p>
+<pre><code>my_estimator = tf.estimator.Estimator(
+  model_fn=my_model_fn)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/tpu/RunConfig"><code>tf.contrib.tpu.RunConfig</code></a></p>
+<pre><code class="lang-python">my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
+    model_fn=my_model_fn,
+    config=tf.contrib.tpu.RunConfig()
+    use_tpu=False)
+</code></pre>
+<p>这样简单的更改就能在本地运行 <code>TPUEstimator</code> 。大多数 TPU 模型示例都可以以下面这种命令行设置标志参数，来在本地模式下运行：</p>
+<pre><code>$&gt; python mnist_tpu.py --use_tpu=false --master=''
+</code></pre>
+<p>注意：<code>use_tpu=False</code> 参数对于尝试 <code>TPUEstimator</code> API 很有用。这也就意味着它不是个完整的 TPU 兼容测试。在 <code>TPUEstimator</code> 中成功地本地运行一个模型并不代表它能在 TPU 上运行。</p>
+<h3>构建一个 <code>tpu.RunConfig</code></h3>
+<p>虽然默认的 <code>RunConfig</code> 足以进行本地训练，但在实际使用并不能忽略这些设置。</p>
+<p>一种可以切换到 Cloud TPU 的更典型 <code>RunConfig</code> 设置，会如下所示：</p>
+<pre><code class="lang-python">import tempfile
+import subprocess
+
+class FLAGS(object):
+  use_tpu=False
+  tpu_name=None
+  # 为 `model_dir` 设定本地临时路径
+  model_dir = tempfile.mkdtemp()
+  # 在返回控制之前在 Cloud TPU 上运行的训练步数
+  iterations = 50
+  # 一个包含 8 个分片的 Cloud TPU
+  num_shards = 8
+
+if FLAGS.use_tpu:
+    my_project_name = subprocess.check_output([
+        &#39;gcloud&#39;,&#39;config&#39;,&#39;get-value&#39;,&#39;project&#39;])
+    my_zone = subprocess.check_output([
+        &#39;gcloud&#39;,&#39;config&#39;,&#39;get-value&#39;,&#39;compute/zone&#39;])
+    cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(
+            tpu_names=[FLAGS.tpu_name],
+            zone=my_zone,
+            project=my_project)
+    master = tpu_cluster_resolver.get_master()
+else:
+    master = &#39;&#39;
+
+my_tpu_run_config = tf.contrib.tpu.RunConfig(
+    master=master,
+    evaluation_master=master,
+    model_dir=FLAGS.model_dir,
+    session_config=tf.ConfigProto(
+        allow_soft_placement=True, log_device_placement=True),
+    tpu_config=tf.contrib.tpu.TPUConfig(FLAGS.iterations,
+                                        FLAGS.num_shards),
+)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/tpu/RunConfig"><code>tf.contrib.tpu.RunConfig</code></a></p>
+<pre><code class="lang-python">my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
+    model_fn=my_model_fn,
+    config = my_tpu_run_config,
+    use_tpu=FLAGS.use_tpu)
+</code></pre>
+<p>通常，<code>FLAGS</code> 将由命令行参数设置。要从本地训练转换为 Cloud TPU 训练，你需要：</p>
+<p>1) 设置 <code>FLAGS.use_tpu</code> 为 <code>True</code><br>
+  1) 设置 <code>FLAGS.tpu_name</code>，以便 <code>tf.contrib.cluster_resolver.TPUClusterResolver</code> 可以找到它<br>
+  1) 设置 <code>FLAGS.model_dir</code> 为一个 Google Cloud Storage 容器地址（<code>gs://</code>）。</p>
+<h2>优化器</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/tpu/CrossShardOptimizer"><code>tf.contrib.tpu.CrossShardOptimizer</code></a></p>
+<p><code>CrossShardOptimizer</code> 不兼容本地训练。因此，如果要在本地和 Cloud TPU 上运行相同的代码，请添加如下代码：</p>
+<pre><code class="lang-python">optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
+if FLAGS.use_tpu:
+  optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)
+</code></pre>
+<p>如果想在模型代码中避免使用全局 <code>FLAGS</code> ，一种方法就是将优化器设置为 <code>Estimator</code> 的参数之一，如下所示：</p>
+<pre><code class="lang-python">my_tpu_estimator = tf.contrib.tpu.TPUEstimator(
+    model_fn=my_model_fn,
+    config = my_tpu_run_config,
+    use_tpu=FLAGS.use_tpu,
+    params={&#39;optimizer&#39;:optimizer})
+</code></pre>
+<h2>模型函数</h2>
+<p>本节详细介绍了使模型函数（<code>model_fn()</code>）能与 <code>TPUEstimator</code> 兼容所要做的必要更改。</p>
+<h3>静态形状</h3>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/tensors.html#shape">张量</a></p>
+<p><a href="https://www.tensorflow.org/performance/xla/">XLA 编译器</a></p>
+<h3>摘要</h3>
+<p>将模型中所有的 <code>tf.summary</code> 都删除。</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/summaries_and_tensorboard.html">Tensorboard：可视化学习面板</a></p>
+<h3>评估标准</h3>
+<p>在一个独立的 <code>metric_fn</code> 中构建评估指标字典。</p>
+<!-- TODO(markdaoust) link to programmers_guide/metrics when it exists -->
+
+<p>评估指标是训练的重要部分。Cloud TPU完全支持这些功能，但语法略有不同。</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/metrics"><code>tf.metrics</code></a></p>
+<pre><code>running_average, current_batch = tf.metrics.accuracy(labels, predictions)
+</code></pre>
+<p>在标准的 <code>Estimator</code> 中，创建这些张量对的字典，并将其作为 <code>Estimator</code> 的一部分返回。</p>
+<pre><code class="lang-python">my_metrics = {&#39;accuracy&#39;: tf.metrics.accuracy(labels, predictions)}
+
+return tf.estimator.EstimatorSpec(
+  ...
+  eval_metric_ops=my_metrics
+)
+</code></pre>
+<p>相反，在 <code>TPUEstimator</code> 中，传递一个函数（返回一个度量词典）和一个参数张量列表，如下所示：</p>
+<pre><code class="lang-python">def my_metric_fn(labels, predictions):
+   return {&#39;accuracy&#39;: tf.metrics.accuracy(labels, predictions)}
+
+return tf.contrib.tpu.TPUEstimatorSpec(
+  ...
+  eval_metrics=(my_metric_fn, [labels, predictions])
+)
+</code></pre>
+<h3>使用 <code>TPUEstimatorSpec</code></h3>
+<p><code>TPUEstimatorSpec</code> 不支持钩子，并且某些字段需要函数装饰器。</p>
+<p><code>Estimator</code> 的 <code>model_fn</code> 必须返回 <code>EstimatorSpec</code>。<code>EstimatorSpec</code> 是一种简单结构的命名字段，它包含模型中可能需要与 <code>Estimator</code> 交互的所有 <code>tf.Tensors</code>。</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec"><code>tf.estimator.EstimatorSpec</code></a></p>
+<ul>
+<li><code>eval_metric_ops</code> 必须被包装在 <code>metrics_fn</code> 中，这个字段会被重命名为 <code>eval_metrics</code> (<a href="#metrics">see above</a>)。</li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/SessionRunHook"><code>tf.train.SessionRunHook</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/Scaffold"><code>tf.train.Scaffold</code></a></li>
+</ul>
+<p><code>Scaffold</code> and <code>Hooks</code> 是高级用法，通常被忽略。</p>
+<h2>输入函数</h2>
+<p>因为输入函数是运行在主机上而不是 Cloud TPU 上的，所以它的运行方式没太大变化。本节主要解释了两项必要的调整。</p>
+<h3>Params 参数</h3>
+<!-- TODO(markdaoust) link to input_fn doc when it exists -->
+
+<p>标准 <code>Estimator</code> 的 <code>input_fn</code> <strong>可以</strong>包含一个 <code>params</code> 参数； <code>TPUEstimator</code> 的 <code>input_fn</code> <strong>必须</strong>包含一个 <code>params</code> 参数。这是允许估计器为输入流的每个副本设置批大小的必须参数。因此，<code>TPUEstimator</code> 的 <code>input_fn</code> 最简形式如下：</p>
+<pre><code>def my_input_fn(params):
+  pass
+</code></pre>
+<p><code>params['batch-size']</code> 包含了批次大小</p>
+<h3>静态形状和批次大小</h3>
+<p>由 <code>input_fn</code> 生成的输入管道在 CPU 上运行。因此，它并不需要遵循 XLA/TPU 环境下严格的静态形状要求。只有一个要求是，从输入管道输送到 TPU 的成批数据具有静态形状，由标准 TensorFlow 形状推断算法确定。中间张量可以随意，能具有动态形状。如果形状推断失败，但已知形状，则可以使用 <code>tf.set_shape()</code> 强制施加正确的形状。</p>
+<p>在下面的示例中，形状推断算法失败，但使用了 <code>set_shape</code> 进行了更正：</p>
+<pre><code>&gt;&gt;&gt; x = tf.zeros(tf.constant([1,2,3])+1)
+&gt;&gt;&gt; x.shape
+
+TensorShape([Dimension(None), Dimension(None), Dimension(None)])
+
+&gt;&gt;&gt; x.set_shape([2,3,4])
+</code></pre>
+<p>在许多情况下，批次大小是唯一未知的维度。</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/batch"><code>tf.data.Dataset.batch</code></a></p>
+<pre><code>&gt;&gt;&gt; params = {'batch_size':32}
+&gt;&gt;&gt; ds = tf.data.Dataset.from_tensors([0, 1, 2])
+&gt;&gt;&gt; ds = ds.repeat().batch(params['batch-size'])
+&gt;&gt;&gt; ds
+
+&lt;BatchDataset shapes: (?, 3), types: tf.int32&gt;
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/batch_and_drop_remainder"><code>tf.contrib.data.batch_and_drop_remainder</code></a></p>
+<pre><code>&gt;&gt;&gt; params = {'batch_size':32}
+&gt;&gt;&gt; ds = tf.data.Dataset.from_tensors([0, 1, 2])
+&gt;&gt;&gt; ds = ds.repeat().apply(
+...     tf.contrib.data.batch_and_drop_remainder(params['batch-size']))
+&gt;&gt;&gt; ds
+
+ &lt;_RestructuredDataset shapes: (32, 3), types: tf.int32&gt;
+</code></pre>
+<p>顾名思义,这种方法的一个缺点就是会在数据集的结尾丢弃任何的未满批次.对于用于训练的无限重复数据集,这是可以接收的,但是你如果想要按一个具体的循环数训练,则会出现问题。</p>
+<p>要进行一轮准确的运算，你可以通过手动填充批次的长度，并在创建 <code>tf.metrics</code> 时将条目设置为零权重来解决这一问题。</p>
+<h2>数据集</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html">Input Pipeline Performance Guide</a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/from_tensor_slices"><code>tf.data.Dataset.from_tensor_slices</code></a></p>
+<!--TODO(markdaoust): link to the `TFRecord` doc when it exists.-->
+
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/cache"><code>tf.data.Dataset.cache</code></a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html#use_large_files">性能指南</a></p>
+<p>同样重要的是，无论使用哪种类型的读取器，都要使用构造函数的 <code>buffer_size</code> 参数启用缓冲。此参数以字节为单位指定。建议使用几 MB（<code>buffer_size=8*1024*1024</code>），以便在需要时提供数据。</p>
+<p>TPU 示例仓库下包含一个用于下载 ImageNet 数据集并将其转换为适当格式的<a href="https://github.com/tensorflow/tpu-demos/blob/master/cloud_tpu/datasets/imagenet_to_gcs.py">脚本</a>。</p>
+<p>这与仓库中包含的 ImageNet <a href="https://github.com/tensorflow/tpu-demos/tree/master/cloud_tpu/models">模型</a>一起演示了所有的最佳实践。</p>
+<h2>下一步</h2>
+<p>有关如何实际设置和运行 Cloud TPU 的详细信息，请参看：</p>
+<ul>
+<li><a href="https://cloud.google.com/tpu/docs/">Google Cloud TPU 文档</a></li>
+</ul>
+<p>这篇文章也不能包含所有。关于如何使 Cloud TPU 兼容模型的更多细节的最佳来源是发布在以下文章中的实例模型：</p>
+<ul>
+<li><a href="https://github.com/tensorflow/tpu-demos/">TPU 示例仓库</a></li>
+</ul>
+<p>有关优化 TensorFlow 代码以提高性能的更多信息，请参看：</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/performance/index.html">性能</a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Getting Started for ML Beginners</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Getting Started for ML Beginners</h1>
+<p>This document explains how to use machine learning to classify (categorize)<br>
+Iris flowers by species.  This document dives deeply into the TensorFlow<br>
+code to do exactly that, explaining ML fundamentals along the way.</p>
+<p>If the following list describes you, then you are in the right place:</p>
+<ul>
+<li>You know little to nothing about machine learning.</li>
+<li>You want to learn how to write TensorFlow programs.</li>
+<li>You can code (at least a little) in Python.</li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<h2>The Iris classification problem</h2>
+<p>Imagine you are a botanist seeking an automated way to classify each<br>
+Iris flower you find.  Machine learning provides many ways to classify flowers.<br>
+For instance, a sophisticated machine learning program could classify flowers<br>
+based on photographs.  Our ambitions are more modest--we're going to classify<br>
+Iris flowers based solely on the length and width of their<br>
+<a href="https://en.wikipedia.org/wiki/Sepal">sepals</a> and<br>
+<a href="https://en.wikipedia.org/wiki/Petal">petals</a>.</p>
+<p>The Iris genus entails about 300 species, but our program will classify only<br>
+the following three:</p>
+<ul>
+<li>Iris setosa</li>
+<li>Iris virginica</li>
+<li>Iris versicolor</li>
+</ul>
+<div style="margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%"
+  alt="Petal geometry compared for three iris species: Iris setosa, Iris virginica, and Iris versicolor"
+  src="../images/iris_three_species.jpg">
+</div><p><strong>From left to right,<br>
+<a href="https://commons.wikimedia.org/w/index.php?curid=170298"><em>Iris setosa</em></a> (by<br>
+<a href="https://commons.wikimedia.org/wiki/User:Radomil">Radomil</a>, CC BY-SA 3.0),<br>
+<a href="https://commons.wikimedia.org/w/index.php?curid=248095"><em>Iris versicolor</em></a> (by<br>
+<a href="https://commons.wikimedia.org/wiki/User:Dlanglois">Dlanglois</a>, CC BY-SA 3.0),<br>
+and <a href="https://www.flickr.com/photos/33397993@N05/3352169862"><em>Iris virginica</em></a><br>
+(by <a href="https://www.flickr.com/photos/33397993@N05">Frank Mayfield</a>, CC BY-SA<br>
+2.0).</strong></p>
+<p>&nbsp;</p><p>Fortunately, someone has already created <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">a data set of 120 Iris<br>
+flowers</a><br>
+with the sepal and petal measurements.  This data set has become<br>
+one of the canonical introductions to machine learning classification problems.<br>
+(The <a href="https://en.wikipedia.org/wiki/MNIST_database">MNIST database</a>,<br>
+which contains handwritten digits, is another popular classification<br>
+problem.) The first 5 entries of the Iris data set<br>
+look as follows:</p>
+<table>
+<thead><tr>
+<th>Sepal length</th>
+<th>sepal width</th>
+<th>petal length</th>
+<th>petal width</th>
+<th>species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.4</td>
+<td>2.8</td>
+<td>5.6</td>
+<td>2.2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5.0</td>
+<td>2.3</td>
+<td>3.3</td>
+<td>1.0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4.9</td>
+<td>2.5</td>
+<td>4.5</td>
+<td>1.7</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4.9</td>
+<td>3.1</td>
+<td>1.5</td>
+<td>0.1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>3.8</td>
+<td>1.7</td>
+<td>0.3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Let's introduce some terms:</p>
+<ul>
+<li><p>The last column (species) is called the<br>
+<a href="https://developers.google.com/machine-learning/glossary/#label"><strong>label</strong></a>;<br>
+the first four columns are called<br>
+<a href="https://developers.google.com/machine-learning/glossary/#feature"><strong>features</strong></a>.<br>
+Features are characteristics of an example, while the label is<br>
+the thing we're trying to predict.</p>
+</li>
+<li><p>An <a href="https://developers.google.com/machine-learning/glossary/#example"><strong>example</strong></a><br>
+consists of the set of features and the label for one sample<br>
+flower. The preceding table shows 5 examples from a data set of<br>
+120 examples.</p>
+</li>
+</ul>
+<p>Each label is naturally a string (for example, "setosa"), but machine learning<br>
+typically relies on numeric values. Therefore, someone mapped each string to<br>
+a number.  Here's the representation scheme:</p>
+<ul>
+<li>0 represents setosa</li>
+<li>1 represents versicolor</li>
+<li>2 represents virginica</li>
+</ul>
+<h2>Models and training</h2>
+<p>A <strong>model</strong> is the relationship between features<br>
+and the label.  For the Iris problem, the model defines the relationship<br>
+between the sepal and petal measurements and the Iris species.<br>
+Some simple models can be described with a few lines of algebra;<br>
+more complex machine learning models<br>
+contain such a large number of interlacing mathematical functions and<br>
+parameters that they become hard to summarize mathematically.</p>
+<p>Could you determine the relationship between the four features and the<br>
+Iris species <em>without</em> using machine learning?  That is, could you use<br>
+traditional programming techniques (for example, a lot of conditional<br>
+statements) to create a model?  Maybe. You could play with the data set<br>
+long enough to determine the right relationships of petal and sepal<br>
+measurements to particular species.  However, a good machine learning<br>
+approach <em>determines the model for you</em>.  That is, if you feed enough<br>
+representative examples into the right machine learning model type, the program<br>
+will determine the relationship between sepals, petals, and species.</p>
+<p><strong>Training</strong> is the stage of machine learning in which the model is<br>
+gradually optimized (learned).  The Iris problem is an example<br>
+of <a href="https://developers.google.com/machine-learning/glossary/#supervised_machine_learning"><strong>supervised machine<br>
+learning</strong></a><br>
+in which a model is trained from examples that contain labels.  (In<br>
+<a href="https://developers.google.com/machine-learning/glossary/#unsupervised_machine_learning"><strong>unsupervised machine<br>
+learning</strong></a>,<br>
+the examples don't contain labels. Instead, the model typically finds<br>
+patterns among the features.)</p>
+<h2>Get the sample program</h2>
+<p>Prior to playing with the sample code in this document, do the following:</p>
+<ol>
+<li><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></li>
+<li>If you installed TensorFlow with virtualenv or Anaconda, activate your<br>
+TensorFlow environment.</li>
+<li><p>Install or upgrade pandas by issuing the following command:</p>
+<p><code>pip install pandas</code></p>
+</li>
+</ol>
+<p>Take the following steps to get the sample program:</p>
+<ol>
+<li><p>Clone the TensorFlow Models repository from github by entering the following<br>
+command:</p>
+<pre><code>`git clone https://github.com/tensorflow/models`
+</code></pre>
+</li>
+<li><p>Change directory within that branch to the location containing the examples<br>
+used in this document:</p>
+<pre><code>`cd models/samples/core/get_started/`
+</code></pre>
+</li>
+</ol>
+<p>In that <code>get_started</code> directory, you'll find a program<br>
+named <code>premade_estimator.py</code>.</p>
+<h2>Run the sample program</h2>
+<p>You run TensorFlow programs as you would run any Python program. Therefore,<br>
+issue the following command from a command line to<br>
+run <code>premade_estimators.py</code>:</p>
+<pre><code class="lang-bash">python premade_estimator.py
+</code></pre>
+<p>Running the program should output a whole bunch of information ending with<br>
+three prediction lines like the following:</p>
+<pre><code class="lang-None">...
+Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
+
+Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
+
+Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
+</code></pre>
+<p>If the program generates errors instead of predictions, ask yourself the<br>
+following questions:</p>
+<ul>
+<li>Did you install TensorFlow properly?</li>
+<li>Are you using the correct version of TensorFlow?  The <code>premade_estimators.py</code><br>
+program requires at least TensorFlow v1.4.</li>
+<li>If you installed TensorFlow with virtualenv or Anaconda, did you activate<br>
+the environment?</li>
+</ul>
+<h2>The TensorFlow programming stack</h2>
+<p>As the following illustration shows, TensorFlow<br>
+provides a programming stack consisting of multiple API layers:</p>
+<div style="margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/tensorflow_programming_environment.png">
+</div><p><strong>The TensorFlow Programming Environment.</strong></p>
+<p>&nbsp;</p><p>As you start writing TensorFlow programs, we strongly recommend focusing on<br>
+the following two high-level APIs:</p>
+<ul>
+<li>Estimators</li>
+<li>Datasets</li>
+</ul>
+<p>Although we'll grab an occasional convenience function from other APIs,<br>
+this document focuses on the preceding two APIs.</p>
+<h2>The program itself</h2>
+<p>Thanks for your patience; let's dig into the code.<br>
+The general outline of <code>premade_estimator.py</code>--and many other TensorFlow<br>
+programs--is as follows:</p>
+<ul>
+<li>Import and parse the data sets.</li>
+<li>Create feature columns to describe the data.</li>
+<li>Select the type of model</li>
+<li>Train the model.</li>
+<li>Evaluate the model's effectiveness.</li>
+<li>Let the trained model make predictions.</li>
+</ul>
+<p>The following subsections detail each part.</p>
+<h3>Import and parse the data sets</h3>
+<p>The Iris program requires the data from the following two .csv files:</p>
+<ul>
+<li><code>http://download.tensorflow.org/data/iris_training.csv</code>, which contains<br>
+the training set.</li>
+<li><code>http://download.tensorflow.org/data/iris_test.csv</code>, which contains the<br>
+the test set.</li>
+</ul>
+<p>The <strong>training set</strong> contains the examples that we'll use to train the model;<br>
+the <strong>test set</strong> contains the examples that we'll use to evaluate the trained<br>
+model's effectiveness.</p>
+<p>The training set and test set started out as a<br>
+single data set.  Then, someone split the examples, with the majority going into<br>
+the training set and the remainder going into the test set.  Adding<br>
+examples to the training set usually builds a better model; however, adding<br>
+more examples to the test set enables us to better gauge the model's<br>
+effectiveness. Regardless of the split, the examples in the test set<br>
+must be separate from the examples in the training set.  Otherwise, you can't<br>
+accurately determine the model's effectiveness.</p>
+<p>The <code>premade_estimators.py</code> program relies on the <code>load_data</code> function<br>
+in the adjacent <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a><br>
+file to read in and parse the training set and test set.<br>
+Here is a heavily commented version of the function:</p>
+<pre><code class="lang-python">TRAIN_URL = &quot;http://download.tensorflow.org/data/iris_training.csv&quot;
+TEST_URL = &quot;http://download.tensorflow.org/data/iris_test.csv&quot;
+
+CSV_COLUMN_NAMES = [&#39;SepalLength&#39;, &#39;SepalWidth&#39;,
+                    &#39;PetalLength&#39;, &#39;PetalWidth&#39;, &#39;Species&#39;]
+
+...
+
+def load_data(label_name=&#39;Species&#39;):
+    &quot;&quot;&quot;Parses the csv file in TRAIN_URL and TEST_URL.&quot;&quot;&quot;
+
+    # Create a local copy of the training set.
+    train_path = tf.keras.utils.get_file(fname=TRAIN_URL.split(&#39;/&#39;)[-1],
+                                         origin=TRAIN_URL)
+    # train_path now holds the pathname: ~/.keras/datasets/iris_training.csv
+
+    # Parse the local CSV file.
+    train = pd.read_csv(filepath_or_buffer=train_path,
+                        names=CSV_COLUMN_NAMES,  # list of column names
+                        header=0  # ignore the first row of the CSV file.
+                       )
+    # train now holds a pandas DataFrame, which is data structure
+    # analogous to a table.
+
+    # 1. Assign the DataFrame&#39;s labels (the right-most column) to train_label.
+    # 2. Delete (pop) the labels from the DataFrame.
+    # 3. Assign the remainder of the DataFrame to train_features
+    train_features, train_label = train, train.pop(label_name)
+
+    # Apply the preceding logic to the test set.
+    test_path = tf.keras.utils.get_file(TEST_URL.split(&#39;/&#39;)[-1], TEST_URL)
+    test = pd.read_csv(test_path, names=CSV_COLUMN_NAMES, header=0)
+    test_features, test_label = test, test.pop(label_name)
+
+    # Return four DataFrames.
+    return (train_features, train_label), (test_features, test_label)
+</code></pre>
+<p>Keras is an open-sourced machine learning library; <code>tf.keras</code> is a TensorFlow<br>
+implementation of Keras.  The <code>premade_estimator.py</code> program only accesses<br>
+one <code>tf.keras</code> function; namely, the <code>tf.keras.utils.get_file</code> convenience<br>
+function, which copies a remote CSV file to a local file system.</p>
+<p>The call to <code>load_data</code> returns two <code>(feature,label)</code> pairs, for the training<br>
+and test sets respectively:</p>
+<pre><code class="lang-python">    # Call load_data() to parse the CSV file.
+    (train_feature, train_label), (test_feature, test_label) = load_data()
+</code></pre>
+<p>Pandas is an open-source Python library leveraged by several<br>
+TensorFlow functions.  A pandas<br>
+<a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"><strong>DataFrame</strong></a><br>
+is a table with named columns headers and numbered rows.<br>
+The features returned by <code>load_data</code> are packed in <code>DataFrames</code>.<br>
+For example, the <code>test_feature</code> DataFrame looks as follows:</p>
+<pre><code class="lang-none">    SepalLength  SepalWidth  PetalLength  PetalWidth
+0           5.9         3.0          4.2         1.5
+1           6.9         3.1          5.4         2.1
+2           5.1         3.3          1.7         0.5
+...
+27          6.7         3.1          4.7         1.5
+28          6.7         3.3          5.7         2.5
+29          6.4         2.9          4.3         1.3
+</code></pre>
+<h3>Describe the data</h3>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">Feature Columns</a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column"><code>tf.feature_column</code></a></p>
+<pre><code class="lang-python"># Create feature columns for all features.
+my_feature_columns = []
+for key in train_x.keys():
+    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+</code></pre>
+<p>Here is a less elegant, but possibly clearer, alternative way to<br>
+encode the preceding block:</p>
+<pre><code class="lang-python">my_feature_columns = [
+    tf.feature_column.numeric_column(key=&#39;SepalLength&#39;),
+    tf.feature_column.numeric_column(key=&#39;SepalWidth&#39;),
+    tf.feature_column.numeric_column(key=&#39;PetalLength&#39;),
+    tf.feature_column.numeric_column(key=&#39;PetalWidth&#39;)
+]
+</code></pre>
+<h3>Select the type of model</h3>
+<p>We need the select the kind of model that will be trained.<br>
+Lots of model types exist; picking the ideal type takes experience.<br>
+We've selected a neural network to solve the Iris problem.  <a href="https://developers.google.com/machine-learning/glossary/#neural_network"><strong>Neural<br>
+networks</strong></a><br>
+can find complex relationships between features and the label.<br>
+A neural network is a highly-structured graph, organized into one or more<br>
+<a href="https://developers.google.com/machine-learning/glossary/#hidden_layer"><strong>hidden layers</strong></a>.<br>
+Each hidden layer consists of one or more<br>
+<a href="https://developers.google.com/machine-learning/glossary/#neuron"><strong>neurons</strong></a>.<br>
+There are several categories of neural networks.<br>
+We'll be using a <a href="https://developers.google.com/machine-learning/glossary/#fully_connected_layer"><strong>fully connected neural<br>
+network</strong></a>,<br>
+which means that the neurons in one layer take inputs from <em>every</em> neuron in<br>
+the previous layer.  For example, the following figure illustrates a<br>
+fully connected neural network consisting of three hidden layers:</p>
+<ul>
+<li>The first hidden layer contains four neurons.</li>
+<li>The second hidden layer contains three neurons.</li>
+<li>The third hidden layer contains two neurons.</li>
+</ul>
+<div style="margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/simple_dnn.svg">
+</div><p><strong>A neural network with three hidden layers.</strong></p>
+<p>&nbsp;</p><p>To specify a model type, instantiate an<br>
+<a href="https://developers.google.com/machine-learning/glossary/#Estimators"><strong>Estimator</strong></a><br>
+class.  TensorFlow provides two categories of Estimators:</p>
+<ul>
+<li><a href="https://developers.google.com/machine-learning/glossary/#pre-made_Estimator"><strong>pre-made<br>
+Estimators</strong></a>,<br>
+which someone else has already written for you.</li>
+<li><a href="https://developers.google.com/machine-learning/glossary/#custom_estimator"><strong>custom<br>
+Estimators</strong></a>,<br>
+which you must code yourself, at least partially.</li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/DNNClassifier"><code>tf.estimator.DNNClassifier</code></a></p>
+<pre><code class="lang-python">    classifier = tf.estimator.DNNClassifier(
+        feature_columns=my_feature_columns,
+        hidden_units=[10, 10],
+        n_classes=3)
+</code></pre>
+<p>Use the <code>hidden_units</code> parameter to define the number of neurons<br>
+in each hidden layer of the neural network.  Assign this parameter<br>
+a list. For example:</p>
+<pre><code class="lang-python">        hidden_units=[10, 10],
+</code></pre>
+<p>The length of the list assigned to <code>hidden_units</code> identifies the number of<br>
+hidden layers (2, in this case).<br>
+Each value in the list represents the number of neurons in a particular<br>
+hidden layer (10 in the first hidden layer and 10 in the second hidden layer).<br>
+To change the number of hidden layers or neurons, simply assign a different<br>
+list to the <code>hidden_units</code> parameter.</p>
+<p>The ideal number of hidden layers and neurons depends on the problem<br>
+and the data set. Like many aspects of machine learning,<br>
+picking the ideal shape of the neural network requires some mixture<br>
+of knowledge and experimentation.<br>
+As a rule of thumb, increasing the number of hidden layers and neurons<br>
+<em>typically</em> creates a more powerful model, which requires more data to<br>
+train effectively.</p>
+<p>The <code>n_classes</code> parameter specifies the number of possible values that the<br>
+neural network can predict.  Since the Iris problem classifies 3 Iris species,<br>
+we set <code>n_classes</code> to 3.</p>
+<p>The constructor for <code>tf.Estimator.DNNClassifier</code> takes an optional argument<br>
+named <code>optimizer</code>, which our sample code chose not to specify.  The<br>
+<a href="https://developers.google.com/machine-learning/glossary/#optimizer"><strong>optimizer</strong></a><br>
+controls how the model will train.  As you develop more expertise in machine<br>
+learning, optimizers and<br>
+<a href="https://developers.google.com/machine-learning/glossary/#learning_rate"><strong>learning<br>
+rate</strong></a><br>
+will become very important.</p>
+<h3>Train the model</h3>
+<p>Instantiating a <code>tf.Estimator.DNNClassifier</code> creates a framework for learning<br>
+the model. Basically, we've wired a network but haven't yet let data flow<br>
+through it. To train the neural network, call the Estimator object's <code>train</code><br>
+method. For example:</p>
+<pre><code class="lang-python">    classifier.train(
+        input_fn=lambda:train_input_fn(train_feature, train_label, args.batch_size),
+        steps=args.train_steps)
+</code></pre>
+<p>The <code>steps</code> argument tells <code>train</code> to stop training after the specified<br>
+number of iterations.  Increasing <code>steps</code> increases the amount of time<br>
+the model will train.  Counter-intuitively, training a model longer<br>
+does not guarantee a better model.  The default value of <code>args.train_steps</code><br>
+is 1000.  The number of steps to train is a<br>
+<a href="https://developers.google.com/machine-learning/glossary/#hyperparameter"><strong>hyperparameter</strong></a><br>
+you can tune. Choosing the right number of steps usually<br>
+requires both experience and experimentation.</p>
+<p>The <code>input_fn</code> parameter identifies the function that supplies the<br>
+training data.  The call to the <code>train</code> method indicates that the<br>
+<code>train_input_fn</code> function will supply the training data.  Here's that<br>
+method's signature:</p>
+<pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
+</code></pre>
+<p>We're passing the following arguments to <code>train_input_fn</code>:</p>
+<ul>
+<li><code>train_feature</code> is a Python dictionary in which:<ul>
+<li>Each key is the name of a feature.</li>
+<li>Each value is an array containing the values for each example in the<br>
+training set.</li>
+</ul>
+</li>
+<li><code>train_label</code> is an array containing the values of the label for every<br>
+example in the training set.</li>
+<li><code>args.batch_size</code> is an integer defining the <a href="https://developers.google.com/machine-learning/glossary/#batch_size"><strong>batch<br>
+size</strong></a>.</li>
+</ul>
+<p>The <code>train_input_fn</code> function relies on the <strong>Dataset API</strong>. This is a<br>
+high-level TensorFlow API for reading data and transforming it into a form<br>
+that the <code>train</code> method requires.  The following call converts the<br>
+input features and labels into a <code>tf.data.Dataset</code> object, which is the base<br>
+class of the Dataset API:</p>
+<pre><code class="lang-python">    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+</code></pre>
+<p>The <code>tf.dataset</code> class provides many useful functions for preparing examples<br>
+for training. The following line calls three of those functions:</p>
+<pre><code class="lang-python">    dataset = dataset.shuffle(buffer_size=1000).repeat(count=None).batch(batch_size)
+</code></pre>
+<p>Training works best if the training examples are in<br>
+random order.  To randomize the examples, call<br>
+<code>tf.data.Dataset.shuffle</code>.  Setting the <code>buffer_size</code> to a value<br>
+larger than the number of examples (120) ensures that the data will<br>
+be well shuffled.</p>
+<p>During training, the <code>train</code> method typically processes the<br>
+examples multiple times.  Calling the<br>
+<code>tf.data.Dataset.repeat</code> method without any arguments ensures<br>
+that the <code>train</code> method has an infinite supply of (now shuffled)<br>
+training set examples.</p>
+<p>The <code>train</code> method processes a<br>
+<a href="https://developers.google.com/machine-learning/glossary/#batch"><strong>batch</strong></a><br>
+of examples at a time.<br>
+The <code>tf.data.Dataset.batch</code> method creates a batch by<br>
+concatenating multiple examples.<br>
+This program sets the default <a href="https://developers.google.com/machine-learning/glossary/#batch_size"><strong>batch<br>
+size</strong></a><br>
+to 100, meaning that the <code>batch</code> method will concatenate groups of<br>
+100 examples.  The ideal batch size depends on the problem.  As a rule<br>
+of thumb, smaller batch sizes usually enable the <code>train</code> method to train<br>
+the model faster at the expense (sometimes) of accuracy.</p>
+<p>The following <code>return</code> statement passes a batch of examples back to<br>
+the caller (the <code>train</code> method).</p>
+<pre><code class="lang-python">   return dataset.make_one_shot_iterator().get_next()
+</code></pre>
+<h3>Evaluate the model</h3>
+<p><strong>Evaluating</strong> means determining how effectively the model makes<br>
+predictions.  To determine the Iris classification model's effectiveness,<br>
+pass some sepal and petal measurements to the model and ask the model<br>
+to predict what Iris species they represent. Then compare the model's<br>
+prediction against the actual label.  For example, a model that picked<br>
+the correct species on half the input examples would have an<br>
+<a href="https://developers.google.com/machine-learning/glossary/#accuracy">accuracy</a><br>
+of 0.5.  The following suggests a more effective model:</p>
+<table>
+  <tr>
+    <th style="background-color:darkblue" colspan="5">
+       Test Set</th>
+  </tr>
+  <tr>
+    <th colspan="4">Features</th>
+    <th colspan="1">Label</th>
+    <th colspan="1">Prediction</th>
+  </tr>
+  <tr> <td>5.9</td> <td>3.0</td> <td>4.3</td> <td>1.5</td> <td>1</td> 
+          <td style="background-color:green">1</td></tr>
+  <tr> <td>6.9</td> <td>3.1</td> <td>5.4</td> <td>2.1</td> <td>2</td> 
+          <td style="background-color:green">2</td></tr>
+  <tr> <td>5.1</td> <td>3.3</td> <td>1.7</td> <td>0.5</td> <td>0</td> 
+          <td style="background-color:green">0</td></tr>
+  <tr> <td>6.0</td> <td>3.4</td> <td>4.5</td> <td>1.6</td> <td>1</td> 
+          <td style="background-color:red">2</td></tr>
+  <tr> <td>5.5</td> <td>2.5</td> <td>4.0</td> <td>1.3</td> <td>1</td> 
+          <td style="background-color:green">1</td></tr>
+</table><p><strong>A model that is 80% accurate.</strong></p>
+<p>&nbsp;</p><p>To evaluate a model's effectiveness, each Estimator provides an <code>evaluate</code><br>
+method.  The <code>premade_estimator.py</code> program calls <code>evaluate</code> as follows:</p>
+<pre><code class="lang-python"># Evaluate the model.
+eval_result = classifier.evaluate(
+    input_fn=lambda:eval_input_fn(test_x, test_y, args.batch_size))
+
+print(&#39;\nTest set accuracy: {accuracy:0.3f}\n&#39;.format(**eval_result))
+</code></pre>
+<p>The call to <code>classifier.evaluate</code> is similar to the call to <code>classifier.train</code>.<br>
+The biggest difference is that <code>classifier.evaluate</code> must get its examples<br>
+from the test set rather than the training set.  In other words, to<br>
+fairly assess a model's effectiveness, the examples used to<br>
+<em>evaluate</em> a model must be different from the examples used to <em>train</em><br>
+the model.  The <code>eval_input_fn</code> function serves a batch of examples from<br>
+the test set.  Here's the <code>eval_input_fn</code> method:</p>
+<pre><code class="lang-python">def eval_input_fn(features, labels=None, batch_size=None):
+    &quot;&quot;&quot;An input function for evaluation or prediction&quot;&quot;&quot;
+    if labels is None:
+        # No labels, use only features.
+        inputs = features
+    else:
+        inputs = (features, labels)
+
+    # Convert inputs to a tf.dataset object.
+    dataset = tf.data.Dataset.from_tensor_slices(inputs)
+
+    # Batch the examples
+    assert batch_size is not None, &quot;batch_size must not be None&quot;
+    dataset = dataset.batch(batch_size)
+
+    # Return the read end of the pipeline.
+    return dataset.make_one_shot_iterator().get_next()
+</code></pre>
+<p>In brief, <code>eval_input_fn</code> does the following when called by<br>
+<code>classifier.evaluate</code>:</p>
+<ol>
+<li>Converts the features and labels from the test set to a <code>tf.dataset</code><br>
+object.</li>
+<li>Creates a batch of test set examples.  (There's no need to shuffle<br>
+or repeat the test set examples.)</li>
+<li>Returns that batch of test set examples to <code>classifier.evaluate</code>.</li>
+</ol>
+<p>Running this code yields the following output (or something close to it):</p>
+<pre><code class="lang-none">Test set accuracy: 0.967
+</code></pre>
+<p>An accuracy of 0.967 implies that our trained model correctly classified 29<br>
+out of the 30 Iris species in the test set.</p>
+<h3>Predicting</h3>
+<p>We've now trained a model and "proven" that it is good--but not<br>
+perfect--at classifying Iris species.  Now let's use the trained<br>
+model to make some predictions on <a href="https://developers.google.com/machine-learning/glossary/#unlabeled_example"><strong>unlabeled<br>
+examples</strong></a>;<br>
+that is, on examples that contain features but not a label.</p>
+<p>In real-life, the unlabeled examples could come from lots of different<br>
+sources including apps, CSV files, and data feeds.  For now, we're simply<br>
+going to manually provide the following three unlabeled examples:</p>
+<pre><code class="lang-python">    predict_x = {
+        &#39;SepalLength&#39;: [5.1, 5.9, 6.9],
+        &#39;SepalWidth&#39;: [3.3, 3.0, 3.1],
+        &#39;PetalLength&#39;: [1.7, 4.2, 5.4],
+        &#39;PetalWidth&#39;: [0.5, 1.5, 2.1],
+    }
+</code></pre>
+<p>Every Estimator provides a <code>predict</code> method, which <code>premade_estimator.py</code><br>
+calls as follows:</p>
+<pre><code class="lang-python">predictions = classifier.predict(
+    input_fn=lambda:eval_input_fn(predict_x, batch_size=args.batch_size))
+</code></pre>
+<p>As with the <code>evaluate</code> method, our <code>predict</code> method also gathers examples<br>
+from the <code>eval_input_fn</code> method.</p>
+<p>When doing predictions, we're <em>not</em> passing labels to <code>eval_input_fn</code>.<br>
+Therefore, <code>eval_input_fn</code> does the following:</p>
+<ol>
+<li>Converts the features from the 3-element manual set we just created.</li>
+<li>Creates a batch of 3 examples from that manual set.</li>
+<li>Returns that batch of examples to <code>classifier.predict</code>.</li>
+</ol>
+<p>The <code>predict</code> method returns a python iterable, yielding a dictionary of<br>
+prediction results for each example.  This dictionary contains several keys.<br>
+The <code>probabilities</code> key holds a list of three floating-point values,<br>
+each representing the probability that the input example is a particular<br>
+Iris species.  For example, consider the following <code>probabilities</code> list:</p>
+<pre><code class="lang-none">&#39;probabilities&#39;: array([  1.19127117e-08,   3.97069454e-02,   9.60292995e-01])
+</code></pre>
+<p>The preceding list indicates:</p>
+<ul>
+<li>A negligible chance of the Iris being Setosa.</li>
+<li>A 3.97% chance of the Iris being Versicolor.</li>
+<li>A 96.0% chance of the Iris being Virginica.</li>
+</ul>
+<p>The <code>class_ids</code> key holds a one-element array that identifies the most<br>
+probable species.  For example:</p>
+<pre><code class="lang-none">&#39;class_ids&#39;: array([2])
+</code></pre>
+<p>The number <code>2</code> corresponds to Virginica.  The following code iterates<br>
+through the returned <code>predictions</code> to report on each prediction:</p>
+<pre><code class="lang-python">for pred_dict, expec in zip(predictions, expected):
+    template = (&#39;\nPrediction is &quot;{}&quot; ({:.1f}%), expected &quot;{}&quot;&#39;)
+
+    class_id = pred_dict[&#39;class_ids&#39;][0]
+    probability = pred_dict[&#39;probabilities&#39;][class_id]
+    print(template.format(SPECIES[class_id], 100 * probability, expec))
+</code></pre>
+<p>Running the program yields the following output:</p>
+<pre><code class="lang-None">...
+Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
+
+Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
+
+Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
+</code></pre>
+<h2>Summary</h2>
+<p><!--TODO(barryr): When MLCC is released, add pointers to relevant sections.--><br>
+This document provides a short introduction to machine learning.</p>
+<p>Because <code>premade_estimators.py</code> relies on high-level APIs, much of the<br>
+mathematical complexity in machine learning is hidden.<br>
+If you intend to become more proficient in machine learning, we recommend<br>
+ultimately learning more about <a href="https://developers.google.com/machine-learning/glossary/#gradient_descent"><strong>gradient<br>
+descent</strong></a>,<br>
+batching, and neural networks.</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">Feature Columns</a></p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

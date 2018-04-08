@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>使用提前编译</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>使用提前编译</h1>
+<h2>什么是 tfcompile？</h2>
+<p><code>tfcompile</code> 是一个将 TensorFlow 图提前（AOT）编译成可执行代码的独立工具。它可以减少二进制文件的大小，同时避免一些运行时开销。<code>tfcompile</code> 一个典型的用途是将推理图编译成用于移动设备的可执行代码。</p>
+<p>TensorFlow 图通常由 TensorFlow 运行时执行。这会导致图中的每个节点执行时的运行时开销。同时也增加了二进制文件的大小，因为除了图自身，TensorFlow 运行时的代码也需要可用。而由 <code>tfcompile</code> 生成的可执行代码不使用 TensorFlow 运行时，并且只依赖实际用于计算的内核。</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html">使用即时编译</a></p>
+<h2>tfcompile 做了什么？</h2>
+<p><code>tfcompile</code> 接受一个子图，子图由反馈和提取（TensorFlow 中的概念）确定，并生成一个实现这个子图的函数。<code>feed</code> 是函数的入参，<code>fetch</code> 是函数的出参。所有的输入必须由反馈声明；输出的裁剪后的子图不能包含位置占位符和变量节点。通常将所有的位置占位符和变量声明为反馈，以确保输出的子图中不再包含这些节点。生成的函数会和一个导出函数签名的头文件，以及一个包含实现的对象文件一起作为  <code>cc_library</code> 打包。用户可以视情况编写代码调用生成的函数。</p>
+<h2>使用 tfcompile</h2>
+<p>这一节详细介绍如何使用 <code>tfcompile</code> 从 TensorFlow 子图生成一个可执行二进制文件。步骤如下：</p>
+<ul>
+<li>步骤一：配置编译的子图</li>
+<li>步骤二：使用 <code>tf_library</code> 构建宏来编译子图</li>
+<li>步骤三：编写代码调用子图</li>
+<li>步骤四：创建最终的二进制文件</li>
+</ul>
+<h3>步骤一：配置编译的子图</h3>
+<p>对应生成的函数的入参和出参，确定反馈和提取。然后在 <a href="https://www.tensorflow.org/code/tensorflow/compiler/tf2xla/tf2xla.proto"><code>tensorflow.tf2xla.Config</code></a> 协议中配置 <code>feed</code> 和 <code>fetch</code>。</p>
+<pre><code class="lang-textproto"># Each feed is a positional input argument for the generated function.  The order
+# of each entry matches the order of each input argument.  Here “x_hold” and “y_hold”
+# refer to the names of placeholder nodes defined in the graph.
+feed {
+  id { node_name: &quot;x_hold&quot; }
+  shape {
+    dim { size: 2 }
+    dim { size: 3 }
+  }
+}
+feed {
+  id { node_name: &quot;y_hold&quot; }
+  shape {
+    dim { size: 3 }
+    dim { size: 2 }
+  }
+}
+
+# Each fetch is a positional output argument for the generated function.  The order
+# of each entry matches the order of each output argument.  Here “x_y_prod”
+# refers to the name of a matmul node defined in the graph.
+fetch {
+  id { node_name: &quot;x_y_prod&quot; }
+}
+</code></pre>
+<h3>步骤二：使用 tf_library 构建宏来编译子图</h3>
+<p>这一步通过 <code>tf_library</code> 构建宏将图转变成 <code>cc_library</code>。<code>cc_library</code> 包含一个从图生成的代码的对象文件，以及一个提供对生成代码的访问权限的头文件。<code>tf_library</code> 利用 <code>tfcompile</code> 将 TensorFlow 图编译成可执行代码。</p>
+<pre><code class="lang-build">load(&quot;//third_party/tensorflow/compiler/aot:tfcompile.bzl&quot;, &quot;tf_library&quot;)
+
+# Use the tf_library macro to compile your graph into executable code.
+tf_library(
+    # name is used to generate the following underlying build rules:
+    # &lt;name&gt;           : cc_library packaging the generated header and object files
+    # &lt;name&gt;_test      : cc_test containing a simple test and benchmark
+    # &lt;name&gt;_benchmark : cc_binary containing a stand-alone benchmark with minimal deps;
+    #                    can be run on a mobile device
+    name = &quot;test_graph_tfmatmul&quot;,
+    # cpp_class specifies the name of the generated C++ class, with namespaces allowed.
+    # The class will be generated in the given namespace(s), or if no namespaces are
+    # given, within the global namespace.
+    cpp_class = &quot;foo::bar::MatMulComp&quot;,
+    # graph is the input GraphDef proto, by default expected in binary format.  To
+    # use the text format instead, just use the ‘.pbtxt’ suffix.  A subgraph will be
+    # created from this input graph, with feeds as inputs and fetches as outputs.
+    # No Placeholder or Variable ops may exist in this subgraph.
+    graph = &quot;test_graph_tfmatmul.pb&quot;,
+    # config is the input Config proto, by default expected in binary format.  To
+    # use the text format instead, use the ‘.pbtxt’ suffix.  This is where the
+    # feeds and fetches were specified above, in the previous step.
+    config = &quot;test_graph_tfmatmul.config.pbtxt&quot;,
+)
+</code></pre>
+<blockquote><p>为了给示例生成 GraphDef 协议（test_graph_tfmatmul.pb），运行 <a href="&quot;https://www.tensorflow.org/code/tensorflow/compiler/aot/tests/make_test_graphs.py&quot;">make_test_graphs.py</a>，并使用 --out_dir 标志指定输出地址。</p>
+</blockquote>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/state_ops.html">Variables</a></p>
+<blockquote><p>在编译的子图中显示的常量将直接编译到生成的代码中。为了将常量传入而不是编译进生成的函数，只需将它们作为反馈传入。</p>
+</blockquote>
+<p>更多关于 <code>tf_library</code> 构建宏的细节，查看<br>
+<a href="https://www.tensorflow.org/code/tensorflow/compiler/aot/tfcompile.bzl">tfcompile.bzl</a>。</p>
+<p>更多关于底层 <code>tfcompile</code> 工具，查看<br>
+<a href="https://www.tensorflow.org/code/tensorflow/compiler/aot/tfcompile_main.cc">tfcompile_main.cc</a>。</p>
+<h3>步骤三：编写代码调用子图</h3>
+<p>此步骤使用在前几步中通过 <code>tf_library</code> 构建宏生成的头文件（<code>test_graph_tfmatmul.h</code>）来调用生成的代码。头文件位于和构建包相同的 <code>bazel-genfiles</code> 目录下，并基于 <code>tf_library</code> 构建宏中设置的 name 属性命名。例如，为 <code>test_graph_tfmatmul</code> 生成的头文件是 <code>test_graph_tfmatmul.h</code>。下面是生成文件的简化版。在<code>bazel-genfiles</code> 中生成的文件还会包含其他有用的注释。</p>
+<pre><code class="lang-c++">namespace foo {
+namespace bar {
+
+// MatMulComp represents a computation previously specified in a
+// TensorFlow graph, now compiled into executable code.
+class MatMulComp {
+ public:
+  // AllocMode controls the buffer allocation mode.
+  enum class AllocMode {
+    ARGS_RESULTS_AND_TEMPS,  // Allocate arg, result and temp buffers
+    RESULTS_AND_TEMPS_ONLY,  // Only allocate result and temp buffers
+  };
+
+  MatMulComp(AllocMode mode = AllocMode::ARGS_RESULTS_AND_TEMPS);
+  ~MatMulComp();
+
+  // Runs the computation, with inputs read from arg buffers, and outputs
+  // written to result buffers. Returns true on success and false on failure.
+  bool Run();
+
+  // Arg methods for managing input buffers. Buffers are in row-major order.
+  // There is a set of methods for each positional argument.
+  void** args();
+
+  void set_arg0_data(float* data);
+  float* arg0_data();
+  float&amp; arg0(size_t dim0, size_t dim1);
+
+  void set_arg1_data(float* data);
+  float* arg1_data();
+  float&amp; arg1(size_t dim0, size_t dim1);
+
+  // Result methods for managing output buffers. Buffers are in row-major order.
+  // Must only be called after a successful Run call. There is a set of methods
+  // for each positional result.
+  void** results();
+
+
+  float* result0_data();
+  float&amp; result0(size_t dim0, size_t dim1);
+};
+
+}  // end namespace bar
+}  // end namespace foo
+</code></pre>
+<p>根据 <code>tf_library</code> 宏中声明的 <code>cpp_class</code>，生成了 <code>foo::bar</code> 命名空间下的 <code>MatMulComp</code> C++ 类。所有生成的类都具有类似的 API，唯一的区别在于处理参数和结果缓冲区的方法。这些方法在缓冲区的数量和类型上存在差异，而这又取决于 <code>tf_library</code> 宏接受的 <code>feed</code> 和 <code>fetch</code> 参数。</p>
+<p>在生成的类中有三种类型的缓冲区：<code>args</code> 代表输入，<code>results</code> 代表输出，以及 <code>temps</code> 代表用于内部执行计算的临时缓存。默认情况下，生成类的每个实例都会分配和管理所有缓存。通过设置构造函数参数 <code>AllocMode</code> 可以改变这一行为。<a href="https://www.tensorflow.org/code/tensorflow/compiler/aot/runtime.h"><code>tensorflow/compiler/aot/runtime.h</code></a> 提供的库可以帮助手动分配缓存；库的使用是可选的。所有缓冲区都应 32 字节边界对齐。</p>
+<p>生成的 C++ 类只不过是在 XLA 生成的底层代码基础上的一层封装。</p>
+<p>基于 <a href="https://www.tensorflow.org/code/tensorflow/compiler/aot/tests/tfcompile_test.cc"><code>tfcompile_test.cc</code></a> 的调用生成函数的示例：</p>
+<pre><code class="lang-c++">#define EIGEN_USE_THREADS
+#define EIGEN_USE_CUSTOM_THREAD_POOL
+
+#include &lt;iostream&gt;
+#include &quot;third_party/eigen3/unsupported/Eigen/CXX11/Tensor&quot;
+#include &quot;tensorflow/compiler/aot/tests/test_graph_tfmatmul.h&quot; // generated
+
+int main(int argc, char** argv) {
+  Eigen::ThreadPool tp(2);  // Size the thread pool as appropriate.
+  Eigen::ThreadPoolDevice device(&amp;tp, tp.NumThreads());
+
+
+  foo::bar::MatMulComp matmul;
+  matmul.set_thread_pool(&amp;device);
+
+  // Set up args and run the computation.
+  const float args[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  std::copy(args + 0, args + 6, matmul.arg0_data());
+  std::copy(args + 6, args + 12, matmul.arg1_data());
+  matmul.Run();
+
+  // Check result
+  if (matmul.result0(0, 0) == 58) {
+    std::cout &lt;&lt; &quot;Success&quot; &lt;&lt; std::endl;
+  } else {
+    std::cout &lt;&lt; &quot;Failed. Expected value 58 at 0,0. Got:&quot;
+              &lt;&lt; matmul.result0(0, 0) &lt;&lt; std::endl;
+  }
+
+  return 0;
+}
+</code></pre>
+<h3>步骤四：创建最终的二进制文件</h3>
+<p>这一步将第二步中 <code>tf_library</code> 生成的库和第三步中编写的代码结合起来，创建最终的二进制文件。下面是 <code>bazel</code> 构建文件的一个示例。</p>
+<pre><code class="lang-build"># Example of linking your binary
+# Also see //third_party/tensorflow/compiler/aot/tests/BUILD
+load(&quot;//third_party/tensorflow/compiler/aot:tfcompile.bzl&quot;, &quot;tf_library&quot;)
+
+# The same tf_library call from step 2 above.
+tf_library(
+    name = &quot;test_graph_tfmatmul&quot;,
+    ...
+)
+
+# The executable code generated by tf_library can then be linked into your code.
+cc_binary(
+    name = &quot;my_binary&quot;,
+    srcs = [
+        &quot;my_code.cc&quot;,  # include test_graph_tfmatmul.h to access the generated header
+    ],
+    deps = [
+        &quot;:test_graph_tfmatmul&quot;,  # link in the generated object file
+        &quot;//third_party/eigen3&quot;,
+    ],
+    linkopts = [
+          &quot;-lpthread&quot;,
+    ]
+)
+</code></pre>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

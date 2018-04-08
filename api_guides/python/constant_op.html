@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Constants, Sequences, and Random Values</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Constants, Sequences, and Random Values</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
+<p>[TOC]</p>
+<h2>Constant Value Tensors</h2>
+<p>TensorFlow provides several operations that you can use to generate constants.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/zeros"><code>tf.zeros</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/zeros_like"><code>tf.zeros_like</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/ones"><code>tf.ones</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/ones_like"><code>tf.ones_like</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/fill"><code>tf.fill</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/constant"><code>tf.constant</code></a></li>
+</ul>
+<h2>Sequences</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/linspace"><code>tf.linspace</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/range"><code>tf.range</code></a></li>
+</ul>
+<h2>Random Tensors</h2>
+<p>TensorFlow has several ops that create random tensors with different<br>
+distributions.  The random ops are stateful, and create new random values each<br>
+time they are evaluated.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/set_random_seed"><code>tf.set_random_seed</code></a></p>
+<h3>Examples:</h3>
+<pre><code class="lang-python"># Create a tensor of shape [2, 3] consisting of random normal values, with mean
+# -1 and standard deviation 4.
+norm = tf.random_normal([2, 3], mean=-1, stddev=4)
+
+# Shuffle the first dimension of a tensor
+c = tf.constant([[1, 2], [3, 4], [5, 6]])
+shuff = tf.random_shuffle(c)
+
+# Each time we run these ops, different results are generated
+sess = tf.Session()
+print(sess.run(norm))
+print(sess.run(norm))
+
+# Set an op-level seed to generate repeatable sequences across sessions.
+norm = tf.random_normal([2, 3], seed=1234)
+sess = tf.Session()
+print(sess.run(norm))
+print(sess.run(norm))
+sess = tf.Session()
+print(sess.run(norm))
+print(sess.run(norm))
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html">变量</a></p>
+<pre><code class="lang-python"># Use random uniform values in [0, 1) as the initializer for a variable of shape
+# [2, 3]. The default type is float32.
+var = tf.Variable(tf.random_uniform([2, 3]), name=&quot;var&quot;)
+init = tf.global_variables_initializer()
+
+sess = tf.Session()
+sess.run(init)
+print(sess.run(var))
+</code></pre>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/random_normal"><code>tf.random_normal</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/truncated_normal"><code>tf.truncated_normal</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/random_uniform"><code>tf.random_uniform</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/random_shuffle"><code>tf.random_shuffle</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/random_crop"><code>tf.random_crop</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/multinomial"><code>tf.multinomial</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/random_gamma"><code>tf.random_gamma</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/set_random_seed"><code>tf.set_random_seed</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>迁移至 TensorFlow 1.0</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装 TensorFlow C 语言版'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>迁移至 TensorFlow 1.0</h1>
+<p>TensorFlow 1.0 中 API 的改动不再完全向后兼容。因此，运行于 TensorFlow 0.n 版本的 TensorFlow 应用可能不能在 TensorFlow 1.0 版本中正常运行。在此版本中，我们对 API 进行了一些修改，确保了其内部一致性；在接下来的整个 1.N 版本周期中都不会进行任何断代式变更。</p>
+<p>本指南将引导您了解新版 API 的主要变更，以及如何将您的程序自动升级至 TensorFlow 1.0。除了帮助您完成程序的修改之外，本指南也解释了我们为何要做出这些变更。</p>
+<h2>如何升级</h2>
+<p>如果您希望自动将代码迁移至 1.0 版本，可以尝试使用我们的 <code>tf_upgrade.py</code> 脚本。此脚本能处理大多数情况，但有时还是需要您进行手动修改。<br>
+  您可以在我们的 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/compatibility">GitHub</a> 中获取此脚本。</p>
+<p>如要将单个的 0.n 版 TensorFlow 源文件转换为 1.0 版本，请输入如下格式的命令：</p>
+<pre>
+$ <b>python tf_upgrade.py --infile</b> <i>InputFile</i> <b>--outfile</b> <i>OutputFile</i>
+</pre><p>例如，以下命令会将一个名为 <code>test.py</code> 的 0.n 版 TensorFlow 程序转换为名为 <code>test_1.0.py</code> 的 1.0 版 TensorFlow 程序：</p>
+<pre>
+$ <b>python tf_upgrade.py --infile test.py --outfile test_1.0.py</b>
+</pre><p><code>tf_upgrade.py</code> 脚本还会生成一个名为 <code>report.txt</code> 的文件，记录了其在升级过程中做的所有修改，并给出了一些可能需要您手动修改的建议。</p>
+<p>如要将整个目录的 0.n 版 TensorFlow 程序升级为 1.0 版本，请输入如下格式的命令：</p>
+<pre>
+$ <b>python tf_upgrade.py --intree</b> <i>InputDir</i> <b>--outtree</b> <i>OutputDir</i>
+</pre><p>例如，以下命令会将 <code>/home/user/cool</code> 中的所有 0.n 版 TensorFlow 程序转换为 1.0 版并放入新建的 <code>/home/user/cool_1.0</code> 目录中：</p>
+<pre>
+$ <b>python tf_upgrade.py --intree /home/user/cool --outtree /home/user/cool_1.0</b>
+</pre><h3>限制</h3>
+<p>在使用脚本进行升级时，有几点注意事项。尤其是：</p>
+<ul>
+<li>你需要手动修复所有 <code>tf.reverse()</code> 实例。<br>
+<code>tf_upgrade.py</code> 脚本也会在屏幕输出以及 <code>report.txt</code> 文件中警告您关于 <code>tf.reverse()</code> 的信息。</li>
+<li>如果遇上一些需要重排序的参数，<code>tf_upgrade.py</code> 将会试着最小化地格式化您的代码，但不能自动地改变实际的参数顺序。因此 <code>tf_upgrade.py</code> 将使用关键字参数，让函数参数与顺序无关。</li>
+<li><p><code>tf.get_variable_scope().reuse_variables()</code> 之类的构造器将失效。我们建议删除它们用以下方法代替：</p>
+<pre class="prettyprint">
+with tf.variable_scope(tf.get_variable_scope(), reuse=True):
+  ...
+</pre></li>
+<li><p>与 <code>tf.pack</code> 和  <code>tf.unpack</code> 类似，我们将 <code>TensorArray.pack</code> 以及 <code>TensorArray.unpack</code> 重命名为 <code>TensorArray.stack</code> 和 <code>TensorArray.unstack</code>。但是，<code>TensorArray.pack</code> 和 <code>TensorArray.unpack</code> 并不直接关联 <code>tf</code> 命名空间，因而无法通过词法直接检测出来，例如 <code>foo = tf.TensorArray(); foo.unpack()</code>。因此需要手动修改它们。</p>
+</li>
+</ul>
+<h2>手动升级您的代码</h2>
+<p>您也可以不使用 <code>tf_upgrade.py</code>，手动升级代码。本文档剩余部分提供了完整的 TensorFlow 1.0 非向后兼容变更列表。</p>
+<h3>变量（Variables）</h3>
+<p>现在 Variable 函数更具一致性，减少了误解。</p>
+<ul>
+<li><code>tf.VARIABLES</code><ul>
+<li>需要重命名为 <code>tf.GLOBAL_VARIABLES</code></li>
+</ul>
+</li>
+<li><code>tf.all_variables</code><ul>
+<li>需要重命名为 <code>tf.global_variables</code></li>
+</ul>
+</li>
+<li><code>tf.initialize_all_variables</code><ul>
+<li>需要重命名为 <code>tf.global_variables_initializer</code></li>
+</ul>
+</li>
+<li><code>tf.initialize_local_variables</code><ul>
+<li>需要重命名为 <code>tf.local_variables_initializer</code></li>
+</ul>
+</li>
+<li><code>tf.initialize_variables</code><ul>
+<li>需要重命名为 <code>tf.variables_initializer</code></li>
+</ul>
+</li>
+</ul>
+<h3>聚合函数</h3>
+<p>现在所有的聚合函数（Summary function）都被统一放置于 <code>tf.summary</code> 命名空间中。</p>
+<ul>
+<li><code>tf.audio_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.audio</code></li>
+</ul>
+</li>
+<li><code>tf.contrib.deprecated.histogram_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.histogram</code></li>
+</ul>
+</li>
+<li><code>tf.contrib.deprecated.scalar_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.scalar</code></li>
+</ul>
+</li>
+<li><code>tf.histogram_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.histogram</code></li>
+</ul>
+</li>
+<li><code>tf.image_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.image</code></li>
+</ul>
+</li>
+<li><code>tf.merge_all_summaries</code><ul>
+<li>需要重命名为 <code>tf.summary.merge_all</code></li>
+</ul>
+</li>
+<li><code>tf.merge_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.merge</code></li>
+</ul>
+</li>
+<li><code>tf.scalar_summary</code><ul>
+<li>需要重命名为 <code>tf.summary.scalar</code></li>
+</ul>
+</li>
+<li><code>tf.train.SummaryWriter</code><ul>
+<li>需要重命名为 <code>tf.summary.FileWriter</code></li>
+</ul>
+</li>
+</ul>
+<h3>数值差异</h3>
+<p>整数除法以及 <code>tf.floordiv</code> 将使用向下取整（floor）语义。这样就能使 <code>np.divide</code> 和 <code>np.mod</code> 的结果与 <code>tf.divide</code> 和 <code>tf.mod</code> 的结果保持一致。另外，我们修改了 <code>tf.round</code> 使用的取整算法，使其与 NumPy 保持一致。</p>
+<ul>
+<li><p><code>tf.div</code></p>
+<ul>
+<li><p>除法 <code>tf.divide</code> 的语义现在已经修改与 Python 语义保持一致，即 Python 3 中的 <code>/</code> 符号以及 Python 2 future 模块的 division 将始终得到浮点数、<code>//</code> 将进行求整除法。此外，<code>tf.div</code> 将只进行求整除法。如需使用 C 语言强制截断风格的除法运算，可以使用 <code>tf.truncatediv</code>。</p>
+</li>
+<li><p>请尽量将你的代码 <code>tf.div</code> 改为 <code>tf.divide</code>，它将遵循 Python 的语义。</p>
+</li>
+</ul>
+</li>
+<li><p><code>tf.mod</code></p>
+<ul>
+<li>求余 <code>tf.mod</code> 的语义现在已经修改与 Python 语义保持一致。另外，对于整数的运算将使用向下取整（floor）语义。如需使用 C 语言强制截断风格的求余运算，可以使用 <code>tf.truncatemod</code>。</li>
+</ul>
+</li>
+</ul>
+<p>新版和旧版的除法操作对比总结如下表所示：</p>
+<table>
+<thead><tr>
+<th>表达式</th>
+<th>TF 0.11 (py2)</th>
+<th>TF 0.11 (py3)</th>
+<th>TF 1.0 (py2)</th>
+<th>TF 1.0 (py3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tf.div(3,4)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>tf.div(-3,4)</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>tf.mod(-3,4)</td>
+<td>-3</td>
+<td>-3</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-3/4</td>
+<td>0</td>
+<td>-0.75</td>
+<td>-1</td>
+<td>-0.75</td>
+</tr>
+<tr>
+<td>-3/4tf.divide(-3,4)</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>-0.75</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<p>新版和旧版的取整操作对比总结如下表所示：</p>
+<table>
+<thead><tr>
+<th>输入</th>
+<th>Python</th>
+<th>NumPy</th>
+<th>C++ round()</th>
+<th>TensorFlow 0.11(floor(x+.5))</th>
+<th>TensorFlow 1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-3.5</td>
+<td>-4</td>
+<td>-4</td>
+<td>-4</td>
+<td>-3</td>
+<td>-4</td>
+</tr>
+<tr>
+<td>-2.5</td>
+<td>-2</td>
+<td>-2</td>
+<td>-3</td>
+<td>-2</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>-1.5</td>
+<td>-2</td>
+<td>-2</td>
+<td>-2</td>
+<td>-1</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>-0.5</td>
+<td>0</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h3>匹配 NumPy 命名</h3>
+<p>新版本对许多函数进行了重命名以匹配 NumPy。这么做旨在使得 NumPy 与 TensorFlow 之间的转换尽量简便。虽然我们已经排除了一些常见的不一致情况，但现在还有一些函数未能完全匹配。</p>
+<ul>
+<li><code>tf.inv</code><ul>
+<li>需要重命名为 <code>tf.reciprocal</code></li>
+<li>这么做是为了防止其与 NumPy 的矩阵求逆函数 <code>np.inv</code> 混淆</li>
+</ul>
+</li>
+<li><code>tf.list_diff</code><ul>
+<li>需要重命名为 <code>tf.setdiff1d</code></li>
+</ul>
+</li>
+<li><code>tf.listdiff</code><ul>
+<li>需要重命名为 <code>tf.setdiff1d</code></li>
+</ul>
+</li>
+<li><code>tf.mul</code><ul>
+<li>需要重命名为 <code>tf.multiply</code></li>
+</ul>
+</li>
+<li><code>tf.neg</code><ul>
+<li>需要重命名为 <code>tf.negative</code></li>
+</ul>
+</li>
+<li><code>tf.select</code><ul>
+<li>需要重命名为 <code>tf.where</code></li>
+<li><code>tf.where</code> 现在与 <code>np.where</code> 一样，需要传入 3 个或 1 个参数</li>
+</ul>
+</li>
+<li><code>tf.sub</code><ul>
+<li>需要重命名为 <code>tf.subtract</code></li>
+</ul>
+</li>
+</ul>
+<h3>匹配 NumPy 参数</h3>
+<p>一些 TensorFlow 1.0 方法的参数现在与 NumPy 的方法相匹配了。为了实现这一点，TensorFlow 1.0 对一些关键字参数进行了修改，并对一些参数进行了重排序。需要注意的是，TensorFlow 1.0 现在不再使用 <code>dimension</code> 而转为使用 <code>axis</code>。TensorFlow 1.0 在修改张量的操作中将保持张量参数始终在第一位。（参见 <code>tf.concat</code> 的改动）。</p>
+<ul>
+<li><code>tf.argmax</code><ul>
+<li>关键字参数 <code>dimension</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.argmin</code><ul>
+<li>关键字参数 <code>dimension</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.concat</code><ul>
+<li>关键字参数 <code>concat_dim</code> 需要重命名为 <code>axis</code></li>
+<li>输入参数重排序为 <code>tf.concat(values, axis, name='concat')</code>.</li>
+</ul>
+</li>
+<li><code>tf.count_nonzero</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.expand_dims</code><ul>
+<li>关键字参数 <code>dim</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_all</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_any</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_join</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_logsumexp</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_max</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_mean</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_min</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_prod</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reduce_sum</code><ul>
+<li>关键字参数 <code>reduction_indices</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.reverse</code><ul>
+<li><code>tf.reverse</code> 之前需要传入 1 维 <code>bool</code> 型张量用以控制维度的顺序调换，现在使用一组轴的索引进行控制。</li>
+<li>例如 <code>tf.reverse(a, [True, False, True])</code> 现在需改为 <code>tf.reverse(a, [0, 2])</code></li>
+</ul>
+</li>
+<li><code>tf.reverse_sequence</code><ul>
+<li>关键字参数 <code>batch_dim</code> 需要重命名为 <code>batch_axis</code></li>
+<li>关键字参数 <code>seq_dim</code> 需要重命名为 <code>seq_axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_concat</code><ul>
+<li>关键字参数 <code>concat_dim</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_reduce_sum</code><ul>
+<li>关键字参数 <code>reduction_axes</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_reduce_sum_sparse</code><ul>
+<li>关键字参数 <code>reduction_axes</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.sparse_split</code><ul>
+<li>关键字参数 <code>split_dim</code> 需要重命名为 <code>axis</code></li>
+<li>输入参数重排序为 <code>tf.sparse_split(keyword_required=KeywordRequired(), sp_input=None, num_split=None, axis=None, name=None, split_dim=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.split</code><ul>
+<li>关键字参数 <code>split_dim</code> 需要重命名为 <code>axis</code></li>
+<li>关键字参数 <code>num_split</code> 需要重命名为 <code>num_or_size_splits</code></li>
+<li>输入参数重排序为 <code>tf.split(value, num_or_size_splits, axis=0, num=None, name='split')</code>.</li>
+</ul>
+</li>
+<li><code>tf.squeeze</code><ul>
+<li>关键字参数 <code>squeeze_dims</code> 需要重命名为 <code>axis</code></li>
+</ul>
+</li>
+<li><code>tf.svd</code><ul>
+<li>输入参数重排序为 <code>tf.svd(tensor, full_matrices=False, compute_uv=True, name=None)</code>.</li>
+</ul>
+</li>
+</ul>
+<h3>简化数学变换</h3>
+<p>批量版数学运算操作已被移除。现在非批量版的函数已经包含了批量运算的功能。例如，<code>tf.complex_abs</code> 的功能已迁移至 <code>tf.abs</code></p>
+<ul>
+<li><code>tf.batch_band_part</code><ul>
+<li>需要重命名为 <code>tf.band_part</code></li>
+</ul>
+</li>
+<li><code>tf.batch_cholesky</code><ul>
+<li>需要重命名为 <code>tf.cholesky</code></li>
+</ul>
+</li>
+<li><code>tf.batch_cholesky_solve</code><ul>
+<li>需要重命名为 <code>tf.cholesky_solve</code></li>
+</ul>
+</li>
+<li><code>tf.batch_fft</code><ul>
+<li>需要重命名为 <code>tf.fft</code></li>
+</ul>
+</li>
+<li><code>tf.batch_fft3d</code><ul>
+<li>需要重命名为 <code>tf.fft3d</code></li>
+</ul>
+</li>
+<li><code>tf.batch_ifft</code><ul>
+<li>需要重命名为 <code>tf.ifft</code></li>
+</ul>
+</li>
+<li><code>tf.batch_ifft2d</code><ul>
+<li>需要重命名为 <code>tf.ifft2d</code></li>
+</ul>
+</li>
+<li><code>tf.batch_ifft3d</code><ul>
+<li>需要重命名为 <code>tf.ifft3d</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matmul</code><ul>
+<li>需要重命名为 <code>tf.matmul</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_determinant</code><ul>
+<li>需要重命名为 <code>tf.matrix_determinant</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_diag</code><ul>
+<li>需要重命名为 <code>tf.matrix_diag</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_inverse</code><ul>
+<li>需要重命名为 <code>tf.matrix_inverse</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_solve</code><ul>
+<li>需要重命名为 <code>tf.matrix_solve</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_solve_ls</code><ul>
+<li>需要重命名为 <code>tf.matrix_solve_ls</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_transpose</code><ul>
+<li>需要重命名为 <code>tf.matrix_transpose</code></li>
+</ul>
+</li>
+<li><code>tf.batch_matrix_triangular_solve</code><ul>
+<li>需要重命名为 <code>tf.matrix_triangular_solve</code></li>
+</ul>
+</li>
+<li><code>tf.batch_self_adjoint_eig</code><ul>
+<li>需要重命名为 <code>tf.self_adjoint_eig</code></li>
+</ul>
+</li>
+<li><code>tf.batch_self_adjoint_eigvals</code><ul>
+<li>需要重命名为 <code>tf.self_adjoint_eigvals</code></li>
+</ul>
+</li>
+<li><code>tf.batch_set_diag</code><ul>
+<li>需要重命名为 <code>tf.set_diag</code></li>
+</ul>
+</li>
+<li><code>tf.batch_svd</code><ul>
+<li>需要重命名为 <code>tf.svd</code></li>
+</ul>
+</li>
+<li><code>tf.complex_abs</code><ul>
+<li>需要重命名为 <code>tf.abs</code></li>
+</ul>
+</li>
+</ul>
+<h3>其它改动</h3>
+<p>除上文所述的改动外，还有以下一些变化：</p>
+<ul>
+<li><code>tf.image.per_image_whitening</code><ul>
+<li>需要重命名为 <code>tf.image.per_image_standardization</code></li>
+</ul>
+</li>
+<li><code>tf.nn.sigmoid_cross_entropy_with_logits</code><ul>
+<li>输入参数重排序为 <code>tf.nn.sigmoid_cross_entropy_with_logits(_sentinel=None, labels=None, logits=None, name=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.nn.softmax_cross_entropy_with_logits</code><ul>
+<li>输入参数重排序为 <code>tf.nn.softmax_cross_entropy_with_logits(_sentinel=None, labels=None, logits=None, dim=-1, name=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code><ul>
+<li>输入参数重排序为 <code>tf.nn.sparse_softmax_cross_entropy_with_logits(_sentinel=None, labels=None, logits=None, name=None)</code>.</li>
+</ul>
+</li>
+<li><code>tf.ones_initializer</code><ul>
+<li>需要修改成函数调用，例如  <code>tf.ones_initializer()</code></li>
+</ul>
+</li>
+<li><code>tf.pack</code><ul>
+<li>需要重命名为 <code>tf.stack</code></li>
+</ul>
+</li>
+<li><code>tf.round</code><ul>
+<li><code>tf.round</code> 的语义现在与银行家舍入法（Banker's rounding）相同。</li>
+</ul>
+</li>
+<li><code>tf.unpack</code><ul>
+<li>需要重命名为 <code>tf.unstack</code></li>
+</ul>
+</li>
+<li><code>tf.zeros_initializer</code><ul>
+<li>需要修改成函数调用，例如 <code>tf.zeros_initializer()</code></li>
+</ul>
+</li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

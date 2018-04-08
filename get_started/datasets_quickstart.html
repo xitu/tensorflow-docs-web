@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Datasets Quick Start</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Datasets Quick Start</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
+<ul>
+<li>Reading in-memory data from numpy arrays.</li>
+<li>Reading lines from a csv file.</li>
+</ul>
+<!-- TODO(markdaoust): Add links to an example reading from multiple-files
+(image_retraining), and a from_generator example. -->
+
+<h2>Basic input</h2>
+<p>Taking slices from an array is the simplest way to get started with <code>tf.data</code>.</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
+    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
+    # Convert the inputs to a Dataset.
+    dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+
+    # Shuffle, repeat, and batch the examples.
+    dataset = dataset.shuffle(1000).repeat().batch(batch_size)
+
+    # Build the Iterator, and return the read end of the pipeline.
+    return dataset.make_one_shot_iterator().get_next()
+</code></pre>
+<p>Let's look at this more closely.</p>
+<h3>Arguments</h3>
+<p>This function expects three arguments. Arguments expecting an "array" can<br>
+accept nearly anything that can be converted to an array with <code>numpy.array</code>.<br>
+One exception is<br>
+<a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences"><code>tuple</code></a><br>
+which has special meaning for <code>Datasets</code>.</p>
+<ul>
+<li><code>features</code>: A <code>{'feature_name':array}</code> dictionary (or<br>
+<a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"><code>DataFrame</code></a>)<br>
+containing the raw input features.</li>
+<li><code>labels</code> : An array containing the<br>
+<a href="https://developers.google.com/machine-learning/glossary/#label">label</a><br>
+for each example.</li>
+<li><code>batch_size</code> : An integer indicating the desired batch size.</li>
+</ul>
+<p>In <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a><br>
+we retrieved the Iris data using the <code>iris_data.load_data()</code> function.<br>
+You can run it, and unpack the results as follows:</p>
+<pre><code class="lang-python">import iris_data
+
+# Fetch the data
+train, test = iris_data.load_data()
+features, labels = train
+</code></pre>
+<p>Then we passed this data to the input function, with a line similar to this:</p>
+<pre><code class="lang-python">batch_size=100
+iris_data.train_input_fn(features, labels, batch_size)
+</code></pre>
+<p>Let's walk through the <code>train_input_fn()</code>.</p>
+<h3>Slices</h3>
+<p><a href="//xitu.github.io/tensorflow-docs-web/tutorials/layers.html">TF Layers 教程：构建卷积神经网络</a></p>
+<p>The code that returns this <code>Dataset</code> is as follows:</p>
+<pre><code class="lang-python">train, test = tf.keras.datasets.mnist.load_data()
+mnist_x, mnist_y = train
+
+mnist_ds = tf.data.Dataset.from_tensor_slices(mnist_x)
+print(mnist_ds)
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html#data_types">张量</a></p>
+<pre><code class="lang-None">&lt;TensorSliceDataset shapes: (28,28), types: tf.uint8&gt;
+</code></pre>
+<p>The dataset above represents a collection of simple arrays, but datasets are<br>
+much more powerful than this. Datasets transparently handle any nested<br>
+combination of dictionaries or tuples. For example, ensuring that <code>features</code><br>
+is a standard dictionary, you can then convert the dictionary of arrays to<br>
+a <code>Dataset</code> of dictionaries as follows:</p>
+<pre><code class="lang-python">dataset = tf.data.Dataset.from_tensor_slices(dict(features))
+print(dataset)
+</code></pre>
+<pre><code class="lang-None">&lt;TensorSliceDataset
+
+  shapes: {
+    SepalLength: (), PetalWidth: (),
+    PetalLength: (), SepalWidth: ()},
+
+  types: {
+      SepalLength: tf.float64, PetalWidth: tf.float64,
+      PetalLength: tf.float64, SepalWidth: tf.float64}
+&gt;
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html#rank">张量</a></p>
+<p>The first line of <code>train_input_fn</code> uses the same functionality, but adds<br>
+another level of structure. It creates a dataset containing<br>
+<code>(features, labels)</code> pairs.</p>
+<p>The following code shows that the label is a scalar with type <code>int64</code>:</p>
+<pre><code class="lang-python"># Convert the inputs to a Dataset.
+dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
+print(dataset)
+</code></pre>
+<pre><code>&lt;TensorSliceDataset
+    shapes: (
+        {
+          SepalLength: (), PetalWidth: (),
+          PetalLength: (), SepalWidth: ()},
+        ()),
+
+    types: (
+        {
+          SepalLength: tf.float64, PetalWidth: tf.float64,
+          PetalLength: tf.float64, SepalWidth: tf.float64},
+        tf.int64)&gt;
+</code></pre>
+<h3>Manipulation</h3>
+<p>Currently the <code>Dataset</code> would iterate over the data once, in a fixed order, and<br>
+only produce a single element at a time. It needs further processing before it<br>
+can be used for training. Fortunately, the <code>tf.data.Dataset</code> class provides<br>
+methods to better prepare the data for training. The next line of the input<br>
+function takes advantage of several of these methods:</p>
+<pre><code class="lang-python"># Shuffle, repeat, and batch the examples.
+dataset = dataset.shuffle(1000).repeat().batch(batch_size)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/shuffle"><code>tf.data.Dataset.shuffle</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/repeat"><code>tf.data.Dataset.repeat</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/repeat"><code>tf.data.Dataset.repeat</code></a></p>
+<pre><code class="lang-python">print(mnist_ds.batch(100))
+</code></pre>
+<pre><code class="lang-none">&lt;BatchDataset
+  shapes: (?, 28, 28),
+  types: tf.uint8&gt;
+</code></pre>
+<p>Note that the dataset has an unknown batch size because the last batch will<br>
+have fewer elements.</p>
+<p>In <code>train_input_fn</code>, after batching the <code>Dataset</code> contains 1D vectors of<br>
+elements where each scalar was previously:</p>
+<pre><code class="lang-python">print(dataset)
+</code></pre>
+<pre><code>&lt;TensorSliceDataset
+    shapes: (
+        {
+          SepalLength: (?,), PetalWidth: (?,),
+          PetalLength: (?,), SepalWidth: (?,)},
+        (?,)),
+
+    types: (
+        {
+          SepalLength: tf.float64, PetalWidth: tf.float64,
+          PetalLength: tf.float64, SepalWidth: tf.float64},
+        tf.int64)&gt;
+</code></pre>
+<h3>Return</h3>
+<!-- TODO(markdaoust) This line can be simplified to "return dataset" -->
+
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html">张量</a></p>
+<pre><code class="lang-python"># Build the Iterator, and return the read end of the pipeline.
+features_result, labels_result = dataset.make_one_shot_iterator().get_next()
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html">底层 API 编程介绍</a></p>
+<pre><code class="lang-python">print((features_result, labels_result))
+</code></pre>
+<pre><code class="lang-None">({
+    &#39;SepalLength&#39;: &lt;tf.Tensor &#39;IteratorGetNext:2&#39; shape=(?,) dtype=float64&gt;,
+    &#39;PetalWidth&#39;: &lt;tf.Tensor &#39;IteratorGetNext:1&#39; shape=(?,) dtype=float64&gt;,
+    &#39;PetalLength&#39;: &lt;tf.Tensor &#39;IteratorGetNext:0&#39; shape=(?,) dtype=float64&gt;,
+    &#39;SepalWidth&#39;: &lt;tf.Tensor &#39;IteratorGetNext:3&#39; shape=(?,) dtype=float64&gt;},
+Tensor(&quot;IteratorGetNext_1:4&quot;, shape=(?,), dtype=int64))
+</code></pre>
+<h2>Reading a CSV File</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
+<p>The following call to the <code>iris_data.maybe_download</code> function downloads the<br>
+data if necessary, and returns the pathnames of the resulting files:</p>
+<pre><code class="lang-python">import iris_data
+train_path, test_path = iris_data.maybe_download()
+</code></pre>
+<p>The <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.csv_input_fn</code></a><br>
+function contains an alternative implementation that parses the csv files using<br>
+a <code>Dataset</code>.</p>
+<p>Let's look at how to build an Estimator-compatible input function that reads<br>
+from the local files.</p>
+<h3>Build the <code>Dataset</code></h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/skip"><code>tf.data.Dataset.skip</code></a></p>
+<pre><code class="lang-python">ds = tf.data.TextLineDataset(train_path).skip(1)
+</code></pre>
+<h3>Build a csv line parser</h3>
+<p>Ultimately we will need to parse each of the lines in the dataset, to<br>
+produce the necessary <code>(features, label)</code> pairs.</p>
+<p>We will start by building a function to parse a single line.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
+<pre><code class="lang-python"># Metadata describing the text columns
+COLUMNS = [&#39;SepalLength&#39;, &#39;SepalWidth&#39;,
+           &#39;PetalLength&#39;, &#39;PetalWidth&#39;,
+           &#39;label&#39;]
+FIELD_DEFAULTS = [[0.0], [0.0], [0.0], [0.0], [0]]
+def _parse_line(line):
+    # Decode the line into its fields
+    fields = tf.decode_csv(line, FIELD_DEFAULTS)
+
+    # Pack the result into a dictionary
+    features = dict(zip(COLUMNS,fields))
+
+    # Separate the label from the features
+    label = features.pop(&#39;label&#39;)
+
+    return features, label
+</code></pre>
+<h3>Parse the lines</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
+<p>The <code>map</code> method takes a <code>map_func</code> argument that describes how each item in the<br>
+<code>Dataset</code> should be transformed.</p>
+<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="../images/datasets/map.png">
+</div>
+<div style="text-align: center">
+The @{tf.data.Dataset.map$`map`} method applies the `map_func` to
+transform each item in the <code>Dataset</code>.
+</div><p>So to parse the lines as they are streamed out of the csv file, we pass our<br>
+<code>_parse_line</code> function to the <code>map</code> method:</p>
+<pre><code class="lang-python">ds = ds.map(_parse_line)
+print(ds)
+</code></pre>
+<pre><code class="lang-None">&lt;MapDataset
+shapes: (
+    {SepalLength: (), PetalWidth: (), ...},
+    ()),
+types: (
+    {SepalLength: tf.float32, PetalWidth: tf.float32, ...},
+    tf.int32)&gt;
+</code></pre>
+<p>Now instead of simple scalar strings, the dataset contains <code>(features, label)</code><br>
+pairs.</p>
+<p>the remainder of the <code>iris_data.csv_input_fn</code> function is identical<br>
+to <code>iris_data.train_input_fn</code> which was covered in the in the<br>
+<a href="#basic_input">Basic input</a> section.</p>
+<h3>Try it out</h3>
+<p>This function can be used as a replacement for<br>
+<code>iris_data.train_input_fn</code>. It can be used to feed an estimator as follows:</p>
+<pre><code class="lang-python">train_path, test_path = iris_data.maybe_download()
+
+# All the inputs are numeric
+feature_columns = [
+    tf.feature_column.numeric_column(name)
+    for name in iris_data.CSV_COLUMN_NAMES[:-1]]
+
+# Build the estimator
+est = tf.estimator.LinearClassifier(feature_columns,
+                                    n_classes=3)
+# Train the estimator
+batch_size = 100
+est.train(
+    steps=1000,
+    input_fn=lambda : iris_data.csv_input_fn(train_path, batch_size))
+</code></pre>
+<p>Estimators expect an <code>input_fn</code> to take no arguments. To work around this<br>
+restriction, we use <code>lambda</code> to capture the arguments and provide the expected<br>
+interface.</p>
+<h2>Summary</h2>
+<p>The <code>tf.data</code> module provides a collection of classes and functions for easily<br>
+reading data from a variety of sources. Furthermore, <code>tf.data</code> has simple<br>
+powerful methods for applying a wide variety of standard and custom<br>
+transformations.</p>
+<p>Now you have the basic idea of how to efficiently load data into an<br>
+Estimator. Consider the following documents next:</p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html#datasets">底层 API 编程介绍</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html">数据导入</a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

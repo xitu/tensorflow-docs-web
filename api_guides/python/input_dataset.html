@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Dataset Input Pipeline</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Dataset Input Pipeline</h1>
+<p>[TOC]</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html">数据导入</a></p>
+<h2>Reader classes</h2>
+<p>Classes that create a dataset from input files.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/FixedLengthRecordDataset"><code>tf.data.FixedLengthRecordDataset</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TextLineDataset"><code>tf.data.TextLineDataset</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></li>
+</ul>
+<h2>Creating new datasets</h2>
+<p>Static methods in <code>Dataset</code> that create new datasets.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/from_generator"><code>tf.data.Dataset.from_generator</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/from_tensor_slices"><code>tf.data.Dataset.from_tensor_slices</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/from_tensors"><code>tf.data.Dataset.from_tensors</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/list_files"><code>tf.data.Dataset.list_files</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/range"><code>tf.data.Dataset.range</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/zip"><code>tf.data.Dataset.zip</code></a></li>
+</ul>
+<h2>Transformations on existing datasets</h2>
+<p>These functions transform an existing dataset, and return a new dataset. Calls<br>
+can be chained together, as shown in the example below:</p>
+<pre><code>train_data = train_data.batch(100).shuffle().repeat()
+</code></pre>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/apply"><code>tf.data.Dataset.apply</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/batch"><code>tf.data.Dataset.batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/cache"><code>tf.data.Dataset.cache</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/concatenate"><code>tf.data.Dataset.concatenate</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/filter"><code>tf.data.Dataset.filter</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/flat_map"><code>tf.data.Dataset.flat_map</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/interleave"><code>tf.data.Dataset.interleave</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/padded_batch"><code>tf.data.Dataset.padded_batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/prefetch"><code>tf.data.Dataset.prefetch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/repeat"><code>tf.data.Dataset.repeat</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/shard"><code>tf.data.Dataset.shard</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/shuffle"><code>tf.data.Dataset.shuffle</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/skip"><code>tf.data.Dataset.skip</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/take"><code>tf.data.Dataset.take</code></a></li>
+</ul>
+<h3>Custom transformation functions</h3>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/apply"><code>tf.data.Dataset.apply</code></a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/batch_and_drop_remainder"><code>tf.contrib.data.batch_and_drop_remainder</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/dense_to_sparse_batch"><code>tf.contrib.data.dense_to_sparse_batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/enumerate_dataset"><code>tf.contrib.data.enumerate_dataset</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/group_by_window"><code>tf.contrib.data.group_by_window</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/ignore_errors"><code>tf.contrib.data.ignore_errors</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/map_and_batch"><code>tf.contrib.data.map_and_batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/padded_batch_and_drop_remainder"><code>tf.contrib.data.padded_batch_and_drop_remainder</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/parallel_interleave"><code>tf.contrib.data.parallel_interleave</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/rejection_resample"><code>tf.contrib.data.rejection_resample</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/scan"><code>tf.contrib.data.scan</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/shuffle_and_repeat"><code>tf.contrib.data.shuffle_and_repeat</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/unbatch"><code>tf.contrib.data.unbatch</code></a></li>
+</ul>
+<h2>Iterating over datasets</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator"><code>tf.data.Iterator</code></a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/make_initializable_iterator"><code>tf.data.Dataset.make_initializable_iterator</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/make_one_shot_iterator"><code>tf.data.Dataset.make_one_shot_iterator</code></a></li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator"><code>tf.data.Iterator</code></a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator/from_structure"><code>tf.data.Iterator.from_structure</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator/from_string_handle"><code>tf.data.Iterator.from_string_handle</code></a></li>
+</ul>
+<h2>Extra functions from <code>tf.contrib.data</code></h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/get_single_element"><code>tf.contrib.data.get_single_element</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/make_saveable_from_iterator"><code>tf.contrib.data.make_saveable_from_iterator</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/read_batch_features"><code>tf.contrib.data.read_batch_features</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

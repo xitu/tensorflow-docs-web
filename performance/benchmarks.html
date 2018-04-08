@@ -1,0 +1,964 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>基准</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': 'Input Pipeline Performance Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': 'High-Performance Models'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}, {'type': 'parent', 'title': ' Quantization', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'How to Quantize Neural Networks with TensorFlow'}]}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>基准</h1>
+<h2>概述</h2>
+<p>在多个平台上对图像分类模型进行测试，为 TensorFlow 社区创建了一个参考点。在 <a href="#methodology">方法</a> 章节中会详细说明如何执行测试，并给出使用的脚本链接。</p>
+<h2>图像分类模型的结果</h2>
+<p>InceptionV3 (<a href="https://arxiv.org/abs/1512.00567">arXiv:1512.00567</a>), ResNet-50<br>
+(<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>), ResNet-152<br>
+(<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>), VGG16<br>
+(<a href="https://arxiv.org/abs/1409.1556">arXiv:1409.1556</a>), 和<br>
+<a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet</a> 使用 <a href="http://www.image-net.org/">ImageNet</a> 数据集测试。这些测试运行在 Google 计算云引擎，亚马逊计算云 (Amazon EC2) 和 NVIDIA® DGX-1™ 。大部分测试都使用了合成和真实的数据。使用 <code>tf.Variable</code> 对合成数据进行测试，数据集设置为 ImageNet 中每个模型所需的数据的同一形状。我们认为，对平台进行基准测试时，包含真实数据是很重要的。在底层硬件和框架上对准备数据加载测试是为了进行实际训练。为了将磁盘 I/O 作为变量移除，我们从合成数据开始，并设置一个基线。然后使用真实的数据来验证 TensorFlow 的输入管道和底层磁盘 I/O 是否使计算单元饱和。</p>
+<h3>使用 NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 训练</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_p100_single_server.png">
+</div><p>细节和其他结果参见 <a href="#details_for_nvidia_dgx-1tm_nvidia_tesla_p100">Details for NVIDIA® DGX-1™ (NVIDIA®<br>
+Tesla® P100)</a>。</p>
+<h3>使用 NVIDIA® Tesla® K80 训练</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_k80_single_server.png">
+</div><p>细节和其他结果参见 <a href="#details_for_google_compute_engine_nvidia_tesla_k80">Details for Google Compute Engine<br>
+(NVIDIA® Tesla® K80)</a> 和<br>
+<a href="#details_for_amazon_ec2_nvidia_tesla_k80">Details for Amazon EC2 (NVIDIA® Tesla®<br>
+K80)</a>。</p>
+<h3>使用 NVIDIA® Tesla® K80 分布式训练</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_k80_aws_distributed.png">
+</div><p>细节和其他结果参见 <a href="#details_for_amazon_ec2_distributed_nvidia_tesla_k80">Details for Amazon EC2 Distributed<br>
+(NVIDIA® Tesla® K80)</a>。</p>
+<h3>合成和真实数据训练比较</h3>
+<p><strong>NVIDIA® Tesla® P100</strong></p>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_p100_data_compare_inceptionv3.png">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_p100_data_compare_resnet50.png">
+</div><p><strong>NVIDIA® Tesla® K80</strong></p>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_k80_data_compare_inceptionv3.png">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_k80_data_compare_resnet50.png">
+</div><h2>NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 的详细资料</h2>
+<h3>环境配置</h3>
+<ul>
+<li><strong>Instance type</strong>: NVIDIA® DGX-1™</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® P100</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS with tests run via Docker</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+//tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> Local SSD</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>下表列出了每个模型的批处理大小和优化器。除了表中列出的批处理大小之外，InceptionV3、ResNet-50、ResNet-152 和 VGG16 测试的批次大小为 32。这些结果在 <em>其他结果</em> 章节。</p>
+<table>
+<thead><tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>64</td>
+<td>512</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>用于每个模型的配置。</p>
+<table>
+<thead><tr>
+<th>Model</th>
+<th>variable_update</th>
+<th>local_parameter_device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionV3</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>ResNet50</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>ResNet152</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>AlexNet</td>
+<td>replicated (with NCCL)</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>VGG16</td>
+<td>replicated (with NCCL)</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+<h3>结果</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_p100_single_server.png">
+</div><div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_dgx1_synth_p100_single_server_scaling.png">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_dgx1_real_p100_single_server_scaling.png">
+</div><p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>142</td>
+<td>219</td>
+<td>91.8</td>
+<td>2987</td>
+<td>154</td>
+</tr>
+<tr>
+<td>2</td>
+<td>284</td>
+<td>422</td>
+<td>181</td>
+<td>5658</td>
+<td>295</td>
+</tr>
+<tr>
+<td>4</td>
+<td>569</td>
+<td>852</td>
+<td>356</td>
+<td>10509</td>
+<td>584</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1131</td>
+<td>1734</td>
+<td>716</td>
+<td>17822</td>
+<td>1081</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练真实数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>142</td>
+<td>218</td>
+<td>91.4</td>
+<td>2890</td>
+<td>154</td>
+</tr>
+<tr>
+<td>2</td>
+<td>278</td>
+<td>425</td>
+<td>179</td>
+<td>4448</td>
+<td>284</td>
+</tr>
+<tr>
+<td>4</td>
+<td>551</td>
+<td>853</td>
+<td>359</td>
+<td>7105</td>
+<td>534</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1079</td>
+<td>1630</td>
+<td>708</td>
+<td>N/A</td>
+<td>898</td>
+</tr>
+</tbody>
+</table>
+<p>从上图表可以看出，由于最大输入的限制，AlexNet 模型没有使用 8 个 GPU 来训练数据。</p>
+<h3>其他结果</h3>
+<p>以下是批处理大小为 32 的结果。</p>
+<p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>128</td>
+<td>195</td>
+<td>82.7</td>
+<td>144</td>
+</tr>
+<tr>
+<td>2</td>
+<td>259</td>
+<td>368</td>
+<td>160</td>
+<td>281</td>
+</tr>
+<tr>
+<td>4</td>
+<td>520</td>
+<td>768</td>
+<td>317</td>
+<td>549</td>
+</tr>
+<tr>
+<td>8</td>
+<td>995</td>
+<td>1485</td>
+<td>632</td>
+<td>820</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练真实数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>130</td>
+<td>193</td>
+<td>82.4</td>
+<td>144</td>
+</tr>
+<tr>
+<td>2</td>
+<td>257</td>
+<td>369</td>
+<td>159</td>
+<td>253</td>
+</tr>
+<tr>
+<td>4</td>
+<td>507</td>
+<td>760</td>
+<td>317</td>
+<td>457</td>
+</tr>
+<tr>
+<td>8</td>
+<td>966</td>
+<td>1410</td>
+<td>609</td>
+<td>690</td>
+</tr>
+</tbody>
+</table>
+<h2>Google Compute Engine (NVIDIA® Tesla® K80) 的详细资料</h2>
+<h3>环境配置</h3>
+<ul>
+<li><strong>Instance type</strong>: n1-standard-32-k80x8</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+//tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> 1.7 TB Shared SSD persistent disk (800 MB/s)</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>下表列出了每个模型的批处理大小和优化器。除了表中列出的批处理大小之外，InceptionV3 和 ResNet-50 测试的批次大小为 32。这些结果在 <em>其他结果</em> 章节。</p>
+<table>
+<thead><tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>32</td>
+<td>512</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>每个模型所用的配置中， variable_update 和 parameter_server 配置相同，local_parameter_device 和 cpu 配置相同。</p>
+<h3>结果</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_gce_synth_k80_single_server_scaling.png">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_gce_real_k80_single_server_scaling.png">
+</div><p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.5</td>
+<td>51.9</td>
+<td>20.0</td>
+<td>656</td>
+<td>35.4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>57.8</td>
+<td>99.0</td>
+<td>38.2</td>
+<td>1209</td>
+<td>64.8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>116</td>
+<td>195</td>
+<td>75.8</td>
+<td>2328</td>
+<td>120</td>
+</tr>
+<tr>
+<td>8</td>
+<td>227</td>
+<td>387</td>
+<td>148</td>
+<td>4640</td>
+<td>234</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练真实数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.6</td>
+<td>51.2</td>
+<td>20.0</td>
+<td>639</td>
+<td>34.2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>58.4</td>
+<td>98.8</td>
+<td>38.3</td>
+<td>1136</td>
+<td>62.9</td>
+</tr>
+<tr>
+<td>4</td>
+<td>115</td>
+<td>194</td>
+<td>75.4</td>
+<td>2067</td>
+<td>118</td>
+</tr>
+<tr>
+<td>8</td>
+<td>225</td>
+<td>381</td>
+<td>148</td>
+<td>4056</td>
+<td>230</td>
+</tr>
+</tbody>
+</table>
+<h3>其他结果</h3>
+<p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.3</td>
+<td>49.5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>55.0</td>
+<td>95.4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>109</td>
+<td>183</td>
+</tr>
+<tr>
+<td>8</td>
+<td>216</td>
+<td>362</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练真实数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.5</td>
+<td>49.3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>55.4</td>
+<td>95.3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>110</td>
+<td>186</td>
+</tr>
+<tr>
+<td>8</td>
+<td>216</td>
+<td>359</td>
+</tr>
+</tbody>
+</table>
+<h2>Amazon EC2 (NVIDIA® Tesla® K80) 的详细资料</h2>
+<h3>环境配置</h3>
+<ul>
+<li><strong>Instance type</strong>: p2.8xlarge</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+//tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> 1TB Amazon EFS (burst 100 MiB/sec for 12 hours, continuous 50<br>
+MiB/sec)</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>下表列出了每个模型的批处理大小和优化器。除了表中列出的批处理大小之外，InceptionV3 和 ResNet-50 测试的批次大小为 32。这些结果在 <em>其他结果</em> 章节。</p>
+<table>
+<thead><tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>32</td>
+<td>512</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>用于每个模型的配置。</p>
+<table>
+<thead><tr>
+<th>Model</th>
+<th>variable_update</th>
+<th>local_parameter_device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionV3</td>
+<td>parameter_server</td>
+<td>cpu</td>
+</tr>
+<tr>
+<td>ResNet-50</td>
+<td>replicated (without NCCL)</td>
+<td>gpu</td>
+</tr>
+<tr>
+<td>ResNet-152</td>
+<td>replicated (without NCCL)</td>
+<td>gpu</td>
+</tr>
+<tr>
+<td>AlexNet</td>
+<td>parameter_server</td>
+<td>gpu</td>
+</tr>
+<tr>
+<td>VGG16</td>
+<td>parameter_server</td>
+<td>gpu</td>
+</tr>
+</tbody>
+</table>
+<h3>结果</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_aws_synth_k80_single_server_scaling.png">
+  <img style="width:35%" src="https://www.tensorflow.org/images/perf_aws_real_k80_single_server_scaling.png">
+</div><p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.8</td>
+<td>51.5</td>
+<td>19.7</td>
+<td>684</td>
+<td>36.3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>58.7</td>
+<td>98.0</td>
+<td>37.6</td>
+<td>1244</td>
+<td>69.4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>117</td>
+<td>195</td>
+<td>74.9</td>
+<td>2479</td>
+<td>141</td>
+</tr>
+<tr>
+<td>8</td>
+<td>230</td>
+<td>384</td>
+<td>149</td>
+<td>4853</td>
+<td>260</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练真实数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+<th>AlexNet</th>
+<th>VGG16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.5</td>
+<td>51.3</td>
+<td>19.7</td>
+<td>674</td>
+<td>36.3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>59.0</td>
+<td>94.9</td>
+<td>38.2</td>
+<td>1227</td>
+<td>67.5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>118</td>
+<td>188</td>
+<td>75.2</td>
+<td>2201</td>
+<td>136</td>
+</tr>
+<tr>
+<td>8</td>
+<td>228</td>
+<td>373</td>
+<td>149</td>
+<td>N/A</td>
+<td>242</td>
+</tr>
+</tbody>
+</table>
+<p>由于我们的 EFS 没有提供足够的吞吐量，在上面的图表中我们排除了使用 8 个 GPU 来训练 AlexNet 模型的统计。</p>
+<h3>其他结果</h3>
+<p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.9</td>
+<td>49.0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>57.5</td>
+<td>94.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>114</td>
+<td>184</td>
+</tr>
+<tr>
+<td>8</td>
+<td>216</td>
+<td>355</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练真实数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>30.0</td>
+<td>49.1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>57.5</td>
+<td>95.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>113</td>
+<td>185</td>
+</tr>
+<tr>
+<td>8</td>
+<td>212</td>
+<td>353</td>
+</tr>
+</tbody>
+</table>
+<h2>Amazon EC2 Distributed (NVIDIA® Tesla® K80) 的详细资料</h2>
+<h3>环境配置</h3>
+<ul>
+<li><strong>Instance type</strong>: p2.8xlarge</li>
+<li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
+<li><strong>OS:</strong> Ubuntu 16.04 LTS</li>
+<li><strong>CUDA / cuDNN:</strong> 8.0 / 5.1</li>
+<li><strong>TensorFlow GitHub hash:</strong> b1e174e</li>
+<li><strong>Benchmark GitHub hash:</strong> 9165a70</li>
+<li><strong>Build Command:</strong> <code>bazel build -c opt --copt=-march="haswell" --config=cuda
+//tensorflow/tools/pip_package:build_pip_package</code></li>
+<li><strong>Disk:</strong> 1.0 TB EFS (burst 100 MB/sec for 12 hours, continuous 50 MB/sec)</li>
+<li><strong>DataSet:</strong> ImageNet</li>
+<li><strong>Test Date:</strong> May 2017</li>
+</ul>
+<p>下表列出了每个模型的批处理大小和优化器。除了表中列出的批处理大小之外，InceptionV3 和 ResNet-50 测试的批次大小为 32。这些结果在 <em>其他结果</em> 章节。</p>
+<table>
+<thead><tr>
+<th>Options</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch size per GPU</td>
+<td>64</td>
+<td>64</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>sgd</td>
+<td>sgd</td>
+<td>sgd</td>
+</tr>
+</tbody>
+</table>
+<p>用于每个模型的配置。</p>
+<table>
+<thead><tr>
+<th>Model</th>
+<th>variable_update</th>
+<th>local_parameter_device</th>
+<th>cross_replica_sync</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InceptionV3</td>
+<td>distributed_replicated</td>
+<td>n/a</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ResNet-50</td>
+<td>distributed_replicated</td>
+<td>n/a</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ResNet-152</td>
+<td>distributed_replicated</td>
+<td>n/a</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<p>为了简化服务器安装，EC2 实例（p2.8xlarge）运行了 worker 服务器和 parameter 服务器。使用的 worker 服务器和 parameter 服务器数量相等，但有如下例外：</p>
+<ul>
+<li>InceptionV3: 8 instances / 6 parameter servers</li>
+<li>ResNet-50: (batch size 32) 8 instances / 4 parameter servers</li>
+<li>ResNet-152: 8 instances / 4 parameter servers</li>
+</ul>
+<h3>结果</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_k80_aws_distributed.png">
+</div><div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:70%" src="https://www.tensorflow.org/images/perf_aws_synth_k80_distributed_scaling.png">
+</div><p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3</th>
+<th>ResNet-50</th>
+<th>ResNet-152</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.7</td>
+<td>52.4</td>
+<td>19.4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>229</td>
+<td>378</td>
+<td>146</td>
+</tr>
+<tr>
+<td>16</td>
+<td>459</td>
+<td>751</td>
+<td>291</td>
+</tr>
+<tr>
+<td>32</td>
+<td>902</td>
+<td>1388</td>
+<td>565</td>
+</tr>
+<tr>
+<td>64</td>
+<td>1783</td>
+<td>2744</td>
+<td>981</td>
+</tr>
+</tbody>
+</table>
+<h3>其他结果</h3>
+<div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
+  <img style="width:50%" src="https://www.tensorflow.org/images/perf_aws_synth_k80_multi_server_batch32.png">
+</div><p><strong>训练合成数据</strong></p>
+<table>
+<thead><tr>
+<th>GPUs</th>
+<th>InceptionV3 (batch size 32)</th>
+<th>ResNet-50 (batch size 32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>29.2</td>
+<td>48.4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>219</td>
+<td>333</td>
+</tr>
+<tr>
+<td>16</td>
+<td>427</td>
+<td>667</td>
+</tr>
+<tr>
+<td>32</td>
+<td>820</td>
+<td>1180</td>
+</tr>
+<tr>
+<td>64</td>
+<td>1608</td>
+<td>2315</td>
+</tr>
+</tbody>
+</table>
+<h2>方法</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./performance/performance_models.html">High-Performance Models</a></p>
+<p>为了创建尽可能重复的结果，每个测试运行 5 次，然后将时间取平均值。在给定的平台上，GPU 是在默认状态下运行的。对于 NVIDIA® Tesla® K80 来说这意味着不使用 <a href="https://devblogs.nvidia.com/parallelforall/increase-performance-gpu-boost-k80-autoboost/">GPU<br>
+Boost</a>。对于每个测试，需要完成 10 次预热，然后再平均完成 100 次测试。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

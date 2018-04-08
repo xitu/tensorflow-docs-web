@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>添加一个定制的文件系统插件</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'title': '扩展'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/architecture.html', 'title': 'TensorFlow 架构'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/adding_an_op.html', 'title': '添加一个新操作（Op）'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/add_filesys.html', 'title': '添加一个定制的文件系统插件'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/new_data_formats.html', 'title': '自定义数据读取'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/language_bindings.html', 'title': '在其他语言中绑定 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/tool_developers/index.html', 'title': '工具开发者指南：TensorFlow 模型文件'}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>添加一个定制的文件系统插件</h1>
+<h2>背景</h2>
+<p>TensorFlow 框架经常用于多进程和多机环境，比如谷歌数据中心，谷歌机器学习云，亚马逊网络服务（AWS）以及现场分布式集群。为了分享和保存 TensorFlow 生成的某些类型的状态，该框架假定存在一个可靠的、共享的文件系统。这个共享文件系统有诸多用途，比如：</p>
+<ul>
+<li>状态检查点通常保存到一个分布式文件系统以获得可靠性和容错性。</li>
+<li>训练进程通过将事件文件写入一个由 TensorBoard 监听的目录与 TensorBoard 进行通信。即使 TensorBoard 运行在不同的进程和机器上，共享的文件系统也能使通信正常进行。</li>
+</ul>
+<p>在现实世界中，共享或分布式文件系统有许多不同的实现，所以 TensorFlow 提供了一种功能，可以让用户实现定制的文件系统插件，该插件可以在 TensorFlow 运行时注册。当 TensorFlow 运行时尝试通过 <code>FileSystem</code> 接口写入一个文件，它使用路径名的一部分来动态选择用于文件系统操作的实现。因此，为了支持定制的文件系统需要实现一个 <code>FileSystem</code> 接口，构建一个包含实现的共享对象，并在运行时将该对象加载到该文件系统所需的任何进程中。</p>
+<p>注意 TensorFlow 已经包含很多文件系统的实现，例如：</p>
+<ul>
+<li><p>标准 POSIX 文件系统</p>
+<p>注意：NFS 文件系统通常作为 POSIX 接口挂载，所以标准 TensorFlow 能够运行在挂载了 NFS 的远程文件系统上。</p>
+</li>
+<li><p>  HDFS — Hadoop 文件系统</p>
+</li>
+<li>  GCS — 谷歌云存储文件系统</li>
+<li>  S3 — 亚马逊基础存储文件系统</li>
+<li>  “内存映射文件”文件系统</li>
+</ul>
+<p>接下来讲如何实现一个定制的文件系统。</p>
+<h2>实现一个定制的文件系统插件</h2>
+<p>为了实现一个定制的文件系统插件，必须执行如下操作：</p>
+<ul>
+<li>实现 <code>RandomAccessFile</code>、<code>WriteableFile</code>、<code>AppendableFile</code> 和 <code>ReadOnlyMemoryRegion</code> 子类。</li>
+<li>作为一个子类实现 <code>FileSystem</code> 接口。</li>
+<li>使用适当的前缀模式注册 <code>FileSystem</code> 实现。</li>
+<li>在想要写入文件系统的进程中加载文件系统插件。</li>
+</ul>
+<h3>FileSystem 接口</h3>
+<p><code>FileSystem</code> 接口是在 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/file_system.h">file_system.h</a> 中定义的一个抽象 C++ 接口。一个 <code>FileSystem</code> 接口的实现应该实现所有在接口中定义的方法。实现接口需要定义操作，如创建 <code>RandomAccessFile</code>、<code>WritableFile</code> 和实现标准的文件系统操作，如 <code>FileExists</code>、<code>IsDirectory</code>、<code>GetMatchingPaths</code>、<code>DeleteFile</code> 等等。这些接口的实现通常涉及将函数的输入参数委托给一个已经存在的库函数，该函数在定制文件系统中实现了对应功能。</p>
+<p>例如，<code>PosixFileSystem</code> 使用 POSIX <code>unlink()</code> 函数实现了 <code>DeleteFile</code>；<code>CreateDir</code> 只是简单地调用 <code>mkdir()</code>；<code>GetFileSize</code> 对文件调用 <code>stat()</code> 然后返回文件大小。类似地，对于 <code>HDFSFileSystem</code> 实现，这些调用只是简单地委托给有着相似功能的 <code>libHDFS</code> 实现，例如用于 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/hadoop/hadoop_file_system.cc#L386">DeleteFile</a> 的 <code>hdfsDelete</code>。</p>
+<p>我们建议阅读这些代码示例，以了解不同的文件系统实现如何调用已经存在的库。示例包括：</p>
+<ul>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/posix/posix_file_system.h">POSIX 插件</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/hadoop/hadoop_file_system.h">HDFS 插件</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/cloud/gcs_file_system.h">GCS 插件</a></li>
+<li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/s3/s3_file_system.h">S3 插件</a></li>
+</ul>
+<h4>文件接口</h4>
+<p>除了在文件系统中允许查询、操作文件和目录外，<code>FileSystem</code> 接口还要求实现一些工厂方法，这些工厂方法返回抽象对象的实现，如 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/platform/file_system.h#L223">RandomAccessFile</a>、<code>WritableFile</code> ，从而 TensorFlow 可以在 <code>FileSystem</code> 实现中编码、读取和写入文件。</p>
+<p>为了实现 <code>RandomAccessFile</code>，你必须实现一个名为 <code>Read()</code> 的接口，其实现必须提供一种从指定文件偏移量读取的方法。</p>
+<p>例如，下面是针对 POSIX 文件系统的 <code>RandomAccessFile</code> 实现，读取通过 <code>pread()</code> 随机访问 POSIX 函数实现。请注意，特定的实现必须知道如何重试或传播来自底层文件系统的错误。</p>
+<pre><code class="lang-C++">    class PosixRandomAccessFile : public RandomAccessFile {
+     public:
+      PosixRandomAccessFile(const string&amp; fname, int fd)
+          : filename_(fname), fd_(fd) {}
+      ~PosixRandomAccessFile() override { close(fd_); }
+
+      Status Read(uint64 offset, size_t n, StringPiece* result,
+                  char* scratch) const override {
+        Status s;
+        char* dst = scratch;
+        while (n &gt; 0 &amp;&amp; s.ok()) {
+          ssize_t r = pread(fd_, dst, n, static_cast&lt;off_t&gt;(offset));
+          if (r &gt; 0) {
+            dst += r;
+            n -= r;
+            offset += r;
+          } else if (r == 0) {
+            s = Status(error::OUT_OF_RANGE, &quot;Read less bytes than requested&quot;);
+          } else if (errno == EINTR || errno == EAGAIN) {
+            // Retry
+          } else {
+            s = IOError(filename_, errno);
+          }
+        }
+        *result = StringPiece(scratch, dst - scratch);
+        return s;
+      }
+
+     private:
+      string filename_;
+      int fd_;
+    };
+</code></pre>
+<p>要实现 WritableFile 顺序写入抽象，必须实现一些接口，如 <code>Append()</code>、<code>Flush()</code>、<code>Sync()</code> 和 <code>Close()</code> 。</p>
+<p>例如，下面是 POSIX 文件系统的 WritableFile 实现，构造函数内接受 <code>FILE</code> 对象，并在对象上使用标准 POSIX 函数来实现接口。</p>
+<pre><code class="lang-C++">    class PosixWritableFile : public WritableFile {
+     public:
+      PosixWritableFile(const string&amp; fname, FILE* f)
+          : filename_(fname), file_(f) {}
+
+      ~PosixWritableFile() override {
+        if (file_ != NULL) {
+          fclose(file_);
+        }
+      }
+
+      Status Append(const StringPiece&amp; data) override {
+        size_t r = fwrite(data.data(), 1, data.size(), file_);
+        if (r != data.size()) {
+          return IOError(filename_, errno);
+        }
+        return Status::OK();
+      }
+
+      Status Close() override {
+        Status result;
+        if (fclose(file_) != 0) {
+          result = IOError(filename_, errno);
+        }
+        file_ = NULL;
+        return result;
+      }
+
+      Status Flush() override {
+        if (fflush(file_) != 0) {
+          return IOError(filename_, errno);
+        }
+        return Status::OK();
+      }
+
+      Status Sync() override {
+        Status s;
+        if (fflush(file_) != 0) {
+          s = IOError(filename_, errno);
+        }
+        return s;
+      }
+
+     private:
+      string filename_;
+      FILE* file_;
+    };
+</code></pre>
+<p>想要了解更多细节，可以查看接口文档，并查看示例实现以获得灵感。</p>
+<h3>注册和加载文件系统</h3>
+<p>一旦你已经为你定制的文件系统实现了 <code>FileSystem</code>，你需要在一个 scheme 下注册它，从而以那个 scheme 为前缀的路径会被导向你的实现。为此，调用 <code>REGISTER_FILE_SYSTEM</code>：</p>
+<pre><code>    REGISTER_FILE_SYSTEM("foobar", FooBarFileSystem);
+</code></pre>
+<p>当 TensorFlow 尝试对以 <code>foobar://</code> 开始的文件进行操作时，它将使用 <code>FooBarFileSystem</code> 实现。</p>
+<pre><code class="lang-C++">    string filename = &quot;foobar://path/to/file.txt&quot;;
+    std::unique_ptr&lt;WritableFile&gt; file;
+
+    // Calls FooBarFileSystem::NewWritableFile to return
+    // a WritableFile class, which happens to be the FooBarFileSystem&#39;s
+    // WritableFile implementation.
+    TF_RETURN_IF_ERROR(env-&gt;NewWritableFile(filename, &amp;file));
+</code></pre>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./extend/adding_an_op.html#build-the-op-library">添加一个新操作（Op）</a></p>
+<p>构建的结果是一个 <code>.so</code> 共享对象文件。</p>
+<p>最后，你必须在进程中动态加载这个实现。Python 中，你可以调用 <code>tf.load_file_system_library(file_system_library)</code> 函数，向共享对象传入路径。在客户端程序中调用这个方法加载进程中的共享对象并注册实现，以用于任意经过 <code>FileSystem</code> 接口的文件操作。示例可以查看 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/framework/file_system_test.py">test_file_system.py</a>。</p>
+<h2>什么会经过接口？</h2>
+<p>TensorFlow 中几乎所有核心 C++ 文件操作都使用 <code>FileSystem</code> 接口，例如 <code>CheckpointWriter</code>、<code>EventsWriter</code> 以及许多其他功能。这意味着实现一个 <code>FileSystem</code> 实现可以让大多数 TensorFlow 程序写入你的共享文件系统。</p>
+<p>Python 中，<code>gfile</code> 和 <code>file_io</code> 类通过 SWIG 绑定到 <code>FileSystem</code> 实现，这意味着一旦你加载了这个文件系统库，你可以执行：</p>
+<pre><code>with gfile.Open("foobar://path/to/file.txt") as w:
+
+  w.write("hi")
+</code></pre>
+<p>在执行这个之后，一个包含 "hi" 的文件会出现在共享文件系统的 "/path/to/file.txt" 中。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

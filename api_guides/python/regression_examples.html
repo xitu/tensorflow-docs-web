@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Regression Examples</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Regression Examples</h1>
+<p>This unit provides the following short examples demonstrating how<br>
+to implement regression in Estimators:</p>
+<table>
+  <tr> <th>Example</th> <th>Demonstrates How To...</th></tr>
+
+  <tr>
+    <td><a href="https://www.tensorflow.org/code/tensorflow/examples/get_started/regression/linear_regression.py">linear_regression.py</a></td>
+    <td>Use the @{tf.estimator.LinearRegressor} Estimator to train a
+        regression model on numeric data.</td>
+  </tr>
+
+  <tr>
+    <td><a href="https://www.tensorflow.org/code/tensorflow/examples/get_started/regression/linear_regression_categorical.py">linear_regression_categorical.py</a></td>
+    <td>Use the @{tf.estimator.LinearRegressor} Estimator to train a
+        regression model on categorical data.</td>
+  </tr>
+
+  <tr>
+    <td><a href="https://www.tensorflow.org/code/tensorflow/examples/get_started/regression/dnn_regression.py">dnn_regression.py</a></td>
+    <td>Use the @{tf.estimator.DNNRegressor} Estimator to train a
+        regression model on discrete data with a deep neural network.</td>
+  </tr>
+
+  <tr>
+    <td><a href="https://www.tensorflow.org/code/tensorflow/examples/get_started/regression/custom_regression.py">custom_regression.py</a></td>
+    <td>Use @{tf.estimator.Estimator} to train a customized dnn
+        regression model.</td>
+  </tr>
+
+</table><p>The preceding examples rely on the following data set utility:</p>
+<table>
+  <tr> <th>Utility</th> <th>Description</th></tr>
+
+  <tr>
+    <td><a href="https://www.tensorflow.org/code/tensorflow/examples/get_started/regression/imports85.py">imports85.py</a></td>
+    <td>This program provides utility functions that load the
+        <tt>imports85</tt> data set into formats that other TensorFlow
+        programs (for example, <tt>linear_regression.py</tt> and
+        <tt>dnn_regression.py</tt>) can use.</td>
+  </tr>
+
+
+</table><!--
+## Linear regression concepts
+
+If you are new to machine learning and want to learn about regression,
+watch the following video:
+
+(todo:jbgordon) Video introduction goes here.
+-->
+
+<!--
+[When MLCC becomes available externally, add links to the relevant MLCC units.]
+-->
+
+
+<p><a name="running"></a></p>
+<h2>Running the examples</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></p>
+<ol>
+<li>Clone the TensorFlow repository from github.</li>
+<li><code>cd</code> to the top of the downloaded tree.</li>
+<li>Check out the branch for you current tensorflow version: <code>git checkout rX.X</code></li>
+<li><code>cd tensorflow/examples/get_started/regression</code>.</li>
+</ol>
+<p>You can now run any of the example TensorFlow programs in the<br>
+<code>tensorflow/examples/get_started/regression</code> directory as you<br>
+would run any Python program:</p>
+<pre><code class="lang-bsh">python linear_regressor.py
+</code></pre>
+<p>During training, all three programs output the following information:</p>
+<ul>
+<li>The name of the checkpoint directory, which is important for TensorBoard.</li>
+<li>The training loss after every 100 iterations, which helps you<br>
+determine whether the model is converging.</li>
+</ul>
+<p>For example, here's some possible output for the <code>linear_regressor.py</code><br>
+program:</p>
+<pre><code class="lang-None">INFO:tensorflow:Saving checkpoints for 1 into /tmp/tmpAObiz9/model.ckpt.
+INFO:tensorflow:loss = 161.308, step = 1
+INFO:tensorflow:global_step/sec: 1557.24
+INFO:tensorflow:loss = 15.7937, step = 101 (0.065 sec)
+INFO:tensorflow:global_step/sec: 1529.17
+INFO:tensorflow:loss = 12.1988, step = 201 (0.065 sec)
+INFO:tensorflow:global_step/sec: 1663.86
+...
+INFO:tensorflow:loss = 6.99378, step = 901 (0.058 sec)
+INFO:tensorflow:Saving checkpoints for 1000 into /tmp/tmpAObiz9/model.ckpt.
+INFO:tensorflow:Loss for final step: 5.12413.
+</code></pre>
+<p><a name="basic"></a></p>
+<h2>linear_regressor.py</h2>
+<p><code>linear_regressor.py</code> trains a model that predicts the price of a car from<br>
+two numerical features.</p>
+<table>
+  <tr>
+    <td>Estimator</td>
+    <td><tt>LinearRegressor</tt>, which is a pre-made Estimator for linear
+        regression.</td>
+  </tr>
+
+  <tr>
+    <td>Features</td>
+    <td>Numerical: <tt>body-style</tt> and <tt>make</tt>.</td>
+  </tr>
+
+  <tr>
+    <td>Label</td>
+    <td>Numerical: <tt>price</tt>
+  </tr>
+
+  <tr>
+    <td>Algorithm</td>
+    <td>Linear regression.</td>
+  </tr>
+</table><p>After training the model, the program concludes by outputting predicted<br>
+car prices for two car models.</p>
+<p><a name="categorical"></a></p>
+<h2>linear_regression_categorical.py</h2>
+<p>This program illustrates ways to represent categorical features. It<br>
+also demonstrates how to train a linear model based on a mix of<br>
+categorical and numerical features.</p>
+<table>
+  <tr>
+    <td>Estimator</td>
+    <td><tt>LinearRegressor</tt>, which is a pre-made Estimator for linear
+        regression. </td>
+  </tr>
+
+  <tr>
+    <td>Features</td>
+    <td>Categorical: <tt>curb-weight</tt> and <tt>highway-mpg</tt>.<br/>
+        Numerical: <tt>body-style</tt> and <tt>make</tt>.</td>
+  </tr>
+
+  <tr>
+    <td>Label</td>
+    <td>Numerical: <tt>price</tt>.</td>
+  </tr>
+
+  <tr>
+    <td>Algorithm</td>
+    <td>Linear regression.</td>
+  </tr>
+</table><p><a name="dnn"></a></p>
+<h2>dnn_regression.py</h2>
+<p>Like <code>linear_regression_categorical.py</code>, the <code>dnn_regression.py</code> example<br>
+trains a model that predicts the price of a car from two features.<br>
+Unlike <code>linear_regression_categorical.py</code>, the <code>dnn_regression.py</code> example uses<br>
+a deep neural network to train the model.  Both examples rely on the same<br>
+features; <code>dnn_regression.py</code> demonstrates how to treat categorical features<br>
+in a deep neural network.</p>
+<table>
+  <tr>
+    <td>Estimator</td>
+    <td><tt>DNNRegressor</tt>, which is a pre-made Estimator for
+        regression that relies on a deep neural network.  The
+        `hidden_units` parameter defines the topography of the network.</td>
+  </tr>
+
+  <tr>
+    <td>Features</td>
+    <td>Categorical: <tt>curb-weight</tt> and <tt>highway-mpg</tt>.<br/>
+        Numerical: <tt>body-style</tt> and <tt>make</tt>.</td>
+  </tr>
+
+  <tr>
+    <td>Label</td>
+    <td>Numerical: <tt>price</tt>.</td>
+  </tr>
+
+  <tr>
+    <td>Algorithm</td>
+    <td>Regression through a deep neural network.</td>
+  </tr>
+</table><p>After printing loss values, the program outputs the Mean Square Error<br>
+on a test set.</p>
+<p><a name="dnn"></a></p>
+<h2>custom_regression.py</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
+<p>The custom model is defined by the <code>model_fn</code> argument to the constructor. The<br>
+customization is made more reusable through <code>params</code> dictionary, which is later<br>
+passed through to the <code>model_fn</code> when the <code>model_fn</code> is called.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec"><code>tf.estimator.EstimatorSpec</code></a></p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Signal Processing (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Signal Processing (contrib)</h1>
+<p>[TOC]</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal"><code>tf.contrib.signal</code></a></p>
+<h2>Framing variable length sequences</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/frame"><code>tf.contrib.signal.frame</code></a></p>
+<pre><code class="lang-python"># A batch of float32 time-domain signals in the range [-1, 1] with shape
+# [batch_size, signal_length]. Both batch_size and signal_length may be unknown.
+signals = tf.placeholder(tf.float32, [None, None])
+
+# Compute a [batch_size, ?, 128] tensor of fixed length, overlapping windows
+# where each window overlaps the previous by 75% (frame_length - frame_step
+# samples of overlap).
+frames = tf.contrib.signal.frame(signals, frame_length=128, frame_step=32)
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/frame"><code>tf.contrib.signal.frame</code></a></p>
+<pre><code class="lang-python"># `magnitude_spectrograms` is a [batch_size, ?, 129] tensor of spectrograms. We
+# would like to produce overlapping fixed-size spectrogram patches; for example,
+# for use in a situation where a fixed size input is needed.
+magnitude_spectrograms = tf.abs(tf.contrib.signal.stft(
+    signals, frame_length=256, frame_step=64, fft_length=256))
+
+# `spectrogram_patches` is a [batch_size, ?, 64, 129] tensor containing a
+# variable number of [64, 129] spectrogram patches per batch item.
+spectrogram_patches = tf.contrib.signal.frame(
+    magnitude_spectrograms, frame_length=64, frame_step=16, axis=1)
+</code></pre>
+<h2>Reconstructing framed sequences and applying a tapering window</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/overlap_and_add"><code>tf.contrib.signal.overlap_and_add</code></a></p>
+<pre><code class="lang-python"># Reconstructs `signals` from `frames` produced in the above example. However,
+# the magnitude of `reconstructed_signals` will be greater than `signals`.
+reconstructed_signals = tf.contrib.signal.overlap_and_add(frames, frame_step=32)
+</code></pre>
+<p>Note that because <code>frame_step</code> is 25% of <code>frame_length</code> in the above example,<br>
+the resulting reconstruction will have a greater magnitude than the original<br>
+<code>signals</code>. To compensate for this, we can use a tapering window function. If the<br>
+window function satisfies the Constant Overlap-Add (COLA) property for the given<br>
+frame step, then it will recover the original <code>signals</code>.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/hann_window"><code>tf.contrib.signal.hann_window</code></a></p>
+<pre><code class="lang-python">frame_length = 128
+frame_step = 32
+windowed_frames = frames * tf.contrib.signal.hann_window(frame_length)
+reconstructed_signals = tf.contrib.signal.overlap_and_add(
+    windowed_frames, frame_step)
+</code></pre>
+<h2>Computing spectrograms</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/stft"><code>tf.contrib.signal.stft</code></a></p>
+<pre><code class="lang-python"># A batch of float32 time-domain signals in the range [-1, 1] with shape
+# [batch_size, signal_length]. Both batch_size and signal_length may be unknown.
+signals = tf.placeholder(tf.float32, [None, None])
+
+# `stfts` is a complex64 Tensor representing the Short-time Fourier Transform of
+# each signal in `signals`. Its shape is [batch_size, ?, fft_unique_bins]
+# where fft_unique_bins = fft_length // 2 + 1 = 513.
+stfts = tf.contrib.signal.stft(signals, frame_length=1024, frame_step=512,
+                               fft_length=1024)
+
+# A power spectrogram is the squared magnitude of the complex-valued STFT.
+# A float32 Tensor of shape [batch_size, ?, 513].
+power_spectrograms = tf.real(stfts * tf.conj(stfts))
+
+# An energy spectrogram is the magnitude of the complex-valued STFT.
+# A float32 Tensor of shape [batch_size, ?, 513].
+magnitude_spectrograms = tf.abs(stfts)
+</code></pre>
+<p>You may use a power spectrogram or a magnitude spectrogram; each has its<br>
+advantages. Note that if you apply logarithmic compression, the power<br>
+spectrogram and magnitude spectrogram will differ by a factor of 2.</p>
+<h2>Logarithmic compression</h2>
+<p>It is common practice to apply a compressive nonlinearity such as a logarithm or<br>
+power-law compression to spectrograms. This helps to balance the importance of<br>
+detail in low and high energy regions of the spectrum, which more closely<br>
+matches human auditory sensitivity.</p>
+<p>When compressing with a logarithm, it's a good idea to use a stabilizing offset<br>
+to avoid high dynamic ranges caused by the singularity at zero.</p>
+<pre><code class="lang-python">log_offset = 1e-6
+log_magnitude_spectrograms = tf.log(magnitude_spectrograms + log_offset)
+</code></pre>
+<h2>Computing log-mel spectrograms</h2>
+<p>When working with spectral representations of audio, the <a href="https://en.wikipedia.org/wiki/Mel_scale">mel scale</a> is a<br>
+common reweighting of the frequency dimension, which results in a<br>
+lower-dimensional and more perceptually-relevant representation of the audio.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/linear_to_mel_weight_matrix"><code>tf.contrib.signal.linear_to_mel_weight_matrix</code></a></p>
+<pre><code class="lang-python"># Warp the linear-scale, magnitude spectrograms into the mel-scale.
+num_spectrogram_bins = magnitude_spectrograms.shape[-1].value
+lower_edge_hertz, upper_edge_hertz, num_mel_bins = 80.0, 7600.0, 64
+linear_to_mel_weight_matrix = tf.contrib.signal.linear_to_mel_weight_matrix(
+  num_mel_bins, num_spectrogram_bins, sample_rate, lower_edge_hertz,
+  upper_edge_hertz)
+mel_spectrograms = tf.tensordot(
+  magnitude_spectrograms, linear_to_mel_weight_matrix, 1)
+# Note: Shape inference for `tf.tensordot` does not currently handle this case.
+mel_spectrograms.set_shape(magnitude_spectrograms.shape[:-1].concatenate(
+  linear_to_mel_weight_matrix.shape[-1:]))
+</code></pre>
+<p>If desired, compress the mel spectrogram magnitudes. For example, you may use<br>
+logarithmic compression (as discussed in the previous section).</p>
+<p>Order matters! Compressing the spectrogram magnitudes after<br>
+reweighting the frequencies is different from reweighting the compressed<br>
+spectrogram magnitudes. According to the perceptual justification of the mel<br>
+scale, conversion from linear scale entails summing intensity or energy among<br>
+adjacent bands, i.e. it should be applied before logarithmic compression. Taking<br>
+the weighted sum of log-compressed values amounts to multiplying the<br>
+pre-logarithm values, which rarely, if ever, makes sense.</p>
+<pre><code class="lang-python">log_offset = 1e-6
+log_mel_spectrograms = tf.log(mel_spectrograms + log_offset)
+</code></pre>
+<h2>Computing Mel-Frequency Cepstral Coefficients (MFCCs)</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/mfccs_from_log_mel_spectrograms"><code>tf.contrib.signal.mfccs_from_log_mel_spectrograms</code></a></p>
+<pre><code class="lang-python">num_mfccs = 13
+# Keep the first `num_mfccs` MFCCs.
+mfccs = tf.contrib.signal.mfccs_from_log_mel_spectrograms(
+    log_mel_spectrograms)[..., :num_mfccs]
+</code></pre>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

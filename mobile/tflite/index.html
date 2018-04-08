@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow Lite 简介</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow Lite 简介</h1>
+<p>TensorFlow Lite 是 TensorFlow 移动和嵌入式设备轻量级解决方案。它使设备机器学习具有低延迟和更小的二进制体积。TensorFlow Lite 同时支持 <a href="https://developer.android.com/ndk/guides/neuralnetworks/index.html">Android 神经网络 API</a>的硬件加速.</p>
+<p>TensorFlow Lite 使用多项技术降低延迟，例如移动 app 内核优化、pre-fused 激活、允许更快更小（定点）模型的量化内核。</p>
+<p>目前大部分 TensorFlow Lite 文档放在 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite">Github</a>上。</p>
+<h2>TensorFlow Lite 都包含什么？</h2>
+<p>TensorFlow Lite 支持一系列量子和浮点的核心运算符,并针对移动平台进行了优化。它结合 pre-fused 激活和其他技术来进一步提高性能和量化精度。此外，TensorFlow Lite 还支持在模型中使用自定义操作。</p>
+<p>TensorFlow Lite 基于 <a href="https://google.github.io/flatbuffers/">FlatBuffers</a>定义了一个新的模型文件格式。FlatBuffers 是一个开源的高效的跨平台序列化库。它与 <a href="https://developers.google.com/protocol-buffers/?hl=en">protocol buffers</a>类似,但主要区别是 FlatBuffers 常与 per-object 内存分配相结合在您直接访问数据时不需要再次解析包。此外，FlatBuffers 的代码体积比 protocol buffers 小很多。</p>
+<p>TensorFlow Lite 拥有一个新的移动设备优化的解释器保证应用程序的精简和快速。解释器使用静态图形排序和自定义（less-dynamic）内存分配器来确保最小的负载，初始化和执行延迟。</p>
+<p>TensorFlow Lite 针对支持的设备提供了一个利用硬件加速的接口。通过 Android 神经网络库，作为 Android O-MR1 的一部分发布。</p>
+<h2>为什么我们需要针对移动端的库?</h2>
+<p>机器学习正在改变计算模式，我们看到了移动和嵌入式设备上使用的新趋势。消费者的期望也趋向于与他们的设备自然而友好地互动，由相机和语音交互模式驱动。</p>
+<p>有几个因素促成了这个领域：</p>
+<ul>
+<li><p>硅层的创新为硬件加速带来了新的可能性，像 Android Neural Networks API 这样的框架可以很容易地利用这些特性。</p>
+</li>
+<li><p>实时计算机视觉和口头语言理解的最新进展：一些 mobile-optimized 评测模型已开放源代码(例如 MobileNets，SqueezeNet)。</p>
+</li>
+<li><p>广泛使用的智能设备为 on-device 智能创造了新的可能性。</p>
+</li>
+<li><p>更强大的用户隐私保护方案，使用户数据不需要离开移动设备。</p>
+</li>
+<li><p>能够在设备不需要连接到网络的情况下提供"离线"用例。</p>
+</li>
+</ul>
+<p>我们相信下一波机器学习应用将在移动和嵌入式设备上重大进步。</p>
+<h2>TensorFlow Lite 开发者预览版亮点</h2>
+<p>TensorFlow Lite 作为开发者预览版亮点，包括以下内容：</p>
+<ul>
+<li><p>一组核心操作符，既有量子化也有浮点值，其中很多已经针对移动平台进行了优化。这些可以用来创建和运行自定义模型。开发人员也可以编写自己的自定义操作符并在模型中使用它们。</p>
+</li>
+<li><p>基于 <a href="https://google.github.io/flatbuffers/">FlatBuffers</a>模型文件格式。</p>
+</li>
+<li><p>On-device 解释器，内核经过优化，可在移动设备上更快执行。</p>
+</li>
+<li><p>TensorFlow 转换器将 TensorFlow 训练好的模型转换为 TensorFlow Lite 格式。</p>
+</li>
+<li><p>更小的体积：当所有支持的操作符链接时，TensorFlow Lite 小于 300 KB，而仅使用支持 Inception V3 和 Mobilenet 所需的操作符时，TensorFlow Lite 小于 200 KB。</p>
+</li>
+<li><p><strong>预设模型:</strong></p>
+<p>以下所有预设模型均可保证开箱即用：</p>
+<ul>
+<li><p>Inception V3 是一种用于检测图像中存在的主要对象的流行模型。</p>
+</li>
+<li><p><a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md">MobileNets</a>,<br>
+一系列移动优先计算机视觉模型，旨在有效提高准确性，同时注重 on-device 或嵌入式应用程序的有限资源。它们很小，低延迟，低功耗，模型参数化，以满足各种用例的资源约束。它们可以建立在分类，检测，嵌入和分割之上。MobileNet 模型比较小，但是比 Inception V3 <a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">准确度更低</a>。</p>
+</li>
+<li><p>在设备智能回复上, 提供能通过建议上下文相关的消息来回复传入的文本消息的 one-touch 的 on-device 模型，该模型专为内存受限的设备而建立，如手表和手机，<br>
+它已被成功应用到 <a href="https://research.googleblog.com/2017/02/on-device-machine-intelligence.html">Android Wear 智能回复</a>所有官方和第三方应用.</p>
+</li>
+</ul>
+</li>
+<li><p>MobileNet 模型量子版本, 其运行速度比 CPU 上的 non-quantized（浮点）版本快。</p>
+</li>
+<li><p>新的 Android 演示应用程序来说明使用 TensorFlow Lite 与量子化的 MobileNet 模型进行对象分类。</p>
+</li>
+<li><p>Java 和 C++ API 支持</p>
+</li>
+</ul>
+<p>注意：这是一个开发者版本，很可能在即将到来的版本中会有 API 的变化。我们不保证向后或向前兼容这个版本。</p>
+<h2>入门</h2>
+<p>我们建议您使用上述的 TensorFlow Lite 的 pre-tested 模型。如果有一个现有的模型，则需要测试模型是否兼容转换器和支持的操作集。要测试你的模型，请看 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite">GitHub 文档</a>。</p>
+<h3>为自定义数据集重置 Inception-V3 或 MobileNet</h3>
+<p>这里的 pre-trained 模型已经在 ImageNet 数据集上进行了训练 ，该数据集由 1000 个预定义的类组成。如果这些类不适合您的用例，那么您需要重新训练这些模型。这种从一个已经被训练过的问题的模型开始，然后在类似的问题上进行再训练叫做迁移学习。从头开始深入学习可能需要几天，但迁移学习可以很快完成。为了做到这一点，您需要生成标有相关类的自定义数据集。</p>
+<p><a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/">TensorFlow for Poets</a> 一步一步实现了这个过程，再训练代码支持浮点和量化推理的再训练。</p>
+<h2>TensorFlow Lite 架构</h2>
+<p>下图显示了 TensorFlow Lite 的架构设计：</p>
+<p><img src="https://www.tensorflow.org/images/tflite-architecture.jpg" alt="tensorflow lite 架构"></p>
+<p>在硬盘上练习 TensorFlow 模型, 您需要使用 TensorFlow Lite 转换器把模型转换为 TensorFlow Lite（<code>.tflite</code>）文件格式。然后，您可以在移动应用程序中使用该转换后的文件。</p>
+<p>部署 TensorFlow Lite 模型文件使用：</p>
+<ul>
+<li><p>Java API: 围绕 Android 上 C++ API 的便捷包装。</p>
+</li>
+<li><p>C++ API: 加载 TensorFlow Lite 模型文件并调用解释器。Android 和 iOS 都提供相同的库。</p>
+</li>
+<li><p>解释器: 使用一组内核来执行模型。解释器支持选择性内核加载;没有内核，只有 100 KB，加载了所有内核，有 300 KB。这比 TensorFlow Mobile 要求的 1.5 M 的显著减少。</p>
+</li>
+<li><p>在选定的 Android 设备上，解释器将使用 Android 神经网络 API 进行硬件加速，如果没有可用的，则默认为 CPU 执行。</p>
+</li>
+</ul>
+<p>您也可以使用解释器可以使用的 C++ API 来实现定制的内核。</p>
+<h2>未来工作</h2>
+<p>在未来的版本中，TensorFlow Lite 支持更多的模型和内置运算符, 包含定点和浮点模型的性能改进，改进工具以简化开发者工作流程以及支持其他更小的设备等等。随着我们的不断发展，我们希望 TensorFlow Lite 能够大大简化针对小型设备定位模型的开发者体验。</p>
+<p>未来的计划包括使用专门的机器学习硬件，以获得特定设备上特定型号的最佳性能。</p>
+<h2>下一步</h2>
+<p>对于开发人员的预览，我们的大部分文档都在 GitHub 上。请查看 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite">TensorFlow Lite 库</a>在 GitHub 上获取更多信息和代码示例，演示应用程序等等。</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

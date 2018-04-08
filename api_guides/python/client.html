@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Running Graphs</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Running Graphs</h1>
+<p>[TOC]</p>
+<p>This library contains classes for launching graphs and executing operations.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></p>
+<h2>Session management</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/InteractiveSession"><code>tf.InteractiveSession</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/get_default_session"><code>tf.get_default_session</code></a></li>
+</ul>
+<h2>Error classes and convenience functions</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/OpError"><code>tf.OpError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/CancelledError"><code>tf.errors.CancelledError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/UnknownError"><code>tf.errors.UnknownError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/InvalidArgumentError"><code>tf.errors.InvalidArgumentError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/DeadlineExceededError"><code>tf.errors.DeadlineExceededError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/NotFoundError"><code>tf.errors.NotFoundError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/AlreadyExistsError"><code>tf.errors.AlreadyExistsError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/PermissionDeniedError"><code>tf.errors.PermissionDeniedError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/UnauthenticatedError"><code>tf.errors.UnauthenticatedError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/ResourceExhaustedError"><code>tf.errors.ResourceExhaustedError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/FailedPreconditionError"><code>tf.errors.FailedPreconditionError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/AbortedError"><code>tf.errors.AbortedError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError"><code>tf.errors.OutOfRangeError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/UnimplementedError"><code>tf.errors.UnimplementedError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/InternalError"><code>tf.errors.InternalError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/UnavailableError"><code>tf.errors.UnavailableError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/DataLossError"><code>tf.errors.DataLossError</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/exception_type_from_error_code"><code>tf.errors.exception_type_from_error_code</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/error_code_from_exception_type"><code>tf.errors.error_code_from_exception_type</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/errors/raise_exception_on_not_ok_status"><code>tf.errors.raise_exception_on_not_ok_status</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

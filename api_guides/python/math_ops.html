@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Math</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Math</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
+<p>[TOC]</p>
+<p>Note: Elementwise binary operations in TensorFlow follow <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">numpy-style<br>
+broadcasting</a>.</p>
+<h2>Arithmetic Operators</h2>
+<p>TensorFlow provides several operations that you can use to add basic arithmetic<br>
+operators to your graph.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/add"><code>tf.add</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/subtract"><code>tf.subtract</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/multiply"><code>tf.multiply</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/scalar_mul"><code>tf.scalar_mul</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/div"><code>tf.div</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/divide"><code>tf.divide</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/truediv"><code>tf.truediv</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/floordiv"><code>tf.floordiv</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/realdiv"><code>tf.realdiv</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/truncatediv"><code>tf.truncatediv</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/floor_div"><code>tf.floor_div</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/truncatemod"><code>tf.truncatemod</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/floormod"><code>tf.floormod</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/mod"><code>tf.mod</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cross"><code>tf.cross</code></a></li>
+</ul>
+<h2>Basic Math Functions</h2>
+<p>TensorFlow provides several operations that you can use to add basic<br>
+mathematical functions to your graph.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/add_n"><code>tf.add_n</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/abs"><code>tf.abs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/negative"><code>tf.negative</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sign"><code>tf.sign</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reciprocal"><code>tf.reciprocal</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/square"><code>tf.square</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/round"><code>tf.round</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sqrt"><code>tf.sqrt</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/rsqrt"><code>tf.rsqrt</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/pow"><code>tf.pow</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/exp"><code>tf.exp</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/expm1"><code>tf.expm1</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/log"><code>tf.log</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/log1p"><code>tf.log1p</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/ceil"><code>tf.ceil</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/floor"><code>tf.floor</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/maximum"><code>tf.maximum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/minimum"><code>tf.minimum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cos"><code>tf.cos</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sin"><code>tf.sin</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/lbeta"><code>tf.lbeta</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/tan"><code>tf.tan</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/acos"><code>tf.acos</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/asin"><code>tf.asin</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/atan"><code>tf.atan</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cosh"><code>tf.cosh</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sinh"><code>tf.sinh</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/asinh"><code>tf.asinh</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/acosh"><code>tf.acosh</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/atanh"><code>tf.atanh</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/lgamma"><code>tf.lgamma</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/digamma"><code>tf.digamma</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/erf"><code>tf.erf</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/erfc"><code>tf.erfc</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/squared_difference"><code>tf.squared_difference</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/igamma"><code>tf.igamma</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/igammac"><code>tf.igammac</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/zeta"><code>tf.zeta</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/polygamma"><code>tf.polygamma</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/betainc"><code>tf.betainc</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/rint"><code>tf.rint</code></a></li>
+</ul>
+<h2>Matrix Math Functions</h2>
+<p>TensorFlow provides several operations that you can use to add linear algebra<br>
+functions on matrices to your graph.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/diag"><code>tf.diag</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/diag_part"><code>tf.diag_part</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/trace"><code>tf.trace</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/transpose"><code>tf.transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/eye"><code>tf.eye</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_diag"><code>tf.matrix_diag</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_diag_part"><code>tf.matrix_diag_part</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_band_part"><code>tf.matrix_band_part</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_set_diag"><code>tf.matrix_set_diag</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_transpose"><code>tf.matrix_transpose</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matmul"><code>tf.matmul</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/norm"><code>tf.norm</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_determinant"><code>tf.matrix_determinant</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_inverse"><code>tf.matrix_inverse</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cholesky"><code>tf.cholesky</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cholesky_solve"><code>tf.cholesky_solve</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_solve"><code>tf.matrix_solve</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_triangular_solve"><code>tf.matrix_triangular_solve</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matrix_solve_ls"><code>tf.matrix_solve_ls</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/qr"><code>tf.qr</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/self_adjoint_eig"><code>tf.self_adjoint_eig</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/self_adjoint_eigvals"><code>tf.self_adjoint_eigvals</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/svd"><code>tf.svd</code></a></li>
+</ul>
+<h2>Tensor Math Function</h2>
+<p>TensorFlow provides operations that you can use to add tensor functions to your<br>
+graph.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/tensordot"><code>tf.tensordot</code></a></li>
+</ul>
+<h2>Complex Number Functions</h2>
+<p>TensorFlow provides several operations that you can use to add complex number<br>
+functions to your graph.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/complex"><code>tf.complex</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/conj"><code>tf.conj</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/imag"><code>tf.imag</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/angle"><code>tf.angle</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/real"><code>tf.real</code></a></li>
+</ul>
+<h2>Reduction</h2>
+<p>TensorFlow provides several operations that you can use to perform<br>
+common math computations that reduce various dimensions of a tensor.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_sum"><code>tf.reduce_sum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_prod"><code>tf.reduce_prod</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_min"><code>tf.reduce_min</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_max"><code>tf.reduce_max</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_mean"><code>tf.reduce_mean</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_all"><code>tf.reduce_all</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_any"><code>tf.reduce_any</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/reduce_logsumexp"><code>tf.reduce_logsumexp</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/count_nonzero"><code>tf.count_nonzero</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/accumulate_n"><code>tf.accumulate_n</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/einsum"><code>tf.einsum</code></a></li>
+</ul>
+<h2>Scan</h2>
+<p>TensorFlow provides several operations that you can use to perform scans<br>
+(running totals) across one axis of a tensor.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cumsum"><code>tf.cumsum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/cumprod"><code>tf.cumprod</code></a></li>
+</ul>
+<h2>Segmentation</h2>
+<p>TensorFlow provides several operations that you can use to perform common<br>
+math computations on tensor segments.<br>
+Here a segmentation is a partitioning of a tensor along<br>
+the first dimension, i.e. it  defines a mapping from the first dimension onto<br>
+<code>segment_ids</code>. The <code>segment_ids</code> tensor should be the size of<br>
+the first dimension, <code>d0</code>, with consecutive IDs in the range <code>0</code> to <code>k</code>,<br>
+where <code>k&lt;d0</code>.<br>
+In particular, a segmentation of a matrix tensor is a mapping of rows to<br>
+segments.</p>
+<p>For example:</p>
+<pre><code class="lang-python">c = tf.constant([[1,2,3,4], [-1,-2,-3,-4], [5,6,7,8]])
+tf.segment_sum(c, tf.constant([0, 0, 1]))
+  ==&gt;  [[0 0 0 0]
+        [5 6 7 8]]
+</code></pre>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/segment_sum"><code>tf.segment_sum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/segment_prod"><code>tf.segment_prod</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/segment_min"><code>tf.segment_min</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/segment_max"><code>tf.segment_max</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/segment_mean"><code>tf.segment_mean</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/unsorted_segment_sum"><code>tf.unsorted_segment_sum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_segment_sum"><code>tf.sparse_segment_sum</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_segment_mean"><code>tf.sparse_segment_mean</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_segment_sqrt_n"><code>tf.sparse_segment_sqrt_n</code></a></li>
+</ul>
+<h2>Sequence Comparison and Indexing</h2>
+<p>TensorFlow provides several operations that you can use to add sequence<br>
+comparison and index extraction to your graph. You can use these operations to<br>
+determine sequence differences and determine the indexes of specific values in<br>
+a tensor.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/argmin"><code>tf.argmin</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/argmax"><code>tf.argmax</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/setdiff1d"><code>tf.setdiff1d</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/where"><code>tf.where</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/unique"><code>tf.unique</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/edit_distance"><code>tf.edit_distance</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/invert_permutation"><code>tf.invert_permutation</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

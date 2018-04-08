@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow Lite Demo for Android</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow Lite Demo for Android</h1>
+<p>The TensorFlow Lite demo is a camera app that continuously classifies whatever<br>
+it sees from your device's back camera, using a quantized MobileNet model.</p>
+<p>You'll need an Android device running Android 5.0 or higher to run the demo.</p>
+<p>To get you started working with TensorFlow Lite on Android, we'll walk you<br>
+through building and deploying our TensorFlow demo app in Android Studio.</p>
+<p>Note: For a more detailed guide see the<br>
+<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2-tflite/index.html#0">TFLite Codelab</a></p>
+<p>It's also possible to build the demo app with Bazel, but we only recommend<br>
+this for advanced users who are very familiar with the Bazel build<br>
+environment. For more information on that, see our page <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite#building-tensorflow-lite-and-the-demo-app-from-source">on Github</a>.</p>
+<h2>Build and deploy with Android Studio</h2>
+<ol>
+<li><p>Clone the TensorFlow repository from GitHub if you haven't already:</p>
+<pre><code> git clone https://github.com/tensorflow/tensorflow
+</code></pre>
+</li>
+<li><p>Install the latest version of Android Studio from <a href="https://developer.android.com/studio/index.html">here</a>.</p>
+</li>
+<li><p>From the <strong>Welcome to Android Studio</strong> screen, use the <strong>Import Project<br>
+(Gradle, Eclipse ADT, etc)</strong> option to import the<br>
+<code>tensorflow/contrib/lite/java/demo</code> directory as an existing Android Studio<br>
+Project.</p>
+<p>Android Studio may prompt you to install Gradle upgrades and other tool<br>
+ versions; you should accept these upgrades.</p>
+</li>
+<li><p>Download the TensorFlow Lite MobileNet model from <a href="https://storage.googleapis.com/download.tensorflow.org/models/tflite/mobilenet_v1_224_android_quant_2017_11_08.zip">here</a>.</p>
+<p>Unzip this and copy the <code>mobilenet_quant_v1_224.tflite</code> file to the assets<br>
+ directory: <code>tensorflow/contrib/lite/java/demo/app/src/main/assets/</code></p>
+</li>
+<li><p>Build and run the app in Android Studio.</p>
+</li>
+</ol>
+<p>You'll have to grant permissions for the app to use the device's camera. Point<br>
+the camera at various objects and enjoy seeing how the model classifies things!</p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

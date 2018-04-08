@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Inputs and Readers</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>Inputs and Readers</h1>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
+<p>[TOC]</p>
+<h2>Placeholders</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html#feeding">Reading data</a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/placeholder"><code>tf.placeholder</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/placeholder_with_default"><code>tf.placeholder_with_default</code></a></li>
+</ul>
+<p>For feeding <code>SparseTensor</code>s which are composite type,<br>
+there is a convenience function:</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_placeholder"><code>tf.sparse_placeholder</code></a></li>
+</ul>
+<h2>Readers</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html">Reading data</a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/ReaderBase"><code>tf.ReaderBase</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/TextLineReader"><code>tf.TextLineReader</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/WholeFileReader"><code>tf.WholeFileReader</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/IdentityReader"><code>tf.IdentityReader</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/TFRecordReader"><code>tf.TFRecordReader</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/FixedLengthRecordReader"><code>tf.FixedLengthRecordReader</code></a></li>
+</ul>
+<h2>Converting</h2>
+<p>TensorFlow provides several operations that you can use to convert various data<br>
+formats into tensors.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/decode_raw"><code>tf.decode_raw</code></a></li>
+</ul>
+<hr>
+<h3>Example protocol buffer</h3>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html#standard-tensorflow-format">Reading data</a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/VarLenFeature"><code>tf.VarLenFeature</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/FixedLenFeature"><code>tf.FixedLenFeature</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/FixedLenSequenceFeature"><code>tf.FixedLenSequenceFeature</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/SparseFeature"><code>tf.SparseFeature</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/parse_example"><code>tf.parse_example</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/parse_single_example"><code>tf.parse_single_example</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/parse_tensor"><code>tf.parse_tensor</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/decode_json_example"><code>tf.decode_json_example</code></a></li>
+</ul>
+<h2>Queues</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/threading_and_queues.html">Threading and Queues</a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/QueueBase"><code>tf.QueueBase</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/FIFOQueue"><code>tf.FIFOQueue</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/PaddingFIFOQueue"><code>tf.PaddingFIFOQueue</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/RandomShuffleQueue"><code>tf.RandomShuffleQueue</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/PriorityQueue"><code>tf.PriorityQueue</code></a></li>
+</ul>
+<h2>Conditional Accumulators</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/ConditionalAccumulatorBase"><code>tf.ConditionalAccumulatorBase</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/ConditionalAccumulator"><code>tf.ConditionalAccumulator</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/SparseConditionalAccumulator"><code>tf.SparseConditionalAccumulator</code></a></li>
+</ul>
+<h2>Dealing with the filesystem</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/matching_files"><code>tf.matching_files</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/read_file"><code>tf.read_file</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/write_file"><code>tf.write_file</code></a></li>
+</ul>
+<h2>Input pipeline</h2>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html">Reading data</a></p>
+<h3>Beginning of an input pipeline</h3>
+<p>The "producer" functions add a queue to the graph and a corresponding<br>
+<code>QueueRunner</code> for running the subgraph that fills that queue.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/match_filenames_once"><code>tf.train.match_filenames_once</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/limit_epochs"><code>tf.train.limit_epochs</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/input_producer"><code>tf.train.input_producer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/range_input_producer"><code>tf.train.range_input_producer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/slice_input_producer"><code>tf.train.slice_input_producer</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/string_input_producer"><code>tf.train.string_input_producer</code></a></li>
+</ul>
+<h3>Batching at the end of an input pipeline</h3>
+<p>These functions add a queue to the graph to assemble a batch of<br>
+examples, with possible shuffling.  They also add a <code>QueueRunner</code> for<br>
+running the subgraph that fills that queue.</p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch_join"><code>tf.train.shuffle_batch_join</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch_join"><code>tf.train.shuffle_batch_join</code></a></p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/batch"><code>tf.train.batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/maybe_batch"><code>tf.train.maybe_batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/batch_join"><code>tf.train.batch_join</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/maybe_batch_join"><code>tf.train.maybe_batch_join</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch"><code>tf.train.shuffle_batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/maybe_shuffle_batch"><code>tf.train.maybe_shuffle_batch</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch_join"><code>tf.train.shuffle_batch_join</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/train/maybe_shuffle_batch_join"><code>tf.train.maybe_shuffle_batch_join</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

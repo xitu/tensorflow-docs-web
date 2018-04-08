@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>RNN and Cells (contrib)</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>RNN and Cells (contrib)</h1>
+<p>[TOC]</p>
+<p>Module for constructing RNN Cells and additional RNN operations.</p>
+<h2>Base interface for all RNN Cells</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/RNNCell"><code>tf.contrib.rnn.RNNCell</code></a></li>
+</ul>
+<h2>Core RNN Cells for use with TensorFlow's core RNN methods</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/BasicRNNCell"><code>tf.contrib.rnn.BasicRNNCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/BasicLSTMCell"><code>tf.contrib.rnn.BasicLSTMCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/GRUCell"><code>tf.contrib.rnn.GRUCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMCell"><code>tf.contrib.rnn.LSTMCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LayerNormBasicLSTMCell"><code>tf.contrib.rnn.LayerNormBasicLSTMCell</code></a></li>
+</ul>
+<h2>Classes storing split <code>RNNCell</code> state</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMStateTuple"><code>tf.contrib.rnn.LSTMStateTuple</code></a></li>
+</ul>
+<h2>Core RNN Cell wrappers (RNNCells that wrap other RNNCells)</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/MultiRNNCell"><code>tf.contrib.rnn.MultiRNNCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMBlockWrapper"><code>tf.contrib.rnn.LSTMBlockWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/DropoutWrapper"><code>tf.contrib.rnn.DropoutWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/EmbeddingWrapper"><code>tf.contrib.rnn.EmbeddingWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/InputProjectionWrapper"><code>tf.contrib.rnn.InputProjectionWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/OutputProjectionWrapper"><code>tf.contrib.rnn.OutputProjectionWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/DeviceWrapper"><code>tf.contrib.rnn.DeviceWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/ResidualWrapper"><code>tf.contrib.rnn.ResidualWrapper</code></a></li>
+</ul>
+<h3>Block RNNCells</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMBlockCell"><code>tf.contrib.rnn.LSTMBlockCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/GRUBlockCell"><code>tf.contrib.rnn.GRUBlockCell</code></a></li>
+</ul>
+<h3>Fused RNNCells</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/FusedRNNCell"><code>tf.contrib.rnn.FusedRNNCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/FusedRNNCellAdaptor"><code>tf.contrib.rnn.FusedRNNCellAdaptor</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/TimeReversedFusedRNN"><code>tf.contrib.rnn.TimeReversedFusedRNN</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMBlockFusedCell"><code>tf.contrib.rnn.LSTMBlockFusedCell</code></a></li>
+</ul>
+<h3>LSTM-like cells</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/CoupledInputForgetGateLSTMCell"><code>tf.contrib.rnn.CoupledInputForgetGateLSTMCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/TimeFreqLSTMCell"><code>tf.contrib.rnn.TimeFreqLSTMCell</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/GridLSTMCell"><code>tf.contrib.rnn.GridLSTMCell</code></a></li>
+</ul>
+<h3>RNNCell wrappers</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/AttentionCellWrapper"><code>tf.contrib.rnn.AttentionCellWrapper</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/CompiledWrapper"><code>tf.contrib.rnn.CompiledWrapper</code></a></li>
+</ul>
+<h2>Recurrent Neural Networks</h2>
+<p>TensorFlow provides a number of methods for constructing Recurrent Neural<br>
+Networks.</p>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/static_rnn"><code>tf.contrib.rnn.static_rnn</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/static_state_saving_rnn"><code>tf.contrib.rnn.static_state_saving_rnn</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/static_bidirectional_rnn"><code>tf.contrib.rnn.static_bidirectional_rnn</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/stack_bidirectional_dynamic_rnn"><code>tf.contrib.rnn.stack_bidirectional_dynamic_rnn</code></a></li>
+</ul>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

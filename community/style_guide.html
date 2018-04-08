@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>TensorFlow Style Guide</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky" id="left-nav">
+
+    </div>
+</nav>
+<script>
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': 'Community'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/welcome.html', 'title': 'Welcome to the TensorFlow Community'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': 'Defining and Running Benchmarks'}]
+</script>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>TensorFlow Style Guide</h1>
+<p>This page contains style decisions that both developers and users of TensorFlow<br>
+should follow to increase the readability of their code, reduce the number of<br>
+errors, and promote consistency.</p>
+<p>[TOC]</p>
+<h2>Python style</h2>
+<p>Generally follow<br>
+<a href="https://www.python.org/dev/peps/pep-0008/">PEP8 Python style guide</a>,<br>
+except for using 2 spaces.</p>
+<h2>Python 2 and 3 compatible</h2>
+<ul>
+<li><p>All code needs to be compatible with Python 2 and 3.</p>
+</li>
+<li><p>Next lines should be present in all Python files:</p>
+</li>
+</ul>
+<pre><code>from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+</code></pre>
+<ul>
+<li>Use <code>six</code> to write compatible code (for example <code>six.moves.range</code>).</li>
+</ul>
+<h2>Bazel BUILD rules</h2>
+<p>TensorFlow uses Bazel build system and enforces next requirements:</p>
+<ul>
+<li>Every BUILD file should contain next header:</li>
+</ul>
+<pre><code># Description:
+#   &lt;...&gt;
+
+package(
+    default_visibility = ["//visibility:private"],
+)
+
+licenses(["notice"])  # Apache 2.0
+
+exports_files(["LICENSE"])
+</code></pre>
+<ul>
+<li>At the end of every BUILD file, should contain:</li>
+</ul>
+<pre><code>filegroup(
+    name = "all_files",
+    srcs = glob(
+        ["**/*"],
+        exclude = [
+            "**/METADATA",
+            "**/OWNERS",
+        ],
+    ),
+    visibility = ["//tensorflow:__subpackages__"],
+)
+</code></pre>
+<ul>
+<li>When adding new BUILD file, add this line to <code>tensorflow/BUILD</code> file into <code>all_opensource_files</code> target.</li>
+</ul>
+<pre><code>"//tensorflow/&lt;directory&gt;:all_files",
+</code></pre>
+<ul>
+<li>For all Python BUILD targets (libraries and tests) add next line:</li>
+</ul>
+<pre><code>srcs_version = "PY2AND3",
+</code></pre>
+<h2>Tensor</h2>
+<ul>
+<li>Operations that deal with batches may assume that the first dimension of a Tensor is the batch dimension.</li>
+</ul>
+<h2>Python operations</h2>
+<p>A <em>Python operation</em> is a function that, given input tensors and parameters,<br>
+creates a part of the graph and returns output tensors.</p>
+<ul>
+<li><p>The first arguments should be tensors, followed by basic python parameters.<br>
+The last argument is <code>name</code> with a default value of <code>None</code>.<br>
+If operation needs to save some <code>Tensor</code>s to Graph collections,<br>
+put the arguments with names of the collections right before <code>name</code> argument.</p>
+</li>
+<li><p>Tensor arguments should be either a single tensor or an iterable of tensors.<br>
+E.g. a "Tensor or list of Tensors" is too broad. See <code>assert_proper_iterable</code>.</p>
+</li>
+<li><p>Operations that take tensors as arguments should call <code>convert_to_tensor</code><br>
+to convert non-tensor inputs into tensors if they are using C++ operations.<br>
+Note that the arguments are still described as a <code>Tensor</code> object<br>
+of a specific dtype in the documentation.</p>
+</li>
+<li><p>Each Python operation should have a <code>name_scope</code> like below. Pass as<br>
+arguments <code>name</code>, a default name of the op, and a list of the input tensors.</p>
+</li>
+<li><p><a href="//xitu.github.io/tensorflow-docs-web/./community/documentation.html">Writing TensorFlow Documentation</a></p>
+</li>
+<li><p>For increased usability include an example of usage with inputs / outputs<br>
+of the op in Example section.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>def my_op(tensor_in, other_tensor_in, my_param, other_param=0.5,
+          output_collections=(), name=None):
+  """My operation that adds two tensors with given coefficients.
+
+  Args:
+    tensor_in: `Tensor`, input tensor.
+    other_tensor_in: `Tensor`, same shape as `tensor_in`, other input tensor.
+    my_param: `float`, coefficient for `tensor_in`.
+    other_param: `float`, coefficient for `other_tensor_in`.
+    output_collections: `tuple` of `string`s, name of the collection to
+                        collect result of this op.
+    name: `string`, name of the operation.
+
+  Returns:
+    `Tensor` of same shape as `tensor_in`, sum of input values with coefficients.
+
+  Example:
+    &gt;&gt;&gt; my_op([1., 2.], [3., 4.], my_param=0.5, other_param=0.6,
+              output_collections=['MY_OPS'], name='add_t1t2')
+    [2.3, 3.4]
+  """
+  with tf.name_scope(name, "my_op", [tensor_in, other_tensor_in]):
+    tensor_in = tf.convert_to_tensor(tensor_in)
+    other_tensor_in = tf.convert_to_tensor(other_tensor_in)
+    result = my_param * tensor_in + other_param * other_tensor_in
+    tf.add_to_collection(output_collections, result)
+    return result
+</code></pre>
+<p>Usage:</p>
+<pre><code>output = my_op(t1, t2, my_param=0.5, other_param=0.6,
+               output_collections=['MY_OPS'], name='add_t1t2')
+</code></pre>
+<h2>Layers</h2>
+<p>A <em>Layer</em> is a Python operation that combines variable creation and/or one or many<br>
+other graph operations. Follow the same requirements as for regular Python<br>
+operation.</p>
+<ul>
+<li><p>If a layer creates one or more variables, the layer function<br>
+should take next arguments also following order:</p>
+<ul>
+<li><code>initializers</code>: Optionally allow to specify initializers for the variables.</li>
+<li><code>regularizers</code>: Optionally allow to specify regularizers for the variables.</li>
+<li><code>trainable</code>: which control if their variables are trainable or not.</li>
+<li><code>scope</code>: <code>VariableScope</code> object that variable will be put under.</li>
+<li><code>reuse</code>: <code>bool</code> indicator if the variable should be reused if<pre><code>     it's present in the scope.
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Layers that behave differently during training should take:</p>
+<ul>
+<li><code>is_training</code>: <code>bool</code> indicator to conditionally choose different<pre><code>           computation paths (e.g. using `tf.cond`) during execution.
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>def conv2d(inputs,
+           num_filters_out,
+           kernel_size,
+           stride=1,
+           padding='SAME',
+           activation_fn=tf.nn.relu,
+           normalization_fn=add_bias,
+           normalization_params=None,
+           initializers=None,
+           regularizers=None,
+           trainable=True,
+           scope=None,
+           reuse=None):
+  ... see implementation at tensorflow/contrib/layers/python/layers/layers.py ...
+</code></pre>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>

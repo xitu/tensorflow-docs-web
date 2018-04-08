@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>C++ API</title>
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+<!-- Header start -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TensorFlow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<script>
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+</script>
+<!-- Header end -->
+
+<!-- Content start-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h1>C++ API</h1>
+<p>Note: By default <a href="https://www.tensorflow.org">tensorflow.org</a> shows docs for the<br>
+most recent stable version. The instructions in this doc require building from<br>
+source. You will probably want to build from the <code>master</code> version of tensorflow.<br>
+You should, as a result, be sure you are following the<br>
+<a href="https://www.tensorflow.org/versions/master/api_guides/cc/guide"><code>master</code> version of this doc</a>,<br>
+in case there have been any changes.</p>
+<p>[TOC]</p>
+<p>TensorFlow's C++ API provides mechanisms for constructing and executing a data<br>
+flow graph. The API is designed to be simple and concise: graph operations are<br>
+clearly expressed using a "functional" construction style, including easy<br>
+specification of names, device placement, etc., and the resulting graph can be<br>
+efficiently run and the desired outputs fetched in a few lines of code. This<br>
+guide explains the basic concepts and data structures needed to get started with<br>
+TensorFlow graph construction and execution in C++.</p>
+<h2>The Basics</h2>
+<p>Let's start with a simple example that illustrates graph construction and<br>
+execution using the C++ API.</p>
+<pre><code class="lang-c++">// tensorflow/cc/example/example.cc
+
+#include &quot;tensorflow/cc/client/client_session.h&quot;
+#include &quot;tensorflow/cc/ops/standard_ops.h&quot;
+#include &quot;tensorflow/core/framework/tensor.h&quot;
+
+int main() {
+  using namespace tensorflow;
+  using namespace tensorflow::ops;
+  Scope root = Scope::NewRootScope();
+  // Matrix A = [3 2; -1 0]
+  auto A = Const(root, { {3.f, 2.f}, {-1.f, 0.f} });
+  // Vector b = [3 5]
+  auto b = Const(root, { {3.f, 5.f} });
+  // v = Ab^T
+  auto v = MatMul(root.WithOpName(&quot;v&quot;), A, b, MatMul::TransposeB(true));
+  std::vector&lt;Tensor&gt; outputs;
+  ClientSession session(root);
+  // Run and fetch v
+  TF_CHECK_OK(session.Run({v}, &amp;outputs));
+  // Expect outputs[0] == [19; -3]
+  LOG(INFO) &lt;&lt; outputs[0].matrix&lt;float&gt;();
+  return 0;
+}
+</code></pre>
+<p>Place this example code in the file <code>tensorflow/cc/example/example.cc</code> inside a<br>
+clone of the<br>
+TensorFlow<br>
+<a href="http://www.github.com/tensorflow/tensorflow">github repository</a>. Also place a<br>
+<code>BUILD</code> file in the same directory with the following contents:</p>
+<pre><code class="lang-python">load(&quot;//tensorflow:tensorflow.bzl&quot;, &quot;tf_cc_binary&quot;)
+
+tf_cc_binary(
+    name = &quot;example&quot;,
+    srcs = [&quot;example.cc&quot;],
+    deps = [
+        &quot;//tensorflow/cc:cc_ops&quot;,
+        &quot;//tensorflow/cc:client_session&quot;,
+        &quot;//tensorflow/core:tensorflow&quot;,
+    ],
+)
+</code></pre>
+<p>Use <code>tf_cc_binary</code> rather than Bazel's native <code>cc_binary</code> to link in necessary<br>
+symbols from <code>libtensorflow_framework.so</code>. You should be able to build and run<br>
+the example using the following command (be sure to run <code>./configure</code> in your<br>
+build sandbox first):</p>
+<pre><code class="lang-shell">bazel run -c opt //tensorflow/cc/example:example
+</code></pre>
+<p>This example shows some of the important features of the C++ API such as the<br>
+following:</p>
+<ul>
+<li>Constructing tensor constants from C++ nested initializer lists</li>
+<li>Constructing and naming of TensorFlow operations</li>
+<li>Specifying optional attributes to operation constructors</li>
+<li>Executing and fetching the tensor values from the TensorFlow session.</li>
+</ul>
+<p>We will delve into the details of each below.</p>
+<h2>Graph Construction</h2>
+<h3>Scope</h3>
+<p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/scope"><code>tensorflow::Scope</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/status"><code>tensorflow::Status</code></a></p>
+<p>The <code>Scope</code> object returned by <code>Scope::NewRootScope</code> is referred<br>
+to as the root scope. "Child" scopes can be constructed from the root scope by<br>
+calling various member functions of the <code>Scope</code> class, thus forming a hierarchy<br>
+of scopes. A child scope inherits all of the properties of the parent scope and<br>
+typically has one property added or changed. For instance, <code>NewSubScope(name)</code><br>
+appends <code>name</code> to the prefix of names for operations created using the returned<br>
+<code>Scope</code> object.</p>
+<p>Here are some of the properties controlled by a <code>Scope</code> object:</p>
+<ul>
+<li>Operation names</li>
+<li>Set of control dependencies for an operation</li>
+<li>Device placement for an operation</li>
+<li>Kernel attribute for an operation</li>
+</ul>
+<p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/scope"><code>tensorflow::Scope</code></a></p>
+<h3>Operation Constructors</h3>
+<p>You can create graph operations with operation constructors, one C++ class per<br>
+TensorFlow operation. Unlike the Python API which uses snake-case to name the<br>
+operation constructors, the C++ API uses camel-case to conform to C++ coding<br>
+style. For instance, the <code>MatMul</code> operation has a C++ class with the same name.</p>
+<p>Using this class-per-operation method, it is possible, though not recommended,<br>
+to construct an operation as follows:</p>
+<pre><code class="lang-c++">// Not recommended
+MatMul m(scope, a, b);
+</code></pre>
+<p>Instead, we recommend the following "functional" style for constructing<br>
+operations:</p>
+<pre><code class="lang-c++">// Recommended
+auto m = MatMul(scope, a, b);
+</code></pre>
+<p>The first parameter for all operation constructors is always a <code>Scope</code> object.<br>
+Tensor inputs and mandatory attributes form the rest of the arguments.</p>
+<p>For optional arguments, constructors have an optional parameter that allows<br>
+optional attributes.  For operations with optional arguments, the constructor's<br>
+last optional parameter is a <code>struct</code> type called <code>[operation]:Attrs</code> that<br>
+contains data members for each optional attribute. You can construct such<br>
+<code>Attrs</code> in multiple ways:</p>
+<ul>
+<li>You can specify a single optional attribute by constructing an <code>Attrs</code> object<br>
+using the <code>static</code> functions provided in the C++ class for the operation. For<br>
+example:</li>
+</ul>
+<pre><code class="lang-c++">auto m = MatMul(scope, a, b, MatMul::TransposeA(true));
+</code></pre>
+<ul>
+<li>You can specify multiple optional attributes by chaining together functions<br>
+available in the <code>Attrs</code> struct. For example:</li>
+</ul>
+<pre><code class="lang-c++">auto m = MatMul(scope, a, b, MatMul::TransposeA(true).TransposeB(true));
+
+// Or, alternatively
+auto m = MatMul(scope, a, b, MatMul::Attrs().TransposeA(true).TransposeB(true));
+</code></pre>
+<p>The arguments and return values of operations are handled in different ways<br>
+depending on their type:</p>
+<ul>
+<li>For operations that return single tensors, the object returned by<br>
+the operation object can be passed directly to other operation<br>
+constructors. For example:</li>
+</ul>
+<pre><code class="lang-c++">auto m = MatMul(scope, x, W);
+auto sum = Add(scope, m, bias);
+</code></pre>
+<ul>
+<li>For operations producing multiple outputs, the object returned by the<br>
+operation constructor has a member for each of the outputs. The names of those<br>
+members are identical to the names present in the <code>OpDef</code> for the<br>
+operation. For example:</li>
+</ul>
+<pre><code class="lang-c++">auto u = Unique(scope, a);
+// u.y has the unique values and u.idx has the unique indices
+auto m = Add(scope, u.y, b);
+</code></pre>
+<ul>
+<li>Operations producing a list-typed output return an object that can<br>
+be indexed using the <code>[]</code> operator. That object can also be directly passed to<br>
+other constructors that expect list-typed inputs. For example:</li>
+</ul>
+<pre><code class="lang-c++">auto s = Split(scope, 0, a, 2);
+// Access elements of the returned list.
+auto b = Add(scope, s[0], s[1]);
+// Pass the list as a whole to other constructors.
+auto c = Concat(scope, s, 0);
+</code></pre>
+<h3>Constants</h3>
+<p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/ops/const"><code>tensorflow::ops::Const</code></a></p>
+<ul>
+<li>Scalars</li>
+</ul>
+<pre><code class="lang-c++">auto f = Const(scope, 42.0f);
+auto s = Const(scope, &quot;hello world!&quot;);
+</code></pre>
+<ul>
+<li>Nested initializer lists</li>
+</ul>
+<pre><code class="lang-c++">// 2x2 matrix
+auto c1 = Const(scope, { {1, 2}, {2, 4} });
+// 1x3x1 tensor
+auto c2 = Const(scope, { { {1}, {2}, {3} } });
+// 1x2x0 tensor
+auto c3 = ops::Const(scope, { { {}, {} } });
+</code></pre>
+<ul>
+<li>Shapes explicitly specified</li>
+</ul>
+<pre><code class="lang-c++">// 2x2 matrix with all elements = 10
+auto c1 = Const(scope, 10, /* shape */ {2, 2});
+// 1x3x2x1 tensor
+auto c2 = Const(scope, {1, 2, 3, 4, 5, 6}, /* shape */ {1, 3, 2, 1});
+</code></pre>
+<p>You may directly pass constants to other operation constructors, either by<br>
+explicitly constructing one using the <code>Const</code> function, or implicitly as any of<br>
+the above types of C++ values. For example:</p>
+<pre><code class="lang-c++">// [1 1] * [41; 1]
+auto x = MatMul(scope, { {1, 1} }, { {41}, {1} });
+// [1 2 3 4] + 10
+auto y = Add(scope, {1, 2, 3, 4}, 10);
+</code></pre>
+<h2>Graph Execution</h2>
+<p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/clientsession"><code>tensorflow::ClientSession</code></a></p>
+<pre><code class="lang-c++">Scope root = Scope::NewRootScope();
+auto c = Const(root, { {1, 1} });
+auto m = MatMul(root, c, { {42}, {1} });
+
+ClientSession session(root);
+std::vector&lt;Tensor&gt; outputs;
+session.Run({m}, &amp;outputs);
+// outputs[0] == {42}
+</code></pre>
+<p>Similarly, the object returned by the operation constructor can be used as the<br>
+argument to specify a value being fed when executing the graph. Furthermore, the<br>
+value to feed can be specified with the different kinds of C++ values used to<br>
+specify tensor constants. For example:</p>
+<pre><code class="lang-c++">Scope root = Scope::NewRootScope();
+auto a = Placeholder(root, DT_INT32);
+// [3 3; 3 3]
+auto b = Const(root, 3, {2, 2});
+auto c = Add(root, a, b);
+ClientSession session(root);
+std::vector&lt;Tensor&gt; outputs;
+
+// Feed a &lt;- [1 2; 3 4]
+session.Run({ {a, { {1, 2}, {3, 4} } } }, {c}, &amp;outputs);
+// outputs[0] == [4 5; 6 7]
+</code></pre>
+<p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/tensor"><code>tensorflow::Tensor</code></a></p>
+
+        </main>
+    </div>
+</div>
+<!-- Content end-->
+</body>
+<script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
+<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+</html>
