@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -44,19 +44,19 @@
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>简易语音识别</h1>
-<p>这个教程会教你建立一个能够识别出十个不同词语基础语音识别网络。但是想要将其运用到实际场景中的语音识别系统中则会很复杂，这与希望将 MNIST 数据集应用到实际场景中的图像识别的复杂程度类似，所以这个教程只会带你了解其中涉及的技术方法。当你完成这个教程，你能够得到一个语音识别模型，它能够识别一个语音片段，并区分为静默，一个未知词语，"yes", "no", "up", "down", "left", "right", "on", "off", "stop", 或者 "go" 。你也能将它运行在一个安卓应用中。</p>
+<p>这个教程会教你建立一个能够识别出十个不同词语基础语音的神经网络。但这个模型远不如实际场景中的语音识别系统那么复杂，这就好比 MNIST 数据集无法用于训练实际场景中的图像识别。所以这个教程只会带你了解其中涉及的技术方法，当你完成这个教程时，你将得到一个语音识别模型。它能够识别一个语音片段，将其归类为静默，或者下列词语中的一个："yes", "no", "up", "down", "left", "right", "on", "off", "stop", "go" 。你也安卓应用中运行这个模型。</p>
 <h2>准备</h2>
-<p>首先，你要安装好 TensorFlow，这个脚本会下载超过 1 GB 的训练数据，所以你的设备需要一个良好的网络连接和充足的储存空间。由于这个训练过程会花费数个小时，所以确保你的机器在这段时间内能够正常使用。</p>
+<p>首先，你要安装好 TensorFlow。我们会用一个脚本下载大小超过 1 GB 的训练数据，所以你的设备要有良好的网络连接和充足的储存空间。由于这个训练过程会花费数个小时，所以确保你的机器在这段时间内能保持正常运行。</p>
 <h2>训练</h2>
 <p>进入 TensorFlow 目录，运行如下命令来开始训练过程：</p>
 <pre><code class="lang-bash">python tensorflow/examples/speech_commands/train.py
 </code></pre>
-<p>这个代码会先下载 <a href="https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.01.tar.gz">Speech Commands dataset</a>，这个数据集包含了 65,000 个 WAVE 声音文件，内容是人们说三十个不同词语的录音。这个数据集是由谷歌收集并遵循知识共享协议发布，你能够通过<a href="https://aiyprojects.withgoogle.com/open_speech_recording">贡献你的五分钟语音项目</a>一起提升它。这个档案超过 1 GB，所以这个步骤会花费一些时间，但你也要查看一下运行日志。一旦下载完成了，你之后就不需要再做这一步了。</p>
-<p>一旦你下载完成，你会看到如下的日志信息：</p>
+<p>这个代码会先下载 <a href="https://storage.cloud.google.com/download.tensorflow.org/data/speech_commands_v0.01.tar.gz">Speech Commands dataset</a>，这个数据集包含了 65,000 个 WAVE 声音文件，内容是人们说三十个不同词语的录音。这个数据集由谷歌收集并遵循知识共享协议发布，你能够通过<a href="https://aiyprojects.withgoogle.com/open_speech_recording">贡献你的五分钟语音项目</a>来改进这个数据集。这个文件大小超过 1 GB，所以下载过程会花费一些时间，但为了防止出错，你也要不时查看一下运行日志。一旦下载完成，之后就不需要再做这一步了。</p>
+<p>下载完成后，你会看到如下的日志信息：</p>
 <pre><code>I0730 16:53:44.766740   55030 train.py:176] Training from step: 1
 I0730 16:53:47.289078   55030 train.py:217] Step #1: rate 0.001000, accuracy 7.0%, cross entropy 2.611571
 </code></pre>
-<p>这表明初始化过程已经完成，训练循环已经开始。你能看到每一步它都会输出日志信息。下面详细讲解日志中数据的含义：</p>
+<p>这表明初始化过程已经完成，训练的循环过程已经开始。你能看到每一步它都会输出日志信息。下面详细讲解日志中数据的含义：</p>
 <p><code>Step #1</code> 告诉我们这是在训练循环第一轮。在这个例子中共有 18,000 轮，所以你能够通过查看步骤数知道还有多久训练过程会结束。</p>
 <p><code>rate 0.001000</code> 是控制网络权重变更速度的学习速率。在初始阶段这个值会是个相当高的数字（0.001），但在后面的训练中它会减小十倍到 0.0001。</p>
 <p><code>accuracy 7.0%</code> 代表当前训练过程预测对了多少。这个值会经常的上下波动，但是它的平均值会随着训练不断增长。这个模型会输出一个数组，每一个代表了一个类别，每个数代表了输入和那个类别之间相似度的预测值。最后得到的预测标签是获得最高分数的类别。这个分数通常在 0 和 1 之间，并且数值越大代表模型对这个结果越有信心。</p>
@@ -207,6 +207,25 @@ _unknown_ (score = 0.03808)
     </div>
 </div>
 <!-- Content end-->
+
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container">
+        <div>如果您发现本页面存在错误或可以改进，请<a href="https://github.com/xitu/tensorflow-docs/blob/zh-hans/tutorials/audio_recognition.md" target="_blank">点击此处</a>帮助我们改进。本页贡献者：<span id="contributors"></span></div>
+        <hr/>
+        <div class="text-center official-links">
+            <a href="https://www.tensorflow.org"><img
+                    src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
+            <a href="https://github.com/xitu/tensorflow-docs"><img
+                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
+            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var contributors = [{'pkuwwt': 'https://avatars0.githubusercontent.com/u/4813445?v=4'}, {'changkun': 'https://avatars3.githubusercontent.com/u/5498964?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+</script>
+<!-- Footer end -->
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Datasets Quick Start</title>
+    <title>数据集：快速了解</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,65 +40,56 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Datasets Quick Start</h1>
+            <h1>数据集：快速了解</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
 <ul>
-<li>Reading in-memory data from numpy arrays.</li>
-<li>Reading lines from a csv file.</li>
+<li>从 numpy 数组读取内存数据。</li>
+<li>逐行读取 csv 文件。</li>
 </ul>
 <!-- TODO(markdaoust): Add links to an example reading from multiple-files
 (image_retraining), and a from_generator example. -->
 
-<h2>Basic input</h2>
-<p>Taking slices from an array is the simplest way to get started with <code>tf.data</code>.</p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Getting Started with TensorFlow</a></p>
+<h2>基本输入</h2>
+<p>学习如何获取数组的片段，是开始学习 <code>tf.data</code> 最简单的方式。</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">TensorFlow 入门教程</a></p>
 <pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
-    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
-    # Convert the inputs to a Dataset.
+    &quot;&quot;&quot;一个用来训练的输入函数&quot;&quot;&quot;
+    # 将输入值转化为数据集。
     dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
 
-    # Shuffle, repeat, and batch the examples.
+    # 混排、重复、批处理样本。
     dataset = dataset.shuffle(1000).repeat().batch(batch_size)
 
-    # Build the Iterator, and return the read end of the pipeline.
+    # 建立迭代器，返回管道的读取结束点。
     return dataset.make_one_shot_iterator().get_next()
 </code></pre>
-<p>Let's look at this more closely.</p>
-<h3>Arguments</h3>
-<p>This function expects three arguments. Arguments expecting an "array" can<br>
-accept nearly anything that can be converted to an array with <code>numpy.array</code>.<br>
-One exception is<br>
-<a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences"><code>tuple</code></a><br>
-which has special meaning for <code>Datasets</code>.</p>
+<p>下面我们来对这个函数做更仔细的分析。</p>
+<h3>参数</h3>
+<p>这个函数一共需要三个参数。如果一个参数的期望类型是 “array” （数组），那么它将可以接受几乎所有可以用 <code>numpy.array</code> 来转化为数组的值。只有一个例外：<a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences"><code>tuple</code></a>，它对 <code>Datasets</code> 有特殊的含义。</p>
 <ul>
-<li><code>features</code>: A <code>{'feature_name':array}</code> dictionary (or<br>
-<a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"><code>DataFrame</code></a>)<br>
-containing the raw input features.</li>
-<li><code>labels</code> : An array containing the<br>
-<a href="https://developers.google.com/machine-learning/glossary/#label">label</a><br>
-for each example.</li>
-<li><code>batch_size</code> : An integer indicating the desired batch size.</li>
+<li><code>features</code>：一个形如 <code>{'feature_name':array}</code> 的数据字典（或者是 <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"><code>DataFrame</code></a>），它包含了原始的输入特征。</li>
+<li><code>labels</code>：一个包含每个样本的 <a href="https://developers.google.com/machine-learning/glossary/#label">label</a> 的数组。</li>
+<li><code>batch_size</code>：一个指示所需批量大小的整数。</li>
 </ul>
-<p>In <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a><br>
-we retrieved the Iris data using the <code>iris_data.load_data()</code> function.<br>
-You can run it, and unpack the results as follows:</p>
+<p>在 <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a> 中，我们使用 <code>iris_data.load_data()</code> 函数来检索虹膜数据。<br>
+你可以运行该函数，并按如下方式解压结果：</p>
 <pre><code class="lang-python">import iris_data
 
-# Fetch the data
+# 获取数据
 train, test = iris_data.load_data()
 features, labels = train
 </code></pre>
-<p>Then we passed this data to the input function, with a line similar to this:</p>
+<p>然后用像下面这样的一行代码，将数据传递给 input 函数：</p>
 <pre><code class="lang-python">batch_size=100
 iris_data.train_input_fn(features, labels, batch_size)
 </code></pre>
-<p>Let's walk through the <code>train_input_fn()</code>.</p>
-<h3>Slices</h3>
+<p>让我们来具体看看 <code>train_input_fn()</code> 函数。</p>
+<h3>（数组）片段</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/tutorials/layers.html">TF Layers 教程：构建卷积神经网络</a></p>
-<p>The code that returns this <code>Dataset</code> is as follows:</p>
+<p>返回这个 <code>Dataset</code> 的代码如下所示：</p>
 <pre><code class="lang-python">train, test = tf.keras.datasets.mnist.load_data()
 mnist_x, mnist_y = train
 
@@ -108,11 +99,7 @@ print(mnist_ds)
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html#data_types">张量</a></p>
 <pre><code class="lang-None">&lt;TensorSliceDataset shapes: (28,28), types: tf.uint8&gt;
 </code></pre>
-<p>The dataset above represents a collection of simple arrays, but datasets are<br>
-much more powerful than this. Datasets transparently handle any nested<br>
-combination of dictionaries or tuples. For example, ensuring that <code>features</code><br>
-is a standard dictionary, you can then convert the dictionary of arrays to<br>
-a <code>Dataset</code> of dictionaries as follows:</p>
+<p>上文的 <code>Dataset</code> 代表了一个简单的数组集合，但是数据集比这要强大的多。数据集能够透明地处理任何字典或元组的嵌套组合。例如，确保 <code>features</code> 是一个标准字典后，你可以用如下方式将数组字典转化为字典 <code>Dataset</code>：</p>
 <pre><code class="lang-python">dataset = tf.data.Dataset.from_tensor_slices(dict(features))
 print(dataset)
 </code></pre>
@@ -128,11 +115,9 @@ print(dataset)
 &gt;
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html#rank">张量</a></p>
-<p>The first line of <code>train_input_fn</code> uses the same functionality, but adds<br>
-another level of structure. It creates a dataset containing<br>
-<code>(features, labels)</code> pairs.</p>
-<p>The following code shows that the label is a scalar with type <code>int64</code>:</p>
-<pre><code class="lang-python"># Convert the inputs to a Dataset.
+<p><code>train_input_fn</code> 的第一行代码使用了相同的功能，但是增加了一层结构。它创建了一个包含 <code>(features_dict, label)</code> 数据对的数据集。</p>
+<p>以下代码表明，标签是类型为 <code>int64</code> 的标量：</p>
+<pre><code class="lang-python"># 将输入转化为数据集。
 dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
 print(dataset)
 </code></pre>
@@ -149,28 +134,22 @@ print(dataset)
           PetalLength: tf.float64, SepalWidth: tf.float64},
         tf.int64)&gt;
 </code></pre>
-<h3>Manipulation</h3>
-<p>Currently the <code>Dataset</code> would iterate over the data once, in a fixed order, and<br>
-only produce a single element at a time. It needs further processing before it<br>
-can be used for training. Fortunately, the <code>tf.data.Dataset</code> class provides<br>
-methods to better prepare the data for training. The next line of the input<br>
-function takes advantage of several of these methods:</p>
-<pre><code class="lang-python"># Shuffle, repeat, and batch the examples.
+<h3>操作</h3>
+<p>目前，<code>Dataset</code> 会按照固定顺序遍历数据一次，且一次只能生成一个元素。在可以用于训练之前，它需要进一步的处理。幸运的是，<code>tf.data.Dataset</code> 类提供了方法来让数据为训练作出更好的准备。<code>train_input_fn</code> 的下一行代码就利用了几个这样的方法：</p>
+<pre><code class="lang-python"># 样本的混排、重复、批处理。
 dataset = dataset.shuffle(1000).repeat().batch(batch_size)
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/shuffle"><code>tf.data.Dataset.shuffle</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/repeat"><code>tf.data.Dataset.repeat</code></a></p>
-<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/repeat"><code>tf.data.Dataset.repeat</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/batch"><code>tf.data.Dataset.batch</code></a></p>
 <pre><code class="lang-python">print(mnist_ds.batch(100))
 </code></pre>
 <pre><code class="lang-none">&lt;BatchDataset
   shapes: (?, 28, 28),
   types: tf.uint8&gt;
 </code></pre>
-<p>Note that the dataset has an unknown batch size because the last batch will<br>
-have fewer elements.</p>
-<p>In <code>train_input_fn</code>, after batching the <code>Dataset</code> contains 1D vectors of<br>
-elements where each scalar was previously:</p>
+<p>注意，因为最后一个批次将会有比较少的元素，因此数据集的批量大小是不确定的。</p>
+<p>在 <code>train_input_fn</code> 中，批处理之后，<code>数据集</code> 包含元素们的一维向量，这些一维向量的前面部分是：</p>
 <pre><code class="lang-python">print(dataset)
 </code></pre>
 <pre><code>&lt;TensorSliceDataset
@@ -186,11 +165,11 @@ elements where each scalar was previously:</p>
           PetalLength: tf.float64, SepalWidth: tf.float64},
         tf.int64)&gt;
 </code></pre>
-<h3>Return</h3>
+<h3>返回</h3>
 <!-- TODO(markdaoust) This line can be simplified to "return dataset" -->
 
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html">张量</a></p>
-<pre><code class="lang-python"># Build the Iterator, and return the read end of the pipeline.
+<pre><code class="lang-python"># 建立迭代器，返回管道的读取结束点。
 features_result, labels_result = dataset.make_one_shot_iterator().get_next()
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html">底层 API 编程介绍</a></p>
@@ -203,57 +182,49 @@ features_result, labels_result = dataset.make_one_shot_iterator().get_next()
     &#39;SepalWidth&#39;: &lt;tf.Tensor &#39;IteratorGetNext:3&#39; shape=(?,) dtype=float64&gt;},
 Tensor(&quot;IteratorGetNext_1:4&quot;, shape=(?,), dtype=int64))
 </code></pre>
-<h2>Reading a CSV File</h2>
+<h2>读取 CSV 文件</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
-<p>The following call to the <code>iris_data.maybe_download</code> function downloads the<br>
-data if necessary, and returns the pathnames of the resulting files:</p>
+<p>如下对 <code>iris_data.maybe_download</code> 函数的调用，将会在必要的时候下载数据，并返回结果文件的路径：</p>
 <pre><code class="lang-python">import iris_data
 train_path, test_path = iris_data.maybe_download()
 </code></pre>
-<p>The <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.csv_input_fn</code></a><br>
-function contains an alternative implementation that parses the csv files using<br>
-a <code>Dataset</code>.</p>
-<p>Let's look at how to build an Estimator-compatible input function that reads<br>
-from the local files.</p>
-<h3>Build the <code>Dataset</code></h3>
+<p><a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.csv_input_fn</code></a> 函数包括了一个用 <code>Dataset</code> 解析 csv 文件的替代方案。</p>
+<p>让我们来看看如何构建一个兼容 Estimator 的、可以读取本地文件的输入函数。</p>
+<h3>建立 <code>Dataset</code></h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/skip"><code>tf.data.Dataset.skip</code></a></p>
 <pre><code class="lang-python">ds = tf.data.TextLineDataset(train_path).skip(1)
 </code></pre>
-<h3>Build a csv line parser</h3>
-<p>Ultimately we will need to parse each of the lines in the dataset, to<br>
-produce the necessary <code>(features, label)</code> pairs.</p>
-<p>We will start by building a function to parse a single line.</p>
+<h3>建立一个 csv 行解析器</h3>
+<p>最终我们需要解析数据集中的每一行，来生成必要的 <code>(features, label)</code> 数据对。</p>
+<p>我们从建立一个可以解析一行的函数开始。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
-<pre><code class="lang-python"># Metadata describing the text columns
+<pre><code class="lang-python"># 描述文本列的元数据
 COLUMNS = [&#39;SepalLength&#39;, &#39;SepalWidth&#39;,
            &#39;PetalLength&#39;, &#39;PetalWidth&#39;,
            &#39;label&#39;]
 FIELD_DEFAULTS = [[0.0], [0.0], [0.0], [0.0], [0]]
 def _parse_line(line):
-    # Decode the line into its fields
+    # 将行解码到 fields 中
     fields = tf.decode_csv(line, FIELD_DEFAULTS)
 
-    # Pack the result into a dictionary
+    # 将结果打包成字典
     features = dict(zip(COLUMNS,fields))
 
-    # Separate the label from the features
+    # 将标签从特征中分离
     label = features.pop(&#39;label&#39;)
 
     return features, label
 </code></pre>
-<h3>Parse the lines</h3>
+<h3>解析多行</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
-<p>The <code>map</code> method takes a <code>map_func</code> argument that describes how each item in the<br>
-<code>Dataset</code> should be transformed.</p>
+<p>这个 <code>map</code> 方法接受一个 <code>map_func</code> 参数，这个参数描述了 <code>Dataset</code> 中的每一个元素应该如何被转化。</p>
 <div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%" src="../images/datasets/map.png">
 </div>
 <div style="text-align: center">
-The @{tf.data.Dataset.map$`map`} method applies the `map_func` to
-transform each item in the <code>Dataset</code>.
-</div><p>So to parse the lines as they are streamed out of the csv file, we pass our<br>
-<code>_parse_line</code> function to the <code>map</code> method:</p>
+@{tf.data.Dataset.map$`map`} 方法将会对 `Dataset` 中的每一个元素应用 `map_func` 来完成它们的转化。
+</div><p>因此，为了在多行数据被从 csv 文件中读取出来的时候解析它们，我们为 <code>map</code> 方法提供 <code>_parse_line</code> 函数：</p>
 <pre><code class="lang-python">ds = ds.map(_parse_line)
 print(ds)
 </code></pre>
@@ -265,40 +236,30 @@ types: (
     {SepalLength: tf.float32, PetalWidth: tf.float32, ...},
     tf.int32)&gt;
 </code></pre>
-<p>Now instead of simple scalar strings, the dataset contains <code>(features, label)</code><br>
-pairs.</p>
-<p>the remainder of the <code>iris_data.csv_input_fn</code> function is identical<br>
-to <code>iris_data.train_input_fn</code> which was covered in the in the<br>
-<a href="#basic_input">Basic input</a> section.</p>
-<h3>Try it out</h3>
-<p>This function can be used as a replacement for<br>
-<code>iris_data.train_input_fn</code>. It can be used to feed an estimator as follows:</p>
+<p>现在，数据集中包含的是 <code>(features, label)</code> 数据对，而不是简单的字符串标量了。</p>
+<p><code>iris_data.csv_input_fn</code> 函数的余下部分和 <a href="#basic_input">Basic input</a> 中介绍的 <code>iris_data.train_input_fn</code> 函数相同。</p>
+<h3>实践</h3>
+<p>这个函数可以作为 <code>iris_data.train_input_fn</code> 的替代。它可以像如下这样，来给 estimator 提供数据：</p>
 <pre><code class="lang-python">train_path, test_path = iris_data.maybe_download()
 
-# All the inputs are numeric
+# 所有的输入都是数字
 feature_columns = [
     tf.feature_column.numeric_column(name)
     for name in iris_data.CSV_COLUMN_NAMES[:-1]]
 
-# Build the estimator
+# 构建 estimator
 est = tf.estimator.LinearClassifier(feature_columns,
                                     n_classes=3)
-# Train the estimator
+# 训练 estimator
 batch_size = 100
 est.train(
     steps=1000,
     input_fn=lambda : iris_data.csv_input_fn(train_path, batch_size))
 </code></pre>
-<p>Estimators expect an <code>input_fn</code> to take no arguments. To work around this<br>
-restriction, we use <code>lambda</code> to capture the arguments and provide the expected<br>
-interface.</p>
-<h2>Summary</h2>
-<p>The <code>tf.data</code> module provides a collection of classes and functions for easily<br>
-reading data from a variety of sources. Furthermore, <code>tf.data</code> has simple<br>
-powerful methods for applying a wide variety of standard and custom<br>
-transformations.</p>
-<p>Now you have the basic idea of how to efficiently load data into an<br>
-Estimator. Consider the following documents next:</p>
+<p>Estimator 期望 <code>input_fn</code> 没有任何参数。要解除这个限制，我们使用 <code>lambda</code> 来捕获参数并提供预期的接口。</p>
+<h2>总结</h2>
+<p>为了从不同的数据源中便捷的读取数据，<code>tf.data</code> 模块提供了类和函数的集合。除此之外，<code>tf.data</code> 有简单并且强大的方法，来应用各种标准和自定义转换。</p>
+<p>现在你已经基本了解了如何为 Estimator 高效的获取数据。（作为扩展）接下来可以思考如下的文档：</p>
 <ul>
 <li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
 <li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html#datasets">底层 API 编程介绍</a></li>
@@ -309,6 +270,25 @@ Estimator. Consider the following documents next:</p>
     </div>
 </div>
 <!-- Content end-->
+
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container">
+        <div>如果您发现本页面存在错误或可以改进，请<a href="https://github.com/xitu/tensorflow-docs/blob/zh-hans/get_started/datasets_quickstart.md" target="_blank">点击此处</a>帮助我们改进。本页贡献者：<span id="contributors"></span></div>
+        <hr/>
+        <div class="text-center official-links">
+            <a href="https://www.tensorflow.org"><img
+                    src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
+            <a href="https://github.com/xitu/tensorflow-docs"><img
+                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
+            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var contributors = [{'EmilyQiRabbit': 'https://avatars0.githubusercontent.com/u/23472093?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+</script>
+<!-- Footer end -->
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Getting Started with TensorFlow</title>
+    <title>TensorFlow 入门教程</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,52 +40,43 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Getting Started', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Getting Started for ML Beginners'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Getting Started with TensorFlow'}]}, {'type': 'parent', 'title': ' Details', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': 'Datasets Quick Start'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Getting Started with TensorFlow</h1>
-<p>This document introduces the TensorFlow programming environment and shows you<br>
-how to solve the Iris classification problem in TensorFlow.</p>
-<h2>Prerequisites</h2>
-<p>Prior to using the sample code in this document, you'll need to do the<br>
-following:</p>
+            <h1>TensorFlow 入门教程</h1>
+<p>该文档将介绍 TensorFlow 的编程环境，并会向你展示如何使用 TensorFlow 解决 Iris 分类问题。</p>
+<h2>前置要求</h2>
+<p>你需要先做如下几件事，才能够使用本文档的样例代码：</p>
 <ul>
 <li><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></li>
-<li>If you installed TensorFlow with virtualenv or Anaconda, activate your<br>
-TensorFlow environment.</li>
-<li><p>Install or upgrade pandas by issuing the following command:</p>
+<li>如果你在 virtualenv 或者 Anaconda 上安装了 TensorFlow，启动你的 TensorFlow 环境。</li>
+<li><p>通过以下命令安装或升级 pandas：</p>
 <pre><code>  pip install pandas
 </code></pre>
 </li>
 </ul>
-<h2>Getting the sample code</h2>
-<p>Take the following steps to get the sample code we'll be going through:</p>
+<h2>获取样例代码</h2>
+<p>通过以下几步来获得我们将要使用的样例代码：</p>
 <ol>
-<li><p>Clone the TensorFlow Models repository from GitHub by entering the following<br>
-command:</p>
+<li><p>通过键入以下命令从 GitHub 下载 TensorFlow Models 仓库：</p>
 <pre><code> git clone https://github.com/tensorflow/models
 </code></pre>
 </li>
-<li><p>Change directory within that branch to the location containing the examples<br>
-used in this document:</p>
+<li><p>进入含有样例的文件夹：</p>
 <pre><code> cd models/samples/core/get_started/
 </code></pre>
 </li>
 </ol>
-<p>The program described in this document is<br>
+<p>我们在本文档中将使用的程序是<br>
 <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a>.<br>
-This program uses<br>
+这个程序使用<br>
 <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a><br>
-to fetch its training data.</p>
-<h3>Running the program</h3>
-<p>You run TensorFlow programs as you would run any Python program. For example:</p>
+来获取训练数据。</p>
+<h3>运行程序</h3>
+<p>运行 TensorFlow 的程序和运行其他的 Python 程序方法一样。例如</p>
 <pre><code class="lang-bsh">python premade_estimator.py
 </code></pre>
-<p>The program should output training logs followed by some predictions against<br>
-the test set. For example, the first line in the following output shows that<br>
-the model thinks there is a 99.6% chance that the first example in the test<br>
-set is a Setosa. Since the test set expected Setosa, this appears to be<br>
-a good prediction.</p>
+<p>程序将会输出一些训练日志，还有一些对测试集的预测结果。例如，下列输出的第一行显示出，模型认为测试集中的第一个例子为 Setosa 的概率为 99.6%。由于测试集中确实为 Setosa，这表示此次预测表现不错。</p>
 <pre><code class="lang-None">...
 Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
 
@@ -93,35 +84,28 @@ Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
 
 Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
 </code></pre>
-<p>If the program generates errors instead of answers, ask yourself the following<br>
-questions:</p>
+<p>如果程序出现报错，那么请自查如下问题：</p>
 <ul>
-<li>Did you install TensorFlow properly?</li>
-<li>Are you using the correct version of TensorFlow?</li>
-<li>Did you activate the environment you installed TensorFlow in? (This is<br>
-only relevant in certain installation mechanisms.)</li>
+<li>你正确地安装 TensorFlow 了吗？</li>
+<li>你使用的是正确版本的 TensorFlow 吗？</li>
+<li>你启动安装了 TensorFlow 的环境了吗？（这条仅会出现在一些特定的安装方法中）</li>
 </ul>
-<h2>The programming stack</h2>
-<p>Before getting into the details of the program itself, let's investigate the<br>
-programming environment. As the following illustration shows, TensorFlow<br>
-provides a programming stack consisting of multiple API layers:</p>
+<h2>程序栈</h2>
+<p>在深入程序细节之前，让我们先了解一下程序的环境。如下所示，TensorFlow 提供了一个含有很多 API 层的程序栈：</p>
 <div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
-<img style="width:100%" src="../images/tensorflow_programming_environment.png">
-</div><p>We strongly recommend writing TensorFlow programs with the following APIs:</p>
+<img style="width:100%" src="https://www.tensorflow.org/images/tensorflow_programming_environment.png">
+</div><p>我们强烈建议使用如下 API 编写 TensorFlow 程序：</p>
 <ul>
 <li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html">评估器</a></li>
-<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">Datasets Quick Start</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">数据集：快速了解</a></li>
 </ul>
-<h2>Classifying irises: an overview</h2>
-<p>The sample program in this document builds and tests a model that<br>
-classifies Iris flowers into three different species based on the size of their<br>
-<a href="https://en.wikipedia.org/wiki/Sepal">sepals</a> and<br>
-<a href="https://en.wikipedia.org/wiki/Petal">petals</a>.</p>
+<h2>对　irises　分类：概览</h2>
+<p>本文档中的这个样例程序搭建并测试了一个模型，根据花的<a href="https://en.wikipedia.org/wiki/Sepal">萼片</a>和<a href="https://en.wikipedia.org/wiki/Petal">花瓣</a>将 Iris 花分成不同种类。</p>
 <div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%"
-  alt="Petal geometry compared for three iris species: Iris setosa, Iris virginica, and Iris versicolor"
-  src="../images/iris_three_species.jpg">
-</div><p><strong>From left to right,<br>
+  alt="三个 Iris 花种的花瓣几何形状的对比： Iris setosa, Iris virginica, and Iris versicolor"
+  src="https://www.tensorflow.org/images/iris_three_species.jpg">
+</div><p><strong>从左至右为<br>
 <a href="https://commons.wikimedia.org/w/index.php?curid=170298"><em>Iris setosa</em></a> (by<br>
 <a href="https://commons.wikimedia.org/wiki/User:Radomil">Radomil</a>, CC BY-SA 3.0),<br>
 <a href="https://commons.wikimedia.org/w/index.php?curid=248095"><em>Iris versicolor</em></a> (by<br>
@@ -129,33 +113,30 @@ classifies Iris flowers into three different species based on the size of their<
 and <a href="https://www.flickr.com/photos/33397993@N05/3352169862"><em>Iris virginica</em></a><br>
 (by <a href="https://www.flickr.com/photos/33397993@N05">Frank Mayfield</a>, CC BY-SA<br>
 2.0).</strong></p>
-<h3>The data set</h3>
-<p>The Iris data set contains four features and one<br>
-<a href="https://developers.google.com/machine-learning/glossary/#label">label</a>.<br>
-The four features identify the following botanical characteristics of<br>
-individual Iris flowers:</p>
+<h3>数据集</h3>
+<p>Iris 数据集包含四个特征和一个<a href="https://developers.google.com/machine-learning/glossary/#label">标签</a>。四个特征定义了 Iris 花的植物特征：</p>
 <ul>
-<li>sepal length</li>
-<li>sepal width</li>
-<li>petal length</li>
-<li>petal width</li>
+<li>花萼长度</li>
+<li>花萼宽度</li>
+<li>花瓣长度</li>
+<li>花瓣宽度</li>
 </ul>
-<p>Our model will represent these features as <code>float32</code> numerical data.</p>
-<p>The label identifies the Iris species, which must be one of the following:</p>
+<p>我们的模型会用 <code>float32</code> 类型的数据来表示这些特征。</p>
+<p>标签表明了 Iris 的种类，必须为以下一种：</p>
 <ul>
 <li>Iris setosa (0)</li>
 <li>Iris versicolor (1)</li>
 <li>Iris virginica (2)</li>
 </ul>
-<p>Our model will represent the label as <code>int32</code> categorical data.</p>
-<p>The following table shows three examples in the data set:</p>
+<p>我们的模型会用 <code>int32</code> 类型的数据来表示这些标签。</p>
+<p>下面的表格显示了数据集中的三个例子：</p>
 <div class="table-wrapper"><table>
 <thead><tr>
-<th style="text-align:right">sepal length</th>
-<th style="text-align:right">sepal width</th>
-<th style="text-align:right">petal length</th>
-<th style="text-align:right">petal width</th>
-<th style="text-align:center">species (label)</th>
+<th style="text-align:right">花萼长度    </th>
+<th style="text-align:right">花萼宽度    </th>
+<th style="text-align:right">花瓣长度    </th>
+<th style="text-align:right">花瓣宽度  </th>
+<th style="text-align:center">类别（标签）</th>
 </tr>
 </thead>
 <tbody>
@@ -182,61 +163,46 @@ individual Iris flowers:</p>
 </tr>
 </tbody>
 </table></div>
-<h3>The algorithm</h3>
-<p>The program trains a Deep Neural Network classifier model having the following<br>
-topology:</p>
+<h3>算法</h3>
+<p>程序训练了一个深度神经网络分类模型，有着如下的拓扑结构：</p>
 <ul>
-<li>2 hidden layers.</li>
-<li>Each hidden layer contains 10 nodes.</li>
+<li>2 个隐藏层。</li>
+<li>每个隐藏层拥有 10 个节点。</li>
 </ul>
-<p>The following figure illustrates the features, hidden layers, and predictions<br>
-(not all of the nodes in the hidden layers are shown):</p>
+<p>下图展示了神经网络中的特征，隐藏层和预测结果（隐藏层中的节点没有全部显示出来）：</p>
 <div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%"
   alt="A diagram of the network architecture: Inputs, 2 hidden layers, and outputs"
-  src="../images/custom_estimators/full_network.png">
-</div><h3>Inference</h3>
-<p>Running the trained model on an unlabeled example yields three predictions,<br>
-namely, the likelihood that this flower is the given Iris species. The sum of<br>
-those output predictions will be 1.0. For example, the prediction on an<br>
-unlabeled example might be something like the following:</p>
+  src="https://www.tensorflow.org/images/custom_estimators/full_network.png">
+</div><h3>接口</h3>
+<p>在未标记的样例上运行一个训练好的模型，会产生三个预测，分别是该花朵分别属于三种 Iris 类别的概率。这三个预测值的和为 1.0。例如，对一个未标记的样例的预测可能如下所示：</p>
 <ul>
-<li>0.03 for Iris Setosa</li>
-<li>0.95 for Iris Versicolor</li>
-<li>0.02 for Iris Virginica</li>
+<li>Iris Setosa 的可能性为 0.03</li>
+<li>Iris Versicolor 的可能性为 0.95</li>
+<li>Iris Virginica 的可能性为 0.02</li>
 </ul>
-<p>The preceding prediction indicates a 95% probability that the given unlabeled<br>
-example is an Iris Versicolor.</p>
-<h2>Overview of programming with Estimators</h2>
+<p>这个预测意味着所给的未标记样例有 95% 的概率为 Iris Versicolor 品种。</p>
+<h2>使用 Estimators 编程的概览</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html">评估器</a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
-<p>To write a TensorFlow program based on pre-made Estimators, you must perform the<br>
-following tasks:</p>
+<p>要写出一个基于预制的 Estimator 的 TensorFlow 程序，你可以进行如下任务：</p>
 <ul>
-<li>Create one or more input functions.</li>
-<li>Define the model's feature columns.</li>
-<li>Instantiate an Estimator, specifying the feature columns and various<br>
-hyperparameters.</li>
-<li>Call one or more methods on the Estimator object, passing the appropriate<br>
-input function as the source of the data.</li>
+<li>创建一个或多个输入函数。</li>
+<li>定义模型的特征列。</li>
+<li>实例化一个 Estimator，定义特征列和各类超参数。</li>
+<li>在 Estimator 对象上调用一个或多个方法，传入合适的输入函数来作为数据源。</li>
 </ul>
-<p>Let's see how those tasks are implemented for Iris classification.</p>
-<h2>Create input functions</h2>
-<p>You must create input functions to supply data for training,<br>
-evaluating, and prediction.</p>
+<p>让我们看看这些任务是如何实现 Iris 分类的。</p>
+<h2>创建输入函数</h2>
+<p>你必须创建一个可以为训练，评估和预测提供数据提供支持的输入函数。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
 <ul>
-<li><a href="https://developers.google.com/machine-learning/glossary/#feature"><code>features</code></a> - A Python dictionary in which:<ul>
-<li>Each key is the name of a feature.</li>
-<li>Each value is an array containing all of that feature's values.</li>
+<li><a href="https://developers.google.com/machine-learning/glossary/#feature"><code>features</code></a> - 一个 Python 字典：<br>
+   <em> 每个键为特征的名字。
+   </em> 每个值为一个包含所有该特征的值的数组。</li>
+<li><code>label</code> - 一个数组包含着所有例子的<a href="https://developers.google.com/machine-learning/glossary/#label">标签</a> 。</li>
 </ul>
-</li>
-<li><code>label</code> - An array containing the values of the<br>
-<a href="https://developers.google.com/machine-learning/glossary/#label">label</a> for<br>
-every example.</li>
-</ul>
-<p>Just to demonstrate the format of the input function, here's a simple<br>
-implementation:</p>
+<p>这里有一个输入函数的实现，来展示它的格式：</p>
 <pre><code class="lang-python">def input_evaluation_set():
     features = {&#39;SepalLength&#39;: np.array([6.4, 5.0]),
                 &#39;SepalWidth&#39;:  np.array([2.8, 2.3]),
@@ -245,113 +211,86 @@ implementation:</p>
     labels = np.array([2, 1])
     return features, labels
 </code></pre>
-<p>Your input function may generate the <code>features</code> dictionary and <code>label</code> list any<br>
-way you like. However, we recommend using TensorFlow's Dataset API, which can<br>
-parse all sorts of data. At a high level, the Dataset API consists of the<br>
-following classes:</p>
+<p>你的输入函数可以通过任意的方法来生成 <code>features</code> 字典和 <code>label</code> 列表。不过，我们推荐使用 TensorFlow 的 Dataset API，它可以处理所有种类的数据。从高层次看，Dataset API 包含了如下的类：</p>
 <div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%"
-  alt="A diagram showing subclasses of the Dataset class"
-  src="../images/dataset_classes.png">
-</div><p>Where the individual members are:</p>
+  alt="一个显示数据集类的子类的表格"
+  src="https://www.tensorflow.org/images/dataset_classes.png">
+</div><p>其中，单独的成员为：</p>
 <ul>
-<li><code>Dataset</code> - Base class containing methods to create and transform<br>
-datasets. Also allows you to initialize a dataset from data in memory, or from<br>
-a Python generator.</li>
-<li><code>TextLineDataset</code> - Reads lines from text files.</li>
-<li><code>TFRecordDataset</code> - Reads records from TFRecord files.</li>
-<li><code>FixedLengthRecordDataset</code> - Reads fixed size records from binary files.</li>
-<li><code>Iterator</code> - Provides a way to access one data set element at a time.</li>
+<li><code>Dataset</code> - 包含创建和传输数据集的基类。同时也允许你通过内存中的数据来初始化数据集，或从一个 Python 生成器。</li>
+<li><code>TextLineDataset</code> - 从文本文件逐行读取</li>
+<li><code>TFRecordDataset</code> - 从 TFRecord 文件读取记录</li>
+<li><code>FixedLengthRecordDataset</code> - 从二进制文件读取固定大小的记录</li>
+<li><code>Iterator</code> - 提供了一种每次获取数据集中的元素的方法</li>
 </ul>
-<p>The Dataset API can handle a lot of common cases for you. For example,<br>
-using the Dataset API, you can easily read in records from a large collection<br>
-of files in parallel and join them into a single stream.</p>
-<p>To keep things simple in this example we are going to load the data with<br>
-<a href="https://pandas.pydata.org/">pandas</a>, and build our input pipeline from this<br>
-in-memory data.</p>
-<p>Here is the input function used for training in this program, which is available<br>
-in <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a>:</p>
+<p>Dataset API 可以为你处理很多常见的情况。例如，使用它可以简单地从一系列巨大的文件中并行地读取记录并合成一个单个的流。</p>
+<p>为了让这个例子简单易见，我们将会使用 <a href="https://pandas.pydata.org/">pandas</a> 来加载数据，并根据这个在内存中的数据来建立我们的输入管道。</p>
+<p>这个是此程序训练中使用的输入函数，可以在<a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.py</code></a>找到。</p>
 <pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
-    &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
-    # Convert the inputs to a Dataset.
+    &quot;&quot;&quot;训练中使用的输入函数&quot;&quot;&quot;
+    # 将输入变为一个 Dataset
     dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
 
-    # Shuffle, repeat, and batch the examples.
+    # 打乱，重复并将样例分批次
     return dataset.shuffle(1000).repeat().batch(batch_size)
 </code></pre>
-<h2>Define the feature columns</h2>
+<h2>定义特征列</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column"><code>tf.feature_column</code></a></p>
-<p>For Iris, the 4 raw features are numeric values, so we'll build a list of<br>
-feature columns to tell the Estimator model to represent each of the four<br>
-features as 32-bit floating-point values. Therefore, the code to create the<br>
-feature column is:</p>
+<p>对于 Iris 来说，4 个原始的特征为数值，所以我们将会建立一个特征列的列表来告诉 Estimator 模型，将四个特征分别表示为 32 位的浮点数值。因此，用于建立特征列的代码为：</p>
 <pre><code class="lang-python"># Feature columns describe how to use the input.
 my_feature_columns = []
 for key in train_x.keys():
     my_feature_columns.append(tf.feature_column.numeric_column(key=key))
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">Feature Columns</a></p>
-<p>Now that we have the description of how we want the model to represent the raw<br>
-features, we can build the estimator.</p>
-<h2>Instantiate an estimator</h2>
-<p>The Iris problem is a classic classification problem. Fortunately, TensorFlow<br>
-provides several pre-made classifier Estimators, including:</p>
+<p>如今我们有了如何让模型表示原始特征的定义，我们可以开始搭建 Estimator 了。</p>
+<h2>实例化一个 Estimator</h2>
+<p>Iris 问题是一个经典的分类问题。幸运的是，TensorFlow 提供了一些预制的 Estimator 分类器，包含：</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/DNNClassifier"><code>tf.estimator.DNNClassifier</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/DNNLinearCombinedClassifier"><code>tf.estimator.DNNLinearCombinedClassifier</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/LinearClassifier"><code>tf.estimator.LinearClassifier</code></a></li>
 </ul>
-<p>For the Iris problem, <code>tf.estimator.DNNClassifier</code> seems like the best choice.<br>
-Here's how we instantiated this Estimator:</p>
-<pre><code class="lang-python"># Build a DNN with 2 hidden layers and 10 nodes in each hidden layer.
+<p>对于 Iris 问题，<code>tf.estimator.DNNClassifier</code> 看起来是最佳选择。以下是我们如何实例化这个 Estimator：</p>
+<pre><code class="lang-python"># 创建一个有两个隐藏层和每层10个节点的 DNN 
 classifier = tf.estimator.DNNClassifier(
     feature_columns=my_feature_columns,
-    # Two hidden layers of 10 nodes each.
-    hidden_units=[10, 10],
-    # The model must choose between 3 classes.
-    n_classes=3)
+    # 两个隐藏层，每层 10 个节点。
+    hidden_units=[10, 10],
+    # 模型必须在 3 个类别中作出选择
+    n_classes=3)
 </code></pre>
-<h2>Train, Evaluate, and Predict</h2>
-<p>Now that we have an Estimator object, we can call methods to do the following:</p>
+<h2>训练，评估和预测</h2>
+<p>现在我们有了一个 Estimator 对象，我们可以调用方法来做如下事情：</p>
 <ul>
-<li>Train the model.</li>
-<li>Evaluate the trained model.</li>
-<li>Use the trained model to make predictions.</li>
+<li>训练模型</li>
+<li>评估训练好的模型</li>
+<li>使用训练好的模型进行预测</li>
 </ul>
-<h3>Train the model</h3>
-<p>Train the model by calling the Estimator's <code>train</code> method as follows:</p>
-<pre><code class="lang-python"># Train the Model.
+<h3>训练模型</h3>
+<p>像如下一样调用 Estimator 的 <code>train</code> 方法来训练模型：</p>
+<pre><code class="lang-python"># 训练模型
 classifier.train(
     input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
     steps=args.train_steps)
 </code></pre>
-<p>Here we wrap up our <code>input_fn</code> call in a<br>
-<a href="https://docs.python.org/3/tutorial/controlflow.html"><code>lambda</code></a><br>
-to capture the arguments while providing an input function that takes no<br>
-arguments, as expected by the Estimator. The <code>steps</code> argument tells the method<br>
-to stop training after a number of training steps.</p>
-<h3>Evaluate the trained model</h3>
-<p>Now that the model has been trained, we can get some statistics on its<br>
-performance. The following code block evaluates the accuracy of the trained<br>
-model on the test data:</p>
-<pre><code class="lang-python"># Evaluate the model.
+<p>这里我们将 <code>input_fn</code> 的调用包含在一个 <a href="https://docs.python.org/3/tutorial/controlflow.html"><code>lambda</code></a> 中来在提供一个无参数的输入函数时获取 Estimator 所需的参数。<code>steps</code> 参数告诉方法要在一定数量的训练次数后停止训练。</p>
+<h3>评估训练好的模型</h3>
+<p>如今模型已被训练好，我们可以获得一些它的表现数据了。下面的代码片段评估了该模型在测试集上的准确率：</p>
+<pre><code class="lang-python"># 评估该模型
 eval_result = classifier.evaluate(
     input_fn=lambda:iris_data.eval_input_fn(test_x, test_y, args.batch_size))
 
 print(&#39;\nTest set accuracy: {accuracy:0.3f}\n&#39;.format(**eval_result))
 </code></pre>
-<p>Unlike our call to the <code>train</code> method, we did not pass the <code>steps</code><br>
-argument to evaluate. Our <code>eval_input_fn</code> only yields a single<br>
-<a href="https://developers.google.com/machine-learning/glossary/#epoch">epoch</a> of data.</p>
-<p>Running this code yields the following output (or something similar):</p>
+<p>与我们调用 <code>train</code> 方法不同，我们并不能将 <code>steps</code> 参数传给评估方法。我们的 <code>eval_input_fn</code> 仅产生了一次<a href="https://developers.google.com/machine-learning/glossary/#epoch">epoch（轮数）</a> 的数据。</p>
+<p>运行这段代码会产生如下的输出（或者类似的东西）：</p>
 <pre><code class="lang-none">Test set accuracy: 0.967
 </code></pre>
-<h3>Making predictions (inferring) from the trained model</h3>
-<p>We now have a trained model that produces good evaluation results.<br>
-We can now use the trained model to predict the species of an Iris flower<br>
-based on some unlabeled measurements. As with training and evaluation, we make<br>
-predictions using a single function call:</p>
-<pre><code class="lang-python"># Generate predictions from the model
+<h3>通过训练好的模型进行预测</h3>
+<p>我们如今有了一个训练好的模型，而且能拥有不错的评估结果。我们现在可以使用训练好的模型，基于一些未标记的样例来预测 Iris 花朵的类型了。与训练和评估相同，我们进行预测时只需进行一次函数调用：</p>
+<pre><code class="lang-python"># 通过模型进行预测
 expected = [&#39;Setosa&#39;, &#39;Versicolor&#39;, &#39;Virginica&#39;]
 predict_x = {
     &#39;SepalLength&#39;: [5.1, 5.9, 6.9],
@@ -364,9 +303,7 @@ predictions = classifier.predict(
     input_fn=lambda:iris_data.eval_input_fn(predict_x,
                                             batch_size=args.batch_size))
 </code></pre>
-<p>The <code>predict</code> method returns a Python iterable, yielding a dictionary of<br>
-prediction results for each example. The following code prints a few<br>
-predictions and their probabilities:</p>
+<p><code>predict</code> 方法返回了一个 Python 的可迭代类型，是一个含有每个例子的预测结果的字典。如下的代码打印出了一些预测和它们的可能性：</p>
 <pre><code class="lang-python">for pred_dict, expec in zip(predictions, expected):
     template = (&#39;\nPrediction is &quot;{}&quot; ({:.1f}%), expected &quot;{}&quot;&#39;)
 
@@ -376,7 +313,7 @@ predictions and their probabilities:</p>
     print(template.format(iris_data.SPECIES[class_id],
                           100 * probability, expec))
 </code></pre>
-<p>Running the preceding code yields the following output:</p>
+<p>运行以上的代码会出现下面的结果：</p>
 <pre><code class="lang-None">...
 Prediction is &quot;Setosa&quot; (99.6%), expected &quot;Setosa&quot;
 
@@ -384,13 +321,12 @@ Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
 
 Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
 </code></pre>
-<h2>Summary</h2>
-<p>Pre-made Estimators are an effective way to quickly create standard models.</p>
-<p>Now that you've gotten started writing TensorFlow programs, consider the<br>
-following material:</p>
+<h2>总结</h2>
+<p>预制的 Estimator 是一个很有效的快速创建标准模型的方法。</p>
+<p>现在如果你已经开始编写 TensorFlow 程序了，那么注意关注如下的资料：</p>
 <ul>
 <li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/checkpoints.html">检查点</a></li>
-<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">Datasets Quick Start</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">数据集：快速了解</a></li>
 <li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
 </ul>
 
@@ -398,6 +334,25 @@ following material:</p>
     </div>
 </div>
 <!-- Content end-->
+
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container">
+        <div>如果您发现本页面存在错误或可以改进，请<a href="https://github.com/xitu/tensorflow-docs/blob/zh-hans/get_started/premade_estimators.md" target="_blank">点击此处</a>帮助我们改进。本页贡献者：<span id="contributors"></span></div>
+        <hr/>
+        <div class="text-center official-links">
+            <a href="https://www.tensorflow.org"><img
+                    src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
+            <a href="https://github.com/xitu/tensorflow-docs"><img
+                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
+            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var contributors = [{'CACppuccino': 'https://avatars3.githubusercontent.com/u/25502039?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+</script>
+<!-- Footer end -->
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>

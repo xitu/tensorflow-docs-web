@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 <!-- Header end -->
 
@@ -46,23 +46,67 @@
             <h1>开发者指南</h1>
 <p>这个部分的文档会深入介绍 TensorFlow 的工作细节中。这些模块分别如下：</p>
 <h2>顶层 API</h2>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/datasets.html">数据导入</a></p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/estimators.html">评估器</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/datasets.html">数据导入</a></li>
+</ul>
 <h2>底层 API</h2>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/using_gpu.html">使用（多个）GPU</a></p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/low_level_intro.html">底层 API 编程介绍</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/tensors.html">张量</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/variables.html">变量</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/graphs.html">流图与会话</a><ul>
+<li>数据流图，将计算表示为操作间的依赖关系的 TensorFlow 中的表现方式。</li>
+<li>会话，用于跨一个或多个本地或远程设备运行数据流图的 TensorFlow 中的机制。如果你是使用 TensorFlow 底层 API 编程，这一单元是必不可少的。如果你是使用 TensorFlow 顶层 API（比如 Estimators or Keras）编程，顶层 API 会创建和管理流图和会话，但是理解流图和会话仍然有益于你。</li>
+</ul>
+</li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/saved_model.html">保存和恢复</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/using_gpu.html">使用（多个）GPU</a></li>
+</ul>
 <h2>ML 概念</h2>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/embedding.html">Embeddings</a></p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/embedding.html">Embeddings</a></li>
+</ul>
 <h2>调试</h2>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/debugger.html">TensorFlow 调试器</a></p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/debugger.html">TensorFlow 调试器</a></li>
+</ul>
 <h2>TensorBoard</h2>
 <p>TensorBoard 是一个用于可视化展现机器学习中不同方面的工具。下面的指南说明了如何使用 TensorBoard：</p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/tensorboard_histograms.html">TensorBoard 直方图面板</a></p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/summaries_and_tensorboard.html">Tensorboard：可视化学习面板</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/graph_viz.html">TensorBoard: 图形可视化</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/tensorboard_histograms.html">TensorBoard 直方图面板</a></li>
+</ul>
 <h2>其他</h2>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/faq.html">常见问题</a></p>
+<ul>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/version_compat.html">TensorFlow 版本兼容性</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/faq.html">常见问题</a></li>
+</ul>
 
         </main>
     </div>
 </div>
 <!-- Content end-->
+
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container">
+        <div>如果您发现本页面存在错误或可以改进，请<a href="https://github.com/xitu/tensorflow-docs/blob/zh-hans/programmers_guide/index.md" target="_blank">点击此处</a>帮助我们改进。本页贡献者：<span id="contributors"></span></div>
+        <hr/>
+        <div class="text-center official-links">
+            <a href="https://www.tensorflow.org"><img
+                    src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
+            <a href="https://github.com/xitu/tensorflow-docs"><img
+                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
+            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var contributors = [{'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+</script>
+<!-- Footer end -->
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>

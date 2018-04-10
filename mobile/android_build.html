@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Building TensorFlow on Android</title>
+    <title>在安卓上构建 TensorFlow</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,68 +40,46 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': 'Overview'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'TensorFlow Lite Demo for Android'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'TensorFlow Lite 演示（iOS）'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': 'Building TensorFlow on Android'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': '概述'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'Android 的 TensorFlow Lite Demo'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'TensorFlow Lite 演示（iOS）'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': '在安卓上构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Building TensorFlow on Android</h1>
-<p>To get you started working with TensorFlow on Android, we'll walk through two<br>
-ways to build our TensorFlow mobile demos and deploying them on an Android<br>
-device. The first is Android Studio, which lets you build and deploy in an<br>
-IDE. The second is building with Bazel and deploying with ADB on the command<br>
-line.</p>
-<p>Why choose one or the other of these methods?</p>
-<p>The simplest way to use TensorFlow on Android is to use Android Studio. If you<br>
-aren't planning to customize your TensorFlow build at all, or if you want to use<br>
-Android Studio's editor and other features to build an app and just want to add<br>
-TensorFlow to it, we recommend using Android Studio.</p>
-<p>If you are using custom ops, or have some other reason to build TensorFlow from<br>
-scratch, scroll down and see our instructions<br>
-for <a href="#build_the_demo_using_bazel">building the demo with Bazel</a>.</p>
-<h2>Build the demo using Android Studio</h2>
-<p><strong>Prerequisites</strong></p>
-<p>If you haven't already, do the following two things:</p>
+            <h1>在安卓上构建 TensorFlow</h1>
+<p>为了让你开始在安卓中使用 TensorFlow， 我们将浏览两种方法来构建我们的 TensorFlow 移动端的 demo，并且在安卓上部署这些 demo，第一种方法就是使用 Android Studio，使用 Android Studio 可以让你在 IDE 中。构建和部署应用。第二种方式是使用 Bazel 和 ADB 在命令行中发布和构建应用。</p>
+<p>如何决定用哪一种方法呢？</p>
+<p>在 Android 上使用 TensorFlow 最简单的方式是通过 Android Studio 来构建。如果你不准备定制你的 TensorFlow， 或者，如果你想使用 Android Studio 的编辑器或者其他功能去构建一个 app ，并且，仅仅添加 TensorFlow 到应用里面，我们推荐使用 Android Studio 。如果你想使用自定义操作，或者基于其他理由去重新构建 TensorFlow，那么你向下滑参考<a href="#使用-bazel-构建-demo">使用 Bazel 构建 demo</a> 一节。</p>
+<h2>使用 Android Studio 构建构建 demo</h2>
+<p><strong>准备环境</strong></p>
+<p>如果你没有准备好，你需要做下面两件事情：</p>
 <ul>
-<li><p>Install <a href="https://developer.android.com/studio/index.html">Android Studio</a>,<br>
-following the instructions on their website.</p>
-</li>
-<li><p>Clone the TensorFlow repository from Github:</p>
+<li>遵循 Android Studio 网站的说明，安装<a href="https://developer.android.com/studio/index.html">Android Studio</a>。</li>
+</ul>
+<ul>
+<li><p>从 Github 上克隆 TensorFlow 的仓库：</p>
 <pre><code>  git clone https://github.com/tensorflow/tensorflow
 </code></pre>
 </li>
 </ul>
-<p><strong>Building</strong></p>
+<p><strong>构建</strong></p>
 <ol>
-<li><p>Open Android Studio, and from the Welcome screen, select <strong>Open an existing<br>
-Android Studio project</strong>.</p>
+<li><p>打开 Android Studio，在欢迎界面中选择 <strong>Open an existing Android Studio project</strong>。</p>
 </li>
-<li><p>From the <strong>Open File or Project</strong> window that appears, navigate to and select<br>
- the <code>tensorflow/examples/android</code> directory from wherever you cloned the<br>
- TensorFlow Github repo.  Click OK.</p>
-<p>If it asks you to do a Gradle Sync, click OK.</p>
-<p>You may also need to install various platforms and tools, if you get<br>
- errors like "Failed to find target with hash string 'android-23' and similar.</p>
+<li><p>从 <strong>Open File or Project</strong> 窗口中，切换文件目录并选择<code>tensorflow/examples/android</code> 目录，这个目录在你克隆的 TensorFlow 的 Github repo 中, 点击 OK。</p>
+<p>如果，IDE 需要去同步 Gradle，点击 OK。</p>
+<p>如果你得到了类似于“Failed to find target with hash string 'android-23‘”这样的错误，你也可能需要安装多个平台和工具。</p>
 </li>
-<li><p>Open the <code>build.gradle</code> file (you can go to <strong>1:Project</strong> in the side panel<br>
- and find it under the <strong>Gradle Scripts</strong> zippy under <strong>Android</strong>). Look for<br>
- the <code>nativeBuildSystem</code> variable and set it to <code>none</code> if it isn't already:</p>
+<li><p>打开 <code>build.gradle</code> 文件 （你可以到侧边面板的 <strong>1:Project</strong> 下，并在 Android 下的 <strong>Gradle Script</strong> 中找到它）。 找到<code>nativeBuildSystem</code> 变量，如果尚未置为 <code>none</code>，就把它置为<code>none</code>：</p>
 <pre><code> // set to 'bazel', 'cmake', 'makefile', 'none'
  def nativeBuildSystem = 'none'
 </code></pre>
 </li>
-<li><p>Click the Run button (the green arrow) or use <strong>Run -&gt; Run 'android'</strong> from the top menu.</p>
-<p>If it asks you to use Instant Run, click <strong>Proceed Without Instant Run</strong>.</p>
-<p>Also, you need to have an Android device plugged in with developer options<br>
- enabled at this<br>
- point. See <a href="https://developer.android.com/studio/run/device.html">here</a> for<br>
- more details on setting up developer devices.</p>
+<li><p>点击启动按钮（绿色的箭头）或者从顶部菜单使用 <strong>Run -&gt; Run 'android'</strong>。</p>
 </li>
 </ol>
-<p>This installs three apps on your phone that are all part of the TensorFlow<br>
-Demo. See <a href="#android_sample_apps">Android Sample Apps</a> for more information about<br>
-them.</p>
-<h2>Adding TensorFlow to your apps using Android Studio</h2>
-<p>To add TensorFlow to your own apps on Android, the simplest way is to add the<br>
-following lines to your Gradle build file:</p>
+<p>如果它请求你使用 Instant Run，点击<strong>Proceed Without Instant Run</strong>。</p>
+<p>你还需要插入一个已经打开了开发者选项的 Android 设备。看<a href="https://developer.android.com/studio/run/device.html">这里</a>你可以了解更多关于设置开发者设备的更多细节。</p>
+<p>这将会安装三个 app 在你的手机中，这些 app 都是 TensorFlow 的 demo。看 <a href="#android-示例-app">Android 示例程序</a> ，你将得到关于它们更多的信息。</p>
+<h2>使用 Android Studio 添加 TensorFlow 到你的 app 中</h2>
+<p>添加 TensorFlow 到你自己的 Android app 中，最简单的方法是添加下面几行到你的 Gradle 构建文件中：</p>
 <pre><code>allprojects {
     repositories {
         jcenter()
@@ -112,98 +90,65 @@ dependencies {
     compile 'org.tensorflow:tensorflow-android:+'
 }
 </code></pre>
-<p>This automatically downloads the latest stable version of TensorFlow as an AAR<br>
-and installs it in your project.</p>
-<h2>Build the demo using Bazel</h2>
-<p>Another way to use TensorFlow on Android is to build an APK<br>
-using <a href="https://bazel.build/">Bazel</a> and load it onto your device<br>
-using <a href="https://developer.android.com/studio/command-line/adb.html">ADB</a>. This<br>
-requires some knowledge of build systems and Android developer tools, but we'll<br>
-guide you through the basics here.</p>
+<p>这将自动下载最新的稳定版本的 TensorFlow ARR 包，并安装到你的项目中。</p>
+<h2>使用 Bazel 构建 demo</h2>
+<p>另一种在 Android 中使用 TensorFlow 的方法是使用 <a href="https://bazel.build/">Bazel</a> 来构建一个 APK，并且通过 <a href="https://developer.android.com/studio/command-line/adb.html">ADB</a> 来加载它。这需要一些关于构建系统和 Android 开发者工具的知识，但我们会在这里引导您完成基础步骤。</p>
 <ul>
 <li><p><a href="//xitu.github.io/tensorflow-docs-web/install/install_sources.html">通过源码安装 TensorFlow</a></p>
 </li>
-<li><p>Download the Android <a href="https://developer.android.com/studio/index.html">SDK</a><br>
-and <a href="https://developer.android.com/ndk/downloads/index.html">NDK</a> if you do<br>
-not already have them. You need at least version 12b of the NDK, and 23 of the<br>
-SDK.</p>
+<li><p>下载 Android 的 <a href="https://developer.android.com/studio/index.html">SDK</a>和 <a href="https://developer.android.com/ndk/download/index.html">NDK</a> 如果你以前没下载它们的话。你需要下载最新的 12b 版本的 NDK，和版本为 23 及以上的 SDK。</p>
 </li>
-<li><p>In your copy of the TensorFlow source, update the<br>
-<a href="https://github.com/tensorflow/tensorflow/blob/master/WORKSPACE">WORKSPACE</a><br>
-file with the location of your SDK and NDK, where it says &lt;PATH_TO_NDK&gt;<br>
-and &lt;PATH_TO_SDK&gt;.</p>
+<li><p>在你复制的 TensorFlow 源代码副本中，更新 <a href="https://github.com/tensorflow/tensorflow/blob/master/WORKSPACE">WORKSPACE</a> 文件中的 &lt;PATH_TO_NDK&gt;和 &lt;PATH_TO_SDK&gt;。分别为 SDK 和 NDK 的位置。</p>
 </li>
-<li><p>Run Bazel to build the demo APK:</p>
+<li><p>运行 Bazel 去构建 demo APK:</p>
 <pre><code>  bazel build -c opt //tensorflow/examples/android:tensorflow_demo
 </code></pre>
 </li>
-<li><p>Use <a href="https://developer.android.com/studio/command-line/adb.html#move">ADB</a> to<br>
-install the APK onto your device:</p>
+<li><p>使用 <a href="https://developer.android.com/studio/command-line/adb.html#move">ADB</a> 安装 APK 文件到你的安卓设备:</p>
 <pre><code>  adb install -r bazel-bin/tensorflow/examples/android/tensorflow_demo.apk
 </code></pre>
 </li>
 </ul>
-<p>Note: In general when compiling for Android with Bazel you need<br>
-<code>--config=android</code> on the Bazel command line, though in this case this<br>
-particular example is Android-only, so you don't need it here.</p>
-<p>This installs three apps on your phone that are all part of the TensorFlow<br>
-Demo. See <a href="#android_sample_apps">Android Sample Apps</a> for more information about<br>
-them.</p>
-<h2>Android Sample Apps</h2>
-<p>The<br>
-<a href="https://www.tensorflow.org/code/tensorflow/examples/android/">Android example code</a> is<br>
-a single project that builds and installs three sample apps which all use the<br>
-same underlying code. The sample apps all take video input from a phone's<br>
-camera:</p>
+<p>注意：当使用 Bazel 编译 Android 你需要在命令行中指定<code>--config=android</code>。在当前场景中，这个例子是专门为 Android 打造的，所以，在这里你不需要指定。</p>
+<p>这将安装三个 app 到你的手机，这些 app 都是 TensorFlow 的部分示例。看 <a href="#android-示例-app">Android 示例 Apps</a> 来获取更多关于示例程序的信息。</p>
+<h2>Android 示例 app</h2>
+<p><a href="https://www.tensorflow.org/code/tensorflow/examples/android/">Android 示例代码</a> 是一个单独的项目，这个项目构建和安装三个示例 app，这些 app 都使用相同的底层代码。这些示例程序都是用手机的摄像头作为输入：</p>
 <ul>
-<li><p><strong>TF Classify</strong> uses the Inception v3 model to label the objects it’s pointed<br>
-at with classes from Imagenet. There are only 1,000 categories in Imagenet,<br>
-which misses most everyday objects and includes many things you’re unlikely to<br>
-encounter often in real life, so the results can often be quite amusing. For<br>
-example there’s no ‘person’ category, so instead it will often guess things it<br>
-does know that are often associated with pictures of people, like a seat belt<br>
-or an oxygen mask. If you do want to customize this example to recognize<br>
-objects you care about, you can use<br>
-the<br>
-<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/index.html#0">TensorFlow for Poets codelab</a> as<br>
-an example for how to train a model based on your own data.</p>
+<li><p><strong>TF Classify</strong> 标记指向的对象用的是 Inception v3 模型，并用 Imagenet 来分类。在 Imagenet 中有 1000 种分类，它会遗漏大多数日常物品，并且，也包括了你在日常生活中不经常遇到东西，所以结果会是十分有趣的。 举个例子，这里没有『人』类别，因此，让它猜测照片中的人，它会尽可能去猜测人附近的东西， 例如，安全带或者氧气面罩。如果你想定制这个例子去识别你感兴趣的东西，你可以使用<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/index.html#0">TensorFlow for Poets codelab</a>作为例子，基于自己的数据训练模型。</p>
 </li>
-<li><p><strong>TF Detect</strong> uses a multibox model to try to draw bounding boxes around the<br>
-locations of people in the camera. These boxes are annotated with the<br>
-confidence for each detection result. Results will not be perfect, as this<br>
-kind of object detection is still an active research topic.  The demo also<br>
-includes optical tracking for when objects move between frames, which runs<br>
-more frequently than the TensorFlow inference. This improves the user<br>
-experience since the apparent frame rate is faster, but it also gives the<br>
-ability to estimate which boxes refer to the same object between frames, which<br>
-is important for counting objects over time.</p>
+<li><p><strong>TF Detect</strong> 使用多盒模型去尝试画出在人在相机中位置的边界框。这些框对每个侦测结果注释了置信度。结果还不是完美的， 这类的物体侦测仍然是一个活跃的研究话题。这个 demo 也包括了可视追踪，当对象在帧之间移动，这比 TensorFlow 推断的速度要快很多。因为帧率明显加快，可以显著提高用户体验，而且这也能够计算出不同帧中指向相同对象的框，这对在一段时间内统计对象个数起着非常重要的作用。</p>
 </li>
-<li><p><strong>TF Stylize</strong> implements a real-time style transfer algorithm on the camera<br>
-feed. You can select which styles to use and mix between them using the<br>
-palette at the bottom of the screen, and also switch out the resolution of the<br>
-processing to go higher or lower rez.</p>
+<li><p><strong>TF Stylize</strong> 实现了基于摄像头返回的数据的实时风格转化算法。你可以选择你想用的风格，可以通过屏幕下面的调色板混合它们，也可以将处理的分辨率转换为更高或更低。</p>
 </li>
 </ul>
-<p>When you build and install the demo, you'll see three app icons on your phone,<br>
-one for each of the demos. Tapping on them should open up the app and let you<br>
-explore what they do. You can enable profiling statistics on-screen by tapping<br>
-the volume up button while they’re running.</p>
-<h3>Android Inference Library</h3>
-<p>Because Android apps need to be written in Java, and core TensorFlow is in C++,<br>
-TensorFlow has a JNI library to interface between the two. Its interface is aimed<br>
-only at inference, so it provides the ability to load a graph, set up inputs,<br>
-and run the model to calculate particular outputs. You can see the full<br>
-documentation for the minimal set of methods in<br>
-<a href="https://www.tensorflow.org/code/tensorflow/contrib/android/java/org/tensorflow/contrib/android/TensorFlowInferenceInterface.java">TensorFlowInferenceInterface.java</a></p>
-<p>The demos applications use this interface, so they’re a good place to look for<br>
-example usage. You can download prebuilt binary jars<br>
-at<br>
-<a href="https://ci.tensorflow.org/view/Nightly/job/nightly-android/">ci.tensorflow.org</a>.</p>
+<p>当你构建和安装这些示例，你将会看到三个 app 的 icon 在你的手机上，每一个对应一个 demo。点击这些 icon，将会打开对应的 app 并且让你去探索它们是干什么的。当这些 app 运行的时候，你可以点击音量增加按钮来在你的屏幕上启动分析统计。</p>
+<h3>Android 接口库</h3>
+<p>因为安卓 app 使用 java 编写，但是，TensorFlow 的核心使用的是 c++，TensorFlow 有一个 JNI 库来向两种语言之间提供接口。这个接口的只是针对推理的，因此它提供了加载 graph，设置输入，和运行模型来计算特殊的输出。您可以在 <a href="https://www.tensorflow.org/code/tensorflow/contrib/android/java/org/tensorflow/contrib/android/TensorFlowInferenceInterface.java">TensorFlowInferenceInterface.java</a> 中查看少量的一组方法的完整文档。</p>
+<p>示例程序都是使用这个接口，因此，它们都是学习使用方法的好地方。您可以在 <a href="https://ci.tensorflow.org/view/Nightly/job/nightly-android/">ci.tensorflow.org</a> 下载预先构建好的二进制 jar 包。</p>
 
         </main>
     </div>
 </div>
 <!-- Content end-->
+
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container">
+        <div>如果您发现本页面存在错误或可以改进，请<a href="https://github.com/xitu/tensorflow-docs/blob/zh-hans/mobile/android_build.md" target="_blank">点击此处</a>帮助我们改进。本页贡献者：<span id="contributors"></span></div>
+        <hr/>
+        <div class="text-center official-links">
+            <a href="https://www.tensorflow.org"><img
+                    src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
+            <a href="https://github.com/xitu/tensorflow-docs"><img
+                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
+            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var contributors = [{'pcdack': 'https://avatars3.githubusercontent.com/u/28782180?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+</script>
+<!-- Footer end -->
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>

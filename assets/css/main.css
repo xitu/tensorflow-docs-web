@@ -16,7 +16,7 @@
 }
 
 .sidebar {
-    background-color: #f7f7f7;
+    background-color: #f7f7f7 !important;
     padding-top: 23px;
 }
 
@@ -49,6 +49,7 @@
 
 main {
     color: #212121;
+    margin-bottom: 100px;
 }
 
 main h1 {
@@ -133,4 +134,36 @@ main p {
 
 main li {
     margin: 8px 0;
+}
+
+footer {
+    background-color: #455a64;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: #cfd8dc;
+}
+
+footer #contributors {
+    word-break: keep-all;
+}
+
+footer #contributors a {
+    color: #cfd8dc94;
+    font-size: .6rem;
+    margin-right: 5px;
+}
+
+footer #contributors img {
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+}
+
+footer .official-links {
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+footer .official-links a {
+    margin: 0 30px;
 }

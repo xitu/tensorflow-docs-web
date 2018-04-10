@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': 'Overview', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 <!-- Header end -->
 
@@ -76,7 +76,7 @@ with tf.name_scope(&#39;hidden&#39;) as scope:
   </tr>
   <tr>
     <td style="width: 50%;">
-      Initial view of top-level name scope <code>pool_1</code>. 顶级名称域 pool_1 的初始视图。点击右上角橙色 + 号按钮或双击节点本身将会展开它。
+      顶级名称域  <code>pool_1</code> 的初始视图。点击右上角橙色 + 号按钮或双击节点本身将会展开它。
     </td>
     <td style="width: 50%;">
       名称域 pool_1 的扩展视图。点击右上角的橙色 - 按钮或双击节点本身将折叠名称范围。
@@ -229,13 +229,13 @@ with tf.name_scope(&#39;hidden&#39;) as scope:
   </tr>
 </table><h2>运行时间统计</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/summaries_and_tensorboard.html#serializing-the-data">Tensorboard：可视化学习面板</a></p>
-<pre><code class="lang-python">  # Train the model, and also write summaries.
-  # Every 10th step, measure test-set accuracy, and write test summaries
-  # All other steps, run train_step on training data, &amp; add training summaries
+<pre><code class="lang-python">  # 训练模型，并记录日志
+  # 每 10 步，评估测试数据集准确性，并记录测试日志
+  # 所有其他步骤中，在训练集上运行训练步骤，并记录训练日志
 
   def feed_dict(train):
-    &quot;&quot;&quot;Make a TensorFlow feed_dict: maps data onto Tensor placeholders.&quot;&quot;&quot;
-    if train or FLAGS.fake_data:
+    &quot;&quot;&quot;创建一个 TensorFlow feed_dict：将数据映射到 Tensor 占位符上。&quot;&quot;&quot;
+    if train or FLAGS.fake_data:
       xs, ys = mnist.train.next_batch(100, fake_data=FLAGS.fake_data)
       k = FLAGS.dropout
     else:
@@ -259,8 +259,8 @@ with tf.name_scope(&#39;hidden&#39;) as scope:
         train_writer.add_run_metadata(run_metadata, &#39;step%d&#39; % i)
         train_writer.add_summary(summary, i)
         print(&#39;Adding run metadata for&#39;, i)
-      else:  # Record a summary
-        summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
+      else:  # 记录日志
+        summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
         train_writer.add_summary(summary, i)
 </code></pre>
 <p>此代码将从步骤 99 开始每 100 步发出运行时统计信息。</p>
@@ -282,6 +282,25 @@ with tf.name_scope(&#39;hidden&#39;) as scope:
     </div>
 </div>
 <!-- Content end-->
+
+<!-- Footer start -->
+<footer class="footer">
+    <div class="container">
+        <div>如果您发现本页面存在错误或可以改进，请<a href="https://github.com/xitu/tensorflow-docs/blob/zh-hans/programmers_guide/graph_viz.md" target="_blank">点击此处</a>帮助我们改进。本页贡献者：<span id="contributors"></span></div>
+        <hr/>
+        <div class="text-center official-links">
+            <a href="https://www.tensorflow.org"><img
+                    src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
+            <a href="https://github.com/xitu/tensorflow-docs"><img
+                    src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
+            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+        </div>
+    </div>
+</footer>
+<script>
+    var contributors = [{'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+</script>
+<!-- Footer end -->
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
