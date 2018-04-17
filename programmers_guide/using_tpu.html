@@ -54,7 +54,7 @@
 </ul>
 <h2>TPUEstimator</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/tpu/TPUEstimator"><code>tf.contrib.tpu.TPUEstimator</code></a></p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">Creating Custom Estimators</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
 <p><code>TPUEstimator</code> 类和 <code>Estimator</code> 之间多少有些不一样。</p>
 <p>要使一个模型可以在 CPU/GPU 或 Cloud TPU 上运行的最简单方法是在 <code>model_fn</code> 外定义模型的推理过程（从输入到预测）。然后继续分离 <code>Estimator</code> 设置和 <code>model_fn</code>，都包含这个推理步骤。这种模式的一个样例是 <a href="https://github.com/tensorflow/models/tree/master/official/mnist">tensorflow/models</a> 中比较 <code>mnist.py</code> 和 <code>mnist_tpu.py</code> 的实现。</p>
 <h3>本地运行 <code>TPUEstimator</code></h3>

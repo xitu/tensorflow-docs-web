@@ -40,7 +40,7 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>数据集：快速了解</h1>
@@ -219,12 +219,9 @@ def _parse_line(line):
 <h3>解析多行</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
 <p>这个 <code>map</code> 方法接受一个 <code>map_func</code> 参数，这个参数描述了 <code>Dataset</code> 中的每一个元素应该如何被转化。</p>
-<div style="width:80%; margin:auto; margin-bottom:10px; margin-top:20px;">
-<img style="width:100%" src="../images/datasets/map.png">
-</div>
-<div style="text-align: center">
-@{tf.data.Dataset.map$`map`} 方法将会对 `Dataset` 中的每一个元素应用 `map_func` 来完成它们的转化。
-</div><p>因此，为了在多行数据被从 csv 文件中读取出来的时候解析它们，我们为 <code>map</code> 方法提供 <code>_parse_line</code> 函数：</p>
+<p><img style="width:100%" src="https://www.tensorflow.org/images/datasets/map.png"></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
+<p>因此，为了在多行数据被从 csv 文件中读取出来的时候解析它们，我们为 <code>map</code> 方法提供 <code>_parse_line</code> 函数：</p>
 <pre><code class="lang-python">ds = ds.map(_parse_line)
 print(ds)
 </code></pre>
@@ -261,7 +258,7 @@ est.train(
 <p>为了从不同的数据源中便捷的读取数据，<code>tf.data</code> 模块提供了类和函数的集合。除此之外，<code>tf.data</code> 有简单并且强大的方法，来应用各种标准和自定义转换。</p>
 <p>现在你已经基本了解了如何为 Estimator 高效的获取数据。（作为扩展）接下来可以思考如下的文档：</p>
 <ul>
-<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">创建定制化 Estimator</a></li>
 <li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html#datasets">底层 API 编程介绍</a></li>
 <li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html">数据导入</a></li>
 </ul>

@@ -158,7 +158,7 @@ if __name__ == &quot;__main__&quot;:
   return tf.estimator.EstimatorSpec(
       mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 </code></pre>
-<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">Creating Custom Estimators</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
 <h3>输入层</h3>
 <p>在 <code>layer</code> 模块中，用于二维图像数据的卷积层和池化层期望输入的张量维度为<code>[**batch_size**, **image_width**, **image_height**, **channels**]</code>，含义如下：</p>
 <ul>
@@ -291,7 +291,7 @@ loss = tf.losses.softmax_cross_entropy(
       global_step=tf.train.get_global_step())
   return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 </code></pre>
-<blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html#defining-the-training-op-for-the-model">Creating Custom Estimators</a></p>
+<blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html#defining-the-training-op-for-the-model">创建定制化 Estimator</a></p>
 </blockquote>
 <h3>添加评价指标</h3>
 <p>通过在 EVAL 模式中定义 <code>eval_metric_ops</code> 字典，我们可以给模型添加准确度评价指标：</p>

@@ -166,7 +166,7 @@ gsutil -m cp &quot;gs://quickdraw_dataset/full/simplified/*&quot; .
 <p>然后将这些数据重新格式化为形状为 <code>[num_training_samples, max_length, 3]</code> 的张量。然后再根据坐标值确定原始图形的边框，并将尺寸标准化，使图形具有单位长度的大小。</p>
 <center> ![大小归一](../images/quickdraw_sizenormalization.png) </center><p>最后，我们计算连续点之间的差值并将其作为 <code>VarLenFeature</code> 存储在 <a href="https://www.tensorflow.org/code/tensorflow/core/example/example.proto">tensorflow.Example</a>  下，命名为 <code>ink</code> 字段。此外，我们还将 <code>class_index</code> 作为单个 <code>FixedLengthFeature</code> 条目进行存储，<code>ink</code> 的 <code>shape</code> 作为长度为 2 的 <code>FixedLengthFeature</code> 进行存储。</p>
 <h3>定义模型</h3>
-<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">Creating Custom Estimators</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
 <p>构建模型分为以下几步：</p>
 <ol>
 <li><p>将输入数据的形状进行变换，即把数据的小批量填充为其内容的最大程度。除了涂鸦轨迹数据外，我们还需要每个样本的类别以及长度。这需要函数 <a href="#-get-input-tensors"><code>_get_input_tensors</code></a> 进行处理。</p>

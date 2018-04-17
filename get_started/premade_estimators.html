@@ -40,7 +40,7 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>TensorFlow 入门教程</h1>
@@ -243,7 +243,7 @@ my_feature_columns = []
 for key in train_x.keys():
     my_feature_columns.append(tf.feature_column.numeric_column(key=key))
 </code></pre>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">Feature Columns</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">特征列</a></p>
 <p>如今我们有了如何让模型表示原始特征的定义，我们可以开始搭建 Estimator 了。</p>
 <h2>实例化一个 Estimator</h2>
 <p>Iris 问题是一个经典的分类问题。幸运的是，TensorFlow 提供了一些预制的 Estimator 分类器，包含：</p>
@@ -327,7 +327,7 @@ Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
 <ul>
 <li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/checkpoints.html">检查点</a></li>
 <li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/datasets_quickstart.html">数据集：快速了解</a></li>
-<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">创建定制化 Estimator</a></li>
 </ul>
 
         </main>

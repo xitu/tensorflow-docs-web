@@ -2,7 +2,7 @@
 
 预览：[https://xitu.github.io/tensorflow-docs-web/](https://xitu.github.io/tensorflow-docs-web/)
 
-中文文档：[@8cb4105](https://github.com/xitu/tensorflow-docs/)
+中文文档：[@516007c](https://github.com/xitu/tensorflow-docs/)
 
 英文文档：[@0bce986](https://github.com/xitu/tensorflow-docs/tree/master)
 

@@ -40,7 +40,7 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': 'Feature Columns'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': 'Creating Custom Estimators'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>检查点</h1>
@@ -133,7 +133,7 @@ classifier = tf.estimator.DNNClassifier(
 <h2>恢复你的模型</h2>
 <p>当第一次调用一个 Estimator 的 <code>train</code> 方法时，TensorFlow 会在 <code>model_dir</code> 目录中保存一个检查点。后续每调用一次 Estimator 的 <code>train</code> 、 <code>eval</code> 或 <code>predict</code> 方法，都会发生如下的行为：</p>
 <ol>
-<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">Creating Custom Estimators</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">创建定制化 Estimator</a></li>
 <li>这个 Estimator 从最近的检查点中恢复出数据，用于初始化新模型的权重值。</li>
 </ol>
 <p>换句话说，如下图所示，一旦检查点文件存在，TensorFlow 总会在你调用 <code>train()</code> 、 <code>evaluation()</code> 或 <code>predict()</code> 时重建模型。</p>
