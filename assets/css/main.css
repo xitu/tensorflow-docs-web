@@ -136,6 +136,10 @@ main li {
     margin: 8px 0;
 }
 
+main img {
+    max-width: 100%;
+}
+
 footer {
     background-color: #455a64;
     padding: 20px;
