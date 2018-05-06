@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>机器学习新手入门</title>
+    <title>Graph Execution 入门</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,10 +40,10 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Beginners', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/eager.html', 'title': '开始使用 Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'parent', 'title': ' Estimators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>机器学习新手入门</h1>
+            <h1>Graph Execution 入门</h1>
 <p>该文档阐述了如何使用机器学习，对鸢尾花的种属（Iris flowers Dataset）进行分类，深入 TensorFlow 源码，阐述机器学习基本原理。</p>
 <p>如果你符合下列三个条件，就继续看下去吧：</p>
 <ul>
@@ -51,7 +51,8 @@
 <li>想学习编写 TensorFlow 程序</li>
 <li>会使用 Python 编程</li>
 </ul>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">TensorFlow 入门教程</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Premade Estimators</a></p>
+<p>如果你想了解很多关于机器学习的基础知识，建议学习下<a href="https://developers.google.com/machine-learning/crash-course/">机器学习速成教程</a>。</p>
 <h2>鸢尾花分类问题</h2>
 <p>假设你是一个植物学家，想将鸢尾花自动分类。机器学习提供多种分类算法。比如，优秀的分类算法通过图像识别对花进行分类。而我们不想止步于此，我们想要在仅知道花瓣、花萼的长度以及宽度的情况下对花进行分类。</p>
 <p>鸢尾花专家能识别出 300 多个花种，不过我们的程序目前在以下三种中进行分类：</p>
@@ -124,6 +125,7 @@
 <li>1 对应 versicolor</li>
 <li>2 对应 virginica</li>
 </ul>
+<p>更多标签和示例样本请见 <a href="https://developers.google.com/machine-learning/crash-course/framing/ml-terminology">机器学习速成课程的 ML 术语部分</a>。</p>
 <h2>模型训练</h2>
 <p><strong>模型</strong>（model）可以看作是特征与标记之间的关系。在鸢尾花问题中，模型定义了花萼花瓣测量数据与花种属之间的关系。有时短短几行代数符号就可以描述一个简单的模型；而有些复杂的模型包含大量的数学符号与复杂的变量关系，很难数字化表达。</p>
 <p>现在问题来了：四个特征，一个花种属标记，你能在不使用机器学习的情况下，定义它们之间的关系么？换句话问，你能使用传统的程序语言（比如大量诸如 if/else 的条件语句）来创建模型么？有这个可能。如果你有大把的时间研究数据集，最终也许会找到花萼花瓣与花种属之间的关系。然而，一个好的机器学习算法能够为你预测模型。只要你有足够数量的，足够有代表性的数据，套用适当的模型，最终程序会帮你完美定义花种属与花萼花瓣的关系。</p>
@@ -254,7 +256,7 @@ def load_data(label_name=&#39;Species&#39;):
 </code></pre>
 <h3>描述数据</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">特征列</a></p>
-<p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column"><code>tf.feature_column</code></a></p>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column/numeric_column"><code>tf.feature_column.numeric_column</code></a></p>
 <pre><code class="lang-python"># 为所有特征创建特征列
 my_feature_columns = []
 for key in train_x.keys():
@@ -278,7 +280,8 @@ for key in train_x.keys():
 </ul>
 <p><img style="width:100%" src="https://www.tensorflow.org/images/simple_dnn.svg"></p>
 <p><strong>包含 3 个隐藏层的神经网络</strong></p>
-<p>&nbsp;</p><p>我们通过实例化一个 <a href="https://developers.google.com/machine-learning/glossary/#Estimators"><strong>Estimator</strong></a> 类来指定模型类型。TensorFlow 提供两类 Estimator：</p>
+<p>&nbsp;</p><p>有关神经网络的更详细介绍请见<a href="https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/anatomy">机器学习速成课程之神经网络介绍</a>。</p>
+<p>我们通过实例化一个 <a href="https://developers.google.com/machine-learning/glossary/#Estimators"><strong>Estimator</strong></a> 类来指定模型类型。TensorFlow 提供两类 Estimator：</p>
 <ul>
 <li><a href="https://developers.google.com/machine-learning/glossary/#pre-made_Estimator"><strong>预定义 Estimator</strong></a>，代码已经由他人写好。</li>
 <li><a href="https://developers.google.com/machine-learning/glossary/#custom_estimator"><strong>定制 Estimator</strong></a>，你需要或多或少自己写代码。</li>
@@ -389,6 +392,7 @@ print(&#39;\nTest set accuracy: {accuracy:0.3f}\n&#39;.format(**eval_result))
 <pre><code class="lang-none">Test set accuracy: 0.967
 </code></pre>
 <p>准确率 0.967 意味着：我们训练出的模型能将测试集里 30 个鸢尾花样本中的 29 个正确分类。</p>
+<p>更深入地了解评估模型的不同指标请看<a href="https://developers.google.com/machine-learning/crash-course/classification">机器学习速成课程的分类部分</a>。</p>
 <h3>预测</h3>
 <p>现在我们训练好模型，而且“证明”了在鸢尾花分类问题中它还不错，虽然并不完美。现在我们用训练的模型在<a href="https://developers.google.com/machine-learning/glossary/#unlabeled_example"><strong>无标记样本</strong></a>（没有标记仅有特征的样本）上做预测；</p>
 <p>在实际生活中，无标记的样本来自不同来源：应用中，CSV 文件，数据流等。不过现在我们简单起见，人造下面几个无标记样本：</p>
@@ -401,7 +405,9 @@ print(&#39;\nTest set accuracy: {accuracy:0.3f}\n&#39;.format(**eval_result))
 </code></pre>
 <p>每个 estimator 提供一个提供一个 <code>predict</code> 方法，<code>premade_estimator.py</code> 这样调用：</p>
 <pre><code class="lang-python">predictions = classifier.predict(
-    input_fn=lambda:eval_input_fn(predict_x, batch_size=args.batch_size))
+    input_fn=lambda:eval_input_fn(predict_x,
+                              labels=None,
+                              batch_size=args.batch_size))
 </code></pre>
 <p>同 <code>evaluate</code> 方法一样，<code>predict</code> 方法通过 <code>eval_input_fn</code> 收集样本。</p>
 <p>预测时，我们<strong>不</strong>传标记给 <code>eval_input_fn</code>，而是做如下步骤：</p>
@@ -428,7 +434,7 @@ print(&#39;\nTest set accuracy: {accuracy:0.3f}\n&#39;.format(**eval_result))
 
     class_id = pred_dict[&#39;class_ids&#39;][0]
     probability = pred_dict[&#39;probabilities&#39;][class_id]
-    print(template.format(SPECIES[class_id], 100 * probability, expec))
+    print(template.format(iris_data.SPECIES[class_id], 100 * probability, expec))
 </code></pre>
 <p>程序输出如下：</p>
 <pre><code class="lang-None">...
@@ -439,8 +445,7 @@ Prediction is &quot;Versicolor&quot; (99.8%), expected &quot;Versicolor&quot;
 Prediction is &quot;Virginica&quot; (97.9%), expected &quot;Virginica&quot;
 </code></pre>
 <h2>小结</h2>
-<p><!--TODO(barryr): When MLCC is released, add pointers to relevant sections.--><br>
-此文档提供一个机器学习的简短介绍。</p>
+<p>此文档简要的介绍了机器学习。</p>
 <p>由于 <code>premade_estimators.py</code> 依赖于高层 API，机器学习中大部分的复杂数学被隐藏。如果你想要深入学习机器学习，我们推荐学习<a href="https://developers.google.com/machine-learning/glossary/#gradient_descent"><strong>梯度下降</strong></a>，批量，还有神经网络。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">特征列</a></p>
 

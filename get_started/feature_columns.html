@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,7 +40,7 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' 入门', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': '机器学习新手入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'TensorFlow 入门教程'}]}, {'type': 'parent', 'title': ' 细节', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Beginners', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/eager.html', 'title': '开始使用 Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'parent', 'title': ' Estimators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>特征列</h1>
@@ -116,7 +116,7 @@ matrix_feature_column = tf.feature_column.numeric_column(key="MyMatrix",
 |>= 1980 but < 2000   | [0, 0, 1, 0] |
 |> 2000               | [0, 0, 0, 1] |
 
-为什么要把可以完美输入到模型中的数值分散到表示不同范围的类别呢？我们注意到，分类后，数值变成了一个四元素向量，因此现在模型可以学习**四个独立的权值**而不是从前的一个；四个权值能比一个权值创建出更丰富的模型。更重要的是，分桶操作让模型能更清晰的区分不同的年份类，因为向量中仅有一个元素置 (1) 而其他都是 (0)。当只用一个年份数值作为输入的时候，模型只能学习线性关系。这样看来，分桶操作为模型提供了附加的灵活性，模型可以基于此进行学习。
+为什么要把可以完美输入到模型中的数值分散到表示不同范围的类别呢？我们注意到，分类后，数值变成了一个四元素向量，因此现在模型可以学习**四个独立的权值**而不是从前的一个；四个权值能比一个权值创建出更丰富的模型。更重要的是，分桶操作让模型能更清晰的区分不同的年份类，因为向量中仅有一个元素置 (1) 而其他都是 (0)。例如，当我们只用一个年份数值作为输入的时候，一个线性模型只能学习线性关系。这样看来，分桶操作为模型提供了附加的灵活性，模型可以基于此进行学习。
 
 下面的代码详述了如何创建 bucketized 特征。
 
@@ -183,7 +183,7 @@ def input_fn():
 # 给定输入 "feature_name_from_input_fn" 是一个字符串，通过将输入映射为词典列表的一个元素可以创建一个分类特征。
 vocabulary_feature_column =
     tf.feature_column.categorical_column_with_vocabulary_list(
-        key="a feature returned by input_fn()",
+        key=feature_name_from_input_fn,
         vocabulary_list=["kitchenware", "electronics", "sports"])
 ```
 
@@ -194,7 +194,7 @@ vocabulary_feature_column =
 # 给定输入 "feature_name_from_input_fn" 是一个字符串，通过将输入映射为词汇文件里的一个元素可以为模型创建一个分类特征。
 vocabulary_feature_column =
     tf.feature_column.categorical_column_with_vocabulary_file(
-        key="a feature returned by input_fn()",
+        key=feature_name_from_input_fn,
         vocabulary_file="product_class.txt",
         vocabulary_size=3)
 ```

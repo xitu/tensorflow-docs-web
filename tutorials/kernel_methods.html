@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -44,7 +44,7 @@
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>使用特定的核方法改善线性模型</h1>
-<p>注意：这篇文档使用的是已经被弃用了的 ${tf.estimator} 版本，具有${tf.contrib.learn.estimator$different interface}。它还使用了 <code>contrib</code> 方法的${$version_compat#not_covered$API may not be stable}</p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html#not_covered">TensorFlow 版本兼容性</a></p>
 <p>在这篇教程里，我们将示范如何把特定核方法和线性模型结合起来在不明显增加训练和推理时间的情况下大幅度提升预测质量。与多核方法不同，特定核心方法对训练数据集的大小具有很好的可扩展性，不管是在训练和推理时间上还是在内存占用上。</p>
 <p><strong>目标读者：</strong> 尽管我们提供的只是特定核方法相关概念的一个概览，教程的主要目标读者依然要具备核方法和支持向量机的基础知识，这些知识可以参考以下的资源做一个了解：</p>
 <ul>
@@ -63,7 +63,7 @@
 <pre><code class="lang-python">data = tf.contrib.learn.datasets.mnist.load_mnist()
 </code></pre>
 <p>上面的方法下载了整个 MNIST 数据集（包含 70K 的样本），并分成大小分别为 55K, 5K 和 10K 的训练，验证和测试集。每次分割包含一个 numpy 图像数组（维度大小为 [样本大小, 784]）和一个 numpy 标签数组（shape 为 [样本大小, 1])。在本教程中，我们仅使用训练和验证集来分别训练和验证我们的模型。</p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html#input_fn">TensorFlow 入门教程</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html#create_input_functions">Premade Estimators</a></p>
 <pre><code class="lang-python">import numpy as np
 import tensorflow as tf
 

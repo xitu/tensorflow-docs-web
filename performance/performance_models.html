@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>High-Performance Models</title>
+    <title>高性能模型</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,305 +40,158 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': '输入管道性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': 'High-Performance Models'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}, {'type': 'parent', 'title': ' Quantization', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'How to Quantize Neural Networks with TensorFlow'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'title': '性能'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': '输入管道性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': '高性能模型'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'Fixed Point Quantization'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>High-Performance Models</h1>
-<p>This document and accompanying<br>
-<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">scripts</a><br>
-detail how to build highly scalable models that target a variety of system types<br>
-and network topologies. The techniques in this document utilize some low-level<br>
-TensorFlow Python primitives. In the future, many of these techniques will be<br>
-incorporated into high-level APIs.</p>
-<h2>Input Pipeline</h2>
+            <h1>高性能模型</h1>
+<p>本文及相关<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">脚本</a>详细说明了如何构建能应对多种系统类型及网络拓扑的高可扩展模型。本文的技术利用了一些 TensorFlow Python 的底层组件。未来，其中的大部分技术将被整合进高层次的 API 里。</p>
+<h2>输入管道</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/queue_runner"><code>tf.train.queue_runner</code></a></p>
-<p>Another approach, which we have implemented in the<br>
-<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">scripts</a>,<br>
-is to build an input pipeline using the native parallelism in TensorFlow. Our<br>
-implementation is made up of 3 stages:</p>
+<p>我们在<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">脚本</a>中采用的另一种方式是采用 TensorFlow 原生的并行机制来构建的输入管道。我们的实现由3个阶段构成：</p>
 <ul>
-<li>I/O reads: Choose and read image files from disk.</li>
-<li>Image Processing: Decode image records into images, preprocess, and organize<br>
-into mini-batches.</li>
-<li>CPU-to-GPU Data Transfer: Transfer images from CPU to GPU.</li>
+<li>I/O 读取： 从硬盘选择并读取图像。</li>
+<li>  图像处理： 将图像记录解码成图像，预处理并组织成 小批量（mini-batch）。</li>
+<li>CPU-to-GPU 数据转移：将图像从 CPU 转移到 GPU。</li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/FIFOQueue"><code>tf.FIFOQueue</code></a></p>
-<h3>Parallelize I/O Reads</h3>
-<p><code>data_flow_ops.RecordInput</code> is used to parallelize reading from disk. Given a<br>
-list of input files representing TFRecords, <code>RecordInput</code> continuously reads<br>
-records using background threads. The records are placed into its own large<br>
-internal pool and when it has loaded at least half of its capacity, it produces<br>
-output tensors.</p>
-<p>This op has its own internal threads that are dominated by I/O time that consume<br>
-minimal CPU, which allows it to run smoothly in parallel with the rest of the<br>
-model.</p>
-<h3>Parallelize Image Processing</h3>
-<p>After images are read from <code>RecordInput</code> they are passed as tensors to the image<br>
-processing pipeline. To make the image processing pipeline easier to explain,<br>
-assume that the input pipeline is targeting 8 GPUs with a batch size of 256 (32<br>
-per GPU).</p>
-<p>256 records are read and processed individually in parallel. This starts with<br>
-256 independent <code>RecordInput</code> read ops in the graph. Each read op is followed by<br>
-an identical set of ops for image preprocessing that are considered independent<br>
-and executed in parallel. The image preprocessing ops include operations such as<br>
-image decoding, distortion, and resizing.</p>
+<h3>并行 I/O 读取</h3>
+<p><code>data_flow_ops.RecordInput</code> 用于处理并行从磁盘读取。对于包含 TFRecords 记录的一系列输入文件，<code>RecordInput</code> 将持续使用后台线程去读取记录。这些记录将被放入它自身的内部池；当载入超过它一半容量的数据量后，它将产生输出张量。</p>
+<p>这个操作有它自己的由 I/O 时间控制且消耗最少 CPU 的内部线程，这使它能平缓地与模型的其他部分并行执行。</p>
+<h3>并行图像处理</h3>
+<p>从 <code>RecordInput</code> 读取图像后，它们被当做张量传递给图像处理管道。为了更容易解释图像处理管道，假设输入管道是面向 256 个批量大小的 8 个 GPU（每个 GPU 批量大小为32）。</p>
+<p>256 条记录被独立并行地读取和处理。它起始于图中 256 个独立的 <code>RecordInput</code> 读操作。每个读操作之后是独立并行执行的一系列相同的图像前置处理操作。图像预处理操作包括对于图像的解码、变形、大小缩放等操作。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/parallel_stack"><code>tf.parallel_stack</code></a></p>
-<p>When all the input tensors are finished, the output tensor is passed along in<br>
-the graph. This effectively hides all the memory latency with the long tail of<br>
-producing all the input tensors.</p>
-<h3>Parallelize CPU-to-GPU Data Transfer</h3>
-<p>Continuing with the assumption that the target is 8 GPUs with a batch size of<br>
-256 (32 per GPU). Once the input images are processed and concatenated together<br>
-by the CPU, we have 8 tensors each with a batch-size of 32.</p>
-<p>TensorFlow enables tensors from one device to be used on any other device<br>
-directly. TensorFlow inserts implicit copies to make the tensors available on<br>
-any devices where they are used. The runtime schedules the copy between devices<br>
-to run before the tensors are actually used. However, if the copy cannot finish<br>
-in time, the computation that needs those tensors will stall and result in<br>
-decreased performance.</p>
-<p>In this implementation, <code>data_flow_ops.StagingArea</code> is used to explicitly<br>
-schedule the copy in parallel. The end result is that when computation starts on<br>
-the GPU, all the tensors are already available.</p>
-<h3>Software Pipelining</h3>
+<p>当所有输入张量完成后，输出张量在图中传递。这样有效地降低了生成所有输入张量带来的长尾内存延时。</p>
+<h3>CPU 到 GPU 数据转移的并行处理</h3>
+<p>继续假设目标是采用 8个CPU，批量大小为256（每个 CPU 批量大小为32）。一旦输入图片被 CPU 被处理和连接完成，我们将得到 8 个张量，每个批量大小 32 。</p>
+<p>TensorFlow 允许一个设备上的张量被任意其他设备直接使用。TensorFlow 使用隐式副本来使得张量能被任一设备使用。在张量被正式使用前，由运行时来安排在不同设备间完成复制。然而，如果复制不同及时完成，需要那些张量的计算会被暂停从而造成性能下降。</p>
+<p>在这个实现中， <code>data_flow_ops.StagingArea</code> 被用来显式定义并行执行复制操作。最终的结果是，在 GPU 开始执行计算任务时，所有的张量已经就绪。</p>
+<h3>软件管道</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/FIFOQueue"><code>tf.FIFOQueue</code></a></p>
-<p>Before the model starts running all the stages, the input pipeline stages are<br>
-warmed up to prime the staging buffers in between with one set of data.<br>
-During each run step, one set of data is read from the staging buffers at<br>
-the beginning of each stage, and one set is pushed at the end.</p>
-<p>For example: if there are three stages: A, B and C. There are two staging areas<br>
-in between: S1 and S2. During the warm up, we run:</p>
-<pre><code>Warm up:
-Step 1: A0
-Step 2: A1  B0
+<p>比如，有 A、B、C 三个阶段。有两个运行区域： S1 和 S2。在启动时，我们运行：</p>
+<pre><code>初始化:
+步骤 1: A0
+步骤 2: A1  B0
 
-Actual execution:
-Step 3: A2  B1  C0
-Step 4: A3  B2  C1
-Step 5: A4  B3  C2
+真实执行:
+步骤 3: A2  B1  C0
+步骤 4: A3  B2  C1
+步骤 5: A4  B3  C2
 </code></pre>
-<p>After the warm up, S1 and S2 each have one set of data in them. For each step of<br>
-the actual execution, one set of data is consumed from each staging area, and<br>
-one set is added to each.</p>
-<p>Benefits of using this scheme:</p>
+<p>在初始化之后，S1 和 S2 拥有了一组数据。在真正执行的每个步骤中，每个暂存区域将消耗一段数据，然后又会有新的一段数据加入其中。</p>
+<p>这种方案的好处是：</p>
 <ul>
-<li>All stages are non-blocking, since the staging areas always have one set of<br>
-data after the warm up.</li>
-<li>Each stage can run in parallel since they can all start immediately.</li>
-<li>The staging buffers have a fixed memory overhead. They will have at most one<br>
-extra set of data.</li>
-<li>Only a single<code>session.run()</code> call is needed to run all stages of the step,<br>
-which makes profiling and debugging much easier.</li>
+<li>  所有阶段都不会被打断，因为每个区域都在预热之后都已经有一块数据</li>
+<li>每个阶段都能并行执行，因为他们可以马上开始执行</li>
+<li>运行时缓存是一个固定的额外内存开销。他们最多有一块额外的数据</li>
+<li>运行这个步骤的所有阶段只需要调用一次 <code>session.run()</code> ，这使得信息收集和调试更加简单</li>
 </ul>
-<h2>Best Practices in Building High-Performance Models</h2>
-<p>Collected below are a couple of additional best practices that can improve<br>
-performance and increase the flexibility of models.</p>
-<h3>Build the model with both NHWC and NCHW</h3>
-<p>Most TensorFlow operations used by a CNN support both NHWC and NCHW data format.<br>
-On GPU, NCHW is faster. But on CPU, NHWC is sometimes faster.</p>
-<p>Building a model to support both data formats keeps the model flexible and<br>
-capable of operating optimally regardless of platform. Most TensorFlow<br>
-operations used by a CNN support both NHWC and NCHW data formats. The benchmark<br>
-script was written to support both NCHW and NHWC. NCHW should always be used<br>
-when training with GPUs. NHWC is sometimes faster on CPU. A flexible model can<br>
-be trained on GPUs using NCHW with inference done on CPU using NHWC with the<br>
-weights obtained from training.</p>
-<h3>Use Fused Batch-Normalization</h3>
+<h2>构建高性能模型的最佳实践</h2>
+<p>下面这些额外的最佳时间能帮助提升性能和增强模型的灵活性。</p>
+<h3>同时采用 NHWC 和 NCHW 来构建模型</h3>
+<p>大部分 CNN 采用的 TensorFlow 操作同时支持 NHWC 和 NCHW 数据格式。NCHW 在 GPU 上更快，而 NHWC 在 CPU 上有时候更快。</p>
+<p>架构同时支持这两种数据格式的模型能使得模型在不同的平台运行得更加灵活和高效。大部分 CNN 采用的 TensorFlow 操作同时支持 NHWC 和 NCHW 数据格式。基准脚本同时支持 NCHW 和 NHWC。 NCHW 在使用 GPU 来训练时应该被一直被采用。NHWC 在 CPU 上有时候更快。一个灵活的模型能在 GPU 上采用 NCHW 进行训练，同时利用在 CPU 上采用 NHWC 训练权重的结果。</p>
+<h3>采用混合标准化</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/batch_norm"><code>tf.contrib.layers.batch_norm</code></a></p>
 <pre><code class="lang-python">bn = tf.contrib.layers.batch_norm(
           input_layer, fused=True, data_format=&#39;NCHW&#39;
           scope=scope)
 </code></pre>
-<h2>Variable Distribution and Gradient Aggregation</h2>
-<p>During training, training variable values are updated using aggregated gradients<br>
-and deltas. In the benchmark script, we demonstrate that with the flexible and<br>
-general-purpose TensorFlow primitives, a diverse range of high-performance<br>
-distribution and aggregation schemes can be built.</p>
-<p>Three examples of variable distribution and aggregation were included in the<br>
-script:</p>
+<h2>可变分布和梯度聚合</h2>
+<p>在训练时，采用聚合梯度和差值来更新训练变量值。在基准脚本中，我们展示了采用灵活通用的 TensorFlow 元件构建了不同范围的高性能分布和聚合规则。</p>
+<p>在这个脚本中包含了 3 个不同的分布和聚合方式：</p>
 <ul>
-<li><code>parameter_server</code> where each replica of the training model reads the<br>
-variables from a parameter server and updates the variable independently.<br>
-When each model needs the variables, they are copied over through the<br>
-standard implicit copies added by the TensorFlow runtime. The example<br>
-<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">script</a><br>
-illustrates using this method for local training, distributed synchronous<br>
-training, and distributed asynchronous training.</li>
-<li><code>replicated</code> places an identical copy of each training variable on each<br>
-GPU. The forward and backward computation can start immediately as the<br>
-variable data is immediately available. Gradients are accumulated across all<br>
-GPUs, and the aggregated total is applied to each GPU's copy of the<br>
-variables to keep them in sync.</li>
-<li><code>distributed_replicated</code> places an identical copy of the training parameters<br>
-on each GPU along with a master copy on the parameter servers. The forward<br>
-and backward computation can start immediately as the variable data is<br>
-immediately available. Gradients are accumulated across all GPUs on each<br>
-server and then the per-server aggregated gradients are applied to the<br>
-master copy. After all workers do this, each worker updates its copy of the<br>
-variable from the master copy.</li>
+<li><code>parameter_server</code> 训练模型副本从一个参数服务器读取变量和更新变量。当模型需要变量时，TensorFlow 运行时会复制它们并添加到使用环境。示例<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks">脚本</a>阐释了采用这种方法来做本地训练、分布式同步训练和分布式异步训练。</li>
+<li><code>replicated</code> 在每个 GPU 上放置了每个训练变量的独立副本。因为变量已经就绪，前向和后向计算可以马上开始。梯度在所有 GPU 中累积，汇总结果会被应用到每一个 GPU 副本中来保持他们同步。</li>
+<li><code>distributed_replicated</code> 在每个 GPU 上放置了每个训练变量的独立副本，同时在参数服务器上放置一个主副本。因为变量已经就绪，前向和后向计算可以马上开始。梯度在每个服务器的所有 GPU 中累积，然后按服务器汇总后的梯度会被应用到主副本上。在所有处理器完成之后，每个处理器会从主副本上更新一份副本到自己的环境。</li>
 </ul>
-<p>Below are additional details about each approach.</p>
-<h3>Parameter Server Variables</h3>
-<p>The most common way trainable variables are managed in TensorFlow models is<br>
-parameter server mode.</p>
-<p>In a distributed system, each worker process runs the same model, and parameter<br>
-server processes own the master copies of the variables. When a worker needs a<br>
-variable from a parameter server, it refers to it directly. The TensorFlow<br>
-runtime adds implicit copies to the graph to make the variable value available<br>
-on the computation device that needs it. When a gradient is computed on a<br>
-worker, it is sent to the parameter server that owns the particular variable,<br>
-and the corresponding optimizer is used to update the variable.</p>
-<p>There are some techniques to improve throughput:</p>
+<p>以下是每种方式的更多细节。</p>
+<h3>参数服务器变量</h3>
+<p>TensorFlow 模型管理训练变量的最常用方式是参数服务器模式。</p>
+<p>在分布式系统中，每个处理器采用同一模型，由参数服务器处理变量的主副本。当处理器需要参数服务器的一个变量时，它可以直接使用。TensorFlow 运行时在图中添加了隐式副本来使得计算设备能在需要时使用变量值。当处理器计算完一个梯度后，这个梯度被发送给管理这个特殊变量的参数服务器，然后对应的最优控制器会更新这个变量。</p>
+<p>有一些技术能优化吞吐量：</p>
 <ul>
-<li>The variables are spread among parameter servers based on their size, for<br>
-load balancing.</li>
-<li>When each worker has multiple GPUs, gradients are accumulated across the<br>
-GPUs and a single aggregated gradient is sent to the parameter server. This<br>
-reduces the network bandwidth and the amount of work done by the parameter<br>
-servers.</li>
+<li>按照变量大小来将变量分布在不同参数服务器上，来实现负载均衡。</li>
+<li>当每个处理器有多个 GPU 时，会将不同的 GPU 的梯度累积后统一发给参数服务器。这会减少网络带宽和参数服务器的工作量。</li>
 </ul>
-<p>For coordinating between workers, a very common mode is async updates, where<br>
-each worker updates the master copy of the variables without synchronizing with<br>
-other workers. In our model, we demonstrate that it is fairly easy to introduce<br>
-synchronization across workers so updates for all workers are finished in one<br>
-step before the next step can start.</p>
-<p>The parameter server method can also be used for local training, In this case,<br>
-instead of spreading the master copies of variables across parameters servers,<br>
-they are either on the CPU or spread across the available GPUs.</p>
-<p>Due to the simple nature of this setup, this architecture has gained a lot of<br>
-popularity within the community.</p>
-<p>This mode can be used in the script by passing<br>
-<code>--variable_update=parameter_server</code>.</p>
+<p>对于不同处理器的协同来说，一个常用方式是异步更新，每个处理器只更新主副本而不与其他处理器同步。在我们的模型中，我们展示在不同处理器间引入同步是很容易的，所以所有处理器能在一个步骤中在下一步骤开始前完成。</p>
+<p>参数服务器方法也能被用来做本地训练。这种情况下，代替在不同参数服务期间传递变量的主副本，他们可以在 CPU 或 GPU 间传递。</p>
+<p>因为这个配置非常简单，这个架构受到了社区广泛的欢迎。</p>
+<p>这个方式可以通过在脚本中传入参数 <code>--variable_update=parameter_server</code> 来使用。</p>
 <div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%" alt="parameter_server mode in distributed training"
    src="../images/perf_parameter_server_mode_doc.png">
-</div><h3>Replicated Variables</h3>
-<p>In this design, each GPU on the server has its own copy of each variable. The<br>
-values are kept in sync across GPUs by applying the fully aggregated gradient to<br>
-each GPU's copy of the variable.</p>
-<p>The variables and data are available at the start of training, so the forward<br>
-pass of training can start immediately. Gradients are aggregated across the<br>
-devices and the fully aggregated gradient is then applied to each local copy.</p>
-<p>Gradient aggregation across the server can be done in different ways:</p>
+</div><h3>重复变量</h3>
+<p>在这个设计中，服务器上的每个 GPU 有每个变量的一个副本。这些值在 GPU 中通过将完整聚合后的梯度应用到每个 GPU 中来保持同步。</p>
+<p>这些变量和数据在训练开始时就可用，所以训练的前向处理能马上开始。梯度在不同设备间聚合后再被引用到每个本地副本中。</p>
+<p>跨服务器的梯度聚合可以通过不同的方式完成：</p>
 <ul>
-<li>Using standard TensorFlow operations to accumulate the total on a single<br>
-device (CPU or GPU) and then copy it back to all GPUs.</li>
-<li>Using NVIDIA® NCCL, described below in the NCCL section.</li>
+<li>采用标准 TensorFlow 操作来聚合每个 CPU 或 GPU 设备上的总和，然后复制回所有 GPU。</li>
+<li>采用下面 NCCL 章节中介绍的 NVIDIA® NCCL 方法。</li>
 </ul>
-<p>This mode can be used in the script by passing <code>--variable_update=replicated</code>.</p>
-<h3>Replicated Variables in Distributed Training</h3>
-<p>The replicated method for variables can be extended to distributed training. One<br>
-way to do this like the replicated mode: aggregate the gradients fully across<br>
-the cluster and apply them to each local copy of the variable. This may be shown<br>
-in a future version of this scripts; the scripts do present a different<br>
-variation, described here.</p>
-<p>In this mode, in addition to each GPU's copy of the variables, a master copy is<br>
-stored on the parameter servers. As with the replicated mode, training can start<br>
-immediately using the local copies of the variables.</p>
-<p>As the gradients of the weights become available, they are sent back to the<br>
-parameter servers and all local copies are updated:</p>
+<p>这种方式可以用过在脚本中传入参数 <code>--variable_update=replicated</code> 来使用。</p>
+<h3>分布式训练中的重复变量</h3>
+<p>变量的重复方法可以被扩展应用到分布式训练中。其中的一种方式是：就像重复模式一样，在集群中聚合所有梯度，然后在应用到每一个变量副本上。这个可能在脚本的某个后续版本中展示。这个脚本在这里展示了一种不同的变化。</p>
+<p>在这种模式中，在每个 GPU 的变量副本之外，主副本被保存在参数服务器上。就像重复模式，训练可以使用本地变量副本马上开始。</p>
+<p>随着权重的梯度变得可用，他们被发送回参数服务器，然后所有本地副本得到了更新：</p>
 <ol>
-<li>All the gradients from the GPU on the same worker are aggregated together.</li>
-<li>Aggregated gradients from each worker are sent to the parameter server that<br>
-owns the variable, where the specified optimizer is used to update the<br>
-master copy of the variable.</li>
-<li>Each worker updates its local copy of the variable from the master. In the<br>
-example model, this is done with a cross-replica barrier that waits for all<br>
-the workers to finish updating the variables, and fetches the new variable<br>
-only after the barrier has been released by all replicas. Once the copy<br>
-finishes for all variables, this marks the end of a training step, and a new<br>
-step can start.</li>
+<li>所有同一处理器上 GPU 的梯度会被聚合在一起。</li>
+<li>每个处理器的聚合梯度会被发送给负责变量的参数服务器，在那里会采用特定的优化处理器来更新变量的主副本。</li>
+<li>每个处理器根据主副本来更新它们的本地变量副本。在这个示例模型中，这是通过跨副本围栏来实现的，它等待所有处理器完成更新这些变量再在围栏释放了后获取新的变量。一旦所有变量的复制完成，一个训练步骤就完成了，一个新的步骤会开始。</li>
 </ol>
-<p>Although this sounds similar to the standard use of parameter servers, the<br>
-performance is often better in many cases. This is largely due to the fact the<br>
-computation can happen without any delay, and much of the copy latency of early<br>
-gradients can be hidden by later computation layers.</p>
-<p>This mode can be used in the script by passing<br>
-<code>--variable_update=distributed_replicated</code>.</p>
+<p>虽然这听起来和参数服务器的标准用法类似，在很多场景下性能会更好。这很大程度上是因为计算不需要延迟，很多早期梯度的复制延迟倍后续的计算层隐藏了。</p>
+<p>这个方式可以通过在脚本中传入参数 <code>--variable_update=distributed_replicated</code> 来使用。</p>
 <div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%" alt="distributed_replicated mode"
    src="../images/perf_distributed_replicated_mode_doc.png">
 </div><h4>NCCL</h4>
-<p>In order to broadcast variables and aggregate gradients across different GPUs<br>
-within the same host machine, we can use the default TensorFlow implicit copy<br>
-mechanism.</p>
+<p>为了在同一主机的不同 GPU 间传递变量和聚合梯度，我们采用了默认的 TensorFlow 隐式复制机制。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/nccl"><code>tf.contrib.nccl</code></a></p>
-<p>In our experiment, we demonstrate that although NCCL often leads to much faster<br>
-data aggregation by itself, it doesn't necessarily lead to faster training. Our<br>
-hypothesis is that the implicit copies are essentially free since they go to the<br>
-copy engine on GPU, as long as its latency can be hidden by the main computation<br>
-itself. Although NCCL can transfer data faster, it takes one SM away, and adds<br>
-more pressure to the underlying L2 cache. Our results show that for 8-GPUs, NCCL<br>
-often leads to better performance. However, for fewer GPUs, the implicit copies<br>
-often perform better.</p>
-<h4>Staged Variables</h4>
-<p>We further introduce a staged-variable mode where we use staging areas for both<br>
-the variable reads, and their updates. Similar to software pipelining of the<br>
-input pipeline, this can hide the data copy latency. If the computation time<br>
-takes longer than the copy and aggregation, the copy itself becomes essentially<br>
-free.</p>
-<p>The downside is that all the weights read are from the previous training step.<br>
-So it is a different algorithm from SGD. But it is possible to improve its<br>
-convergence by adjusting learning rate and other hyperparameters.</p>
-<h2>Executing the script</h2>
-<p>This section lists the core command line arguments and a few basic examples for<br>
-executing the main script<br>
-(<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py">tf_cnn_benchmarks.py</a>).</p>
-<blockquote><p>Note: <code>tf_cnn_benchmarks.py</code> uses the config <code>force_gpu_compatible</code>,<br>
-which was introduced after TensorFlow 1.1. Until TensorFlow 1.2 is released<br>
-building from source is advised.</p>
+<p>在我们的实验中，我们展示了虽然 NCCL 经常自身能带来更快的数据聚合，它并不能带来更快的训练效果。我们假设隐式复制是无成本的，既然他们由 GPU 的复制引擎完成，并且它的延时能被主计算过程隐藏。虽然 NCCL 能更快地传输数据，它只使用了一个 SM，并且给依赖的 L2 缓存带来了更大的压力。我们的结果显示对于 8 个 GPU 来说，NCCL 经常能带来更好的性能。然而，对于更少的 GPU 来说，隐式复制反而表现更加出色。</p>
+<h4>状态变量</h4>
+<p>我们进一步引入了状态变量模式，我们使用状态区来用于变量读取和更新。与输入管道的软件管道类似，这能隐藏数据复制延时。只要计算时间比复制和聚合时间长，复制本身的延时就变得无需考虑了。</p>
+<p>它的缺点是所有的权重读取需要来自上一个训练步骤。所以它是与 SGD 不同的算法。但可以通过调整学习速率和其他参数来优化收敛性。</p>
+<h2>执行脚本</h2>
+<p>这一部分将列出核心的命令行参数和主要脚本(<a href="https://github.com/tensorflow/benchmarks/tree/master/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py">tf_cnn_benchmarks.py</a>)的一些基本用法示例。</p>
+<blockquote><p>说明： <code>tf_cnn_benchmarks.py</code> 采用 TensorFlow 1.1 后引入的 <code>force_gpu_compatible</code> 配置。直到 TensorFlow 1.2 之后，才建议从源码进行编译。</p>
 </blockquote>
-<h4>Base command line arguments</h4>
+<h4>基本命令行参数</h4>
 <ul>
-<li><strong><code>model</code></strong>: Model to use, e.g. <code>resnet50</code>, <code>inception3</code>, <code>vgg16</code>, and<br>
-<code>alexnet</code>.</li>
-<li><strong><code>num_gpus</code></strong>: Number of GPUs to use.</li>
-<li><strong><code>data_dir</code></strong>: Path to data to process. If not set, synthetic data is used.<br>
-To use ImageNet data use these<br>
-<a href="https://github.com/tensorflow/models/tree/master/research/inception#getting-started">instructions</a><br>
-as a starting point.</li>
-<li><strong><code>batch_size</code></strong>: Batch size for each GPU.</li>
-<li><strong><code>variable_update</code></strong>: The method for managing variables: <code>parameter_server</code><br>
-,<code>replicated</code>, <code>distributed_replicated</code>, <code>independent</code></li>
-<li><strong><code>local_parameter_device</code></strong>: Device to use as parameter server: <code>cpu</code> or<br>
-<code>gpu</code>.</li>
+<li><strong><code>model</code></strong>: 使用的模型，比如 <code>resnet50</code>, <code>inception3</code>, <code>vgg16</code>, 或 <code>alexnet</code></li>
+<li><strong><code>num_gpus</code></strong>: 使用的 GPU 数量。</li>
+<li><strong><code>data_dir</code></strong>: 待处理数据的路径。如未设置，人造数据将被使用。请参照 <a href="https://github.com/tensorflow/models/tree/master/research/inception#getting-started">使用说明</a> 来使用 ImageNet 数据。</li>
+<li><strong><code>batch_size</code></strong>: 每个 CPU 的位大小。</li>
+<li><strong><code>variable_update</code></strong>: 变量管理方法：<code>parameter_server</code>,<code>replicated</code>, <code>distributed_replicated</code>, <code>independent</code></li>
+<li><strong><code>local_parameter_device</code></strong>: 参数服务器的使用设备：<code>cpu</code> 或 <code>gpu</code></li>
 </ul>
-<h4>Single instance examples</h4>
-<pre><code class="lang-bash"># VGG16 training ImageNet with 8 GPUs using arguments that optimize for
-# Google Compute Engine.
+<h4>单一实例示例</h4>
+<pre><code class="lang-bash"># VGG16 使用 8 个 GPU 来训练 ImageNet，参数针对 Google 计算引擎进行了优化
 python tf_cnn_benchmarks.py --local_parameter_device=cpu --num_gpus=8 \
 --batch_size=32 --model=vgg16 --data_dir=/home/ubuntu/imagenet/train \
 --variable_update=parameter_server --nodistortions
 
-# VGG16 training synthetic ImageNet data with 8 GPUs using arguments that
-# optimize for the NVIDIA DGX-1.
+# VGG16 使用 8 个 GPU 来训练合成 ImageNet 数据，参数针对 NVIDIA DGX-1 进行了优化
 python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
 --batch_size=64 --model=vgg16 --variable_update=replicated --use_nccl=True
 
-# VGG16 training ImageNet data with 8 GPUs using arguments that optimize for
-# Amazon EC2.
+# VGG16 使用 8 个 GPU 来训练合成 ImageNet 数据，参数针对 Amazon EC2 进行了优化
 python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
 --batch_size=64 --model=vgg16 --variable_update=parameter_server
 
-# ResNet-50 training ImageNet data with 8 GPUs using arguments that optimize for
-# Amazon EC2.
+# ResNet-50 使用 8 个 GPU 来训练 ImageNet，参数针对 Amazon EC2 进行了优化
 python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
 --batch_size=64 --model=resnet50 --variable_update=replicated --use_nccl=False
 </code></pre>
-<h4>Distributed command line arguments</h4>
+<h4>分布式命令参数</h4>
 <ul>
-<li><strong><code>ps_hosts</code></strong>: Comma separated list of hosts to use as parameter servers<br>
-in the format of <code>&lt;host&gt;:port</code>, e.g. <code>10.0.0.2:50000</code>.</li>
-<li><strong><code>worker_hosts</code></strong>: Comma separated list of hosts to use as workers in the<br>
-format of <code>&lt;host&gt;:port</code>, e.g. <code>10.0.0.2:50001</code>.</li>
-<li><strong><code>task_index</code></strong>: Index of the host in the list of <code>ps_hosts</code> or<br>
-<code>worker_hosts</code> being started.</li>
-<li><strong><code>job_name</code></strong>: Type of job, e.g <code>ps</code> or <code>worker</code></li>
+<li><strong><code>ps_hosts</code></strong>: 以逗号分隔的参数服务器主机列表，格式为 <code>&lt;host&gt;:port</code>，比如 <code>10.0.0.2:50000</code>。</li>
+<li><strong><code>worker_hosts</code></strong>: 以逗号分隔的参数工作站主机列表，格式为 <code>&lt;host&gt;:port</code>，比如 <code>10.0.0.2:50001</code>。</li>
+<li><strong><code>task_index</code></strong>: 开始主机在 <code>ps_hosts</code> 或 <code>worker_hosts</code> 列表中的索引。</li>
+<li><strong><code>job_name</code></strong>: 任务类型，比如 <code>ps</code> 或 <code>worker</code></li>
 </ul>
-<h4>Distributed examples</h4>
-<p>Below is an example of training ResNet-50 on 2 hosts: host_0 (10.0.0.1) and<br>
-host_1 (10.0.0.2). The example uses synthetic data. To use real data pass the<br>
-<code>--data_dir</code> argument.</p>
-<pre><code class="lang-bash"># Run the following commands on host_0 (10.0.0.1):
+<h4>分布式示例</h4>
+<p>以下是在 2 台主机上训练 ResNet-50的示例，主机分别为： host_0 (10.0.0.1) 和 host_1 (10.0.0.2)。这个示例采用了人造数据。可以传入 <code>--data_dir</code> 参数来使用真实数据。</p>
+<pre><code class="lang-bash"># 在 host_0 (10.0.0.1) 上运行以下命令:
 python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
 --batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
 --job_name=worker --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
@@ -350,7 +203,7 @@ python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
 --worker_hosts=10.0.0.1:50001,10.0.0.2:50001 --task_index=0
 
 
-# Run the following commands on host_1 (10.0.0.2):
+# 在 host_1 (10.0.0.2) 上运行以下命令:
 python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
 --batch_size=64 --model=resnet50 --variable_update=distributed_replicated \
 --job_name=worker --ps_hosts=10.0.0.1:50000,10.0.0.2:50000 \
@@ -382,7 +235,7 @@ python tf_cnn_benchmarks.py --local_parameter_device=gpu --num_gpus=8 \
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'witmax': 'https://avatars2.githubusercontent.com/u/20884496?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 </body>

@@ -2,11 +2,11 @@
 
 预览：[https://xitu.github.io/tensorflow-docs-web/](https://xitu.github.io/tensorflow-docs-web/)
 
-中文文档：[@516007c](https://github.com/xitu/tensorflow-docs/)
+中文文档：[@8195c2e](https://github.com/xitu/tensorflow-docs/)
 
 英文文档：[@0bce986](https://github.com/xitu/tensorflow-docs/tree/master)
 
-生成器：[@3c1ec95](https://github.com/lsvih/tf-zh-docs-web/)
+生成器：[@13044b2](https://github.com/lsvih/tf-zh-docs-web/)
 
 TODO：
 
@@ -16,3 +16,5 @@ TODO：
 - [x] 更新样式与配色
 - [ ] 更新 Markdown 渲染引擎，支持 TOC
 - [ ] 搜索功能
+
+

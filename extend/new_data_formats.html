@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>自定义数据读取</title>
+    <title>读取自定义文件和记录格式</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,129 +40,226 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'title': '扩展'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/architecture.html', 'title': 'TensorFlow 架构'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/adding_an_op.html', 'title': '添加一个新操作（Op）'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/add_filesys.html', 'title': '添加一个定制的文件系统插件'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/new_data_formats.html', 'title': '自定义数据读取'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/language_bindings.html', 'title': '在其他语言中绑定 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/tool_developers/index.html', 'title': '工具开发者指南：TensorFlow 模型文件'}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'title': '扩展'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/architecture.html', 'title': 'TensorFlow 架构'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/adding_an_op.html', 'title': '添加一个新操作（Op）'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/add_filesys.html', 'title': '添加一个定制的文件系统插件'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/new_data_formats.html', 'title': '读取自定义文件和记录格式'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/language_bindings.html', 'title': '在其他语言中绑定 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/tool_developers/index.html', 'title': '工具开发者指南：TensorFlow 模型文件'}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>自定义数据读取</h1>
-<p>预备知识：</p>
+            <h1>读取自定义文件和记录格式</h1>
+<p>前提：</p>
 <ul>
-<li>  熟悉 C++ 。</li>
+<li>对 C++ 有一定程度的了解。</li>
 <li><a href="//xitu.github.io/tensorflow-docs-web/install/install_sources.html">通过源码安装 TensorFlow</a></li>
 </ul>
-<p>我们将支持一种文件格式的任务划分为两个部分：</p>
+<p>我们将支持自定义文件格式分为两个任务：</p>
 <ul>
-<li>  文件格式：我们使用 <strong>读取</strong> 操作从一个文档中读取 <strong>记录</strong>(可以是任意字符串)。</li>
-<li>  记录格式：我们使用解码器或解析操作将字符串记录转换成 TensorFlow 可用的 tensor 。</li>
+<li>文件格式：使用 <code>tf.data.Dataset</code> 阅读器来从文件中读取原始<strong>记录</strong>（通常以零阶字符串张量（scalar string tensors）表示，也可能有其他结构）。</li>
+<li>记录格式：使用解码器或者解析操作将一个字符串记录转换成 TensorFlow 可用的张量（tensor）。</li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
 <p>[TOC]</p>
-<h2>为一种文件格式编写读取</h2>
-<p><code>Reader</code> 用于从文件中读取记录。TensorFlow 中已经有一些预建好的读取操作样例：</p>
+<h2>为文件格式编写一个数据集</h2>
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
 <ul>
-<li><a href="https://www.tensorflow.org/api_docs/python/tf/TFRecordReader"><code>tf.TFRecordReader</code></a></li>
-<li><a href="https://www.tensorflow.org/api_docs/python/tf/FixedLengthRecordReader"><code>tf.FixedLengthRecordReader</code></a></li>
-<li><a href="https://www.tensorflow.org/api_docs/python/tf/TextLineReader"><code>tf.TextLineReader</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/FixedLengthRecordDataset"><code>tf.data.FixedLengthRecordDataset</code></a></li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TextLineDataset"><code>tf.data.TextLineDataset</code></a></li>
 </ul>
-<p>这些操作暴露的都是一样的接口，唯一的区别在于构造函数不同。最重要的方法是 <code>read</code>。它需要一个队列参数，用于在需要文件名时读取文件名（例如：当 <code>read</code> 操作第一次运行，或者从文件读取最后一条记录时）。它会产生两个标量 tensor：一个字符串键和一个字符串值。</p>
-<p>要创建新的名为 <code>SomeReader</code> 的读取操作，你需要：</p>
+<p>每个实现包含了三个相关的类：</p>
+<ul>
+<li><p>一个 <code>tensorflow::DatasetOpKernel</code> 的子类 （如 <code>TextLineDatasetOp</code>），这个类的 <code>MakeDataset()</code> 方法告诉 TensorFlow 怎样根据一个操作的输入和属性生成一个数据集的对象。</p>
+</li>
+<li><p>一个 <code>tensorflow::GraphDatasetBase</code> 的子类（如 <code>TextLineDatasetOp::Dataset</code>），表示数据集的<strong>不可变性</strong>定义，这个类的 <code>MakeIterator()</code> 方法告诉 TensorFlow 怎样在数据集上生成迭代器对象。</p>
+</li>
+<li><p>一个 <code>tensorflow::DatasetIterator&lt;Dataset&gt;</code> 的子类（如 <code>TextLineDatasetOp::Dataset::Iterator</code>），表示特定数据集上的迭代器的<strong>可变性</strong>，这个类的 <code>GetNextInternal()</code> 方法告诉 TensorFlow 怎样获取迭代器的下一个元素。</p>
+</li>
+</ul>
+<p>其中最重要的方法是 <code>GetNextInternal()</code>，因为它定义了怎样从文件中实际读取记录，并用一个或多个 <code>Tensor</code> 对象来表示它们。</p>
+<p>创建一个新的阅读器数据集叫做（比方说）<code>MyReaderDataset</code>，你需要：</p>
 <ol>
-<li> 在 C++ 中，定义<a href="https://www.tensorflow.org/code/tensorflow/core/framework/reader_base.h"><code>tensorflow::ReaderBase</code></a> 的子类 <code>SomeReader</code>。</li>
-<li> 在 C++ 中，使用 <code>"SomeReader"</code> 注册一个新的读取操作和内核。</li>
-<li><a href="https://www.tensorflow.org/api_docs/python/tf/ReaderBase"><code>tf.ReaderBase</code></a></li>
+<li>在 C++ 中定义 <code>tensorflow::DatasetOpKernel</code>、<code>tensorflow::GraphDatasetBase</code> 和 <code>tensorflow::DatasetIterator&lt;Dataset&gt;</code> 的子类来实现读取逻辑。</li>
+<li>在 C++ 中注册一个新的名叫 <code>"MyReaderDataset"</code> 的阅读器操作和内核。</li>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></li>
 </ol>
-<p>你可以把所有的 C++ 代码放到 <code>tensorflow/core/user_ops/some_reader_op.cc</code> 这个文档中。用于读取文件的代码会运行在 C++ <code>ReaderBase</code> 类的子类中，这个类被定义在 <a href="https://www.tensorflow.org/code/tensorflow/core/framework/reader_base.h"><code>tensorflow/core/kernels/reader_base.h</code></a>。你需要实现以下方法：</p>
-<ul>
-<li>  <code>OnWorkStartedLocked</code>：打开下一个文件</li>
-<li>  <code>ReadLocked</code>：读取记录或者抛出 EOF /错误</li>
-<li>  <code>OnWorkFinishedLocked</code>：关闭当前文件，并</li>
-<li>  <code>ResetLocked</code>：清除状态，例如在抛出一个错误后</li>
-</ul>
-<p>这些以“Locked”结尾的方法在调用前，由于 <code>ReaderBase</code> 保证获取到互斥锁，因此你通常不必担心线程安全（尽管这种方式只会保护此类中的成员，而不是全局状态）。</p>
-<p>对于 <code>OnWorkStartedLocked</code> 方法，要打开的文件名是 <code>current_work()</code> 方法的返回值。<code>ReadLocked</code> 声明如下：</p>
-<pre><code class="lang-c++">Status ReadLocked(string* key, string* value, bool* produced, bool* at_end)
-</code></pre>
-<p>如果 <code>ReadLocked</code> 成功地从文件中读取到了一个记录，则返回：</p>
-<ul>
-<li>  <code>*key</code>：记录标识符，可以使用它再次查找此记录。你可以将 <code>current_work()</code> 返回的文件名包含其中，并附上一个记录编码或者其他任何内容。</li>
-<li>  <code>*value</code>：记录的内容。</li>
-<li>  <code>*produced</code>：设定为 <code>true</code>。</li>
-</ul>
-<p>如果你到达了文件结尾（EOF），设置 <code>*at_end</code> 为 <code>true</code>。在任何情况下，返回 <code>Status::OK()</code>。如果出现错误，只需使用 <a href="https://www.tensorflow.org/code/tensorflow/core/lib/core/errors.h"><code>tensorflow/core/lib/core/errors.h</code></a> 中的一个助手函数返回它，而不用修改其他参数。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./extend/adding_an_op.html">添加一个新操作（Op）</a></p>
-<ul>
-<li>  注册操作。</li>
-<li>  定义并注册一个 <code>OpKernel</code>。</li>
-</ul>
-<p>要注册这个操作，你需要使用在 <a href="https://www.tensorflow.org/code/tensorflow/core/framework/op.h"><code>tensorflow/core/framework/op.h</code></a> 中定义的 <code>REGISTER_OP</code> 调用。读取操作不接受任何输入，并且总会有一个 <code>resource</code> 类型的输出。它应有字符串类型的 <code>container</code> 和 <code>shared_name</code> 属性。你可以选择为配置或在 <code>Doc</code> 中包含文档定义其他属性。有关示例，请参见 <a href="https://www.tensorflow.org/code/tensorflow/core/ops/io_ops.cc"><code>tensorflow/core/ops/io_ops.cc</code></a> ，例如：</p>
-<pre><code class="lang-c++">#include &quot;tensorflow/core/framework/op.h&quot;
+<pre><code class="lang-c++">#include &quot;tensorflow/core/framework/common_shape_fns.h&quot;
+#include &quot;tensorflow/core/framework/dataset.h&quot;
+#include &quot;tensorflow/core/framework/op.h&quot;
+#include &quot;tensorflow/core/framework/shape_inference.h&quot;
 
-REGISTER_OP(&quot;TextLineReader&quot;)
-    .Output(&quot;reader_handle: resource&quot;)
-    .Attr(&quot;skip_header_lines: int = 0&quot;)
-    .Attr(&quot;container: string = &#39;&#39;&quot;)
-    .Attr(&quot;shared_name: string = &#39;&#39;&quot;)
+namespace tensorflow {
+namespace {
+
+class MyReaderDatasetOp : public DatasetOpKernel {
+ public:
+
+  MyReaderDatasetOp(OpKernelConstruction* ctx) : DatasetOpKernel(ctx) {
+    // 用 `ctx-&gt;GetAttr()` 解析并验证定义数据集的属性，并把它们存在成员变量中。
+  }
+
+  void MakeDataset(OpKernelContext* ctx, DatasetBase** output) override {
+    // 用 `ctx-&gt;input()` 或者通用函数 `ParseScalarArgument&lt;T&gt;(ctx, &amp;arg)` 解析并验证定义数据集的输入张量。
+
+    // 创建数据集对象，并根据属性或输入张量传入（已经验证的）参数。
+    *output = new Dataset(ctx);
+  }
+
+ private:
+  class Dataset : public GraphDatasetBase {
+   public:
+    Dataset(OpKernelContext* ctx) : GraphDatasetBase(ctx) {}
+
+    std::unique_ptr&lt;IteratorBase&gt; MakeIterator(
+        const string&amp; prefix) const override {
+      return std::unique_ptr&lt;IteratorBase&gt;(
+          new Iterator({this, strings::StrCat(prefix, &quot;::MyReader&quot;)}));
+    }
+
+    // 记录结构：每个记录用一个零阶字符串张量表示。
+    //
+    // 数据集的元素有固定数量的组件，每个组件有不同的类型和形状；重写以下两个方法来自定义数据集的这方面的设置。
+    const DataTypeVector&amp; output_dtypes() const override {
+      static DataTypeVector* dtypes = new DataTypeVector({DT_STRING});
+      return *dtypes;
+    }
+    const std::vector&lt;PartialTensorShape&gt;&amp; output_shapes() const override {
+      static std::vector&lt;PartialTensorShape&gt;* shapes =
+          new std::vector&lt;PartialTensorShape&gt;({{}});
+      return *shapes;
+    }
+
+    string DebugString() override { return &quot;MyReaderDatasetOp::Dataset&quot;; }
+
+   protected:
+    // 可选：数据集的 `GraphDef` 序列化。
+    //
+    // 如果你想保存这个数据集（和它上面的所有迭代器）的实例，实现以下这个方法。
+    Status AsGraphDefInternal(DatasetGraphDefBuilder* b,
+                              Node** output) const override {
+      // 使用 `b-&gt;AddScalar()` 和 `b-&gt;AddVector()` 来从这个对象的成员变量构建代表输入张量的节点。
+      std::vector&lt;Node*&gt; input_tensors;
+      TF_RETURN_IF_ERROR(b-&gt;AddDataset(this, input_tensors, output));
+      return Status::OK();
+    }
+
+   private:
+    class Iterator : public DatasetIterator&lt;Dataset&gt; {
+     public:
+      explicit Iterator(const Params&amp; params)
+          : DatasetIterator&lt;Dataset&gt;(params), i_(0) {}
+
+      // 读取逻辑的实现。
+      //
+      // 这个文件中的示例实现产生十次 『MyReader!』 字符串。总的来讲有以下三种情况：
+      // 1. 如果成功读取一个元素，在 `*out_tensors` 中将它储存为一个或多个张量，设置 `*end_of_sequence = false` 并返回 `Status::OK()`。
+      // 2. 如果到达输入的结尾，设置 `*end_of_sequence = true` 并返回 `Status::OK()`。
+      // 3. 如果发生了一个错误，通过 &quot;tensorflow/core/lib/core/errors.h&quot; 中的帮助函数返回一个错误状态。
+      Status GetNextInternal(IteratorContext* ctx,
+                             std::vector&lt;Tensor&gt;* out_tensors,
+                             bool* end_of_sequence) override {
+        // 注意：`GetNextInternal()` 可能会被并发调用，所以推荐用一个互斥量来保护迭代器的状态。
+        mutex_lock l(mu_);
+        if (i_ &lt; 10) {
+          // 创建一个零阶字符串张量并把它添加到输出中。
+          Tensor record_tensor(ctx-&gt;allocator({}), DT_STRING, {});
+          record_tensor.scalar&lt;string&gt;()() = &quot;MyReader!&quot;;
+          out_tensors-&gt;emplace_back(std::move(record_tensor));
+          ++i_;
+          *end_of_sequence = false;
+        } else {
+          *end_of_sequence = true;
+        }
+        return Status::OK();
+      }
+
+     protected:
+      // 可选：迭代器的状态序列化。
+      //
+      // 如果你想保存和恢复这个迭代器的实例，实现以下两个方法。
+      Status SaveInternal(IteratorStateWriter* writer) override {
+        mutex_lock l(mu_);
+        TF_RETURN_IF_ERROR(writer-&gt;WriteScalar(full_name(&quot;i&quot;), i_));
+        return Status::OK();
+      }
+      Status RestoreInternal(IteratorContext* ctx,
+                             IteratorStateReader* reader) override {
+        mutex_lock l(mu_);
+        TF_RETURN_IF_ERROR(reader-&gt;ReadScalar(full_name(&quot;i&quot;), &amp;i_));
+        return Status::OK();
+      }
+
+     private:
+      mutex mu_;
+      int64 i_ GUARDED_BY(mu_);
+    };
+  };
+};
+
+// 为 MyReaderDataset 注册操作定义。
+//
+// 数据集操作通常只有一个类型为 `variant` 的输出，代表结构化的 `Dataset` 对象。
+//
+// 在这里添加定义数据集的属性和输入张量。
+REGISTER_OP(&quot;MyReaderDataset&quot;)
+    .Output(&quot;handle: variant&quot;)
     .SetIsStateful()
-    .SetShapeFn(shape_inference::ScalarShape)
-    .Doc(R&quot;doc(
-A Reader that outputs the lines of a file delimited by &#39;\n&#39;.
-)doc&quot;);
+    .SetShapeFn(shape_inference::ScalarShape);
+
+// 为 MyReaderDataset 注册核心实现。
+REGISTER_KERNEL_BUILDER(Name(&quot;MyReaderDataset&quot;).Device(DEVICE_CPU),
+                        MyReaderDatasetOp);
+
+}  // 命名空间
+}  // 命名空间 tensorflow
 </code></pre>
-<p>读取操作可以使用 <code>ReaderOpKernel</code>（<a href="https://www.tensorflow.org/code/tensorflow/core/framework/reader_op_kernel.h"><code>tensorflow/core/framework/reader_op_kernel.h</code></a>）中的快捷方式来定义一个 <code>OpKernel</code>。定义完类后，你需要使用 <code>REGISTER_KERNEL_BUILDER(...)</code> 注册它。一个没有参数的样例：</p>
-<pre><code class="lang-c++">#include &quot;tensorflow/core/framework/reader_op_kernel.h&quot;
+<p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
+<pre><code class="lang-python">import tensorflow as tf
 
-class TFRecordReaderOp : public ReaderOpKernel {
- public:
-  explicit TFRecordReaderOp(OpKernelConstruction* context)
-      : ReaderOpKernel(context) {
-    Env* env = context-&gt;env();
-    SetReaderFactory([this, env]() { return new TFRecordReader(name(), env); });
-  }
-};
+# 假设文件在当前工作目录下。
+my_reader_dataset_module = tf.load_op_library(&quot;./my_reader_dataset_op.so&quot;)
 
-REGISTER_KERNEL_BUILDER(Name(&quot;TFRecordReader&quot;).Device(DEVICE_CPU),
-                        TFRecordReaderOp);
+class MyReaderDataset(tf.data.Dataset):
+
+  def __init__(self):
+    super(MyReaderDataset, self).__init__()
+    # 将输入属性或张量作为类的成员变量创建。
+
+  def _as_variant_tensor(self):
+    # 为数据集操作构建图形节点
+    #
+    # 当你在这个数据集或者由它衍生出来的数据集上创建一个迭代器时，
+    # 这个方法会被调用。
+    return my_reader_dataset_module.my_reader_dataset()
+
+  # 以下属性定义了元素的结构：一个零阶 `tf.string` 张量。
+  # 如果你修改了元素的结构，也需要修改这些属性
+  # 来与 `MyReaderDataset::Dataset` 中
+  # 的 `output_dtypes()` 和 `output_shapes()` 匹配。
+  @property
+  def output_types(self):
+    return tf.string
+
+  @property
+  def output_shapes(self):
+    return tf.TensorShape([])
+
+  @property
+  def output_classes(self):
+    return tf.Tensor
+
+if __name__ == &quot;__main__&quot;:
+  # 创建一个 MyReaderDataset 并打印它的元素。
+  with tf.Session() as sess:
+    iterator = MyReaderDataset().make_one_shot_iterator()
+    next_element = iterator.get_next()
+    try:
+      while True:
+        print(sess.run(next_element))  # 打印十次 『MyReader!』。
+    except tf.errors.OutOfRangeError:
+      pass
 </code></pre>
-<p>一个有参数的样例：</p>
-<pre><code class="lang-c++">#include &quot;tensorflow/core/framework/reader_op_kernel.h&quot;
-
-class TextLineReaderOp : public ReaderOpKernel {
- public:
-  explicit TextLineReaderOp(OpKernelConstruction* context)
-      : ReaderOpKernel(context) {
-    int skip_header_lines = -1;
-    OP_REQUIRES_OK(context,
-                   context-&gt;GetAttr(&quot;skip_header_lines&quot;, &amp;skip_header_lines));
-    OP_REQUIRES(context, skip_header_lines &gt;= 0,
-                errors::InvalidArgument(&quot;skip_header_lines must be &gt;= 0 not &quot;,
-                                        skip_header_lines));
-    Env* env = context-&gt;env();
-    SetReaderFactory([this, skip_header_lines, env]() {
-      return new TextLineReader(name(), skip_header_lines, env);
-    });
-  }
-};
-
-REGISTER_KERNEL_BUILDER(Name(&quot;TextLineReader&quot;).Device(DEVICE_CPU),
-                        TextLineReaderOp);
-</code></pre>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./extend/adding_an_op.html#building_the_op_library">添加一个新操作（Op）</a></p>
-<pre><code class="lang-python">from tensorflow.python.framework import ops
-from tensorflow.python.ops import common_shapes
-from tensorflow.python.ops import io_ops
-
-class SomeReader(io_ops.ReaderBase):
-
-    def __init__(self, name=None):
-        rr = gen_user_ops.some_reader(name=name)
-        super(SomeReader, self).__init__(rr)
-
-
-ops.NotDifferentiable(&quot;SomeReader&quot;)
-</code></pre>
-<p>你可以在 <a href="https://www.tensorflow.org/code/tensorflow/python/ops/io_ops.py"><code>tensorflow/python/ops/io_ops.py</code></a> 中查看一些样例。</p>
-<h2>为记录格式编写操作</h2>
+<p>你可以在 <a href="https://www.tensorflow.org/code/tensorflow/python/data/ops/dataset_ops.py"><code>tensorflow/python/data/ops/dataset_ops.py</code></a> 中找到一些 <code>Dataset</code> 封装类的例子。</p>
+<h2>为记录格式写一个操作</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./extend/adding_an_op.html">添加一个新操作（Op）</a></p>
-<p>用于解码记录的操作示例：</p>
+<p>列几个对解码记录有帮助的操作：</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/parse_example"><code>tf.parse_example</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></li>
@@ -190,7 +287,7 @@ ops.NotDifferentiable(&quot;SomeReader&quot;)
     </div>
 </footer>
 <script>
-    var contributors = [{'徐键': ''}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'sisibeloved': 'https://avatars0.githubusercontent.com/u/9612053?v=4'}, {'lgy': ''}, {'徐键': ''}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 </body>

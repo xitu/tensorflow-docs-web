@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -55,8 +55,8 @@
 <p>运行这个教程的代码：</p>
 <ol>
 <li><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></li>
-<li>下载<a href="https://github.com/tensorflow/models/tree/master/tutorials/rnn/quickdraw/train_model.py">教程代码</a>.</li>
-<li><p><a href="http://download.tensorflow.org/data/quickdraw_tutorial_dataset_v1.tar.gz">下载</a> <code>TFRecord</code> 格式的<a href="#下载数据">数据</a> 并解压。更多细节请参考<a href="#可选：下载整个 Quick Draw 数据">可选：下载整个 Quick Draw 数据</a> 以及<a href="可选：数据转换">如何转换原始 Quick, Draw! 数据</a>。</p>
+<li>下载<a href="https://github.com/tensorflow/models/tree/master/tutorials/rnn/quickdraw/train_model.py">教程代码</a>。</li>
+<li><p><a href="http://download.tensorflow.org/data/quickdraw_tutorial_dataset_v1.tar.gz">下载</a> <code>TFRecord</code> 格式的<a href="#下载数据">数据</a> 并解压。更多细节请参考<a href="#可选下载整个-quick-draw-数据">可选：下载整个 Quick Draw 数据</a> 以及<a href="#可选数据转换">如何转换原始 Quick, Draw! 数据</a>。</p>
 </li>
 <li><p>使用一下命令可以执行教程代码，并训练教程中描述的 RNN 模型。请自行填写在第三步中放置的解压好的数据路径。</p>
 </li>
@@ -91,11 +91,11 @@ gsutil -m cp &quot;gs://quickdraw_dataset/full/simplified/*&quot; .
 </code></pre>
 <p>这个将下载大约 23GB 数据并持续很长一段时间。</p>
 <h3>可选：数据转换</h3>
-<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/python_io.html#tfrecords_format_details">Data IO (Python functions)</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/python_io.html#TFRecords_Format_Details">Data IO (Python functions)</a></p>
 <pre><code class="lang-shell">   python create_dataset.py --ndjson_path rnn_tutorial_data \
       --output_path rnn_tutorial_data
 </code></pre>
-<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/python_io.html#tfrecords_format_details">Data IO (Python functions)</a></p>
+<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/python_io.html#TFRecords_Format_Details">Data IO (Python functions)</a></p>
 <p>下面描述更为详细的转换过程。</p>
 <p>原始的 QuickDraw 数据格式为 <code>.ndjson</code>，每行包含一个 JSON 对象，例如：</p>
 <pre><code class="lang-json">{&quot;word&quot;:&quot;cat&quot;,

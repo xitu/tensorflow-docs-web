@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,34 +40,32 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装 TensorFlow C 语言版'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装适用于 C 的 TensorFlow'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>安装 TensorFlow for Java</h1>
 <p>TensorFlow 为 Java 程序提供了 API 。这些 API 是在 Java 应用中专门用来加载和执行 Python 创建的模型的。这个教程解释了如何安装并在应用中使用<br>
 <a href="https://www.tensorflow.org/api_docs/java/reference/org/tensorflow/package-summary">TensorFlow for Java</a><br>
 。</p>
-<p>警告：TensorFlow 的 Java API <strong>不</strong>包含在 <a href="https://www.tensorflow.org/programmers_guide/version_semantics">TensorFlow API 稳定性保证</a>中。</p>
+<p>警告：TensorFlow 的 Java API 不包含在 <a href="https://www.tensorflow.org/programmers_guide/version_semantics">TensorFlow API 稳定性保证</a>中。</p>
 <h2>支持平台</h2>
-<p>This guide explains how to install TensorFlow for Java.  Although these instructions might also work on other variants, we have only tested (and we only support) these instructions on machines meeting the following requirements:</p>
+<p>本指南介绍如何安装适用于 Java 的 TensorFlow。虽然这些说明可能也适用于其他配置，但我们只在满足以下要求的计算机上验证过这些说明（而且我们只支持在此类计算机上按这些说明操作）：</p>
 <ul>
-<li>Ubuntu 16.04 or higher; 64-bit, x86</li>
-<li>macOS X 10.11 (El Capitan) or higher</li>
-<li>Windows 7 or higher; 64-bit, x86</li>
+<li>Ubuntu 16.04 或更高版本；64 位、x86</li>
+<li>macOS X 10.11 (El Capitan) 或更高版本</li>
+<li>Windows 7 或更高版本；64 位、x86</li>
 </ul>
-<p>Android 上的安装说明在单独的<br>
-<a href="https://www.tensorflow.org/code/tensorflow/contrib/android">Android TensorFlow 支持页</a><br>
-中。在安装完成后，请查看这个 Android 上 TensorFlow 的<br>
-<a href="https://www.tensorflow.org/code/tensorflow/examples/android">完整示例</a>。</p>
+<p>Android 上的安装说明在单独的 <a href="https://www.tensorflow.org/code/tensorflow/contrib/android">Android TensorFlow 支持页面</a>中。在安装完成后，请查看这个适用于 Android 的<a href="https://www.tensorflow.org/code/tensorflow/examples/android">完整 TensorFlow 示例</a>。</p>
 <h2>在 Maven 项目中使用 TensorFlow</h2>
 <p>如果你的项目使用了 <a href="https://maven.apache.org">Apache Maven</a>，为了使用 TensorFlow Java API ，<br>
 在项目的 <code>pom.xml</code> 中加入以下内容即可：</p>
 <pre><code class="lang-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
   &lt;artifactId&gt;tensorflow&lt;/artifactId&gt;
-  &lt;version&gt;1.6.0&lt;/version&gt;
+  &lt;version&gt;1.8.0-rc1&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
+<p>就这么简单。</p>
 <h3>示例</h3>
 <p>例如，这些步骤将创建一个使用 TensorFlow 的 Maven 项目：</p>
 <ol>
@@ -89,69 +87,66 @@
            &lt;dependency&gt;
              &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
              &lt;artifactId&gt;tensorflow&lt;/artifactId&gt;
-             &lt;version&gt;1.6.0&lt;/version&gt;
+             &lt;version&gt;1.8.0-rc1&lt;/version&gt;
            &lt;/dependency&gt;
          &lt;/dependencies&gt;
      &lt;/project&gt;
 </code></pre>
 <ol>
-<li>创建源文件（<code>src/main/java/HelloTF.java</code>）：</li>
-</ol>
-<pre><code>    import org.tensorflow.Graph;
-    import org.tensorflow.Session;
-    import org.tensorflow.Tensor;
-    import org.tensorflow.TensorFlow;
+<li><p>创建源文件（<code>src/main/java/HelloTF.java</code>）：</p>
+<pre><code>   import org.tensorflow.Graph;
+   import org.tensorflow.Session;
+   import org.tensorflow.Tensor;
+   import org.tensorflow.TensorFlow;
 
-    public class HelloTF {
-      public static void main(String[] args) throws Exception {
-        try (Graph g = new Graph()) {
-          final String value = "Hello from " + TensorFlow.version();
+   public class HelloTF {
+     public static void main(String[] args) throws Exception {
+       try (Graph g = new Graph()) {
+         final String value = "Hello from " + TensorFlow.version();
 
-          // 使用一个简单操作、一个名为 "MyConst" 的常数和一个值 "value" 来构建计算图。
-          try (Tensor t = Tensor.create(value.getBytes("UTF-8"))) {
-            // Java API 目前还不包含足够方便的函数来执行“加”操作。
-            g.opBuilder("Const", "MyConst").setAttr("dtype", t.dataType()).setAttr("value", t).build();
-          }
+         // 使用一个简单操作、一个名为 "MyConst" 的常数和一个值 "value" 来构建计算图。
+         try (Tensor t = Tensor.create(value.getBytes("UTF-8"))) {
+           // Java API 目前还不包含足够方便的函数来执行“加”操作。
+           g.opBuilder("Const", "MyConst").setAttr("dtype", t.dataType()).setAttr("value", t).build();
+         }
 
-          // 在一个 Session 中执行 "MyConst" 操作。
-          try (Session s = new Session(g);
-               Tensor output = s.runner().fetch("MyConst").run().get(0)) {
-            System.out.println(new String(output.bytesValue(), "UTF-8"));
-          }
-        }
-      }
-    }
+         // 在一个 Session 中执行 "MyConst" 操作。
+         try (Session s = new Session(g);
+              Tensor output = s.runner().fetch("MyConst").run().get(0)) {
+           System.out.println(new String(output.bytesValue(), "UTF-8"));
+         }
+       }
+     }
+   }
 </code></pre>
-<ol>
+</li>
 <li><p>编译并执行：</p>
-<pre> # 使用 -q 来隐藏 mvn 工具的日志
+<pre>
+# 使用 -q 来隐藏 mvn 工具的日志
 <b>mvn -q compile exec:java</b></pre></li>
 </ol>
-<p>前面的这条命令应该输出 <tt>Hello from <i>version</i></tt> 。 如果成功输出，那么你就已经成功地安装了 TensorFlow for Java 并且可以在Maven 项目中使用它。如果没有成功，请前往<br>
-<a href="http://stackoverflow.com/questions/tagged/tensorflow">Stack Overflow</a><br>
-搜索可能的解决方案。你可以跳过阅读本文档的其余部分。</p>
+<p>前面的这条命令应该输出 <tt>Hello from <i>version</i></tt>。 如果成功输出，那么你就已经成功地安装了 TensorFlow for Java 并且可以在 Maven 项目中使用它。如果没有成功，请前往 <a href="http://stackoverflow.com/questions/tagged/tensorflow">Stack Overflow</a> 查找可行的解决方案。你可以跳过本文档的其余部分。</p>
 <h3>GPU support</h3>
-<p>If your Linux system has an NVIDIA® GPU and your TensorFlow Java program requires GPU acceleration, then add the following to the project's <code>pom.xml</code> instead:</p>
+<p>如果您的 Linux 系统搭载了 NVIDIA® GPU 且您的 TensorFlow Java 程序需要 GPU 加速，请将以下内容添加到项目的 <code>pom.xml</code>：</p>
 <pre><code class="lang-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
   &lt;artifactId&gt;libtensorflow&lt;/artifactId&gt;
-  &lt;version&gt;1.6.0&lt;/version&gt;
+  &lt;version&gt;1.8.0-rc1&lt;/version&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.tensorflow&lt;/groupId&gt;
   &lt;artifactId&gt;libtensorflow_jni_gpu&lt;/artifactId&gt;
-  &lt;version&gt;1.6.0&lt;/version&gt;
+  &lt;version&gt;1.8.0-rc1&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./install/install_linux.html#determine_which_tensorflow_to_install">在 Ubuntu 上安装 TensorFlow</a></p>
-<h2>在 JDK 下使用 TensorFlow</h2>
+<h2>在 JDK 中使用 TensorFlow</h2>
 <p>这一节将介绍如何使用 JDK 安装得到的 java 和 javac 命令来使用 TensorFlow。如果你的项目中使用了 Apache Maven，请参考使用上一节更简单的安装方法。</p>
 <h3>在 Linux 或 macOS 上安装</h3>
 <p>采取以下步骤在 Linux 或 macOS 上安装 TensorFlow for Java：</p>
 <ol>
 <li><p>下载<br>
-<a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.6.0.jar">libtensorflow.jar</a>，<br>
-它是 TensorFlow Java Archive (JAR)。</p>
+<a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.8.0-rc1.jar">libtensorflow.jar</a>，它是 TensorFlow Java Archive (JAR)。</p>
 </li>
 <li><p>决定你要只在 CPU 上运行 TensorFlow for Java 还是要在 GPU 的协助下运行。为了帮助您决定，请阅读以下指南中标题为“决定要安装哪个 TensorFlow”的部分：</p>
 <ul>
@@ -166,16 +161,14 @@
      OS=$(uname -s | tr '[:upper:]' '[:lower:]')
      mkdir -p ./jni
      curl -L \
-       "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-${TF_TYPE}-${OS}-x86_64-1.6.0.tar.gz" |
+       "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-${TF_TYPE}-${OS}-x86_64-1.8.0-rc1.tar.gz" |
        tar -xz -C ./jni
 </code></pre>
 <h3>在 Windows 上安装</h3>
 <p>用如下几步在 Windows 上安装 TensorFlow for Java ：</p>
 <ol>
-<li>下载<br>
-<a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.6.0.jar">libtensorflow.jar</a>，<br>
-它是 TensorFlow Java Archive (JAR)。</li>
-<li>下载适合 Windows 上的 TensorFlow for Java 的 <a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-cpu-windows-x86_64-1.6.0.zip">Java Native Interface (JNI) 文件</a>。</li>
+<li>下载 <a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-1.8.0-rc1.jar">libtensorflow.jar</a>，它是 TensorFlow Java Archive (JAR)。</li>
+<li>下载适合 Windows 上的 TensorFlow for Java 的 <a href="https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow_jni-cpu-windows-x86_64-1.8.0-rc1.zip">Java Native Interface (JNI) 文件</a>。</li>
 <li>解压此 .zip 文件。</li>
 </ol>
 <h3>验证安装</h3>
@@ -208,7 +201,7 @@ public class HelloTF {
 <p>并使用以下命令来编译并运行 <code>HelloTF.java</code> 。</p>
 <h3>编译</h3>
 <p>在编译一个使用 TensorFlow 的 Java 程序时，下载的 <code>.jar</code> 文件必须在你的 <code>classpath</code> 中。例如，你可以通过使用类似如下的指令，使用编译标志 <code>-cp</code> 将下载的 <code>.jar</code> 文件包含在你的 <code>classpath</code> 中：</p>
-<pre><b>javac -cp libtensorflow-1.6.0.jar HelloTF.java</b></pre><h3>运行</h3>
+<pre><b>javac -cp libtensorflow-1.8.0-rc1.jar HelloTF.java</b></pre><h3>运行</h3>
 <p>要运行依赖 TensorFlow 的 Java 程序，保证下面的<br>
 两个文件对于 JVM 来说可用：</p>
 <ul>
@@ -216,18 +209,12 @@ public class HelloTF {
 <li>提取出的 JNI 库</li>
 </ul>
 <p>例如，使用以下命令命令在 Linux 和 macOS X 上运行 <code>HelloTF</code> 程序：</p>
-<pre><b>java -cp libtensorflow-1.6.0.jar:. -Djava.library.path=./jni HelloTF</b></pre><p>使用以下命令在 Windows 上运行 <code>HelloTF</code> 程序：</p>
-<pre><b>java -cp libtensorflow-1.6.0.jar;. -Djava.library.path=jni HelloTF</b></pre><p>如果程序打印出 <tt>Hello from <i>version</i></tt>，说明你已经成功地安装了 TensorFlow for Java 并且可以使用 API 了。<br>
-如果程序输出了其他内容，请查阅<br>
-<a href="http://stackoverflow.com/questions/tagged/tensorflow">Stack Overflow</a><br>
-以寻找解决方案。</p>
+<pre><b>java -cp libtensorflow-1.8.0-rc1.jar:. -Djava.library.path=./jni HelloTF</b></pre><p>使用以下命令在 Windows 上运行 <code>HelloTF</code> 程序：</p>
+<pre><b>java -cp libtensorflow-1.8.0-rc1.jar;. -Djava.library.path=jni HelloTF</b></pre><p>如果程序打印出 <tt>Hello from <i>version</i></tt>，说明你已经成功地安装了 TensorFlow for Java 并且可以使用 API 了。如果程序输出了其他内容，请访问  <a href="http://stackoverflow.com/questions/tagged/tensorflow">Stack Overflow</a> 查找可行的解决方案。</p>
 <h3>高级示例</h3>
-<p>有关更复杂的示例，请参考<br>
-<a href="https://www.tensorflow.org/code/tensorflow/java/src/main/java/org/tensorflow/examples/LabelImage.java">LabelImage.java</a>，它可以识别图像中的物体。</p>
+<p>有关更复杂的示例，请参考 <a href="https://www.tensorflow.org/code/tensorflow/java/src/main/java/org/tensorflow/examples/LabelImage.java">LabelImage.java</a>，它可以识别图像中的物体。</p>
 <h2>从源代码构建</h2>
-<p>TensorFlow 是开源的。你可以根据这个<br>
-<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/README.md">单独的文档</a><br>
-中的指示从源代码编译 TensorFlow for Java。</p>
+<p>TensorFlow 是开源的。您可以按照<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/README.md">另一份文档</a>中的说明从 TensorFlow 源代码构建适用于 Java 的 TensorFlow。</p>
 
         </main>
     </div>

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -41,32 +41,32 @@
 <p>Monte Carlo integration and helpers.</p>
 <h2>Background</h2>
 <p>Monte Carlo integration refers to the practice of estimating an expectation with<br>
-a sample mean.  For example, given random variable <code>Z in R^k</code> with density <code>p</code>,<br>
+a sample mean.  For example, given random variable <code>Z in \\(R^k\\)</code> with density <code>p</code>,<br>
 the expectation of function <code>f</code> can be approximated like:</p>
-<pre><code>E_p[f(Z)] = \int f(z) p(z) dz
-          ~ S_n
-          := n^{-1} \sum_{i=1}^n f(z_i),  z_i iid samples from p.
+<pre><code>$$E_p[f(Z)] = \int f(z) p(z) dz$$
+$$          ~ S_n
+          := n^{-1} \sum_{i=1}^n f(z_i),  z_i\ iid\ samples\ from\ p.$$
 </code></pre>
-<p>If <code>E_p[|f(Z)|] &lt; infinity</code>, then <code>S_n --&gt; E_p[f(Z)]</code> by the strong law of large<br>
-numbers.  If <code>E_p[f(Z)^2] &lt; infinity</code>, then <code>S_n</code> is asymptotically normal with<br>
-variance <code>Var[f(Z)] / n</code>.</p>
+<p>If <code>\\(E_p[|f(Z)|] &lt; infinity\\)</code>, then <code>\\(S_n\\) --&gt; \\(E_p[f(Z)]\\)</code> by the strong law of large<br>
+numbers.  If <code>\\(E_p[f(Z)^2] &lt; infinity\\)</code>, then <code>\\(S_n\\)</code> is asymptotically normal with<br>
+variance <code>\\(Var[f(Z)] / n\\)</code>.</p>
 <p>Practitioners of Bayesian statistics often find themselves wanting to estimate<br>
-<code>E_p[f(Z)]</code> when the distribution <code>p</code> is known only up to a constant.  For<br>
+<code>\\(E_p[f(Z)]\\)</code> when the distribution <code>p</code> is known only up to a constant.  For<br>
 example, the joint distribution <code>p(z, x)</code> may be known, but the evidence<br>
-<code>p(x) = \int p(z, x) dz</code> may be intractable.  In that case, a parameterized<br>
-distribution family <code>q_lambda(z)</code> may be chosen, and the optimal <code>lambda</code> is the<br>
-one minimizing the KL divergence between <code>q_lambda(z)</code> and<br>
-<code>p(z | x)</code>.  We only know <code>p(z, x)</code>, but that is sufficient to find <code>lambda</code>.</p>
+<code>\\(p(x) = \int p(z, x) dz\\)</code> may be intractable.  In that case, a parameterized<br>
+distribution family <code>\\(q_\lambda(z)\\)</code> may be chosen, and the optimal <code>\\(\lambda\\)</code> is the<br>
+one minimizing the KL divergence between <code>\\(q_\lambda(z)\\)</code> and<br>
+<code>\\(p(z | x)\\)</code>.  We only know <code>p(z, x)</code>, but that is sufficient to find <code>\\(\lambda\\)</code>.</p>
 <h2>Log-space evaluation and subtracting the maximum</h2>
 <p>Care must be taken when the random variable lives in a high dimensional space.<br>
-For example, the naive importance sample estimate <code>E_q[f(Z) p(Z) / q(Z)]</code><br>
-involves the ratio of two terms <code>p(Z) / q(Z)</code>, each of which must have tails<br>
-dropping off faster than <code>O(|z|^{-(k + 1)})</code> in order to have finite integral.<br>
+For example, the naive importance sample estimate <code>\\(E_q[f(Z) p(Z) / q(Z)]\\)</code><br>
+involves the ratio of two terms <code>\\(p(Z) / q(Z)\\)</code>, each of which must have tails<br>
+dropping off faster than <code>\\(O(|z|^{-(k + 1)})\\)</code> in order to have finite integral.<br>
 This ratio would often be zero or infinity up to numerical precision.</p>
 <p>For that reason, we write</p>
-<pre><code>Log E_q[ f(Z) p(Z) / q(Z) ]
-   = Log E_q[ exp{Log[f(Z)] + Log[p(Z)] - Log[q(Z)] - C} ] + C,  where
-C := Max[ Log[f(Z)] + Log[p(Z)] - Log[q(Z)] ].
+<pre><code>$$Log E_q[ f(Z) p(Z) / q(Z) ]$$
+$$   = Log E_q[ \exp\{Log[f(Z)] + Log[p(Z)] - Log[q(Z)] - C\} ] + C,$$  where
+$$C := Max[ Log[f(Z)] + Log[p(Z)] - Log[q(Z)] ].$$
 </code></pre>
 <p>The maximum value of the exponentiated term will be 0.0, and the expectation<br>
 can be evaluated in a stable manner.</p>

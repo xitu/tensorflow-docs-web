@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -79,7 +79,7 @@ git checkout {version}
 <p>bottleneck 值计算完成后，网络的顶层训练才真正开始。你将看到一系列步骤的输出，每一条都会显示训练的精确度、验证的精确度以及交叉熵。</p>
 <p>训练准确性表示当前训练所用的图片被正确分类的百分比。验证的准确性指从另一个集合中随机选出的一组图片被正确分类的百分比。上面两个指标的关键差别在于，训练准确性的计算是依据网络已经学习过的那些图片，因此网络能够对训练数据中的噪声过拟合。衡量一个网络表现的真正标准应该是它在训练数据集之外的数据上的表现 -- 通过验证准确性这个指标来衡量。</p>
 <p>如果训练准确定很高，验证准确定却很低，说明网络过拟合了，它已经记住了训练图片的特有的特征，这无助于更加通用的识别。交叉熵是一个可以让我们一窥学习进行情况的损失函数。训练的目标是让这个损失函数的值尽可能的小，所以通过观察忽略短期噪声情况下损失函数是否趋势递减来判断学习过程的进行状况。</p>
-<p>默认情况下，这个脚本会执行 4000 次训练。每次训练会从训练集中随机选取 10 张图片，从缓存中找到它们的 bottleneck 值，把他们传给最后一层来获得预测结果。这些预测值随后会与真实的标签值进行比较，并通过反向传播过程优化最后一层的权重分布。</p>
+<p>默认情况下，这个脚本会执行 4000 次训练。每次训练会从训练集中随机选取 100 张图片，从缓存中找到它们的 bottleneck 值，把他们传给最后一层来获得预测结果。这些预测值随后会与真实的标签值进行比较，并通过反向传播过程优化最后一层的权重分布。</p>
 <p>随着这一过程的进行你会看到报告的准确性在提升，当所有的训练步骤完成后，会在一个独立于训练集和验证集的图片集合上进行最终的测试准确性评估。</p>
 <p>这个测试评估是对这个训练模型在分类任务中会如何表现的最好估测。你会看到一个介于 90% 和 95% 的准确性值，尽管每一次运行的确切值都不同，因为训练过程有随机性存在。</p>
 <p>这个值是模型训练完成后对测试图片集正确分类的比例。</p>

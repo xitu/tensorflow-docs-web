@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,15 +40,15 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装 TensorFlow C 语言版'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装适用于 C 的 TensorFlow'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>在 macOS 中安装 TensorFlow</h1>
-<p>This guide explains how to install TensorFlow on macOS. Although these instructions might also work on other macOS variants, we have only tested (and we only support) these instructions on machines meeting the following requirements:</p>
+<p>本指南介绍如何在 macOS 上安装 TensorFlow。虽然这些说明可能也适用于其他 macOS 版本，但我们只在满足以下要求的计算机上对这些说明中的内容进行过测试（并提供相关支持）：</p>
 <ul>
-<li>macOS X 10.11 (El Capitan) or higher</li>
+<li>macOS 10.12.6 (Sierra) 或更高</li>
 </ul>
-<p>注意：从 v1.2 开始，TensorFlow 不再为 macOS 提供 GPU 支持。</p>
+<p>注意: There are known, accuracy-affecting numerical issues before macOS 10.12.6 (Sierra) that are described in <a href="https://github.com/tensorflow/tensorflow/issues/15933#issuecomment-366331383">GitHub#15933</a>.</p>
 <h2>选择安装 TensorFlow 的方式</h2>
 <p>你必须选择使用哪种方式来安装 TensorFlow。有以下方式：</p>
 <ul>
@@ -107,10 +107,9 @@ $ <b>pip3 install --upgrade</b> <i>tfBinaryURL</i>  # Python 3.n </pre><p>其中
 找到你系统所对应的 <i>tfBinaryURL</i>。<br>
 例如，如果你要在安装了 Python 2.7 的 macOS 上安装 TensorFlow，那么可以执行下面的命令：</p>
 <pre> $ <b>pip3 install --upgrade \
-https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py3-none-any.whl</b></pre></li>
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.8.0rc1-py3-none-any.whl</b></pre></li>
 </ol>
-<p>如果你遇到了任何安装问题，请查看<br>
-<a href="#common-installation-problems">常见安装问题</a>.</p>
+<p>如果你遇到了任何安装问题，请查看<a href="#常见安装问题">常见安装问题</a>.</p>
 <h3>下一步</h3>
 <p>安装 TensorFlow 之后，你需要<br>
 <a href="#ValidateYourInstallation">验证安装</a><br>
@@ -163,7 +162,7 @@ $ <b>sudo pip3 install --upgrade</b> <i>tfBinaryURL</i>   # Python 3.n </pre><p>
 找到你系统所对应的 <i>tfBinaryURL</i>。<br>
 例如，如果你要在安装了 Python 2.7 的 macOS 上安装 TensorFlow，那么可以执行下面的命令：</p>
 <pre> $ <b>pip3 install --upgrade \
-https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py3-none-any.whl</b></pre></li>
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.8.0rc1-py3-none-any.whl</b></pre></li>
 </ol>
 <h3>下一步</h3>
 <p>TensorFlow 安装完成后，你应该<a href="#ValidateYourInstallation">验证安装</a>是否能使 TensorFlow 正确工作。</p>
@@ -188,17 +187,16 @@ $ <b>pip3 uninstall tensorflow</b> </pre><h2>通过 Docker 安装</h2>
 </li>
 <li><p><i>TensorFlowImage</i> 是必须的。它指定了你的 Docker 容器。你必须指定下面其中一个值：</p>
 <ul>
-<li><code>gcr.io/tensorflow/tensorflow</code>: TensorFlow 二进制镜像。</li>
-<li><code>gcr.io/tensorflow/tensorflow:latest-devel</code>: TensorFlow<br>
+<li><code>tensorflow/tensorflow</code>: TensorFlow 二进制镜像。</li>
+<li><code>tensorflow/tensorflow:latest-devel</code>: TensorFlow<br>
 二进制镜像和源代码。</li>
 </ul>
 </li>
 </ul>
-<p><code>gcr.io</code> 是谷歌容器仓库。注意，TensorFlow 镜像同样在 <a href="https://hub.docker.com/r/tensorflow/tensorflow/">dockerhub</a> 上可用。</p>
 <p>例如，下面的命令从 TensorFlow CPU 镜像启动了一个 Docker 容器，从而你可以在这个命令行里执行 TensorFlow 程序：</p>
-<pre>$ <b>docker run -it gcr.io/tensorflow/tensorflow bash</b></pre><p>下面的命令同样是从一个 TensorFlow CPU 的镜像启动的容器。然而在这个容器中，你还可以在 Jupyter notebook 里<br>
+<pre>$ <b>docker run -it tensorflow/tensorflow bash</b></pre><p>下面的命令同样是从一个 TensorFlow CPU 的镜像启动的容器。然而在这个容器中，你还可以在 Jupyter notebook 里<br>
 运行 TensorFlow 程序：</p>
-<pre>$ <b>docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow</b></pre><p>Docker 会在第一次启动容器时下载对应的镜像。</p>
+<pre>$ <b>docker run -it -p 8888:8888 tensorflow/tensorflow</b></pre><p>Docker 会在第一次启动容器时下载对应的镜像。</p>
 <h3>下一步</h3>
 <p>现在你应该<a href="#ValidateYourInstallation">验证安装</a>。</p>
 <h2>通过 Anaconda 安装</h2>
@@ -215,7 +213,7 @@ $ <b>pip3 uninstall tensorflow</b> </pre><h2>通过 Docker 安装</h2>
 <li><p>运行如下格式的命令来在你的 conda 环境中安装 TensorFlow：</p>
 <pre>(<i>targetDirectory</i>)<b>$ pip install --ignore-installed --upgrade</b> <i>TF_PYTHON_URL</i></pre><p>其中 <i>TF_PYTHON_URL</i>  是 <a href="#the_url_of_the_tensorflow_python_package">TensorFlow Python 包的 URL</a>。例如，如下命令安装了仅支持 CPU 的 Python 2.7 版本下的 TensorFlow：</p>
 <pre> (<i>targetDirectory</i>)$ <b>pip install --ignore-installed --upgrade \
-https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py2-none-any.whl</b></pre></li>
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.8.0rc1-py2-none-any.whl</b></pre></li>
 </ol>
 <p><a name="ValidateYourInstallation"></a></p>
 <h2>验证安装</h2>
@@ -232,7 +230,7 @@ https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py2-none-any.
 <li>如果你是使用 TensorFlow 源码进行的安装，请切换到除了包含 TensorFlow 源码的任意目录下。</li>
 </ol>
 <p>如果你使用 Docker 进行安装，启动一个运行 bash 的 Docker 容器，例如：</p>
-<pre>$ <b>docker run -it gcr.io/tensorflow/tensorflow bash</b></pre><h3>运行一个简短的 TensorFlow 程序</h3>
+<pre>$ <b>docker run -it tensorflow/tensorflow bash</b></pre><h3>运行一个简短的 TensorFlow 程序</h3>
 <p>在命令行中输入下面的命令调用 Python：</p>
 <pre>$ <b>python</b></pre><p>在 Python 交互命令行环境中输入下面的代码：</p>
 <pre><code class="lang-python"># Python
@@ -242,15 +240,17 @@ sess = tf.Session()
 print(sess.run(hello))
 </code></pre>
 <p>如果你的系统正确的输出了下面的内容，那么说明你已经正确安装了 TensorFlow：</p>
-<pre>Hello, TensorFlow!</pre><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html">TensorFlow 入门教程</a></p>
-<p>如果安装过程出现了错误，请看<a href="#common_installation_problems">常见安装问题</a></p>
+<pre>Hello, TensorFlow!</pre><p>如果安装过程出现了错误，请看<a href="#常见安装问题">常见安装问题</a></p>
+<p>如果你是机器学习的新手，我们推荐以下内容：</p>
+<ul>
+<li> <a href="https://developers.google.com/machine-learning/crash-course">机器学习速成课程</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html">Graph Execution 入门</a></li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html">Premade Estimators</a></p>
 <h2>常见安装问题</h2>
-<p>我们使用 Stack Overflow 来记录 TensorFlow 的安装问题及其解决方案。<br>
-下表列出了一些常见安装问题的 Stack Overflow 答案的链接。<br>
-如果你遇到下表中未列出的错误信息或其他安装问题，请在 Stack Overflow 中进行搜索。如果 Stack Overflow 没有相应的解决方案，请在 Stack Overflow 上询问一个有关它的新问题，并指定 <code>tensorflow</code> 标签。</p>
+<p>我们使用 Stack Overflow 来记录 TensorFlow 的安装问题及其解决方案。下表列出了一些常见安装问题的 Stack Overflow 答案的链接。如果你遇到下表中未列出的错误信息或其他安装问题，请在 Stack Overflow 中进行搜索。如果 Stack Overflow 没有相应的解决方案，请在 Stack Overflow 上询问一个有关它的新问题，并指定 <code>tensorflow</code> 标签。</p>
 <table>
 <tr> <th>Stack Overflow 链接</th> <th>错误消息</th> </tr>
-
 
 <tr>
   <td><a href="http://stackoverflow.com/q/42006320">42006320</a></td>
@@ -316,7 +316,6 @@ ImportError: cannot import name 'descriptor'</pre>
   </td>
 </tr>
 
-
 <tr>
   <td><a href="http://stackoverflow.com/q/42075397">42075397</a></td>
   <td>A <tt>pip install</tt> command triggers the following error:
@@ -333,39 +332,16 @@ Terminal window to review and agree to the Xcode license agreements.
 RuntimeError: Broken toolchain: cannot link a simple C program</pre>
 </td>
 
-
 </table><p><a name="TF_PYTHON_URL"></a></p>
 <h2>TensorFlow 的 Python 包的 URL</h2>
-<p>一些安装方法中需要 TensorFlow Python 包的 URL，你所声明的值取决下面两个因素：</p>
-<ul>
-<li>操作系统</li>
-<li>Python 版本</li>
-</ul>
-<p>这个部分记录了 maxOS 相关安装的 URL 值</p>
+<p>一些安装方法中需要 TensorFlow Python 包的 URL，你所声明的量取决于你的 Python 版本。</p>
 <h3>Python 2.7</h3>
 <pre>
-https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py2-none-any.whl
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.8.0rc1-py2-none-any.whl
 </pre><h3>Python 3.4、3.5 或 3.6</h3>
 <pre>
-https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py3-none-any.whl
-</pre><p><a name="Protobuf31"></a></p>
-<h2>Protobuf 3.1 的 pip 包</h2>
-<p>除非你遇到了与 protobuf pip package 相关的问题，否则你可以直接跳过该部分。</p>
-<p><strong>注意</strong>：如果你的 TensorFlow 程序运行速度很慢，你可能有一个和 protobuf pip package 相关的问题。</p>
-<p>TensorFlow pip 包依赖于 3.1 版本的 protobuf pip package。从 PyPI 下载的 protobuf pip package （使用<tt>pip install protobuf</tt> 命令） 是一个含有序列化、反序列化实现的纯 Python 库，可能比 C++ 的实现慢 <strong>10 到 50 倍</strong>。Protobuf 同时也支持针对 Python 包的一个二进制扩展，基于快速的 C++ 解析。这个扩展在纯 Python 的标准 pip 包中是没有的。我们已经创建了一个自定义的二进制 pip 包给含有二进制扩展的 protobuf。要安装自定义的二进制 protobuf pip package，执行如下的命令</p>
-<ul>
-<li><p>对应 Python 2.7：</p>
-<pre>$ <b>pip install --upgrade \
-https://storage.googleapis.com/tensorflow/mac/cpu/protobuf-3.1.0-cp27-none-macosx_10_11_x86_64.whl</b></pre></li>
-<li><p>对应 Python 3.n：</p>
-<pre>$ <b>pip3 install --upgrade \
-https://storage.googleapis.com/tensorflow/mac/cpu/protobuf-3.1.0-cp35-none-macosx_10_11_x86_64.whl</b></pre></li>
-</ul>
-<p>安装此 protobuf 包将覆盖现有的 protobuf 包，能够修复下面的错误（注意，二进制 pip 包已经支持大于 64MB 的 protobufs）：</p>
-<pre>[libprotobuf ERROR google/protobuf/src/google/protobuf/io/coded_stream.cc:207]
-A protocol message was rejected because it was too big (more than 67108864 bytes).
-To increase the limit (or to disable these warnings), see
-CodedInputStream::SetTotalBytesLimit() in google/protobuf/io/coded_stream.h.</pre>
+https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.8.0rc1-py3-none-any.whl
+</pre>
         </main>
     </div>
 </div>

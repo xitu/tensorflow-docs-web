@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -40,14 +40,14 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装 TensorFlow C 语言版'}]}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装适用于 C 的 TensorFlow'}]}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <h1>在 Windows 上安装 TensorFlow</h1>
-<p>This guide explains how to install TensorFlow on Windows. Although these instructions might also work on other Windows variants, we have only tested (and we only support) these instructions on machines meeting the following requirements:</p>
+<p>本指南将介绍如何在 Windows 上安装 TensorFlow。虽然这些说明可能也适用于其他 Windows 版本，但我们只在满足以下要求的计算机上验证过这些说明（而且我们只支持在此类计算机上按这些说明操作）：</p>
 <ul>
-<li>64-bit, x86 desktops or laptops</li>
-<li>Windows 7 or later</li>
+<li>64 位、x86 台式机或笔记本电脑</li>
+<li>Windows 7 或更高版本</li>
 </ul>
 <h2>选择准备安装的 TensorFlow 类型</h2>
 <p>从以下选项中选择您需要安装的 TensorFlow 类型：</p>
@@ -79,40 +79,41 @@
 <li><a href="https://www.python.org/downloads/release/python-352/">Python 3.5.x 64-bit from python.org</a></li>
 <li><a href="https://www.python.org/downloads/release/python-362/">Python 3.6.x 64-bit from python.org</a></li>
 </ul>
-<p>在 Windows 上，TensorFlow 支持 Python3.5.x 版本和 Python 3.6.x 版本。需要注意的是， Python 3 使用的是 pip3 包管理， 这也是您用来安装 TensorFlow 的程序。<br>
-打开一个终端，开始安装 TensorFlow。然后在终端上运行正确的 pip3 安装命令。 安装仅支持 CPU 版本的 TensorFlow，请输入下面的命令：<br>
+<p>在 Windows 上，TensorFlow 支持 Python3.5.x 版本和 Python 3.6.x 版本。需要注意的是， Python 3 使用的是 pip3 包管理， 这也是您用来安装 TensorFlow 的程序。</p>
+<p>打开一个终端，开始安装 TensorFlow。然后在终端上运行正确的 pip3 安装命令。 安装仅支持 CPU 版本的 TensorFlow，请输入下面的命令：<br>
 <code>C:\&gt; pip3 install --upgrade tensorflow</code></p>
 <p>安装 GPU 版本的 TensorFlow，请输入下面的命令：<br>
 <code>C:\&gt; pip3 install --upgrade tensorflow-gpu</code></p>
 <h2>使用 Anaconda 进行安装</h2>
-<p><strong>Anaconda 的安装包是由社区提供，非官方提供的。</strong><br>
-在 Anaconda 的环境下，按照以下步骤进行 TensorFlow 的安装：<br>
-1.根据网页 [Anaconda 下载站点]（<a href="https://www.anaconda.com/download/）说明下载并安装">https://www.anaconda.com/download/）说明下载并安装</a> Anaconda。<br>
-2.请通过使用以下命令来创建一个名为 tensorflow 的 conda 环境：<br>
-<code>C:\&gt; conda create -n tensorflow pip python=3.5</code><br>
-3.通过输入以下命令来激活一个 conda 环境：<br>
-<code>C:\&gt; activate tensorflow</code><br>
-<code>(tensorflow)C:\&gt;  # Your prompt should change</code><br>
-4.在 conda 环境里输入正确的命令来安装 TensorFlow。 安装仅支持 CPU 版本的 TensorFlow，请输入下面的命令：<br>
-<code>(tensorflow)C:\&gt; pip install --ignore-installed --upgrade tensorflow</code><br>
-如果是安装 GPU 版本的 TensorFlow，请输入下面的命令：<br>
-<code>(tensorflow)C:\&gt; pip install --ignore-installed --upgrade tensorflow-gpu</code></p>
+<p><strong>Anaconda 的安装包是由社区提供，非官方提供的。</strong></p>
+<p>在 Anaconda 的环境下，按照以下步骤进行 TensorFlow 的安装：</p>
+<p>1.根据网页 [Anaconda 下载站点]（<a href="https://www.anaconda.com/download/）说明下载并安装">https://www.anaconda.com/download/）说明下载并安装</a> Anaconda。<br>
+2.请通过使用以下命令来创建一个名为 tensorflow 的 conda 环境：</p>
+<p><code>C:\&gt; conda create -n tensorflow pip python=3.5</code></p>
+<p>3.通过输入以下命令来激活一个 conda 环境：</p>
+<p><code>C:\&gt; activate tensorflow</code><br>
+<code>(tensorflow)C:\&gt;  # Your prompt should change</code></p>
+<p>4.在 conda 环境里输入正确的命令来安装 TensorFlow。 安装仅支持 CPU 版本的 TensorFlow，请输入下面的命令：</p>
+<p><code>(tensorflow)C:\&gt; pip install --ignore-installed --upgrade tensorflow</code></p>
+<p>如果是安装 GPU 版本的 TensorFlow，请输入下面的命令：</p>
+<p><code>(tensorflow)C:\&gt; pip install --ignore-installed --upgrade tensorflow-gpu</code></p>
 <h2>安装验证</h2>
-<p>打开一个终端。<br>
-如果您采用 Anaconda 方式安装，则进入 Anaconda 环境。<br>
-采用下列方式从你的 shell 激活 python:<br>
-<code>$python</code><br>
-在 python 交互 shell 中输入下列代码：</p>
+<p>打开一个终端。如果您采用 Anaconda 方式安装，则进入 Anaconda 环境。采用下列方式从你的 shell 激活 python：</p>
+<p><code>$python</code></p>
+<p>在 python 交互 shell 中输入下列代码：</p>
 <pre><code class="lang-python">&gt;&gt;&gt; import tensorflow as tf
 &gt;&gt;&gt; hello = tf.constant(&#39;Hello, TensorFlow!&#39;)
 &gt;&gt;&gt; sess = tf.Session()
 &gt;&gt;&gt; print(sess.run(hello))
 </code></pre>
 <p>如果系统的输出如下所示，那就说明您可以开始在上面撰写 TensorFlow 的程序了：</p>
-<p><pre>Hello, TensorFlow!</pre><br>
-如果您刚刚接触 TensorFlow，请参考文档<a href="https://github.com/xitu/tensorflow/blob/zh-hans/tensorflow/docs_src/get_started/get_started.md">TensorFlow 入门指南</a>。</p>
-<p>如果系统输出了一个错误信息而不是一个打招呼提示，请查看<a href="#常见安装问题">常见安装问题</a>。</p>
-<p>这里也有一个关于 Windows 上 TensorFlow 安装很有用的<a href="https://gist.github.com/mrry/ee5dbcfdd045fa48a27d56664411d41c">文档</a>。</p>
+<pre>Hello, TensorFlow!</pre><p>如果系统输出了一个错误信息而不是一个打招呼提示，请查看<a href="#常见安装问题">常见安装问题</a>。</p>
+<p>如果你是机器学习的新手，我们推荐以下内容：</p>
+<ul>
+<li> <a href="https://developers.google.com/machine-learning/crash-course">机器学习速成教程</a></li>
+<li><a href="//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html">Graph Execution 入门</a></li>
+</ul>
+<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html">Premade Estimators</a></p>
 <h2>常见安装问题</h2>
 <p>我们使用 Stack Overflow 来记录 TensorFlow 的安装问题和修正方法。下表中包含有一些常见安装问题在 Stack Overflow 上的回答链接。如果您遇到的错误消息或安装问题不在下表中，请在 Stack Overflow 上搜索它的答案。如果 Stack Overflow 上并没有显示这个错误消息或者安装问题的答案，请在 Stack Overflow 上提一个关于这个错误消息或者安装问题的新问题，并给这个问题指定一个 <code>tensorflow</code> 的标签。</p>
 <table>

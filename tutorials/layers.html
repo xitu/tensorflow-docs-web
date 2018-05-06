@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 <!-- Header end -->
 
@@ -160,12 +160,13 @@ if __name__ == &quot;__main__&quot;:
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
 <h3>输入层</h3>
-<p>在 <code>layer</code> 模块中，用于二维图像数据的卷积层和池化层期望输入的张量维度为<code>[**batch_size**, **image_width**, **image_height**, **channels**]</code>，含义如下：</p>
+<p>在 <code>layer</code> 模块中，用于二维图像数据的卷积层和池化层期望输入的张量维度默认为<code>[batch_size, image_height, image_width, channels]</code>。可以通过修改 <code>data_format</code> 的参数改变这种行为，定义如下：</p>
 <ul>
 <li>_<code>batch_size</code>_：在训练过中，每次执行梯度下降时使用的样本子集大小。</li>
-<li>_<code>image_width</code>_：样本图片的宽度。</li>
 <li>_<code>image_height</code>_：样本图片的高度。</li>
-<li><em><code>channels</code></em>：样本图片的通道数。对于彩色图片，通道数为 3 （红，绿，蓝）。对于灰度图片，就只有一个通道（黑）。</li>
+<li>_<code>image_width</code>_：样本图片的宽度。</li>
+<li><em><code>channels</code></em>：样本图片的通道数。对于彩色图片，通道数为 3（红，绿，蓝）。对于灰度图片，就只有一个通道（黑）。</li>
+<li>  _<code>data_format</code>_：字符串，<code>channels_last</code>（default）或 <code>channels_first</code>。<code>channels_last</code> 对应于具有 <code>(batch, ..., channels)</code> 形状的输入，而 <code>channels_first</code> 对应于 具有 <code>(batch, channels, ...)</code> 形状的输入。</li>
 </ul>
 <p>在这里，我们的 MNIST 数据集图片是灰度图片，每张图片的大小是 28x28 像素，因此我们输入层数据的维度为<code>[batch_size, 28, 28, 1]</code></p>
 <p>如果输入的特征不能满足这个维度，我们可以使用下面的 <code>reshape</code> 操作来进行转换。</p>
@@ -181,24 +182,24 @@ if __name__ == &quot;__main__&quot;:
     padding=&quot;same&quot;,
     activation=tf.nn.relu)
 </code></pre>
-<p><code>inputs</code> 参数指定了我们的输入张量，这个张量的形状必须为 <code>[batch_size, image_width, inage_height, channels]</code>。在这里，我们将 <code>input_layer</code> 连接到第一个卷积层，它的形状是 <code>[**batch_size**, 28, 28, 1]</code>。</p>
-<blockquote><p>注意：如果你传入了参数 <code>data_format=channels_first</code>，那么 <code>conv2d()</code> 所接受的维数是 <code>[channels, batchsize, imagewidth, imageheight]</code>。</p>
+<p><code>inputs</code> 参数指定了我们的输入张量，这个张量的形状必须为 <code>[batch_size, image_height, inage_width, channels]</code>。在这里，我们将 <code>input_layer</code> 连接到第一个卷积层，它的形状是 <code>[batch_size, 28, 28, 1]</code>。</p>
+<blockquote><p>注意：如果你传入了参数 <code>data_format=channels_first</code>，那么 <code>conv2d()</code> 所接受的维数是 <code>[batch_size, channels, image_height, image_width]</code>。</p>
 </blockquote>
-<p>参数 <code>filters</code> 指定的是具体应用的卷积核的数量（在这里，数量为 32），<code>kernel_size</code> 指定的是卷积核的尺寸 <code>[width, height]</code>（在这里，尺寸为 <code>[5, 5]</code>）</p>
-<p><strong>小建议：</strong>如果卷积核的宽高度一致的话，你可以传递一个单独整数给参数 <code>kernel_size</code>，譬如 <code>kernel_size=5</code>。</p>
+<p>参数 <code>filters</code> 指定的是具体应用的卷积核的数量（在这里，数量为 32），<code>kernel_size</code> 指定的是卷积核的尺寸 <code>[height, width]</code>（在这里，尺寸为 <code>[5, 5]</code>）</p>
+<p><strong>小建议：</strong>如果卷积核的高度和宽度一致的话，你可以传递一个单独整数给参数 <code>kernel_size</code>，譬如 <code>kernel_size=5</code>。</p>
 <p>参数 <code>padding</code> 的输入值是两个枚举值中的一个（值不区分大小写）：<code>valid</code> （默认值）或 <code>same</code>。当你设置 <code>padding=same</code> 的时候，TensorFlow 将会在边界填充 0 值从而让输出的张量和输入的张量有相同的宽高，也即 28x28。（如果没有填充，那么 5x5 的卷积核会产生一个 24x24 形状的张量）</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/relu"><code>tf.nn.relu</code></a></p>
-<p>函数 <code>conv2d()</code> 的输出张量的形状为 <code>[batch_size, 28, 28, 32]</code>：宽高与输入是一致的，但是有 32 个通道，每个通道对应着一个卷积核的输出。</p>
+<p>函数 <code>conv2d()</code> 的输出张量的形状为 <code>[batch_size, 28, 28, 32]</code>：以相同的高度和宽度作为输入，但是有 32 个通道，每个通道对应着一个卷积核的输出。</p>
 <h3>第一个池化层</h3>
 <p>接下来，我们将第一个池化层连接到我们刚创建的卷积层上去。我们使用 <code>layers</code> 中的 <code>max_pooling2d()</code> 方法来创建一个 2x2 大小，步长为 2 的最大池化过滤器。</p>
 <pre><code class="lang-python">pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
 </code></pre>
-<p>再次说明，<code>inputs</code> 指定了输入的张量，它的形状为 <code>[batch_size, image_width, image_height, channels]</code>。在这里，我们的输入的张量是 <code>conv1</code>，也就是第一个卷积层的输出，它的形状是 <code>[batch_size, 28, 28, 32]</code>。</p>
-<blockquote><p>注意：如果你传入了参数 <code>data_format=channels_first</code>，那么 <code>conv2d()</code> 所接受的形状是<code>[channels, batchsize, imagewidth, imageheight]</code>。</p>
+<p>再次说明，<code>inputs</code> 指定了输入的张量，它的形状为 <code>[batch_size, image_height, image_width, channels]</code>。在这里，我们的输入的张量是 <code>conv1</code>，也就是第一个卷积层的输出，它的形状是 <code>[batch_size, 28, 28, 32]</code>。</p>
+<blockquote><p>注意：如果你传入了参数 <code>data_format=channels_first</code>，那么 <code>conv2d()</code> 所接受的形状是<code>[batch_size, channels, image_height, image_width]</code>。</p>
 </blockquote>
-<p>参数 <code>pool_size</code> 指定了最大池化过滤器的维度（在这里，维度值为 [2, 2]），该参数也可以接受一个单独的数字（譬如 <code>pool_size=2</code>）</p>
-<p>参数 <code>strides</code> 指定了滑动步长的大小。在这里，我们设置步长的值为 2，它的含义是过滤器提取的子区域在高度和宽度上都间隔有 2 个像素（对于 2x2 的过滤器，我们所提取的子区域都不会重叠）。如果你要为宽度和高度设置不同的步长值，你可以传入一个类型为元组或列表的值（e.g., <code>stride=[3, 6]</code>）。</p>
-<p>方法 <code>max_pooling2d()</code> 输出的张量（<code>pool1</code>）的形状为 <code>[batch_size, 14, 14, 32]</code>：2x2 的过滤器让宽和高分别减少了 50%。</p>
+<p>参数 <code>pool_size</code> 指定了最大池化过滤器的维度 <code>[height, width]</code>（在这里维度值为 [2, 2]），该参数也可以接受一个单独的数字（譬如 <code>pool_size=2</code>）</p>
+<p>参数 <code>strides</code> 指定了滑动步长的大小。在这里，我们设置步长的值为 2，它的含义是过滤器提取的子区域在高度和宽度上都间隔有 2 个像素（对于 2x2 的过滤器，我们所提取的子区域都不会重叠）。如果你要为高度和宽度设置不同的步长值，你可以传入一个类型为元组或列表的值（e.g., <code>stride=[3, 6]</code>）。</p>
+<p>方法 <code>max_pooling2d()</code> 输出的张量（<code>pool1</code>）的形状为 <code>[batch_size, 14, 14, 32]</code>：2x2 的过滤器让高和宽分别减少了 50%。</p>
 <h3>第二个卷积层和池化层</h3>
 <p>如前所述，我们使用 <code>conv2d()</code> 和 <code>max_pooling2d()</code> 方法就可以连接和创建我们 CNN 的第二个卷积层和池化层。对于第二个卷积层，我们配置了 64 个窗口大小为 5x5 的卷积核，使用了 ReLU 激活函数，对于第二个池化层，我们使用了和第一个池化层一样的设置（大小为 2x2 且步长为 2 的最大池化过滤器）：</p>
 <pre><code class="lang-python">conv2 = tf.layers.conv2d(
@@ -210,13 +211,13 @@ if __name__ == &quot;__main__&quot;:
 
 pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
 </code></pre>
-<p>注意第二个卷积层将第一个池化层的输出（<code>pool1</code>）作为输入，然后得到的输出张量为 <code>conv2</code>。张量 <code>conv2</code> 的形状为 <code>[batch_size, 14, 14, 62]</code>，宽和高与第一个池化层（<code>pool1</code>）相同，64 个通道表示应用的 64 个卷积核。</p>
-<p>第二个池化层拿 <code>conv2</code> 作为输入，然后得到的 <code>pool2</code> 作为输出。<code>pool2</code> 的形状为 <code>[batch_size, 7, 7, 64]</code>（将宽和高的长度分别减少了 50%）</p>
+<p>注意第二个卷积层将第一个池化层的输出（<code>pool1</code>）作为输入，然后得到的输出张量为 <code>conv2</code>。张量 <code>conv2</code> 的形状为 <code>[batch_size, 14, 14, 62]</code>，高和宽与第一个池化层（<code>pool1</code>）相同，64 个通道表示应用的 64 个卷积核。</p>
+<p>第二个池化层拿 <code>conv2</code> 作为输入，然后得到的 <code>pool2</code> 作为输出。<code>pool2</code> 的形状为 <code>[batch_size, 7, 7, 64]</code>（将高和宽的长度分别减少了 50%）</p>
 <h3>全连接层</h3>
 <p>接下来，我们将要为 CNN 添加全连接层（拥有 1,024 个神经元和 ReLU 激活函数），以用来对我们前面的卷积层和池化层所提取到的特征来做分类。在我们连接该层时，我们需要拉平 <code>pool2</code> 的形状为 <code>[batch_size, features]</code>，这时张量只有两维：</p>
 <pre><code class="lang-python">pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
 </code></pre>
-<p>在上面 <code>reshape()</code> 操作中，<code>-1</code> 表示 <strong><code>batch_size</code></strong> 的维数，它会根据输入的数据样本数动态的计算出来。每一个样本有 7 (<code>pool2</code> 的宽) <em> 7 (<code>pool2</code> 的高) </em> 64 (<code>pool2</code> 的通道数) 个特征，因此我们的特征维数为 7 <em> 7 </em> 64（总共 3136 个）。输出的张量 <code>pool2_flat</code> 的形状是 <code>[batch_size, 3136]</code></p>
+<p>在上面 <code>reshape()</code> 操作中，<code>-1</code> 表示 <strong><code>batch_size</code></strong> 的维数，它会根据输入的数据样本数动态的计算出来。每一个样本有 7 (<code>pool2</code> 的 height) <em> 7 (<code>pool2</code> 的 width) </em> 64 (<code>pool2</code> 的通道数) 个特征，因此我们的特征维数为 7 <em> 7 </em> 64（总共 3136 个）。输出的张量 <code>pool2_flat</code> 的形状是 <code>[batch_size, 3136]</code></p>
 <p>现在，我们可以使用 <code>layers</code> 模块中的 <code>dense()</code> 方法连接全连接层了。</p>
 <pre><code class="lang-python">dense = tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
 </code></pre>
@@ -247,7 +248,7 @@ pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax"><code>tf.nn.softmax</code></a></p>
 <pre><code class="lang-python">tf.nn.softmax(logits, name=&quot;softmax_tensor&quot;)
 </code></pre>
-<blockquote><p>注意：我们使用参数 <code>name</code> 给这个操作命名为 <code>softmax_tensor</code>，这样的话我们就可以在后面引用他。（我们将在<a href="#set-up-a-logging-hook">“设置日志钩”</a>中为softmax值设置日志记录）</p>
+<blockquote><p>注意：我们使用参数 <code>name</code> 给这个操作命名为 <code>softmax_tensor</code>，这样的话我们就可以在后面引用他。（我们将在<a href="#set-up-a-logging-hook">“设置日志钩”</a>中为 softmax 值设置日志记录）。</p>
 </blockquote>
 <p>我们用一个字典数据结构来表示预测，然后生成一个 <code>EstimatorSpec</code> 对象：</p>
 <pre><code class="lang-python">predictions = {
@@ -291,7 +292,7 @@ loss = tf.losses.softmax_cross_entropy(
       global_step=tf.train.get_global_step())
   return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 </code></pre>
-<blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html#defining-the-training-op-for-the-model">创建定制化 Estimator</a></p>
+<blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html#defining_the_training_op_for_the_model">创建定制化 Estimator</a></p>
 </blockquote>
 <h3>添加评价指标</h3>
 <p>通过在 EVAL 模式中定义 <code>eval_metric_ops</code> 字典，我们可以给模型添加准确度评价指标：</p>
