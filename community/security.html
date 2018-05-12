@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Using TensorFlow Securely</title>
+    <title>安全地使用 TensorFlow</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,15 +51,11 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': 'Community'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': 'Contributing to TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': 'User Groups'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': 'Defining and Running Benchmarks'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Using TensorFlow Securely</h1>
-<p>Before using TensorFlow, please take a look at our security model, list of<br>
-recent security announcements, and ways you can report security issues to the<br>
-TensorFlow team at the<br>
-<a href="Using
-TensorFlow Securely">https://github.com/tensorflow/tensorflow/blob/master/SECURITY.md</a> page on GitHub.</p>
+            <h1>安全地使用 TensorFlow</h1>
+<p>在使用 TensorFlow 之前，请关注我们的安全模块，这里有我们的最近关于安全的报告，以及您可以在<a href="https://github.com/tensorflow/tensorflow/blob/master/SECURITY.md">安全地使用 TensorFlow</a> GitHub 页面向 TensorFLow 团队报告关于安全的问题。</p>
 
         </main>
     </div>
@@ -81,7 +77,7 @@ TensorFlow Securely">https://github.com/tensorflow/tensorflow/blob/master/SECURI
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'wzasd': 'https://avatars1.githubusercontent.com/u/10248793?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 </body>

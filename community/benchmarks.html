@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Defining and Running Benchmarks</title>
+    <title>定义以及运行基准</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': 'Community', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,15 +51,14 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': 'Community'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': 'Contributing to TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': 'User Groups'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': 'Defining and Running Benchmarks'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
 </script>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Defining and Running Benchmarks</h1>
-<p>This guide contains instructions for defining and running a TensorFlow benchmark. These benchmarks store output in <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/test_log.proto">TestResults</a> format. If these benchmarks are added to TensorFlow github repo, then we will run them daily with our continuous build and display a graph on our dashboard: <a href="https://benchmarks-dot-tensorflow-testing.appspot.com/">https://benchmarks-dot-tensorflow-testing.appspot.com/</a>.</p>
+            <h1>定义以及运行基准</h1>
+<p>本指南包含定义以及运行一个 TensorFlow 基准的说明。这些基准将输出内容储存在<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/test_log.proto">测试结果</a>格式中。如果将这些基准测试添加到 TensorFLow 的 github 仓库中，我们将会持续每天构建运行并通过可视化的方式展示在仪表盘上：<a href="https://benchmarks-dot-tensorflow-testing.appspot.com/">https://benchmarks-dot-tensorflow-testing.appspot.com/</a></p>
 <p>[TOC]</p>
-<h2>Defining a Benchmark</h2>
-<p>Defining a TensorFlow benchmark requires extending from <code>tf.test.Benchmark</code><br>
-class and calling <code>self.report_benchmark</code> method. For example, take a look at the sample benchmark code below:</p>
+<h2>定义一个基准</h2>
+<p>定义一个 TensorFlow 基准测试需要继承 <code>tf.test.Benchmark</code> 类，并且调用 <code>self.report_benchmark</code> 方法。举个例子，请看下面实例基准代码：</p>
 <pre><code class="lang-python">import time
 
 import tensorflow as tf
@@ -91,22 +90,22 @@ class SampleBenchmark(tf.test.Benchmark):
 if __name__ == &quot;__main__&quot;:
   tf.test.main()
 </code></pre>
-<p>See the full example for <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/benchmark/">SampleBenchmark</a>.</p>
-<p>Key points to note in the example above:</p>
+<p>查看 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/benchmark/">SampleBenchmark</a> 的完整示例。</p>
+<p>在上述例子中需要注意的要点：</p>
 <ul>
-<li>Benchmark class extends from <code>tf.test.Benchmark</code>.</li>
-<li>Each benchmark method should start with <code>benchmark</code> prefix.</li>
-<li>Benchmark method calls <code>report_benchmark</code> to report the metric value.</li>
+<li>基准类需要从 <code>tf.test.Benchmark</code> 继承。</li>
+<li>每个基准测试方法都应该以 <code>benchmark</code> 为前缀开头。</li>
+<li>基准测试方法调用 <code>report_benchmark</code> 来报告度量的值。</li>
 </ul>
-<h2>Running with Python</h2>
-<p>Use the <code>--benchmarks</code> flag to run the benchmark with python. A <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/util/test_log.proto">BenchmarkEntries</a> proto will be printed.</p>
+<h2>使用 Python 来运行</h2>
+<p>使用 <code>--benchmarks</code> 标志来运行python基准测试。将会打印<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/util/test_log.proto">基准实例</a>。</p>
 <pre><code>python sample_benchmark.py --benchmarks=SampleBenchmark
 </code></pre>
-<p>Setting the flag as <code>--benchmarks=.</code> or <code>--benchmarks=all</code> would work as well.</p>
-<p>(Please ensure that Tensorflow is installed to successfully import the package in the line <code>import tensorflow as tf</code>. For installation instructions, see <a href="https://www.tensorflow.org/install/">Installing TensorFlow</a>. This step is not necessary when running with bazel.)</p>
-<h2>Adding a <code>bazel</code> Target</h2>
-<p>We have a special target called <code>tf_py_logged_benchmark</code> for benchmarks defined under TensorFlow github repo. <code>tf_py_logged_benchmark</code> should wrap around a regular <code>py_test</code> target. Running a <code>tf_py_logged_benchmark</code> would print a <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/test_log.proto">TestResults</a> proto. Defining a <code>tf_py_logged_benchmark</code> also lets us run it with TensorFlow continuous build.</p>
-<p>First, define a regular <code>py_test</code> target. See example below:</p>
+<p>将该标志位设置为 <code>--benchmarks=.</code> 或 <code>--benchmarks=all</code> 也是可以的。</p>
+<p>（请确保已安装 Tensorflow 并成功导入 <code>import tensorflow as tf</code> 行。有关安装说明，请查看 <a href="https://www.tensorflow.org/install/">Installing TensorFlow</a>。如果你使用 <code>bazel</code> 来运行，这个步骤并不是必须的。）</p>
+<h2>添加一个 <code>bazel</code> 标志</h2>
+<p>我们在 TensorFlow github 仓库下，有一个特殊目标叫做 <code>tf_py_logged_benchmark</code> 来定义基准测试。<code>tf_py_logged_benchmark</code> 是依照常规 <code>py_test</code> 目标。 运行 <code>tf_py_logged_benchmark</code> 将会打印<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/util/test_log.proto">测试结果</a>。定义一个 <code>tf_py_logged_benchmark</code> 也可以让我们用 TensorFlow 持续构建运行它。</p>
+<p>首先，定义一个常规的 <code>py_test</code> 目标。请看下面的例子：</p>
 <pre><code class="lang-build">py_test(
   name = &quot;sample_benchmark&quot;,
   srcs = [&quot;sample_benchmark.py&quot;],
@@ -116,11 +115,10 @@ if __name__ == &quot;__main__&quot;:
   ],
 )
 </code></pre>
-<p>You can run benchmarks in a <code>py_test</code> target by passing <code>--benchmarks</code> flag. The benchmark should just print out a <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/util/test_log.proto">BenchmarkEntries</a> proto.</p>
+<p>你可以通过传递 <code>--benchmarks</code> 标志在 <code>py_test</code> 目标中进行基准测试。这个基准测试应该只会打印一个<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/util/test_log.proto">基准实例</a>原型。</p>
 <pre><code class="lang-shell">bazel test :sample_benchmark --test_arg=--benchmarks=all
 </code></pre>
-<p>Now, add the <code>tf_py_logged_benchmark</code> target (if available). This target would<br>
-pass in <code>--benchmarks=all</code> to the wrapped <code>py_test</code> target and provide a way to store output for our TensorFlow continuous build. <code>tf_py_logged_benchmark</code> target should be available in TensorFlow repository.</p>
+<p>现在，添加 <code>tf_py_logged_benchmark</code> 目标（如果可用）。 这个目标会将 <code>--benchmarks = all</code> 传递给包装后的 <code>py_test</code> 目标，并为我们的 TensorFlow 持续构建提供存储输出内容的方法。TensorFlow 存储库中允许提供 <code>tf_py_logged_benchmark</code> 目标。</p>
 <pre><code class="lang-build">load(&quot;//tensorflow/tools/test:performance.bzl&quot;, &quot;tf_py_logged_benchmark&quot;)
 
 tf_py_logged_benchmark(
@@ -128,7 +126,7 @@ tf_py_logged_benchmark(
     target = &quot;//tensorflow/examples/benchmark:sample_benchmark&quot;,
 )
 </code></pre>
-<p>Use the following command to run the benchmark target:</p>
+<p>使用以下命令运行基准目标：</p>
 <pre><code class="lang-shell">bazel test :sample_logged_benchmark
 </code></pre>
 
@@ -152,7 +150,7 @@ tf_py_logged_benchmark(
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'wzasd': 'https://avatars1.githubusercontent.com/u/10248793?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 </body>

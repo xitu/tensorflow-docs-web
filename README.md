@@ -2,11 +2,11 @@
 
 预览：[https://xitu.github.io/tensorflow-docs-web/](https://xitu.github.io/tensorflow-docs-web/)
 
-中文文档：[@8195c2e](https://github.com/xitu/tensorflow-docs/)
+中文文档：[@4f7eabc](https://github.com/xitu/tensorflow-docs/)
 
 英文文档：[@0bce986](https://github.com/xitu/tensorflow-docs/tree/master)
 
-生成器：[@3b7342b](https://github.com/lsvih/tf-zh-docs-web/)
+生成器：[@67f8da4](https://github.com/lsvih/tf-zh-docs-web/)
 
 TODO：
 
