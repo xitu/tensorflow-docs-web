@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Learn (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Learn (contrib)</h1>
 <p>[TOC]</p>
 <p>High level API for learning with TensorFlow.</p>
-<h2>Estimators</h2>
+<h2 id="toc-1">Estimators</h2>
 <p>Train and evaluate TensorFlow models.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/BaseEstimator"><code>tf.contrib.learn.BaseEstimator</code></a></li>
@@ -70,13 +70,13 @@
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/LinearRegressor"><code>tf.contrib.learn.LinearRegressor</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/LogisticRegressor"><code>tf.contrib.learn.LogisticRegressor</code></a></li>
 </ul>
-<h2>Distributed training utilities</h2>
+<h2 id="toc-2">Distributed training utilities</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/Experiment"><code>tf.contrib.learn.Experiment</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/ExportStrategy"><code>tf.contrib.learn.ExportStrategy</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/TaskType"><code>tf.contrib.learn.TaskType</code></a></li>
 </ul>
-<h2>Graph actions</h2>
+<h2 id="toc-3">Graph actions</h2>
 <p>Perform various training, evaluation, and inference actions on a graph.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/NanLossDuringTrainingError"><code>tf.train.NanLossDuringTrainingError</code></a></li>
@@ -87,7 +87,7 @@
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/run_n"><code>tf.contrib.learn.run_n</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/train"><code>tf.contrib.learn.train</code></a></li>
 </ul>
-<h2>Input processing</h2>
+<h2 id="toc-4">Input processing</h2>
 <p>Queue and read batched input data.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/extract_dask_data"><code>tf.contrib.learn.extract_dask_data</code></a></li>
@@ -108,6 +108,18 @@
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Learn (contrib)</a><ul>
+<li><a href="#toc-1">Estimators</a></li>
+<li><a href="#toc-2">Distributed training utilities</a></li>
+<li><a href="#toc-3">Graph actions</a></li>
+<li><a href="#toc-4">Input processing</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

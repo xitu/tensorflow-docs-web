@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Training</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Training</h1>
 <p>[TOC]</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train"><code>tf.train</code></a></p>
-<h2>Optimizers</h2>
+<h2 id="toc-1">Optimizers</h2>
 <p>The Optimizer base class provides methods to compute gradients for a loss and<br>
 apply gradients to variables.  A collection of subclasses implement classic<br>
 optimization algorithms such as GradientDescent and Adagrad.</p>
@@ -70,7 +70,7 @@ of the subclasses.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/RMSPropOptimizer"><code>tf.train.RMSPropOptimizer</code></a></li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/opt"><code>tf.contrib.opt</code></a></p>
-<h2>Gradient Computation</h2>
+<h2 id="toc-2">Gradient Computation</h2>
 <p>TensorFlow provides functions to compute the derivatives for a given<br>
 TensorFlow computation graph, adding operations to the graph. The<br>
 optimizer classes automatically compute derivatives on your graph, but<br>
@@ -82,7 +82,7 @@ functions below.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/stop_gradient"><code>tf.stop_gradient</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/hessians"><code>tf.hessians</code></a></li>
 </ul>
-<h2>Gradient Clipping</h2>
+<h2 id="toc-3">Gradient Clipping</h2>
 <p>TensorFlow provides several operations that you can use to add clipping<br>
 functions to your graph. You can use these functions to perform general data<br>
 clipping, but they're particularly useful for handling exploding or vanishing<br>
@@ -94,7 +94,7 @@ gradients.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/clip_by_global_norm"><code>tf.clip_by_global_norm</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/global_norm"><code>tf.global_norm</code></a></li>
 </ul>
-<h2>Decaying the learning rate</h2>
+<h2 id="toc-4">Decaying the learning rate</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/exponential_decay"><code>tf.train.exponential_decay</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/inverse_time_decay"><code>tf.train.inverse_time_decay</code></a></li>
@@ -105,14 +105,14 @@ gradients.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/linear_cosine_decay"><code>tf.train.linear_cosine_decay</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/noisy_linear_cosine_decay"><code>tf.train.noisy_linear_cosine_decay</code></a></li>
 </ul>
-<h2>Moving Averages</h2>
+<h2 id="toc-5">Moving Averages</h2>
 <p>Some training algorithms, such as GradientDescent and Momentum often benefit<br>
 from maintaining a moving average of variables during optimization.  Using the<br>
 moving averages for evaluations often improve results significantly.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage"><code>tf.train.ExponentialMovingAverage</code></a></li>
 </ul>
-<h2>Coordinator and QueueRunner</h2>
+<h2 id="toc-6">Coordinator and QueueRunner</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/io_ops.html#queues">Inputs and Readers</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></li>
@@ -121,7 +121,7 @@ moving averages for evaluations often improve results significantly.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/add_queue_runner"><code>tf.train.add_queue_runner</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/start_queue_runners"><code>tf.train.start_queue_runners</code></a></li>
 </ul>
-<h2>Distributed execution</h2>
+<h2 id="toc-7">Distributed execution</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/deploy/distributed.html">分布式 TensorFlow</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/Server"><code>tf.train.Server</code></a></li>
@@ -137,12 +137,12 @@ moving averages for evaluations often improve results significantly.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/ChiefSessionCreator"><code>tf.train.ChiefSessionCreator</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/WorkerSessionCreator"><code>tf.train.WorkerSessionCreator</code></a></li>
 </ul>
-<h2>Reading Summaries from Event Files</h2>
+<h2 id="toc-8">Reading Summaries from Event Files</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html">Tensorboard：可视化学习面板</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/summary_iterator"><code>tf.train.summary_iterator</code></a></li>
 </ul>
-<h2>Training Hooks</h2>
+<h2 id="toc-9">Training Hooks</h2>
 <p>Hooks are tools that run in the process of training/evaluation of the model.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/SessionRunHook"><code>tf.train.SessionRunHook</code></a></li>
@@ -161,7 +161,7 @@ moving averages for evaluations often improve results significantly.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/FinalOpsHook"><code>tf.train.FinalOpsHook</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/FeedFnHook"><code>tf.train.FeedFnHook</code></a></li>
 </ul>
-<h2>Training Utilities</h2>
+<h2 id="toc-10">Training Utilities</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/global_step"><code>tf.train.global_step</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/basic_train_loop"><code>tf.train.basic_train_loop</code></a></li>
@@ -171,6 +171,24 @@ moving averages for evaluations often improve results significantly.</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Training</a><ul>
+<li><a href="#toc-1">Optimizers</a></li>
+<li><a href="#toc-2">Gradient Computation</a></li>
+<li><a href="#toc-3">Gradient Clipping</a></li>
+<li><a href="#toc-4">Decaying the learning rate</a></li>
+<li><a href="#toc-5">Moving Averages</a></li>
+<li><a href="#toc-6">Coordinator and QueueRunner</a></li>
+<li><a href="#toc-7">Distributed execution</a></li>
+<li><a href="#toc-8">Reading Summaries from Event Files</a></li>
+<li><a href="#toc-9">Training Hooks</a></li>
+<li><a href="#toc-10">Training Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

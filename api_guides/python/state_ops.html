@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,15 +46,15 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Variables</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Variables</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
 <p>[TOC]</p>
-<h2>Variables</h2>
+<h2 id="toc-1">Variables</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/Variable"><code>tf.Variable</code></a></li>
 </ul>
-<h2>Variable helper functions</h2>
+<h2 id="toc-2">Variable helper functions</h2>
 <p>TensorFlow provides a set of functions to help manage the set of variables<br>
 collected in the graph.</p>
 <ul>
@@ -73,14 +73,14 @@ collected in the graph.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/assign_add"><code>tf.assign_add</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/assign_sub"><code>tf.assign_sub</code></a></li>
 </ul>
-<h2>Saving and Restoring Variables</h2>
+<h2 id="toc-3">Saving and Restoring Variables</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver"><code>tf.train.Saver</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/latest_checkpoint"><code>tf.train.latest_checkpoint</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/get_checkpoint_state"><code>tf.train.get_checkpoint_state</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/update_checkpoint_state"><code>tf.train.update_checkpoint_state</code></a></li>
 </ul>
-<h2>Sharing Variables</h2>
+<h2 id="toc-4">Sharing Variables</h2>
 <p>TensorFlow provides several classes and operations that you can use to<br>
 create variables contingent on certain conditions.</p>
 <ul>
@@ -101,13 +101,13 @@ create variables contingent on certain conditions.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/ones_initializer"><code>tf.ones_initializer</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/orthogonal_initializer"><code>tf.orthogonal_initializer</code></a></li>
 </ul>
-<h2>Variable Partitioners for Sharding</h2>
+<h2 id="toc-5">Variable Partitioners for Sharding</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/fixed_size_partitioner"><code>tf.fixed_size_partitioner</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/variable_axis_size_partitioner"><code>tf.variable_axis_size_partitioner</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/min_max_variable_partitioner"><code>tf.min_max_variable_partitioner</code></a></li>
 </ul>
-<h2>Sparse Variable Updates</h2>
+<h2 id="toc-6">Sparse Variable Updates</h2>
 <p>The sparse update ops modify a subset of the entries in a dense <code>Variable</code>,<br>
 either overwriting the entries or adding / subtracting a delta.  These are<br>
 useful for training embedding models and similar lookup-based networks, since<br>
@@ -127,17 +127,17 @@ only a small subset of embedding vectors change in any given step.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_mask"><code>tf.sparse_mask</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/IndexedSlices"><code>tf.IndexedSlices</code></a></li>
 </ul>
-<h3>Read-only Lookup Tables</h3>
+<h3 id="toc-7">Read-only Lookup Tables</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/initialize_all_tables"><code>tf.initialize_all_tables</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/tables_initializer"><code>tf.tables_initializer</code></a></li>
 </ul>
-<h2>Exporting and Importing Meta Graphs</h2>
+<h2 id="toc-8">Exporting and Importing Meta Graphs</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/export_meta_graph"><code>tf.train.export_meta_graph</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/import_meta_graph"><code>tf.train.import_meta_graph</code></a></li>
 </ul>
-<h1>Deprecated functions (removed after 2017-03-02). Please don't use them.</h1>
+<h1 id="toc-9">Deprecated functions (removed after 2017-03-02). Please don't use them.</h1>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/all_variables"><code>tf.all_variables</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/initialize_all_variables"><code>tf.initialize_all_variables</code></a></li>
@@ -146,6 +146,21 @@ only a small subset of embedding vectors change in any given step.</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Variables</a><ul>
+<li><a href="#toc-1">Variables</a></li>
+<li><a href="#toc-2">Variable helper functions</a></li>
+<li><a href="#toc-3">Saving and Restoring Variables</a></li>
+<li><a href="#toc-4">Sharing Variables</a></li>
+<li><a href="#toc-5">Variable Partitioners for Sharding</a></li>
+<li><a href="#toc-6">Sparse Variable Updates</a></li>
+<li><a href="#toc-8">Exporting and Importing Meta Graphs</a></li></ul>
+</li>
+<li><a href="#toc-9">Deprecated functions (removed after 2017-03-02). Please don't use them.</a></li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

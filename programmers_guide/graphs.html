@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,11 +53,11 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/eager.html', 'title': 'Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>流图与会话</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">流图与会话</h1>
 <p>TensorFlow 使用<strong>数据流图</strong>（Dataflow graph，后文以“流图”简称。）表示计算过程，它是依据各个操作之间的依赖关系生成的。这是一个底层的编程模型，你需要先定义数据流图，然后创建一个 TensorFlow <strong>会话</strong>以在多个本地或远程的设备上运行流图的各个部分。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
-<h2>为什么要用数据流图？</h2>
+<h2 id="toc-1">为什么要用数据流图？</h2>
 <p><img src="../images/tensors_flowing.gif" alt=""></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/matmul"><code>tf.matmul</code></a></p>
 <!-- TODO(barryr): Add a diagram to illustrate the @{tf.matmul} graph. -->
@@ -73,7 +73,7 @@
 <li><p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/saved_model.html">保存和恢复</a></p>
 </li>
 </ul>
-<h2><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></h2>
+<h2 id="toc-2"><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></p>
 <ul>
 <li><p><strong>流图结构</strong> 图的节点和边表明了各个独立操作组合在一起的方式，但并没有说明他们的用法。流图结构很像汇编代码：查看代码能够得到一些有用的信息，但它并不能传达给你所有源代码中的有效信息。</p>
@@ -81,7 +81,7 @@
 <li><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Optimizer"><code>tf.train.Optimizer</code></a></p>
 </li>
 </ul>
-<h2><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></h2>
+<h2 id="toc-3"><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></p>
 <ul>
 <li><p><a href="https://www.tensorflow.org/api_docs/python/tf/Operation"><code>tf.Operation</code></a></p>
@@ -95,7 +95,7 @@
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></p>
-<h2>操作的命名</h2>
+<h2 id="toc-4">操作的命名</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Operation"><code>tf.Operation</code></a></p>
 <ul>
 <li><p><a href="https://www.tensorflow.org/api_docs/python/tf/Tensor"><code>tf.Tensor</code></a></p>
@@ -129,7 +129,7 @@
 <li><code>"&lt;OP_NAME&gt;"</code> 是生成 tensor 的操作名称。</li>
 <li><code>"&lt;i&gt;"</code> 是一个整数，表示操作的输出中 tensor 的索引。</li>
 </ul>
-<h2>在不同设备部署操作</h2>
+<h2 id="toc-5">在不同设备部署操作</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/device"><code>tf.device</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/device"><code>tf.device</code></a></p>
 <pre><code>/job:&lt;JOB_NAME&gt;/task:&lt;TASK_INDEX&gt;/device:&lt;DEVICE_TYPE&gt;:&lt;DEVICE_INDEX&gt;
@@ -180,7 +180,7 @@ with tf.device(&quot;/job:worker&quot;):
   layer_0 = tf.matmul(input_data, w_0) + b_0  # 部署 &quot;/job:worker&quot;
   layer_1 = tf.matmul(layer_0, w_1) + b_1     # 部署 &quot;/job:worker&quot;
 </code></pre>
-<h2>可用作 Tensor 的对象</h2>
+<h2 id="toc-6">可用作 Tensor 的对象</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Tensor"><code>tf.Tensor</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/Tensor"><code>tf.Tensor</code></a></li>
@@ -191,9 +191,9 @@ with tf.device(&quot;/job:worker&quot;):
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/register_tensor_conversion_function"><code>tf.register_tensor_conversion_function</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Tensor"><code>tf.Tensor</code></a></p>
-<h2><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></h2>
+<h2 id="toc-7"><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></p>
-<h3><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></h3>
+<h3 id="toc-8"><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></p>
 <pre><code class="lang-python"># 创建一个默认的进程内的会话。
 with tf.Session() as sess:
@@ -224,7 +224,7 @@ with tf.Session(&quot;grpc://example.org:2222&quot;):
 </ul>
 </li>
 </ul>
-<h3><a href="https://www.tensorflow.org/api_docs/python/tf/Session/run"><code>tf.Session.run</code></a></h3>
+<h3 id="toc-9"><a href="https://www.tensorflow.org/api_docs/python/tf/Session/run"><code>tf.Session.run</code></a></h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Session/run"><code>tf.Session.run</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Session/run"><code>tf.Session.run</code></a></p>
 <pre><code class="lang-python">x = tf.constant([[37.0, -23.0], [1.0, 4.0]])
@@ -280,7 +280,7 @@ with tf.Session() as sess:
   # 打印出每次执行操作的执行时间。
   print(metadata.step_stats)
 </code></pre>
-<h2>将流图可视化</h2>
+<h2 id="toc-10">将流图可视化</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></p>
 <pre><code class="lang-python"># 构建你的流图
 x = tf.constant([[37.0, -23.0], [1.0, 4.0]])
@@ -305,7 +305,7 @@ with tf.Session() as sess:
 <p>然后，你可以在 <code>tensorboard</code> 中打开日志，在 “Graph” 页面查看高度可视化的计算图结构。请注意， 一个典型的 TensorFlow 计算图——尤其是自动计算梯度的训练计算图——会由于节点太多而不能立刻全部可视化。计算图使用命名空间来将相关操作归纳到父节点。你可以点解父节点的橙色 "+" 按钮来展开其内部的子图。</p>
 <p><img src="../images/mnist_deep.png" alt=""></p>
 <p>要了解更多关于如何使用 TensorBoard 来可视化你的 TensorFlow 应用，请参阅 <a href="../get_started/summaries_and_tensorboard.md">TensorBoard 指南</a>。</p>
-<h2>使用多个流图编程</h2>
+<h2 id="toc-11">使用多个流图编程</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Operation"><code>tf.Operation</code></a></p>
 <p>如上所述， TensorFlow 提供了一个“默认流图”，隐式传递给同一上下文中的所有 API 函数。对于许多个应用程序来说，一张流图就足够了。但是，TensorFlow 也提供了操作默认流图的方法，这在更高级的用例中是有用处的。例如：</p>
 <ul>
@@ -345,6 +345,23 @@ print(g.get_operations())
 </code></pre>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">流图与会话</a><ul>
+<li><a href="#toc-1">为什么要用数据流图？</a></li>
+<li><a href="#toc-2"><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></a></li>
+<li><a href="#toc-3"><a href="https://www.tensorflow.org/api_docs/python/tf/Graph"><code>tf.Graph</code></a></a></li>
+<li><a href="#toc-4">操作的命名</a></li>
+<li><a href="#toc-5">在不同设备部署操作</a></li>
+<li><a href="#toc-6">可用作 Tensor 的对象</a></li>
+<li><a href="#toc-7"><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></a></li>
+<li><a href="#toc-10">将流图可视化</a></li>
+<li><a href="#toc-11">使用多个流图编程</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

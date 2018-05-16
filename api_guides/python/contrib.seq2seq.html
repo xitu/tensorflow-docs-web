@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Seq2seq Library (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Seq2seq Library (contrib)</h1>
 <p>[TOC]</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn"><code>tf.contrib.rnn</code></a></p>
 <p>This library is composed of two primary components:</p>
@@ -55,9 +55,9 @@
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/RNNCell"><code>tf.contrib.rnn.RNNCell</code></a></li>
 <li>A new object-oriented dynamic decoding framework.</li>
 </ul>
-<h2>Attention</h2>
+<h2 id="toc-1">Attention</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/AttentionMechanism"><code>tf.contrib.seq2seq.AttentionMechanism</code></a></p>
-<h3>Attention Mechanisms</h3>
+<h3 id="toc-2">Attention Mechanisms</h3>
 <p>The two basic attention mechanisms are:</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BahdanauAttention"><code>tf.contrib.seq2seq.BahdanauAttention</code></a></li>
@@ -73,7 +73,7 @@ construction parameter <code>num_units</code>.  For some kinds of attention (lik
 <code>num_units</code>.  For other kinds (like <code>LuongAttention</code>), <code>num_units</code> should match<br>
 the depth of the queries; and the <code>memory</code> tensor will be projected to this<br>
 depth.</p>
-<h3>Attention Wrappers</h3>
+<h3 id="toc-3">Attention Wrappers</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/AttentionWrapper"><code>tf.contrib.seq2seq.AttentionWrapper</code></a></p>
 <p>At each time step, the basic calculation performed by this wrapper is:</p>
 <pre><code class="lang-python">cell_inputs = concat([inputs, prev_state.attention], -1)
@@ -111,7 +111,7 @@ up to the top layer which is also calculated on GPU 1.  The attention is<br>
 also passed forward in time to the next time step and copied to GPU 0 for the<br>
 next time step of <code>cell</code>.  (<em>Note</em>: This is just an example of use,<br>
 not a suggested device partitioning strategy.)</p>
-<h2>Dynamic Decoding</h2>
+<h2 id="toc-4">Dynamic Decoding</h2>
 <p>Example usage:</p>
 <pre><code class="lang-python">cell = # instance of RNNCell
 
@@ -135,17 +135,17 @@ outputs, _ = tf.contrib.seq2seq.dynamic_decode(
    impute_finished=True,
    maximum_iterations=20)
 </code></pre>
-<h3>Decoder base class and functions</h3>
+<h3 id="toc-5">Decoder base class and functions</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/Decoder"><code>tf.contrib.seq2seq.Decoder</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/dynamic_decode"><code>tf.contrib.seq2seq.dynamic_decode</code></a></li>
 </ul>
-<h3>Basic Decoder</h3>
+<h3 id="toc-6">Basic Decoder</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BasicDecoderOutput"><code>tf.contrib.seq2seq.BasicDecoderOutput</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BasicDecoder"><code>tf.contrib.seq2seq.BasicDecoder</code></a></li>
 </ul>
-<h3>Decoder Helpers</h3>
+<h3 id="toc-7">Decoder Helpers</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/Helper"><code>tf.contrib.seq2seq.Helper</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/CustomHelper"><code>tf.contrib.seq2seq.CustomHelper</code></a></li>
@@ -156,6 +156,16 @@ outputs, _ = tf.contrib.seq2seq.dynamic_decode(
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Seq2seq Library (contrib)</a><ul>
+<li><a href="#toc-1">Attention</a></li>
+<li><a href="#toc-4">Dynamic Decoding</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

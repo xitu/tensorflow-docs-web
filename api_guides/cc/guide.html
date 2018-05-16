@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>C++ API</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">C++ API</h1>
 <p>Note: By default <a href="https://www.tensorflow.org">tensorflow.org</a> shows docs for the<br>
 most recent stable version. The instructions in this doc require building from<br>
 source. You will probably want to build from the <code>master</code> version of tensorflow.<br>
@@ -62,7 +62,7 @@ specification of names, device placement, etc., and the resulting graph can be<b
 efficiently run and the desired outputs fetched in a few lines of code. This<br>
 guide explains the basic concepts and data structures needed to get started with<br>
 TensorFlow graph construction and execution in C++.</p>
-<h2>The Basics</h2>
+<h2 id="toc-1">The Basics</h2>
 <p>Let's start with a simple example that illustrates graph construction and<br>
 execution using the C++ API.</p>
 <pre><code class="lang-c++">// tensorflow/cc/example/example.cc
@@ -122,8 +122,8 @@ following:</p>
 <li>Executing and fetching the tensor values from the TensorFlow session.</li>
 </ul>
 <p>We will delve into the details of each below.</p>
-<h2>Graph Construction</h2>
-<h3>Scope</h3>
+<h2 id="toc-2">Graph Construction</h2>
+<h3 id="toc-3">Scope</h3>
 <p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/scope"><code>tensorflow::Scope</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/status"><code>tensorflow::Status</code></a></p>
 <p>The <code>Scope</code> object returned by <code>Scope::NewRootScope</code> is referred<br>
@@ -141,7 +141,7 @@ appends <code>name</code> to the prefix of names for operations created using th
 <li>Kernel attribute for an operation</li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/scope"><code>tensorflow::Scope</code></a></p>
-<h3>Operation Constructors</h3>
+<h3 id="toc-4">Operation Constructors</h3>
 <p>You can create graph operations with operation constructors, one C++ class per<br>
 TensorFlow operation. Unlike the Python API which uses snake-case to name the<br>
 operation constructors, the C++ API uses camel-case to conform to C++ coding<br>
@@ -210,7 +210,7 @@ auto b = Add(scope, s[0], s[1]);
 // Pass the list as a whole to other constructors.
 auto c = Concat(scope, s, 0);
 </code></pre>
-<h3>Constants</h3>
+<h3 id="toc-5">Constants</h3>
 <p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/ops/const"><code>tensorflow::ops::Const</code></a></p>
 <ul>
 <li>Scalars</li>
@@ -244,7 +244,7 @@ auto x = MatMul(scope, { {1, 1} }, { {41}, {1} });
 // [1 2 3 4] + 10
 auto y = Add(scope, {1, 2, 3, 4}, 10);
 </code></pre>
-<h2>Graph Execution</h2>
+<h2 id="toc-6">Graph Execution</h2>
 <p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/clientsession"><code>tensorflow::ClientSession</code></a></p>
 <pre><code class="lang-c++">Scope root = Scope::NewRootScope();
 auto c = Const(root, { {1, 1} });
@@ -274,6 +274,17 @@ session.Run({ {a, { {1, 2}, {3, 4} } } }, {c}, &amp;outputs);
 <p><a href="https://www.tensorflow.org/api_docs/cc/class/tensorflow/tensor"><code>tensorflow::Tensor</code></a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">C++ API</a><ul>
+<li><a href="#toc-1">The Basics</a></li>
+<li><a href="#toc-2">Graph Construction</a></li>
+<li><a href="#toc-6">Graph Execution</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

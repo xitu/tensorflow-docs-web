@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,15 +53,15 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'title': '性能'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': '输入管道性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': '高性能模型'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'Fixed Point Quantization'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>性能指南</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">性能指南</h1>
 <p>本指南包含了一些优化 TensorFlow 代码的最佳实践，它包含以下几节内容：</p>
 <ul>
 <li>  <a href="#通用最佳实践">通用最佳实践</a> 涵盖多种模型类型和硬件的通用主题。</li>
 <li>  <a href="#gpu-上的优化">GPU 上的优化</a> 针对 GPU 的相关技巧的细节。</li>
 <li>  <a href="#cpu-上的优化">CPU 上的优化</a> 针对 CPU 的细节。</li>
 </ul>
-<h2>通用最佳实践</h2>
+<h2 id="toc-1">通用最佳实践</h2>
 <p>下面的几节内容为涵盖多种硬件和模型的最佳实践，它们是：</p>
 <ul>
 <li>  <a href="#输入管线的优化">输入管线的优化</a></li>
@@ -70,7 +70,7 @@
 <li>  <a href="#rnn-performance">RNN 性能</a></li>
 <li>  <a href="#从源码构建和安装">从源码构建和安装</a></li>
 </ul>
-<h3>输入管线的优化</h3>
+<h3 id="toc-2">输入管线的优化</h3>
 <p>典型的模型会从磁盘加载数据，然后处理并通过网络发送出去。比如，模型按照下列数据流过程来处理 JPEG 图像：从磁盘加载图像，将 JPEG 解码到一个张量中，裁剪和边缘垫值，以及可能的翻转和变形操作，然后按批次投入训练。这个数据流被称为输入管线。随着 GPU 和其它加速硬件运行得越来越快，数据预处理就成了性能的瓶颈。</p>
 <p>确定输入管线是否为瓶颈可能会比较复杂。一种最简单的方法是在输入管线之后将模型简化为单个操作（平凡模型），并测量其每秒处理的样例数。如果整个模型和平凡模型之间的效率差异极小，则输入管线很有可能是瓶颈。以下是确定瓶颈问题的其它一些方法：</p>
 <ul>
@@ -79,21 +79,21 @@
 <li>  检查 CPU 使用情况。有可能出现的情况是：管线已经优化，却仍然没有足够的 CPU 周期来处理这个管线。</li>
 <li>  估计所需的吞吐量，并验证所使用的磁盘能够达到吞吐量的水平。因为一些云解决方案提供的磁盘速度甚至低至 50 MB/秒，这比机械磁盘（150 MB/秒）、SATA SSD （500 MB/秒）、以及 PCIe SSD （2000+ MB/秒）都要慢。</li>
 </ul>
-<h4>CPU 上的预处理</h4>
+<h4 id="toc-3">CPU 上的预处理</h4>
 <p>将输入管线的操作放在 CPU 上可以显著提高性能。让 CPU 处理输入管线，可以使 GPU 专注于训练。为了确保预处理是在 CPU 上进行，可将预处理操作按如下方式包装一下：</p>
 <pre><code class="lang-python">with tf.device(&#39;/cpu:0&#39;):
   # 用于获得和处理图像或数据的函数
   distorted_inputs = load_and_distort_images()
 </code></pre>
 <p>如果使用 <code>tf.estimator.Estimator</code>，输入函数会自动在 CPU 上执行。</p>
-<h4>使用 tf.data API</h4>
+<h4 id="toc-4">使用 tf.data API</h4>
 <p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./performance/datasets_performance.html">输入管道性能指南</a></p>
 <p>虽然使用 <code>feed_dict</code> 的流数据提供了很高的灵活性，但是通常 <code>feed_dict</code> 并没有提供可伸缩的解决方案。如果只使用单个 GPU，则 <code>tf.data</code> API 和 <code>feed_dict</code> 之间的性能差异可以忽略不计。我们建议避免使用 <code>feed_dict</code> 来处理琐碎的示例。特别是，避免使用大量输入的 <code>feed_dict</code>：</p>
 <pre><code class="lang-python"># feed_dict often results in suboptimal performance when using large inputs.
 sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 </code></pre>
-<h4>融合解码和裁剪</h4>
+<h4 id="toc-5">融合解码和裁剪</h4>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/image/decode_and_crop_jpeg"><code>tf.image.decode_and_crop_jpeg</code></a></p>
 <p>使用示例：</p>
 <pre><code class="lang-python">def _image_preprocess_fn(image_buffer):
@@ -114,12 +114,12 @@ sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
     cropped_image = tf.image.decode_and_crop_jpeg(image, crop_window)
 </code></pre>
 <p><code>tf.image.decode_and_crop_jpeg</code> 可运行在所有平台上。在其他平台上，由于使用了 <code>libjpeg</code> 和 <code>libjpeg-turbo</code>，所以在 Windows 上无法加速。</p>
-<h4>使用大文件</h4>
+<h4 id="toc-6">使用大文件</h4>
 <p>加载大量的小文件会极大地影响 I/O 性能。一种获得最大的 I/O 吞吐量的方法是将输入数据预处理为更大的 <code>TFRecord</code> 文件（约 100MB 大小）。<br>
 对于较小的数据集（200MB~1GB），最好的方法通常是将整个数据集加载到内存。资料 <a href="https://github.com/tensorflow/models/tree/master/research/slim#downloading-and-converting-to-tfrecord-format">下载和转换为 TFRecord 格式</a> 中介绍了创建 <code>TFRecords</code> 的相关信息和脚本，<br>
 而 <a href="https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10_estimator/generate_cifar10_tfrecords.py">脚本</a><br>
 可用于将 CIFAR-10 数据集转化为 <code>TFRecords</code>。</p>
-<h3>数据格式</h3>
+<h3 id="toc-7">数据格式</h3>
 <p>数据格式是指传递给指定操作的张量结构。下面的讨论专门针对表示图像的四维张量。在 TensorFlow 中，<br>
 四维张量中的部分成员常用如下一些字母来表示：</p>
 <ul>
@@ -136,9 +136,9 @@ sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 <p>TensorFlow 默认采用 <code>NHWC</code>，而在 NVIDIA GPU 上使用 <a href="https://developer.nvidia.com/cudnn">cuDNN</a> 时，<code>NCHW</code> 格式是最优选择。</p>
 <p>最佳实践是构建同时支持两种数据格式的模型。这简化了 GPU 上的训练，并在 CPU 上运行推理。如果 TensorFlow 是通过 <a href="#tensorflow_with_intel_mkl-dnn">Intel MKL</a> 优化编译的，许多操作，特别是与基于 CNN 的模型相关的操作，将会得到优化并支持 <code>NCHW</code>。如果不使用 MKL，有些操作在使用 <code>NCHW</code> 时无法在 CPU 上运行。</p>
 <p>这里我们简要介绍一下这两种格式的历史。TensorFlow 最开始使用 <code>NHWC</code> 是因为它在 CPU 上稍微快一点。但长期以来，我们一直在编写工具，让计算图可以自动重写，从而让两种格式的切换变得透明化，来实现一些优化。我们发现，尽管 <code>NCHW</code> 在一般情况下效率是最高的，但有些 GPU 操作在使用 <code>NHWC</code> 时确实更快一些。</p>
-<h3>通用的融合操作</h3>
+<h3 id="toc-8">通用的融合操作</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/performance/xla/index.html">XLA 概述</a></p>
-<h4>融合批量标准化</h4>
+<h4 id="toc-9">融合批量标准化</h4>
 <p>融合批量标准化（Fused batch norm）是将批量标准化所需的多个操作合并为一个内核。批量标准化是一个开销很大的过程，对于一些模型而言，它会占用很大比例的操作时间。通过使用融合批量标准化，可以实现 12%-30% 的加速。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/batch_normalization"><code>tf.layers.batch_normalization</code></a></p>
 <pre><code class="lang-python">bn = tf.layers.batch_normalization(
@@ -147,27 +147,27 @@ sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/batch_norm"><code>tf.contrib.layers.batch_norm</code></a></p>
 <pre><code class="lang-python">bn = tf.contrib.layers.batch_norm(input_layer, fused=True, data_format=&#39;NCHW&#39;)
 </code></pre>
-<h3>RNN 性能</h3>
+<h3 id="toc-10">RNN 性能</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/rnn_cell/BasicLSTMCell"><code>tf.nn.rnn_cell.BasicLSTMCell</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/while_loop"><code>tf.while_loop</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/BasicLSTMCell"><code>tf.contrib.rnn.BasicLSTMCell</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMBlockCell"><code>tf.contrib.rnn.LSTMBlockCell</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/LSTMBlockFusedCell"><code>tf.contrib.rnn.LSTMBlockFusedCell</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/rnn/BasicLSTMCell"><code>tf.contrib.rnn.BasicLSTMCell</code></a></p>
-<h3>从源码构建和安装</h3>
+<h3 id="toc-11">从源码构建和安装</h3>
 <p>默认情况下，TensorFlow 二进制程序已经覆盖了非常广泛的硬件种类，从而让每个人都能使用 TensorFlow。<br>
 如果用 CPU 来做训练或推理，建议编译 TensorFlow 时启用所有针对 CPU 的优化。对 CPU 上训练和推理的加速的文档参见<a href="#编译器优化的对比">编译器优化的对比</a>。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/install/install_sources.html">通过源码安装 TensorFlow</a></p>
 <pre><code class="lang-python"># 此命令针对 Intel 的 Broadwell 处理器进行优化
 bazel build -c opt --copt=-march=&quot;broadwell&quot; --config=cuda //tensorflow/tools/pip_package:build_pip_package
 </code></pre>
-<h4>环境、构建和安装技巧</h4>
+<h4 id="toc-12">环境、构建和安装技巧</h4>
 <ul>
 <li>  <code>./configure</code> 命令是为了确定在构建中包含哪些计算能力。它不影响整体性能，但会影响初始启动。运行 TensorFlow 一次之后，编译的内核会被缓存到 CUDA 中。如果使用 docker 容器，这个数据将得不到缓存，因而每次 TensorFlow 启动时都会因此而变慢。最好的办法是将需要用到的 GPU 的<a href="http://developer.nvidia.com/cuda-gpus">计算能力</a>都包含进来，比如 P100 为 6.0，Titan X (Pascal) 为 6.1，Titan X (Maxwell) 为 5.2，K80 为 3.7。</li>
 <li>  选择一个版本的 gcc ，要求能够支持目标 CPU 能提供的所有优化。推荐的最低的 gcc 版本为 4.8.3。在 OS X 上，更新到最新的 Xcode 版本，并使用 Xcode 自带的那个版本的 clang。</li>
 <li>  安装 TensorFlow 能够支持的最新的稳定版 CUDA 平台和 cuDNN 库。</li>
 </ul>
-<h2>GPU 上的优化</h2>
+<h2 id="toc-13">GPU 上的优化</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./performance/performance_models.html">高性能模型</a></p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./performance/benchmarks.html">基准</a></p>
 <ul>
@@ -255,7 +255,7 @@ def _resnet_model_fn():
 <p>在不远的将来，上述代码将只会用于演示目的，因为我们会推出高层次接口来支持主流的设备放置方法，其使用也要容易地多。<br>
 在我们逐步扩展 API 并更好地支持多 GPU 场景的同时，<a href="https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10_estimator">示例</a><br>
 也会持续更新。</p>
-<h2>CPU 上的优化</h2>
+<h2 id="toc-14">CPU 上的优化</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/install/install_sources.html">通过源码安装 TensorFlow</a></p>
 <p>除了使用了最新的指令集，Intel® 还在 Intel® 深度神经网络数学核心库（Math Kernel Library，Intel® MKL-DNN）<br>
 中加入了对 TensorFlow 的支持。虽然用词不完全准确，这些优化还是常被简称为 “MKL”，或“基于 MKL 的 TensorFlow”。<br>
@@ -275,7 +275,7 @@ def _resnet_model_fn():
   tf.session(config=config)
 </code></pre>
 <p>在 <a href="#comparing-compiler-optimizations">编译器优化对比</a> 中，介绍了不同编译器优化的测试结果。</p>
-<h3>在 TensorFlow 中使用 Intel® MKL DNN</h3>
+<h3 id="toc-15">在 TensorFlow 中使用 Intel® MKL DNN</h3>
 <p>通过使用 Intel® 深度神经网络数学核心库的优化指令， Intel® 在 Xeon 和 Xeon Phi™ 芯片中加入对 TensorFlow 的优化。<br>
 这些优化也为消费级处理器提供了加速，比如 i5 和 i7 的 Intel 处理器。Intel 公司还发布了文章<br>
 <a href="https://software.intel.com/en-us/articles/tensorflow-optimizations-on-modern-intel-architecture">在现代 Intel® 架构上的 TensorFlow* 优化</a>，其中披露了实现的更多细节。</p>
@@ -298,7 +298,7 @@ Do you wish to download MKL LIB from the web? [Y/n] Y
 
 bazel build --config=mkl --copt=&quot;-DEIGEN_USE_VML&quot; -c opt //tensorflow/tools/pip_package:build_pip_package
 </code></pre>
-<h4>MKL 调参以实现性能最优</h4>
+<h4 id="toc-16">MKL 调参以实现性能最优</h4>
 <p>本节详细介绍不同的配置和环境变量，用来调节 MKL 实现最优性能。在调整这些不同的环境变量之前，需要<br>
 确认模型正在使用的是 <code>NCHW</code> <a href="#数据格式">数据格式</a>，即 <code>通道优先（channels_first）</code>格式。<br>
 MKL 是针对 <code>NCHW</code> 来做优化的，至于 <code>NHWC</code>，Intel 对它的优化工作还在进行当中。</p>
@@ -341,10 +341,10 @@ if FLAGS.num_intra_threads &gt; 0:
 <li><p>  <strong>inter_op_parallelism_threads</strong>： 推荐设置为套接字数目。默认为 0，意为逻辑核心数目。</p>
 </li>
 </ul>
-<h3>编译器优化的对比</h3>
+<h3 id="toc-17">编译器优化的对比</h3>
 <p>下面的内容中整理了在不同平台、不同类型 CPU、以及不同编译器优化的情况下的训练和推理时的性能测试结果。我们测试的模型包括 ResNet-50 (<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>) 和 InceptionV3 (<a href="https://arxiv.org/abs/1512.00567">arXiv:1512.00567</a>)。</p>
 <p>对于每个测试，当用到 MKL 优化时，环境变量 KMP_BLOCKTIME 都被设置为 0 (0ms)，而 KMP_AFFINITY 被设置为 <code>granularity=fine,verbose,compact,1,0</code>。</p>
-<h4>InceptionV3 的推理</h4>
+<h4 id="toc-18">InceptionV3 的推理</h4>
 <p><strong>环境</strong></p>
 <ul>
 <li>  实例类型：AWS EC2 m4.xlarge</li>
@@ -447,7 +447,7 @@ if FLAGS.num_intra_threads &gt; 0:
 </tr>
 </tbody>
 </table></div>
-<h4>推理 ResNet-50</h4>
+<h4 id="toc-19">推理 ResNet-50</h4>
 <p><strong>环境</strong></p>
 <ul>
 <li>实例类型： AWS EC2 m4.xlarge</li>
@@ -550,7 +550,7 @@ if FLAGS.num_intra_threads &gt; 0:
 </tr>
 </tbody>
 </table></div>
-<h4>训练 InceptionV3</h4>
+<h4 id="toc-20">训练 InceptionV3</h4>
 <p><strong>环境</strong></p>
 <ul>
 <li>实例类型： Dedicated AWS EC2 r4.16xlarge (Broadwell)</li>
@@ -610,6 +610,17 @@ if FLAGS.num_intra_threads &gt; 0:
 在此配置上以一种自组织（ad hoc）方式运行。只不过测试次数还不足以发布一份明确的结果。不过，不完整的测试结果很大程度上与上表结果类似，即 MKL 的效率为 AVX2 三倍多。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">性能指南</a><ul>
+<li><a href="#toc-1">通用最佳实践</a></li>
+<li><a href="#toc-13">GPU 上的优化</a></li>
+<li><a href="#toc-14">CPU 上的优化</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

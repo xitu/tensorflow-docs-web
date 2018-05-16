@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,10 +53,10 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>偏微分方程组</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">偏微分方程组</h1>
 <p>TensorFlow 并不仅限于机器学习使用。为此，我们提供了一个（很平凡的）示例，使用 TensorFlow 来模拟<a href="https://en.wikipedia.org/wiki/Partial_differential_equation">偏微分方程（PDE）</a>的行为。我们将模拟当雨滴低落在一个池塘的水面上的情况。</p>
-<h2>基本设置</h2>
+<h2 id="toc-1">基本设置</h2>
 <p>首先导入依赖库：</p>
 <pre><code class="lang-python"># 引入用于模拟的库
 import tensorflow as tf
@@ -80,7 +80,7 @@ from IPython.display import clear_output, Image, display
 <p>现在，我们启动一个交互式 TensorFlow 会话。如果我们是使用 <code>.py</code> 文件进行这些操作，使用一般的会话也能完成任务。</p>
 <pre><code class="lang-python">sess = tf.InteractiveSession()
 </code></pre>
-<h2>便捷的计算函数</h2>
+<h2 id="toc-2">便捷的计算函数</h2>
 <pre><code class="lang-python">def make_kernel(a):
   &quot;&quot;&quot;将一个 2D 数组转换为一个卷积核&quot;&quot;&quot;
   a = np.asarray(a)
@@ -100,7 +100,7 @@ def laplace(x):
                            [0.5, 1.0, 0.5]])
   return simple_conv(x, laplace_k)
 </code></pre>
-<h2>定义 PDE</h2>
+<h2 id="toc-3">定义 PDE</h2>
 <p>与自然界中的大多数池塘一样，我们的池塘的尺寸是完美的 500 x 500。</p>
 <pre><code class="lang-python">N = 500
 </code></pre>
@@ -139,7 +139,7 @@ step = tf.group(
   U.assign(U_),
   Ut.assign(Ut_))
 </code></pre>
-<h2>运行模型</h2>
+<h2 id="toc-4">运行模型</h2>
 <p>使用一个简单的循环来不断地运行它 —— 这就是此程序的乐趣所在。</p>
 <pre><code class="lang-python"># 初始化状态为初始条件
 tf.global_variables_initializer().run()
@@ -154,6 +154,18 @@ for i in range(1000):
 <p>看，波纹！</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">偏微分方程组</a><ul>
+<li><a href="#toc-1">基本设置</a></li>
+<li><a href="#toc-2">便捷的计算函数</a></li>
+<li><a href="#toc-3">定义 PDE</a></li>
+<li><a href="#toc-4">运行模型</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

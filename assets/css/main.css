@@ -171,3 +171,47 @@ footer .official-links {
 footer .official-links a {
     margin: 0 30px;
 }
+
+.bd-toc {
+    order: 2;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: .875rem;
+}
+
+@supports (position: sticky) {
+    .bd-toc {
+        position: sticky;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        overflow-y: auto;
+    }
+}
+
+#table-of-content {
+    padding-left: 10px;
+    border-left: 1px solid #eee;
+}
+
+#table-of-content li {
+    list-style: none;
+}
+
+#table-of-content ul {
+    padding-left: .5rem;
+}
+
+#table-of-content ul li {
+    display: block;
+}
+
+#table-of-content ul li a {
+    display: block;
+    padding: .125rem 1.5rem;
+    color: #99979c;
+}
+
+#table-of-content ul li a :hover {
+    color: blue;
+    text-decoration: none;
+}

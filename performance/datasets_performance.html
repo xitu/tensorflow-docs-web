@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'title': '性能'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': '输入管道性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': '高性能模型'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'Fixed Point Quantization'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>输入管道性能指南</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">输入管道性能指南</h1>
 <p>GPU 和 TPU 可以从根本上缩短执行单个训练步骤所需的时间。为了实现最佳性能的目的，我们需要一个高效的输入管道用于在当前步骤完成前为下一步骤提供数据。<code>tf.data</code> API 有利于构建灵活高效的输入管道。本文档介绍了 <code>tf.data</code> 的特性以及在各种模型和加速器中构建高性能 TensorFlow 输入管道的最佳实践。</p>
 <p>本指南主要有以下内容：</p>
 <ul>
@@ -63,7 +63,7 @@
 <li>讨论您应用转换的顺序对训练性能所产生的影响。</li>
 <li>总结设计高性能 TensorFlow 输入管道的最佳实践。</li>
 </ul>
-<h2>输入管道结构</h2>
+<h2 id="toc-1">输入管道结构</h2>
 <p>一个典型的 TensorFlow 输入管道训练过程可以被设计为一个 ETL 进程：</p>
 <ol>
 <li><strong>抽取：</strong> 从存储器中读取数据 —— 本地（例如 HDD 或 SSD）或云端（例如 GCS 或 HDFS）。</li>
@@ -92,9 +92,9 @@ def input_fn():
   return dataset
 </code></pre>
 <p>下一部分构建是在输入管道上增加性能优化。</p>
-<h2>性能优化</h2>
+<h2 id="toc-2">性能优化</h2>
 <p>随着新的计算设备（如 GPU 和 TPU）能够以越来越快的速度训练神经网络，CPU 训练开始容易成为训练时的瓶颈。<code>tf.data</code> API 为用户提供构建块以构建有效利用 CPU 的输入管道，优化 ETL 进程的每个步骤。</p>
-<h3>流水线机制</h3>
+<h3 id="toc-3">流水线机制</h3>
 <p>要执行训练步骤，您必须首先抽取并转换训练数据，然后将其输入到加速器运行的模型上。但是，在一般的同步实现过程中，当 CPU 正在准备数据时，加速器处于空闲状态。类似相反，在加速器正在训练模型时，CPU 处于闲置状态。所以训练步骤时间是 CPU 预处理时间和加速器训练时间的总和。</p>
 <p><strong>流水线技术</strong> 重叠训练的预处理和模型训练步骤。当加速器正在执行训练步骤 N 时，CPU 开始准备步骤 N + 1 的数据。这样做可以将步骤时间减少到模型训练与抽取转换数据二者所需的最大时间（而不是二者时间总和）。</p>
 <p>没有流水线技术，CPU 和 GPU/TPU 大部分时间将处于闲置状态:</p>
@@ -112,7 +112,7 @@ dataset = dataset.prefetch(buffer_size=FLAGS.prefetch_buffer_size)
 return dataset
 </code></pre>
 <p>请注意，只要能够有机会将“训练”与“开销”重叠在一起，抽取转换就会带来好处。前面的建议是最常见的应用程序。</p>
-<h3>并行数据转换</h3>
+<h3 id="toc-4">并行数据转换</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
 <p><img src="https://www.tensorflow.org/images/datasets_parallel_map.png" alt="parallel map"></p>
 <p>为 <code>num_parallel_calls</code> 参数选择最佳值取决于您的硬件情况，训练数据的特征（如大小和形状）及映射函数的消耗以及 CPU 上同时进行的其他处理进程；<br>
@@ -132,7 +132,7 @@ dataset = dataset.batch(batch_size=FLAGS.batch_size)
 <pre><code>dataset = dataset.apply(tf.contrib.data.map_and_batch(
     map_func=parse_fn, batch_size=FLAGS.batch_size))
 </code></pre>
-<h3>并行数据抽取</h3>
+<h3 id="toc-5">并行数据抽取</h3>
 <p>在现实环境中，输入数据可能在云端存储（例如 GCS 或 HDFS），因为输入数据不适合存储在本地，或者因为训练是分布式的，在每台机器上复制输入数据是没有意义的。由于本地和远程存储之间存在以下差异，在本地抽取数据时运行良好的数据集管道可能在云端读取数据时反而成为 I/O 瓶颈：</p>
 <ul>
 <li><strong>到首字节时间：</strong> 从云端存储中抽取文件的第一个字节的时间可能比本地存储的时间要长。</li>
@@ -150,19 +150,19 @@ dataset = dataset.batch(batch_size=FLAGS.batch_size)
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/parallel_interleave"><code>tf.contrib.data.parallel_interleave</code></a></p>
 <p>默认情况下，<code>parallel_interleave</code> 转换提供确定性元素顺序以实现重现性。作为预读取的替代方法（在某些情况下可能无效），<code>parallel_interleave</code> 转换还提供了一个选项以提高性能，但会牺牲顺序的确定性。别是，如果 <code>sloppy</code> 参数设置为 true，那么转换可能会偏离其确定性顺序，这是通过临时跳过请求下一个元素时元素不可用的文件导致的。</p>
-<h2>性能考虑</h2>
+<h2 id="toc-6">性能考虑</h2>
 <p><code>tf.data</code> API 是围绕可组合转换设计的，为用户提供了灵活性。虽然这些转换大多数是可交换的，但某些转换的排序会对性能产生影响。</p>
-<h3>映射和批处理</h3>
+<h3 id="toc-7">映射和批处理</h3>
 <p>调用传递给 <code>map</code> 转换的用户定义函数具有与调度和执行用户定义函数有关的开销。通常情况下，这个开销比函数执行的计算量要小。然而在函数环境中，如果 <code>map</code> 工作量很小，这种开销可能会占用总成本。在这种情况下，我们建议矢量化用户定义的函数（即让它一次对一批输入进行操作），并在 <code>map</code> 转换之前应用 <code>batch</code> 转换。</p>
-<h3>映射和缓存</h3>
+<h3 id="toc-8">映射和缓存</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/cache"><code>tf.data.Dataset.cache</code></a></p>
-<h3>映射和交错/预取/乱序</h3>
+<h3 id="toc-9">映射和交错/预取/乱序</h3>
 <p>许多转换，包括 <code>interleave</code>， <code>prefetch</code>，和 <code>shuffle</code> 都维护着元素的内部缓冲区。如果传递给 <code>map</code> 转换的用户定义函数改变了元素的大小，那么 <code>map</code> 转换的顺序和缓冲元素的转换会影响内存使用。通常，我们建议选择导致内存占用较小的顺序，除非性能要求原因需要不同的排序（例如，启用 <code>map</code> 和批量转换的融合）。</p>
-<h3>重复和乱序</h3>
+<h3 id="toc-10">重复和乱序</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/shuffle"><code>tf.data.Dataset.shuffle</code></a></p>
 <p>如果 <code>repeat</code> 转换在 <code>shuffle</code> 转换之前应用，则迭代次数边界将变的不确定。也就是说，某些元素可以在其他元素出现之前重复一次。另一方面，如果在 <code>repeat</code> 转换之前应用 <code>shuffle</code> 转换，则在涉及 <code>shuffle</code> 转换的内部状态初始化的每个迭代次数开始时性能可能会下降。换句话说，前者（在 <code>shuffle</code> 之前 <code>repeat</code>）提供了更好的性能，而后者（在 <code>repeat</code> 之前 <code>shuffle</code>）提供了更确定性的排序。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/shuffle_and_repeat"><code>tf.contrib.data.shuffle_and_repeat</code></a></p>
-<h2>最佳实践摘要</h2>
+<h2 id="toc-11">最佳实践摘要</h2>
 <p>以下是设计输入管道的最佳实践总结：</p>
 <ul>
 <li>使用 <code>prefetch</code> 转换来合并训练和开销的工作。 特别是，我们建议在输入管道的末端添加 prefetch(n)（其中 n 是训练步骤消耗的元素/批次数），以将 CPU 上执行的转换与加速器上的训练合并。</li>
@@ -176,6 +176,18 @@ dataset = dataset.batch(batch_size=FLAGS.batch_size)
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">输入管道性能指南</a><ul>
+<li><a href="#toc-1">输入管道结构</a></li>
+<li><a href="#toc-2">性能优化</a></li>
+<li><a href="#toc-6">性能考虑</a></li>
+<li><a href="#toc-11">最佳实践摘要</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

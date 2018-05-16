@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,18 +46,18 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Dataset Input Pipeline</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Dataset Input Pipeline</h1>
 <p>[TOC]</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html">数据导入</a></p>
-<h2>Reader classes</h2>
+<h2 id="toc-1">Reader classes</h2>
 <p>Classes that create a dataset from input files.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/FixedLengthRecordDataset"><code>tf.data.FixedLengthRecordDataset</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TextLineDataset"><code>tf.data.TextLineDataset</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></li>
 </ul>
-<h2>Creating new datasets</h2>
+<h2 id="toc-2">Creating new datasets</h2>
 <p>Static methods in <code>Dataset</code> that create new datasets.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/from_generator"><code>tf.data.Dataset.from_generator</code></a></li>
@@ -67,7 +67,7 @@
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/range"><code>tf.data.Dataset.range</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/zip"><code>tf.data.Dataset.zip</code></a></li>
 </ul>
-<h2>Transformations on existing datasets</h2>
+<h2 id="toc-3">Transformations on existing datasets</h2>
 <p>These functions transform an existing dataset, and return a new dataset. Calls<br>
 can be chained together, as shown in the example below:</p>
 <pre><code>train_data = train_data.batch(100).shuffle().repeat()
@@ -89,7 +89,7 @@ can be chained together, as shown in the example below:</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/skip"><code>tf.data.Dataset.skip</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/take"><code>tf.data.Dataset.take</code></a></li>
 </ul>
-<h3>Custom transformation functions</h3>
+<h3 id="toc-4">Custom transformation functions</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/apply"><code>tf.data.Dataset.apply</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/batch_and_drop_remainder"><code>tf.contrib.data.batch_and_drop_remainder</code></a></li>
@@ -105,7 +105,7 @@ can be chained together, as shown in the example below:</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/shuffle_and_repeat"><code>tf.contrib.data.shuffle_and_repeat</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/unbatch"><code>tf.contrib.data.unbatch</code></a></li>
 </ul>
-<h2>Iterating over datasets</h2>
+<h2 id="toc-5">Iterating over datasets</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator"><code>tf.data.Iterator</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/make_initializable_iterator"><code>tf.data.Dataset.make_initializable_iterator</code></a></li>
@@ -116,7 +116,7 @@ can be chained together, as shown in the example below:</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator/from_structure"><code>tf.data.Iterator.from_structure</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator/from_string_handle"><code>tf.data.Iterator.from_string_handle</code></a></li>
 </ul>
-<h2>Extra functions from <code>tf.contrib.data</code></h2>
+<h2 id="toc-6">Extra functions from <code>tf.contrib.data</code></h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/get_single_element"><code>tf.contrib.data.get_single_element</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/data/make_saveable_from_iterator"><code>tf.contrib.data.make_saveable_from_iterator</code></a></li>
@@ -124,6 +124,19 @@ can be chained together, as shown in the example below:</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Dataset Input Pipeline</a><ul>
+<li><a href="#toc-1">Reader classes</a></li>
+<li><a href="#toc-2">Creating new datasets</a></li>
+<li><a href="#toc-3">Transformations on existing datasets</a></li>
+<li><a href="#toc-5">Iterating over datasets</a></li>
+<li><a href="#toc-6">Extra functions from <code>tf.contrib.data</code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

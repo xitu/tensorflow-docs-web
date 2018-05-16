@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,10 +53,10 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'title': '部署'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/distributed.html', 'title': '分布式 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/hadoop.html', 'title': '如何在 Hadoop 上运行 Tensorflow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/s3.html', 'title': '如何在 S3 上运行 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/deploy_to_js.html', 'title': '部署 JavaScript'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>分布式 TensorFlow</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">分布式 TensorFlow</h1>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html">底层 API 编程介绍</a></p>
-<h2>你好，分布式 TensorFlow ！</h2>
+<h2 id="toc-1">你好，分布式 TensorFlow ！</h2>
 <p>要查看一个简单的 TensorFlow 集群，请执行以下操作：</p>
 <pre><code class="lang-shell"># 以单进程“集群”模式启动一个 TensorFlow 服务器
 $ python
@@ -68,7 +68,7 @@ $ python
 &#39;Hello, distributed TensorFlow!&#39;
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Server/create_local_server"><code>tf.train.Server.create_local_server</code></a></p>
-<h2>创建一个集群</h2>
+<h2 id="toc-2">创建一个集群</h2>
 <div class="video-wrapper">
   <iframe class="devsite-embedded-youtube-video" data-video-id="la_M6bCV91M"
           data-autohide="1" data-showinfo="0" frameborder="0" allowfullscreen>
@@ -81,7 +81,7 @@ $ python
 <li><p><strong>创建一个 <code>tf.train.Server</code></strong>，将 <code>tf.train.ClusterSpec</code> 传给构造函数，并用工作名称标识本地任务和任务索引。</p>
 </li>
 </ol>
-<h3>创建一个 <code>tf.train.ClusterSpec</code> 来描述集群</h3>
+<h3 id="toc-3">创建一个 <code>tf.train.ClusterSpec</code> 来描述集群</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/ClusterSpec"><code>tf.train.ClusterSpec</code></a></p>
 <table>
   <tr><th>构造 <code>tf.train.ClusterSpec</code> </th><th>可用的任务</th>
@@ -105,7 +105,7 @@ tf.train.ClusterSpec({
     ]})
 </pre></td><td><code>/job:worker/task:0</code><br/><code>/job:worker/task:1</code><br/><code>/job:worker/task:2</code><br/><code>/job:ps/task:0</code><br/><code>/job:ps/task:1</code></td>
   </tr>
-</table><h3>在每个任务中创建一个 <code>tf.train.Server</code> 实例</h3>
+</table><h3 id="toc-4">在每个任务中创建一个 <code>tf.train.Server</code> 实例</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>tf.Session</code></a></p>
 <p>例如，启动一个运行在 <code>localhost：2222</code> 和 <code>localhost：2223</code> 两台服务器上的集群，在本地机器的两个不同进程上运行以下代码：</p>
 <pre><code class="lang-python"># 任务 0 中:
@@ -117,7 +117,7 @@ cluster = tf.train.ClusterSpec({&quot;local&quot;: [&quot;localhost:2222&quot;, 
 server = tf.train.Server(cluster, job_name=&quot;local&quot;, task_index=1)
 </code></pre>
 <p><strong>注意：</strong> 手动指定这些集群规范可能很乏味，特别是对于大型集群。我们正在开发可编程的任务启动工具，例如类似 <a href="http://kubernetes.io">Kubernetes</a> 的集群管理器。如果你希望 Tensorflow 支持某种特定的集群管理器，请提出一个 <a href="https://github.com/tensorflow/tensorflow/issues">GitHub issue</a>。</p>
-<h2>指定模型中的分布式设备</h2>
+<h2 id="toc-5">指定模型中的分布式设备</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/device"><code>tf.device</code></a></p>
 <pre><code class="lang-python">with tf.device(&quot;/job:ps/task:0&quot;):
   weights_1 = tf.Variable(...)
@@ -139,7 +139,7 @@ with tf.Session(&quot;grpc://worker7.example.com:2222&quot;) as sess:
     sess.run(train_op)
 </code></pre>
 <p>在上面的例子中，变量是在 <code>ps</code> 作业中的两个任务上创建的，模型的计算密集部分是在 <code>worker</code> 作业中创建的。TensorFlow 将在作业之间插入适当的数据传输（正向传递时从 <code>ps</code> 到 <code>worker</code>，反向传递时从 <code>worker</code> 到 <code>ps</code>）。</p>
-<h2>重复训练</h2>
+<h2 id="toc-6">重复训练</h2>
 <p>一种通用训练的配置，也被称为“并行数据”，包含了使用不同 mini-batch 来训练相同模型的 <code>Worker</code> 作业中的多个任务，更新 <code>ps</code> 作业中一个或多个任务里的共享参数。所有任务通常在不同的机器上运行。在 TensorFlow 中有很多方法可以指定任务分配的结构，我们正在开发简化指定复制模型工作的库。可能的方法包括：</p>
 <ul>
 <li><p><strong>图内复制</strong> 在这种方法中，客户端构建一个包含一组参数（在 <code>tf.Variable</code> 节点上固定<br>
@@ -153,7 +153,7 @@ with tf.Session(&quot;grpc://worker7.example.com:2222&quot;) as sess:
 <li><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/SyncReplicasOptimizer"><code>tf.train.SyncReplicasOptimizer</code></a></p>
 </li>
 </ul>
-<h3>总结：示例训练程序</h3>
+<h3 id="toc-7">总结：示例训练程序</h3>
 <p>以下代码显示了分布式训练程序的框架，实现<strong>图间复制</strong>和<strong>异步训练</strong>。它包括参数服务器和 <code>Worker</code> 任务的代码。</p>
 <pre><code class="lang-python">import argparse
 import sys
@@ -261,7 +261,7 @@ $ python trainer.py \
      --worker_hosts=worker0.example.com:2222,worker1.example.com:2222 \
      --job_name=worker --task_index=1
 </code></pre>
-<h2>Glossary</h2>
+<h2 id="toc-8">Glossary</h2>
 <p><strong>客户端</strong></p>
 <p>客户端通常是一个程序，用来构建 TensorFlow 计算图和创建用于与集群交互的会话 <code>tensorflow::Session</code>。通常用 Python 或 C++ 编写。一个客户端进程可以直接与多个 TensorFlow 服务器交互（参阅上面的“重复训练”），一台服务器可为多个客户端服务。</p>
 <p><strong>集群</strong></p>
@@ -278,6 +278,19 @@ $ python trainer.py \
 <p>一个使用本地设备执行 TensorFlow 计算图中部分命令的 RPC 服务。Worker 服务实现了 <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/worker_service.proto">worker_service.proto</a>。所有的 TensorFlow 服务器都实现了 Worker 服务。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">分布式 TensorFlow</a><ul>
+<li><a href="#toc-1">你好，分布式 TensorFlow ！</a></li>
+<li><a href="#toc-2">创建一个集群</a></li>
+<li><a href="#toc-5">指定模型中的分布式设备</a></li>
+<li><a href="#toc-6">重复训练</a></li>
+<li><a href="#toc-8">Glossary</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,12 +53,12 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>TF Layers 教程：构建卷积神经网络</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">TF Layers 教程：构建卷积神经网络</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/layers"><code>tf.layers</code></a></p>
 <p><img src="../images/mnist_0-9.png" alt="MNIST 数据集中 0-9 的手写数字"></p>
 <p><strong>MNIST 数据集由 60,000 张训练样本和 10,000 张测试样本组成，这些样本表示 0-9 的手写数字，都被处理为 28x28 像素大小的灰度图片。</strong></p>
-<h2>准备开始</h2>
+<h2 id="toc-1">准备开始</h2>
 <p>新建一个名为 <code>cnn_mnist.py</code> 的文件，然后在里面编写 TensorFlow 程序的框架代码。</p>
 <pre><code class="lang-python">from __future__ import absolute_import
 from __future__ import division
@@ -76,7 +76,7 @@ if __name__ == &quot;__main__&quot;:
   tf.app.run()
 </code></pre>
 <p>阅读本教程，你将学会如何编写代码，来构建、训练并运行一个卷积神经网络。该教程完整的代码可以<a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/layers/cnn_mnist.py">查看这里</a>。</p>
-<h2>卷积神经网络的简介</h2>
+<h2 id="toc-2">卷积神经网络的简介</h2>
 <p>卷积神经网络（CNNs）是当前用户图像分类任务中最前沿的模型。CNNs 对图像的原始像素数据应用了一系列的过滤器，以提取和学习更高层次的特征，然后模型利用这些特征对图像进行分类。CNNs 主要包含下面三个组件：</p>
 <ul>
 <li><p><strong>卷积层</strong>，它表示应用在图像中卷积核的数量。对于图片的子区域，卷积层会执行一系列的数学变换，从而输出特征映射的值。卷积层一般情况下会使用 <a href="https://en.wikipedia.org/wiki/Rectifier_\(neural_networks\">ReLU 做为激活函数</a>)来让模型引入非线性变换。</p>
@@ -89,7 +89,7 @@ if __name__ == &quot;__main__&quot;:
 <p>一般来说，CNN 是通过多层卷积模块来提取特征的。每一个模块都包含一个卷积层，后面跟着一个池化层。最后一个卷积模块后面跟着一层或者多层的全连接层来获得分类结果。CNN 中的最后一个全连接层结点的数量等于预测任务所有可能类别的数量，而这些结点的值通过 softmax 激活函数后会产生一个 0~1 的值（该层所有的结点值之和为 1）。这些 softmax 值可以解释为输入图片最有可能是属于哪个类别的概率。</p>
 <blockquote><p>注意：想要更深入了解 CNN 的架构，请看斯坦福大学的 <a href="https://cs231n.github.io/convolutional-networks/">卷积神经网络课程资料</a></p>
 </blockquote>
-<h2>构建基于卷积神经网络的 MNIST 分类器</h2>
+<h2 id="toc-3">构建基于卷积神经网络的 MNIST 分类器</h2>
 <p>基于 CNN 架构，让我们构建一个模型来对 MNIST 数据集中的图像进行分类：</p>
 <ol>
 <li><strong>第一个卷积层</strong>：应用 32 个 5x5 窗口大小的卷积核（提取 5x5-像素的子区域）和 ReLU 激活函数。</li>
@@ -170,7 +170,7 @@ if __name__ == &quot;__main__&quot;:
       mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
-<h3>输入层</h3>
+<h3 id="toc-4">输入层</h3>
 <p>在 <code>layer</code> 模块中，用于二维图像数据的卷积层和池化层期望输入的张量维度默认为<code>[batch_size, image_height, image_width, channels]</code>。可以通过修改 <code>data_format</code> 的参数改变这种行为，定义如下：</p>
 <ul>
 <li>_<code>batch_size</code>_：在训练过中，每次执行梯度下降时使用的样本子集大小。</li>
@@ -184,7 +184,7 @@ if __name__ == &quot;__main__&quot;:
 <pre><code class="lang-python">input_layer = tf.reshape(features[&quot;x&quot;], [-1, 28, 28, 1])
 </code></pre>
 <p>注意，这里的 batch_size 值为 <code>-1</code>，该值会根据输入 <code>features[x]</code> 和另外 3 个维度的值自动计算出来。这使我们可以将 <code>batch_size</code> 当成一个超参数来进行调整。举个例子，如果我们输入到模型的样本子集大小为 5，那么 <code>features["x"]</code> 会包含 3,920 个值（每个值对应每张图像像素的一个值，也即 5x28x28 = 3920），也就是说 <code>input_layer</code> 的形状为 <code>[5, 28, 28, 1]</code>，同样的，如果我们的输入样本子集大小为 100，<code>features["x"]</code> 就会包含 78,400 个值，也就是说 <code>input_layer</code> 的形状为 <code>[100, 28, 28, 1]</code></p>
-<h3>第一个卷积层</h3>
+<h3 id="toc-5">第一个卷积层</h3>
 <p>第一个卷积层中，我们对输入层应用了 32 个 5x5 的卷积核和 ReLU 激活函数。我们用到了 <code>layer</code> 模块中的 <code>conv2d</code> 方法，如下所示：</p>
 <pre><code class="lang-python">conv1 = tf.layers.conv2d(
     inputs=input_layer,
@@ -201,7 +201,7 @@ if __name__ == &quot;__main__&quot;:
 <p>参数 <code>padding</code> 的输入值是两个枚举值中的一个（值不区分大小写）：<code>valid</code> （默认值）或 <code>same</code>。当你设置 <code>padding=same</code> 的时候，TensorFlow 将会在边界填充 0 值从而让输出的张量和输入的张量有相同的宽高，也即 28x28。（如果没有填充，那么 5x5 的卷积核会产生一个 24x24 形状的张量）</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/relu"><code>tf.nn.relu</code></a></p>
 <p>函数 <code>conv2d()</code> 的输出张量的形状为 <code>[batch_size, 28, 28, 32]</code>：以相同的高度和宽度作为输入，但是有 32 个通道，每个通道对应着一个卷积核的输出。</p>
-<h3>第一个池化层</h3>
+<h3 id="toc-6">第一个池化层</h3>
 <p>接下来，我们将第一个池化层连接到我们刚创建的卷积层上去。我们使用 <code>layers</code> 中的 <code>max_pooling2d()</code> 方法来创建一个 2x2 大小，步长为 2 的最大池化过滤器。</p>
 <pre><code class="lang-python">pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
 </code></pre>
@@ -211,7 +211,7 @@ if __name__ == &quot;__main__&quot;:
 <p>参数 <code>pool_size</code> 指定了最大池化过滤器的维度 <code>[height, width]</code>（在这里维度值为 [2, 2]），该参数也可以接受一个单独的数字（譬如 <code>pool_size=2</code>）</p>
 <p>参数 <code>strides</code> 指定了滑动步长的大小。在这里，我们设置步长的值为 2，它的含义是过滤器提取的子区域在高度和宽度上都间隔有 2 个像素（对于 2x2 的过滤器，我们所提取的子区域都不会重叠）。如果你要为高度和宽度设置不同的步长值，你可以传入一个类型为元组或列表的值（e.g., <code>stride=[3, 6]</code>）。</p>
 <p>方法 <code>max_pooling2d()</code> 输出的张量（<code>pool1</code>）的形状为 <code>[batch_size, 14, 14, 32]</code>：2x2 的过滤器让高和宽分别减少了 50%。</p>
-<h3>第二个卷积层和池化层</h3>
+<h3 id="toc-7">第二个卷积层和池化层</h3>
 <p>如前所述，我们使用 <code>conv2d()</code> 和 <code>max_pooling2d()</code> 方法就可以连接和创建我们 CNN 的第二个卷积层和池化层。对于第二个卷积层，我们配置了 64 个窗口大小为 5x5 的卷积核，使用了 ReLU 激活函数，对于第二个池化层，我们使用了和第一个池化层一样的设置（大小为 2x2 且步长为 2 的最大池化过滤器）：</p>
 <pre><code class="lang-python">conv2 = tf.layers.conv2d(
     inputs=pool1,
@@ -224,7 +224,7 @@ pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
 </code></pre>
 <p>注意第二个卷积层将第一个池化层的输出（<code>pool1</code>）作为输入，然后得到的输出张量为 <code>conv2</code>。张量 <code>conv2</code> 的形状为 <code>[batch_size, 14, 14, 62]</code>，高和宽与第一个池化层（<code>pool1</code>）相同，64 个通道表示应用的 64 个卷积核。</p>
 <p>第二个池化层拿 <code>conv2</code> 作为输入，然后得到的 <code>pool2</code> 作为输出。<code>pool2</code> 的形状为 <code>[batch_size, 7, 7, 64]</code>（将高和宽的长度分别减少了 50%）</p>
-<h3>全连接层</h3>
+<h3 id="toc-8">全连接层</h3>
 <p>接下来，我们将要为 CNN 添加全连接层（拥有 1,024 个神经元和 ReLU 激活函数），以用来对我们前面的卷积层和池化层所提取到的特征来做分类。在我们连接该层时，我们需要拉平 <code>pool2</code> 的形状为 <code>[batch_size, features]</code>，这时张量只有两维：</p>
 <pre><code class="lang-python">pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
 </code></pre>
@@ -241,12 +241,12 @@ pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
 <p>参数 <code>rate</code> 指定了 dropout 的比率；在这里，我们的值是 <code>0.4</code>，意味着 40% 的神经元在训练期间会被随机的屏蔽。</p>
 <p>参数 <code>training</code> 接受一个布尔值，它指定模型当前是否正在训练模式下运行；dropout 操作只会在此布尔值为 <code>True</code> 的时候执行。在这里，在这里，我们检查传递到我们的模型函数 <code>cnn_model_fn</code> 的 <code>mode</code> 是否是 <code>TRAIN</code> 模式。</p>
 <p>我们的输出张量 <code>dropout</code> 的形状是 <code>[batch_size, 1024]</code>。</p>
-<h3>Logits 层</h3>
+<h3 id="toc-9">Logits 层</h3>
 <p>神经网络中的最后一层是 logits 层，它将返回我们预测的原始值。逻辑层是一个有 10 个神经元，且默认有线性激活函数的全连接层（每个神经元对应 0~9 中的一个类别）。</p>
 <pre><code class="lang-python">logits = tf.layers.dense(inputs=dropout, units=10)
 </code></pre>
 <p>CNN 最终张量由 <code>logits</code> 层输出，它的形状是 <code>[batch_size, 10]</code></p>
-<h3>生成预测</h3>
+<h3 id="toc-10">生成预测</h3>
 <p>我们的模型的 <code>logits</code> 层将我们的原始预测值作为一维张量返回，形状为 <code>[batch_size, 10]</code>。让我们将这些原始值转换成模型函数所支持的两种不同格式：</p>
 <ul>
 <li>每个样本的<strong>预测的类别</strong>：0~9 的数字。</li>
@@ -269,7 +269,7 @@ pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
 if mode == tf.estimator.ModeKeys.PREDICT:
   return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
 </code></pre>
-<h3>计算损失</h3>
+<h3 id="toc-11">计算损失</h3>
 <p>对于训练（<code>TRAIN</code>）和评价（<code>EVAL</code>）环节，我们需要定义<a href="https://en.wikipedia.org/wiki/Loss_function">损失函数</a>来衡量预测类别和真实类别之间的差距。对于像 MNIST 这样的多分类问题，我们常用<a href="https://en.wikipedia.org/wiki/Cross_entropy">交叉熵</a>作为损失的度量。下面的代码将会在训练或者验证模式下计算对应的交叉熵。</p>
 <pre><code class="lang-python">onehot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=10)
 loss = tf.losses.softmax_cross_entropy(
@@ -294,7 +294,7 @@ loss = tf.losses.softmax_cross_entropy(
 <pre><code class="lang-python">loss = tf.losses.softmax_cross_entropy(
     onehot_labels=onehot_labels, logits=logits)
 </code></pre>
-<h3>配置训练操作</h3>
+<h3 id="toc-12">配置训练操作</h3>
 <p>在上面的章节，我们定义了交叉熵损失函数。接下来让我们在训练中配置我们的模型来最优化这个损失值。我们使用的最优化算法是<a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">随机梯度下降法</a>，对应的学习率为 0.001 。</p>
 <pre><code class="lang-python">if mode == tf.estimator.ModeKeys.TRAIN:
   optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
@@ -305,7 +305,7 @@ loss = tf.losses.softmax_cross_entropy(
 </code></pre>
 <blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html#defining_the_training_op_for_the_model">创建定制化 Estimator</a></p>
 </blockquote>
-<h3>添加评价指标</h3>
+<h3 id="toc-13">添加评价指标</h3>
 <p>通过在 EVAL 模式中定义 <code>eval_metric_ops</code> 字典，我们可以给模型添加准确度评价指标：</p>
 <pre><code class="lang-python">eval_metric_ops = {
     &quot;accuracy&quot;: tf.metrics.accuracy(
@@ -313,9 +313,9 @@ loss = tf.losses.softmax_cross_entropy(
 return tf.estimator.EstimatorSpec(
     mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 </code></pre>
-<h2>训练和评价 CNN MNIST 分类器</h2>
+<h2 id="toc-14">训练和评价 CNN MNIST 分类器</h2>
 <p>我们已经完成了 CNN 模型的代码工作；现在我们准备训练和评价它。</p>
-<h3>加载训练和测试数据</h3>
+<h3 id="toc-15">加载训练和测试数据</h3>
 <p>首先，我们需要加载训练和测试数据。在 <code>cnn_mnist.py</code> 文件中的 <code>main()</code> 函数添加下面的代码：</p>
 <pre><code class="lang-python">def main(unused_argv):
   # Load training and eval data
@@ -326,7 +326,7 @@ return tf.estimator.EstimatorSpec(
   eval_labels = np.asarray(mnist.test.labels, dtype=np.int32)
 </code></pre>
 <p>我们将训练特征数据（55, 000 张手写数字图片数据的原始像素值）和标注数据（每张图片对应的 0~9 的值）分别存储为 <code>train_data</code> 和 <code>train_labels</code> 中，格式为 <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html">numpy 数组</a>。类似地，我们将用于评价的特征数据（10,000 张图片）和相应的标注数据分别存储在 <code>eval_data</code> 和 <code>eval_labels</code> 中。</p>
-<h3>创建评估器（Estimator）</h3>
+<h3 id="toc-16">创建评估器（Estimator）</h3>
 <p>接下来，在 <code>main()</code> 函数添加下面的代码，它的作用是为我们的模型创建 <code>Estimator</code>（一个用于执行模型训练，评价和推断的 TensorFlow 类）：</p>
 <pre><code class="lang-python"># Create the Estimator
 mnist_classifier = tf.estimator.Estimator(
@@ -335,7 +335,7 @@ mnist_classifier = tf.estimator.Estimator(
 <p>参数 <code>model_fn</code> 指定了用于训练，评价和预测的模型函数；我们传入的 <code>cnn_model_fn</code> 函数是在<a href="#building-the-cnn-mnist-classifier">构建 CNN MNIST 分类器</a>中创建的。参数 <code>model_dir</code> 指定了模型数据（检查点）保存的目录（这里我们传入的目录是 <code>/tmp/mnist_convnet_model</code>，这个目录是可以更改的）。</p>
 <blockquote><p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
 </blockquote>
-<h3>建立一个日志钩子</h3>
+<h3 id="toc-17">建立一个日志钩子</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/LoggingTensorHook"><code>tf.train.LoggingTensorHook</code></a></p>
 <pre><code class="lang-python"># 为预测过程设置日志
   tensors_to_log = {&quot;probabilities&quot;: &quot;softmax_tensor&quot;}
@@ -346,7 +346,7 @@ mnist_classifier = tf.estimator.Estimator(
 <blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html">TensorFlow 调试器</a></p>
 </blockquote>
 <p>接下来，通过给 <code>tensors</code> 参数传递 <code>tensor_to_log</code> 变量来创建 <code>LoggingTensorHook</code> 对象，并且设置 <code>every_n_iter</code> 的值为 50，每训练 50 步后在日志中输出概率。</p>
-<h3>训练模型</h3>
+<h3 id="toc-18">训练模型</h3>
 <p>准备完成后，在 <code>main()</code> 函数中调用 <code>train_input_fn</code> 中的 <code>train()</code> 方法就可以训练我们的模型了：</p>
 <pre><code class="lang-python"># 模型训练
 train_input_fn = tf.estimator.inputs.numpy_input_fn(
@@ -361,7 +361,7 @@ mnist_classifier.train(
     hooks=[logging_hook])
 </code></pre>
 <p>在 numpy_input_fn 函数调用中，我们训练的特征数据和标注值分别传递给参数 <code>x</code> （字典类型）和 <code>y</code>。参数 <code>batch_size</code> 的值为 <code>100</code>（意味着模型每一步训练都会用到 100 个样本）。参数 <code>num_epochs=None</code> 指定训练迭代的次数。参数 <code>shuffle</code> 值为 True 表示训练时的样本是乱序的。在 <code>train</code> 调用中，<code>steps=20000</code> 表示模型总共会训练 20000 步。<code>hooks</code> 参数指定为 <code>logging_hook</code>，表示训练过程中会触发日志打印。</p>
-<h3>评估模型</h3>
+<h3 id="toc-19">评估模型</h3>
 <p>训练完成后，我们可以调用 <code>evaluate</code> 方法来评价模型，它会根据我们定义在 <code>model_fn</code> 上的 <code>eval_metrics_ops</code> 的指标来评价模型在测试集上的准确度。</p>
 <pre><code class="lang-python"># 评估模型并输出结果
 eval_input_fn = tf.estimator.inputs.numpy_input_fn(
@@ -373,7 +373,7 @@ eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
 print(eval_results)
 </code></pre>
 <p>在创建 <code>eval_input_fn</code> 时，我们设置 <code>num_epochs=1</code>，意味着迭代一次数据来得到模型的评价指标。我们同时也设置 <code>shuffle</code> 参数为 False 从而顺序的迭代数据。</p>
-<h3>运行模型</h3>
+<h3 id="toc-20">运行模型</h3>
 <p>我们已经编写了 CNN 模型的函数，<code>Estimator</code>，以及训练/评价的逻辑；现在来运行 <code>cnn_mnist.py</code> 来看看结果。</p>
 <blockquote><p>注意：训练 CNNs 是一个计算密集型任务。<code>cnn_mnist.py</code> 的运行时长取决于你的处理器的性能，很有可能会耗费一个小时的时间来训练。当然为了加快训练的速度，你可以调低在 <code>train()</code> 函数中参数 <code>steps</code> 的取值，但注意这会影响到模型的准确性。</p>
 </blockquote>
@@ -393,7 +393,7 @@ INFO:tensorflow:Saving evaluation summary for step 20000: accuracy = 0.9733, los
 {&#39;loss&#39;: 0.090227105, &#39;global_step&#39;: 20000, &#39;accuracy&#39;: 0.97329998}
 </code></pre>
 <p>在这里，我们最后在测试集上的准确度是 97.3%。</p>
-<h2>其他的资料</h2>
+<h2 id="toc-21">其他的资料</h2>
 <p>如果你想了解更多有关于 TensorFlow 中评估器（Estimators）和 CNNs 的内容，请查阅下面的资料：</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></li>
@@ -401,6 +401,19 @@ INFO:tensorflow:Saving evaluation summary for step 20000: accuracy = 0.9733, los
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">TF Layers 教程：构建卷积神经网络</a><ul>
+<li><a href="#toc-1">准备开始</a></li>
+<li><a href="#toc-2">卷积神经网络的简介</a></li>
+<li><a href="#toc-3">构建基于卷积神经网络的 MNIST 分类器</a></li>
+<li><a href="#toc-14">训练和评价 CNN MNIST 分类器</a></li>
+<li><a href="#toc-21">其他的资料</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

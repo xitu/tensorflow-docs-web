@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,23 +53,23 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>卷积神经网络</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">卷积神经网络</h1>
 <blockquote><p><strong>注意</strong>：本教程适合对于 TensorFlow 有<strong>丰富经验</strong>的用户，并假定用户有机器学习相关领域的专业知识和经验。</p>
 </blockquote>
-<h2>概述</h2>
+<h2 id="toc-1">概述</h2>
 <p>对 CIFAR-10 数据集的分类是机器学习中一个常用的基准测试问题。它的任务是对于一组像素为 32x32 的 RGB 图形进行分类，这些图像包含了 10 个类别：</p>
 <pre><code>飞机，汽车，鸟，猫，鹿，狗，青蛙，马，船以及卡车。
 </code></pre>
 <p>想了解更多数据集信息请参考 <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10 page</a>，以及 Alex Krizhevsky 写的<a href="https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf">技术报告</a>。</p>
-<h3>目标</h3>
+<h3 id="toc-2">目标</h3>
 <p>本教程的的目标是创建一个用于图像识别的相对小型的<a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">卷积神经网络（CNN）</a>。在这个过程中，本教程将会：</p>
 <ol>
 <li>着重于创建一个规范的网络组织结构，训练并进行评估；</li>
 <li>为建立更大型更为复杂精准的模型提供一个范例。</li>
 </ol>
 <p>之所以选择 CIFAR-10 数据集，是因为它的复杂程度足以训练 TensorFlow 的大部分功能，并可以扩展为更大的模型。同时，由于模型较小因此训练速度很快，这样比较适合测试新想法和试验新的技术。</p>
-<h3>本教程重点</h3>
+<h3 id="toc-3">本教程重点</h3>
 <p>CIFAR-10 教程示范了一些在 TensorFlow 上构建更大更复杂模型的重要构想：</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/local_response_normalization"><code>tf.nn.local_response_normalization</code></a></li>
@@ -84,10 +84,10 @@
 <li>可以在多个 GPU 之间共享和更新变量值</li>
 </ul>
 <p>我们希望本教程可以提供一个起点，使得大家可以在 TensorFlow 上为视觉相关的任务创建更大型的 CNN 模型。</p>
-<h3>模型架构</h3>
+<h3 id="toc-4">模型架构</h3>
 <p>CIFAR-10 教程中的模型是一个多层架构，由卷积层和非线性层交替排列而成。这些层最终通过全连接层对接到 SoftMax 分类器上。这个模型除了顶部几层外略有区别，其他方面和 <a href="https://code.google.com/p/cuda-convnet/">Alex Krizhevsky</a> 描述的架构基本一致。</p>
 <p>在 GPU 上训练了几个小时后，该模型最高可以达到 86% 的准确度。细节请查看<a href="#评估模型">下面</a>的介绍和代码。模型中包含了 1068298 个学习参数，对一副图像进行分类大概需要 1950 万个乘加操作。</p>
-<h2>代码组织结构</h2>
+<h2 id="toc-5">代码组织结构</h2>
 <p>本教程的代码位于 <a href="https://www.tensorflow.org/code/tensorflow_models/tutorials/image/cifar10/"><code>models/tutorials/image/cifar10/</code></a>。</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -118,14 +118,14 @@
 </tr>
 </tbody>
 </table></div>
-<h2>CIFAR-10 模型</h2>
+<h2 id="toc-6">CIFAR-10 模型</h2>
 <p>CIFAR-10 网络主要的代码位于 <a href="https://www.tensorflow.org/code/tensorflow_models/tutorials/image/cifar10/cifar10.py"><code>cifar10.py</code></a>。完整的训练图大致包含 765 个操作。但是我们发现通过下面的模块来构造训练图可以最大程度的提供代码的复用率：</p>
 <ol>
 <li><strong>模型输入：</strong>包括 <code>inputs()</code> 和 <code>distorted_inputs()</code> 操作，分别用于读取 CIFAR 的图像和对其进行预处理，并用于后续评估和训练。</li>
 <li><strong>模型预测：</strong>包括 <code>inference()</code> 操作，用于推断。比如对于提供的图像进行分类。</li>
 <li><strong>模型训练：</strong>包括 <code>loss()</code> 和 <code>train()</code> 操作，用于计算损失、梯度计算、变量更新以及可视化最终结果。</li>
 </ol>
-<h3>模型输入</h3>
+<h3 id="toc-7">模型输入</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html#reading-from-files">Reading data</a></p>
 <p>图片的处理流程如下：</p>
 <ul>
@@ -142,7 +142,7 @@
 <div style="width:50%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:70%" src="../images/cifar_image_summary.png">
 </div><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch"><code>tf.train.shuffle_batch</code></a></p>
-<h3>模型预测</h3>
+<h3 id="toc-8">模型预测</h3>
 <p>模型预测过程通过 <code>inference()</code> 函数进行构造，该函数会增加操作来计算预测值的 <em>logits</em>，其对应模型的组织方式如下：</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -197,14 +197,14 @@
 <p><code>input()</code> 和 <code>inference()</code> 函数提供了所有评估模型所需要的必要构件，现在我们把讲解的重点从构建模型操作转向训练一个模型。</p>
 <blockquote><p><strong>练习</strong>：<code>inference()</code> 中的模型架构跟 <a href="https://code.google.com/p/cuda-convnet/">cuda-convnet</a> 中描述的 CIFAR-10 模型有一些不同。尤其是，AlexNet 的原始模型顶层是局部连接而并非全连接，可以尝试修改网络架构来准确的重现顶层局部连接的模型架构。</p>
 </blockquote>
-<h3>模型训练</h3>
+<h3 id="toc-9">模型训练</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/l2_loss"><code>tf.nn.l2_loss</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/summary/scalar"><code>tf.summary.scalar</code></a></p>
 <p><img src="../images/cifar_loss.png" alt="CIFAR-10 Loss" title="CIFAR-10 Total Loss"></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/exponential_decay"><code>tf.train.exponential_decay</code></a></p>
 <p><img src="../images/cifar_lr_decay.png" alt="CIFAR-10 Learning Rate Decay" title="CIFAR-10 Learning Rate Decay"></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/GradientDescentOptimizer"><code>tf.train.GradientDescentOptimizer</code></a></p>
-<h2>开始并训练模型</h2>
+<h2 id="toc-10">开始并训练模型</h2>
 <p>我们已经建立了模型，现在通过执行脚本 <code>cifar10_train.py</code> 来启动训练过程。</p>
 <pre><code class="lang-shell">python cifar10_train.py
 </code></pre>
@@ -246,7 +246,7 @@
   <img style="flex-grow:1; flex-shrink:1;" src="../images/cifar_sparsity.png">
   <img style="flex-grow:1; flex-shrink:1;" src="../images/cifar_activations.png">
 </div><p><a href="https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage"><code>tf.train.ExponentialMovingAverage</code></a></p>
-<h2>评估模型</h2>
+<h2 id="toc-11">评估模型</h2>
 <p>让我们在验证集上来评估训练模型的性能。使用 <code>cifar10_eval.py</code> 脚本来对模型进行评估，它利用 <code>inference()</code> 函数重构模型，并且使用了 CIFAR-10 评估数据集中全部共 10000 张图片进行测试。它会计算出<strong>精度为 1</strong> 情况下，预测值中置信度最高的结果与图片真实标签（label）匹配的频次。</p>
 <p>为了监测模型在训练过程中的提升情况，评估脚本会周期性地在最新检查点文件上运行，这些检查点文件由 <code>cifar10_train.py</code> 创建。</p>
 <pre><code class="lang-shell">python cifar10_eval.py
@@ -261,7 +261,7 @@
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage"><code>tf.train.ExponentialMovingAverage</code></a></p>
 <blockquote><p><strong>练习：</strong> 通过计算 precision @ 1，使用移动均值参数可以将预测性能提升大约 3%。通过修改 <code>cifar10_eval.py</code> 脚本不使用移动均值作为模型的参数，可以发现预测性能有所下降。</p>
 </blockquote>
-<h2>使用多个 GPU 训练模型</h2>
+<h2 id="toc-12">使用多个 GPU 训练模型</h2>
 <p>现代工作站可能包含多个 GPU 来进行科学计算。TensorFlow 可以利用这样的工作环境在多个 GPU 上同时进行训练操作。</p>
 <p>在并行分布式的情况下训练模型，需要对训练进程进行协调。接下来我们定义<strong>模型拷贝</strong>指在一个数据子集中训练模型的一份拷贝。</p>
 <p>如果天真地使用异步方式更新模型参数，将会表现出不太理想的训练性能，这是因为一个独立的模型拷贝可能会使用一个旧的模型参数拷贝来进行训练。相反地，采用完全同步的方式更新参数，其训练速度将会和最慢的模型拷贝一样慢。</p>
@@ -276,7 +276,7 @@
 </div><p>可以看到，每个 GPU 使用一批独立的数据来计算估计值和梯度值。这样的设置可以十分有效地将一大批数据分割到每个 GPU 上。</p>
 <p>这样的设置也要求所有 GPU 共享模型参数。众所周知，在 GPU 之间传输数据相当地慢。因为这个原因，我们决定在 CPU（图中绿色框部分） 上存储和更新所有模型参数。这样，在 GPU 处理一批新数据之前会在 GPU 之间传输更新的模型参数。</p>
 <p>GPU 同步运行，所有从 GPU 计算得到的梯度值会累积并求平均值（图中绿色框部分）。模型参数会使用所有模型拷贝的梯度均值来进行更新。</p>
-<h3>在多设备中设置变量和操作</h3>
+<h3 id="toc-13">在多设备中设置变量和操作</h3>
 <p>在多设备中设置操作和变量需要一些特殊的抽象。</p>
 <p>首先要把单个模型拷贝中计算估计值和梯度值得操作抽象到一个函数里。在代码中，我们把这个抽象称为 "tower"。对于每个 "tower"，我们需要设置两个属性：</p>
 <ul>
@@ -286,20 +286,35 @@
 </li>
 </ul>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html">变量</a></p>
-<h3>启动并在多个 GPU 上训练模型</h3>
+<h3 id="toc-14">启动并在多个 GPU 上训练模型</h3>
 <p>如果你的机器上安装了多块 GPU，你可以运行 <code>cifar10_multi_gpu_train.py</code> 脚本来利用它们加速训练模型。该训练脚本可以使用多个 GPU 并行地训练模型。</p>
 <pre><code class="lang-shell">python cifar10_multi_gpu_train.py --num_gpus=2
 </code></pre>
 <p>注意 GPU 数量默认为 1。另外如果你的机器上只有一块 GPU，那么即使你设置更多 GPU 数量，所有的计算也只会在这一块 GPU 上进行。</p>
 <blockquote><p><strong>练习：</strong><code>cifar10_train.py</code> 中批处理大小默认为 128，尝试在两个 GPU 上运行 <code>cifar10_multi_gpu_train.py</code> 脚本，并设置批处理大小为 64，并比较两种设置的训练速度。</p>
 </blockquote>
-<h2>下一阶段</h2>
+<h2 id="toc-15">下一阶段</h2>
 <p><a href="https://www.youtube.com/watch?v=9bZkp7q19f0">恭喜你！</a>你已经完成了 CIFAR-10 教程。</p>
 <p>如果你现在对开发和训练自己的图片分类系统感兴趣，我们建议你可以新建该教程的分支，并替换其中的组件来解决你自己的图片分类问题。</p>
 <blockquote><p><strong>练习：</strong>下载 <a href="http://ufldl.stanford.edu/housenumbers/">Street View House Numbers (SVHN)</a> 数据集。新建 CIFAR-10 教程分支，并将输入数据替换成 SVHN，尝试修改网络架构来提升预测性能。</p>
 </blockquote>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">卷积神经网络</a><ul>
+<li><a href="#toc-1">概述</a></li>
+<li><a href="#toc-5">代码组织结构</a></li>
+<li><a href="#toc-6">CIFAR-10 模型</a></li>
+<li><a href="#toc-10">开始并训练模型</a></li>
+<li><a href="#toc-11">评估模型</a></li>
+<li><a href="#toc-12">使用多个 GPU 训练模型</a></li>
+<li><a href="#toc-15">下一阶段</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,17 +53,17 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装适用于 C 的 TensorFlow'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>安装 Go 版本 Tensorflow</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">安装 Go 版本 Tensorflow</h1>
 <p>TensorFlow 提供了 Go 程序中可以调用的 API。这些 API 非常适合加载 Python 创建的模型以及在 Go 应用中执行。本文将介绍如何安装和配置 <a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go">TensorFlow Go 包</a>。</p>
 <p>警告：TensorFlow Go API 不在 TensorFlow <a href="https://www.tensorflow.org/programmers_guide/version_semantics">API 稳定性保障</a>的涵盖范围内。</p>
-<h2>支持的平台</h2>
+<h2 id="toc-1">支持的平台</h2>
 <p>这篇教程主要讲述如何安装 Go 版本 TensorFlow。虽然这些命令可能适用于其他平台，但我们现在仅在以下配置环境下进行过测试：</p>
 <ul>
 <li>Linux, 64-bit, x86</li>
 <li>macOS X, 10.12.6 (Sierra) 或更高版本</li>
 </ul>
-<h2>安装</h2>
+<h2 id="toc-2">安装</h2>
 <p>Go 版本 TensorFlow 依赖于 TensorFlow C 语言库。按照下面的步骤安装这个库并启用 TensorFlow：</p>
 <ol>
 <li><p>决定在运行 TensorFlow 时仅仅启用 CPU 还是和 GPU 一起启用。为了帮助你做这个决定，请阅读以下指南中的“决定安装哪个 TensorFlow ”部分：</p>
@@ -94,7 +94,7 @@ sudo tar -C $TARGET_DIRECTORY -xz
 <pre><b>go test github.com/tensorflow/tensorflow/tensorflow/go</b></pre></li>
 </ol>
 <p>如果 <code>go get</code> 或者 <code>go test</code> 产生错误信息了，可以在 <a href="http://www.stackoverflow.com/questions/tagged/tensorflow">StackOverflow</a> 上通过搜索和提问来获取可能的解决方法。</p>
-<h2>Hello World</h2>
+<h2 id="toc-3">Hello World</h2>
 <p>安装完 Go 版本 TensorFlow 之后，在 <code>hello_tf.go</code> 文件中输入下面的代码：</p>
 <pre><code class="lang-go">package main
 
@@ -126,16 +126,28 @@ func main() {
 }
 </code></pre>
 <p>关于 TensorFlow Go 语言的进阶示例请查看 <a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go#ex-package">API 文档中的示例</a>，这个例子使用了一个通过 TensorFlow 预训练的模型来标记图片的内容。</p>
-<h3>运行</h3>
+<h3 id="toc-4">运行</h3>
 <p>通过调用下面的命令来运行 <code>hello_tf.go</code>：</p>
 <pre><b>go run hello_tf.go</b>
 Hello from TensorFlow version <i>number</i></pre><p>程序也可能会生成以下形式的多条警告消息，你可以忽略：</p>
 <pre>W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library
 wasn't compiled to use *Type* instructions, but these are available on your
-machine and could speed up CPU computations.</pre><h2>使用源码编译</h2>
+machine and could speed up CPU computations.</pre><h2 id="toc-5">使用源码编译</h2>
 <p>TensorFlow 是开源系统。你可以按照<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md">另一份文档</a>中的说明从 TensorFlow 源代码构建适用于 Go 的 TensorFlow。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">安装 Go 版本 Tensorflow</a><ul>
+<li><a href="#toc-1">支持的平台</a></li>
+<li><a href="#toc-2">安装</a></li>
+<li><a href="#toc-3">Hello World</a></li>
+<li><a href="#toc-5">使用源码编译</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

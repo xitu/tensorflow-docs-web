@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,18 +46,18 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Training (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Training (contrib)</h1>
 <p>[TOC]</p>
 <p>Training and input utilities.</p>
-<h2>Splitting sequence inputs into minibatches with state saving</h2>
+<h2 id="toc-1">Splitting sequence inputs into minibatches with state saving</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/batch_sequences_with_states"><code>tf.contrib.training.batch_sequences_with_states</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/batch_sequences_with_states"><code>tf.contrib.training.batch_sequences_with_states</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/NextQueuedSequenceBatch"><code>tf.contrib.training.NextQueuedSequenceBatch</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/SequenceQueueingStateSaver"><code>tf.contrib.training.SequenceQueueingStateSaver</code></a></li>
 </ul>
-<h2>Online data resampling</h2>
+<h2 id="toc-2">Online data resampling</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/weighted_resample"><code>tf.contrib.training.weighted_resample</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/stratified_sample"><code>tf.contrib.training.stratified_sample</code></a></p>
 <ul>
@@ -66,7 +66,7 @@
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/stratified_sample"><code>tf.contrib.training.stratified_sample</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/weighted_resample"><code>tf.contrib.training.weighted_resample</code></a></li>
 </ul>
-<h2>Bucketing</h2>
+<h2 id="toc-3">Bucketing</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/bucket_by_sequence_length"><code>tf.contrib.training.bucket_by_sequence_length</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/training/bucket"><code>tf.contrib.training.bucket</code></a></li>
@@ -74,6 +74,17 @@
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Training (contrib)</a><ul>
+<li><a href="#toc-1">Splitting sequence inputs into minibatches with state saving</a></li>
+<li><a href="#toc-2">Online data resampling</a></li>
+<li><a href="#toc-3">Bucketing</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

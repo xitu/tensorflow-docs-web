@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Layers (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Layers (contrib)</h1>
 <p>[TOC]</p>
 <p>Ops for building neural network layers, regularizers, summaries, etc.</p>
-<h2>Higher level ops for building neural network layers</h2>
+<h2 id="toc-1">Higher level ops for building neural network layers</h2>
 <p>This package provides several ops that take care of creating variables that are<br>
 used internally in a consistent way and provide the building blocks for many<br>
 common machine learning algorithms.</p>
@@ -83,7 +83,7 @@ common machine learning algorithms.</p>
 available: <code>relu</code>, <code>relu6</code> and <code>linear</code>.</p>
 <p><code>stack</code> operation is also available. It builds a stack of layers by applying<br>
 a layer repeatedly.</p>
-<h2>Regularizers</h2>
+<h2 id="toc-2">Regularizers</h2>
 <p>Regularization can help prevent overfitting. These have the signature<br>
 <code>fn(weights)</code>. The loss is typically added to<br>
 <code>tf.GraphKeys.REGULARIZATION_LOSSES</code>.</p>
@@ -93,7 +93,7 @@ a layer repeatedly.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/l2_regularizer"><code>tf.contrib.layers.l2_regularizer</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/sum_regularizer"><code>tf.contrib.layers.sum_regularizer</code></a></li>
 </ul>
-<h2>Initializers</h2>
+<h2 id="toc-3">Initializers</h2>
 <p>Initializers are used to initialize variables with sensible values given their<br>
 size, data type, and purpose.</p>
 <ul>
@@ -101,12 +101,12 @@ size, data type, and purpose.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/xavier_initializer_conv2d"><code>tf.contrib.layers.xavier_initializer_conv2d</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/variance_scaling_initializer"><code>tf.contrib.layers.variance_scaling_initializer</code></a></li>
 </ul>
-<h2>Optimization</h2>
+<h2 id="toc-4">Optimization</h2>
 <p>Optimize weights given a loss.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/optimize_loss"><code>tf.contrib.layers.optimize_loss</code></a></li>
 </ul>
-<h2>Summaries</h2>
+<h2 id="toc-5">Summaries</h2>
 <p>Helper functions to summarize specific variables or ops.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_activation"><code>tf.contrib.layers.summarize_activation</code></a></li>
@@ -120,7 +120,7 @@ of <code>summarize_collection</code> to <code>VARIABLES</code>, <code>WEIGHTS</c
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/summarize_activations"><code>tf.contrib.layers.summarize_activations</code></a></li>
 </ul>
-<h2>Feature columns</h2>
+<h2 id="toc-6">Feature columns</h2>
 <p>Feature columns provide a mechanism to map data to a model.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/layers/bucketized_column"><code>tf.contrib.layers.bucketized_column</code></a></li>
@@ -149,6 +149,20 @@ of <code>summarize_collection</code> to <code>VARIABLES</code>, <code>WEIGHTS</c
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Layers (contrib)</a><ul>
+<li><a href="#toc-1">Higher level ops for building neural network layers</a></li>
+<li><a href="#toc-2">Regularizers</a></li>
+<li><a href="#toc-3">Initializers</a></li>
+<li><a href="#toc-4">Optimization</a></li>
+<li><a href="#toc-5">Summaries</a></li>
+<li><a href="#toc-6">Feature columns</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

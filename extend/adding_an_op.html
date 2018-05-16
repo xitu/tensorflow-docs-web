@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'title': '扩展'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/architecture.html', 'title': 'TensorFlow 架构'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/adding_an_op.html', 'title': '添加一个新操作（Op）'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/add_filesys.html', 'title': '添加一个定制的文件系统插件'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/new_data_formats.html', 'title': '读取自定义文件和记录格式'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/language_bindings.html', 'title': '在其他语言中绑定 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/tool_developers/index.html', 'title': '工具开发者指南：TensorFlow 模型文件'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>添加一个新操作（Op）</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">添加一个新操作（Op）</h1>
 <p>注意：默认情况下 <a href="https://tensorflow.org">www.tensorflow.org</a> 显示最新稳定版本的文档。<br>
 本文档中的说明需要从源代码构建。你很可能想要从 TensorFlow 的 <code>master</code> 版本开始构建。<br>
 那么，你就应该遵循<a href="https://www.tensorflow.org/versions/master/extend/adding_an_op">本文档的 <code>master</code> 版本</a><br>
@@ -83,7 +83,7 @@
 <li><a href="//xitu.github.io/tensorflow-docs-web/install/install_sources.html">通过源码安装 TensorFlow</a></li>
 </ul>
 <p>[TOC]</p>
-<h2>定义操作接口</h2>
+<h2 id="toc-1">定义操作接口</h2>
 <p>操作接口的定义是通过在 TensorFlow 系统中注册来实现的。在此注册过程中，需要指定操作名称、输入（类型和名称）和输出（类型和名称），以及文档字符串和此操作要求的任何<a href="#属性">属性</a>。</p>
 <p>下面展示注册的具体过程。假设你想创建一个操作，其输入是一个 <code>int32</code> 类型的张量，而输出是此张量的一个副本，副本除第一个元素设为零之外其它都不变。为此，创建一个名为 <code>zero_out.cc</code> 的文件。然后调用<br>
 <code>REGISTER_OP</code> 宏，以定义你的操作：</p>
@@ -103,7 +103,7 @@ REGISTER_OP(&quot;ZeroOut&quot;)
 <p>于是，我们注册了一个名为 <code>ZeroOut</code> 的操作，它的输入（命名为 <code>to_zero</code>）和输出（命名为 <code>zeroed</code>）都是 32 位整数类型的张量。此操作利用一个 shape 函数来确保输出张量与输入张量保持一致。比如，如果输入张量为 [10, 20]，则此 shape 函数将输出张量也指定为 [10, 20]。</p>
 <blockquote><p>  关于命名的备注：操作名称必须首字母大写，而且不能和库中已经注册的其它操作重名。</p>
 </blockquote>
-<h2>实现操作的内核</h2>
+<h2 id="toc-2">实现操作的内核</h2>
 <p>定义接口后，接下来就需要为此操作提供一个或多个内核实现了。<br>
 为了实现这些内核，创建一个继承自 <code>OpKernel</code> 的类，并重载 <code>Compute</code> 方法。<br>
 <code>Compute</code> 方法有一个类型为 <code>OpKernelContext*</code> 的参数 <code>context</code>，从中可以访问输入和输出张量等有用的信息。</p>
@@ -144,12 +144,12 @@ class ZeroOutOp : public OpKernel {
 </code></pre>
 <blockquote><p>重要提示：你的 OpKernel 实例有可能会被并发访问，所以 <code>Compute</code> 方法必须是线程安全的。可以用线程互斥锁来保护类成员的每一次访问。更好的办法是，不要通过类成员来共享状态！可以考虑使用一个 <a href="https://www.tensorflow.org/code/tensorflow/core/framework/resource_mgr.h"><code>ResourceMgr</code></a>来跟踪操作的状态。</p>
 </blockquote>
-<h3>多线程 CPU 内核</h3>
+<h3 id="toc-3">多线程 CPU 内核</h3>
 <p>为了编写一个多线程 CPU 内核，可使用<br>
 <a href="https://www.tensorflow.org/code/tensorflow/core/util/work_sharder.h"><code>work_sharder.h</code></a><br>
 中的 Shard 函数。在 intra-op 线程模式下，此函数将计算函数分片到各个线程执行（参见<br>
 <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/config.proto"><code>config.proto</code></a> 中定义的 intra_op_parallelism_threads  模式）。</p>
-<h3>GPU 内核</h3>
+<h3 id="toc-4">GPU 内核</h3>
 <p>一个 GPU 内核的实现包括两个部分：OpKernel 子类、CUDA 内核及其启动代码。</p>
 <p>有时候 OpKernel 实现可由 CPU 和 GPU 内核共享，这一部分代码可以完成诸如检查输入和分配输出之类的任务。<br>
 如果采用这种方案，则我们建议用如下实现方式：</p>
@@ -282,8 +282,8 @@ template struct ExampleFunctor&lt;GPUDevice, int32&gt;;
 
 #endif  // GOOGLE_CUDA
 </code></pre>
-<h2>构建操作的库文件</h2>
-<h3>用系统编译器来编译操作（TensorFlow 二进制安装）</h3>
+<h2 id="toc-5">构建操作的库文件</h2>
+<h3 id="toc-6">用系统编译器来编译操作（TensorFlow 二进制安装）</h3>
 <p>你可以用 <code>C++</code> 编译器来编译 <code>zero_out.cc</code>，比如你的系统上的 <code>g++</code> 或 <code>clang</code> 都是可以的。用 PIP 包管理器来安装二进制 TensorFlow 时，已经包含了编译操作所需的头文件和库文件，具体的安装目录则取决于你的操作系统。<br>
 不过，TensorFlow 的 python 库提供了 <code>get_include</code> 函数来获得头文件目录，也提供了 <code>get_lib</code> 函数来获得链接所需库文件的目录位置。下面是 Ubuntu 机器上这两个函数的输出结果：</p>
 <pre><code class="lang-bash">$ python
@@ -301,7 +301,7 @@ g++ -std=c++11 -shared zero_out.cc -o zero_out.so -fPIC ${TF_CFLAGS[@]} ${TF_LFL
 <p>在 Mac OS X 上，构建 <code>.so</code> 文件时还需要额外的编译标志 "-undefined dynamic_lookup" 。</p>
 <blockquote><p>  注意，如果 <code>gcc</code> 版本 <code>&gt;=5</code>，则 gcc 使用的新的 C++ <a href="https://gcc.gnu.org/gcc-5/changes.html#libstdcxx">ABI</a>。TensorFlow 官网上提供的二进制 pip 包用的是 <code>gcc4</code> 构建的，即它用的是较早的 ABI。如果你用 <code>gcc&gt;=5</code> 来编译你的操作库文件，在命令行中加入 <code>-D_GLIBCXX_USE_CXX11_ABI=0</code> 来让生成的库文件与旧的 ABI 兼容。此外，如果你使用从源码构建 TensorFlow ，记得在用 bazel 命令编译 Python 包时中加上编译选项 <code>--cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0"</code>。</p>
 </blockquote>
-<h3>使用 bazel 编译操作（TensorFlow 源码安装）</h3>
+<h3 id="toc-7">使用 bazel 编译操作（TensorFlow 源码安装）</h3>
 <p>如果你安装了 TensorFlow 源码，则你可以利用 TensorFLow 的构建系统来编译你的操作。把一个 BUILD 文件放在<br>
 <a href="https://www.tensorflow.org/code/tensorflow/core/user_ops/"><code>tensorflow/core/user_ops</code></a> 目录中，其中包含 Bazel 的构建规则，内容如下：</p>
 <pre><code class="lang-python">load(&quot;//tensorflow:tensorflow.bzl&quot;, &quot;tf_custom_op_library&quot;)
@@ -316,7 +316,7 @@ tf_custom_op_library(
 </code></pre>
 <blockquote><p>  注意：虽然你可以用标准 <code>cc_library</code> 规则来生成一个共享库文件（<code>.so</code> 文件），我们还是强烈推荐使用 <code>tf_custom_op_library</code> 宏。这个宏加了一些必要的依赖项，而且还包含一些检查，以确保输出的共享库文件与 TensorFlow 的插件加载机制兼容。</p>
 </blockquote>
-<h2>在 Python 中使用新的操作</h2>
+<h2 id="toc-8">在 Python 中使用新的操作</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/load_op_library"><code>tf.load_op_library</code></a></p>
 <pre><code class="lang-python">import tensorflow as tf
 zero_out_module = tf.load_op_library(&#39;./zero_out.so&#39;)
@@ -334,7 +334,7 @@ array([[1, 0], [0, 0]], dtype=int32)
 zero_out_module = tf.load_op_library(&#39;./zero_out.so&#39;)
 zero_out = zero_out_module.zero_out
 </code></pre>
-<h2>验证操作正常运行</h2>
+<h2 id="toc-9">验证操作正常运行</h2>
 <p>确认你编写的操作是否可成功运行的一个好办法是写一个测试。创建文件 <code>zero_out_op_test.py</code>，内容如下：</p>
 <pre><code class="lang-python">import tensorflow as tf
 
@@ -351,7 +351,7 @@ if __name__ == &quot;__main__&quot;:
 <p>然后，运行该测试（假设你已经安装了 TensorFlow）：</p>
 <pre><code class="lang-sh">$ python zero_out_op_test.py
 </code></pre>
-<h2>在操作中加入高级功能</h2>
+<h2 id="toc-10">在操作中加入高级功能</h2>
 <p>现在你已经知道如何实现和构建一个基本的操作（更恰当地说，是一个受限的操作），那么接下来，我们将介绍你在编写新操作时通常会用到的一些更复杂的功能，包括：</p>
 <ul>
 <li>  <a href="#conditional-checks-and-validation">条件检查和验证</a></li>
@@ -370,7 +370,7 @@ if __name__ == &quot;__main__&quot;:
 <li>  <a href="#implement-the-gradient-in-python">在 Python 中实现梯度计算</a></li>
 <li>  <a href="#shape-functions-in-c">C++ 中的形状函数</a></li>
 </ul>
-<h3>条件检查和验证</h3>
+<h3 id="toc-11">条件检查和验证</h3>
 <p>上述示例假定操作适用于任意形状的张量。但如果我们只处理矢量呢？那么我们就需要在 OpKernel 的实现中加入一个检查：</p>
 <pre><code class="lang-c++">  void Compute(OpKernelContext* context) override {
     // 获得输入张量
@@ -392,8 +392,8 @@ if __name__ == &quot;__main__&quot;:
   <a href="https://www.tensorflow.org/code/tensorflow/core/lib/core/errors.h"><code>tensorflow/core/lib/core/errors.h</code></a>。</li>
 </ul>
 <p>另外，如果你想测试从某个函数返回的 <code>Status</code> 对象是否为错误，则使用宏 <a href="https://www.tensorflow.org/code/tensorflow/core/lib/core/errors.h"><code>OP_REQUIRES_OK</code></a>。这两个宏都会在错误报错时返回错误对象。</p>
-<h3>操作的注册</h3>
-<h4>属性</h4>
+<h3 id="toc-12">操作的注册</h3>
+<h4 id="toc-13">属性</h4>
 <p>操作可以有属性，当一个操作被加到计算图中时，它的属性就会被赋值。这些属性用于配置此操作，它们的值既可以在内核实现中访问，也可以在操作注册时的输入输出类型中进行访问。相较于输入，参数的使用要尽量避免，因为输入更为灵活一些。这是因为属性是常数，<br>
 必须在计算图构造时定义。相反，输入作为张量，它的值是动态的；即输入的值在每一步都可以修改，比如使用 feed。属性主要用于无法使用输入的场合：任何影响特征（输入输出的数量和类型）的配置，或无法在每一步修改的时候。</p>
 <p>你需要在注册操作时定义属性，定义时要指定名称和使用 <code>Attr</code> 方法的类型，此方法的参数规范如下：</p>
@@ -443,7 +443,7 @@ class ZeroOutOp : public OpKernel {
     <b>// 保存指定位置的输入值
     output\_flat(preserve\_index\_) = input(preserve\_index\_);</b>
   }
-</code></pre><h4>属性类型</h4>
+</code></pre><h4 id="toc-14">属性类型</h4>
 <p>属性支持下列数据类型：</p>
 <ul>
 <li><code>string</code>：任意字节序列（不要求是 UTF8 编码）</li>
@@ -457,7 +457,7 @@ class ZeroOutOp : public OpKernel {
  注意： <code>list(list(&lt;type&gt;))</code> 是非法的。</li>
 </ul>
 <p>欲了解限定性列表，参见 <a href="https://www.tensorflow.org/code/tensorflow/core/framework/op_def_builder.cc"><code>op_def_builder.cc:FinalizeAttr</code></a>。</p>
-<h5>默认值和约束</h5>
+<h5 id="toc-15">默认值和约束</h5>
 <p>属性可以有默认值，有一些属性则还可以有约束。为了定义一个有约束的属性，可以使用下列属性类型表达式（<code>&lt;attr-type-expr&gt;</code>）：</p>
 <ul>
 <li><p><code>{'&lt;string1&gt;', '&lt;string2&gt;'}</code>：表示在 <code>&lt;string1&gt;</code> 或 <code>&lt;string2&gt;</code> 这两种取值中二选一。当你使用这种语法时，系统自动推断出属性类型为 <code>string</code>。这相当于模仿构造了一个枚举：</p>
@@ -525,8 +525,8 @@ class ZeroOutOp : public OpKernel {
    .Attr(&quot;l_int: list(int) = [2, 3, 5, 7]&quot;);
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/DType"><code>tf.DType</code></a></p>
-<h4>多态</h4>
-<h5>类型多态性</h5>
+<h4 id="toc-16">多态</h4>
+<h5 id="toc-17">类型多态性</h5>
 <p>有些操作支持不同类型的输入或产生不同类型的输出，这时你可以在此操作的注册中为<a href="#输入和输出">一个输入或输出类型</a>指定<a href="#属性">一个属性</a>。通常，你还要为支持的每种类型注册一个 <code>OpKernel</code>。</p>
 <p>比如，如果你想让 <code>ZeroOut</code> 操作既支持 <code>int32</code> 数值类型的张量，还要支持 <code>float</code> 类型，那么此操作的注册过程将类似于：</p>
 <pre class="prettyprint"><code class="lang-cpp">
@@ -702,7 +702,7 @@ TF_CALL_REAL_NUMBER_TYPES(REGISTER_KERNEL);
 
 #undef REGISTER_KERNEL
 </code></pre>
-<h5>列表作为输入输出</h5>
+<h5 id="toc-18">列表作为输入输出</h5>
 <p>除了能够接受或产生不同类型之外，操作还消耗或产生数目不一的张量。</p>
 <p>在下一个例子中，属性 <code>T</code> 保存了类型列表，并被用作输入 <code>in</code> 和输出 <code>out</code> 的类型。即输入和输出都是该类型的张量列表（并且输入输出张量的大小和类型都是完全一样的，因为它们都具有类型 <code>T</code>）。</p>
 <pre><code class="lang-c++">REGISTER_OP(&quot;PolymorphicListExample&quot;)
@@ -742,7 +742,7 @@ TF_CALL_REAL_NUMBER_TYPES(REGISTER_KERNEL);
     .Input(&quot;in: T&quot;)
     .Output(&quot;out: T&quot;);
 </code></pre>
-<h4>输入和输出</h4>
+<h4 id="toc-19">输入和输出</h4>
 <p>下面对前面的示例做个总结，一个操作注册可以指定多个输入输出：</p>
 <pre><code class="lang-c++">REGISTER_OP(&quot;MultipleInsAndOuts&quot;)
     .Input(&quot;y: int32&quot;)
@@ -802,7 +802,7 @@ REGISTER_OP(&quot;RestrictedTensorSequenceExample&quot;)
 <blockquote><p>关于命名的备注：输入的类型中用到的任何属性都会被推断出来。按惯例，这些被推断的属性名要首字线大写（比如 <code>T</code> 或 <code>N</code>）。其它情况下，输入、输出和属性的名称和函数参数命名方式一致，比如 <code>num_outputs</code>。更多细节，参考 <a href="#命名">前面关于命名的备注</a>。</p>
 </blockquote>
 <p>更多细节，参考 <a href="https://www.tensorflow.org/code/tensorflow/core/framework/op_def_builder.h"><code>tensorflow/core/framework/op_def_builder.h</code></a>。</p>
-<h4>后向兼容性</h4>
+<h4 id="toc-20">后向兼容性</h4>
 <p>假设你已经编写了一个很好的定制操作，并分享给他人，让你的客户开心地使用了。然而，你还想要进一步修改这个操作。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html#compatibility_of_graphs_and_checkpoints">TensorFlow 版本兼容性</a></p>
 <p>保持后向兼容性的方法有很多，下面列出了一些：</p>
@@ -832,7 +832,7 @@ REGISTER_OP(&quot;RestrictedTensorSequenceExample&quot;)
 </ol>
 <p>安全和不安全修改的完整列表可以在源码 <a href="https://www.tensorflow.org/code/tensorflow/core/framework/op_compatibility_test.cc"><code>tensorflow/core/framework/op_compatibility_test.cc</code></a> 中找到。如果你无法在兼容要求下修改此操作，那么最好是另起炉灶，创建一个新的操作，取一个新的名字，来表示你的新的语义。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html#compatibility_of_graphs_and_checkpoints">TensorFlow 版本兼容性</a></p>
-<h3>GPU 支持</h3>
+<h3 id="toc-21">GPU 支持</h3>
 <p>你可以实现不同的内核操作(OpKernel)，然后一个注册到 CPU 上，另一个注册到 GPU 上,就像你可以<a href="#多态">为不同的类型注册内核</a>一样。TensorFlow提供了多个支持 GPU 的内核的例子，参见源码<a href="https://www.tensorflow.org/code/tensorflow/core/kernels/"><code>tensorflow/core/kernels</code></a>。注意，有些内核的 CPU 版本在一个 <code>.cc</code> 文件中，其 GPU 版本在一个 <code>_gpu.cu.cc</code> 文件中，它们共享的代码则在一个 <code>.h</code> 文件中。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/pad"><code>tf.pad</code></a></p>
 <p>值得注意的一点是，即使使用的是 <code>pad</code> 操作的 GPU 内核版本，它仍然需要用到 CPU 内存中的 <code>"paddings"</code> 输入。为标记这种 CPU 上的输入或输出，在内核注册时添加一个 <code>HostMemory()</code> 调用，比如：</p>
@@ -843,7 +843,7 @@ REGISTER_OP(&quot;RestrictedTensorSequenceExample&quot;)
                               .HostMemory(&quot;paddings&quot;), \
                           PadOp&lt;GPUDevice, T&gt;)
 </code></pre>
-<h4>为 GPU 设备编译内核</h4>
+<h4 id="toc-22">为 GPU 设备编译内核</h4>
 <p>代码 <a href="https://www.tensorflow.org/code/tensorflow/examples/adding_an_op/cuda_op_kernel.cu.cc">cuda_op_kernel.cu.cc</a> 中给出了使用 CUDA 内核实现操作的一个例子。<code>tf_custom_op_library</code> 接受一个 <code>gpu_srcs</code> 参数，其中包含 CUDA 内核 (<code>*.cu.cc</code> 文件)的源文件列表。如果你使用的是 Tensorflow 的二进制安装，这些 CUDA 内核代码必须用 NVIDIA 的 <code>nvcc</code> 编译器进行编译。为了将 <a href="https://www.tensorflow.org/code/tensorflow/examples/adding_an_op/cuda_op_kernel.cu.cc">cuda_op_kernel.cu.cc</a>和<a href="https://www.tensorflow.org/code/tensorflow/examples/adding_an_op/cuda_op_kernel.cc">cuda_op_kernel.cc</a>这两个源码编译成一个动态加载库，你需要使用如下命令：</p>
 <pre><code class="lang-bash">nvcc -std=c++11 -c -o cuda_op_kernel.cu.o cuda_op_kernel.cu.cc \
   ${TF_CFLAGS[@]} -D GOOGLE_CUDA=1 -x cu -Xcompiler -fPIC
@@ -855,7 +855,7 @@ g++ -std=c++11 -shared -o cuda_op_kernel.so cuda_op_kernel.cc \
 注意，如果 CUDA 库没有安装在 <code>/usr/local/lib64</code> 中，你需要在 上面第二个命令（g++）中显式指定其路径。比如，你的 CUDA 安装在 <code>/usr/local/cuda-8.0</code> 中，则需要在命令行中添加 <code>-L /usr/local/cuda-8.0/lib64/</code>。</p>
 <blockquote><p>   注意，在某些 Linux 设置中，<code>nvcc</code> 编译步骤还需要其他选项。将 <code>-D_MWAITXINTRIN_H_INCLUDED</code> 添加到 nvcc 命令行以避免 <code>mwaitxintrin.h</code> 中的错误。</p>
 </blockquote>
-<h3>在 Python 中实现梯度计算</h3>
+<h3 id="toc-23">在 Python 中实现梯度计算</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/train.html#gradient_computation">Training</a></p>
 <p>在数学上，如果一个操作计算 \(y = f(x)\)，为它注册的梯度操作将损失函数 \(L\) 关于 \(y\) 的梯度 \(\partial L/ \partial y\) 转化为关于 \(x\) 的梯度 \(\partial L/ \partial x\)，它使用的是链式法则：<br>
 $$\frac{\partial L}{\partial x}    = \frac{\partial L}{\partial y} \frac{\partial y}{\partial x}    = \frac{\partial L}{\partial y} \frac{\partial f}{\partial x}.$$</p>
@@ -890,7 +890,7 @@ def _zero_out_grad(op, grad): 
 <li>如果一个操作根本就没有任何有意义的梯度，那么就没有必要注册梯度函数了。只要你不会用到操作的梯度，不注册也不会有什么问题。在有些情况下，一个操作没有良定义的梯度，但可能会参与到梯度计算中。在这种情况下，可以使用 <code>ops.NotDifferentiable</code> 来自动反向传播零值。</li>
 </ul>
 <p>注意，调用梯度函数时，只能访问到操作的数据流图，而不是张量数据本身。因此，所有梯度计算都必须使用其它 TensorFlow 操作执行，以便在计算图执行时运行。</p>
-<h3>C++ 中的形状函数</h3>
+<h3 id="toc-24">C++ 中的形状函数</h3>
 <p>TensorFlow API 有一个功能叫做"形状推断"，可以无需执行计算图而获得张量的形状信息。形状推断是由"形状函数"来支撑的，每个操作类型都会在其 C++ <code>REGISTER_OP</code> 声明中注册形状函数，它们有两种作用：在计算图的构造函数中声明输入的形状是兼容的，为输出指定形状。</p>
 <p>形状函数定义为 <code>shape_inference::InferenceContext</code> 类上的操作。比如，在 ZeroOut 的形状函数中：</p>
 <pre><code class="lang-c++">    .SetShapeFn([](::tensorflow::shape_inference::InferenceContext* c) {
@@ -936,6 +936,20 @@ def _zero_out_grad(op, grad): 
 <p>对于复杂的形状函数，应该考虑添加一个测试，来验证多个输入形状组合可产生预期的输出形状组合。这种测试的编写方法参见源码 <a href="https://www.tensorflow.org/code/tensorflow/core/ops/array_ops_test.cc">core ops tests</a>。（<code>INFER_OK</code> 和 <code>INFER_ERROR</code> 的语法会让人感觉有点神秘，不过还是在测试中尽量让表示输入输出形状的规范简洁一些。目前，可以在已有的测试中看看注释，了解如何编写形状的规范。）</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">添加一个新操作（Op）</a><ul>
+<li><a href="#toc-1">定义操作接口</a></li>
+<li><a href="#toc-2">实现操作的内核</a></li>
+<li><a href="#toc-5">构建操作的库文件</a></li>
+<li><a href="#toc-8">在 Python 中使用新的操作</a></li>
+<li><a href="#toc-9">验证操作正常运行</a></li>
+<li><a href="#toc-10">在操作中加入高级功能</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

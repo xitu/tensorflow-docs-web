@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,15 +53,15 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/eager.html', 'title': 'Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>保存和恢复</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">保存和恢复</h1>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/estimators.html">评估器</a></p>
-<h2>保存和恢复变量</h2>
+<h2 id="toc-1">保存和恢复变量</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/variables.html">变量</a></p>
 <p><code>Saver</code> restores all variables already defined in your model. If you're loading a model without knowing how to build its graph (for example, if you're writing a generic program to load models), then read the <a href="#models">Overview of saving and restoring models</a> section later in this document.</p>
 <p>TensorFlow saves variables in binary <em>checkpoint files</em> that map variable names to tensor values.</p>
 <p>Caution: TensorFlow model files are code. Be careful with untrusted code. See <a href="https://github.com/tensorflow/tensorflow/blob/master/SECURITY.md">Using TensorFlow Securely</a> for details.</p>
-<h3>保存变量</h3>
+<h3 id="toc-2">保存变量</h3>
 <p>用 <code>tf.train.Saver()</code> 方法创建一个 <code>Saver</code> 来管理模型中的所有变量。例如，如下代码演示了如何调用 <code>tf.train.Saver.save</code> 方法将变量保存到快照文件中：</p>
 <pre><code class="lang-python"># 创建变量
 v1 = tf.get_variable(&quot;v1&quot;, shape=[3], initializer = tf.zeros_initializer)
@@ -86,7 +86,7 @@ with tf.Session() as sess:
   save_path = saver.save(sess, &quot;/tmp/model.ckpt&quot;)
   print(&quot;Model saved in path: %s&quot; % save_path)
 </code></pre>
-<h3>恢复变量</h3>
+<h3 id="toc-3">恢复变量</h3>
 <p><code>tf.train.Saver</code> 对象不仅能够将变量保存到快照文件中，它也能够恢复变量。注意恢复变量不需要预先初始化。例如，下面这个示例代码片段演示了如何调用 <code>tf.train.Saver.restore</code> 方法并将变量从快照文件中恢复：</p>
 <pre><code class="lang-python">tf.reset_default_graph()
 
@@ -107,7 +107,7 @@ with tf.Session() as sess:
   print(&quot;v2 : %s&quot; % v2.eval())
 </code></pre>
 <p>[需要翻译]Note: There is not a physical file called <code>/tmp/model.ckpt</code>. It is the <strong>prefix</strong> of filenames created for the checkpoint. Users only interact with the prefix instead of physical checkpoint files.</p>
-<h3>选择需要保存和恢复的变量</h3>
+<h3 id="toc-4">选择需要保存和恢复的变量</h3>
 <p>如果您没有传递任何参数给 <code>tf.train.Saver()</code>，保存程序将默认对计算图中所有的变量进行保存或恢复操作。每个变量都会以原变量名保存。</p>
 <p>为快照文件中的变量明确指定名称有时是很有用的。例如，在您训练的模型中包含一个名为 <code>"weights"</code> 的变量，而你想要把 <code>"weights"</code> 变量的值恢复到名为 <code>"params"</code> 的变量中。</p>
 <p>有时仅对部分变量进行保存和恢复操作也很有用。例如，您有一个已经训练好的五层的神经网络模型，现在想复用其权重值来训练一个六层的神经网络。那么您可以使用保存程序仅恢复前五层的权重。</p>
@@ -145,7 +145,7 @@ with tf.Session() as sess:
 <li><p><a href="https://www.tensorflow.org/api_docs/python/tf/Variable/name"><code>tf.Variable.name</code></a></p>
 </li>
 </ul>
-<h3>检查快照文件中的变量</h3>
+<h3 id="toc-5">检查快照文件中的变量</h3>
 <p>使用<br>
 <a href="https://www.tensorflow.org/code/tensorflow/python/tools/inspect_checkpoint.py"><code>inspect_checkpoint</code></a> 库可以迅速检查快照文件中的变量.</p>
 <p>继续之前展示的保存/恢复示例：</p>
@@ -173,10 +173,10 @@ chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name=&
 # [-1. -1. -1. -1. -1.]
 </code></pre>
 <p><a name="models"></a></p>
-<h2>保存和恢复模型</h2>
+<h2 id="toc-6">保存和恢复模型</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
-<h2>创建并加载一个 SavedModel</h2>
-<h3>Simple save[需要翻译]</h3>
+<h2 id="toc-7">创建并加载一个 SavedModel</h2>
+<h3 id="toc-8">Simple save[需要翻译]</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save"><code>tf.saved_model.simple_save</code></a></p>
 <pre><code class="lang-python">simple_save(session,
             export_dir,
@@ -184,7 +184,7 @@ chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name=&
             outputs={&quot;z&quot;: z})
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
-<h3>Manually build a SavedModel</h3>
+<h3 id="toc-9">Manually build a SavedModel</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/builder"><code>tf.saved_model.builder</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/builder/SavedModelBuilder"><code>tf.saved_model.builder.SavedModelBuilder</code></a></p>
 <p>如果需要将资源保存、写入或拷贝到磁盘，那么可以在添加第一个 <code>MetaGraphDef</code> 时提供这些资源。如果多个 <code>MetaGraphDef</code> 与同名资源相关联，则仅保留第一个版本。</p>
@@ -209,7 +209,7 @@ with tf.Session(graph=tf.Graph()) as sess:
 builder.save()
 </code></pre>
 <p><a name="forward_compatibility"></a></p>
-<h4>[需要翻译]Forward compatibility via <code>strip_default_attrs=True</code></h4>
+<h4 id="toc-10">[需要翻译]Forward compatibility via <code>strip_default_attrs=True</code></h4>
 <p>Following the guidance below gives you forward compatibility only if the set of Ops has not changed.</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/builder/SavedModelBuilder/add_meta_graph"><code>tf.saved_model.builder.SavedModelBuilder.add_meta_graph</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/NodeDef"><code>tf.NodeDef</code></a></p>
@@ -220,7 +220,7 @@ builder.save()
 <li>By setting <code>strip_default_attrs</code> to True, the model producers can strip away any default valued attributes in the <code>NodeDefs</code>. This helps ensure that newly added attributes with defaults don't cause older model consumers to fail loading models regenerated with newer training binaries.</li>
 </ul>
 <p>See <a href="https://www.tensorflow.org/programmers_guide/version_compat">compatibility guidance</a> for more information.</p>
-<h3>在 Python 中加载 SavedModel</h3>
+<h3 id="toc-11">在 Python 中加载 SavedModel</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/loader"><code>tf.saved_model.loader</code></a></p>
 <ul>
 <li>恢复计算图定义和变量的会话。</li>
@@ -234,7 +234,7 @@ with tf.Session(graph=tf.Graph()) as sess:
   tf.saved_model.loader.load(sess, [tag_constants.TRAINING], export_dir)
   ...
 </code></pre>
-<h3>在 C++ 中加载 SavedModel</h3>
+<h3 id="toc-12">在 C++ 中加载 SavedModel</h3>
 <p>C++ 版本的 SavedModel<br>
 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/cc/saved_model/loader.h">加载器</a><br>
 提供了一个从路径加载 SavedModel 的API, 同时允许指定<br>
@@ -246,7 +246,7 @@ SavedModelBundle bundle;
 LoadSavedModel(session_options, run_options, export_dir, {kSavedModelTagTrain},
                &amp;bundle);
 </code></pre>
-<h3>在 TensorFlow 服务中加载一个 SavedModel 并构建服务</h3>
+<h3 id="toc-13">在 TensorFlow 服务中加载一个 SavedModel 并构建服务</h3>
 <p>你可以通过 ensorFlow Serving Model Server 二进制文件简便的加载 SavedModel 并构建服务。查看 <a href="https://www.tensorflow.org/serving/setup#installing_using_apt-get">instructions</a>了解怎样安装服务，或者你也可以构建它。</p>
 <p>一旦你安装好 Model Server，使用以下语句运行它：</p>
 <pre><code>tensorflow_model_server --port=port-numbers --model_name=your-model-name --model_base_path=your_model_base_path
@@ -257,22 +257,22 @@ LoadSavedModel(session_options, run_options, export_dir, {kSavedModelTagTrain},
 <li>设置 model_base_path 为 /tmp/model</li>
 </ul>
 <p>将不同版本的模型保存在同一根目录下以数字命名的子文件夹中。例如，加载根目录是 <code>/tmp/model</code>。如果你只有模型的一个版本，将其保存在 <code>/tmp/model/0001</code>。如果有模型的两个版本，保存第二个版本在<code>/tmp/model/0002</code>，以此类推。设置 <code>--model-base_path</code> 为根目录（此例中为 <code>/tmp/model</code>）。TensorFlow Model Server 会根据根目录下最高数字的子文件夹中模型构建服务。</p>
-<h3>标准常量</h3>
+<h3 id="toc-14">标准常量</h3>
 <p>SaveModel 为多种使用案例提供了创建和加载 TensorFlow 计算图的灵活性。对于最为常见的使用案例，SavedModel 的 API 提供了一组 Python 和 C++ 中的常量，易于重复使用和一致的跨工具共享。</p>
-<h4>标准 MetaGraphDef 标签</h4>
+<h4 id="toc-15">标准 MetaGraphDef 标签</h4>
 <p>您可以使用一组标记来唯一地标识保存在 SavedModel 中的 <code>MetaGraphDef</code>。一个常用标签的子集在：</p>
 <ul>
 <li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/tag_constants.py">Python</a></li>
 <li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/cc/saved_model/tag_constants.h">C++</a></li>
 </ul>
-<h4>标准 SignatureDef 常量</h4>
+<h4 id="toc-16">标准 SignatureDef 常量</h4>
 <p><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/protobuf/meta_graph.proto"><strong>SignatureDef</strong></a><br>
 是一个 Protocol Buffer，定义了计算图支持的计算中的签名。常用输入键、输出键以及方法名称在：</p>
 <ul>
 <li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/signature_constants.py">Python</a></li>
 <li><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/cc/saved_model/signature_constants.h">C++</a></li>
 </ul>
-<h2>配合 Estimators 使用 SavedModel</h2>
+<h2 id="toc-17">配合 Estimators 使用 SavedModel</h2>
 <p>训练好 <code>Estimator</code> 模型之后，您可能想要从这个模型创建一个执行请求并返回结果的服务。您可以在您的设备上本地运行该服务，或者部署在云端。</p>
 <p>要为服务准备一个训练好的 Estimator，您必须以标准的 SavedModel 格式输出它。本节介绍了如何：</p>
 <ul>
@@ -282,7 +282,7 @@ LoadSavedModel(session_options, run_options, export_dir, {kSavedModelTagTrain},
 <li>以 SavedModel 格式输出模型。</li>
 <li>在本地服务器上运行模型并做出预测。</li>
 </ul>
-<h3>准备运行时的输入</h3>
+<h3 id="toc-18">准备运行时的输入</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html#input_fn">Premade Estimators</a></p>
 <ul>
 <li>为系统运行时的推理请求添加占位符。</li>
@@ -310,7 +310,7 @@ def serving_input_receiver_fn():
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/export/build_raw_serving_input_receiver_fn"><code>tf.estimator.export.build_raw_serving_input_receiver_fn</code></a></p>
 <p>如果这些程序还不能满足您的需求，您可以编写自己的 <code>serving_input_receiver_fn()</code>。 一种应用场景是，您训练的 <code>input_fn()</code> 包含了一些必须在运行时执行的预处理逻辑。为了降低训练向生产状态倾斜的风险，建议将这些预处理的内容封装在 <code>input_fn()</code> 和 <code>serving_input_reveiver_fn()</code> 的函数中。</p>
 <p>注意，<code>serving_input_receiver_fn()</code> 还确定了签名的<em>输入</em>部分。也就是说，在编写 <code>aserving_input_receiver_fn()</code> 时，您必须告诉解析器所期望的签名以及如何将它们映射到模型的预期输入。相反, 签名的<em>输出</em>部分由模型确定。</p>
-<h3>执行输出</h3>
+<h3 id="toc-19">执行输出</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/export_savedmodel"><code>tf.estimator.Estimator.export_savedmodel</code></a></p>
 <pre><code class="lang-py">estimator.export_savedmodel(export_dir_base, serving_input_receiver_fn,
                             strip_default_attrs=True)
@@ -319,13 +319,13 @@ def serving_input_receiver_fn():
 <blockquote><p>注意：请及时清理旧的输出文件。<br>
 否则，持续输出的文件将堆积在 <code>export_dir_base</code> 目录下。</p>
 </blockquote>
-<h3>指定自定义模型的输出</h3>
+<h3 id="toc-20">指定自定义模型的输出</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec"><code>tf.estimator.EstimatorSpec</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/export/PredictOutput"><code>tf.estimator.export.PredictOutput</code></a></p>
 <p>这些输出类型直接映射到<br>
 <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/prediction_service.proto">TensorFlow 服务 API</a>, 以此来决定要执行哪个请求。</p>
 <p>注意: 在多头部情况下, 从 model_fn 中返回的 <code>export_outputs</code> 字典中的每一个元素都会生成一个相同键名的 <code>SignatureDef</code>。这些 <code>SignatureDef</code> 仅在其输出中有所不同, 因为由相应的 <code>ExportOutput</code> 条目所生成。输入总是由 <code>serving_input_receiver_fn</code> 提供。推理请求可以按名称指定头部。头部必须使用  <a href="https://www.tensorflow.org/code/tensorflow/python/saved_model/signature_constants.py"><code>signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY</code></a> 命名，在推理请求没有指定头部时来隐式地判断哪一个  <code>SignatureDef</code> 将会被执行。</p>
-<h3>在本地运行导出的模型</h3>
+<h3 id="toc-21">在本地运行导出的模型</h3>
 <p>对于本地部署，您可以使用<br>
 <a href="https://github.com/tensorflow/serving">TensorFlow Serving</a>（一个加载 SavedModel 并将其暴露为 <a href="https://www.grpc.io/">gRPC</a> 服务的开源项目）来运行模型。</p>
 <p>首先， <a href="https://github.com/tensorflow/serving">安装 TensorFlow Serving</a>。</p>
@@ -334,7 +334,7 @@ def serving_input_receiver_fn():
 bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=9000 --model_base_path=$export_dir_base
 </code></pre>
 <p>现在您就有了一台服务器，通过 gRPC 在端口 9000 来监听推理请求!</p>
-<h3>从本地服务器请求预测</h3>
+<h3 id="toc-22">从本地服务器请求预测</h3>
 <p>服务器根据<br>
 <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/prediction_service.proto#L15">PredictionService</a><br>
 gRPC API 服务定义来响应 gRPC 请求（ 嵌套的 Protocol Buffer 定义在不同的<a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis">neighboring files</a>中）。</p>
@@ -379,9 +379,9 @@ from contrib to core. -->
 
 
 
-<h2>使用 CLI 检查和执行 SavedModel</h2>
+<h2 id="toc-23">使用 CLI 检查和执行 SavedModel</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/tensors.html">张量</a></p>
-<h3>安装 SavedModel CLI</h3>
+<h3 id="toc-24">安装 SavedModel CLI</h3>
 <p>广义上讲，您可以通过以下两种方式安装 TensorFlow：</p>
 <ul>
 <li>通过安装预先构建的 TensorFlow 二进制文件。</li>
@@ -391,13 +391,13 @@ from contrib to core. -->
 <p>如果您是从源码创建 TensorFlow，那么您必须要运行如下额外的命令来创建 <code>saved_model_cli</code>：</p>
 <pre><code>$ bazel build tensorflow/python/tools:saved_model_cli
 </code></pre>
-<h3>命令概览</h3>
+<h3 id="toc-25">命令概览</h3>
 <p>SavedModel CLI 支持如下两个命令来操作 SavedModel 中的 <code>MetaGraphDef</code>:</p>
 <ul>
 <li><code>show</code>，展示 SavedModel 中 <code>MetaGraphDef</code> 上的计算。</li>
 <li><code>run</code>，运行 <code>MetaGraphDef</code> 上的计算。</li>
 </ul>
-<h3><code>show</code> 命令</h3>
+<h3 id="toc-26"><code>show</code> 命令</h3>
 <p>一个 SavedModel 包含一个或多个 <code>MetaGraphDef</code>，通过标签集区分。要运行一个模型，您可能想要知道每个模型中 <code>SignatureDef</code> 的类型以及它们的输入输出是什么。<code>show</code> 命令允许您按分层检查 SavedModel 的内容。语法如下：</p>
 <pre><code>usage: saved_model_cli show [-h] --dir DIR [--all]
 [--tag_set TAG_SET] [--signature_def SIGNATURE_DEF_KEY]
@@ -469,7 +469,7 @@ signature_def[&#39;serving_default&#39;]:
         name: y:0
   Method name is: tensorflow/serving/predict
 </code></pre>
-<h3><code>run</code> 命令</h3>
+<h3 id="toc-27"><code>run</code> 命令</h3>
 <p>调用 <code>run</code> 命令来运行计算图计算，传递输入值，然后显示（可选保存）输出。语法如下:</p>
 <pre><code>usage: saved_model_cli run [-h] --dir DIR --tag_set TAG_SET --signature_def
                            SIGNATURE_DEF_KEY [--inputs INPUTS]
@@ -482,7 +482,7 @@ signature_def[&#39;serving_default&#39;]:
 <li><code>--input_exprs</code> 选项允许您传递 Python 表达式。</li>
 <li><code>--input_examples</code> option enables you to pass <code>tf.train.Example</code>.</li>
 </ul>
-<h4><code>--inputs</code></h4>
+<h4 id="toc-28"><code>--inputs</code></h4>
 <p>要在文件中传递输入数据，需指定 <code>--inputs</code> 选项，它通常用如下格式：</p>
 <pre><code class="lang-bsh">--inputs &lt;INPUTS&gt;
 </code></pre>
@@ -501,7 +501,7 @@ signature_def[&#39;serving_default&#39;]:
 <p><code>.npy</code> 文件总是包含一个 numpy ndarray。因此，从 <code>.npy</code> 文件加载内容时，文件内容将被直接赋值给指定的输入张量。如果您指定了包含此 <code>.npy</code> 文件的 <strong>variable_name</strong>，<strong>variable_name</strong> 将被忽略，且会发出警告。</p>
 <p>从 <code>.npz</code> (zip) 文件加载时，您可以选择性的指定一个 <strong>variable_name</strong> 来标识 zip 文件中的变量，以此作为输入张量的值。如果不指定 <strong>variable_name</strong>，SavedModel CLI 将会检查 zip 文件中是否只包含一个文件，并将其赋值给指定的张量。</p>
 <p>从 pickle 文件加载内容时，如果方括号内没有指定 <code>variable_name</code>，则无论 pickle 文件中内容是什么，都将被赋值给指定的张量。否则，SavedModel CLI 将假定 pickle 中保存了一个数据字典, 并且将使用与对应 <strong>variable_name</strong> 的值。</p>
-<h4><code>--inputs_exprs</code></h4>
+<h4 id="toc-29"><code>--inputs_exprs</code></h4>
 <p>若通过 Python 表达式传递输入, 请指定 <code>--input_exprs</code> 选项。这在你没有任何数据文件但仍想通过一些符合 <code>SignatureDef</code> 类型、形状定义的输入数据来检查模型的连通性时会很有用。例如：</p>
 <pre><code class="lang-bsh">`&lt;input_key&gt;=[[1],[2],[3]]`
 </code></pre>
@@ -509,17 +509,17 @@ signature_def[&#39;serving_default&#39;]:
 <pre><code class="lang-bsh">`&lt;input_key&gt;=np.ones((32,32,3))`
 </code></pre>
 <p>(请注意，<code>numpy</code> 模块已经可以作为 <code>np</code> 使用。)</p>
-<h4><code>--inputs_examples</code></h4>
+<h4 id="toc-30"><code>--inputs_examples</code></h4>
 <p>要将 <code>tf.train.Example</code> 当做输入传入，指定 <code>--input_examples</code> 选项。其中每个键值都是字典，这些字典都是一个 <code>tf.train.Example</code>的实例。字典中的键值是特性，对应特性的值列表。<br>
 例如：</p>
 <pre><code class="lang-bsh">`&lt;input_key&gt;=[{&quot;age&quot;:[22,24],&quot;education&quot;:[&quot;BS&quot;,&quot;MS&quot;]}]`
 </code></pre>
-<h4>保存输出</h4>
+<h4 id="toc-31">保存输出</h4>
 <p>默认情况下，SavedModel CLI 将输出写入 stdout。如果传了一个目录给 <code>--outdir</code> 选项，输出内容将会以输出张量的键名保存在指定目录的 npy 文件中。</p>
 <p>使用 <code>--overwrite</code> 覆盖现有输出文件。</p>
-<h4>TensorFlow 调试器 (tfdbg) 集成</h4>
+<h4 id="toc-32">TensorFlow 调试器 (tfdbg) 集成</h4>
 <p>如果设置了 <code>--tf_debug</code> 选项, 则 SavedModel CLI 将使用 TensorFlow 调试器 (tfdbg) 在运行 SavedModel 时监视过渡张量、运行的计算图或子图。</p>
-<h4><code>run</code> 的完整示例</h4>
+<h4 id="toc-33"><code>run</code> 的完整示例</h4>
 <p>已知：</p>
 <ul>
 <li>模型只是 <code>x1</code> 和 <code>x2</code> 相加获得输出 <code>y</code>。</li>
@@ -564,7 +564,7 @@ Result for output key y:
 --signature_def serving_default --inputs x=/tmp/data.npz[x] --tf_debug
 </code></pre>
 <p><a name="structure"></a></p>
-<h2>SavedModel 目录结构</h2>
+<h2 id="toc-34">SavedModel 目录结构</h2>
 <p>当您以 SavedModel 格式保存模型时，TensorFlow 会创建一个包含如下子目录和文件的 SavedModel 目录：</p>
 <pre><code class="lang-bsh">assets/
 assets.extra/
@@ -585,6 +585,20 @@ saved_model.pb|saved_model.pbtxt
 <p>每个计算图都与一组特定的标签相关联, 能够在加载或还原操作期间识别不同的计算图。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">保存和恢复</a><ul>
+<li><a href="#toc-1">保存和恢复变量</a></li>
+<li><a href="#toc-6">保存和恢复模型</a></li>
+<li><a href="#toc-7">创建并加载一个 SavedModel</a></li>
+<li><a href="#toc-17">配合 Estimators 使用 SavedModel</a></li>
+<li><a href="#toc-23">使用 CLI 检查和执行 SavedModel</a></li>
+<li><a href="#toc-34">SavedModel 目录结构</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

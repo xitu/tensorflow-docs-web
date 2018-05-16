@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,12 +53,12 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/eager.html', 'title': 'Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>变量</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">变量</h1>
 <p>Tensorflow <strong>变量</strong>是用来表述程序控制的共享、持续状态的最好的方式。</p>
 <p>变量是通过 <code>tf.Variable</code> 类来控制的。<code>tf.Variable</code> 描述了一个张量，其值可以通过运行操作来改变。不像 <code>tf.Tensor</code> 对象，<code>tf.Variable</code> 存在于 <code>session.run</code> 调用的上下文之外。</p>
 <p>从内部来说，<code>tf.Varable</code> 保存了一个常态的张量。你可以通过特定的操作读取和修改该张量的值。这种修改对于多个 <code>tf.Session</code> 都是可见的，因此多个工作线程都能获取 <code>tf.Variable</code> 相同的值。</p>
-<h2>创建变量</h2>
+<h2 id="toc-1">创建变量</h2>
 <p>最好的创建变量的方式就是调用 <code>tf.get_variable</code> 方法。这个方法要求你指定变量名，变量名将被用于其他副本获取相同变量，同时也用于备份和导出模型时给变量值命名。<code>tf.get_variable</code> 也允许你重用一个以前创建的同名的变量，重用层的方式使得定义模型变得很简单。</p>
 <p>用 <code>tf.get_variable</code> 创建一个变量，你只需提供变量名和形状</p>
 <pre><code class="lang-python">my_variable = tf.get_variable(&quot;my_variable&quot;, [1, 2, 3])
@@ -74,7 +74,7 @@
 </code></pre>
 <p>要注意的是当初始值是 <code>tf.Tensor</code> 你就不应当指定变量的形状了，因为变量会使用初始化张量的形状。</p>
 <p><a name="collections"></a></p>
-<h3>变量集合</h3>
+<h3 id="toc-2">变量集合</h3>
 <p>因为 TensorFlow 程序中不相连的部分可能会需要创建变量，所以有时候很有必要通过单一的方式来获取所有的变量。因此，TensorFlow 提供了<strong>集合</strong>，被称为张量或其他对象的列表，比如 <code>tf.Variable</code> 实例的列表。</p>
 <p>默认情况下，每个 <code>tf.Variable</code> 都会出现在以下两个集合中：</p>
 <ul>
@@ -98,7 +98,7 @@ collections=[tf.GraphKeys.LOCAL_VARIABLES])
 <p>如果要获取你存放在集合中的所有变量（或者其他对象）的列表，你可以这样：</p>
 <pre><code class="lang-python">tf.get_collection(&quot;my_collection_name&quot;)
 </code></pre>
-<h3>设备部署</h3>
+<h3 id="toc-3">设备部署</h3>
 <p>正如其他的 TensorFlow 操作一样，你可以将变量部署在特定的设备上。比如，以下的代码段就创建了一个名为 <code>v</code> 的变量并将其部署在了第二个 GPU 设备上：</p>
 <pre><code class="lang-python">with tf.device(&quot;/device:GPU:1&quot;):
   v = tf.get_variable(&quot;v&quot;, [1])
@@ -110,7 +110,7 @@ collections=[tf.GraphKeys.LOCAL_VARIABLES])
 with tf.device(tf.train.replica_device_setter(cluster=cluster_spec)):
   v = tf.get_variable(&quot;v&quot;, shape=[20, 20])  # 这个变量被 replica_device_setter 部署在参数服务器上
 </code></pre>
-<h2>初始化变量</h2>
+<h2 id="toc-4">初始化变量</h2>
 <p>变量在使用之前必须初始化。如果你在用低级的 TensorFlow API 编程（也就是说，你在显式地创建你自己的计算图和会话），你必须显式地初始化这些变量。大部分高级框架，比如 <code>tf.contrib.slim</code>, <code>tf.estimator.Estimator</code> 和 <code>Keras</code> 都会在训练模型之前自动帮你初始化变量。</p>
 <p>另一方面，显式的初始化方式也很实用，因为这能让你从备份中重载模型时，不必重新运行可能会很耗性能的初始化函数，同时也在随机初始化分布式设置中的共享变量时允许因果关联（原文为 determinism，译者注）。</p>
 <p>在训练开始之前，可以调用 <code>tf.global_variables_initializer()</code> 来一步到位初始化所有可训练的变量。这个函数会返回一个操作，该操作可以初始化所有 <code>tf.GraphKeys.GLOBAL_VARIABLES</code> 集合中的变量。运行这个操作可以初始化所有的变量。比如：</p>
@@ -127,7 +127,7 @@ with tf.device(tf.train.replica_device_setter(cluster=cluster_spec)):
 <pre><code class="lang-python">v = tf.get_variable(&quot;v&quot;, shape=(), initializer=tf.zeros_initializer())
 w = tf.get_variable(&quot;w&quot;, initializer=v.initialized_value() + 1)
 </code></pre>
-<h2>使用变量</h2>
+<h2 id="toc-5">使用变量</h2>
 <p>如果要在 TensorFlow 计算图中使用 <code>tf.Variable</code> 的值，你只需把它当作一个普通的 <code>tf.Tensor</code> 来使用：</p>
 <pre><code class="lang-python">v = tf.get_variable(&quot;v&quot;, shape=(), initializer=tf.zeros_initializer())
 w = v + 1  # w 是基于 v 的值来计算的 tf.Tensor
@@ -146,7 +146,7 @@ assignment = v.assign_add(1)
 with tf.control_dependencies([assignment]):
   w = v.read_value()  # w 保证了在 assign_add 操作之后还能反应 v 的值
 </code></pre>
-<h2>共享变量</h2>
+<h2 id="toc-6">共享变量</h2>
 <p>TensorFlow 支持两种共享变量的方式：</p>
 <ul>
 <li>显式地传递 <code>tf.Variable</code> 对象。</li>
@@ -201,6 +201,18 @@ with tf.variable_scope(scope, reuse=True):
 </code></pre>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">变量</a><ul>
+<li><a href="#toc-1">创建变量</a></li>
+<li><a href="#toc-4">初始化变量</a></li>
+<li><a href="#toc-5">使用变量</a></li>
+<li><a href="#toc-6">共享变量</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

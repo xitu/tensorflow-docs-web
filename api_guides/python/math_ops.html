@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,13 +46,13 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Math</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Math</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
 <p>[TOC]</p>
 <p>Note: Elementwise binary operations in TensorFlow follow <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">numpy-style<br>
 broadcasting</a>.</p>
-<h2>Arithmetic Operators</h2>
+<h2 id="toc-1">Arithmetic Operators</h2>
 <p>TensorFlow provides several operations that you can use to add basic arithmetic<br>
 operators to your graph.</p>
 <ul>
@@ -72,7 +72,7 @@ operators to your graph.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/mod"><code>tf.mod</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/cross"><code>tf.cross</code></a></li>
 </ul>
-<h2>Basic Math Functions</h2>
+<h2 id="toc-2">Basic Math Functions</h2>
 <p>TensorFlow provides several operations that you can use to add basic<br>
 mathematical functions to your graph.</p>
 <ul>
@@ -118,7 +118,7 @@ mathematical functions to your graph.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/betainc"><code>tf.betainc</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/rint"><code>tf.rint</code></a></li>
 </ul>
-<h2>Matrix Math Functions</h2>
+<h2 id="toc-3">Matrix Math Functions</h2>
 <p>TensorFlow provides several operations that you can use to add linear algebra<br>
 functions on matrices to your graph.</p>
 <ul>
@@ -146,13 +146,13 @@ functions on matrices to your graph.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/self_adjoint_eigvals"><code>tf.self_adjoint_eigvals</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/svd"><code>tf.svd</code></a></li>
 </ul>
-<h2>Tensor Math Function</h2>
+<h2 id="toc-4">Tensor Math Function</h2>
 <p>TensorFlow provides operations that you can use to add tensor functions to your<br>
 graph.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/tensordot"><code>tf.tensordot</code></a></li>
 </ul>
-<h2>Complex Number Functions</h2>
+<h2 id="toc-5">Complex Number Functions</h2>
 <p>TensorFlow provides several operations that you can use to add complex number<br>
 functions to your graph.</p>
 <ul>
@@ -162,7 +162,7 @@ functions to your graph.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/angle"><code>tf.angle</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/real"><code>tf.real</code></a></li>
 </ul>
-<h2>Reduction</h2>
+<h2 id="toc-6">Reduction</h2>
 <p>TensorFlow provides several operations that you can use to perform<br>
 common math computations that reduce various dimensions of a tensor.</p>
 <ul>
@@ -178,14 +178,14 @@ common math computations that reduce various dimensions of a tensor.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/accumulate_n"><code>tf.accumulate_n</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/einsum"><code>tf.einsum</code></a></li>
 </ul>
-<h2>Scan</h2>
+<h2 id="toc-7">Scan</h2>
 <p>TensorFlow provides several operations that you can use to perform scans<br>
 (running totals) across one axis of a tensor.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/cumsum"><code>tf.cumsum</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/cumprod"><code>tf.cumprod</code></a></li>
 </ul>
-<h2>Segmentation</h2>
+<h2 id="toc-8">Segmentation</h2>
 <p>TensorFlow provides several operations that you can use to perform common<br>
 math computations on tensor segments.<br>
 Here a segmentation is a partitioning of a tensor along<br>
@@ -212,7 +212,7 @@ tf.segment_sum(c, tf.constant([0, 0, 1]))
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_segment_mean"><code>tf.sparse_segment_mean</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_segment_sqrt_n"><code>tf.sparse_segment_sqrt_n</code></a></li>
 </ul>
-<h2>Sequence Comparison and Indexing</h2>
+<h2 id="toc-9">Sequence Comparison and Indexing</h2>
 <p>TensorFlow provides several operations that you can use to add sequence<br>
 comparison and index extraction to your graph. You can use these operations to<br>
 determine sequence differences and determine the indexes of specific values in<br>
@@ -228,6 +228,23 @@ a tensor.</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Math</a><ul>
+<li><a href="#toc-1">Arithmetic Operators</a></li>
+<li><a href="#toc-2">Basic Math Functions</a></li>
+<li><a href="#toc-3">Matrix Math Functions</a></li>
+<li><a href="#toc-4">Tensor Math Function</a></li>
+<li><a href="#toc-5">Complex Number Functions</a></li>
+<li><a href="#toc-6">Reduction</a></li>
+<li><a href="#toc-7">Scan</a></li>
+<li><a href="#toc-8">Segmentation</a></li>
+<li><a href="#toc-9">Sequence Comparison and Indexing</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

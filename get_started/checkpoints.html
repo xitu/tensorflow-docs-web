@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,21 +53,21 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Beginners', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/eager.html', 'title': '开始使用 Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'parent', 'title': ' Estimators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>检查点</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">检查点</h1>
 <p>本文介绍如何保存和恢复编译有 Estimator 的 TensorFlow 模型。TensorFlow 提供两种模型格式：</p>
 <ul>
 <li>  检查点（checkpoints）：这是一种依赖于创建模型代码的格式。</li>
 <li>  SavedModel：这是一种与创建模型代码无关的格式。</li>
 </ul>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html">保存和恢复</a></p>
-<h2>示例代码</h2>
+<h2 id="toc-1">示例代码</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Premade Estimators</a></p>
 <pre><code class="lang-shell">git clone https://github.com/tensorflow/models/
 cd models/samples/core/get_started
 </code></pre>
 <p>本文中大部分代码片断都是在 <code>premade_estimator.py</code> 基础上少量修改的版本。</p>
-<h2>保存未训练完的模型</h2>
+<h2 id="toc-2">保存未训练完的模型</h2>
 <p>Estimators 自动将下列内容写到磁盘上：</p>
 <ul>
 <li>  <strong>检查点</strong>：训练过程中生成的不同版本的模型。</li>
@@ -104,7 +104,7 @@ model.ckpt-200.index
 model.ckpt-200.meta
 </code></pre>
 <p>上面的 <code>ls</code> 命令显示，此 Estimator 在第 1 步（训练开始时）和第 200 步（训练结束时）生成了检查点。</p>
-<h3>默认检查点目录</h3>
+<h3 id="toc-3">默认检查点目录</h3>
 <p>如果你在一个 Estimator 构造函数中指定 <code>model_dir</code> 参数，此 Estimator 将检查点文件写到一个临时目录中，此目录由 Python 的 <a href="https://docs.python.org/3/library/tempfile.html#tempfile.mkdtemp">tempfile.mkdtemp</a> 函数指定。比如，下面的 Estimator 构造函数并没有指定 <code>model_dir</code> 参数：</p>
 <pre><code class="lang-python">classifier = tf.estimator.DNNClassifier(
     feature_columns=my_feature_columns,
@@ -116,7 +116,7 @@ print(classifier.model_dir)
 <p><code>tempfile.mkdtemp</code> 函数会为你在操作系统中选择一个安全的临时目录。比如，在 macOS 操作系统中，一个典型的临时目录为：</p>
 <pre><code class="lang-None">/var/folders/0s/5q9kfzfj3gx2knj0vj8p68yc00dhcr/T/tmpYm1Rwa
 </code></pre>
-<h3>检查点的保存频率</h3>
+<h3 id="toc-4">检查点的保存频率</h3>
 <p>默认情况下， Estimator 会在 <code>model_dir</code> 目录中保存 <a href="https://developers.google.com/machine-learning/glossary/#checkpoint">检查点</a>，并且采用如下策略：</p>
 <ul>
 <li>  每隔 10 分钟保存一个检查点（即 600 秒）。</li>
@@ -141,7 +141,7 @@ classifier = tf.estimator.DNNClassifier(
     model_dir=&#39;models/iris&#39;,
     config=my_checkpointing_config)
 </code></pre>
-<h2>恢复你的模型</h2>
+<h2 id="toc-5">恢复你的模型</h2>
 <p>当第一次调用一个 Estimator 的 <code>train</code> 方法时，TensorFlow 会在 <code>model_dir</code> 目录中保存一个检查点。后续每调用一次 Estimator 的 <code>train</code> 、 <code>evaluate</code> 或 <code>predict</code> 方法，都会发生如下的行为：</p>
 <ol>
 <li><a href="//xitu.github.io/tensorflow-docs-web/./get_started/custom_estimators.html">创建定制化 Estimator</a></li>
@@ -153,7 +153,7 @@ classifier = tf.estimator.DNNClassifier(
 </div>
 <div style="text-align: center">
 后续对 train()、evaluate() 或 predict() 的调用
-</div><h3>避免不好的恢复</h3>
+</div><h3 id="toc-6">避免不好的恢复</h3>
 <p>只有当模型与检查点兼容时，我们才可以从这个检查点中恢复出模型的状态。比如，假设你训练了一个称为 <code>DNNClassifier</code> 的 Estimator，它包含两个隐藏层，每个有 10 个结点：</p>
 <pre><code class="lang-python">classifier = tf.estimator.DNNClassifier(
     feature_columns=feature_columns,
@@ -183,7 +183,7 @@ dnn/hiddenlayer_1/bias/t_0/Adagrad; shape in shape_and_slice spec [10]
 does not match the shape stored in checkpoint: [20]
 </code></pre>
 <p>当你在做实验时训练并比较版本稍有不同的模型时，记得保存创建每个 <code>model_dir</code> 的代码。比如，你可以为每个版本创建一个独立的 git 分支。这种分隔的做法可以保证你的检查点是可恢复的。</p>
-<h2>总结</h2>
+<h2 id="toc-7">总结</h2>
 <p>检查点提供了一种容易的保存和恢复由 Estimator 生成的模型的自动化机制。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html">保存和恢复</a></p>
 <ul>
@@ -192,6 +192,18 @@ does not match the shape stored in checkpoint: [20]
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">检查点</a><ul>
+<li><a href="#toc-1">示例代码</a></li>
+<li><a href="#toc-2">保存未训练完的模型</a></li>
+<li><a href="#toc-5">恢复你的模型</a></li>
+<li><a href="#toc-7">总结</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

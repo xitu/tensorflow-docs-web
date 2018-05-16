@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Threading and Queues</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Threading and Queues</h1>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html">数据导入</a></p>
 <p>Multithreaded queues are a powerful and widely used mechanism supporting<br>
 asynchronous computation.</p>
@@ -71,7 +71,7 @@ created by calling methods on a queue object (e.g. <code>q.enqueue(...)</code>).
 as the queue. Incompatible device placement directives will be ignored when<br>
 creating these operations.</p>
 <p>Now that you have a bit of a feel for queues, let's dive into the details...</p>
-<h2>Queue usage overview</h2>
+<h2 id="toc-1">Queue usage overview</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/RandomShuffleQueue"><code>tf.RandomShuffleQueue</code></a></p>
 <p>For example, a typical queue-based input pipeline uses a <code>RandomShuffleQueue</code> to<br>
 prepare inputs for training a model as follows:</p>
@@ -128,7 +128,7 @@ with tf.train.MonitoredSession() as sess:
 ...
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/MonitoredSession"><code>tf.train.MonitoredSession</code></a></p>
-<h2>Manual Thread Management</h2>
+<h2 id="toc-2">Manual Thread Management</h2>
 <p>As we have seen, the TensorFlow <code>Session</code> object is multithreaded and<br>
 thread-safe, so multiple threads can<br>
 easily use the same session and run ops in parallel.  However, it is not always<br>
@@ -136,7 +136,7 @@ easy to implement a Python program that drives threads as required.  All<br>
 threads must be able to stop together, exceptions must be caught and<br>
 reported, and queues must be properly closed when stopping.</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/QueueRunner"><code>tf.train.QueueRunner</code></a></p>
-<h3>Coordinator</h3>
+<h3 id="toc-3">Coordinator</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
 <p>Its key methods are:</p>
 <ul>
@@ -173,7 +173,7 @@ for t in threads:
 coord.join(threads)
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
-<h3>QueueRunner</h3>
+<h3 id="toc-4">QueueRunner</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/QueueRunner"><code>tf.train.QueueRunner</code></a></p>
 <p>You can use a queue runner to implement the architecture described above.</p>
 <p>First build a graph that uses a TensorFlow queue (e.g. a <code>tf.RandomShuffleQueue</code>) for input examples.  Add ops that<br>
@@ -210,7 +210,7 @@ coord.request_stop()
 # And wait for them to actually do it.
 coord.join(enqueue_threads)
 </code></pre>
-<h3>Handling exceptions</h3>
+<h3 id="toc-5">Handling exceptions</h3>
 <p>Threads started by queue runners do more than just run the enqueue ops.  They<br>
 also catch and handle exceptions generated by queues, including the<br>
 <code>tf.errors.OutOfRangeError</code> exception, which is used to report that a queue was<br>
@@ -233,6 +233,16 @@ finally:
 </code></pre>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Threading and Queues</a><ul>
+<li><a href="#toc-1">Queue usage overview</a></li>
+<li><a href="#toc-2">Manual Thread Management</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

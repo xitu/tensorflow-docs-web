@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Signal Processing (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Signal Processing (contrib)</h1>
 <p>[TOC]</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal"><code>tf.contrib.signal</code></a></p>
-<h2>Framing variable length sequences</h2>
+<h2 id="toc-1">Framing variable length sequences</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/frame"><code>tf.contrib.signal.frame</code></a></p>
 <pre><code class="lang-python"># A batch of float32 time-domain signals in the range [-1, 1] with shape
 # [batch_size, signal_length]. Both batch_size and signal_length may be unknown.
@@ -73,7 +73,7 @@ magnitude_spectrograms = tf.abs(tf.contrib.signal.stft(
 spectrogram_patches = tf.contrib.signal.frame(
     magnitude_spectrograms, frame_length=64, frame_step=16, axis=1)
 </code></pre>
-<h2>Reconstructing framed sequences and applying a tapering window</h2>
+<h2 id="toc-2">Reconstructing framed sequences and applying a tapering window</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/overlap_and_add"><code>tf.contrib.signal.overlap_and_add</code></a></p>
 <pre><code class="lang-python"># Reconstructs `signals` from `frames` produced in the above example. However,
 # the magnitude of `reconstructed_signals` will be greater than `signals`.
@@ -91,7 +91,7 @@ windowed_frames = frames * tf.contrib.signal.hann_window(frame_length)
 reconstructed_signals = tf.contrib.signal.overlap_and_add(
     windowed_frames, frame_step)
 </code></pre>
-<h2>Computing spectrograms</h2>
+<h2 id="toc-3">Computing spectrograms</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/stft"><code>tf.contrib.signal.stft</code></a></p>
 <pre><code class="lang-python"># A batch of float32 time-domain signals in the range [-1, 1] with shape
 # [batch_size, signal_length]. Both batch_size and signal_length may be unknown.
@@ -114,7 +114,7 @@ magnitude_spectrograms = tf.abs(stfts)
 <p>You may use a power spectrogram or a magnitude spectrogram; each has its<br>
 advantages. Note that if you apply logarithmic compression, the power<br>
 spectrogram and magnitude spectrogram will differ by a factor of 2.</p>
-<h2>Logarithmic compression</h2>
+<h2 id="toc-4">Logarithmic compression</h2>
 <p>It is common practice to apply a compressive nonlinearity such as a logarithm or<br>
 power-law compression to spectrograms. This helps to balance the importance of<br>
 detail in low and high energy regions of the spectrum, which more closely<br>
@@ -124,7 +124,7 @@ to avoid high dynamic ranges caused by the singularity at zero.</p>
 <pre><code class="lang-python">log_offset = 1e-6
 log_magnitude_spectrograms = tf.log(magnitude_spectrograms + log_offset)
 </code></pre>
-<h2>Computing log-mel spectrograms</h2>
+<h2 id="toc-5">Computing log-mel spectrograms</h2>
 <p>When working with spectral representations of audio, the <a href="https://en.wikipedia.org/wiki/Mel_scale">mel scale</a> is a<br>
 common reweighting of the frequency dimension, which results in a<br>
 lower-dimensional and more perceptually-relevant representation of the audio.</p>
@@ -153,7 +153,7 @@ pre-logarithm values, which rarely, if ever, makes sense.</p>
 <pre><code class="lang-python">log_offset = 1e-6
 log_mel_spectrograms = tf.log(mel_spectrograms + log_offset)
 </code></pre>
-<h2>Computing Mel-Frequency Cepstral Coefficients (MFCCs)</h2>
+<h2 id="toc-6">Computing Mel-Frequency Cepstral Coefficients (MFCCs)</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/signal/mfccs_from_log_mel_spectrograms"><code>tf.contrib.signal.mfccs_from_log_mel_spectrograms</code></a></p>
 <pre><code class="lang-python">num_mfccs = 13
 # Keep the first `num_mfccs` MFCCs.
@@ -162,6 +162,20 @@ mfccs = tf.contrib.signal.mfccs_from_log_mel_spectrograms(
 </code></pre>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Signal Processing (contrib)</a><ul>
+<li><a href="#toc-1">Framing variable length sequences</a></li>
+<li><a href="#toc-2">Reconstructing framed sequences and applying a tapering window</a></li>
+<li><a href="#toc-3">Computing spectrograms</a></li>
+<li><a href="#toc-4">Logarithmic compression</a></li>
+<li><a href="#toc-5">Computing log-mel spectrograms</a></li>
+<li><a href="#toc-6">Computing Mel-Frequency Cepstral Coefficients (MFCCs)</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

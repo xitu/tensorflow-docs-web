@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'title': '性能'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': '输入管道性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': '高性能模型'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'Fixed Point Quantization'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Fixed Point Quantization</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Fixed Point Quantization</h1>
 <p>Quantization techniques store and calculate numbers in more compact formats.<br>
 <a href="/mobile/tflite/">TensorFlow Lite</a> adds quantization that uses an 8-bit fixed<br>
 point representation.</p>
@@ -67,13 +67,13 @@ inference efficiency has become a critical issue. Where the computational demand
 for <em>training</em> grows with the amount of models trained on different<br>
 architectures, the computational demand for <em>inference</em> grows in proportion to<br>
 the amount of users.</p>
-<h2>Quantization benefits</h2>
+<h2 id="toc-1">Quantization benefits</h2>
 <p>Using 8-bit calculations help your models run faster and use less power. This is<br>
 especially important for mobile devices and embedded applications that can't run<br>
 floating point code efficiently, for example, Internet of Things (IoT) and<br>
 robotics devices. There are additional opportunities to extend this support to<br>
 more backends and research lower precision networks.</p>
-<h3>Smaller file sizes {: .hide-from-toc}</h3>
+<h3 id="toc-2">Smaller file sizes {: .hide-from-toc}</h3>
 <p>Neural network models require a lot of space on disk. For example, the original<br>
 AlexNet requires over 200 MB for the float format—almost all of that for the<br>
 model's millions of weights. Because the weights are slightly different<br>
@@ -83,12 +83,12 @@ be normally distributed within a range. Quantization can shrink file sizes by<br
 storing the minimum and maximum weight for each layer, then compress each<br>
 weight's float value to an 8-bit integer representing the closest real number in<br>
 a linear set of 256 within the range.</p>
-<h3>Faster inference {: .hide-from-toc}</h3>
+<h3 id="toc-3">Faster inference {: .hide-from-toc}</h3>
 <p>Since calculations are run entirely on 8-bit inputs and outputs, quantization<br>
 reduces the computational resources needed for inference calculations. This is<br>
 more involved, requiring changes to all floating point calculations, but results<br>
 in a large speed-up for inference time.</p>
-<h3>Memory efficiency {: .hide-from-toc}</h3>
+<h3 id="toc-4">Memory efficiency {: .hide-from-toc}</h3>
 <p>Since fetching 8-bit values only requires 25% of the memory bandwidth of floats,<br>
 more efficient caches avoid bottlenecks for RAM access. In many cases, the power<br>
 consumption for running a neural network is dominated by memory access. The<br>
@@ -96,7 +96,7 @@ savings from using fixed-point 8-bit weights and activations are significant.</p
 <p>Typically, SIMD operations are available that run more operations per clock<br>
 cycle. In some cases, a DSP chip is available that accelerates 8-bit calculations<br>
 resulting in a massive speedup.</p>
-<h2>Fixed point quantization techniques</h2>
+<h2 id="toc-5">Fixed point quantization techniques</h2>
 <p>The goal is to use the same precision for weights and activations during both<br>
 training and inference. But an important difference is that training consists of<br>
 a forward pass and a backward pass, while inference only uses a forward pass.<br>
@@ -112,7 +112,7 @@ weights and activations and models quantization as a straight through estimator.
 during training. This allows a model trained with quantization in the loop to be<br>
 converted to a fixed point inference model with little effort, eliminating the<br>
 need for a separate calibration step.</p>
-<h2>Quantization training with TensorFlow</h2>
+<h2 id="toc-6">Quantization training with TensorFlow</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/array_ops.html#Fake_quantization">Tensor Transformations</a></p>
 <p>Since it's difficult to add these fake quantization operations to all the<br>
 required locations in the model, there's a function available that rewrites the<br>
@@ -153,7 +153,7 @@ saver.save(sess, checkpoint_name)
 and experimentation. Although rewrites and quantized training might not work or<br>
 improve performance for all models, we are working to generalize these<br>
 techniques.</p>
-<h2>Generating fully quantized models</h2>
+<h2 id="toc-7">Generating fully quantized models</h2>
 <p>The previously demonstrated after-rewrite eval graph only <em>simulates</em><br>
 quantization. To generate real fixed point computations from a trained<br>
 quantization model, convert it to a fixed point kernel. Tensorflow Lite supports<br>
@@ -180,7 +180,7 @@ quantized TensorFLow Lite model:</p>
   --std_value=127.5 --mean_value=127.5
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/quantize"><code>tf.contrib.quantize</code></a></p>
-<h2>Quantized accuracy</h2>
+<h2 id="toc-8">Quantized accuracy</h2>
 <p>Fixed point <a href="https://arxiv.org/abs/1704.0486">MobileNet</a> models are released with<br>
 8-bit weights and activations. Using the rewriters, these models achieve the<br>
 Top-1 accuracies listed in Table 1. For comparison, the floating point accuracies<br>
@@ -215,7 +215,7 @@ along with links to all of the pretrained mobilenet_v1 models.</p>
   <figcaption>
     <b>Table 1</b>: MobileNet Top-1 accuracy on Imagenet Validation dataset.
   </figcaption>
-</figure><h2>Representation for quantized tensors</h2>
+</figure><h2 id="toc-9">Representation for quantized tensors</h2>
 <p>TensorFlow approaches the conversion of floating-point arrays of numbers into<br>
 8-bit representations as a compression problem. Since the weights and activation<br>
 tensors in trained neural network models tend to have values that are distributed<br>
@@ -257,6 +257,20 @@ operations that aren't quantization-ready, or to inspect the tensors for<br>
 debugging.</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Fixed Point Quantization</a><ul>
+<li><a href="#toc-1">Quantization benefits</a></li>
+<li><a href="#toc-5">Fixed point quantization techniques</a></li>
+<li><a href="#toc-6">Quantization training with TensorFlow</a></li>
+<li><a href="#toc-7">Generating fully quantized models</a></li>
+<li><a href="#toc-8">Quantized accuracy</a></li>
+<li><a href="#toc-9">Representation for quantized tensors</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

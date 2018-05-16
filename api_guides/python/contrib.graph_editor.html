@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,14 +46,14 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Graph Editor (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Graph Editor (contrib)</h1>
 <p>[TOC]</p>
 <p>TensorFlow Graph Editor.</p>
 <p>The TensorFlow Graph Editor library allows for modification of an existing<br>
 <code>tf.Graph</code> instance in-place.</p>
 <p>The author's github username is <a href="https://github.com/purpledog">purpledog</a>.</p>
-<h2>Library overview</h2>
+<h2 id="toc-1">Library overview</h2>
 <p>Appending new nodes is the only graph editing operation allowed by the<br>
 TensorFlow core library. The Graph Editor library is an attempt to allow for<br>
 other kinds of editing operations, namely, <em>rerouting</em> and <em>transforming</em>.</p>
@@ -91,7 +91,7 @@ operations like rerouting and transforming can currently only be done offline.</
 <p>Note that this procedure is very costly because a new session must be created<br>
 after any modifications. Among other things, it takes time because the entire<br>
 graph state must be saved and restored again.</p>
-<h2>Sub-graph</h2>
+<h2 id="toc-2">Sub-graph</h2>
 <p>Most of the functions in the Graph Editor library operate on <em>sub-graph</em>.<br>
 More precisely, they take as input arguments instances of the SubGraphView class<br>
 (or anything which can be converted to it). Doing so allows the same function<br>
@@ -116,7 +116,7 @@ time, typically during transform or copy operation. For that reason,<br>
 to avoid any confusion, the default graph is never used and the graph on<br>
 which to operate must always be given explicitly. This is the reason why<br>
 <em><code>graph=tf.get_default_graph()</code></em> is used in the code snippets above.</p>
-<h2>Modules overview</h2>
+<h2 id="toc-3">Modules overview</h2>
 <ul>
 <li>util: utility functions.</li>
 <li>select: various selection methods of TensorFlow tensors and operations.</li>
@@ -131,7 +131,7 @@ TensorFlow <code>tf.Graph</code>.</li>
 <li>transform: the Transformer class, which enables transforming<br>
 (or simply copying) a subgraph into another one.</li>
 </ul>
-<h2>Module: util</h2>
+<h2 id="toc-4">Module: util</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_list_of_op"><code>tf.contrib.graph_editor.make_list_of_op</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/get_tensors"><code>tf.contrib.graph_editor.get_tensors</code></a></li>
@@ -143,7 +143,7 @@ TensorFlow <code>tf.Graph</code>.</li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_placeholder_from_tensor"><code>tf.contrib.graph_editor.make_placeholder_from_tensor</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_placeholder_from_dtype_and_shape"><code>tf.contrib.graph_editor.make_placeholder_from_dtype_and_shape</code></a></li>
 </ul>
-<h2>Module: select</h2>
+<h2 id="toc-5">Module: select</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/filter_ts"><code>tf.contrib.graph_editor.filter_ts</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/filter_ts_from_regex"><code>tf.contrib.graph_editor.filter_ts_from_regex</code></a></li>
@@ -162,13 +162,13 @@ TensorFlow <code>tf.Graph</code>.</li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/select_ts"><code>tf.contrib.graph_editor.select_ts</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/select_ops_and_ts"><code>tf.contrib.graph_editor.select_ops_and_ts</code></a></li>
 </ul>
-<h2>Module: subgraph</h2>
+<h2 id="toc-6">Module: subgraph</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/SubGraphView"><code>tf.contrib.graph_editor.SubGraphView</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_view"><code>tf.contrib.graph_editor.make_view</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/make_view_from_scope"><code>tf.contrib.graph_editor.make_view_from_scope</code></a></li>
 </ul>
-<h2>Module: reroute</h2>
+<h2 id="toc-7">Module: reroute</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/swap_ts"><code>tf.contrib.graph_editor.swap_ts</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/reroute_ts"><code>tf.contrib.graph_editor.reroute_ts</code></a></li>
@@ -181,7 +181,7 @@ TensorFlow <code>tf.Graph</code>.</li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/remove_control_inputs"><code>tf.contrib.graph_editor.remove_control_inputs</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/add_control_inputs"><code>tf.contrib.graph_editor.add_control_inputs</code></a></li>
 </ul>
-<h2>Module: edit</h2>
+<h2 id="toc-8">Module: edit</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach_control_inputs"><code>tf.contrib.graph_editor.detach_control_inputs</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/detach_control_outputs"><code>tf.contrib.graph_editor.detach_control_outputs</code></a></li>
@@ -191,7 +191,7 @@ TensorFlow <code>tf.Graph</code>.</li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/connect"><code>tf.contrib.graph_editor.connect</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/bypass"><code>tf.contrib.graph_editor.bypass</code></a></li>
 </ul>
-<h2>Module: transform</h2>
+<h2 id="toc-9">Module: transform</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/replace_t_with_placeholder_handler"><code>tf.contrib.graph_editor.replace_t_with_placeholder_handler</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/keep_t_if_possible_handler"><code>tf.contrib.graph_editor.keep_t_if_possible_handler</code></a></li>
@@ -203,7 +203,7 @@ TensorFlow <code>tf.Graph</code>.</li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/copy_with_input_replacements"><code>tf.contrib.graph_editor.copy_with_input_replacements</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/graph_replace"><code>tf.contrib.graph_editor.graph_replace</code></a></li>
 </ul>
-<h2>Useful aliases</h2>
+<h2 id="toc-10">Useful aliases</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/ph"><code>tf.contrib.graph_editor.ph</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/graph_editor/sgv"><code>tf.contrib.graph_editor.sgv</code></a></li>
@@ -211,6 +211,24 @@ TensorFlow <code>tf.Graph</code>.</li>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Graph Editor (contrib)</a><ul>
+<li><a href="#toc-1">Library overview</a></li>
+<li><a href="#toc-2">Sub-graph</a></li>
+<li><a href="#toc-3">Modules overview</a></li>
+<li><a href="#toc-4">Module: util</a></li>
+<li><a href="#toc-5">Module: select</a></li>
+<li><a href="#toc-6">Module: subgraph</a></li>
+<li><a href="#toc-7">Module: reroute</a></li>
+<li><a href="#toc-8">Module: edit</a></li>
+<li><a href="#toc-9">Module: transform</a></li>
+<li><a href="#toc-10">Useful aliases</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

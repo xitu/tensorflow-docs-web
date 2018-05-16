@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Neural Network</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Neural Network</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
 <p>[TOC]</p>
-<h2>Activation Functions</h2>
+<h2 id="toc-1">Activation Functions</h2>
 <p>The activation ops provide different types of nonlinearities for use in neural<br>
 networks. These include smooth nonlinearities (<code>sigmoid</code>, <code>tanh</code>, <code>elu</code>, <code>selu</code>,<br>
 <code>softplus</code>, and <code>softsign</code>), continuous but not everywhere differentiable<br>
@@ -71,7 +71,7 @@ shape as the input tensor.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/sigmoid"><code>tf.sigmoid</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/tanh"><code>tf.tanh</code></a></li>
 </ul>
-<h2>Convolution</h2>
+<h2 id="toc-2">Convolution</h2>
 <p>The convolution ops sweep a 2-D filter over a batch of images, applying the<br>
 filter to each window of each image of the appropriate size.  The different<br>
 ops trade off between generic vs. specific filters:</p>
@@ -159,7 +159,7 @@ concatenated.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d_native_backprop_filter"><code>tf.nn.depthwise_conv2d_native_backprop_filter</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/depthwise_conv2d_native_backprop_input"><code>tf.nn.depthwise_conv2d_native_backprop_input</code></a></li>
 </ul>
-<h2>Pooling</h2>
+<h2 id="toc-3">Pooling</h2>
 <p>The pooling ops sweep a rectangular window over the input tensor, computing a<br>
 reduction operation for each window (average, max, or max with argmax).  Each<br>
 pooling op uses rectangular windows of size <code>ksize</code> separated by offset<br>
@@ -180,7 +180,7 @@ to the <code>Convolution</code> section for details about the padding calculatio
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/fractional_max_pool"><code>tf.nn.fractional_max_pool</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/pool"><code>tf.nn.pool</code></a></li>
 </ul>
-<h2>Morphological filtering</h2>
+<h2 id="toc-4">Morphological filtering</h2>
 <p>Morphological operators are non-linear filters used in image processing.</p>
 <p><a href="https://en.wikipedia.org/wiki/Dilation_(morphology">Greyscale morphological dilation</a>)<br>
 is the max-sum counterpart of standard sum-product convolution:</p>
@@ -211,7 +211,7 @@ convolution. Please refer to the <code>Convolution</code> section for details.</
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/erosion2d"><code>tf.nn.erosion2d</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/with_space_to_batch"><code>tf.nn.with_space_to_batch</code></a></li>
 </ul>
-<h2>Normalization</h2>
+<h2 id="toc-5">Normalization</h2>
 <p>Normalization is useful to prevent neurons from saturating when inputs may<br>
 have varying scale, and to aid generalization.</p>
 <ul>
@@ -225,7 +225,7 @@ have varying scale, and to aid generalization.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/batch_normalization"><code>tf.nn.batch_normalization</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/batch_norm_with_global_normalization"><code>tf.nn.batch_norm_with_global_normalization</code></a></li>
 </ul>
-<h2>Losses</h2>
+<h2 id="toc-6">Losses</h2>
 <p>The loss ops measure error between two tensors, or between a tensor and zero.<br>
 These can be used for measuring accuracy of a network in a regression task<br>
 or for regularization purposes (weight decay).</p>
@@ -233,7 +233,7 @@ or for regularization purposes (weight decay).</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/l2_loss"><code>tf.nn.l2_loss</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/log_poisson_loss"><code>tf.nn.log_poisson_loss</code></a></li>
 </ul>
-<h2>Classification</h2>
+<h2 id="toc-7">Classification</h2>
 <p>TensorFlow provides several operations that help you perform classification.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits"><code>tf.nn.sigmoid_cross_entropy_with_logits</code></a></li>
@@ -244,14 +244,14 @@ or for regularization purposes (weight decay).</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits"><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/weighted_cross_entropy_with_logits"><code>tf.nn.weighted_cross_entropy_with_logits</code></a></li>
 </ul>
-<h2>Embeddings</h2>
+<h2 id="toc-8">Embeddings</h2>
 <p>TensorFlow provides library support for looking up values in embedding<br>
 tensors.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/embedding_lookup"><code>tf.nn.embedding_lookup</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/embedding_lookup_sparse"><code>tf.nn.embedding_lookup_sparse</code></a></li>
 </ul>
-<h2>Recurrent Neural Networks</h2>
+<h2 id="toc-9">Recurrent Neural Networks</h2>
 <p>TensorFlow provides a number of methods for constructing Recurrent<br>
 Neural Networks.  Most accept an <code>RNNCell</code>-subclassed object<br>
 (see the documentation for <code>tf.contrib.rnn</code>).</p>
@@ -260,20 +260,20 @@ Neural Networks.  Most accept an <code>RNNCell</code>-subclassed object<br>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/bidirectional_dynamic_rnn"><code>tf.nn.bidirectional_dynamic_rnn</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/raw_rnn"><code>tf.nn.raw_rnn</code></a></li>
 </ul>
-<h2>Connectionist Temporal Classification (CTC)</h2>
+<h2 id="toc-10">Connectionist Temporal Classification (CTC)</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/ctc_loss"><code>tf.nn.ctc_loss</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/ctc_greedy_decoder"><code>tf.nn.ctc_greedy_decoder</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/ctc_beam_search_decoder"><code>tf.nn.ctc_beam_search_decoder</code></a></li>
 </ul>
-<h2>Evaluation</h2>
+<h2 id="toc-11">Evaluation</h2>
 <p>The evaluation ops are useful for measuring the performance of a network.<br>
 They are typically used at evaluation time.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/top_k"><code>tf.nn.top_k</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/in_top_k"><code>tf.nn.in_top_k</code></a></li>
 </ul>
-<h2>Candidate Sampling</h2>
+<h2 id="toc-12">Candidate Sampling</h2>
 <p>Do you want to train a multiclass or multilabel model with thousands<br>
 or millions of output classes (for example, a language model with a<br>
 large vocabulary)?  Training with a full Softmax is slow in this case,<br>
@@ -284,13 +284,13 @@ only considering a small randomly-chosen subset of contrastive classes<br>
 <p>See our<br>
 <a href="https://www.tensorflow.org/extras/candidate_sampling.pdf">Candidate Sampling Algorithms<br>
 Reference</a></p>
-<h3>Sampled Loss Functions</h3>
+<h3 id="toc-13">Sampled Loss Functions</h3>
 <p>TensorFlow provides the following sampled loss functions for faster training.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/nce_loss"><code>tf.nn.nce_loss</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/sampled_softmax_loss"><code>tf.nn.sampled_softmax_loss</code></a></li>
 </ul>
-<h3>Candidate Samplers</h3>
+<h3 id="toc-14">Candidate Samplers</h3>
 <p>TensorFlow provides the following samplers for randomly sampling candidate<br>
 classes when using one of the sampled loss functions above.</p>
 <ul>
@@ -299,18 +299,18 @@ classes when using one of the sampled loss functions above.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/learned_unigram_candidate_sampler"><code>tf.nn.learned_unigram_candidate_sampler</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/fixed_unigram_candidate_sampler"><code>tf.nn.fixed_unigram_candidate_sampler</code></a></li>
 </ul>
-<h3>Miscellaneous candidate sampling utilities</h3>
+<h3 id="toc-15">Miscellaneous candidate sampling utilities</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/compute_accidental_hits"><code>tf.nn.compute_accidental_hits</code></a></li>
 </ul>
-<h3>Quantization ops</h3>
+<h3 id="toc-16">Quantization ops</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_conv2d"><code>tf.nn.quantized_conv2d</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_relu_x"><code>tf.nn.quantized_relu_x</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_max_pool"><code>tf.nn.quantized_max_pool</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/nn/quantized_avg_pool"><code>tf.nn.quantized_avg_pool</code></a></li>
 </ul>
-<h2>Notes on SAME Convolution Padding</h2>
+<h2 id="toc-17">Notes on SAME Convolution Padding</h2>
 <p>In these notes, we provide more background on the use of the <code>'SAME'</code> padding<br>
 scheme for convolution operations.</p>
 <p>Tensorflow uses the smallest possible padding to achieve the desired output<br>
@@ -394,7 +394,7 @@ p_i &amp;= max\left(s\cdot \left(\frac{n_i + s - (n_i \text{ mod } s)}{s}</p>
 \label{eq:tf_pad_8}<br>
 \end{align}$$</li>
 </ul>
-<h3>Final expression</h3>
+<h3 id="toc-18">Final expression</h3>
 <p>Putting all together, the total padding used by tensorflow's convolution with<br>
 <code>'SAME'</code> mode is:</p>
 <p>$$\begin{align}<br>
@@ -409,6 +409,27 @@ p_i =<br>
 and <code>pad_along_width</code> in the <a href="#Convolution">Convolution section</a>.</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Neural Network</a><ul>
+<li><a href="#toc-1">Activation Functions</a></li>
+<li><a href="#toc-2">Convolution</a></li>
+<li><a href="#toc-3">Pooling</a></li>
+<li><a href="#toc-4">Morphological filtering</a></li>
+<li><a href="#toc-5">Normalization</a></li>
+<li><a href="#toc-6">Losses</a></li>
+<li><a href="#toc-7">Classification</a></li>
+<li><a href="#toc-8">Embeddings</a></li>
+<li><a href="#toc-9">Recurrent Neural Networks</a></li>
+<li><a href="#toc-10">Connectionist Temporal Classification (CTC)</a></li>
+<li><a href="#toc-11">Evaluation</a></li>
+<li><a href="#toc-12">Candidate Sampling</a></li>
+<li><a href="#toc-17">Notes on SAME Convolution Padding</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>TensorFlow In Use</title>
+    <title>使用 TensorFlow</title>
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,67 +51,81 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'title': 'About TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/uses.html', 'title': 'TensorFlow In Use'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/bib.html', 'title': 'TensorFlow White Papers'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/attribution.html', 'title': 'Attribution'}]
+    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'title': '关于 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/uses.html', 'title': '使用 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/bib.html', 'title': 'TensorFlow 白皮书'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/about/attribution.html', 'title': '归属'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>TensorFlow In Use</h1>
-<p>This page highlights TensorFlow models in real world use.</p>
-<h2>Model zoo</h2>
-<p>Please visit our collection of TensorFlow models in the<br>
-<a href="https://github.com/tensorflow/models">TensorFlow Zoo</a>.</p>
-<p>If you have built a model with TensorFlow, please consider publishing it in<br>
-the Zoo.</p>
-<h2>Current uses</h2>
-<p>This section describes some of the current uses of the TensorFlow system.</p>
-<blockquote><p>If you are using TensorFlow for research, for education, or for production<br>
-usage in some product, we would love to add something about your usage here.<br>
-Please feel free to <a href="mailto:usecases@tensorflow.org">email us</a> a brief<br>
-description of how you're using TensorFlow, or even better, send us a<br>
-pull request to add an entry to this file.</p>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">使用 TensorFlow</h1>
+<p>此页面突出展示了 TensorFlow 模型在现实环境中的使用。</p>
+<h2 id="toc-1">模型区</h2>
+<p>请在 <a href="https://github.com/tensorflow/models">TensorFlow 模型区</a>中访问我们的 TensorFlow 模型。</p>
+<p>如果你也使用了 TensorFlow 构建了一个模型，请考虑将其发布到模型区中。</p>
+<h2 id="toc-2">当前使用</h2>
+<p>本节介绍 TensorFlow 系统在当前一些使用场景。</p>
+<blockquote><p>如果您使用 TensorFlow 进行研究，教育或者某些产品的生产，我们由衷的希望在此添加您的使用情况，请随时<a href="mailto:usecases@tensorflow.org">给我们发邮件</a>简要介绍您是如何使用 TensorFlow，或者可以直接发送 Github 的 pull request 以添加到此文档。</p>
 </blockquote>
 <ul>
 <li><p><strong>Deep Speech</strong></p>
 <ul>
- <li>**Organization**: Mozilla</li>
- <li> **Domain**: Speech Recognition</li>
- <li> **Description**:  A TensorFlow implementation motivated by Baidu's Deep Speech architecture.</li>
- <li> **More info**: [GitHub Repo](https://github.com/mozilla/deepspeech)</li>
-</ul></li>
+<li><strong>组织</strong>：Mozilla</li>
+<li><strong>领域</strong>：语音识别</li>
+<li><strong>描述</strong>：由百度深度语音架构驱动的 TensorFlow 实现。</li>
+<li><strong>更多信息</strong>：<a href="https://github.com/mozilla/deepspeech">GitHub 仓库</a></li>
+</ul>
+</li>
 <li><p><strong>RankBrain</strong></p>
 <ul>
- <li>**Organization**: Google</li>
- <li> **Domain**: Information Retrieval</li>
- <li> **Description**:  A large-scale deployment of deep neural nets for search ranking on www.google.com.</li>
- <li> **More info**: ["Google Turning Over Its Lucrative Search to AI Machines"](http://www.bloomberg.com/news/articles/2015-10-26/google-turning-its-lucrative-web-search-over-to-ai-machines)</li>
-</ul></li>
+<li><strong>组织</strong>：Google</li>
+<li><strong>领域</strong>：信息检索</li>
+<li><strong>描述</strong>：在 www.google.com 上进行搜索排名的深度神经网络的大规模部署。<br>
+ * <strong>更多信息</strong>：<a href="http://www.bloomberg.com/news/articles/2015-10-26/google-turning-its-lucrative-web-search-over-to-ai-machines">“Google 将一起研发核心从搜索方向转向 AI 计算方向”</a></li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p><strong>Inception Image Classification Model</strong></p>
 <ul>
- <li> **Organization**: Google</li>
- <li> **Description**: Baseline model and follow on research into highly accurate computer vision models, starting with the model that won the 2014 Imagenet image classification challenge</li>
- <li> **More Info**: Baseline model described in [Arxiv paper](http://arxiv.org/abs/1409.4842)</li>
-</ul></li>
+<li><strong>组织</strong>：Google</li>
+<li><strong>描述</strong>：从赢得 2014 年 Imagenet 图像分类挑战的模型开始，基准模型和研究高度精确的计算机视觉模型。</li>
+<li><strong>更多信息</strong>：基准模型在 <a href="http://arxiv.org/abs/1409.4842">Arxiv 论文</a> 进行描述</li>
+</ul>
+</li>
 <li><p><strong>SmartReply</strong></p>
 <ul>
-<li> **Organization**: Google</li>
-<li> **Description**: Deep LSTM model to automatically generate email responses</li>
-<li> **More Info**: [Google research blog post](http://googleresearch.blogspot.com/2015/11/computer-respond-to-this-email.html)</li>
-</ul></li>
+<li><strong>组织</strong>：Google</li>
+<li><strong>描述</strong>：Deep LSTM 模型自动生成电子邮件回复</li>
+<li><strong>更多信息</strong>：<a href="http://googleresearch.blogspot.com/2015/11/computer-respond-to-this-email.html">Google 研究论文</a></li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p><strong>Massively Multitask Networks for Drug Discovery</strong></p>
 <ul>
-<li> **Organization**: Google and Stanford University</li>
-<li> **Domain**: Drug discovery</li>
-<li> **Description**:  A deep neural network model for identifying promising drug candidates.</li>
-<li> **More info**: [Arxiv paper](http://arxiv.org/abs/1502.02072)</li>
-</ul></li>
+<li><strong>组织</strong>：Google 和斯坦福大学</li>
+<li><strong>领域</strong>：药物发掘</li>
+<li><strong>描述</strong>：用于识别符合期望需求的药物的深度神经网络模型。</li>
+<li><strong>更多信息</strong>：<a href="http://arxiv.org/abs/1502.02072">Arxiv 论文</a></li>
+</ul>
+</li>
 <li><p><strong>On-Device Computer Vision for OCR</strong></p>
 <ul>
-<li> **Organization**: Google</li>
-<li> **Description**: On-device computer vision model to do optical character recognition to enable real-time translation.</li>
-<li> **More info**: [Google Research blog post](http://googleresearch.blogspot.com/2015/07/how-google-translate-squeezes-deep.html)</li>
-</ul></li>
+<li><strong>组织</strong>：Google</li>
+<li><strong>描述</strong>：使用光学字符识别功能进行实时翻译的计算机视觉模型。</li>
+<li><strong>更多信息</strong>：<a href="http://googleresearch.blogspot.com/2015/07/how-google-translate-squeezes-deep.html">Google 研究论文</a></li>
+</ul>
+</li>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">使用 TensorFlow</a><ul>
+<li><a href="#toc-1">模型区</a></li>
+<li><a href="#toc-2">当前使用</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->
@@ -131,7 +145,7 @@ pull request to add an entry to this file.</p>
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'wzasd': 'https://avatars1.githubusercontent.com/u/10248793?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 </body>

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'title': '扩展'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/architecture.html', 'title': 'TensorFlow 架构'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/adding_an_op.html', 'title': '添加一个新操作（Op）'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/add_filesys.html', 'title': '添加一个定制的文件系统插件'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/new_data_formats.html', 'title': '读取自定义文件和记录格式'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/language_bindings.html', 'title': '在其他语言中绑定 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/extend/tool_developers/index.html', 'title': '工具开发者指南：TensorFlow 模型文件'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>读取自定义文件和记录格式</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">读取自定义文件和记录格式</h1>
 <p>前提：</p>
 <ul>
 <li>对 C++ 有一定程度的了解。</li>
@@ -67,7 +67,7 @@
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
 <p>[TOC]</p>
-<h2>为文件格式编写一个数据集</h2>
+<h2 id="toc-1">为文件格式编写一个数据集</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></li>
@@ -268,7 +268,7 @@ if __name__ == &quot;__main__&quot;:
       pass
 </code></pre>
 <p>你可以在 <a href="https://www.tensorflow.org/code/tensorflow/python/data/ops/dataset_ops.py"><code>tensorflow/python/data/ops/dataset_ops.py</code></a> 中找到一些 <code>Dataset</code> 封装类的例子。</p>
-<h2>为记录格式写一个操作</h2>
+<h2 id="toc-2">为记录格式写一个操作</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./extend/adding_an_op.html">添加一个新操作（Op）</a></p>
 <p>列几个对解码记录有帮助的操作：</p>
 <ul>
@@ -279,6 +279,16 @@ if __name__ == &quot;__main__&quot;:
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/reshape"><code>tf.reshape</code></a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">读取自定义文件和记录格式</a><ul>
+<li><a href="#toc-1">为文件格式编写一个数据集</a></li>
+<li><a href="#toc-2">为记录格式写一个操作</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

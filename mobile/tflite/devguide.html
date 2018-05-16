@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,23 +46,23 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Developer Guide</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Developer Guide</h1>
 <p>Using a TensorFlow Lite model in your mobile app requires multiple considerations: you must choose a pre-trained or custom model, convert the model to a TensorFLow Lite format, and finally, integrate the model in your app.</p>
-<h2>1. Choose a model</h2>
+<h2 id="toc-1">1. Choose a model</h2>
 <p>Depending on the use case, you can choose one of the popular open-sourced models, such as <em>InceptionV3</em> or <em>MobileNets</em>, and re-train these models with a custom data set or even build your own custom model.</p>
-<h3>Use a pre-trained model</h3>
+<h3 id="toc-2">Use a pre-trained model</h3>
 <p><a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNets</a> is a family of mobile-first computer vision models for TensorFlow designed to effectively maximize accuracy, while taking into consideration the restricted resources for on-device or embedded applications. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints for a variety of uses. They can be used for classification, detection, embeddings, and segmentation—similar to other popular large scale models, such as <a href="https://arxiv.org/pdf/1602.07261.pdf">Inception</a>. Google provides 16 pre-trained <a href="http://www.image-net.org/challenges/LSVRC/">ImageNet</a> classification checkpoints for MobileNets that can be used in mobile projects of all sizes.</p>
 <p><a href="https://arxiv.org/abs/1512.00567">Inception-v3</a> is an image recognition model that achieves fairly high accuracy recognizing general objects with 1000 classes, for example, "Zebra", "Dalmatian", and "Dishwasher". The model extracts general features from input images using a convolutional neural network and classifies them based on those features with fully-connected and softmax layers.</p>
 <p><a href="https://research.googleblog.com/2017/02/on-device-machine-intelligence.html">On Device Smart Reply</a> is an on-device model that provides one-touch replies for incoming text messages by suggesting contextually relevant messages. The model is built specifically for memory constrained devices, such as watches and phones, and has been successfully used in Smart Replies on Android Wear. Currently, this model is Android-specific.</p>
 <p>These pre-trained models are <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/models.md">available for download</a></p>
-<h3>Re-train Inception-V3 or MobileNet for a custom data set</h3>
+<h3 id="toc-3">Re-train Inception-V3 or MobileNet for a custom data set</h3>
 <p>These pre-trained models were trained on the <em>ImageNet</em> data set which contains 1000 predefined classes. If these classes are not sufficient for your use case, the model will need to be re-trained. This technique is called <em>transfer learning</em> and starts with a model that has been already trained on a problem, then retrains the model on a similar problem. Deep learning from scratch can take days, but transfer learning is fairly quick. In order to do this, you need to generate a custom data set labeled with the relevant classes.</p>
 <p>The <a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/">TensorFlow for Poets</a> codelab walks through the re-training process step-by-step. The code supports both floating point and quantized inference.</p>
-<h3>Train a custom model</h3>
+<h3 id="toc-4">Train a custom model</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></p>
 <p>TensorFlow Lite currently supports a subset of TensorFlow operators. Refer to the <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md">TensorFlow Lite &amp; TensorFlow Compatibility Guide</a> for supported operators and their usage. This set of operators will continue to grow in future Tensorflow Lite releases.</p>
-<h2>2. Convert the model format</h2>
+<h2 id="toc-5">2. Convert the model format</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></li>
@@ -72,7 +72,7 @@ using the value retrieved from the CheckPoint.</li>
 <li><code>SavedModel</code> —A <code>GraphDef</code> and CheckPoint with a signature that labels input and output arguments to a model. A <code>GraphDef</code> and CheckPoint can be extracted from a <code>SavedModel</code>.</li>
 <li><em>TensorFlow Lite model</em> (.tflite) —A serialized <a href="https://google.github.io/flatbuffers/">FlatBuffer</a> that contains TensorFlow Lite operators and tensors for the TensorFlow Lite interpreter, similar to a <code>FrozenGraphDef</code>.</li>
 </ul>
-<h3>Freeze Graph</h3>
+<h3 id="toc-6">Freeze Graph</h3>
 <p>To use the <code>GraphDef</code> .pb file with TensorFlow Lite, you must have checkpoints that contain trained weight parameters. The .pb file only contains the structure of the graph. The process of merging the checkpoint values with the graph structure is called <em>freezing the graph</em>.</p>
 <p>You should have a checkpoints folder or download them for a pre-trained model (for example, <a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md">MobileNets</a>).</p>
 <p>To freeze the graph, use the following command (changing the arguments):</p>
@@ -113,20 +113,31 @@ with tf.Session() as sess:
 <pre><code class="lang-sh">bazel run tensorflow/contrib/lite/tools:visualize -- model.tflite model_viz.html
 </code></pre>
 <p>This generates an interactive HTML page listing subgraphs, operations, and a graph visualization.</p>
-<h2>3. Use the TensorFlow Lite model for inference in a mobile app</h2>
+<h2 id="toc-7">3. Use the TensorFlow Lite model for inference in a mobile app</h2>
 <p>After completing the prior steps, you should now have a <code>.tflite</code> model file.</p>
-<h3>Android</h3>
+<h3 id="toc-8">Android</h3>
 <p>Since Android apps are written in Java and the core TensorFlow library is in C++, a JNI library is provided as an interface. This is only meant for inference—it provides the ability to load a graph, set up inputs, and run the model to calculate outputs.</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html">Android 示例应用</a></p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/mobile/android_build.html">在安卓上构建 TensorFlow</a></p>
-<h3>iOS</h3>
+<h3 id="toc-9">iOS</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html">iOS 演示 APP</a></p>
-<h4>Core ML support</h4>
+<h4 id="toc-10">Core ML support</h4>
 <p>Core ML is a machine learning framework used in Apple products. In addition to using Tensorflow Lite models directly in your applications, you can convert trained Tensorflow models to the <a href="https://developer.apple.com/machine-learning/">CoreML</a> format for use on Apple devices. To use the converter, refer to the <a href="https://github.com/tf-coreml/tf-coreml">Tensorflow-CoreML converter documentation</a>.</p>
-<h3>Raspberry Pi</h3>
+<h3 id="toc-11">Raspberry Pi</h3>
 <p>Compile Tensorflow Lite for a Raspberry Pi by following the <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/rpi.md">RPi build instructions</a> This compiles a static library file (<code>.a</code>) used to build your app. There are plans for Python bindings and a demo app.</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Developer Guide</a><ul>
+<li><a href="#toc-1">1. Choose a model</a></li>
+<li><a href="#toc-5">2. Convert the model format</a></li>
+<li><a href="#toc-7">3. Use the TensorFlow Lite model for inference in a mobile app</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Roadmap</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Roadmap</h1>
 <p><strong>Last updated: Feb 15, 2018</strong></p>
 <p>TensorFlow is a rapidly moving, community supported project. This document is intended<br>
 to provide guidance about priorities and focus areas of the core set of TensorFlow<br>
@@ -65,27 +65,27 @@ further<br>
 to TensorFlow.</p>
 <p>The features below do not have concrete release dates. However, the majority can be<br>
 expected in the next one to two releases.</p>
-<h3>APIs</h3>
-<h4>High Level APIs:</h4>
+<h3 id="toc-1">APIs</h3>
+<h4 id="toc-2">High Level APIs:</h4>
 <ul>
 <li>Easy multi-GPU utilization with Estimators</li>
 <li>Easy-to-use high-level pre-made estimators for Gradient Boosted Trees, Time Series, and other models</li>
 </ul>
-<h4>Eager Execution:</h4>
+<h4 id="toc-3">Eager Execution:</h4>
 <ul>
 <li>Efficient utilization of multiple GPUs</li>
 <li>Distributed training (multi-machine)</li>
 <li>Performance improvements</li>
 <li>Simpler export to a GraphDef/SavedModel </li>
 </ul>
-<h4>Keras API:</h4>
+<h4 id="toc-4">Keras API:</h4>
 <ul>
 <li>Better integration with tf.data (ability to call <code>model.fit</code> with data tensors)</li>
 <li>Full support for Eager Execution (both Eager support for the regular Keras API, and ability<br>
 to create Keras models Eager- style via Model subclassing)</li>
 <li>Better distribution/multi-GPU support and TPU support (including a smoother model-to-estimator workflow)</li>
 </ul>
-<h4>Official Models:</h4>
+<h4 id="toc-5">Official Models:</h4>
 <ul>
 <li>A set of<br>
 <a href="https://github.com/tensorflow/models/tree/master/official">reference models</a><br>
@@ -93,21 +93,21 @@ across image recognition, speech, object detection, and<br>
 translation that demonstrate best practices and serve as a starting point for<br>
 high-performance model development.</li>
 </ul>
-<h4>Contrib:</h4>
+<h4 id="toc-6">Contrib:</h4>
 <ul>
 <li>Deprecation notices added to parts of tf.contrib where preferred implementations exist outside of tf.contrib.</li>
 <li>As much as possible, large projects inside tf.contrib moved to separate repositories.</li>
 <li>The tf.contrib module will eventually be discontinued in its current form, experimental development will in future happen in other repositories.</li>
 </ul>
-<h4>Probabilistic Reasoning and Statistical Analysis:</h4>
+<h4 id="toc-7">Probabilistic Reasoning and Statistical Analysis:</h4>
 <ul>
 <li>Rich set of tools for probabilistic and statistical analysis in tf.distributions<br>
 and tf.probability. These include new samplers, layers, optimizers, losses, and structured models</li>
 <li>Statistical tools for hypothesis testing, convergence diagnostics, and sample statistics</li>
 <li>Edward 2.0: High-level API for probabilistic programming</li>
 </ul>
-<h3>Platforms</h3>
-<h4>TensorFlow Lite:</h4>
+<h3 id="toc-8">Platforms</h3>
+<h4 id="toc-9">TensorFlow Lite:</h4>
 <ul>
 <li>Increased coverage of supported ops in TensorFlow Lite</li>
 <li>Easier conversion of a trained TensorFlow graph for use on TensorFlow Lite</li>
@@ -116,32 +116,32 @@ and tf.probability. These include new samplers, layers, optimizers, losses, and 
 <li>Improved CPU performance by quantization and other network optimizations (eg. pruning, distillation)</li>
 <li>Increased support for devices beyond Android and iOS (eg. RPi, Cortex-M)</li>
 </ul>
-<h3>Performance</h3>
-<h4>Distributed TensorFlow:</h4>
+<h3 id="toc-10">Performance</h3>
+<h4 id="toc-11">Distributed TensorFlow:</h4>
 <ul>
 <li>Multi-GPU support optimized for a variety of GPU topologies</li>
 <li>Improved mechanisms for distributing computations on several machines</li>
 </ul>
-<h4>Optimizations:</h4>
+<h4 id="toc-12">Optimizations:</h4>
 <ul>
 <li>Mixed precision training support with initial example model and guide</li>
 <li>Native TensorRT support</li>
 <li>Int8 support for SkyLake via MKL</li>
 <li>Dynamic loading of SIMD-optimized kernels</li>
 </ul>
-<h3>Documentation and Usability:</h3>
+<h3 id="toc-13">Documentation and Usability:</h3>
 <ul>
 <li>Updated documentation, tutorials and Getting Started guides</li>
 <li>Process to enable external contributions to tutorials, documentation, and blogs showcasing best practice use-cases of TensorFlow and high-impact applications</li>
 </ul>
-<h3>Community and Partner Engagement</h3>
-<h4>Special Interest Groups:</h4>
+<h3 id="toc-14">Community and Partner Engagement</h3>
+<h4 id="toc-15">Special Interest Groups:</h4>
 <ul>
 <li>Mobilizing the community to work together in focused domains</li>
 <li><a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tf-distribute">tf-distribute</a>: build and packaging of TensorFlow</li>
 <li>More to be identified and launched</li>
 </ul>
-<h4>Community:</h4>
+<h4 id="toc-16">Community:</h4>
 <ul>
 <li>Incorporate public feedback on significant design decisions via a Request-for-Comment (RFC) process</li>
 <li>Formalize process for external contributions to land in TensorFlow and associated projects </li>
@@ -150,6 +150,12 @@ and tf.probability. These include new samplers, layers, optimizers, losses, and 
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Roadmap</a></li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

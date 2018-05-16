@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Tensor Transformations</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Tensor Transformations</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
 <p>[TOC]</p>
-<h2>Casting</h2>
+<h2 id="toc-1">Casting</h2>
 <p>TensorFlow provides several operations that you can use to cast tensor data<br>
 types in your graph.</p>
 <ul>
@@ -64,7 +64,7 @@ types in your graph.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/bitcast"><code>tf.bitcast</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/saturate_cast"><code>tf.saturate_cast</code></a></li>
 </ul>
-<h2>Shapes and Shaping</h2>
+<h2 id="toc-2">Shapes and Shaping</h2>
 <p>TensorFlow provides several operations that you can use to determine the shape<br>
 of a tensor and change the shape of a tensor.</p>
 <ul>
@@ -79,7 +79,7 @@ of a tensor and change the shape of a tensor.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/expand_dims"><code>tf.expand_dims</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/meshgrid"><code>tf.meshgrid</code></a></li>
 </ul>
-<h2>Slicing and Joining</h2>
+<h2 id="toc-3">Slicing and Joining</h2>
 <p>TensorFlow provides several operations to slice or extract parts of a tensor,<br>
 or join multiple tensors together.</p>
 <ul>
@@ -118,7 +118,7 @@ or join multiple tensors together.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/quantized_concat"><code>tf.quantized_concat</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/setdiff1d"><code>tf.setdiff1d</code></a></li>
 </ul>
-<h2>Fake quantization</h2>
+<h2 id="toc-4">Fake quantization</h2>
 <p>Operations used to help train for better quantization accuracy.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/fake_quant_with_min_max_args"><code>tf.fake_quant_with_min_max_args</code></a></li>
@@ -130,6 +130,18 @@ or join multiple tensors together.</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Tensor Transformations</a><ul>
+<li><a href="#toc-1">Casting</a></li>
+<li><a href="#toc-2">Shapes and Shaping</a></li>
+<li><a href="#toc-3">Slicing and Joining</a></li>
+<li><a href="#toc-4">Fake quantization</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

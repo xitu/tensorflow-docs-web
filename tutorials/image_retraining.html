@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,14 +53,14 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>重新训练 Inception 最后一层并识别新的分类</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">重新训练 Inception 最后一层并识别新的分类</h1>
 <p>当前的对象识别模型拥有数百万计的参数，完整地训练整个模型需要花费数周的时间。迁移学习是一种能够大幅缩短这一过程的一种技术，它通过将一个已经完整训练过的模型（比如 ImageNet）重新训练来识别新的分类。在本例中我们将从零开始训练模型的最后一层并保留其他部分不变。想要获得此方法的更多信息请参考<a href="https://arxiv.org/pdf/1310.1531v1.pdf"> Decaf 的这篇论文</a>.</p>
 <p>尽管这种方式的效果比不上完整的训练，但却对很多应用惊人地有效，能在笔记本上不使用 GPU 而在 30 分钟内完成训练。这篇教程将展示如何在你自己的图片库上执行示例脚本，而且会讲解一些你将会用到的、有助于控制训练过程的一些选项。</p>
 <p>注：你还可以看<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0">本教程的 codelab 版本</a>.</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></p>
 <p>[TOC]</p>
-<h2>训练对花的识别</h2>
+<h2 id="toc-1">训练对花的识别</h2>
 <p><img src="../images/daisies.jpg" alt="Kelly Sikkema 雏菊"></p>
 <p><a href="https://www.flickr.com/photos/95072945@N05/9922116524/">Kelly Sikkema 提供</a></p>
 <p>在开始任何的训练之前，你需要一组图片，用于教神经网络认识你想让它识别的那些新分类。具体如何准备你自己的图片库我们将在后面的部分讲解，为了便于讲解我们创建了一个图片文件夹（包含一些已经获得知识共享授权的花朵图片），用于我们的初始化。获取这些花朵图片，可以执行下面的命令：</p>
@@ -82,11 +82,11 @@ git checkout {version}
 <pre><code class="lang-sh">python tensorflow/examples/image_retraining/retrain.py -h
 </code></pre>
 <p>这段代码加载了先前训练的 Inception v3 模型，移去最顶层，并在你下载的花朵图片上训练生成新的最顶层。先前完整训练的生成的原始 ImageNet 分类中不存在任何一种花的类型。迁移学习的神奇之处就在于，之前的训练已经使识别网络的低层级能够识别不同的对象，这可以在其他很多识别任务中重用而不用做任何修改。</p>
-<h2>瓶颈层</h2>
+<h2 id="toc-2">瓶颈层</h2>
 <p>根据你的机器速度的不同，这个脚本可能需要 30 分钟或更久才能完成。第一个阶段会分析磁盘上的所有图片并计算出每一个的 Bottleneck 值。'Bottleneck' 是一个非正式词汇，我们经常用它指代最后的输出层（也就是最终做分类的那一层）的上一层。这个被训练的倒数第二层能够输出一组值，这组值已经好到可以让分类器依据这些值来完成它的分类任务。这意味着这些值必须是这些图片的精简而有意义的概括，因为它要包含足够的信息来让分类器在一个很小的数值区间中做出好的选择。</p>
 <p>重新训练最后一层就能够识别新分类的原因是，用于分辨 1000 种分类的信息对于识别新分类通常也十分有用。</p>
 <p>由于在训练和计算 bottleneck 层时每一图片都会被多次使用，因此把计算过的 bottleneck 值缓存在磁盘中会大幅提升训练的速度，因为不用再重复计算了。bottleneck 值默认保存在 <code>/tmp/bottleneck</code> 目录下，如果重复执行脚本它们会被重用，因此重复执行的用时会比首次运行短。</p>
-<h2>训练</h2>
+<h2 id="toc-3">训练</h2>
 <p>bottleneck 值计算完成后，网络的顶层训练才真正开始。你将看到一系列步骤的输出，每一条都会显示训练的精确度、验证的精确度以及交叉熵。</p>
 <p>训练准确性表示当前训练所用的图片被正确分类的百分比。验证的准确性指从另一个集合中随机选出的一组图片被正确分类的百分比。上面两个指标的关键差别在于，训练准确性的计算是依据网络已经学习过的那些图片，因此网络能够对训练数据中的噪声过拟合。衡量一个网络表现的真正标准应该是它在训练数据集之外的数据上的表现 -- 通过验证准确性这个指标来衡量。</p>
 <p>如果训练准确定很高，验证准确定却很低，说明网络过拟合了，它已经记住了训练图片的特有的特征，这无助于更加通用的识别。交叉熵是一个可以让我们一窥学习进行情况的损失函数。训练的目标是让这个损失函数的值尽可能的小，所以通过观察忽略短期噪声情况下损失函数是否趋势递减来判断学习过程的进行状况。</p>
@@ -94,14 +94,14 @@ git checkout {version}
 <p>随着这一过程的进行你会看到报告的准确性在提升，当所有的训练步骤完成后，会在一个独立于训练集和验证集的图片集合上进行最终的测试准确性评估。</p>
 <p>这个测试评估是对这个训练模型在分类任务中会如何表现的最好估测。你会看到一个介于 90% 和 95% 的准确性值，尽管每一次运行的确切值都不同，因为训练过程有随机性存在。</p>
 <p>这个值是模型训练完成后对测试图片集正确分类的比例。</p>
-<h2>使用 TensorBoard 可视化再训练过程</h2>
+<h2 id="toc-4">使用 TensorBoard 可视化再训练过程</h2>
 <p>这些脚本包括 TensorBoard 的简要介绍，使得理解，调试和优化过程更易理解。例如，你可以可视化诸如训练过程中的权重和准确性变化的图表和统计数据。要启动 TensorBoard 请在训练过程中或训练完成后执行以下命令：</p>
 <pre><code class="lang-sh">tensorboard --logdir /tmp/retrain_logs
 </code></pre>
 <p>TensorBoard 运行之后，打开浏览器进到 <code>localhost:6006</code> 地址去看 TensorBoard 的状态。</p>
 <p>上面的脚本默认会将 TensorBoard 的运行日志记录到 <code>/tmp/retrain_logs</code>目录下。你也可以使用 <code>--summaries_dir</code> 标记来改变存储目录。</p>
 <p><a href="https://github.com/tensorflow/tensorboard">TensorBoard 的 GitHub 主页</a> 有 TensorBoard 用法的更多信息，包括一些小的提示、技巧和调试信息。</p>
-<h2>再训练模型的使用</h2>
+<h2 id="toc-5">再训练模型的使用</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/image_recognition.html">图像识别</a></p>
 <p>下面的例子将展示如何使用你已经训练过的图来运行 label_image 示例。</p>
 <pre><code class="lang-sh">python tensorflow/examples/label_image/label_image.py \
@@ -114,13 +114,13 @@ git checkout {version}
 <p>你将看到一组花名标签，大多数情况下以雏菊开头（尽管每个在训练模型可能有稍有区别）。<code>--image</code> 参数指定了你自己提供的图片。</p>
 <p>如果你想在你自己的 Python 程序中使用这个重新训练过的模型，则上述 <a href="https://www.tensorflow.org/code/tensorflow/examples/label_image/label_image.py"><code>label_image</code> 脚本</a> 是一个合理的初始参考。 <code>label_image</code> 目录中也包含了 C++ 代码，你可以在你自己的应用中将其当成一个整合 tensorflow 的模板。</p>
 <p>如果你觉得标准的 Inception v3 模型太大或者会使你你的程序变慢，你可以在<a href="/tutorials/image_retraining#other_model_architectures">其他的模型结构</a>寻找其他可以提升速度或者瘦身的方案。</p>
-<h2>在你自己的分类上进行训练</h2>
+<h2 id="toc-6">在你自己的分类上进行训练</h2>
 <p>如果你能够成功运行分类实例花朵图片的代码，你可以教它识别你关心的新分类。</p>
 <p>理论上所有你需要做的只是将训练对象指向一组新的子文件夹，每一个都你要训练的新分类命名，而且只包含符合这个分类的图片。完成之后将这些子目录的上层根目录作为参数传给 <code>--image_dir</code>，脚本会像之前训练识别花朵一样完成训练过程。</p>
 <p>为了说明脚本搜寻的文件目录结构是怎样的，下图是花朵文件夹的目录结构：</p>
 <p><img src="../images/folder_structure.png" alt="目录结构"></p>
 <p>实际操作中为了得到想要的准确性可能要做很多工作。下面将通过一些你可能会遇到的常见问题进行讲解。</p>
-<h2>创建一个用于训练的图片集</h2>
+<h2 id="toc-7">创建一个用于训练的图片集</h2>
 <p>我们要注意的第一个地方就是你所搜集的图片，我们发现训练过程中最容易出问题的是你输入的数据。</p>
 <p>为了能使训练工作正常进行，你需要为你要训练识别的每个分类至少准备 100 张图片。你搜集的图片越多，你训练出的模型越可能拥有更好的准确性。你同样需要确保你搜集的图片是你的应用将要识别的任务的很好的代表。例如，你使用的都是背景是空樯的室内照片，而你的用户尝试去识别室外的物体，当应用部署时你不会看到有好的效果。</p>
 <p>另一个要避免的陷阱是学习过程会学习标签图片之间任何的相同之处，留意不要让它成为阻碍你的地方。例如，如果你在蓝色的房间里给一个物体拍照，在另一个绿色的房间里给另一个物体拍照，那么最终模型将根据背景的颜色给出预测，而不是依据你真正关心的物体特征。</p>
@@ -129,18 +129,18 @@ git checkout {version}
 <p>你同样应该思考你要解决的是一个封闭性问题还是一个开放性问题。在封闭性问题中，你面对的问题只是识别你已经知道的的物体类别。这可以应用在一个植物识别应用中，用户将拍摄一朵花的图片，你所要做的只是判定它的品类。而一个满世界乱逛的漫游机器人可能通过它的相机看到各种各样的东西。</p>
 <p>在那种情况下你可能需要分类器报告它是否确定你正在观察的东西。这可能很难做好，通常当你收集到一大批典型的除了背景之外没什么东西的图片，你可以把他们加到额外的名为 unknown 的文件夹中。</p>
 <p>检查确认所有的图片都与其标签相符合也是值得的。用户生成的标签经常性的并不可靠，例如使用标签 daisy 打给了一个名叫 daisy 的人。如果你检查了所有的图片并排除了其中的错误，你会发现这对你模型整体的准确性有惊人的提升。</p>
-<h2>训练步骤</h2>
+<h2 id="toc-8">训练步骤</h2>
 <p>如果你对你的图片很满意，你可以看一下通过调整学习过程来改善你的结果。最简单的一个选项是 <code>--how_many_training_steps</code>。这个选项默认是 4000，但是你可以把它调高到 8000，这样它大概需要两倍的时间完成训练。训练时间越长，准确性的提高速率就会越低，最终准确性会停在某个点上，不过你可以实验一下你的模型什么时候会达到这个限制。</p>
-<h2>扭曲变形</h2>
+<h2 id="toc-9">扭曲变形</h2>
 <p>改善图片训练结果的一个一般方法是以随机的方式变形、裁剪或调亮训练的输入。</p>
 <p>由于同一张图片可以衍生出各种可能的变种，这可以扩展有效训练数据集的大小，而且这可以帮助网络学习应对各种变形，这种变形在现实生活的使用中会经常碰到。</p>
 <p>允许变形输入的最主要缺陷是代码中对 bottleneck 的缓存将不再有效，因为输入的图片不会再被重复使用。这意味着训练过程将多花很多时间，因此我建议只是将这种方法作为你已经训练完成一个模型之后的一种对模型调优的方法。</p>
 <p>你可以通过传入 <code>--random_crop</code>，<code>--random_scale</code>，以及 <code>--random_brightness</code> 开启扭曲功能。这些都是控制这些扭曲方法作用于每张图片程度的百分比值。</p>
 <p>开始时给每个选项设置 5 或 10 是合理的，然后再实验具体哪些值会对你的应用有所帮助。<code>--flip_left_right</code> （左右翻转）将随机地水平镜像一半的图像，只要这些镜面对称图像有可能出现在你的应用中，你设置此选项就是合理的。例如镜面对称出现在文字识别中就不是一个好主意，因为文字的反转会破坏它们的语义。</p>
-<h2>超参数</h2>
+<h2 id="toc-10">超参数</h2>
 <p>你还可以调节另外几个参数，看它们是否会对你的结果有所帮助。<code>--learning_rate</code> 控制训练过程中对最后一层进行更新的量级。直观的可以知道，如果这个值更小，那么学习过长将更长，但是却对最终整体的精确性有所帮助。</p>
 <p>情况也并不总是如此，因此你需要仔细的实验确认哪种情况对你有效。<code>--train_batch_size</code> 控制一次训练步骤有多少图片会被检测。由于学习速率应用于每一个批次，所以想每批使用更多的图片而整体效果不变，你需要减小学习速率。</p>
-<h2>训练、验证和测试集</h2>
+<h2 id="toc-11">训练、验证和测试集</h2>
 <p>当你把脚本指向一个图片文件夹时，代码所做的事情之一就是把它们划分成三个不同的图片集合。通常最大的集合为训练集，这里的全部图片都用与训练的输入，并用图片的结果来不断调整模型的权重。</p>
 <p>你可能会有疑问，为什么不把所有的图片都用来训练。当我们做机器学习时的一个很大的潜在问题是模型可能会通过记住大量的不相关的细节来得出正确的答案。</p>
 <p>例如，你能想象一个网络记住了展示给它的每一张相片的背景的模式，并使用它在物体和标签之间做匹配。他可能会在之前训练过程中见到过的图片上做出很好的预测，但是却会在新的图片上失败，因为它没有学会物体的通用特征，只是记住了训练图片上的一些不重要的细节。</p>
@@ -154,7 +154,7 @@ git checkout {version}
 <p>训练一旦完成，你会发现检查测试集中被错误分类的图片是一件极具洞察的事。</p>
 <p>可以通过添加 <code>--print_misclassified_test_images</code> 查看这些图片。这可以帮助你获得关于哪种类型的图片对你的模型最有迷惑性，哪种分类最难以辨别的感性认识。</p>
 <p>例如，你可能发现一些特定类别的子分类或者某些刁钻的拍摄角度特别难以识别，这可能激发你添加更多的那种子类的训练图片。通常，检查错误分类的图片同样能指出输入数据中的一些错误，如标签错误、图片质量低、或者模棱两可的图片。然而，通常应该避免对测试集进行针对性修复单个错误，因为这些错误很可能只是对训练集（数据量更大）中存在的更一般问题的一种反映。</p>
-<h2>其他模型结构</h2>
+<h2 id="toc-12">其他模型结构</h2>
 <p>脚本默认使用 Inception v3 模型架构的预训练版本。这是一个很好的开始因为它提供的结果有很高的精确性，但是如果你要把你的模型部署到移动设备或者资源有限的环境中时，你可能需要牺牲一点准确性以获得更小的文件体积或者更快的速度。为了能帮助做到这些，这个 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/image_retraining/retrain.py">retrain.py 脚本</a> 支持中不同的 <a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNet 架构</a>衍生版本。</p>
 <p>相比 Inception v3 这些衍生版本精确度要差一些，但是文件体积也小得多（几兆）而且运行速度要快上许多倍。要使用这些模型进行训练，使用 <code>--architecture</code> 标记，例如：</p>
 <pre><code>python tensorflow/examples/image_retraining/retrain.py \
@@ -179,6 +179,26 @@ git checkout {version}
 <p>更多关于在移动设备上部署重新训练模型的方法，请参考此教程的 <a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/#0">codelab 版本</a>，尤其是<a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2-tflite/#0">第二部分</a>，描述了 <a href="../mobile/tflite/">TensorFlow Lite</a> 及其提供的额外优化方法（包括模型权重的量化）。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">重新训练 Inception 最后一层并识别新的分类</a><ul>
+<li><a href="#toc-1">训练对花的识别</a></li>
+<li><a href="#toc-2">瓶颈层</a></li>
+<li><a href="#toc-3">训练</a></li>
+<li><a href="#toc-4">使用 TensorBoard 可视化再训练过程</a></li>
+<li><a href="#toc-5">再训练模型的使用</a></li>
+<li><a href="#toc-6">在你自己的分类上进行训练</a></li>
+<li><a href="#toc-7">创建一个用于训练的图片集</a></li>
+<li><a href="#toc-8">训练步骤</a></li>
+<li><a href="#toc-9">扭曲变形</a></li>
+<li><a href="#toc-10">超参数</a></li>
+<li><a href="#toc-11">训练、验证和测试集</a></li>
+<li><a href="#toc-12">其他模型结构</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,12 +53,12 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': '概述'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/devguide.html', 'title': 'Developer Guide'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'Android 示例应用'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'iOS 演示 APP'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': '在安卓上构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>集成 TensorFlow 库</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">集成 TensorFlow 库</h1>
 <p>一旦你在解决你所需问题的模型上取得了进展，那么在立即在应用中进行测试就变得非常重要了。通常情况下，你的训练数据与实际世界中面临的数据是存在意想不到的差异，尽快清晰的了解这些差距，才能更快的改进你的产品体验。这个页面讨论了如何在你的应用中集成 TensorFlow 库，只要你能够将 TensorFlow 移动端的演示程序成功部署，就能成功的构建你自己的应用。</p>
-<h2>库链接</h2>
+<h2 id="toc-1">库链接</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./mobile/ios_build.html#using_cocoapods">在 iOS 中构建 TensorFlow</a></p>
-<h3>Android</h3>
+<h3 id="toc-2">Android</h3>
 <p>对 Android 而言，你只需要链接一个叫做 <code>libandroid_tensorflow_inference_java.jar</code> 的 JAR 文件即可。有三种方式：</p>
 <ol>
 <li><p>在 jcenter AAR 中引入，例如<br>
@@ -69,7 +69,7 @@
 <li><p>根据我们 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/android">Android Github 仓库</a>的指示自行构建 JAR 文件。</p>
 </li>
 </ol>
-<h3>iOS</h3>
+<h3 id="toc-3">iOS</h3>
 <p>在 iOS 上集成 TensorFlow 库稍微复杂一些。这是一份你需要在 iOS 应用上执行的步骤清单：</p>
 <ul>
 <li>链接 <code>tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a</code>：通常情况下，将 <code>-L/your/path/tensorflow/contrib/makefile/gen/lib/</code> 和 <code>-ltensorflow-core</code> 添加到你的链接器标志中。</li>
@@ -78,7 +78,7 @@
 <li>确保针对 TensorFlow 的库二进制文件是通过 <code>-force_load</code> 参数编译而成（或视平台而定），从而保证正确链接。关于这个操作必要性的更多细节你可以在下一个小节，<a href="#全局构造的黑魔法">全局构造的黑魔法</a>中了解到。在类 Linux 平台下，你需要使用诸如 <code>-Wl,--allow-multiple-definition -Wl,--whole-archive</code> 等不同链接标志。</li>
 </ul>
 <p>此外，你还需要将其链接到 Accelerator 框架中，因为它能够对某些计算操作进行加速。</p>
-<h2>全局构造的黑魔法</h2>
+<h2 id="toc-4">全局构造的黑魔法</h2>
 <p>当你运行程序尝试调用 TensorFlow 时候，你可能会遇到 <code>No session factory registered for the given session options</code> 的错误，同时它也是几个相当微妙的错误之一。要理解为什么会发生这种情况以及如何解决这个问题，你需要了解一下 TensorFlow 的架构。</p>
 <p>TensorFlow 整个框架被设计得相当模块化，其中包含了大量的独立的特定对象以及一个轻薄的内核，并且可以根据需要进行混合与匹配。为了实现这一点，C++ 中的编码模式必须让模块在没有一个汇总列表的情况下（且每个列表与实现必须分开更新），能够简单的通知框架它们所提供的服务。同时，它还必须允许单独的库能够在不重新编译内核的情况下添加它们自己的实现。</p>
 <p>为了获得这种级别的兼容性，Tensorf 在相当多的地方使用了如下的注册模式：</p>
@@ -103,21 +103,21 @@ RegisterMul g_register_mul;
 <p>虽然听起来很合理，但可惜的是自定义的全局对象没有被任何其他代码使用，而链接器又被设计成在没有使用时就会将其代码删除的形式，从而导致的结果就是：构造函数从未被调用，并且该类也没有被注册。在 TensorFlow 中，所有模块都使用了这种模式，而在代码运行时，<code>Session</code> 的实现中就首次检查了这个构造，这也是为什么这个问题会发生的原因。</p>
 <p>解决方法就是强制链接器在即使代码没有使用的情况下，也不忽略库中的任何代码。在 iOS 中，可以中 <code>-force_load</code> 标志并制定库的路径，而在 Linux 中，你需要使用 <code>--whole-archive</code> 。它们指导了链接器不要积极的对编译作出精简，而是保留使用 TensorFlow 时所需的全局变量。</p>
 <p>不同形式 <code>REGISTER_*</code> 宏的实际实现在实践中相当复杂，但它们都有着相同的底层问题。如果你对它们的工作方式感兴趣，<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/framework/op_kernel.h#L1091">op_kernel.h</a> 是一个研究的起点。</p>
-<h2>Protobuf 问题</h2>
+<h2 id="toc-5">Protobuf 问题</h2>
 <p>TensorFlow 依赖 <a href="https://developers.google.com/protocol-buffers/">Protocol Buffer</a>，通常称为 protobuf。这个库利用了数据结构的定义，从而为各种语言生成可访问的代码。比较棘手的问题在于，生成的代码需要链接到与框架完全相同版本共享的库中，才能作为生成器使用。当 <code>protoc</code> 来自于标准链接库中不同版本的 protobuf 库路径时候，会触发一些问题。例如，你可能正在使用一个本地编译在 <code>~/projects/protobuf-3.0.1.a</code> 中的 <code>protoc</code> 的副本，但是你又有在系统中安装在 <code>/user/local/lib</code> 和 <code>/usr/local/include</code> 下的 3.0.0 版本的 <code>protoc</code>。</p>
 <p>在使用 protobuf 进行编译或链接时，这个问题就会导致出错。通常，构建工具会照顾到这一点，但是如果你使用的是 makefile，那么请确保你构建时使用的是局部构建的 protobuf 库，可以参考<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/makefile/Makefile#L18">这个 Makefile</a>。</p>
 <p>另一个可能出现问题的情况是在需要生产 protobuf 头文件和源文件时出现的。这个过程使得构建过程更加复杂，这是因为第一阶段必须通过 protobuf 的定义来创建所有需要的代码文件，只有在此之后才能继续编译库的代码。</p>
-<h3>同应用下的不同 protobuf 版本</h3>
+<h3 id="toc-6">同应用下的不同 protobuf 版本</h3>
 <p>Protobufs 生成了整个 TensorFlow C++ 接口头文件的一部分。这使得使用这个库作为一个独立框架变得相对复杂。</p>
 <p>如果你的应用已经使用了某个版本的 protobuf，那么在集成 TensorFlow 可能会会遇到一些麻烦，因为 TensorFlow 可能要求使用另一个版本的 protobuf。如果你尝试将两个版本链接到一个相同的库时，你将看到大堆的符号错误。为了解决这个特定的问题，我们有一个实验性的脚本 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/makefile/rename_protobuf.sh">rename_protobuf.sh</a> 来帮你解决这个问题。</p>
 <p>在下载完全部依赖后，你需要将其作为 Makefile 构建的一部分：</p>
 <pre><code>tensorflow/contrib/makefile/download_dependencies.sh
 tensorflow/contrib/makefile/rename_protobuf.sh
 </code></pre>
-<h2>调用 TensorFlow API</h2>
+<h2 id="toc-7">调用 TensorFlow API</h2>
 <p>一旦你的框架可用后，你就得调用它了。通常的模式是先加载代表预先设置加载你的模型，它表示了一个数值计算的模型，然后通过输入（例如相机的图像）、运行该模型从而接收输出（例如预测标签）。</p>
 <p>在 Android 上，我们提供了专用于 Java 的 Inference 库，而在 iOS 和 Raspberry Pi 上你可以直接调用 C++ 的 API。</p>
-<h3>Android</h3>
+<h3 id="toc-8">Android</h3>
 <p>Android 上的一个典型的 Inference 库的用法如下：</p>
 <pre><code class="lang-Java">// 从磁盘加载模型
 TensorFlowInferenceInterface inferenceInterface =
@@ -133,7 +133,7 @@ inferenceInterface.run(outputNames, logStats);
 inferenceInterface.fetch(outputName, outputs);
 </code></pre>
 <p>你可以在这个 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/android/src/org/tensorflow/demo/TensorFlowImageClassifier.java#L107">Android 示例</a>中找到相关源码。</p>
-<h3>iOS 与 Raspberry Pi</h3>
+<h3 id="toc-9">iOS 与 Raspberry Pi</h3>
 <p>在 iOS 和 Raspberry Pi 中也有类似的代码：</p>
 <pre><code class="lang-c++">// 加载模型
 PortableReadFileToProto(file_path, &amp;tensorflow_graph);
@@ -161,6 +161,18 @@ tensorflow::Tensor* output = &amp;outputs[0];
 <p>你可以在<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/pi_examples/label_image/label_image.cc">这里</a>找到与 Raspberry Pi 相关的例子。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">集成 TensorFlow 库</a><ul>
+<li><a href="#toc-1">库链接</a></li>
+<li><a href="#toc-4">全局构造的黑魔法</a></li>
+<li><a href="#toc-5">Protobuf 问题</a></li>
+<li><a href="#toc-7">调用 TensorFlow API</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,15 +46,15 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>使用提前编译</h1>
-<h2>什么是 tfcompile？</h2>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">使用提前编译</h1>
+<h2 id="toc-1">什么是 tfcompile？</h2>
 <p><code>tfcompile</code> 是一个将 TensorFlow 图提前（AOT）编译成可执行代码的独立工具。它可以减少二进制文件的大小，同时避免一些运行时开销。<code>tfcompile</code> 一个典型的用途是将推理图编译成用于移动设备的可执行代码。</p>
 <p>TensorFlow 图通常由 TensorFlow 运行时执行。这会导致图中的每个节点执行时的运行时开销。同时也增加了二进制文件的大小，因为除了图自身，TensorFlow 运行时的代码也需要可用。而由 <code>tfcompile</code> 生成的可执行代码不使用 TensorFlow 运行时，并且只依赖实际用于计算的内核。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html">使用即时编译</a></p>
-<h2>tfcompile 做了什么？</h2>
+<h2 id="toc-2">tfcompile 做了什么？</h2>
 <p><code>tfcompile</code> 接受一个子图，子图由反馈和提取（TensorFlow 中的概念）确定，并生成一个实现这个子图的函数。<code>feed</code> 是函数的入参，<code>fetch</code> 是函数的出参。所有的输入必须由反馈声明；输出的裁剪后的子图不能包含位置占位符和变量节点。通常将所有的位置占位符和变量声明为反馈，以确保输出的子图中不再包含这些节点。生成的函数会和一个导出函数签名的头文件，以及一个包含实现的对象文件一起作为  <code>cc_library</code> 打包。用户可以视情况编写代码调用生成的函数。</p>
-<h2>使用 tfcompile</h2>
+<h2 id="toc-3">使用 tfcompile</h2>
 <p>这一节详细介绍如何使用 <code>tfcompile</code> 从 TensorFlow 子图生成一个可执行二进制文件。步骤如下：</p>
 <ul>
 <li>步骤一：配置编译的子图</li>
@@ -62,7 +62,7 @@
 <li>步骤三：编写代码调用子图</li>
 <li>步骤四：创建最终的二进制文件</li>
 </ul>
-<h3>步骤一：配置编译的子图</h3>
+<h3 id="toc-4">步骤一：配置编译的子图</h3>
 <p>对应生成的函数的入参和出参，确定反馈和提取。然后在 <a href="https://www.tensorflow.org/code/tensorflow/compiler/tf2xla/tf2xla.proto"><code>tensorflow.tf2xla.Config</code></a> 协议中配置 <code>feed</code> 和 <code>fetch</code>。</p>
 <pre><code class="lang-textproto"># Each feed is a positional input argument for the generated function.  The order
 # of each entry matches the order of each input argument.  Here “x_hold” and “y_hold”
@@ -89,7 +89,7 @@ fetch {
   id { node_name: &quot;x_y_prod&quot; }
 }
 </code></pre>
-<h3>步骤二：使用 tf_library 构建宏来编译子图</h3>
+<h3 id="toc-5">步骤二：使用 tf_library 构建宏来编译子图</h3>
 <p>这一步通过 <code>tf_library</code> 构建宏将图转变成 <code>cc_library</code>。<code>cc_library</code> 包含一个从图生成的代码的对象文件，以及一个提供对生成代码的访问权限的头文件。<code>tf_library</code> 利用 <code>tfcompile</code> 将 TensorFlow 图编译成可执行代码。</p>
 <pre><code class="lang-build">load(&quot;//third_party/tensorflow/compiler/aot:tfcompile.bzl&quot;, &quot;tf_library&quot;)
 
@@ -125,7 +125,7 @@ tf_library(
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/aot/tfcompile.bzl">tfcompile.bzl</a>。</p>
 <p>更多关于底层 <code>tfcompile</code> 工具，查看<br>
 <a href="https://www.tensorflow.org/code/tensorflow/compiler/aot/tfcompile_main.cc">tfcompile_main.cc</a>。</p>
-<h3>步骤三：编写代码调用子图</h3>
+<h3 id="toc-6">步骤三：编写代码调用子图</h3>
 <p>此步骤使用在前几步中通过 <code>tf_library</code> 构建宏生成的头文件（<code>test_graph_tfmatmul.h</code>）来调用生成的代码。头文件位于和构建包相同的 <code>bazel-genfiles</code> 目录下，并基于 <code>tf_library</code> 构建宏中设置的 name 属性命名。例如，为 <code>test_graph_tfmatmul</code> 生成的头文件是 <code>test_graph_tfmatmul.h</code>。下面是生成文件的简化版。在<code>bazel-genfiles</code> 中生成的文件还会包含其他有用的注释。</p>
 <pre><code class="lang-c++">namespace foo {
 namespace bar {
@@ -208,7 +208,7 @@ int main(int argc, char** argv) {
   return 0;
 }
 </code></pre>
-<h3>步骤四：创建最终的二进制文件</h3>
+<h3 id="toc-7">步骤四：创建最终的二进制文件</h3>
 <p>这一步将第二步中 <code>tf_library</code> 生成的库和第三步中编写的代码结合起来，创建最终的二进制文件。下面是 <code>bazel</code> 构建文件的一个示例。</p>
 <pre><code class="lang-build"># Example of linking your binary
 # Also see //third_party/tensorflow/compiler/aot/tests/BUILD
@@ -237,6 +237,17 @@ cc_binary(
 </code></pre>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">使用提前编译</a><ul>
+<li><a href="#toc-1">什么是 tfcompile？</a></li>
+<li><a href="#toc-2">tfcompile 做了什么？</a></li>
+<li><a href="#toc-3">使用 tfcompile</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

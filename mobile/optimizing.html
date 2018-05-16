@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': '概述'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/devguide.html', 'title': 'Developer Guide'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'Android 示例应用'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'iOS 演示 APP'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': '在安卓上构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>移动端优化</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">移动端优化</h1>
 <p>在移动或嵌入式设备中存在一些你需要去处理的问题，同时你还需要在开发模型时就思考这些问题。</p>
 <p>问题包括：</p>
 <ul>
@@ -63,10 +63,10 @@
 <li>性能与线程管理</li>
 </ul>
 <p>我们会在下面简单讨论这些问题。</p>
-<h2>TensorFlow 的最低要求</h2>
+<h2 id="toc-1">TensorFlow 的最低要求</h2>
 <p>运行包含基本功能的 TensorFlow 需要牺牲 1MB 的程序以及几兆的内存大小，因此 TensorFlow 不能运行在 DSP 或微控制器上。除此之外，限制 TensorFlow 的最大因素通常是设备的计算速度，以及你能否在足够低的计算延迟内运行你所需的模型。你可以参考<a href="https://github.com/xitu/tensorflow-docs/pull/37#%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E6%9E%90">模型的分析</a>用性能测基准测试工具来了解运行模型需要多少 FLOP，然后根据该值对不同设备的运行速度做经验估算。例如，当今的智能手机可以每秒运行 10 GFLOP，所以对于 5 GFLOP 模型而言，可以得到的最佳效果是每秒两帧，根据设备实际的计算模式，你可能需要降低帧率。</p>
 <p>这种模型的要求使得只要你能在有限的内存中将神经网络优化得足够好以适应计算延迟，TensorFlow 就可以运行在非常古老或受到限制的智能手机上。考虑到内存的限制，你需要保证 TensorFlow 创建的中间缓存不能太大，你也可以通过性能基准输出做检查。</p>
-<h2>速度</h2>
+<h2 id="toc-2">速度</h2>
 <p>在大部分模型部署任务中，最高优先级之一的任务是如何快速运行推断程序来提供良好的用户体验。首先我们需要查看执行运算图所需的 FLOP 数。你可以使用 <code>benchmark_model</code> 工具来进行粗略估计：</p>
 <pre><code>bazel build -c opt tensorflow/tools/benchmark:benchmark_model &amp;&amp; \
 bazel-bin/tensorflow/tools/benchmark/benchmark_model \
@@ -78,7 +78,7 @@ bazel-bin/tensorflow/tools/benchmark/benchmark_model \
 <p>上面的命令会输出运行此计算图所需计算所需操作数的估算值。然后你就可以使用这些信息来确定你的模型在你的目标设备上运行的可行性。举个例子，2016 年的高端智能手机能够在每秒处理 200 亿个 FLOP，因此执行需要 100 亿 FLOP 的模型的期望速度约为 500 ms。在类似于 Raspberry Pi 3 这种每秒只能处理 50 亿个 FLOP 的设备上，你可能要两秒才能获得一个推断的计算结果。</p>
 <p>当有了计算操作消耗的估计之后，它就对你计划的目标设备上有所帮助。如果模型的计算操作太多，那么你可以有很多方式来优化模型的架构并减少这个数量。</p>
 <p>一些比较新的技术有 <a href="https://arxiv.org/abs/1602.07360">SqueezeNet</a> 和 <a href="https://arxiv.org/abs/1704.04861">MobileNet</a> 等，这些架构专门为移动设备的定制模型 —— 体积小、运行速度快但代价是精度低。你也可以使用这些模型的一些更小更老的替代模型。比如，与 Inception v3 的 2400 万参数量且消耗 90 亿 FLOP 相比，Inception v1 只有 700 万个参数且仅需 30 亿 FLOP。</p>
-<h2>模型大小</h2>
+<h2 id="toc-3">模型大小</h2>
 <p>运行在移动设备上的模型需要存储在模型的某个地方，巨大的神经网络可能消耗上百兆的存储空间。大部分用户不愿意从应用商店中下载相当大的程序包，因此你必须尽可能的压缩模型的体积。况且，神经网络越小移动设备加载越快。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./mobile/prepare_models.html">Preparing models for mobile deployment</a></p>
 <pre><code>bazel build tensorflow/tools/graph_transforms:summarize_graph &amp;&amp; \
@@ -106,7 +106,7 @@ bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
 <p>另一种转换是方式是 <code>round_weights</code>，它并不会让整个文件变小，但是当对其进行压缩时可以让整个文件大小跟使用 <code>quantized_weights</code> 时相当。由于用户在下载应用时本质上是下载应用的一个压缩版本，所以这对于移动开发来说相当有用。</p>
 <p>模型的原始文件不能被标准压缩算法压缩得当，这是由于相同数字的位模式可能会完全不同所导致的。<code>round_weights</code> 变换会将权重参数四舍五入的结果保存为浮点数。这就意味着如果存储模型中存在相当多的重复字节，压缩效率就会大大增加。大多数情况下会接近八位二进制数的存储大小。</p>
 <p><code>round_weights</code> 相对于 <code>quantize_weights</code> 的另一个优点是可以使框架在解压参数时不需要分配一个临时缓冲区。这种操作可以降低一些延迟（由于结果仍然需要缓存，所以这个操作只发生在第一次运行），并且使内存映射成为可能，我们会在下面的内容中讨论。</p>
-<h2>二进制文件大小</h2>
+<h2 id="toc-4">二进制文件大小</h2>
 <p>移动开发和服务器开发之间的最大区别之一就是二进制文件大小的重要性。在桌面计算机中，磁盘上安装数百兆字节的可执行文件已经不再罕见，但对于移动或嵌入式应用来说，保持二进制文件尽可能小，是使用户更容易下载应用的关键因素之一。如上所述，默认情况下， TensorFlow 仅包含了运算符实现的一个子集，但这仍然会产生 12 MB 大小的最终文件。你可以基于自动分析模型将库设置为实际需要的计算部分以减少包的体积，为此：</p>
 <ul>
 <li>运行 <code>tools/print_required_ops/print_selective_registration_header.py</code> 来生成只包含所需运算符的头文件。</li>
@@ -114,7 +114,7 @@ bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
 <li>通过定义 <code>SELECTIVE_REGISTRATION</code> 构建 TensorFlow。例如，将 <code>--copts="-DSELECTIVE_REGISTRATION"</code> 传递给你的 Bazel 命令。</li>
 </ul>
 <p>在此过程中重新编译了整个库并且仅包含所需的操作和类型，从而显著减少可执行文件的大小。例如，在 Inception v3 中，新模型的大小仅为 1.5 MB。</p>
-<h2>模型的分析</h2>
+<h2 id="toc-5">模型的分析</h2>
 <p>一旦你对设备的性能峰值范围有所了解之后，检查一下它目前的实际性能是很有必要的。不要在应用中直接运行，而是单独使用 TensorFlow 的性能基准工具进行测试，有利于计算出单独 TensorFlow 本身对延迟的影响。<a href="https://www.tensorflow.org/code/tensorflow/tools/benchmark/">tensorflow/tools/benchmark</a> 中的工具能够帮助你做到这一点。要将其用在桌面系统的 Inception v3 上，可以使用如下命令：</p>
 <pre><code>bazel build -c opt tensorflow/tools/benchmark:benchmark_model &amp;&amp; \
 bazel-bin/tensorflow/tools/benchmark/benchmark_model \
@@ -190,7 +190,7 @@ adb shell '/data/local/tmp/benchmark_model \
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./mobile/prepare_models.html">Preparing models for mobile deployment</a></p>
 <p>在 iOS 上并没有较好的命令行工具的支持，相反 <a href="https://www.tensorflow.org/code/tensorflow/examples/ios/benchmark">tensorflow/examples/ios/benchmark</a> 中有一个单独的例子在独立的应用中封装了这些功能。它会将统计信息输出到屏幕设备和调试日志中。对于 Android 的示例应用来说，你可以通过音量按钮来开启屏幕上的统计信息。</p>
-<h2>在移动应用中进行分析</h2>
+<h2 id="toc-6">在移动应用中进行分析</h2>
 <p>性能基准工具生成的结果其实是 TensorFlow 运行时一部分模块生成的，这也就意味着你可以在自己的应用中访问这些结果。你可以在<a href="https://www.tensorflow.org/code/tensorflow/examples/ios/benchmark/BenchmarkViewController.mm?l=139">这里</a>找到一个例子。</p>
 <p>基本步骤为：</p>
 <ol>
@@ -217,17 +217,17 @@ adb shell '/data/local/tmp/benchmark_model \
 </code></pre>
 </li>
 </ol>
-<h2>模型可视化</h2>
+<h2 id="toc-7">模型可视化</h2>
 <p>加快你编码速度的最高效的手段就是修改你的模型，从而减少大量的无用工。为此，你需要了解你的模型正在执行什么样的任务，好的开始就是可视化计算过程。为浏览你计算图的整体工作，请使用 <a href="https://github.com/tensorflow/tensorboard">TensorBoard</a>。</p>
-<h2>线程</h2>
+<h2 id="toc-8">线程</h2>
 <p>桌面版的 TensorFlow 具有相当复杂的线程模型，在允许的情况下，它会自动尝试以多个线程进行运行。在我们的术语中，这叫做『运算符间的并行性（inter-op parallelism）』，并通过在 session 选项中指定 <code>inter_op_parallelism_threads</code> 来开启。</p>
 <p>在默认情况下，移动设备会串行执行运算符，即 <code>inter_op_parallelism_threads</code> 设为 1。移动处理器通常具有很小的内核和一个小缓存，从而访问多个彼此不重叠的内存区域通常不会对性能提升有所帮助。像做卷积运算时不同线程分配相同大小内存，『运算符内的并行性（intra-op parallelism）』对于这种情况则非常有用。</p>
 <p>在移动设备中，操作系统会将默认使用的线程数设为 CPU 的核心数，如果无法确定处理器的核心数，则会设置为 2。你可以在 <code>intra_op_parallelism_threads</code> 来覆盖运算符使用的默认线程数。如果你的应用本身就有很多线程在执行复杂任务，那么减少这个默认值的好处在于这能够帮助线程之间不会互相干扰。</p>
 <p>关于更多关于 session 选项的细节，请查看 <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/config.proto">ConfigProto</a>。</p>
-<h2>使用移动端数据重新训练</h2>
+<h2 id="toc-9">使用移动端数据重新训练</h2>
 <p>在移动应用上运行模型时，导致准确率不理想最可能的原因就是训练数据无法代表真实情况。例如，大多数 ImageNet 的图片都标注得相当好，并且对象位于图片中心、光线充足并且是由相机镜头产生而成。但移动端的照片可能就比较不理想了，通常它们的构图不一、补光不够，甚至还有图像边缘产生的鱼眼失真问题，尤其是自拍。</p>
 <p>解决方法就是：用你的移动应用来捕获实际的数据来作为你的训练数据集。这可能需要引入一些额外的工作量，因为你还需要自己为样本添加标签。即便是你将搜集到的数据作为原始数据集的扩展，它依然可以大大优化你的训练。通过这样的方式来修改训练集，并通过修复其他的样本质量问题（例如重复或错误标记的样本）是提高精确性的最佳实践。这比修改你的模型架构或使用其他不同的技术更加有用。</p>
-<h2>优化模型的加载时间与内存占用</h2>
+<h2 id="toc-10">优化模型的加载时间与内存占用</h2>
 <p>大多数操作系统允许使用内存映射加载文件，而非通过 I/O API 来读取。除了在堆上分配内存区域然后从磁盘中读取二进制文件外，你只需要告诉简单的告诉操作系统直接将整个文件加载到内存中就可以了。这样做有一些好处：</p>
 <ul>
 <li>加速加载时间</li>
@@ -263,7 +263,7 @@ tensorflow::Status session_status =
 </code></pre>
 <p>值得注意的是，我们还禁用了自动优化，因为在某些情况下，这会折叠常量子树，从而创建我们不希望出现的张量的拷贝导致的额外内存占用。</p>
 <p>一旦你完成这些步骤后，就可以想往常一样使用 session 和 graph，同时你还能够看到在模型加载时的加载时间和内存使用量。</p>
-<h2>保护模型文件的安全</h2>
+<h2 id="toc-11">保护模型文件的安全</h2>
 <p>默认情况下，你的模型会在磁盘上以序列化后标准的 protobuf 格式存储。理论上来说，任何人都可以复制你的模型，但你可能并不希望别人这么做。然而，实际上大多数模型都是应用特定的，并且已经通过编译优化进行了混淆处理，其难度与反编译并复用你应用的代码一样难。但是，如果你确实希望让用户难以访问你的模型文件，可以采取下面这些基本步骤。</p>
 <p>我们的大部分示例程序都使用 <a href="https://www.tensorflow.org/code/tensorflow/core/platform/env.cc?q=core/platform/env.cc&amp;l=409">ReadBinaryProto()</a> 从磁盘上加载一个 <code>GraphDef</code>。这的确需要使用一个未加密的 protobuf 文件。辛运的是调用的实现非常简单，你可以编写一个在内存中进行解密的中间件来达到你的目的。下面的代码展示了如何使用自己的解密函数来读取和解密 protobuf：</p>
 <pre><code>Status ReadEncryptedProto(Env* env, const string&amp; fname,
@@ -290,6 +290,25 @@ tensorflow::Status session_status =
 <p>你也可以做一些更加复杂的加密行为，但这已经超出了本文所讨论的范围。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">移动端优化</a><ul>
+<li><a href="#toc-1">TensorFlow 的最低要求</a></li>
+<li><a href="#toc-2">速度</a></li>
+<li><a href="#toc-3">模型大小</a></li>
+<li><a href="#toc-4">二进制文件大小</a></li>
+<li><a href="#toc-5">模型的分析</a></li>
+<li><a href="#toc-6">在移动应用中进行分析</a></li>
+<li><a href="#toc-7">模型可视化</a></li>
+<li><a href="#toc-8">线程</a></li>
+<li><a href="#toc-9">使用移动端数据重新训练</a></li>
+<li><a href="#toc-10">优化模型的加载时间与内存占用</a></li>
+<li><a href="#toc-11">保护模型文件的安全</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

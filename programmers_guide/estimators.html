@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/eager.html', 'title': 'Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>评估器</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">评估器</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator"><code>tf.estimator</code></a></p>
 <ul>
 <li>训练</li>
@@ -64,7 +64,7 @@
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/Estimator"><code>tf.contrib.learn.Estimator</code></a></p>
-<h2>使用评估器的优势</h2>
+<h2 id="toc-1">使用评估器的优势</h2>
 <p>评估器可以为我们带来以下几点好处：</p>
 <ul>
 <li>基于评估器的模型可以运行在单机上，也可以运行在分布式的多台服务器环境上并且不需要做任何修改。更棒的是，你还可以将基于评估器的模型运行在 CPUs，GPUs 或者 TPUs 上。</li>
@@ -83,9 +83,9 @@
 </li>
 </ul>
 <p>当你用评估器写应用时，你必须将数据输入管道和模型分开。这种分离简化了不同数据集的实验。</p>
-<h2>预定义的评估器</h2>
+<h2 id="toc-2">预定义的评估器</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/DNNClassifier"><code>tf.estimator.DNNClassifier</code></a></p>
-<h3>预定义评估器的程序结构</h3>
+<h3 id="toc-3">预定义评估器的程序结构</h3>
 <p>基于预定义评估器的程序一般包含下面四步：</p>
 <ol>
 <li><p><strong>编写一个或多个数据集的导入函数。</strong>举个例子，你可能会创建两个函数，一个用于导入训练数据，另一个用于导入测试数据。每一个数据集的导入函数都会返回下面两个对象：</p>
@@ -122,16 +122,16 @@ estimator.train(input_fn=my_training_set, steps=2000)
 </code></pre>
 </li>
 </ol>
-<h3>预定义评估器的好处</h3>
+<h3 id="toc-4">预定义评估器的好处</h3>
 <p>预定义评估器是编码的最佳实践，它有下面两点好处：</p>
 <ul>
 <li>单机或者集群上运行时，计算图的哪部分应该在哪里运行和其实现策略的最佳实践。</li>
 <li>事件记录和通用内容摘要的最佳实践。</li>
 </ul>
 <p>如果你不使用预定义的评估器，那么你需要自己实现上面所说到的功能。</p>
-<h2>自定义评估器</h2>
+<h2 id="toc-5">自定义评估器</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
-<h2>推荐的工作流</h2>
+<h2 id="toc-6">推荐的工作流</h2>
 <p>我们推荐的工作流如下：</p>
 <ol>
 <li>假设存在一个合适的评估器，使用它来构建你的第一个模型，并以这个模型的结果作为基准。</li>
@@ -139,7 +139,7 @@ estimator.train(input_fn=my_training_set, steps=2000)
 <li>如果存在可选的预定义评估器，可以对这几个评估器做实验，从中选择一个能够产生最好结果的评估器。</li>
 <li>或许，可以通过构建你自己的评估器来进一步提升模型的效果。</li>
 </ol>
-<h2>从 Keras 模块中创建评估器</h2>
+<h2 id="toc-7">从 Keras 模块中创建评估器</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/keras/estimator/model_to_estimator"><code>tf.keras.estimator.model_to_estimator</code></a></p>
 <pre><code class="lang-python"># 实例化一个 kera inception v3 模型。
 keras_inception_v3 = tf.keras.applications.inception_v3.InceptionV3(weights=None)
@@ -169,6 +169,19 @@ est_inception_v3.train(input_fn=train_input_fn, steps=2000)
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/keras/estimator/model_to_estimator"><code>tf.keras.estimator.model_to_estimator</code></a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">评估器</a><ul>
+<li><a href="#toc-1">使用评估器的优势</a></li>
+<li><a href="#toc-2">预定义的评估器</a></li>
+<li><a href="#toc-5">自定义评估器</a></li>
+<li><a href="#toc-6">推荐的工作流</a></li>
+<li><a href="#toc-7">从 Keras 模块中创建评估器</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,17 +53,17 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>TensorFlow Style Guide</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">TensorFlow Style Guide</h1>
 <p>This page contains style decisions that both developers and users of TensorFlow<br>
 should follow to increase the readability of their code, reduce the number of<br>
 errors, and promote consistency.</p>
 <p>[TOC]</p>
-<h2>Python style</h2>
+<h2 id="toc-1">Python style</h2>
 <p>Generally follow<br>
 <a href="https://www.python.org/dev/peps/pep-0008/">PEP8 Python style guide</a>,<br>
 except for using 2 spaces.</p>
-<h2>Python 2 and 3 compatible</h2>
+<h2 id="toc-2">Python 2 and 3 compatible</h2>
 <ul>
 <li><p>All code needs to be compatible with Python 2 and 3.</p>
 </li>
@@ -77,7 +77,7 @@ from __future__ import print_function
 <ul>
 <li>Use <code>six</code> to write compatible code (for example <code>six.moves.range</code>).</li>
 </ul>
-<h2>Bazel BUILD rules</h2>
+<h2 id="toc-3">Bazel BUILD rules</h2>
 <p>TensorFlow uses Bazel build system and enforces next requirements:</p>
 <ul>
 <li>Every BUILD file should contain next header:</li>
@@ -118,11 +118,11 @@ exports_files(["LICENSE"])
 </ul>
 <pre><code>srcs_version = "PY2AND3",
 </code></pre>
-<h2>Tensor</h2>
+<h2 id="toc-4">Tensor</h2>
 <ul>
 <li>Operations that deal with batches may assume that the first dimension of a Tensor is the batch dimension.</li>
 </ul>
-<h2>Python operations</h2>
+<h2 id="toc-5">Python operations</h2>
 <p>A <em>Python operation</em> is a function that, given input tensors and parameters,<br>
 creates a part of the graph and returns output tensors.</p>
 <ul>
@@ -181,7 +181,7 @@ of the op in Example section.</p>
 <pre><code>output = my_op(t1, t2, my_param=0.5, other_param=0.6,
                output_collections=['MY_OPS'], name='add_t1t2')
 </code></pre>
-<h2>Layers</h2>
+<h2 id="toc-6">Layers</h2>
 <p>A <em>Layer</em> is a Python operation that combines variable creation and/or one or many<br>
 other graph operations. Follow the same requirements as for regular Python<br>
 operation.</p>
@@ -224,6 +224,20 @@ should take next arguments also following order:</p>
 </code></pre>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">TensorFlow Style Guide</a><ul>
+<li><a href="#toc-1">Python style</a></li>
+<li><a href="#toc-2">Python 2 and 3 compatible</a></li>
+<li><a href="#toc-3">Bazel BUILD rules</a></li>
+<li><a href="#toc-4">Tensor</a></li>
+<li><a href="#toc-5">Python operations</a></li>
+<li><a href="#toc-6">Layers</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

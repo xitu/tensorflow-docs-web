@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,34 +53,34 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'title': '性能'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_guide.html', 'title': '性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/datasets_performance.html', 'title': '输入管道性能指南'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/performance_models.html', 'title': '高性能模型'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/benchmarks.html', 'title': '基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/performance/quantization.html', 'title': 'Fixed Point Quantization'}, {'type': 'parent', 'title': ' XLA', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/index.html', 'title': 'XLA 概述'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/broadcasting.html', 'title': '广播语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/developing_new_backend.html', 'title': '为 XLA 开发一个新后端'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/jit.html', 'title': '使用即时编译'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/operation_semantics.html', 'title': '操作语义'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/shapes.html', 'title': '形状和布局'}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/xla/tfcompile.html', 'title': '使用提前编译'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>基准</h1>
-<h2>概述</h2>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">基准</h1>
+<h2 id="toc-1">概述</h2>
 <p>在多个平台上对图像分类模型进行测试，为 TensorFlow 社区创建了一个参考点。在 <a href="#methodology">方法</a> 章节中会详细说明如何执行测试，并给出使用的脚本链接。</p>
-<h2>图像分类模型的结果</h2>
+<h2 id="toc-2">图像分类模型的结果</h2>
 <p>InceptionV3 (<a href="https://arxiv.org/abs/1512.00567">arXiv:1512.00567</a>), ResNet-50<br>
 (<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>), ResNet-152<br>
 (<a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a>), VGG16<br>
 (<a href="https://arxiv.org/abs/1409.1556">arXiv:1409.1556</a>), 和<br>
 <a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet</a> 使用 <a href="http://www.image-net.org/">ImageNet</a> 数据集测试。这些测试运行在 Google 计算云引擎，亚马逊计算云 (Amazon EC2) 和 NVIDIA® DGX-1™ 。大部分测试都使用了合成和真实的数据。使用 <code>tf.Variable</code> 对合成数据进行测试，数据集设置为 ImageNet 中每个模型所需的数据的同一形状。我们认为，对平台进行基准测试时，包含真实数据是很重要的。在底层硬件和框架上对准备数据加载测试是为了进行实际训练。为了将磁盘 I/O 作为变量移除，我们从合成数据开始，并设置一个基线。然后使用真实的数据来验证 TensorFlow 的输入管道和底层磁盘 I/O 是否使计算单元饱和。</p>
-<h3>使用 NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 训练</h3>
+<h3 id="toc-3">使用 NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 训练</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_p100_single_server.png">
 </div><p>细节和其他结果参见 <a href="#details_for_nvidia_dgx-1tm_nvidia_tesla_p100">Details for NVIDIA® DGX-1™ (NVIDIA®<br>
 Tesla® P100)</a>。</p>
-<h3>使用 NVIDIA® Tesla® K80 训练</h3>
+<h3 id="toc-4">使用 NVIDIA® Tesla® K80 训练</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_k80_single_server.png">
 </div><p>细节和其他结果参见 <a href="#details_for_google_compute_engine_nvidia_tesla_k80">Details for Google Compute Engine<br>
 (NVIDIA® Tesla® K80)</a> 和<br>
 <a href="#details_for_amazon_ec2_nvidia_tesla_k80">Details for Amazon EC2 (NVIDIA® Tesla®<br>
 K80)</a>。</p>
-<h3>使用 NVIDIA® Tesla® K80 分布式训练</h3>
+<h3 id="toc-5">使用 NVIDIA® Tesla® K80 分布式训练</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_k80_aws_distributed.png">
 </div><p>细节和其他结果参见 <a href="#details_for_amazon_ec2_distributed_nvidia_tesla_k80">Details for Amazon EC2 Distributed<br>
 (NVIDIA® Tesla® K80)</a>。</p>
-<h3>合成和真实数据训练比较</h3>
+<h3 id="toc-6">合成和真实数据训练比较</h3>
 <p><strong>NVIDIA® Tesla® P100</strong></p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_p100_data_compare_inceptionv3.png">
@@ -89,8 +89,8 @@ K80)</a>。</p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_k80_data_compare_inceptionv3.png">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_summary_k80_data_compare_resnet50.png">
-</div><h2>NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 的详细资料</h2>
-<h3>环境配置</h3>
+</div><h2 id="toc-7">NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 的详细资料</h2>
+<h3 id="toc-8">环境配置</h3>
 <ul>
 <li><strong>Instance type</strong>: NVIDIA® DGX-1™</li>
 <li><strong>GPU:</strong> 8x NVIDIA® Tesla® P100</li>
@@ -170,7 +170,7 @@ K80)</a>。</p>
 </tr>
 </tbody>
 </table></div>
-<h3>结果</h3>
+<h3 id="toc-9">结果</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_p100_single_server.png">
 </div><div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
@@ -269,7 +269,7 @@ K80)</a>。</p>
 </tbody>
 </table></div>
 <p>从上图表可以看出，由于最大输入的限制，AlexNet 模型没有使用 8 个 GPU 来训练数据。</p>
-<h3>其他结果</h3>
+<h3 id="toc-10">其他结果</h3>
 <p>以下是批处理大小为 32 的结果。</p>
 <p><strong>训练合成数据</strong></p>
 <div class="table-wrapper"><table>
@@ -353,8 +353,8 @@ K80)</a>。</p>
 </tr>
 </tbody>
 </table></div>
-<h2>Google Compute Engine (NVIDIA® Tesla® K80) 的详细资料</h2>
-<h3>环境配置</h3>
+<h2 id="toc-11">Google Compute Engine (NVIDIA® Tesla® K80) 的详细资料</h2>
+<h3 id="toc-12">环境配置</h3>
 <ul>
 <li><strong>Instance type</strong>: n1-standard-32-k80x8</li>
 <li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
@@ -399,7 +399,7 @@ K80)</a>。</p>
 </tbody>
 </table></div>
 <p>每个模型所用的配置中， variable_update 和 parameter_server 配置相同，local_parameter_device 和 cpu 配置相同。</p>
-<h3>结果</h3>
+<h3 id="toc-13">结果</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_gce_synth_k80_single_server_scaling.png">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_gce_real_k80_single_server_scaling.png">
@@ -495,7 +495,7 @@ K80)</a>。</p>
 </tr>
 </tbody>
 </table></div>
-<h3>其他结果</h3>
+<h3 id="toc-14">其他结果</h3>
 <p><strong>训练合成数据</strong></p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -558,8 +558,8 @@ K80)</a>。</p>
 </tr>
 </tbody>
 </table></div>
-<h2>Amazon EC2 (NVIDIA® Tesla® K80) 的详细资料</h2>
-<h3>环境配置</h3>
+<h2 id="toc-15">Amazon EC2 (NVIDIA® Tesla® K80) 的详细资料</h2>
+<h3 id="toc-16">环境配置</h3>
 <ul>
 <li><strong>Instance type</strong>: p2.8xlarge</li>
 <li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
@@ -640,7 +640,7 @@ MiB/sec)</li>
 </tr>
 </tbody>
 </table></div>
-<h3>结果</h3>
+<h3 id="toc-17">结果</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_aws_synth_k80_single_server_scaling.png">
   <img style="width:35%" src="https://www.tensorflow.org/images/perf_aws_real_k80_single_server_scaling.png">
@@ -737,7 +737,7 @@ MiB/sec)</li>
 </tbody>
 </table></div>
 <p>由于我们的 EFS 没有提供足够的吞吐量，在上面的图表中我们排除了使用 8 个 GPU 来训练 AlexNet 模型的统计。</p>
-<h3>其他结果</h3>
+<h3 id="toc-18">其他结果</h3>
 <p><strong>训练合成数据</strong></p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -800,8 +800,8 @@ MiB/sec)</li>
 </tr>
 </tbody>
 </table></div>
-<h2>Amazon EC2 Distributed (NVIDIA® Tesla® K80) 的详细资料</h2>
-<h3>环境配置</h3>
+<h2 id="toc-19">Amazon EC2 Distributed (NVIDIA® Tesla® K80) 的详细资料</h2>
+<h3 id="toc-20">环境配置</h3>
 <ul>
 <li><strong>Instance type</strong>: p2.8xlarge</li>
 <li><strong>GPU:</strong> 8x NVIDIA® Tesla® K80</li>
@@ -875,7 +875,7 @@ MiB/sec)</li>
 <li>ResNet-50: (batch size 32) 8 instances / 4 parameter servers</li>
 <li>ResNet-152: 8 instances / 4 parameter servers</li>
 </ul>
-<h3>结果</h3>
+<h3 id="toc-21">结果</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:80%" src="https://www.tensorflow.org/images/perf_summary_k80_aws_distributed.png">
 </div><div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
@@ -922,7 +922,7 @@ MiB/sec)</li>
 </tr>
 </tbody>
 </table></div>
-<h3>其他结果</h3>
+<h3 id="toc-22">其他结果</h3>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:50%" src="https://www.tensorflow.org/images/perf_aws_synth_k80_multi_server_batch32.png">
 </div><p><strong>训练合成数据</strong></p>
@@ -961,12 +961,27 @@ MiB/sec)</li>
 </tr>
 </tbody>
 </table></div>
-<h2>方法</h2>
+<h2 id="toc-23">方法</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./performance/performance_models.html">高性能模型</a></p>
 <p>为了创建尽可能重复的结果，每个测试运行 5 次，然后将时间取平均值。在给定的平台上，GPU 是在默认状态下运行的。对于 NVIDIA® Tesla® K80 来说这意味着不使用 <a href="https://devblogs.nvidia.com/parallelforall/increase-performance-gpu-boost-k80-autoboost/">GPU<br>
 Boost</a>。对于每个测试，需要完成 10 次预热，然后再平均完成 100 次测试。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">基准</a><ul>
+<li><a href="#toc-1">概述</a></li>
+<li><a href="#toc-2">图像分类模型的结果</a></li>
+<li><a href="#toc-7">NVIDIA® DGX-1™ (NVIDIA® Tesla® P100) 的详细资料</a></li>
+<li><a href="#toc-11">Google Compute Engine (NVIDIA® Tesla® K80) 的详细资料</a></li>
+<li><a href="#toc-15">Amazon EC2 (NVIDIA® Tesla® K80) 的详细资料</a></li>
+<li><a href="#toc-19">Amazon EC2 Distributed (NVIDIA® Tesla® K80) 的详细资料</a></li>
+<li><a href="#toc-23">方法</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

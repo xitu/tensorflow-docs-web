@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>使用特定的核方法改善线性模型</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">使用特定的核方法改善线性模型</h1>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html#not_covered">TensorFlow 版本兼容性</a></p>
 <p>在这篇教程里，我们将示范如何把特定核方法和线性模型结合起来在不明显增加训练和推理时间的情况下大幅度提升预测质量。与多核方法不同，特定核心方法对训练数据集的大小具有很好的可扩展性，不管是在训练和推理时间上还是在内存占用上。</p>
 <p><strong>目标读者：</strong> 尽管我们提供的只是特定核方法相关概念的一个概览，教程的主要目标读者依然要具备核方法和支持向量机的基础知识，这些知识可以参考以下的资源做一个了解：</p>
@@ -69,7 +69,7 @@
 <li>构建一个简单的线性模型，训练并在评估数据上评估。</li>
 <li>用核化的线性模型替换线性模型，再次训练，评估。</li>
 </ul>
-<h2>为分类任务下载和准备 MNIST 数据</h2>
+<h2 id="toc-1">为分类任务下载和准备 MNIST 数据</h2>
 <p>运行如下的工具命令来下载 MNIST 数据集：</p>
 <pre><code class="lang-python">data = tf.contrib.learn.datasets.mnist.load_mnist()
 </code></pre>
@@ -98,7 +98,7 @@ data = tf.contrib.learn.datasets.mnist.load_mnist()
 train_input_fn = get_input_fn(data.train, batch_size=256)
 eval_input_fn = get_input_fn(data.validation, batch_size=5000)
 </code></pre>
-<h2>训练一个简单的线性模型</h2>
+<h2 id="toc-2">训练一个简单的线性模型</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/learn/LinearClassifier"><code>tf.contrib.learn.LinearClassifier</code></a></p>
 <pre><code class="lang-python">image_column = tf.contrib.layers.real_valued_column(&#39;images&#39;, dimension=784)
 </code></pre>
@@ -148,12 +148,12 @@ estimator = tf.contrib.learn.LinearClassifier(
     feature_columns=[image_column], n_classes=10, optimizer=optimizer)
 </code></pre>
 <p>不管这些参数的值，线性模型在这个数据集上能取得的最大精确度约为<strong>93%</strong>。</p>
-<h2>在线性模型上使用特定核映射</h2>
+<h2 id="toc-3">在线性模型上使用特定核映射</h2>
 <p>线性模型在 MNIST 数据上的相对较高的错误率（大概 7%）表明输入数据不是可线性分割的。我们将使用特定的核映射来降低分类误差。</p>
 <p><strong>直觉上：</strong> 总体思路是用一个非线性的映射关系将输入空间转换到另一个特征空间（可能有更高的维数），这个特征空间几乎是可线性分割的，然后把一个线性模型应用到这个映射特征空间里。这个过程可以通过下面这张图反映：</p>
 <div style="text-align:center">
 <img src="../images/kernel_mapping.png" />
-</div><h3>技术细节</h3>
+</div><h3 id="toc-4">技术细节</h3>
 <p>这个例子中我们将使用 <strong>随机傅里叶特征</strong>，在 Rahimi 和 Recht 的对输入数据做映射的论文中首次引进，<a href="https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf">"大规模核机器的随机特征"</a>。随机傅里叶特征通过如下方式将矢量 \(\mathbf{x} \in \mathbb{R}^d\)映射到 \(\mathbf{x'} \in \mathbb{R}^D\)：</p>
 <p>$$<br>
 RFFM(\cdot): \mathbb{R}^d \to \mathbb{R}^D, \quad<br>
@@ -166,7 +166,7 @@ RFFM(\mathbf{x})^T \cdot RFFM(\mathbf{y}) \approx<br>
 e^{-\frac{|\mathbf{x} - \mathbf{y}|^2}{2 \sigma^2}}<br>
 $$</p>
 <p>上面表达式右边的式子就是著名的 RBF （高斯）核函数。这个函数是机器学习中应用最广泛的核函数之一，相比原始函数它可以在不同和更高的维度空间中模糊地衡量相似性。</p>
-<h3>核分类器</h3>
+<h3 id="toc-5">核分类器</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/kernel_methods/KernelLinearClassifier"><code>tf.contrib.kernel_methods.KernelLinearClassifier</code></a></p>
 <pre><code class="lang-python">
 # 指定估测器将要使用的特征。这和线性分类器中的代码是相同的
@@ -221,7 +221,7 @@ estimator = tf.contrib.kernel_methods.KernelLinearClassifier(
 </tr>
 </tbody>
 </table></div>
-<h3>stddev</h3>
+<h3 id="toc-6">stddev</h3>
 <p>分类的质量对 stddev 的值非常敏感。下面这张表显示的是分类器在不同 stddev 上的评估数据的准确性。最优值是 stddev=5.0。注意看太大或者太小的 stddev 值是怎样迅速地降低分类的准确性的。</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -256,11 +256,11 @@ estimator = tf.contrib.kernel_methods.KernelLinearClassifier(
 </tr>
 </tbody>
 </table></div>
-<h3>输出维数</h3>
+<h3 id="toc-7">输出维数</h3>
 <p>直觉上，映射的输出维数越大，两个映射的矢量的内积越近似这个核，通常都会转化成更好的分类准确性。另一个思考这个问题的方式是输出维数等于线性模型的权重数；维数越大，模型的自由度越大。然而，超过一定的阈值，随着训练次数的增加，高输出维数会增加训练时间，对准确性的提升作用却变得非常小。下面两张图分别描述了评价准确性对输出维数和训练时间的函数变化</p>
 <p><img src="../images/acc_vs_outdim.png" alt="image"><br>
 <img src="../images/acc-vs-trn_time.png" alt="image"></p>
-<h2>总结</h2>
+<h2 id="toc-8">总结</h2>
 <p>特定核映射结合了非线性模型的前瞻性和线性模型的可伸缩性的优点。与传统的多核心方法相比，特定核方法可以覆盖覆盖数百万或数亿量级的实例。当运用特定核映射时，请考虑如下几点：</p>
 <ul>
 <li>对于密集特征数据集，随机傅立叶特征特别有效</li>
@@ -269,6 +269,18 @@ estimator = tf.contrib.kernel_methods.KernelLinearClassifier(
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">使用特定的核方法改善线性模型</a><ul>
+<li><a href="#toc-1">为分类任务下载和准备 MNIST 数据</a></li>
+<li><a href="#toc-2">训练一个简单的线性模型</a></li>
+<li><a href="#toc-3">在线性模型上使用特定核映射</a></li>
+<li><a href="#toc-8">总结</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

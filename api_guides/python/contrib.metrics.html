@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Metrics (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Metrics (contrib)</h1>
 <p>[TOC]</p>
-<h2>Ops for evaluation metrics and summary statistics.</h2>
-<h3>API</h3>
+<h2 id="toc-1">Ops for evaluation metrics and summary statistics.</h2>
+<h3 id="toc-2">API</h3>
 <p>This module provides functions for computing streaming metrics: metrics computed<br>
 on dynamically valued <code>Tensors</code>. Each metric declaration returns a<br>
 "value_tensor", an idempotent operation that returns the current value of the<br>
@@ -116,7 +116,7 @@ accuracy1 = tf.contrib.metrics.accuracy(labels, predictions1, name=&#39;preds1&#
 <p>Certain metrics, such as streaming_mean or streaming_accuracy, can be weighted<br>
 via a <code>weights</code> argument. The <code>weights</code> tensor must be the same size as the<br>
 labels and predictions tensors and results in a weighted average of the metric.</p>
-<h2>Metric <code>Ops</code></h2>
+<h2 id="toc-3">Metric <code>Ops</code></h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_accuracy"><code>tf.contrib.metrics.streaming_accuracy</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/streaming_mean"><code>tf.contrib.metrics.streaming_mean</code></a></li>
@@ -157,7 +157,7 @@ labels and predictions tensors and results in a weighted average of the metric.<
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/aggregate_metric_map"><code>tf.contrib.metrics.aggregate_metric_map</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/confusion_matrix"><code>tf.contrib.metrics.confusion_matrix</code></a></li>
 </ul>
-<h2>Set <code>Ops</code></h2>
+<h2 id="toc-4">Set <code>Ops</code></h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/set_difference"><code>tf.contrib.metrics.set_difference</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/metrics/set_intersection"><code>tf.contrib.metrics.set_intersection</code></a></li>
@@ -166,6 +166,17 @@ labels and predictions tensors and results in a weighted average of the metric.<
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Metrics (contrib)</a><ul>
+<li><a href="#toc-1">Ops for evaluation metrics and summary statistics.</a></li>
+<li><a href="#toc-3">Metric <code>Ops</code></a></li>
+<li><a href="#toc-4">Set <code>Ops</code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

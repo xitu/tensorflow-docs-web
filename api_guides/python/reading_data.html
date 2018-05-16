@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Reading data</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Reading data</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
 <p>There are four methods of getting data into a TensorFlow program:</p>
 <ul>
@@ -59,9 +59,9 @@ at the beginning of a TensorFlow graph.</li>
 all the data (for small data sets).</li>
 </ul>
 <p>[TOC]</p>
-<h2><code>tf.data</code> API</h2>
+<h2 id="toc-1"><code>tf.data</code> API</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset"><code>tf.data.Dataset</code></a></p>
-<h2>Feeding</h2>
+<h2 id="toc-2">Feeding</h2>
 <p>Warning: "Feeding" is the least efficient way to feed data into a TensorFlow<br>
 program and should only be used for small experiments and debugging.</p>
 <p>TensorFlow's feed mechanism lets you inject data into any Tensor in a<br>
@@ -78,7 +78,7 @@ that initiates computation.</p>
 <p>An example using <code>placeholder</code> and feeding to train on MNIST data can be found<br>
 in<br>
 <a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/fully_connected_feed.py"><code>tensorflow/examples/tutorials/mnist/fully_connected_feed.py</code></a>.</p>
-<h2><code>QueueRunner</code></h2>
+<h2 id="toc-3"><code>QueueRunner</code></h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
 <p>A typical queue-based pipeline for reading records from files has the following stages:</p>
 <ol>
@@ -91,7 +91,7 @@ in<br>
 <li><em>Optional</em> preprocessing</li>
 <li>Example queue</li>
 </ol>
-<h3>Filenames, shuffling, and epoch limits</h3>
+<h3 id="toc-4">Filenames, shuffling, and epoch limits</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/match_filenames_once"><code>tf.train.match_filenames_once</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/string_input_producer"><code>tf.train.string_input_producer</code></a></p>
 <p><code>string_input_producer</code> has options for shuffling and setting a maximum number<br>
@@ -102,13 +102,13 @@ under- or over- sampled relative to each other.</p>
 <p>The queue runner works in a thread separate from the reader that pulls<br>
 filenames from the queue, so the shuffling and enqueuing process does not<br>
 block the reader.</p>
-<h3>File formats</h3>
+<h3 id="toc-5">File formats</h3>
 <p>Select the reader that matches your input file format and pass the filename<br>
 queue to the reader's read method.  The read method outputs a key identifying<br>
 the file and record (useful for debugging if you have some weird records), and<br>
 a scalar string value. Use one (or more) of the decoder and conversion ops to<br>
 decode this string into the tensors that make up an example.</p>
-<h4>CSV files</h4>
+<h4 id="toc-6">CSV files</h4>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
 <pre><code class="lang-python">filename_queue = tf.train.string_input_producer([&quot;file0.csv&quot;, &quot;file1.csv&quot;])
 
@@ -141,10 +141,10 @@ sets the default value to use if a value is missing in the input string.</p>
 <p>You must call <code>tf.train.start_queue_runners</code> to populate the queue before<br>
 you call <code>run</code> or <code>eval</code> to execute the <code>read</code>. Otherwise <code>read</code> will<br>
 block while it waits for filenames from the queue.</p>
-<h4>Fixed length records</h4>
+<h4 id="toc-7">Fixed length records</h4>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_raw"><code>tf.decode_raw</code></a></p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html#prepare-the-data">卷积神经网络</a></p>
-<h4>Standard TensorFlow format</h4>
+<h4 id="toc-8">Standard TensorFlow format</h4>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/python_io/TFRecordWriter"><code>tf.python_io.TFRecordWriter</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset"><code>tf.data.TFRecordDataset</code></a></p>
 <pre><code class="lang-python">    dataset = tf.data.TFRecordDataset(filename)
@@ -160,14 +160,14 @@ block while it waits for filenames from the queue.</p>
   _, serialized_example = reader.read(filename_queue)
   image,label = decode(serialized_example)
 </code></pre>
-<h3>Preprocessing</h3>
+<h3 id="toc-9">Preprocessing</h3>
 <p>You can then do any preprocessing of these examples you want. This would be any<br>
 processing that doesn't depend on trainable parameters. Examples include<br>
 normalization of your data, picking a random slice, adding noise or distortions,<br>
 etc.  See<br>
 <a href="https://github.com/tensorflow/models/tree/master/tutorials/image/cifar10/cifar10_input.py"><code>tensorflow_models/tutorials/image/cifar10/cifar10_input.py</code></a><br>
 for an example.</p>
-<h3>Batching</h3>
+<h3 id="toc-10">Batching</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/shuffle_batch"><code>tf.train.shuffle_batch</code></a></p>
 <p>Example:</p>
 <pre><code>def read_my_file_format(filename_queue):
@@ -222,7 +222,7 @@ each other.</li>
 <li>Or if reading N files in parallel causes too many disk seeks.</li>
 </ul>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html">Tensorboard：可视化学习面板</a></p>
-<h3>Creating threads to prefetch using <code>QueueRunner</code> objects</h3>
+<h3 id="toc-11">Creating threads to prefetch using <code>QueueRunner</code> objects</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
 <pre><code class="lang-python"># Create the graph, etc.
 init_op = tf.global_variables_initializer()
@@ -252,7 +252,7 @@ finally:
 coord.join(threads)
 sess.close()
 </code></pre>
-<h4>Aside: What is happening here?</h4>
+<h4 id="toc-12">Aside: What is happening here?</h4>
 <p>First we create the graph. It will have a few pipeline stages that are<br>
 connected by queues. The first stage will generate filenames to read and enqueue<br>
 them in the filename queue. The second stage consumes filenames (using a<br>
@@ -269,7 +269,7 @@ queue.</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError"><code>tf.errors.OutOfRangeError</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/threading_and_queues.html">Threading and Queues</a></p>
-<h4>Aside: How clean shut-down when limiting epochs works</h4>
+<h4 id="toc-13">Aside: How clean shut-down when limiting epochs works</h4>
 <p>Imagine you have a model that has set a limit on the number of epochs to train<br>
 on.  That means that the thread generating filenames will only run that many<br>
 times before generating an <code>OutOfRange</code> error. The QueueRunner will catch that<br>
@@ -286,16 +286,16 @@ that can't happen.</li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator"><code>tf.train.Coordinator</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Coordinator/join"><code>tf.train.Coordinator.join</code></a></p>
-<h3>Filtering records or producing multiple examples per record</h3>
+<h3 id="toc-14">Filtering records or producing multiple examples per record</h3>
 <p>Instead of examples with shapes <code>[x, y, z]</code>, you will produce a batch of<br>
 examples with shape <code>[batch, x, y, z]</code>.  The batch size can be 0 if you want to<br>
 filter this record out (maybe it is in a hold-out set?), or bigger than 1 if you<br>
 are producing multiple examples per record.  Then simply set <code>enqueue_many=True</code><br>
 when calling one of the batching functions (such as <code>shuffle_batch</code> or<br>
 <code>shuffle_batch_join</code>).</p>
-<h3>Sparse input data</h3>
+<h3 id="toc-15">Sparse input data</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/parse_example"><code>tf.parse_example</code></a></p>
-<h2>Preloaded data</h2>
+<h2 id="toc-16">Preloaded data</h2>
 <p>This is only used for small data sets that can be loaded entirely in memory.<br>
 There are two approaches:</p>
 <ul>
@@ -338,7 +338,7 @@ update it when training.  Setting <code>collections=[]</code> keeps the variable
 <a href="https://www.tensorflow.org/code/tensorflow/examples/how_tos/reading_data/fully_connected_preloaded_var.py"><code>tensorflow/examples/how_tos/reading_data/fully_connected_preloaded_var.py</code></a>,<br>
 You can compare these with the <code>fully_connected_feed</code> and<br>
 <code>fully_connected_reader</code> versions above.</p>
-<h2>Multiple input pipelines</h2>
+<h2 id="toc-17">Multiple input pipelines</h2>
 <p>Commonly you will want to train on one dataset and evaluate (or "eval") on<br>
 another.  One way to do this is to actually have two separate graphs and<br>
 sessions, maybe in separate processes:</p>
@@ -358,6 +358,19 @@ model that reads validation input data.</li>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dropout"><code>tf.layers.dropout</code></a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Reading data</a><ul>
+<li><a href="#toc-1"><code>tf.data</code> API</a></li>
+<li><a href="#toc-2">Feeding</a></li>
+<li><a href="#toc-3"><code>QueueRunner</code></a></li>
+<li><a href="#toc-16">Preloaded data</a></li>
+<li><a href="#toc-17">Multiple input pipelines</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Inputs and Readers</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Inputs and Readers</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
 <p>[TOC]</p>
-<h2>Placeholders</h2>
+<h2 id="toc-1">Placeholders</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html#Feeding">Reading data</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/placeholder"><code>tf.placeholder</code></a></li>
@@ -61,7 +61,7 @@ there is a convenience function:</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/sparse_placeholder"><code>tf.sparse_placeholder</code></a></li>
 </ul>
-<h2>Readers</h2>
+<h2 id="toc-2">Readers</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html">Reading data</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/ReaderBase"><code>tf.ReaderBase</code></a></li>
@@ -71,7 +71,7 @@ there is a convenience function:</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/TFRecordReader"><code>tf.TFRecordReader</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/FixedLengthRecordReader"><code>tf.FixedLengthRecordReader</code></a></li>
 </ul>
-<h2>Converting</h2>
+<h2 id="toc-3">Converting</h2>
 <p>TensorFlow provides several operations that you can use to convert various data<br>
 formats into tensors.</p>
 <ul>
@@ -79,7 +79,7 @@ formats into tensors.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/decode_raw"><code>tf.decode_raw</code></a></li>
 </ul>
 <hr>
-<h3>Example protocol buffer</h3>
+<h3 id="toc-4">Example protocol buffer</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html#standard_tensorflow_format">Reading data</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/VarLenFeature"><code>tf.VarLenFeature</code></a></li>
@@ -91,7 +91,7 @@ formats into tensors.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/parse_tensor"><code>tf.parse_tensor</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/decode_json_example"><code>tf.decode_json_example</code></a></li>
 </ul>
-<h2>Queues</h2>
+<h2 id="toc-5">Queues</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/threading_and_queues.html">Threading and Queues</a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/QueueBase"><code>tf.QueueBase</code></a></li>
@@ -100,21 +100,21 @@ formats into tensors.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/RandomShuffleQueue"><code>tf.RandomShuffleQueue</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/PriorityQueue"><code>tf.PriorityQueue</code></a></li>
 </ul>
-<h2>Conditional Accumulators</h2>
+<h2 id="toc-6">Conditional Accumulators</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/ConditionalAccumulatorBase"><code>tf.ConditionalAccumulatorBase</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/ConditionalAccumulator"><code>tf.ConditionalAccumulator</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/SparseConditionalAccumulator"><code>tf.SparseConditionalAccumulator</code></a></li>
 </ul>
-<h2>Dealing with the filesystem</h2>
+<h2 id="toc-7">Dealing with the filesystem</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/matching_files"><code>tf.matching_files</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/read_file"><code>tf.read_file</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/write_file"><code>tf.write_file</code></a></li>
 </ul>
-<h2>Input pipeline</h2>
+<h2 id="toc-8">Input pipeline</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html">Reading data</a></p>
-<h3>Beginning of an input pipeline</h3>
+<h3 id="toc-9">Beginning of an input pipeline</h3>
 <p>The "producer" functions add a queue to the graph and a corresponding<br>
 <code>QueueRunner</code> for running the subgraph that fills that queue.</p>
 <ul>
@@ -125,7 +125,7 @@ formats into tensors.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/slice_input_producer"><code>tf.train.slice_input_producer</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/train/string_input_producer"><code>tf.train.string_input_producer</code></a></li>
 </ul>
-<h3>Batching at the end of an input pipeline</h3>
+<h3 id="toc-10">Batching at the end of an input pipeline</h3>
 <p>These functions add a queue to the graph to assemble a batch of<br>
 examples, with possible shuffling.  They also add a <code>QueueRunner</code> for<br>
 running the subgraph that fills that queue.</p>
@@ -143,6 +143,21 @@ running the subgraph that fills that queue.</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Inputs and Readers</a><ul>
+<li><a href="#toc-1">Placeholders</a></li>
+<li><a href="#toc-2">Readers</a></li>
+<li><a href="#toc-3">Converting</a></li>
+<li><a href="#toc-5">Queues</a></li>
+<li><a href="#toc-6">Conditional Accumulators</a></li>
+<li><a href="#toc-7">Dealing with the filesystem</a></li>
+<li><a href="#toc-8">Input pipeline</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

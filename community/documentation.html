@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/documentation.html', 'title': 'Writing TensorFlow Documentation'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/community/swift.html', 'title': 'Swift Community'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Writing TensorFlow Documentation</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Writing TensorFlow Documentation</h1>
 <p>We welcome contributions to the TensorFlow documentation from the community.<br>
 This document explains how you can contribute to that documentation. In<br>
 particular, this document explains the following:</p>
@@ -79,7 +79,7 @@ documentation in another form, please be sure to include:</p>
 <li>Where to get the latest documentation (that is, <a href="https://www.tensorflow.org">https://www.tensorflow.org</a>)</li>
 <li>The Apache 2.0 license.</li>
 </ul>
-<h2>A note on versions</h2>
+<h2 id="toc-1">A note on versions</h2>
 <p>tensorflow.org, at root, shows documentation for the latest stable binary.  This<br>
 is the documentation you should be reading if you are using <code>pip</code> to install<br>
 TensorFlow.</p>
@@ -89,7 +89,7 @@ at <a href="https://www.tensorflow.org/versions/master">tensorflow.org/versions/
 <p>If you want documentation changes to appear at root, you will need to also<br>
 contribute that change to the current stable binary branch (and/or<br>
 <a href="https://stackoverflow.com/questions/9339429/what-does-cherry-picking-a-commit-with-git-mean">cherrypick</a>).</p>
-<h2>Reference vs. non-reference documentation</h2>
+<h2 id="toc-2">Reference vs. non-reference documentation</h2>
 <p>The following reference documentation is automatically generated from comments<br>
 in the code:</p>
 <ul>
@@ -106,13 +106,13 @@ documentation. For example, the TensorFlow installation guides are all in the<br
 <code>docs_src/install</code> directory.</p>
 <p>The C++ documentation is generated from XML files generated via doxygen;<br>
 however, those tools are not available in open source at this time.</p>
-<h2>Markdown</h2>
+<h2 id="toc-3">Markdown</h2>
 <p>Editable TensorFlow documentation is written in Markdown. With a few exceptions,<br>
 TensorFlow uses<br>
 the <a href="https://daringfireball.net/projects/markdown/">standard Markdown rules</a>.</p>
 <p>This section explains the primary differences between standard Markdown rules<br>
 and the Markdown rules that editable TensorFlow documentation uses.</p>
-<h3>Math in Markdown</h3>
+<h3 id="toc-4">Math in Markdown</h3>
 <p>You may use MathJax within TensorFlow when editing Markdown files, but note the<br>
 following:</p>
 <ul>
@@ -122,7 +122,7 @@ following:</p>
 <p>When writing MathJax, you can use <code>&#36;&#36;</code> and <code>\\(</code> and <code>\\)</code> to<br>
 surround your math.  <code>&#36;&#36;</code> guards will cause line breaks, so<br>
 within text, use <code>\\(</code> <code>\\)</code> instead.</p>
-<h3>Links in Markdown</h3>
+<h3 id="toc-5">Links in Markdown</h3>
 <p>Links fall into a few categories:</p>
 <ul>
 <li>Links to a different part of the same file</li>
@@ -181,7 +181,7 @@ are currently reading should be written as<br>
 that <a href="https://www.tensorflow.org/">tensorflow.org</a> can forward the link to the<br>
 branch of the code corresponding to the version of the documentation you're<br>
 viewing. Do not include url parameters in the source code URL.</p>
-<h2>Generating docs and previewing links</h2>
+<h2 id="toc-6">Generating docs and previewing links</h2>
 <p>Before building the documentation, you must first set up your environment by<br>
 doing the following:</p>
 <ol>
@@ -209,7 +209,7 @@ documentation in the <code>/tmp/tfdocs</code> dir:</p>
           --output_dir=/tmp/tfdocs/
 </code></pre>
 <p>Note: You must set <code>src_dir</code> and <code>output_dir</code> to absolute file paths.</p>
-<h2>Generating Python API documentation</h2>
+<h2 id="toc-7">Generating Python API documentation</h2>
 <p>Ops, classes, and utility functions are defined in Python modules, such as<br>
 <code>image_ops.py</code>. Python modules contain a module docstring. For example:</p>
 <pre><code class="lang-python">&quot;&quot;&quot;Image processing and decoding ops.&quot;&quot;&quot;
@@ -235,7 +235,7 @@ created but generally have no useful documentation.</li>
 </ul>
 <p>Only top level modules (currently just <code>tf</code> and <code>tfdbg</code>) need to be manually<br>
 added to the generate script.</p>
-<h3>Sealing modules</h3>
+<h3 id="toc-8">Sealing modules</h3>
 <p>Because the doc generator walks all visible symbols, and descends into anything<br>
 it finds, it will document any accidentally exposed symbols. If a module only<br>
 exposes symbols that are meant to be part of the public API, we call it<br>
@@ -258,7 +258,7 @@ following options for dealing with them:</p>
 <li>A traversal blacklist.</li>
 </ul>
 <p>We'll discuss these options in detail below.</p>
-<h4>Private symbols and imports</h4>
+<h4 id="toc-9">Private symbols and imports</h4>
 <p>The easiest way to conform to the API sealing expectations is to make non-public<br>
 symbols private (by prepending an underscore _). The doc generator respects<br>
 private symbols. This also applies to modules. If the only problem is that there<br>
@@ -272,14 +272,14 @@ module/private_impl.py
 <p>Then, after <code>module</code> is imported, it will be possible to access<br>
 <code>module.private_impl</code>. Renaming <code>private_impl.py</code> to <code>_private_impl.py</code> solves<br>
 the problem. If renaming modules is awkward, read on.</p>
-<h4>Use the <code>remove_undocumented</code> filter</h4>
+<h4 id="toc-10">Use the <code>remove_undocumented</code> filter</h4>
 <p>Another way to seal a module is to split your implementation from the API. To do<br>
 so, consider using <code>remove_undocumented</code>, which takes a list of allowed symbols,<br>
 and deletes everything else from the module. For example, the following snippet<br>
 demonstrates how to put <code>remove_undocumented</code> in the <code>__init__.py</code> file for a<br>
 module:</p>
 <p><strong>init</strong>.py:</p>
-<h1>Use * imports only if <strong>all</strong> defined in some_file</h1>
+<h1 id="toc-11">Use * imports only if <strong>all</strong> defined in some_file</h1>
 <pre><code>from tensorflow.some_module.some_file import *
 
 # Otherwise import symbols directly
@@ -296,7 +296,7 @@ the documentation as an indicator to <code>remove_undocumented</code> that those
 are public. All <code>@@</code>s will eventually be removed. If you see them, however,<br>
 please do not randomly delete them as they are still in use by some of our<br>
 systems.</p>
-<h4>Traversal blacklist</h4>
+<h4 id="toc-12">Traversal blacklist</h4>
 <p>If all else fails, you may add entries to the traversal blacklist in<br>
 <code>generate_lib.py.</code> <strong>Almost all entries in this list are an abuse of its<br>
 purpose; avoid adding to it if you can!</strong></p>
@@ -314,7 +314,7 @@ will not enumerate its content.</p>
 flags, ...) included for platform abstraction can be documented without<br>
 documenting their interior. Its use beyond this purpose is a shortcut that may<br>
 be acceptable for contrib, but not for core tensorflow.</p>
-<h2>Op documentation style guide</h2>
+<h2 id="toc-13">Op documentation style guide</h2>
 <p>Long, descriptive module-level documentation for modules should go in the API<br>
 Guides in <code>docs_src/api_guides/python</code>.</p>
 <p>For classes and ops, ideally, you should provide the following information, in<br>
@@ -333,7 +333,7 @@ detail <a href="#description-of-the-docstring-sections">below</a>.</p>
 is <a href="https://daringfireball.net/projects/markdown/">here</a>. You are allowed to<br>
 use <a href="https://www.mathjax.org">MathJax</a> notation for equations (see above for<br>
 restrictions).</p>
-<h3>Writing about code</h3>
+<h3 id="toc-14">Writing about code</h3>
 <p>Put backticks around these things when they're used in text:</p>
 <ul>
 <li>Argument names (for example, <code>input</code>, <code>x</code>, <code>tensor</code>)</li>
@@ -367,7 +367,7 @@ necessary. A full list of languages is available<br>
 However, do NOT indent four spaces and use backticks simultaneously. Use one<br>
 or the other.</li>
 </ol>
-<h3>Tensor dimensions</h3>
+<h3 id="toc-15">Tensor dimensions</h3>
 <p>When you're talking about a tensor in general, don't capitalize the word tensor.<br>
 When you're talking about the specific object that's provided to an op as an<br>
 argument or returned by an op, then you should capitalize the word Tensor and<br>
@@ -390,7 +390,7 @@ square brackets with backticks. For example:</p>
 <pre><code>If `input` is a 3-D tensor with shape `[3, 4, 3]`, this operation
 returns a 3-D tensor with shape `[6, 8, 6]`.
 </code></pre>
-<h3>Ops defined in C++</h3>
+<h3 id="toc-16">Ops defined in C++</h3>
 <p>All Ops defined in C++ (and accessible from other languages) must be documented<br>
 with a <code>REGISTER_OP</code> declaration. The docstring in the C++ file is processed to<br>
 automatically add some information for the input types, output types, and Attr<br>
@@ -414,7 +414,7 @@ types and default values.</p>
     )doc&quot;);
 </code></pre>
 <p>Results in this piece of Markdown:</p>
-<h3>tf.image.png_decode(contents, channels=None, name=None) {#png_decode}</h3>
+<h3 id="toc-17">tf.image.png_decode(contents, channels=None, name=None) {#png_decode}</h3>
 <pre><code>Decodes the contents of a PNG file into a uint8 tensor.
 
 #### Args:
@@ -441,7 +441,7 @@ description for the output named <code>image</code> starts with <code>=</code> t
 of <code>A uint8 Tensor.</code> before our text <code>A 3-D uint8 Tensor...</code>. You cannot prevent<br>
 the addition of the name, type, and default value of attrs this way, so write<br>
 your text carefully.</p>
-<h3>Ops defined in Python</h3>
+<h3 id="toc-18">Ops defined in Python</h3>
 <p>If your op is defined in a <code>python/ops/*.py</code> file, then you need to provide text<br>
 for all of the arguments and output (returned) tensors. The doc generator does<br>
 not auto-generate any text for ops that are defined in Python, so what you write<br>
@@ -473,9 +473,9 @@ should use Markdown in the docstring.</p>
     ValueError: If `x` or `y` are not of type `int32`.
   """
 </code></pre>
-<h2>Description of the docstring sections</h2>
+<h2 id="toc-19">Description of the docstring sections</h2>
 <p>This section details each of the elements in docstrings.</p>
-<h3>Short sentence describing what the op does</h3>
+<h3 id="toc-20">Short sentence describing what the op does</h3>
 <p>Examples:</p>
 <pre><code>Concatenates tensors.
 </code></pre>
@@ -487,7 +487,7 @@ should use Markdown in the docstring.</p>
 </code></pre>
 <pre><code>Extracts a slice from a tensor.
 </code></pre>
-<h3>Short description of what happens when you pass arguments to the op</h3>
+<h3 id="toc-21">Short description of what happens when you pass arguments to the op</h3>
 <p>Examples:</p>
 <pre><code>Given a tensor input of numerical type, this operation returns a tensor of
 the same type and size with values reversed along dimension `seq_dim`. A
@@ -498,13 +498,13 @@ within dimension 0 (usually the batch dimension).
 This operation returns a tensor of type `dtype` and dimensions `shape`, with
 all elements set to zero.
 </code></pre>
-<h3>Example demonstrating the op</h3>
+<h3 id="toc-22">Example demonstrating the op</h3>
 <p>Good code samples are short and easy to understand, typically containing a brief<br>
 snippet of code to clarify what the example is demonstrating. When an op<br>
 manipulates the shape of a Tensor it is often useful to include an example of<br>
 the before and after, as well.</p>
 <p>The <code>squeeze()</code> op has a nice pseudocode example:</p>
-<h1>'t' is a tensor of shape [1, 2, 1, 3, 1, 1]</h1>
+<h1 id="toc-23">'t' is a tensor of shape [1, 2, 1, 3, 1, 1]</h1>
 <pre><code>shape(squeeze(t)) ==&gt; [2, 3]
 </code></pre>
 <p>The <code>tile()</code> op provides a good example in descriptive text:</p>
@@ -517,7 +517,7 @@ possible, putting code samples in the<br>
 Otherwise, add them to the module or class docstring where the Ops constructors<br>
 are called out.</p>
 <p>Here's an example from the module docstring in <code>api_guides/python/math_ops.md</code>:</p>
-<h2>Segmentation</h2>
+<h2 id="toc-24">Segmentation</h2>
 <pre><code>TensorFlow provides several operations that you can use to perform common
 math computations on tensor segments.
 ...
@@ -533,7 +533,7 @@ tf.segment_sum(c, tf.constant([0, 0, 1]))
         [5 6 7 8]]
 ```
 </code></pre>
-<h3>Requirements, caveats, important notes</h3>
+<h3 id="toc-25">Requirements, caveats, important notes</h3>
 <p>Examples:</p>
 <pre><code>This operation requires that: `-1-input.dims() &lt;= dim &lt;= input.dims()`
 </code></pre>
@@ -541,7 +541,7 @@ tf.segment_sum(c, tf.constant([0, 0, 1]))
 be fed using the `feed_dict` optional argument to `Session.run()`,
 `Tensor.eval()`, or `Operation.run()`.
 </code></pre>
-<h3>Descriptions of arguments and output (returned) tensors.</h3>
+<h3 id="toc-26">Descriptions of arguments and output (returned) tensors.</h3>
 <p>Keep the descriptions brief and to the point. You should not have to explain how<br>
 the operation works in the argument sections.</p>
 <p>Mention if the Op has strong constraints on the dimensions of the input or<br>
@@ -562,7 +562,7 @@ the "=" sign):</p>
 </code></pre>
 <pre><code>image: A 4-D `float` Tensor. The image to resize.
 </code></pre>
-<h3>Optional arguments descriptions ("attrs")</h3>
+<h3 id="toc-27">Optional arguments descriptions ("attrs")</h3>
 <p>The doc generator always describes the type for each attr and their default<br>
 value, if any. You cannot override that with an equal sign because the<br>
 description is very different in the C++ and Python generated docs.</p>
@@ -599,7 +599,7 @@ image: 3-D with shape `[height, width, channels]`.
 </code></pre>
 <p>This generates the following Args section in<br>
 <code>api_docs/python/tf/image/decode_png.md</code>:</p>
-<h4>Args:</h4>
+<h4 id="toc-28">Args:</h4>
 <ul>
 <li><b>`contents`</b>: A <code>Tensor</code> of type <code>string</code>. 0-D.  The PNG-encoded<br>
 image.</li>
@@ -611,6 +611,26 @@ tf.uint16</code>. Defaults to <code>tf.uint 8</code>.</li>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Writing TensorFlow Documentation</a><ul>
+<li><a href="#toc-1">A note on versions</a></li>
+<li><a href="#toc-2">Reference vs. non-reference documentation</a></li>
+<li><a href="#toc-3">Markdown</a></li>
+<li><a href="#toc-6">Generating docs and previewing links</a></li>
+<li><a href="#toc-7">Generating Python API documentation</a></li></ul>
+</li>
+<li><a href="#toc-11">Use * imports only if <strong>all</strong> defined in some_file</a><ul>
+<li><a href="#toc-13">Op documentation style guide</a></li>
+<li><a href="#toc-19">Description of the docstring sections</a></li></ul>
+</li>
+<li><a href="#toc-23">'t' is a tensor of shape [1, 2, 1, 3, 1, 1]</a><ul>
+<li><a href="#toc-24">Segmentation</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

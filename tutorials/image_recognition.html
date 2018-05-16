@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>图像识别</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">图像识别</h1>
 <p>我们的大脑视觉成像似乎很容易。区分狮子和美洲豹，识别路标或者辨认人脸这些行为对于人来说都是小菜一碟。但是对于计算机来说有些问题真的太难解决了：但是这仅仅是因为我们的大脑在识别图像这方面实力超群。</p>
 <p>在过去的几年中，机器学习领域在解决这些困难的问题方面取得了巨大的进步。尤其是，我们已经发现了一种叫做深度 <a href="https://colah.github.io/posts/2014-07-Conv-Nets-Modular/">卷积神经网络</a> 的模型，它在强图像识别任务上的表现已经非常可观--即在一些领域已经有了相当或超过人类的表现。</p>
 <p>计算机视觉的研究人员将他们的成果和 <a href="http://www.image-net.org">ImageNet</a>（一个计算机视觉的理论基准测试程序）进行校验和对抗，结果表明他们已经取得了稳定的进步。这些有继承关系的模型持续的展示着它们的进步，并且每次都会产生新的成果：<a href="https://static.googleusercontent.com/media/research.google.com/en//archive/unsupervised_icml2012.pdf">QuocNet</a>，<a href="https://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">AlexNet</a>，<a href="https://arxiv.org/abs/1409.4842">Inception (GoogLeNet)</a>，<a href="https://arxiv.org/abs/1502.03167">BN-Inception-v2</a>。Google 内部和外部的研究人员也都发表了一些论文来描述所有的这些模型，但是成果仍然很难再现。我们接下来要做的就是运行我们最新的图像识别模型--<a href="https://arxiv.org/abs/1512.00567">Inception-v3</a>。</p>
@@ -66,7 +66,7 @@
 </blockquote>
 <p>本文将会教你如何使用 <a href="https://arxiv.org/abs/1512.00567">Inception-v3</a>。你将学习到如何使用 Python 或 C++ 把图片分成 [1000 种类别]。同时，我们也会讨论如何从这个可以用于其他视觉任务的模型中提取出更高层的特征。</p>
 <p>让我们来看一看社区是如何使用这个模型的。</p>
-<h2>Python API 的使用</h2>
+<h2 id="toc-1">Python API 的使用</h2>
 <p><code>classify_image.py</code> 这个程序在第一次运行的时候会从 <code>tensorflow.org</code> 上下载训练好的模型。你需要保证你的硬盘有 200M 的可用空间。</p>
 <p>从 clone <a href="https://github.com/tensorflow/models">TensorFlow models repo</a> 这个项目开始。运行下面的命令：</p>
 <pre><code>cd models/tutorials/image/imagenet
@@ -85,7 +85,7 @@ earthstar (score = 0.00127)
 <p>如果你想使用 JPEG 类型的图片，那么你需要编辑 <code>--image_file</code> 这个参数。</p>
 <blockquote><p>如果你下载的模型数据在另一个目录，那么你需要通过 <code>--model_dir</code> 来指定那个目录。</p>
 </blockquote>
-<h2>C++ API 的使用</h2>
+<h2 id="toc-2">C++ API 的使用</h2>
 <p>你可以在生产环境运行 C++ 版本的 <a href="https://arxiv.org/abs/1512.00567">Inception-v3</a> 模型。你还可以下载包含 GraphDef 的归档，GraphDef 可以像这样定义模型（在 TensorFlow 的根目录下运行）：</p>
 <pre><code class="lang-bash">curl -L &quot;https://storage.googleapis.com/download.tensorflow.org/models/inception_v3_2016_08_28_frozen.pb.tar.gz&quot; |
   tar -C tensorflow/examples/label_image/data -xz
@@ -308,11 +308,22 @@ Status GetTopLabels(const std::vector&lt;Tensor&gt;&amp; outputs, int how_many_l
 <p>这里我们只展示了目标识别，但是你应该能够在各种各样的领域中以及任何你发现或者你自己训练的模型中使用这些相似的代码。</p>
 <blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/image_retraining.html">重新训练 Inception 最后一层并识别新的分类</a></p>
 </blockquote>
-<h2>进一步学习的资源</h2>
+<h2 id="toc-3">进一步学习的资源</h2>
 <p>学习更多的通用神经网络，Michael Nielsen 的<a href="http://neuralnetworksanddeeplearning.com/chap1.html">免费在线书籍</a>是一个很不错的资源。在卷积神经网络方面，Chris Olah 有一些<a href="https://colah.github.io/posts/2014-07-Conv-Nets-Modular/">很棒的博客</a>，Michael Nielsen 的书中也有 <a href="http://neuralnetworksanddeeplearning.com/chap6.html">一章</a> 也包含了这部分内容。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/layers.html">TF Layers 教程：构建卷积神经网络</a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">图像识别</a><ul>
+<li><a href="#toc-1">Python API 的使用</a></li>
+<li><a href="#toc-2">C++ API 的使用</a></li>
+<li><a href="#toc-3">进一步学习的资源</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

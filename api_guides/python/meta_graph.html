@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,15 +46,15 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Exporting and Importing a MetaGraph</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Exporting and Importing a MetaGraph</h1>
 <p>A <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto"><code>MetaGraph</code></a> contains both a TensorFlow GraphDef<br>
 as well as associated metadata necessary for running computation in a<br>
 graph when crossing a process boundary.  It can also be used for long<br>
 term storage of graphs.  The MetaGraph contains the information required<br>
 to continue training, perform evaluation, or run inference on a previously trained graph.</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/import_meta_graph"><code>tf.train.import_meta_graph</code></a></p>
-<h2>What's in a MetaGraph</h2>
+<h2 id="toc-1">What's in a MetaGraph</h2>
 <p>The information contained in a MetaGraph is expressed as a<br>
 <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/meta_graph.proto"><code>MetaGraphDef</code></a><br>
 protocol buffer. It contains the following fields:</p>
@@ -103,7 +103,7 @@ ops.register_proto_function(ops.GraphKeys.GLOBAL_VARIABLES,
 </code></pre>
 </li>
 </ul>
-<h2>Exporting a Complete Model to MetaGraph</h2>
+<h2 id="toc-2">Exporting a Complete Model to MetaGraph</h2>
 <p>The API for exporting a running model as a MetaGraph is <code>export_meta_graph()</code>.</p>
 <pre><code class="lang-Python">  def export_meta_graph(filename=None, collection_list=None, as_text=False):
     &quot;&quot;&quot;Writes `MetaGraphDef` to save_path/filename.
@@ -145,7 +145,7 @@ meta_graph_def = tf.train.export_meta_graph(filename=&#39;/tmp/my-model.meta&#39
 </li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/train/Saver"><code>tf.train.Saver</code></a></p>
-<h2>Import a MetaGraph</h2>
+<h2 id="toc-3">Import a MetaGraph</h2>
 <p>The API for importing a MetaGraph file into a graph is <code>import_meta_graph()</code>.</p>
 <p>Here are some of the typical usage models:</p>
 <ul>
@@ -278,6 +278,17 @@ hparams = tf.get_collection(&quot;hparams&quot;)
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Exporting and Importing a MetaGraph</a><ul>
+<li><a href="#toc-1">What's in a MetaGraph</a></li>
+<li><a href="#toc-2">Exporting a Complete Model to MetaGraph</a></li>
+<li><a href="#toc-3">Import a MetaGraph</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,11 +53,11 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'title': '概述'}, {'type': 'parent', 'title': ' TensorFlow Lite', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/index.html', 'title': 'TensorFlow Lite 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/devguide.html', 'title': 'Developer Guide'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html', 'title': 'Android 示例应用'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html', 'title': 'iOS 演示 APP'}]}, {'type': 'parent', 'title': ' TensorFlow Mobile', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/mobile/mobile_intro.html', 'title': 'TensorFlow Mobile 简介'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/android_build.html', 'title': '在安卓上构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/ios_build.html', 'title': '在 iOS 中构建 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/linking_libs.html', 'title': '集成 TensorFlow 库'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/prepare_models.html', 'title': 'Preparing models for mobile deployment'}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/optimizing.html', 'title': '移动端优化'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>在 iOS 中构建 TensorFlow</h1>
-<h2>使用 CocoaPods</h2>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">在 iOS 中构建 TensorFlow</h1>
+<h2 id="toc-1">使用 CocoaPods</h2>
 <p>在 iOS 上开始使用 TensorFlow 最简单的方法是使用 CocoaPods 包管理器。你可以将 <code>TensroFlow-experimental</code> 这个 pod 添加到你的 Podfile 中，进而安装通用的二进制框架。它上手简单，但却有一些难以定制的缺点。定制对缩小二进制大小非常重要。如果你确实需要具备自定义库的能力，请查看后面的小节来了解相关方法。</p>
-<h2>创建应用</h2>
+<h2 id="toc-2">创建应用</h2>
 <p>你若你想在自己的应用中增加 TensorFlow 的能力，那么：</p>
 <ul>
 <li><p>在 Xcode 中创建或加载你的应用。</p>
@@ -74,7 +74,7 @@
 <li><p>在应用的 <strong>Build Settings</strong> 选项中，确保在 <strong>Other Linker Flags</strong> 和 <strong>Header Search Paths</strong>中添加 <code>$(inherited)</code> 。</p>
 </li>
 </ul>
-<h2>运行示例</h2>
+<h2 id="toc-3">运行示例</h2>
 <p>你需要使用 Xcode 7.3 或更新的版本来运行我们的 iOS 示例程序。</p>
 <p>目前有三个例子，分别叫做：simple、benchmark 和 camera。现在你可以通过克隆 TensorFlow 仓库来下载示例代码（我们计划在日后将例子在单独的仓库进行提供）从 TensorFlow 文件夹根目录下载 <a href="https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip">Inception v1</a>，然后将标签和图形文件提取到 data 文件夹中（simple 和 camera 示例步骤一致）：</p>
 <pre><code>mkdir -p ~/graphs
@@ -92,7 +92,7 @@ open tf_simple_example.xcworkspace   # note .xcworkspace, not .xcodeproj
                                      # this is created by pod install
 </code></pre>
 <p>在 Xcode 模拟器中运行 Simple 示例程序。你可以看到一个有着 <strong>Run Model</strong> 按钮的单屏应用。点击它，你会在下方的日志框中看到一些调试信息，这表明已经分析了目录数据中的 Grace Hopper 图像，并识别出了军装。使用相同的过程可以运行其他的样本。相机示例则需要连接一个真实的 iOS 设备。一旦构建并运行它，就能得到一个实时的相机视图，你便能够将相机对准任何对象从而获得识别的结果。</p>
-<h3>iOS 示例细节</h3>
+<h3 id="toc-4">iOS 示例细节</h3>
 <p>有三个 iOS 示例程，均在 Xcode 项目中定义：<a href="https://www.tensorflow.org/code/tensorflow/examples/ios/">tensorflow/examples/ios</a>。</p>
 <ul>
 <li><p><strong>Simple</strong>：这是一个展示了如何在尽可能少的代码下加载和运行 TensorFlow 模型的简单例子。它值包含一个单一视图，并包含一个按钮，用户点击时执行模型的加载和推断。</p>
@@ -102,17 +102,29 @@ open tf_simple_example.xcworkspace   # note .xcworkspace, not .xcodeproj
 <li><p><strong>Benchmark</strong>：它与 Simple 很接近，但它会重复运行计算图并将类似的统计信息输出到 Android 上的基准测试工具中。</p>
 </li>
 </ul>
-<h3>排错</h3>
+<h3 id="toc-5">排错</h3>
 <ul>
 <li><p>确保你使用的是 TensorFlow-experimental pod（而不是 TensorFlow）。</p>
 </li>
 <li><p>TensorFlow-experimental pod 大约有 450MB。原因在于我们绑定了多个平台，而 pod 包含了所有平台的 TensorFlow 功能（例如：运算）。最终应用的大小很小（约为 25 MB）。使用完整的 pod 在自己的开发过程中非常方便，但请阅读下一节内容来交接如何通过构建自己定制的 TensorFlow 库来缩减大小。</p>
 </li>
 </ul>
-<h2>从源码构建 TensorFlow iOS 库</h2>
+<h2 id="toc-6">从源码构建 TensorFlow iOS 库</h2>
 <p>尽管 Cocoapods 是最简单快捷的入门方式，但你有时候需要更加灵活的确定你的应用程序需要附带那些 TensorFlow 组件。对于这种情况，你可以从源码构建 iOS 库，请参考<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/ios#building-the-tensorflow-ios-libraries-from-source">这篇教程</a>来了解相关操作的详细说明。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">在 iOS 中构建 TensorFlow</a><ul>
+<li><a href="#toc-1">使用 CocoaPods</a></li>
+<li><a href="#toc-2">创建应用</a></li>
+<li><a href="#toc-3">运行示例</a></li>
+<li><a href="#toc-6">从源码构建 TensorFlow iOS 库</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

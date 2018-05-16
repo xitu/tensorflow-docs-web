@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>TensorFlow Debugger</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">TensorFlow Debugger</h1>
 <p>[TOC]</p>
 <p>Public Python API of TensorFlow Debugger (tfdbg).</p>
-<h2>Functions for adding debug watches</h2>
+<h2 id="toc-1">Functions for adding debug watches</h2>
 <p>These functions help you modify <code>RunOptions</code> to specify which <code>Tensor</code>s are to<br>
 be watched when the TensorFlow graph is executed at runtime.</p>
 <ul>
@@ -58,24 +58,24 @@ be watched when the TensorFlow graph is executed at runtime.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tfdbg/watch_graph"><code>tfdbg.watch_graph</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tfdbg/watch_graph_with_blacklists"><code>tfdbg.watch_graph_with_blacklists</code></a></li>
 </ul>
-<h2>Classes for debug-dump data and directories</h2>
+<h2 id="toc-2">Classes for debug-dump data and directories</h2>
 <p>These classes allow you to load and inspect tensor values dumped from<br>
 TensorFlow graphs during runtime.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tfdbg/DebugTensorDatum"><code>tfdbg.DebugTensorDatum</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tfdbg/DebugDumpDir"><code>tfdbg.DebugDumpDir</code></a></li>
 </ul>
-<h2>Functions for loading debug-dump data</h2>
+<h2 id="toc-3">Functions for loading debug-dump data</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tfdbg/load_tensor_from_event_file"><code>tfdbg.load_tensor_from_event_file</code></a></li>
 </ul>
-<h2>Tensor-value predicates</h2>
+<h2 id="toc-4">Tensor-value predicates</h2>
 <p>Built-in tensor-filter predicates to support conditional breakpoint between<br>
 runs. See <code>DebugDumpDir.find()</code> for more details.</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tfdbg/has_inf_or_nan"><code>tfdbg.has_inf_or_nan</code></a></li>
 </ul>
-<h2>Session wrapper class and <code>SessionRunHook</code> implementations</h2>
+<h2 id="toc-5">Session wrapper class and <code>SessionRunHook</code> implementations</h2>
 <p>These classes allow you to</p>
 <ul>
 <li>wrap aroundTensorFlow <code>Session</code> objects to debug plain TensorFlow models<br>
@@ -91,6 +91,19 @@ runs. See <code>DebugDumpDir.find()</code> for more details.</p>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">TensorFlow Debugger</a><ul>
+<li><a href="#toc-1">Functions for adding debug watches</a></li>
+<li><a href="#toc-2">Classes for debug-dump data and directories</a></li>
+<li><a href="#toc-3">Functions for loading debug-dump data</a></li>
+<li><a href="#toc-4">Tensor-value predicates</a></li>
+<li><a href="#toc-5">Session wrapper class and <code>SessionRunHook</code> implementations</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

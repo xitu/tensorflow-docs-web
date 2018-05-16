@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Android 示例应用</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Android 示例应用</h1>
 <p>该 TensorFLow Lite 示例可以在 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/java/demo/app">GitHub</a> 上被找到。 这是一个使用量子化的 MobileNet 模型或是浮点 Inception-v3 模型对图片进行持续分类的相机应用。示例的最低运行要求是 Android 5.0（API 21）。</p>
 <p>在示例中，应用会使用 TensorFlow Lite Java API 来预测。应用会为每一帧都进行实时分类，并将可能性最高的类别和检测对象的时间一同显示出来。</p>
 <p>有三种方式获取示例应用：</p>
@@ -57,10 +57,10 @@
 <li>下载 TensorFlow Lite 和这个示例应用的源码，然后用<br>
 bazel 编译。</li>
 </ul>
-<h2>下载预编译版本</h2>
+<h2 id="toc-1">下载预编译版本</h2>
 <p>尝试这个示例最简单的方法是下载<a href="https://storage.googleapis.com/download.tensorflow.org/deps/tflite/TfLiteCameraDemo.apk">预编译 APK</a>。</p>
 <p>安装完 APK 后，双击应用图标启动程序。当程序第一次运行时，会请求运行时获取设备摄像头的权限。程序会打开设备的后摄像头，并识别视野内的物体。在图像的底部（如果是全景模式则是图像的左边）会展示可能性最高的三个物体和其可能的分类。</p>
-<h2>在 Android Studio 中用 JCenter源的 TensorFlow Lite AAR 编译</h2>
+<h2 id="toc-2">在 Android Studio 中用 JCenter源的 TensorFlow Lite AAR 编译</h2>
 <p>使用 Android Studio 来尝试修改代码并编译：</p>
 <ul>
 <li>安装最新版本的 <a href="https://developer.android.com/studio/index.html">Android Studio</a>。</li>
@@ -76,14 +76,14 @@ bazel 编译。</li>
 改成： <code>classifier = new ImageClassifierFloatInception(getActivity());</code>。</li>
 </ul>
 <p>现在你可以编译并运行程序了。</p>
-<h2>使用源码编译 TensorFlow Lite 和示例应用</h2>
-<h3>克隆 TensorFlow 仓库</h3>
+<h2 id="toc-3">使用源码编译 TensorFlow Lite 和示例应用</h2>
+<h3 id="toc-4">克隆 TensorFlow 仓库</h3>
 <pre><code class="lang-sh">git clone https://github.com/tensorflow/tensorflow
 </code></pre>
-<h3>安装 Bazel</h3>
+<h3 id="toc-5">安装 Bazel</h3>
 <p>如果你的电脑上没有安装 <code>bazel</code>，查看 <a href="https://bazel.build/versions/master/docs/install.html">安装 Bazel</a>。</p>
 <p>注意：Bazel 现在并不支持在 Windows 上进行 Android 编译。Windows 用户可以下载 <a href="https://storage.googleapis.com/download.tensorflow.org/deps/tflite/TfLiteCameraDemo.apk">预编译版本</a>。</p>
-<h3>安装 Android NDK 和 SDK</h3>
+<h3 id="toc-6">安装 Android NDK 和 SDK</h3>
 <p>编译 TensorFlow Lite 的原生（C/C++）代码需要用到 Android NDK。当前推荐版本为 <em>14b</em>，可以在 <a href="https://developer.android.com/ndk/downloads/older_releases.html#ndk-14b-downloads">NDK 存档</a><br>
 上找到。</p>
 <p>Android SDK 和编译工具可以<a href="https://developer.android.com/tools/revisions/build-tools.html">单独下载</a> 或者配合 <a href="https://developer.android.com/studio/index.html">Android Studio</a> 使用。编译 TensorFlow Lite Android 示例应用推荐使用 API &gt;= 23 的编译工具（但是在 API &gt;= 21 的版本上均可运行）。</p>
@@ -102,16 +102,28 @@ android_ndk_repository(
 )
 </code></pre>
 <p>在 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/java/demo/README.md">TF Lite Android 应用页面</a>中可以找到更多信息。</p>
-<h3>编译源码</h3>
+<h3 id="toc-7">编译源码</h3>
 <p>运行 <code>bazel</code> 来编译源码：</p>
 <pre><code>bazel build --cxxopt=--std=c++11 //tensorflow/contrib/lite/java/demo/app/src/main:TfLiteCameraDemo
 </code></pre>
 <p>警告：因为一个已知的 bazel 的 bug，我们只能在 Python 2 环境下编译 Android 示例应用。</p>
-<h2>关于示例</h2>
+<h2 id="toc-8">关于示例</h2>
 <p>示例应用会缩放每一帧相机获取的图像（224 宽 <em> 224 高）来匹配量子化的 MobileNets 模型（Inception-v3 是 299 </em> 299）。缩放后的图像被逐行放进<a href="https://developer.android.com/reference/java/nio/ByteBuffer.html">缓冲区</a>。它的大小是 1 <em> 224 </em> 224 <em> 3 字节，其中 1 代表该批次中图像的数量。224 </em> 224（299 * 299）是图像的宽和高。3 字节代表一个像素有 3 种颜色。</p>
 <p>示例中使用了单进单出的 TensorFlow Lite Java inference API。它输出一个二维数组，第一个维度表示类别索引，第二个维度表示分类的置信度。 两种模型都有 1001 种不同的类别，应用将所有目录的可能性排序，并显示可能性最高的三种。模型文件必须被下载下来并打包到应用的资源目录。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Android 示例应用</a><ul>
+<li><a href="#toc-1">下载预编译版本</a></li>
+<li><a href="#toc-2">在 Android Studio 中用 JCenter源的 TensorFlow Lite AAR 编译</a></li>
+<li><a href="#toc-3">使用源码编译 TensorFlow Lite 和示例应用</a></li>
+<li><a href="#toc-8">关于示例</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

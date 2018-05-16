@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,8 +46,8 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Regression Examples</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Regression Examples</h1>
 <p>This unit provides the following short examples demonstrating how<br>
 to implement regression in Estimators:</p>
 <table>
@@ -105,7 +105,7 @@ watch the following video:
 
 
 <p><a name="running"></a></p>
-<h2>Running the examples</h2>
+<h2 id="toc-1">Running the examples</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></p>
 <ol>
 <li>Clone the TensorFlow repository from github.</li>
@@ -139,7 +139,7 @@ INFO:tensorflow:Saving checkpoints for 1000 into /tmp/tmpAObiz9/model.ckpt.
 INFO:tensorflow:Loss for final step: 5.12413.
 </code></pre>
 <p><a name="basic"></a></p>
-<h2>linear_regressor.py</h2>
+<h2 id="toc-2">linear_regressor.py</h2>
 <p><code>linear_regressor.py</code> trains a model that predicts the price of a car from<br>
 two numerical features.</p>
 <table>
@@ -166,7 +166,7 @@ two numerical features.</p>
 </table><p>After training the model, the program concludes by outputting predicted<br>
 car prices for two car models.</p>
 <p><a name="categorical"></a></p>
-<h2>linear_regression_categorical.py</h2>
+<h2 id="toc-3">linear_regression_categorical.py</h2>
 <p>This program illustrates ways to represent categorical features. It<br>
 also demonstrates how to train a linear model based on a mix of<br>
 categorical and numerical features.</p>
@@ -193,7 +193,7 @@ categorical and numerical features.</p>
     <td>Linear regression.</td>
   </tr>
 </table><p><a name="dnn"></a></p>
-<h2>dnn_regression.py</h2>
+<h2 id="toc-4">dnn_regression.py</h2>
 <p>Like <code>linear_regression_categorical.py</code>, the <code>dnn_regression.py</code> example<br>
 trains a model that predicts the price of a car from two features.<br>
 Unlike <code>linear_regression_categorical.py</code>, the <code>dnn_regression.py</code> example uses<br>
@@ -226,7 +226,7 @@ in a deep neural network.</p>
 </table><p>After printing loss values, the program outputs the Mean Square Error<br>
 on a test set.</p>
 <p><a name="dnn"></a></p>
-<h2>custom_regression.py</h2>
+<h2 id="toc-5">custom_regression.py</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
 <p>The custom model is defined by the <code>model_fn</code> argument to the constructor. The<br>
 customization is made more reusable through <code>params</code> dictionary, which is later<br>
@@ -234,6 +234,19 @@ passed through to the <code>model_fn</code> when the <code>model_fn</code> is ca
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/EstimatorSpec"><code>tf.estimator.EstimatorSpec</code></a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Regression Examples</a><ul>
+<li><a href="#toc-1">Running the examples</a></li>
+<li><a href="#toc-2">linear_regressor.py</a></li>
+<li><a href="#toc-3">linear_regression_categorical.py</a></li>
+<li><a href="#toc-4">dnn_regression.py</a></li>
+<li><a href="#toc-5">custom_regression.py</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

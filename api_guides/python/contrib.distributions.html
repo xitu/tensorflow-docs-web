@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,19 +46,19 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Statistical Distributions (contrib)</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Statistical Distributions (contrib)</h1>
 <p>[TOC]</p>
 <p>Classes representing statistical distributions and ops for working with them.</p>
-<h2>Classes for statistical distributions</h2>
+<h2 id="toc-1">Classes for statistical distributions</h2>
 <p>Classes that represent batches of statistical distributions.  Each class is<br>
 initialized with parameters that define the distributions.</p>
-<h2>Base classes</h2>
+<h2 id="toc-2">Base classes</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/ReparameterizationType"><code>tf.contrib.distributions.ReparameterizationType</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/Distribution"><code>tf.contrib.distributions.Distribution</code></a></li>
 </ul>
-<h2>Univariate (scalar) distributions</h2>
+<h2 id="toc-3">Univariate (scalar) distributions</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/Binomial"><code>tf.contrib.distributions.Binomial</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/Bernoulli"><code>tf.contrib.distributions.Bernoulli</code></a></li>
@@ -78,15 +78,15 @@ initialized with parameters that define the distributions.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/StudentTWithAbsDfSoftplusScale"><code>tf.contrib.distributions.StudentTWithAbsDfSoftplusScale</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/Uniform"><code>tf.contrib.distributions.Uniform</code></a></li>
 </ul>
-<h2>Multivariate distributions</h2>
-<h3>Multivariate normal</h3>
+<h2 id="toc-4">Multivariate distributions</h2>
+<h3 id="toc-5">Multivariate normal</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/MultivariateNormalDiag"><code>tf.contrib.distributions.MultivariateNormalDiag</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/MultivariateNormalTriL"><code>tf.contrib.distributions.MultivariateNormalTriL</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/MultivariateNormalDiagPlusLowRank"><code>tf.contrib.distributions.MultivariateNormalDiagPlusLowRank</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/MultivariateNormalDiagWithSoftplusScale"><code>tf.contrib.distributions.MultivariateNormalDiagWithSoftplusScale</code></a></li>
 </ul>
-<h3>Other multivariate distributions</h3>
+<h3 id="toc-6">Other multivariate distributions</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/Dirichlet"><code>tf.contrib.distributions.Dirichlet</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/DirichletMultinomial"><code>tf.contrib.distributions.DirichletMultinomial</code></a></li>
@@ -94,38 +94,56 @@ initialized with parameters that define the distributions.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/WishartCholesky"><code>tf.contrib.distributions.WishartCholesky</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/WishartFull"><code>tf.contrib.distributions.WishartFull</code></a></li>
 </ul>
-<h3>Multivariate Utilities</h3>
+<h3 id="toc-7">Multivariate Utilities</h3>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/matrix_diag_transform"><code>tf.contrib.distributions.matrix_diag_transform</code></a></li>
 </ul>
-<h2>Transformed distributions</h2>
+<h2 id="toc-8">Transformed distributions</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/TransformedDistribution"><code>tf.contrib.distributions.TransformedDistribution</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/QuantizedDistribution"><code>tf.contrib.distributions.QuantizedDistribution</code></a></li>
 </ul>
-<h2>Mixture Models</h2>
+<h2 id="toc-9">Mixture Models</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/Mixture"><code>tf.contrib.distributions.Mixture</code></a></li>
 </ul>
-<h2>Posterior inference with conjugate priors</h2>
+<h2 id="toc-10">Posterior inference with conjugate priors</h2>
 <p>Functions that transform conjugate prior/likelihood pairs to distributions<br>
 representing the posterior or posterior predictive.</p>
-<h2>Normal likelihood with conjugate prior</h2>
+<h2 id="toc-11">Normal likelihood with conjugate prior</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/normal_conjugates_known_scale_posterior"><code>tf.contrib.distributions.normal_conjugates_known_scale_posterior</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/normal_conjugates_known_scale_predictive"><code>tf.contrib.distributions.normal_conjugates_known_scale_predictive</code></a></li>
 </ul>
-<h2>Kullback-Leibler Divergence</h2>
+<h2 id="toc-12">Kullback-Leibler Divergence</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/kl_divergence"><code>tf.contrib.distributions.kl_divergence</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/RegisterKL"><code>tf.contrib.distributions.RegisterKL</code></a></li>
 </ul>
-<h2>Utilities</h2>
+<h2 id="toc-13">Utilities</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/contrib/distributions/softplus_inverse"><code>tf.contrib.distributions.softplus_inverse</code></a></li>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Statistical Distributions (contrib)</a><ul>
+<li><a href="#toc-1">Classes for statistical distributions</a></li>
+<li><a href="#toc-2">Base classes</a></li>
+<li><a href="#toc-3">Univariate (scalar) distributions</a></li>
+<li><a href="#toc-4">Multivariate distributions</a></li>
+<li><a href="#toc-8">Transformed distributions</a></li>
+<li><a href="#toc-9">Mixture Models</a></li>
+<li><a href="#toc-10">Posterior inference with conjugate priors</a></li>
+<li><a href="#toc-11">Normal likelihood with conjugate prior</a></li>
+<li><a href="#toc-12">Kullback-Leibler Divergence</a></li>
+<li><a href="#toc-13">Utilities</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

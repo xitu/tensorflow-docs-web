@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,11 +53,11 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'title': '安装 TensorFlow'}, {'type': 'parent', 'title': ' Python', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_linux.html', 'title': '在 Ubuntu 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_mac.html', 'title': '在 macOS 中安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_windows.html', 'title': '在 Windows 上安装 TensorFlow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_sources.html', 'title': '通过源码安装 TensorFlow'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/install/migration.html', 'title': '迁移至 TensorFlow 1.0'}, {'type': 'parent', 'title': ' Other Languages', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/install/install_java.html', 'title': '安装 TensorFlow for Java'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_go.html', 'title': '安装 Go 版本 Tensorflow'}, {'link': '//xitu.github.io/tensorflow-docs-web/install/install_c.html', 'title': '安装适用于 C 的 TensorFlow'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>迁移至 TensorFlow 1.0</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">迁移至 TensorFlow 1.0</h1>
 <p>TensorFlow 1.0 中 API 的改动不再完全向后兼容。因此，运行于 TensorFlow 0.n 版本的 TensorFlow 应用可能不能在 TensorFlow 1.0 版本中正常运行。在此版本中，我们对 API 进行了一些修改，确保了其内部一致性；在接下来的整个 1.N 版本周期中都不会进行任何断代式变更。</p>
 <p>本指南将引导您了解新版 API 的主要变更，以及如何将您的程序自动升级至 TensorFlow 1.0。除了帮助您完成程序的修改之外，本指南也解释了我们为何要做出这些变更。</p>
-<h2>如何升级</h2>
+<h2 id="toc-1">如何升级</h2>
 <p>如果您希望自动将代码迁移至 1.0 版本，可以尝试使用我们的 <code>tf_upgrade.py</code> 脚本。此脚本能处理大多数情况，但有时还是需要您进行手动修改。<br>
   您可以在我们的 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/tools/compatibility">GitHub</a> 中获取此脚本。</p>
 <p>如要将单个的 0.n 版 TensorFlow 源文件转换为 1.0 版本，请输入如下格式的命令：</p>
@@ -73,7 +73,7 @@ $ <b>python tf_upgrade.py --intree</b> <i>InputDir</i> <b>--outtree</b> <i>Outpu
 </pre><p>例如，以下命令会将 <code>/home/user/cool</code> 中的所有 0.n 版 TensorFlow 程序转换为 1.0 版并放入新建的 <code>/home/user/cool_1.0</code> 目录中：</p>
 <pre>
 $ <b>python tf_upgrade.py --intree /home/user/cool --outtree /home/user/cool_1.0</b>
-</pre><h3>限制</h3>
+</pre><h3 id="toc-2">限制</h3>
 <p>在使用脚本进行升级时，有几点注意事项。尤其是：</p>
 <ul>
 <li>你需要手动修复所有 <code>tf.reverse()</code> 实例。<br>
@@ -87,9 +87,9 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 <li><p>与 <code>tf.pack</code> 和  <code>tf.unpack</code> 类似，我们将 <code>TensorArray.pack</code> 以及 <code>TensorArray.unpack</code> 重命名为 <code>TensorArray.stack</code> 和 <code>TensorArray.unstack</code>。但是，<code>TensorArray.pack</code> 和 <code>TensorArray.unpack</code> 并不直接关联 <code>tf</code> 命名空间，因而无法通过词法直接检测出来，例如 <code>foo = tf.TensorArray(); foo.unpack()</code>。因此需要手动修改它们。</p>
 </li>
 </ul>
-<h2>手动升级您的代码</h2>
+<h2 id="toc-3">手动升级您的代码</h2>
 <p>您也可以不使用 <code>tf_upgrade.py</code>，手动升级代码。本文档剩余部分提供了完整的 TensorFlow 1.0 非向后兼容变更列表。</p>
-<h3>变量（Variables）</h3>
+<h3 id="toc-4">变量（Variables）</h3>
 <p>现在 Variable 函数更具一致性，减少了误解。</p>
 <ul>
 <li><code>tf.VARIABLES</code><ul>
@@ -113,7 +113,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </ul>
 </li>
 </ul>
-<h3>聚合函数</h3>
+<h3 id="toc-5">聚合函数</h3>
 <p>现在所有的聚合函数（Summary function）都被统一放置于 <code>tf.summary</code> 命名空间中。</p>
 <ul>
 <li><code>tf.audio_summary</code><ul>
@@ -153,7 +153,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </ul>
 </li>
 </ul>
-<h3>数值差异</h3>
+<h3 id="toc-6">数值差异</h3>
 <p>整数除法以及 <code>tf.floordiv</code> 将使用向下取整（floor）语义。这样就能使 <code>np.divide</code> 和 <code>np.mod</code> 的结果与 <code>tf.divide</code> 和 <code>tf.mod</code> 的结果保持一致。另外，我们修改了 <code>tf.round</code> 使用的取整算法，使其与 NumPy 保持一致。</p>
 <ul>
 <li><p><code>tf.div</code></p>
@@ -296,7 +296,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </tr>
 </tbody>
 </table></div>
-<h3>匹配 NumPy 命名</h3>
+<h3 id="toc-7">匹配 NumPy 命名</h3>
 <p>新版本对许多函数进行了重命名以匹配 NumPy。这么做旨在使得 NumPy 与 TensorFlow 之间的转换尽量简便。虽然我们已经排除了一些常见的不一致情况，但现在还有一些函数未能完全匹配。</p>
 <ul>
 <li><code>tf.inv</code><ul>
@@ -330,7 +330,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </ul>
 </li>
 </ul>
-<h3>匹配 NumPy 参数</h3>
+<h3 id="toc-8">匹配 NumPy 参数</h3>
 <p>一些 TensorFlow 1.0 方法的参数现在与 NumPy 的方法相匹配了。为了实现这一点，TensorFlow 1.0 对一些关键字参数进行了修改，并对一些参数进行了重排序。需要注意的是，TensorFlow 1.0 现在不再使用 <code>dimension</code> 而转为使用 <code>axis</code>。TensorFlow 1.0 在修改张量的操作中将保持张量参数始终在第一位。（参见 <code>tf.concat</code> 的改动）。</p>
 <ul>
 <li><code>tf.argmax</code><ul>
@@ -432,7 +432,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </ul>
 </li>
 </ul>
-<h3>简化数学变换</h3>
+<h3 id="toc-9">简化数学变换</h3>
 <p>批量版数学运算操作已被移除。现在非批量版的函数已经包含了批量运算的功能。例如，<code>tf.complex_abs</code> 的功能已迁移至 <code>tf.abs</code></p>
 <ul>
 <li><code>tf.batch_band_part</code><ul>
@@ -520,7 +520,7 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </ul>
 </li>
 </ul>
-<h3>其它改动</h3>
+<h3 id="toc-10">其它改动</h3>
 <p>除上文所述的改动外，还有以下一些变化：</p>
 <ul>
 <li><code>tf.image.per_image_whitening</code><ul>
@@ -562,6 +562,16 @@ with tf.variable_scope(tf.get_variable_scope(), reuse=True):
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">迁移至 TensorFlow 1.0</a><ul>
+<li><a href="#toc-1">如何升级</a></li>
+<li><a href="#toc-3">手动升级您的代码</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

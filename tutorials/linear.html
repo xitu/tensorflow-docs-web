@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>TensorFlow 大规模线性模型</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">TensorFlow 大规模线性模型</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator"><code>tf.estimator</code></a></p>
 <ul>
 <li>什么是线性模型。</li>
@@ -65,10 +65,10 @@
 <p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/wide.html">TensorFlow 线性模型</a></p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html">Premade Estimators</a></p>
 <p>[TOC]</p>
-<h2>什么是线性模型？</h2>
+<h2 id="toc-1">什么是线性模型？</h2>
 <p><strong>线性模型</strong>使用多个特征的加权和做出预测。例如，如果你有一个人群的年龄，受教育年限，每周的工作时长的数据，模型可以从这些数据中学习到每个特征的权重值，使得它们的加权和可以预测出一个人的薪水。你同样可以用线性模型来做分类。</p>
 <p>一些线性模型把这个加权和转换成为一种更简便的形式。例如，<a href="https://developers.google.com/machine-learning/glossary/#logistic_regression"><strong>逻辑回归</strong></a>将加权和导入一个逻辑函数中，获得一个在 0 和 1 之间的输出。但是对于每个输入的特征依然只有一个权重值。</p>
-<h2>为什么要使用线性模型？</h2>
+<h2 id="toc-2">为什么要使用线性模型？</h2>
 <p>在当前研究已经显示出更复杂的多层神经网络的巨大威力的情况下，我们为什么还要使用如此简单的线性模型呢？</p>
 <p>线性模型：</p>
 <ul>
@@ -79,16 +79,16 @@
 <li>是学习机器学习的一个绝佳的起始点。</li>
 <li>在工业中广泛使用。</li>
 </ul>
-<h2>如何使用估计器构建线性模型？</h2>
+<h2 id="toc-3">如何使用估计器构建线性模型？</h2>
 <p>在 TensorFlow 中你可以不借助于任何特殊的 API 来从头创建一个线性模型。但是 Estimators 提供了一些工具使构建有效的大规模线性模型更容易。</p>
-<h3>特征列和转换</h3>
+<h3 id="toc-4">特征列和转换</h3>
 <p>设计一个线性模型的大部分工作集中在把原始数据转换成合适的输入特征。TensorFlow 使用 <code>特征列</code> 的抽象方式使这些转换成为可能。</p>
 <p>一个 <code>特征列</code> 表示你的数据中的一个单一特征。一个 <code>特征列</code> 可能表示一个数量，如高度；也可能代表一种分类，如眼睛的颜色，其取值来自于一个离散集合，比如 {'蓝', '棕', '绿'}。</p>
 <p>不管是连续性特征（如身高）还是类别性特征（如眼睛颜色），数据中的一个单一值在输入模型之前都可能会被转换成一个数值序列。抽象的 <code>特征列</code> 使你能像操作单个语义单元一样对特征进行操作。你可以指定进行哪种转换，选择要加入的特征而不用担心模型输入张量的特定索引。</p>
-<h3>稀疏列</h3>
+<h3 id="toc-5">稀疏列</h3>
 <p>线性模型中的分类特征通常会被转换到一个稀疏向量中，向量中的每个可能值都有相应的 id 或索引。例如，如果只有三种可能的眼睛颜色，你可以使用一个长度为 3 的向量来表示：[1, 0, 0] 表示 '棕'，[0, 1, 0] 表示 '蓝'，[0, 0, 1] 表示 '绿'。这些向量之所以叫 '稀疏' 是因为当可能的取值非常大的时候（例如所有的英文单词），向量就会非常长而且会有很多 0.</p>
 <p>虽然不需要使用估计器提供的类别性特征来提供的线性模型工具，但线性模型的优势之一在于它们处理大型稀疏向量的能力。 稀疏特征是估计器提供的线性模型工具的主要用例。</p>
-<h5>编码稀疏列</h5>
+<h5 id="toc-6">编码稀疏列</h5>
 <p><code>特征列</code> 会自动处理分类值到向量的转换过程，代码如下：</p>
 <pre><code class="lang-python">eye_color = tf.feature_column.categorical_column_with_vocabulary_list(
     &quot;eye_color&quot;, vocabulary_list=[&quot;blue&quot;, &quot;brown&quot;, &quot;green&quot;])
@@ -98,31 +98,31 @@
 <pre><code class="lang-python">education = tf.feature_column.categorical_column_with_hash_bucket(
     &quot;education&quot;, hash_bucket_size=1000)
 </code></pre>
-<h5>交叉特征</h5>
+<h5 id="toc-7">交叉特征</h5>
 <p>由于线性模型会为不同的特征分配单独的权重，线性模型无法学习特定的特征组合的相对重要性。如果你有 "最喜欢的运动" 和 "家乡城市" 这两个特征，然后尝试预测是否一个人喜欢穿红色，你的线性模型是没有办法学到来自圣路易斯的棒球迷特别喜欢穿红色的。</p>
 <p>你可以通过创建一个表示 "最喜欢的运动-家乡城市" 的新特征来绕开这个限制。对于给定的一个人这个特征的值正好是那两个源特征的值的连接：例如，"棒球-圣路易斯"。这种结合特征被叫做 <em>"交叉特征"</em>。</p>
 <p><code>crossed_column()</code> 方法使设置交叉特征很容易：</p>
 <pre><code class="lang-python">sport_x_city = tf.feature_column.crossed_column(
     [&quot;sport&quot;, &quot;city&quot;], hash_bucket_size=int(1e4))
 </code></pre>
-<h4>连续性特征列</h4>
+<h4 id="toc-8">连续性特征列</h4>
 <p>你能像下面这样指定一个连续性特征：</p>
 <pre><code class="lang-python">age = tf.feature_column.numeric_column(&quot;age&quot;)
 </code></pre>
 <p>用单个实数表示的连续性特征通常可以直接输入模型中，TensorFlow 同样为这种特征列提供了很有用的转换方式。</p>
-<h5>离散化</h5>
+<h5 id="toc-9">离散化</h5>
 <p><em>离散化</em> 能把连续性特征列转换成分类性特征列。这种转换使你能在交叉特征中使用连续性特征列，在特定区间比较重要的情况下，这种转换也很有用。</p>
 <p>离散化把可能值的区间划分成一个个子区间，这些子区间称为 bucket 。</p>
 <pre><code class="lang-python">age_buckets = tf.feature_column.bucketized_column(
     age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
 </code></pre>
 <p>一个值落入子区间，该子区间就成了这个值的分类标签</p>
-<h4>输入函数</h4>
+<h4 id="toc-10">输入函数</h4>
 <p><code>特征列</code> 为模型提供了一种输入数据规格，指明如何表示和转换数据。但是它们本身不提供数据。你需要通过一个输入函数提供数据。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></p>
 <p>输入函数在调用 <code>train()</code> 和 <code>evaluate()</code> 初始化训练和测试时被传进去，<br>
 这将在下一部分说明。</p>
-<h3>线性估计器</h3>
+<h3 id="toc-11">线性估计器</h3>
 <p>Tensorflow 估计器类为回归和分类模型提供一套统一的训练和评估框架。它们会处理好训练和评估循环过程中的细节，让用户专注于模型的输入和结构。</p>
 <p>你可以使用 <code>tf.estimator.LinearClassifier</code> <code>tf.estimator.LinearRegressor</code> 来创建分别用于分类和回归的估计器。</p>
 <p>对于所有的 tensorflow 估计器，运行一个估计器只需要：</p>
@@ -146,7 +146,7 @@ results = e.evaluate(input_fn=input_fn_test)
 for key in sorted(results):
     print(&quot;%s: %s&quot; % (key, results[key]))
 </code></pre>
-<h3>『宽深』学习</h3>
+<h3 id="toc-12">『宽深』学习</h3>
 <p><code>tf.estimator</code> 模型还提供了一个估计器类能让你同时训练一个线性模型和一个深度神经网络。这个新颖的方法结合了线性模型对关键特征的记忆和神经网络的泛化能力。可以使用 <code>tf.estimator.DNNLinearCombinedClassifier</code> 创建这种『宽深』模型：</p>
 <pre><code class="lang-python">e = tf.estimator.DNNLinearCombinedClassifier(
     model_dir=YOUR_MODEL_DIR,
@@ -157,6 +157,17 @@ for key in sorted(results):
 <p><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/wide_and_deep.html">TensorFlow 宽深学习</a></p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">TensorFlow 大规模线性模型</a><ul>
+<li><a href="#toc-1">什么是线性模型？</a></li>
+<li><a href="#toc-2">为什么要使用线性模型？</a></li>
+<li><a href="#toc-3">如何使用估计器构建线性模型？</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

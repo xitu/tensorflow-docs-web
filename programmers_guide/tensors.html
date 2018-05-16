@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 1}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'title': '开发者指南'}, {'type': 'parent', 'title': ' High Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/eager.html', 'title': 'Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/datasets.html', 'title': '数据导入'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/estimators.html', 'title': '评估器'}]}, {'type': 'parent', 'title': ' Low Level APIs', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html', 'title': '底层 API 编程介绍'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensors.html', 'title': '张量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/variables.html', 'title': '变量'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graphs.html', 'title': '流图与会话'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/saved_model.html', 'title': '保存和恢复'}]}, {'type': 'parent', 'title': ' Accelerators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_gpu.html', 'title': '使用（多个）GPU'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/using_tpu.html', 'title': '使用 TPU'}]}, {'type': 'parent', 'title': ' ML Concepts', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html', 'title': 'Embeddings'}]}, {'type': 'parent', 'title': ' Debugging', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html', 'title': 'TensorFlow 调试器'}]}, {'type': 'parent', 'title': ' TensorBoard', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/summaries_and_tensorboard.html', 'title': 'Tensorboard：可视化学习面板'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/graph_viz.html', 'title': 'TensorBoard: 图形可视化'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/tensorboard_histograms.html', 'title': 'TensorBoard 直方图面板'}]}, {'type': 'parent', 'title': ' Misc', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/version_compat.html', 'title': 'TensorFlow 版本兼容性'}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/faq.html', 'title': '常见问题'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>张量</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">张量</h1>
 <p>顾名思义，TensorFlow 是一个定义和运行张量计算的框架。<strong>张量</strong>是各种维度的向量和矩阵的统称。在内部，TensorFlow 用基本数据类型的多维数组来表示张量。</p>
 <p>当你在写 TensorFlow 程序的时候，主要操作和传递的对象就是 <code>tf.Tensor</code>，即所谓的张量。一个 <code>tf.Tensor</code> 对象定义了计算的一部分，并最终会生成一个值。TensorFlow 程序的工作机制是先构建一张 <code>tf.Tensor</code> 对象的计算图，其中详细地展示了各个张量之间的运算关系，然后再通过运行这张计算图的各个部分来产生需要的结果。</p>
 <p>一个 <code>tf.Tensor</code> 对象有以下属性：</p>
@@ -71,7 +71,7 @@
 <li><code>tf.SparseTensor</code></li>
 </ul>
 <p>除了 <code>tf.Variable</code> 以外，张量的值是不可变的，也就是说张量在单次执行的上下文中值是唯一的。但是，两次对同一个张量求值可能返回不同的值，比如，张量的值可能是从磁盘读取的数据，或者是一个随机数，那么每次产生的结果可能是不一样的。</p>
-<h2>秩</h2>
+<h2 id="toc-1">秩</h2>
 <p><code>tf.Tensor</code> 对象的<strong>秩</strong>就是它维度的数量。秩的也可以叫做<strong>阶数</strong>、<strong>度数</strong>或者是 <strong>n 维</strong>。注意：Tensorflow 里的秩和数学中矩阵的秩是不一样的。如下表所示，Tensorflow 中的不同的秩代表不同的数学实体：</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -102,7 +102,7 @@
 </tr>
 </tbody>
 </table></div>
-<h3>秩为 0</h3>
+<h3 id="toc-2">秩为 0</h3>
 <p>下列代码片段展示了如何创建一些秩为 0 的变量：</p>
 <pre><code class="lang-python">mammal = tf.Variable(&quot;Elephant&quot;, tf.string)
 ignition = tf.Variable(451, tf.int16)
@@ -110,14 +110,14 @@ floating = tf.Variable(3.14159265359, tf.float64)
 its_complicated = tf.Variable(12.3 - 4.85j, tf.complex64)
 </code></pre>
 <p>注意：一个 string 对象在 Tensorflow 中作为一个单独的对象，而不是一个字符序列。字符串可以作为标量，也可以作为向量等类型出现。</p>
-<h3>秩为 1</h3>
+<h3 id="toc-3">秩为 1</h3>
 <p>你可通过传递一个列表作为初始值来创建一个秩为 1 的 <code>tf.Tensor</code> 对象，比如：</p>
 <pre><code class="lang-python">mystr = tf.Variable([&quot;Hello&quot;], tf.string)
 cool_numbers  = tf.Variable([3.14159, 2.71828], tf.float32)
 first_primes = tf.Variable([2, 3, 5, 7, 11], tf.int32)
 its_very_complicated = tf.Variable([12.3 - 4.85j, 7.5 - 6.23j], tf.complex64)
 </code></pre>
-<h3>更高的秩</h3>
+<h3 id="toc-4">更高的秩</h3>
 <p>一个秩为 2 的 <code>tf.Tensor</code> 对象至少由一行和一列（类似一个二维数组）组成：</p>
 <pre><code class="lang-python">mymat = tf.Variable([[7],[11]], tf.int16)
 myxor = tf.Variable([[False, True],[True, False]], tf.bool)
@@ -129,12 +129,12 @@ mymatC = tf.Variable([[7],[11]], tf.int32)
 <p>类似地，具有更高秩的张量，由一个 n 维数组组成。比如，在图像处理过程中，我们会使用很多的秩为 4 的张量，其各个维度分别代表一个样本批次的大小、图像的宽度、图像的高度以及颜色通道数。</p>
 <pre><code class="lang-python">my_image = tf.zeros([10, 299, 299, 3])  # batch 大小 x 高度 x 宽度 x 颜色通道数
 </code></pre>
-<h3>获取 <code>tf.Tensor</code> 对象的秩</h3>
+<h3 id="toc-5">获取 <code>tf.Tensor</code> 对象的秩</h3>
 <p>我们可以通过调用 <code>tf.rank</code> 方法来获得一个 <code>tf.Tensor</code> 对象的秩。比如，下面的代码展示了如何获得先前定义的一个 <code>tf.Tensor</code> 对象的秩：</p>
 <pre><code class="lang-python">r = tf.rank(my_image)
 # 运行后，r 的值为 4
 </code></pre>
-<h3>引用 <code>tf.Tensor</code> 切片</h3>
+<h3 id="toc-6">引用 <code>tf.Tensor</code> 切片</h3>
 <p>因为 <code>tf.Tensor</code> 对象是一个由各个单元组成的 n 维数组，你可以通过指定 n 维索引来获得其中的某个单元。</p>
 <p>对于一个秩为 0 的张量（标量），因为它已经是一个数了，所以不需要使用索引。</p>
 <p>对于一个秩为 1 的张量（向量），传递单个索引就可以获得其中的一个数值：</p>
@@ -149,7 +149,7 @@ mymatC = tf.Variable([[7],[11]], tf.int32)
 my_column_vector = my_matrix[:, 3]
 </code></pre>
 <p><code>:</code> 符号是 Python 的切片语法，代表“取这一维所有的对象”。这在高秩数的张量中非常的实用，你能够凭此来访问、操作它的子向量、子矩阵甚至子张量。</p>
-<h2>形状</h2>
+<h2 id="toc-7">形状</h2>
 <p>张量的<strong>形状</strong>是其各个维度元素的数量。TensorFlow 能够在图的构建过程中自动推断张量的形状。这些推断出的形状的秩可能是已知的，也可能是未知的。即使张量的秩已知，其各个维度的大小也可能是未知的。</p>
 <p>TensorFlow 开发者指南中使用三种传统的表示方法来描述向量的维度：秩、形状、和维数。下表展示了这几种表示方法之间的关系：</p>
 <div class="table-wrapper"><table>
@@ -194,13 +194,13 @@ my_column_vector = my_matrix[:, 3]
 </tbody>
 </table></div>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/TensorShape"><code>tf.TensorShape</code></a></p>
-<h3>获取 <code>tf.Tensor</code> 对象的形状</h3>
+<h3 id="toc-8">获取 <code>tf.Tensor</code> 对象的形状</h3>
 <p>获取 <code>tf.Tensor</code> 对象的形状有两种方式。在构建计算图的时候，检查一下张量的形状的已知部分是很有帮助的。我们可以通过读取 <code>tf.Tensor</code> 对象的 <code>shape</code> 属性来获知其已知部分。这种方法会返回一个 <code>TensorShape</code> 对象，在表示一些部分已知的形状时非常方便（因为在构建计算图的时候不是所有张量的形状都是完全已知的）。</p>
 <p>运行时，我们也可以通过调用 <code>tf.shape</code> 操作，用 <code>tf.Tensor</code> 来表示另一个 <code>tf.Tensor</code> 的形状。这样，你就能够根据输入的 tf.Tensor 构建其他张量来操作张量的形状</p>
 <p>下面的例子，展示了如何创建一个长度和已知矩阵的列数相同的零向量：</p>
 <pre><code class="lang-python">zeros = tf.zeros(my_matrix.shape[1])
 </code></pre>
-<h3>改变 <code>tf.Tensor</code> 对象的形状</h3>
+<h3 id="toc-9">改变 <code>tf.Tensor</code> 对象的形状</h3>
 <p>张量<strong>元素的个数</strong>是形状数组中各个维度大小的乘积。标量的元素个数始终是 <code>1</code>。因为很多不同的形状包含的元素数量是一样的，在保证元素的个数不变的前提下，我们可以很方便地改变其形状。我们通过使用 <code>tf.reshape</code> 来实现形状的改变。</p>
 <p>下面的例子展示了如何改变张量的形状：</p>
 <pre><code class="lang-python">rank_three_tensor = tf.ones([3, 4, 5])
@@ -217,7 +217,7 @@ matrixAlt = tf.reshape(matrixB, [4, 3, -1])  # 把 matrixB 变成一个
 
 yet_another = tf.reshape(matrixAlt, [13, 2, -1])  # 错误
 </code></pre>
-<h2>数据类型</h2>
+<h2 id="toc-10">数据类型</h2>
 <p>除了维度以外，张量还有一个数据类型的属性。你可以通过参考开发者指南中的 <code>tf.DataType</code> 页面来了解所有的数据类型。</p>
 <p><code>tf.Tensor</code> 对象只能有一种数据类型。但是，可以将任意数据结构作为字符串序列化并将其存储在 <code>tf.Tensor</code> 对象中。</p>
 <p>我们可以使用 <code>tf.cast</code> 来进行数据类型的转换：</p>
@@ -228,7 +228,7 @@ float_tensor = tf.cast(tf.constant([1, 2, 3]), dtype=tf.float32)
 <p>To inspect a <code>tf.Tensor</code>'s data type use the <code>Tensor.dtype</code> property.</p>
 <p>使用 <code>Tensor.dtype</code> 这个属性来获得 <code>tf.Tensor</code> 对象的数据类型。</p>
 <p>从 Python 对象创建 <code>tf.Tensor</code> 时，是否指定数据类型是可选的。如果没有显式地指定，TensorFlow 会选择一个能够表示数据的数据类型。TensorFlow 会把 Python 中的整形转换为 <code>tf.int32</code> 并且把浮点数转换为 <code>tf.float32</code>。TensorFlow 其他的转换规则和 numpy 的相同。</p>
-<h2>对张量求值</h2>
+<h2 id="toc-11">对张量求值</h2>
 <p>计算图构建完成之后，你可以运行计算来产生特定的 <code>tf.Tensor</code> 对象并且获取它的值。这对程序的调试以及运行 TensorFlow 程序的时候是非常有帮助。</p>
 <p>对一个张量求值最简单的方法就是使用 <code>Tensor.eval</code> 方法，比如：</p>
 <pre><code class="lang-python">constant = tf.constant([1, 2, 3])
@@ -245,7 +245,7 @@ t.eval(feed_dict={p:2.0})  # 这就能够成功，因为我们通过 feed_dict �
 </code></pre>
 <p>注意，除了占位符（placeholder）以外，其他的 <code>tf.Tensor</code> 对象也是能够被赋值的。</p>
 <p>一些模型的结构可能使得对 <code>tf.Tensor</code> 求值变得复杂。TensorFlow 无法直接对函数中或者是控制流结构中的 <code>tf.Tensor</code> 求值。如果一个 <code>tf.Tensor</code> 的值来自于一个队列，那么只有在某些东西入队后求值才能进行；否则，求值会被暂时挂起。在处理队列时，请记住在对任何 <code>tf.Tensor</code> 求值之前先调用  <code>tf.train.start_queue_runners</code> 。</p>
-<h2>打印张量</h2>
+<h2 id="toc-12">打印张量</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./programmers_guide/debugger.html">TensorFlow 调试器</a></p>
 <p>注意，你可别用下面的这种方式打印 <code>tf.Tensor</code> ：</p>
 <pre><code class="lang-python">t = &lt;&lt;某些 TensorFlow 操作&gt;&gt;
@@ -262,6 +262,19 @@ result = t + 1  # 在求 result 的值的时候 `t` 的值将会被打印
 <p>当你在对 <code>result</code> 求值的时候，你将会求出所有 <code>result</code> 所依赖的张量的值。因为 <code>result</code> 依赖于 <code>t</code>，因此在对 <code>t</code> 求值的时候会同时打印 <code>t</code> 的值（<code>t</code> 原来的值，即 <code>t = &lt;&lt;某些 TensorFlow 操作&gt;&gt;</code>），这样一来 t 就被打印出来了</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">张量</a><ul>
+<li><a href="#toc-1">秩</a></li>
+<li><a href="#toc-7">形状</a></li>
+<li><a href="#toc-10">数据类型</a></li>
+<li><a href="#toc-11">对张量求值</a></li>
+<li><a href="#toc-12">打印张量</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

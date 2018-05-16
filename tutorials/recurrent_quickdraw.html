@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>对涂鸦进行分类的循环神经网络</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">对涂鸦进行分类的循环神经网络</h1>
 <p><a href="http://quickdraw.withgoogle.com">Quick, Draw!</a> 是一个涂鸦游戏，玩家需要画出一系列物体，看电脑能否识别。</p>
 <p><a href="http://quickdraw.withgoogle.com">Quick, Draw!</a> 的识别功能由一个分类器完成，其输入是玩家的涂鸦，由一连串的笔画（笔画由一系列点的坐标构成）组成，输出则是涂鸦所对应的物体类别。</p>
 <p>在这个教程中，我们将会展示如何为这个游戏构建一个基于 RNN （循环神经网络）的分类器。模型将会使用卷积层、LSTM 层以及一个 softmax 输出层来分辨涂鸦的类别。</p>
@@ -62,7 +62,7 @@
 <p>上图展示了此教程中构建的模型架构。输入为一个图形，编码为由 x, y 和 n 构成的坐标点序列，其中 n 表示该点是否是新笔划中的第一个点。</p>
 <p>然后，应用一系列一维卷积，然后使用 LSTM 层将所有的输出传递给 softmax 层，进而进行涂鸦分类。</p>
 <p>此教程使用的数据来自实际的 <a href="http://quickdraw.withgoogle.com">Quick, Draw!</a> 游戏<a href="https://quickdraw.withgoogle.com/data">公开数据集</a>。数据包含了 50M 个涂鸦以及 345 个分类。</p>
-<h2>运行教程代码</h2>
+<h2 id="toc-1">运行教程代码</h2>
 <p>运行这个教程的代码：</p>
 <ol>
 <li><a href="//xitu.github.io/tensorflow-docs-web/install/index.html">安装 TensorFlow</a></li>
@@ -77,12 +77,12 @@
     --eval_data=rnn_tutorial_data/eval.tfrecord-?????-of-????? \
     --classes_file=rnn_tutorial_data/training.tfrecord.classes
 </code></pre>
-<h2>教程细节</h2>
-<h3>下载数据</h3>
+<h2 id="toc-2">教程细节</h2>
+<h3 id="toc-3">下载数据</h3>
 <p>我们将本教程使用的数据作为包含 <code>TFExamples</code> 的 <code>TFRecord</code> 文件提供下载：</p>
 <p><a href="http://download.tensorflow.org/data/quickdraw_tutorial_dataset_v1.tar.gz">http://download.tensorflow.org/data/quickdraw_tutorial_dataset_v1.tar.gz</a></p>
 <p>或者，你也可以从 Google 云上下载 <code>ndjson</code> 格式的原始数据，并将其转换为包含 <code>TFExamples</code> 的 <code>TFRecord</code> 文件，具体方法参考下一节。</p>
-<h3>可选：下载整个 Quick Draw 数据</h3>
+<h3 id="toc-4">可选：下载整个 Quick Draw 数据</h3>
 <p>完整的 <a href="https://quickdraw.withgoogle.com">Quick, Draw!</a> <a href="https://quickdraw.withgoogle.com/data">数据集</a> 可以在 Google Cloud Storage 上下载按类别分类的  <a href="http://ndjson.org/">ndjson</a> 格式原始文件。你可以在<a href="https://console.cloud.google.com/storage/quickdraw_dataset">Cloud Console</a> 上直接浏览文件列表。</p>
 <p>要下载我们推荐的数据，请使用 <a href="https://cloud.google.com/storage/docs/gsutil_install#install">gsutil</a> 下载整个数据集。注意，原始 <code>.ndjson</code> 格式的文件大约有 22GB。</p>
 <p>然后使用下面的命令检查你的 gsutil 安装是否正常，并且可以访问到数据存储区：</p>
@@ -101,7 +101,7 @@ cd rnn_tutorial_data
 gsutil -m cp &quot;gs://quickdraw_dataset/full/simplified/*&quot; .
 </code></pre>
 <p>这个将下载大约 23GB 数据并持续很长一段时间。</p>
-<h3>可选：数据转换</h3>
+<h3 id="toc-5">可选：数据转换</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/python_io.html#TFRecords_Format_Details">Data IO (Python functions)</a></p>
 <pre><code class="lang-shell">   python create_dataset.py --ndjson_path rnn_tutorial_data \
       --output_path rnn_tutorial_data
@@ -176,7 +176,7 @@ gsutil -m cp &quot;gs://quickdraw_dataset/full/simplified/*&quot; .
 <p>对于训练数据而言，我们每个类别读取 10000 个样本，而对于测试样本而言，我们对每个类别读取 1000 个样本。</p>
 <p>然后将这些数据重新格式化为形状为 <code>[num_training_samples, max_length, 3]</code> 的张量。然后再根据坐标值确定原始图形的边框，并将尺寸标准化，使图形具有单位长度的大小。</p>
 <center> ![大小归一](../images/quickdraw_sizenormalization.png) </center><p>最后，我们计算连续点之间的差值并将其作为 <code>VarLenFeature</code> 存储在 <a href="https://www.tensorflow.org/code/tensorflow/core/example/example.proto">tensorflow.Example</a>  下，命名为 <code>ink</code> 字段。此外，我们还将 <code>class_index</code> 作为单个 <code>FixedLengthFeature</code> 条目进行存储，<code>ink</code> 的 <code>shape</code> 作为长度为 2 的 <code>FixedLengthFeature</code> 进行存储。</p>
-<h3>定义模型</h3>
+<h3 id="toc-6">定义模型</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
 <p>构建模型分为以下几步：</p>
 <ol>
@@ -195,7 +195,7 @@ convolved = _add_conv_layers(inks)
 final_state = _add_rnn_layers(convolved, lengths)
 logits =_add_fc_layers(final_state)
 </code></pre>
-<h3>_get_input_tensors</h3>
+<h3 id="toc-7">_get_input_tensors</h3>
 <p>为了获得输入特征，我们首先需要从特征字典中获取并创建一个包含输入序列长度的一维张量，大小为 <code>[batch_size]</code>。用户所绘内容作为稀疏张量存储在字典中，我们再将其转换为一个稠密张量，大小为 <code>[batch_size, ?, 3]</code>。最后，如果目标通过了，我们就确保其存储在一个尺寸为 <code>[batch_size]</code> 的一维张量中。</p>
 <p>代码如下：</p>
 <pre><code class="lang-python">shapes = features[&quot;shape&quot;]
@@ -207,7 +207,7 @@ inks = tf.reshape(
 if targets is not None:
   targets = tf.squeeze(targets)
 </code></pre>
-<h3>_add_conv_layers</h3>
+<h3 id="toc-8">_add_conv_layers</h3>
 <p>卷积层的数量和滤波器的长度通过 <code>params</code> 字典中的 <code>num_conv</code> 和 <code>conv_len</code> 来进行配置。</p>
 <p>输入是一个三维的序列，我们将会使用一维的卷积操作，所以我们把第三维的数据看做是图像的色彩通道。这意味着输入的形状为 <code>[batch_size, length, 3]</code>，那么输出的张量形状则会是 <code>[batch_size, length, number_of_filters]</code>。</p>
 <pre><code class="lang-python">convolved = inks
@@ -233,7 +233,7 @@ for i in range(len(params.num_conv)):
       name=&quot;conv1d_%d&quot; % i)
 return convolved, lengths
 </code></pre>
-<h3>_add_rnn_layers</h3>
+<h3 id="toc-9">_add_rnn_layers</h3>
 <p>我们将卷积输出传递给双向 LSTM 层，为此我们使用了 <code>contrib</code> 的辅助函数。</p>
 <pre><code class="lang-python">outputs, _, _ = contrib_rnn.stack_bidirectional_dynamic_rnn(
     cells_fw=[cell(params.num_nodes) for _ in range(params.num_layers)],
@@ -251,11 +251,11 @@ return convolved, lengths
 zero_outside = tf.where(mask, outputs, tf.zeros_like(outputs))
 outputs = tf.reduce_sum(zero_outside, axis=1)
 </code></pre>
-<h3>添加全连接层</h3>
+<h3 id="toc-10">添加全连接层</h3>
 <p>输入的编码将交给一个全连接层，随后我们再将其输出交给 softmax 层。</p>
 <pre><code class="lang-python">tf.layers.dense(final_state, params.num_classes)
 </code></pre>
-<h3>损失函数，预测以及优化器</h3>
+<h3 id="toc-11">损失函数，预测以及优化器</h3>
 <p>最后，我们需要设置损失函数、训练操作以及模型预测来完成 <code>ModelFn</code> 的构建：</p>
 <pre><code class="lang-python">cross_entropy = tf.reduce_mean(
     tf.nn.sparse_softmax_cross_entropy_with_logits(
@@ -278,7 +278,7 @@ return model_fn_lib.ModelFnOps(
     train_op=train_op,
     eval_metric_ops={&quot;accuracy&quot;: tf.metrics.accuracy(targets, predictions)})
 </code></pre>
-<h3>训练和评估模型</h3>
+<h3 id="toc-12">训练和评估模型</h3>
 <p>我们使用 <code>Estimator</code> 和 <code>Experiment</code> 的 API 来方便地训练和评估我们的模型：</p>
 <pre><code class="lang-python">  estimator = tf.estimator.Estimator(
       model_fn=model_fn,
@@ -303,6 +303,16 @@ return model_fn_lib.ModelFnOps(
 <p>训练一百万步之后，你应该能够得到一个准确率约为 70% 的模型。这个结果足以来构建一个快速涂鸦游戏了，因为玩家能够不断地调整他的画作直到被识别。同时，这个游戏不一定要求模型给出完全正确的判断，而只要对应类别的概率高于一定的阈值，就认可玩家的涂鸦。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">对涂鸦进行分类的循环神经网络</a><ul>
+<li><a href="#toc-1">运行教程代码</a></li>
+<li><a href="#toc-2">教程细节</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Beginners', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/eager.html', 'title': '开始使用 Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'parent', 'title': ' Estimators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>数据集：快速了解</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">数据集：快速了解</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
 <ul>
 <li>从 numpy 数组读取内存数据。</li>
@@ -63,7 +63,7 @@
 <!-- TODO(markdaoust): Add links to an example reading from multiple-files
 (image_retraining), and a from_generator example. -->
 
-<h2>基本输入</h2>
+<h2 id="toc-1">基本输入</h2>
 <p>学习如何获取数组的片段，是开始学习 <code>tf.data</code> 最简单的方式。</p>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Premade Estimators</a></p>
 <pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
@@ -78,7 +78,7 @@
     return dataset
 </code></pre>
 <p>下面我们来对这个函数做更仔细的分析。</p>
-<h3>参数</h3>
+<h3 id="toc-2">参数</h3>
 <p>这个函数一共需要三个参数。如果一个参数的期望类型是 “array” （数组），那么它将可以接受几乎所有可以用 <code>numpy.array</code> 来转化为数组的值。我们可以看到只有一个例外：<a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences"><code>tuple</code></a>，它对 <code>Datasets</code> 有特殊的含义。</p>
 <ul>
 <li><code>features</code>：一个形如 <code>{'feature_name':array}</code> 的数据字典（或者是 <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html"><code>DataFrame</code></a>），它包含了原始的输入特征。</li>
@@ -98,7 +98,7 @@ features, labels = train
 iris_data.train_input_fn(features, labels, batch_size)
 </code></pre>
 <p>让我们来具体看看 <code>train_input_fn()</code> 函数。</p>
-<h3>（数组）片段</h3>
+<h3 id="toc-3">（数组）片段</h3>
 <p><a href="//xitu.github.io/tensorflow-docs-web/tutorials/layers.html">TF Layers 教程：构建卷积神经网络</a></p>
 <p>返回这个 <code>Dataset</code> 的代码如下所示：</p>
 <pre><code class="lang-python">train, test = tf.keras.datasets.mnist.load_data()
@@ -146,7 +146,7 @@ print(dataset)
           PetalLength: tf.float64, SepalWidth: tf.float64},
         tf.int64)&gt;
 </code></pre>
-<h3>操作</h3>
+<h3 id="toc-4">操作</h3>
 <p>目前，<code>Dataset</code> 会按照固定顺序遍历数据一次，且一次只能生成一个元素。在可以用于训练之前，它需要进一步的处理。幸运的是，<code>tf.data.Dataset</code> 类提供了方法来让数据为训练作出更好的准备。<code>train_input_fn</code> 的下一行代码就利用了几个这样的方法：</p>
 <pre><code class="lang-python"># 样本的混排、重复、批处理。
 dataset = dataset.shuffle(1000).repeat().batch(batch_size)
@@ -177,14 +177,14 @@ dataset = dataset.shuffle(1000).repeat().batch(batch_size)
           PetalLength: tf.float64, SepalWidth: tf.float64},
         tf.int64)&gt;
 </code></pre>
-<h3>返回</h3>
+<h3 id="toc-5">返回</h3>
 <p>[需要翻译]At this point the <code>Dataset</code> contains <code>(features_dict, labels)</code> pairs. This is the format expected by the <code>train</code> and <code>evaluate</code> methods, so the <code>input_fn</code> returns the dataset.</p>
 <p>The <code>labels</code> can/should be omitted when using the <code>predict</code> method.</p>
 <!--
   TODO(markdaoust): link to `input_fn` doc when it exists
 -->
 
-<h2>读取 CSV 文件</h2>
+<h2 id="toc-6">读取 CSV 文件</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data"><code>tf.data</code></a></p>
 <p>如下对 <code>iris_data.maybe_download</code> 函数的调用，将会在必要的时候下载数据，并返回结果文件的路径：</p>
 <pre><code class="lang-python">import iris_data
@@ -192,11 +192,11 @@ train_path, test_path = iris_data.maybe_download()
 </code></pre>
 <p><a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/iris_data.py"><code>iris_data.csv_input_fn</code></a> 函数包括了一个用 <code>Dataset</code> 解析 csv 文件的替代方案。</p>
 <p>让我们来看看如何构建一个兼容 Estimator 的、可以读取本地文件的输入函数。</p>
-<h3>建立 <code>Dataset</code></h3>
+<h3 id="toc-7">建立 <code>Dataset</code></h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/skip"><code>tf.data.Dataset.skip</code></a></p>
 <pre><code class="lang-python">ds = tf.data.TextLineDataset(train_path).skip(1)
 </code></pre>
-<h3>建立一个 csv 行解析器</h3>
+<h3 id="toc-8">建立一个 csv 行解析器</h3>
 <p>我们从建立一个可以解析一行的函数开始。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/decode_csv"><code>tf.decode_csv</code></a></p>
@@ -217,7 +217,7 @@ def _parse_line(line):
 
     return features, label
 </code></pre>
-<h3>解析多行</h3>
+<h3 id="toc-9">解析多行</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/data/Dataset/map"><code>tf.data.Dataset.map</code></a></p>
 <p>这个 <code>map</code> 方法接受一个 <code>map_func</code> 参数，这个参数描述了 <code>Dataset</code> 中的每一个元素应该如何被转化。</p>
 <p><img style="width:100%" src="https://www.tensorflow.org/images/datasets/map.png"></p>
@@ -236,7 +236,7 @@ types: (
 </code></pre>
 <p>现在，数据集中包含的是 <code>(features, label)</code> 数据对，而不是简单的字符串标量了。</p>
 <p><code>iris_data.csv_input_fn</code> 函数的余下部分和 <a href="#basic_input">Basic input</a> 中介绍的 <code>iris_data.train_input_fn</code> 函数相同。</p>
-<h3>实践</h3>
+<h3 id="toc-10">实践</h3>
 <p>这个函数可以作为 <code>iris_data.train_input_fn</code> 的替代。它可以像如下这样，来给 estimator 提供数据：</p>
 <pre><code class="lang-python">train_path, test_path = iris_data.maybe_download()
 
@@ -255,7 +255,7 @@ est.train(
     input_fn=lambda : iris_data.csv_input_fn(train_path, batch_size))
 </code></pre>
 <p>Estimator 期望 <code>input_fn</code> 没有任何参数。要解除这个限制，我们使用 <code>lambda</code> 来捕获参数并提供预期的接口。</p>
-<h2>总结</h2>
+<h2 id="toc-11">总结</h2>
 <p>为了从不同的数据源中便捷的读取数据，<code>tf.data</code> 模块提供了类和函数的集合。除此之外，<code>tf.data</code> 有简单并且强大的方法，来应用各种标准和自定义转换。</p>
 <p>现在你已经基本了解了如何为 Estimator 高效的获取数据。（作为扩展）接下来可以思考如下的文档：</p>
 <ul>
@@ -265,6 +265,17 @@ est.train(
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">数据集：快速了解</a><ul>
+<li><a href="#toc-1">基本输入</a></li>
+<li><a href="#toc-6">读取 CSV 文件</a></li>
+<li><a href="#toc-11">总结</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

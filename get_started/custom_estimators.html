@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,8 +53,8 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Beginners', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/eager.html', 'title': '开始使用 Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'parent', 'title': ' Estimators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>创建定制化 Estimator</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">创建定制化 Estimator</h1>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Premade Estimators</a></p>
 <p>下载及访问示例代码，请调用以下两个命令：</p>
 <pre><code class="lang-shell">git clone https://github.com/tensorflow/models/
@@ -64,7 +64,7 @@ cd models/samples/core/get_started
 <pre><code class="lang-bsh">python custom_estimator.py
 </code></pre>
 <p>如果你感到不耐烦，可随时将 <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/custom_estimator.py"><code>custom_estimator.py</code></a> 与 <a href="https://github.com/tensorflow/models/blob/master/samples/core/get_started/premade_estimator.py"><code>premade_estimator.py</code></a> 进行比较（对比），它们在同一目录中。</p>
-<h2>预制 vs. 定制化</h2>
+<h2 id="toc-1">预制 vs. 定制化</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
 <div style="width:100%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="display:block; margin: 0 auto"
@@ -88,7 +88,7 @@ cd models/samples/core/get_started
 </div>
 <div style="text-align: center">
 我们的虹膜实施包含四个特征，两个隐藏层，和一个 logits 输出层。
-</div><h2>写一个输入函数</h2>
+</div><h2 id="toc-2">写一个输入函数</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/premade_estimators.html">Premade Estimators</a></p>
 <pre><code class="lang-python">def train_input_fn(features, labels, batch_size):
     &quot;&quot;&quot;An input function for training&quot;&quot;&quot;
@@ -102,7 +102,7 @@ cd models/samples/core/get_started
     return dataset.make_one_shot_iterator().get_next()
 </code></pre>
 <p>这个输入函数建立一个输入流水线，产生一批 <code>(features, labels)</code> 对，其中 <code>features</code> 是字典特征。</p>
-<h2>创建功能列</h2>
+<h2 id="toc-3">创建功能列</h2>
 <p><a href="//xitu.github.io/tensorflow-docs-web/./get_started/feature_columns.html">特征列</a></p>
 <p>下面的代码为每个输入特征创建一个简单的 <code>numeric_column</code> ，表明输入特征值应该直接作为模型的输入：</p>
 <pre><code class="lang-python"># 特征列描述如何使用输入。
@@ -110,7 +110,7 @@ my_feature_columns = []
 for key in train_x.keys():
     my_feature_columns.append(tf.feature_column.numeric_column(key=key))
 </code></pre>
-<h2>写一个模型函数</h2>
+<h2 id="toc-4">写一个模型函数</h2>
 <p>我们将使用的函数模型具有以下调用签名：</p>
 <pre><code class="lang-python">def my_model_fn(
    features, # This is batch_features from input_fn
@@ -140,14 +140,14 @@ for key in train_x.keys():
 </ul>
 </li>
 </ul>
-<h2>定义模型</h2>
+<h2 id="toc-5">定义模型</h2>
 <p>基本的深度神经网络模型必须定义如下三个部分：</p>
 <ul>
 <li>一个<a href="https://developers.google.com/machine-learning/glossary/#input_layer">输入层</a></li>
 <li>一个或者更多的<a href="https://developers.google.com/machine-learning/glossary/#hidden_layer">隐藏层</a></li>
 <li>一个<a href="https://developers.google.com/machine-learning/glossary/#output_layer">输出层</a></li>
 </ul>
-<h3>定义输出层</h3>
+<h3 id="toc-6">定义输出层</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column/input_layer"><code>tf.feature_column.input_layer</code></a></p>
 <pre><code class="lang-python">    # 使用 `input_layer` 来应用特征列。
     net = tf.feature_column.input_layer(features, params[&#39;feature_columns&#39;])
@@ -157,7 +157,7 @@ for key in train_x.keys():
 <img style="display:block; margin: 0 auto"
   alt="输入层的关系图，在本例中是从原始输入到特性的 1：1 映射。"
   src="https://www.tensorflow.org/images/custom_estimators/input_layer.png">
-</div><h3>隐藏层</h3>
+</div><h3 id="toc-7">隐藏层</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
 <pre><code class="lang-python">    # 根据 &#39;hidden_units&#39; 参数构建隐藏层。
     for units in params[&#39;hidden_units&#39;]:
@@ -174,7 +174,7 @@ for key in train_x.keys():
   alt="输入层添加了两个隐藏层。"
   src="https://www.tensorflow.org/images/custom_estimators/add_hidden_layer.png">
 </div><p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
-<h3>输出层</h3>
+<h3 id="toc-8">输出层</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/layers/dense"><code>tf.layers.dense</code></a></p>
 <pre><code class="lang-python">    # 计算 logits (每个 class 一个)。
     logits = tf.layers.dense(net, params[&#39;n_classes&#39;], activation=None)
@@ -189,7 +189,7 @@ for key in train_x.keys():
 最后的隐藏层输入到输出层。
 </div><p>定义输出层时，<code>units</code> 参数指定输出的数量。因此，将 <code>units</code> 设置为 <code>params['n_classes']</code>，该模型会为每个类生成一个输出值。输出向量的每个元素都将包含得分或 logit，为关联的 Iris 类计算：Setosa、Versicolor 或 Virginica。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/nn/softmax"><code>tf.nn.softmax</code></a></p>
-<h2>实现训练、评估、预测 {#modes}</h2>
+<h2 id="toc-9">实现训练、评估、预测 {#modes}</h2>
 <p>创建函数模型的最后一步是编写分支代码实现预测、评估和训练。</p>
 <p>当有人调用 Estimator 的 <code>train</code> 时，模型函数就会调用 <code>evaluate</code> 或者 <code>predict</code> 方法。就像这样回调模型的签名函数：</p>
 <pre><code class="lang-python">def my_model_fn(
@@ -226,7 +226,7 @@ classifier.train(input_fn=lambda: my_input_fn(FILE_TRAIN, True, 500))
 </code></pre>
 <p>Estimator 框架调用您的函数模型，模式设置为 <code>ModeKeys.TRAIN</code>。</p>
 <p>您的函数模型必须提供处理所有三个模式值的代码。对于每个模式值，您的代码必须返回 <code>tf.estimator.EstimatorSpec</code>，包含调用者的请求信息。让我们检查每一种模式。</p>
-<h3>预测</h3>
+<h3 id="toc-10">预测</h3>
 <p>当 Estimator 的 <code>predict</code> 方法被调用时，<code>model_fn</code> 会接收到 <code>mode = ModeKeys.PREDICT</code>。在这种情况下，函数模型必须返回一个包含预测的 <code>tf.estimator.EstimatorSpec</code>。</p>
 <p>在进行预测之前，模型必须经过训练。经过训练的模型存储在实例化 Estimator 时建立的 <code>model_dir</code> 目录中的磁盘上</p>
 <p>为此模型生成预测的代码如下所示：</p>
@@ -252,14 +252,14 @@ if mode == tf.estimator.ModeKeys.PREDICT:
 <li>  <code>logit</code> 保存原始 logit 值 (在本例中 -1.3、2.6 和 -0.9)。</li>
 </ul>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/predict"><code>tf.estimator.Estimator.predict</code></a></p>
-<h3>计算损失</h3>
+<h3 id="toc-11">计算损失</h3>
 <p>对于 <a href="#训练">training</a> 和 <a href="#评估">evaluation</a> 我们都需要计算模型的损失。这是将要被优化的<a href="https://developers.google.com/machine-learning/glossary/#objective">目标</a>。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/losses/sparse_softmax_cross_entropy"><code>tf.losses.sparse_softmax_cross_entropy</code></a></p>
 <p>此函数返回整个批处理的平均值。</p>
 <pre><code class="lang-python"># 损失计算。
 loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
 </code></pre>
-<h3>评估</h3>
+<h3 id="toc-12">评估</h3>
 <p>当 Estimator 的 <code>evaluate</code> 方法被调用时，<code>model_fn</code> 接收到 <code>mode = ModeKeys.EVAL</code>。在这种情况下，模型函数必须返回一 <code>tf.estimator.EstimatorSpec</code> 包含模型损失和可选的一个或者更多的指标。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/metrics/accuracy"><code>tf.metrics.accuracy</code></a></p>
 <pre><code class="lang-python">#  metrics 指标计算。
@@ -281,7 +281,7 @@ if mode == tf.estimator.ModeKeys.EVAL:
         mode, loss=loss, eval_metric_ops=metrics)
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/summary/scalar"><code>tf.summary.scalar</code></a></p>
-<h3>训练</h3>
+<h3 id="toc-13">训练</h3>
 <p>当调用 Estimator 的 <code>train</code> 方法时，使用 <code>mode = ModeKeys.TRAIN</code> 调用 <code>model_fn</code>。在这种情况下，模型函数必须返回包含损失和培训操作的 <code>EstimatorSpec</code> 。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/tra/AdagradOptimizer"><code>tf.tra.AdagradOptimizer</code></a></p>
 <p>以下是构建优化器的代码：</p>
@@ -301,7 +301,7 @@ if mode == tf.estimator.ModeKeys.EVAL:
 <pre><code class="lang-python">return tf.estimator.EstimatorSpec(mode, loss=loss, train_op=train_op)
 </code></pre>
 <p>模型功能现在已经完成了。</p>
-<h2>定制化 Estimator</h2>
+<h2 id="toc-14">定制化 Estimator</h2>
 <p>通过 Estimator 基类指定定制化 Estimator，如下所示：</p>
 <pre><code class="lang-python">    # 用两个 10 单元建立 2 个隐藏层的 DNN。
     classifier = tf.estimator.Estimator(
@@ -321,7 +321,7 @@ classifier.train(
     input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
     steps=args.train_steps)
 </code></pre>
-<h2>TensorBoard</h2>
+<h2 id="toc-15">TensorBoard</h2>
 <p>您可以在 TensorBoard 中查看定制化 Estimator 的训练结果。查看此报告，请从命令行启动 TensorBoard，如下所示：</p>
 <pre><code class="lang-bsh"># 将 PATH 替换为以 model_dir 形式传递的实际路径
 tensorboard --logdir=PATH
@@ -372,7 +372,7 @@ TensorBoard 显示三个图形。
 </div>
 <div style="text-align: center">
 启用或暂停报告。
-</div><h2>总结</h2>
+</div><h2 id="toc-16">总结</h2>
 <p>尽管预制 Estimator 是快速创建新模型的高效方式，通常您需要提供定制化 Estimator 额外的灵活性。幸运的是，预制和定制化遵循相同的编程模型。唯一的实际区别是您必须写一个模型用于自定义 Estimators 的函数，其他的所有内容都是相同的。</p>
 <p>了解更多细节，请务必查看：</p>
 <ul>
@@ -386,6 +386,23 @@ TensorBoard 显示三个图形。
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">创建定制化 Estimator</a><ul>
+<li><a href="#toc-1">预制 vs. 定制化</a></li>
+<li><a href="#toc-2">写一个输入函数</a></li>
+<li><a href="#toc-3">创建功能列</a></li>
+<li><a href="#toc-4">写一个模型函数</a></li>
+<li><a href="#toc-5">定义模型</a></li>
+<li><a href="#toc-9">实现训练、评估、预测 {#modes}</a></li>
+<li><a href="#toc-14">定制化 Estimator</a></li>
+<li><a href="#toc-15">TensorBoard</a></li>
+<li><a href="#toc-16">总结</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

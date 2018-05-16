@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,13 +53,13 @@
 <script>
     var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'title': '开始'}, {'type': 'parent', 'title': ' Beginners', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/eager.html', 'title': '开始使用 Eager Execution'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'parent', 'title': ' Estimators', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/get_started/get_started_for_beginners.html', 'title': 'Graph Execution 入门'}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/premade_estimators.html', 'title': 'Premade Estimators'}]}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/checkpoints.html', 'title': '检查点'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/feature_columns.html', 'title': '特征列'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/datasets_quickstart.html', 'title': '数据集：快速了解'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html', 'title': '创建定制化 Estimator'}]
 </script>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>特征列</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">特征列</h1>
 <p>本篇文档将详细介绍特征列。<strong>特征列</strong>可以视为原始数据和 Estimator 间的中介。特征列非常丰富，可以让你将各种不同的原始数据转化为 Estimator 可用的格式，从而轻松的进行实验。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column/numeric_column"><code>tf.feature_column.numeric_column</code></a></p>
 <p><img style="width:100%" src="https://www.tensorflow.org/images/feature_columns/feature_cloud.jpg"></p>
 <p>现实世界中，一些的特征（例如经度）是数字的，但是很多（特征）并不是（数字的）。</p>
-<h2>输入至深度神经网络</h2>
+<h2 id="toc-1">输入至深度神经网络</h2>
 <p>深度神经网络可以操作什么样的数据？答案当然是数字（例如，<code>tf.float32</code>）。毕竟，神经网络的每个神经元都会对权重和输入值进行乘法和加法操作。但是，现实中的输入数据经常包含非数字的（分类的）数据。例如，一个 <code>product_class</code> 特征就可能包含如下三个非数字的值：</p>
 <ul>
 <li>厨具</li>
@@ -73,7 +73,7 @@
 <li><code>1</code>: 运动产品存在</li>
 </ul>
 <p>所以，尽管原始数据可能是数字或者分类，机器学习模型都要以数字表示所有的特征。</p>
-<h2>特征列</h2>
+<h2 id="toc-2">特征列</h2>
 <p>如下图所示，您可以通过 Estimator（鸢尾花模型使用了 <code>DNNClassifier</code> ）的 <code>feature_columns</code> 参数指定模型的输入。特征列桥接输入数据（由 <code>input_fn</code> 返回的数据）和模型。</p>
 <p><img style="width:100%" src="https://www.tensorflow.org/images/feature_columns/inputs_to_model_bridge.jpg"></p>
 <p>特征列将原始数据和模型需要的数据桥接起来。</p>
@@ -81,7 +81,7 @@
 <p><img style="width:100%" src="https://www.tensorflow.org/images/feature_columns/some_constructors.jpg"></p>
 <p>特征列方法分为两个主类和一个混合类。</p>
 <p>下面让我们更具体的了解这几个方法。</p>
-<h3>数值列</h3>
+<h3 id="toc-3">数值列</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/feature_column/numeric_column"><code>tf.feature_column.numeric_column</code></a></p>
 <ul>
 <li><code>SepalLength</code>（萼片长度）</li>
@@ -304,7 +304,7 @@ est = tf.estimator.LinearRegressor(fc, ...)
 <p>但不足是，完整的网格只适用于有限词汇表的输入。与此相比，<code>crossed_column</code> 仅创建 <code>hash_bucket_size</code> 参数规定的数字，而不是创建上面所示这样可能会很大的输入表。特征列通过在输入元组上运行哈希函数，为每个索引分配一个样本，接下来用 <code>hash_bucket_size</code> 进行模运算。</p>
 <p>像我们前面讨论过的那样，运行哈希和模函数可以限制分类的数目，但是可能导致类别冲突；也就是，多个（纬度，经度）交叉特征将会最终属于同一个哈希桶。尽管如此，在实际应用中，采用特征交叉仍旧可以为模型的学习能力显著加分。</p>
 <p>有点违背直觉的是，当创建交叉特征的时候一般仍旧需要在模型中包括原始（未交叉）特征（如前面的代码片段所示）。独立的经度和纬度信息帮助模型在交叉特征出现哈希碰撞的时候区分不同样本。</p>
-<h2>指针和嵌入列</h2>
+<h2 id="toc-4">指针和嵌入列</h2>
 <p>指针列和嵌入列不直接作用于特征，它们将分类列作为输入值。</p>
 <p>使用指针列时，我们就是在告诉 TensorFlow 去做分类产品样本一样的事。也就是，<strong>指针列</strong>将每一个类别当作一个独热向量的元素，这个向量中与结果匹配的类是 1，其他都是 0。</p>
 <p><img style="width:100%" src="https://www.tensorflow.org/images/feature_columns/categorical_column_with_identity.jpg"></p>
@@ -352,7 +352,7 @@ embedding_column = tf.feature_column.embedding_column(
     dimension=dimension_of_embedding_vector)
 </code></pre>
 <p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/embedding.html">Embeddings</a></p>
-<h2>将特征列传递给 Estimator</h2>
+<h2 id="toc-5">将特征列传递给 Estimator</h2>
 <p>如下列表所示，并不是所有 Estimator 都允许 <code>feature_columns</code> 参数的所有类别：</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/LinearRegressor"><code>tf.estimator.LinearRegressor</code></a></li>
@@ -363,7 +363,7 @@ embedding_column = tf.feature_column.embedding_column(
 </ul>
 </li>
 </ul>
-<h2>其他知识源</h2>
+<h2 id="toc-6">其他知识源</h2>
 <p>更多特征列的实例，参见如下：</p>
 <ul>
 <li><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/low_level_intro.html#feature_columns">底层 API 编程介绍</a></li>
@@ -377,6 +377,19 @@ embedding_column = tf.feature_column.embedding_column(
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">特征列</a><ul>
+<li><a href="#toc-1">输入至深度神经网络</a></li>
+<li><a href="#toc-2">特征列</a></li>
+<li><a href="#toc-4">指针和嵌入列</a></li>
+<li><a href="#toc-5">将特征列传递给 Estimator</a></li>
+<li><a href="#toc-6">其他知识源</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

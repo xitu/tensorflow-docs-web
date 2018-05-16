@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,11 +46,11 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>Images</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">Images</h1>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/convert_to_tensor"><code>tf.convert_to_tensor</code></a></p>
 <p>[TOC]</p>
-<h2>Encoding and Decoding</h2>
+<h2 id="toc-1">Encoding and Decoding</h2>
 <p>TensorFlow provides Ops to decode and encode JPEG and PNG formats.  Encoded<br>
 images are represented by scalar string Tensors, decoded images by 3-D uint8<br>
 tensors of shape <code>[height, width, channels]</code>. (PNG also supports uint16.)</p>
@@ -69,7 +69,7 @@ to be stripped from the image and re-attached using slicing ops.</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/encode_png"><code>tf.image.encode_png</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/decode_image"><code>tf.image.decode_image</code></a></li>
 </ul>
-<h2>Resizing</h2>
+<h2 id="toc-2">Resizing</h2>
 <p>The resizing Ops accept input images as tensors of several types.  They always<br>
 output resized images as float32 tensors.</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images"><code>tf.image.resize_images</code></a></p>
@@ -86,7 +86,7 @@ resized_image = tf.image.resize_images(image, [299, 299])
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_bilinear"><code>tf.image.resize_bilinear</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_nearest_neighbor"><code>tf.image.resize_nearest_neighbor</code></a></li>
 </ul>
-<h2>Cropping</h2>
+<h2 id="toc-3">Cropping</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_image_with_crop_or_pad"><code>tf.image.resize_image_with_crop_or_pad</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/central_crop"><code>tf.image.central_crop</code></a></li>
@@ -95,7 +95,7 @@ resized_image = tf.image.resize_images(image, [299, 299])
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/extract_glimpse"><code>tf.image.extract_glimpse</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/crop_and_resize"><code>tf.image.crop_and_resize</code></a></li>
 </ul>
-<h2>Flipping, Rotating and Transposing</h2>
+<h2 id="toc-4">Flipping, Rotating and Transposing</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/flip_up_down"><code>tf.image.flip_up_down</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/random_flip_up_down"><code>tf.image.random_flip_up_down</code></a></li>
@@ -104,7 +104,7 @@ resized_image = tf.image.resize_images(image, [299, 299])
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/transpose_image"><code>tf.image.transpose_image</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/rot90"><code>tf.image.rot90</code></a></li>
 </ul>
-<h2>Converting Between Colorspaces</h2>
+<h2 id="toc-5">Converting Between Colorspaces</h2>
 <p>Image ops work either on individual images or on batches of images, depending on<br>
 the shape of their input Tensor.</p>
 <p>If 3-D, the shape is <code>[height, width, channels]</code>, and the Tensor represents one<br>
@@ -132,7 +132,7 @@ hsv_image = tf.image.rgb_to_hsv(rgb_image)
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/rgb_to_hsv"><code>tf.image.rgb_to_hsv</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/convert_image_dtype"><code>tf.image.convert_image_dtype</code></a></li>
 </ul>
-<h2>Image Adjustments</h2>
+<h2 id="toc-6">Image Adjustments</h2>
 <p>TensorFlow provides functions to adjust images in various ways: brightness,<br>
 contrast, hue, and saturation.  Each adjustment can be done with predefined<br>
 parameters or with random parameters picked from predefined intervals. Random<br>
@@ -152,18 +152,34 @@ type and representation (RGB or HSV).</p>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/random_saturation"><code>tf.image.random_saturation</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/per_image_standardization"><code>tf.image.per_image_standardization</code></a></li>
 </ul>
-<h2>Working with Bounding Boxes</h2>
+<h2 id="toc-7">Working with Bounding Boxes</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/draw_bounding_boxes"><code>tf.image.draw_bounding_boxes</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/non_max_suppression"><code>tf.image.non_max_suppression</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/sample_distorted_bounding_box"><code>tf.image.sample_distorted_bounding_box</code></a></li>
 </ul>
-<h2>Denoising</h2>
+<h2 id="toc-8">Denoising</h2>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/image/total_variation"><code>tf.image.total_variation</code></a></li>
 </ul>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">Images</a><ul>
+<li><a href="#toc-1">Encoding and Decoding</a></li>
+<li><a href="#toc-2">Resizing</a></li>
+<li><a href="#toc-3">Cropping</a></li>
+<li><a href="#toc-4">Flipping, Rotating and Transposing</a></li>
+<li><a href="#toc-5">Converting Between Colorspaces</a></li>
+<li><a href="#toc-6">Image Adjustments</a></li>
+<li><a href="#toc-7">Working with Bounding Boxes</a></li>
+<li><a href="#toc-8">Denoising</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

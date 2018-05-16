@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,10 +46,10 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>广播语义</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">广播语义</h1>
 <p>本文档描述 XLA 中的广播语义是如何工作的。</p>
-<h2>何为广播？</h2>
+<h2 id="toc-1">何为广播？</h2>
 <p>广播是使不同形状的数组具有用于算术运算的兼容形状的过程。这个术语来自于 Numpy <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">(广播)</a>。</p>
 <p>广播在一些操作中可能会用到，比如不同阶的多维数组之间的操作，或者在具有不同但兼容的形状的多维数组之间的操作。以加法 <code>X+v</code> 为例，这里 <code>X</code> 是一个矩阵（2 阶数组），<code>v</code> 是一个矢量（1 阶数组）。为执行逐个元素的加法，XLA 需要将矢量 <code>v</code> "广播" 为和 <code>X</code> 一样的秩，即将 <code>v</code> 复制多次。此矢量的长度必须至少与矩阵的某一维度相同。</p>
 <p>比如：</p>
@@ -61,10 +61,10 @@
 |4 5 6|   |7 8 9|   |11 13 15|
 </code></pre>
 <p>在 Numpy 中，这个过程被称为 <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">广播</a>。</p>
-<h2>广播的原则</h2>
+<h2 id="toc-2">广播的原则</h2>
 <p>XLA 语言尽可能严格和明确，避免了隐含的和“不可思议的”特性。这样的特性以牺牲用户代码中的更多假设（这种假设在长期内很难改变）为代价，可能会使一些计算变得稍微容易一些。如果有必要，可以在客户级包装器中添加隐式和不可思议的特性。</p>
 <p>在广播方面，需要对不同秩的数组之间的操作定义明确的广播规范。这与Numpy不同，它会在可能的情况下推断出规范。</p>
-<h2>将低阶数组广播为高阶数组</h2>
+<h2 id="toc-3">将低阶数组广播为高阶数组</h2>
 <p><strong>标量</strong>总是可以广播为数组，而无需显式地指定广播维度。因而，一个标量和一个数组之间的逐个元素的二元操作意味着对数组中的每个元素进行标量运算。比如，将一个标量加到一个矩阵上，相当于产生一个矩阵，其每个元素是原矩阵相应元素加上该标量。</p>
 <pre><code>|1 2 3| + 7 = |8  9  10|
 |4 5 6|       |11 12 13|
@@ -89,7 +89,7 @@
 </blockquote>
 <p>广播维度可以是一个元组，用于描述秩更小的形状如何广播为一个更大秩的形状。比如，给定一个 2x3x4 的方阵和一个 3x4 矩阵，广播元组 (1,2) 表示让矩阵的维度匹配到方阵的第 1 维和第 2 维。</p>
 <p>这种广播类型用于 <code>ComputationBuilder</code> 中的二元操作，使用时需要指定 <code>broadcast_dimensions</code> 参数。比如，参见源码 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.cc">ComputationBuilder::Add</a>。在 XLA 源码中，这种广播类型有时候称为 "InDim" 广播。</p>
-<h3>正式定义</h3>
+<h3 id="toc-4">正式定义</h3>
 <p>广播属性允许低阶数组匹配高阶数组，即指定高阶数组中的哪些维度用于匹配。比如，对于维度为 MxNxPxQ 的数组，维度为 T 的矢量可以按下列方式匹配：</p>
 <pre><code>         MxNxPxQ
 
@@ -107,7 +107,7 @@
 等等
 </code></pre>
 <p>广播元组中的维度的顺序必须与低阶数组保持一致。元组中的第一个元素指的是高阶数组中的那个维度必须与低阶数组的第 0 维匹配；第二个元素匹配第 1 维，依此类推。广播维度还必须是严格递增的。比如，在前面的示例中，不允许让 V 匹配 N 且让 T 匹配 P；让 V 同时匹配 P 和 N 同样是非法的。</p>
-<h2>广播具有退化维度的秩相似的数组</h2>
+<h2 id="toc-5">广播具有退化维度的秩相似的数组</h2>
 <p>一个常见的广播问题是广播两个具有相同的秩但是不同的维度大小的数组。类似于 Numpy 的规则，只有在两个数组<strong>兼容</strong>的条件下这种广播才有可能。两个数组的所有维度兼容时，它们才是兼容的。两个维度兼容的条件是：</p>
 <ul>
 <li>它们相等，或</li>
@@ -122,7 +122,7 @@
 <li>(7,2,5) 和 (7,2,6) 不相容，无法广播</li>
 </ol>
 <p>其中有一种特例，即每个输入数组都在一个不同的维度上具有退化的维度。这时，结果为它们的"外部操作"：(2,1) 和 (1,3) 广播为 (2,3)。更多示例，参考 <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">Numpy 关于广播的文档</a>。</p>
-<h2>广播组成</h2>
+<h2 id="toc-6">广播组成</h2>
 <p>一个低阶数组到高阶数组的广播和退化维度的广播可用于同一个二元操作上。比如，大小为 4 的矢量和大小为 1x2 的矩阵可以用广播维度 (0) 来实现相加：</p>
 <pre><code>|1 2 3 4| + [5 6]    // [5 6] 是一个 1x2 矩阵，不是矢量
 </code></pre>
@@ -141,6 +141,19 @@
 <p>更复杂的一个例子是将一个大小为 1x2 的矩阵加到一个大小为 4x3x1 的数组上，广播维度为 (1,2)。首先，1x2 矩阵通过广播维度变为 3 阶方阵，这是一个大小为 Mx1x2 的中间结果，其中 M 由更大的那个操作数（这里是 4x3x1 的数组）的大小决定，因而得到 4x1x2 的中间数组。M 在零维上（最左边的维度），是因为 1 维和 2 维都被映射到了原来的 1x2 的矩阵上。这个中间数组可以通过退化维度广播来加到 4x3x1 矩阵上，最后产生一个 4x3x2 数组。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">广播语义</a><ul>
+<li><a href="#toc-1">何为广播？</a></li>
+<li><a href="#toc-2">广播的原则</a></li>
+<li><a href="#toc-3">将低阶数组广播为高阶数组</a></li>
+<li><a href="#toc-5">广播具有退化维度的秩相似的数组</a></li>
+<li><a href="#toc-6">广播组成</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->

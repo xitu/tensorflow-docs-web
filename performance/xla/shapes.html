@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': 'About TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -46,12 +46,12 @@
 <div class="container-fluid">
     <div class="row">
         
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h1>形状和布局</h1>
+        <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <h1 id="toc-0">形状和布局</h1>
 <p>XLA 的 <code>Shape</code> 协议（proto）<br>
 (<a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/xla_data.proto">xla_data.proto</a>)<br>
 描述了一个 N 维数组（简称<em>数组</em>）的秩、尺寸和数据类型。</p>
-<h2>术语、符号和约定</h2>
+<h2 id="toc-1">术语、符号和约定</h2>
 <ul>
 <li><p>数组的秩等于维数。数组的<em>真秩</em>是大小大于 1 的维数。</p>
 </li>
@@ -86,7 +86,7 @@
   <code>[A, B, C, D]</code>.</p>
 </li>
 </ul>
-<h2>布局</h2>
+<h2 id="toc-2">布局</h2>
 <p><code>Layout</code>（布局）协议描述了如何在内存中表示一个数组。这个 <code>Layout</code> 协议包含如下字段：</p>
 <pre><code>message Layout {
   repeated int64 minor_to_major = 1;
@@ -94,7 +94,7 @@
   optional PaddingValue padding_value = 3;
 }
 </code></pre>
-<h3>维度的主次排序</h3>
+<h3 id="toc-3">维度的主次排序</h3>
 <p><code>minor_to_major</code> 是唯一的必填字段。它描述了形状内维度的主次排序。<code>minor_to_major</code> 中的值是数组（对于 <code>N</code> 维数组，取值为 <code>0</code> 到 <code>N-1</code>）维度的排序，第一个值是维度中最次要的维度，依次排列，最后一个值为最主要的维度。最次要的维度指的是在数组的线性内存中移动时变化最快的那个维度。</p>
 <p>比如，考虑如下二维数组，其尺寸为 <code>[2 x 3]</code>：</p>
 <pre><code>a b c
@@ -109,9 +109,9 @@ d e f
 <pre><code>a b c d e f
 </code></pre>
 <p>对于 <code>N</code> 维数组，<code>N-1</code> 依次减小为 <code>0</code> 的主次排序类似域二维矩阵的<em>行主序</em>。假设维度的主次顺序是单调的，这种布局的另一种叫法是“0 维是最主序”。</p>
-<h4>默认主次排序</h4>
+<h4 id="toc-4">默认主次排序</h4>
 <p>新创建的形状的默认主次排序是“维度顺序是主到次”，类似于二维矩阵的行主序。</p>
-<h3>填充</h3>
+<h3 id="toc-5">填充</h3>
 <p>填充是在可选的 <code>padded_dimensions</code> 和 <code>padding_value</code> 字段中定义的。字段 <code>padded_dimensions</code> 描述了每个维度边缘填充的大小（宽度）。如果指定了这个字段，<code>padded_dimensions</code> 中的元素个数必须等于形状的秩。</p>
 <p>以前面定义的 <code>[2 x 3]</code> 数组为例，如果 <code>padded_dimension</code> 为 <code>[3, 5]</code>，则 0 维边缘填充的宽度为 3，而 1 维是 5 。其线性内存布局为（假设填充值为 0，且为列主序）：</p>
 <pre><code>a d 0 b e 0 c f 0 0 0 0 0 0 0
@@ -121,10 +121,20 @@ d e f
 d e f 0 0
 0 0 0 0 0
 </code></pre>
-<h3>数组的索引</h3>
+<h3 id="toc-6">数组的索引</h3>
 <p><code>IndexUtil</code> 类定义在 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/index_util.h">index_util.h</a> 文件中，它提供了一些在给定形状和布局的情况下多维索引和线性索引之间的转换工具。多维索引为每个维度指定了一个 <code>int64</code> 索引。线性索引只不过是单个 <code>int64</code> 的值，它是数组线性缓存的索引。想要了解更多关于简化形状和布局的创建和操作的工具，参见 <code>shape_util.h</code> 和 <code>layout_util.h</code> 这两个文件，它们在同一个源码目录下。</p>
 
         </main>
+        <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <ul id="table-of-content">
+<li><a href="#toc-0">形状和布局</a><ul>
+<li><a href="#toc-1">术语、符号和约定</a></li>
+<li><a href="#toc-2">布局</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
     </div>
 </div>
 <!-- Content end-->
