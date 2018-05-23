@@ -6,7 +6,7 @@
 
 英文文档：[@0bce986](https://github.com/xitu/tensorflow-docs/tree/master)
 
-生成器：[@482f146](https://github.com/lsvih/tf-zh-docs-web/)
+生成器：[@0012046](https://github.com/lsvih/tf-zh-docs-web/)
 
 TODO：
 
@@ -15,7 +15,7 @@ TODO：
 - [ ] 修复图像链接
 - [x] 更新样式与配色
 - [x] 更新 Markdown 渲染引擎，支持 TOC
-- [ ] 搜索功能
+- [x] 搜索功能
 - [ ] 分享功能
 
 
