@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>单词的向量表示</title>
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 </head>
 <body>
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">TensorFlow</a>
+    <a class="navbar-brand" href="//tensorflow.juejin.im">TensorFlow</a>
     <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
             onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//tensorflow.juejin.im/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//tensorflow.juejin.im/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//tensorflow.juejin.im/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//tensorflow.juejin.im/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//tensorflow.juejin.im/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//tensorflow.juejin.im/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//tensorflow.juejin.im/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//tensorflow.juejin.im/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//tensorflow.juejin.im/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,7 +51,7 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
+    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//tensorflow.juejin.im/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//tensorflow.juejin.im/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//tensorflow.juejin.im/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//tensorflow.juejin.im/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//tensorflow.juejin.im/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//tensorflow.juejin.im/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//tensorflow.juejin.im/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//tensorflow.juejin.im/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//tensorflow.juejin.im/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//tensorflow.juejin.im/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
             <h1 id="toc-0">单词的向量表示</h1>
@@ -176,8 +176,8 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=1.0).minimize(loss)
 <p>超参数的选择会显著的影响到任务的准确性。为了达到这个任务当前水平的的表现，我们需要使用一个很大的数据集来训练，并且精细的调优这些超参数以及利用像二次抽象这样的小技巧，不过二次抽样不在我们的教程范围内。</p>
 <h2 id="toc-9">优化实现</h2>
 <p>我们朴实无华的实现展现了 TensorFlow 的灵活性。例如，如果我们想改变训练的目标，仅仅通过调用 <code>tf.nn.nce_loss()</code> 就可以使用一个现成的像 <code>tf.nn.sampled_softmax_loss()</code> 这样的函数。如果你对损失函数有一些新的想法，那么你可以在 TensorFlow 中手动写一个新的目标函数，并且让优化器计算它的导数。在机器学习模型开发的探索阶段灵活性是非常重要的，因为这样我们才可以快速迭代以及实验不同的想法。</p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/extend/new_data_formats.html">读取自定义文件和记录格式</a></p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/extend/adding_an_op.html">添加一个新操作（Op）</a></p>
+<p><a href="//tensorflow.juejin.im/extend/new_data_formats.html">读取自定义文件和记录格式</a></p>
+<p><a href="//tensorflow.juejin.im/extend/adding_an_op.html">添加一个新操作（Op）</a></p>
 <h2 id="toc-10">总结</h2>
 <p>本篇教程中，我们讲解了 word2vec 模型，一个学习词向量计算高效的模型。我们解释了为什么词向量是有用的，讨论了高效训练的技术，同时也展示了如何在 TensorFlow 中实现这些功能。总的来说，我们希望已经展示了 TensorFlow 是如何给你们提供早期的实验阶段你们需要的灵活性，以及后续你们对定制化优化实现的管理需求。</p>
 
@@ -214,7 +214,7 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=1.0).minimize(loss)
                     src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
             <a href="https://github.com/xitu/tensorflow-docs"><img
                     src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
-            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+            <a href="https://juejin.im"><img src="//tensorflow.juejin.im/assets/imgs/logo_app_white.png" height="20"/></a>
         </div>
     </div>
 </footer>
@@ -225,5 +225,5 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=1.0).minimize(loss)
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
-<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+<script src="//tensorflow.juejin.im/assets/js/main.js" type="text/javascript"></script>
 </html>

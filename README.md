@@ -6,7 +6,7 @@
 
 英文文档：[@0bce986](https://github.com/xitu/tensorflow-docs/tree/master)
 
-生成器：[@dcb0d91](https://github.com/lsvih/tf-zh-docs-web/)
+生成器：[@482f146](https://github.com/lsvih/tf-zh-docs-web/)
 
 TODO：
 

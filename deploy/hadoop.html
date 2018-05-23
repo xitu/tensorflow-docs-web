@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>如何在 Hadoop 上运行 Tensorflow</title>
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 </head>
 <body>
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">TensorFlow</a>
+    <a class="navbar-brand" href="//tensorflow.juejin.im">TensorFlow</a>
     <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
             onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//tensorflow.juejin.im/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//tensorflow.juejin.im/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/deploy/index.html', 'name': '部署', 'selected': 1}, {'link': '//tensorflow.juejin.im/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//tensorflow.juejin.im/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//tensorflow.juejin.im/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//tensorflow.juejin.im/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//tensorflow.juejin.im/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//tensorflow.juejin.im/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//tensorflow.juejin.im/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,13 +51,13 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'title': '部署'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/distributed.html', 'title': '分布式 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/hadoop.html', 'title': '如何在 Hadoop 上运行 Tensorflow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/s3.html', 'title': '如何在 S3 上运行 TensorFlow'}, {'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/deploy/deploy_to_js.html', 'title': '部署 JavaScript'}]
+    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/deploy/index.html', 'title': '部署'}, {'type': 'child', 'link': '//tensorflow.juejin.im/deploy/distributed.html', 'title': '分布式 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/deploy/hadoop.html', 'title': '如何在 Hadoop 上运行 Tensorflow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/deploy/s3.html', 'title': '如何在 S3 上运行 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/deploy/deploy_to_js.html', 'title': '部署 JavaScript'}]
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
             <h1 id="toc-0">如何在 Hadoop 上运行 Tensorflow</h1>
 <p>本文主要内容是如何在 Hadoop 上运行 Tensorflow。本文目前只写了 Tensorflow 在 Hadoop 分布式文件系统（HDFS）上如何运行，将来会扩充到在各种集群管理器上如何运行。</p>
 <h2 id="toc-1">HDFS</h2>
-<p><a href="//xitu.github.io/tensorflow-docs-web/api_guides/python/reading_data.html">Reading data</a></p>
+<p><a href="//tensorflow.juejin.im/api_guides/python/reading_data.html">Reading data</a></p>
 <p>为了在 HDFS 上使用 Tensorflow，需要将读写数据的文件路径改为 HDFS 路径。例如：</p>
 <pre><code class="lang-python">filename_queue = tf.train.string_input_producer([
     &quot;hdfs://namenode:8020/path/to/file1.csv&quot;,
@@ -89,7 +89,7 @@
 </code></pre>
 </li>
 </ul>
-<p><a href="//xitu.github.io/tensorflow-docs-web/./deploy/distributed.html">分布式 TensorFlow</a></p>
+<p><a href="//tensorflow.juejin.im/deploy/distributed.html">分布式 TensorFlow</a></p>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
@@ -115,7 +115,7 @@
                     src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
             <a href="https://github.com/xitu/tensorflow-docs"><img
                     src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
-            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+            <a href="https://juejin.im"><img src="//tensorflow.juejin.im/assets/imgs/logo_app_white.png" height="20"/></a>
         </div>
     </div>
 </footer>
@@ -126,5 +126,5 @@
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
-<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+<script src="//tensorflow.juejin.im/assets/js/main.js" type="text/javascript"></script>
 </html>

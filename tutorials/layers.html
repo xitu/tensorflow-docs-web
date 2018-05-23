@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>TF Layers 教程：构建卷积神经网络</title>
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 </head>
 <body>
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">TensorFlow</a>
+    <a class="navbar-brand" href="//tensorflow.juejin.im">TensorFlow</a>
     <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
             onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//tensorflow.juejin.im/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//tensorflow.juejin.im/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//tensorflow.juejin.im/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//tensorflow.juejin.im/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//tensorflow.juejin.im/tutorials/index.html', 'name': '教程', 'selected': 1}, {'link': '//tensorflow.juejin.im/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//tensorflow.juejin.im/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//tensorflow.juejin.im/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//tensorflow.juejin.im/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,7 +51,7 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//xitu.github.io/tensorflow-docs-web/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
+    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/tutorials/index.html', 'title': '教程'}, {'type': 'parent', 'title': ' 图像', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/layers.html', 'title': 'TF Layers 教程：构建卷积神经网络'}, {'link': '//tensorflow.juejin.im/tutorials/image_recognition.html', 'title': '图像识别'}, {'link': '//tensorflow.juejin.im/tutorials/image_retraining.html', 'title': '重新训练 Inception 最后一层并识别新的分类'}, {'link': '//tensorflow.juejin.im/tutorials/deep_cnn.html', 'title': '卷积神经网络'}]}, {'type': 'parent', 'title': ' 序列', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/recurrent.html', 'title': '循环神经网络'}, {'link': '//tensorflow.juejin.im/tutorials/seq2seq.html', 'title': '序列到序列模型'}, {'link': '//tensorflow.juejin.im/tutorials/recurrent_quickdraw.html', 'title': '对涂鸦进行分类的循环神经网络'}, {'link': '//tensorflow.juejin.im/tutorials/audio_recognition.html', 'title': '简易语音识别'}]}, {'type': 'parent', 'title': ' 数据表示', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/wide.html', 'title': 'TensorFlow 线性模型'}, {'link': '//tensorflow.juejin.im/tutorials/wide_and_deep.html', 'title': 'TensorFlow 宽深学习'}, {'link': '//tensorflow.juejin.im/tutorials/word2vec.html', 'title': '单词的向量表示'}, {'link': '//tensorflow.juejin.im/tutorials/kernel_methods.html', 'title': '使用特定的核方法改善线性模型'}]}, {'type': 'parent', 'title': ' 非机器学习', 'sub_class': [{'link': '//tensorflow.juejin.im/tutorials/mandelbrot.html', 'title': '曼德布洛特集合'}, {'link': '//tensorflow.juejin.im/tutorials/pdes.html', 'title': '偏微分方程组'}]}]
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
             <h1 id="toc-0">TF Layers 教程：构建卷积神经网络</h1>
@@ -169,7 +169,7 @@ if __name__ == &quot;__main__&quot;:
   return tf.estimator.EstimatorSpec(
       mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 </code></pre>
-<p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
+<p><a href="//tensorflow.juejin.im/get_started/custom_estimators.html">创建定制化 Estimator</a></p>
 <h3 id="toc-4">输入层</h3>
 <p>在 <code>layer</code> 模块中，用于二维图像数据的卷积层和池化层期望输入的张量维度默认为<code>[batch_size, image_height, image_width, channels]</code>。可以通过修改 <code>data_format</code> 的参数改变这种行为，定义如下：</p>
 <ul>
@@ -303,7 +303,7 @@ loss = tf.losses.softmax_cross_entropy(
       global_step=tf.train.get_global_step())
   return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 </code></pre>
-<blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/get_started/custom_estimators.html#defining_the_training_op_for_the_model">创建定制化 Estimator</a></p>
+<blockquote><p><a href="//tensorflow.juejin.im/get_started/custom_estimators.html#defining_the_training_op_for_the_model">创建定制化 Estimator</a></p>
 </blockquote>
 <h3 id="toc-13">添加评价指标</h3>
 <p>通过在 EVAL 模式中定义 <code>eval_metric_ops</code> 字典，我们可以给模型添加准确度评价指标：</p>
@@ -343,7 +343,7 @@ mnist_classifier = tf.estimator.Estimator(
       tensors=tensors_to_log, every_n_iter=50)
 </code></pre>
 <p>我们可以用字典储存想要打印的张量 <code>tensors_to_log</code>。每个键值只不过是用于日志输出的一个别名，它的值则是 TensorFlow 计算图中的某个张量的名称。这里的的 <code>softmax_tensor</code> 是前面 <code>cnn_model_fn</code> 中创建的一个用于生成概率的张量的名称，而 <code>probabilities</code> 是这里给它取的别名。</p>
-<blockquote><p><a href="//xitu.github.io/tensorflow-docs-web/programmers_guide/debugger.html">TensorFlow 调试器</a></p>
+<blockquote><p><a href="//tensorflow.juejin.im/programmers_guide/debugger.html">TensorFlow 调试器</a></p>
 </blockquote>
 <p>接下来，通过给 <code>tensors</code> 参数传递 <code>tensor_to_log</code> 变量来创建 <code>LoggingTensorHook</code> 对象，并且设置 <code>every_n_iter</code> 的值为 50，每训练 50 步后在日志中输出概率。</p>
 <h3 id="toc-18">训练模型</h3>
@@ -397,7 +397,7 @@ INFO:tensorflow:Saving evaluation summary for step 20000: accuracy = 0.9733, los
 <p>如果你想了解更多有关于 TensorFlow 中评估器（Estimators）和 CNNs 的内容，请查阅下面的资料：</p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/"><code></code></a></li>
-<li><a href="//xitu.github.io/tensorflow-docs-web/./tutorials/deep_cnn.html">卷积神经网络</a></li>
+<li><a href="//tensorflow.juejin.im/tutorials/deep_cnn.html">卷积神经网络</a></li>
 </ul>
 
         </main>
@@ -428,7 +428,7 @@ INFO:tensorflow:Saving evaluation summary for step 20000: accuracy = 0.9733, los
                     src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
             <a href="https://github.com/xitu/tensorflow-docs"><img
                     src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
-            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+            <a href="https://juejin.im"><img src="//tensorflow.juejin.im/assets/imgs/logo_app_white.png" height="20"/></a>
         </div>
     </div>
 </footer>
@@ -439,5 +439,5 @@ INFO:tensorflow:Saving evaluation summary for step 20000: accuracy = 0.9733, los
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
-<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+<script src="//tensorflow.juejin.im/assets/js/main.js" type="text/javascript"></script>
 </html>

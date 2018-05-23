@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Developer Guide</title>
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//xitu.github.io/tensorflow-docs-web/assets/css/main.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//tensorflow.juejin.im/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 </head>
 <body>
 <!-- Header start -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">TensorFlow</a>
+    <a class="navbar-brand" href="//tensorflow.juejin.im">TensorFlow</a>
     <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Menu"
             onclick="$('.collapse').toggle()">
         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
     </div>
 </nav>
 <script>
-    var head = [{'link': '//xitu.github.io/tensorflow-docs-web/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//xitu.github.io/tensorflow-docs-web/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
+    var head = [{'link': '//tensorflow.juejin.im/extend/index.html', 'name': '扩展', 'selected': 0}, {'link': '//tensorflow.juejin.im/install/index.html', 'name': '安装 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/deploy/index.html', 'name': '部署', 'selected': 0}, {'link': '//tensorflow.juejin.im/about/index.html', 'name': '关于 TensorFlow', 'selected': 0}, {'link': '//tensorflow.juejin.im/get_started/index.html', 'name': '开始', 'selected': 0}, {'link': '//tensorflow.juejin.im/mobile/index.html', 'name': '概述', 'selected': 0}, {'link': '//tensorflow.juejin.im/tutorials/index.html', 'name': '教程', 'selected': 0}, {'link': '//tensorflow.juejin.im/javascript/index.html', 'name': 'JavaScript', 'selected': 0}, {'link': '//tensorflow.juejin.im/performance/index.html', 'name': '性能', 'selected': 0}, {'link': '//tensorflow.juejin.im/community/index.html', 'name': '社区', 'selected': 0}, {'link': '//tensorflow.juejin.im/programmers_guide/index.html', 'name': '开发者指南', 'selected': 0}]
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -95,7 +95,7 @@ using the value retrieved from the CheckPoint.</li>
   --output_arrays=MobilenetV1/Predictions/Reshape_1 \
   --input_shapes=1,224,224,3
 </code></pre>
-<p><a href="//xitu.github.io/tensorflow-docs-web/performance/quantization.html">Fixed Point Quantization</a></p>
+<p><a href="//tensorflow.juejin.im/performance/quantization.html">Fixed Point Quantization</a></p>
 <p>It is also possible to use the Tensorflow Optimizing Converter with protobufs from either Python or from the command line (see the  <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco/python/toco_from_protos.py">toco_from_protos.py</a> example). This allows you to integrate the conversion step into the model design workflow, ensuring the model is easily convertible to a mobile inference graph. For example:</p>
 <pre><code class="lang-python">import tensorflow as tf
 
@@ -117,10 +117,10 @@ with tf.Session() as sess:
 <p>After completing the prior steps, you should now have a <code>.tflite</code> model file.</p>
 <h3 id="toc-8">Android</h3>
 <p>Since Android apps are written in Java and the core TensorFlow library is in C++, a JNI library is provided as an interface. This is only meant for inference—it provides the ability to load a graph, set up inputs, and run the model to calculate outputs.</p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_android.html">Android 示例应用</a></p>
-<p><a href="//xitu.github.io/tensorflow-docs-web/mobile/android_build.html">在安卓上构建 TensorFlow</a></p>
+<p><a href="//tensorflow.juejin.im/mobile/tflite/demo_android.html">Android 示例应用</a></p>
+<p><a href="//tensorflow.juejin.im/mobile/android_build.html">在安卓上构建 TensorFlow</a></p>
 <h3 id="toc-9">iOS</h3>
-<p><a href="//xitu.github.io/tensorflow-docs-web/mobile/tflite/demo_ios.html">iOS 演示 APP</a></p>
+<p><a href="//tensorflow.juejin.im/mobile/tflite/demo_ios.html">iOS 演示 APP</a></p>
 <h4 id="toc-10">Core ML support</h4>
 <p>Core ML is a machine learning framework used in Apple products. In addition to using Tensorflow Lite models directly in your applications, you can convert trained Tensorflow models to the <a href="https://developer.apple.com/machine-learning/">CoreML</a> format for use on Apple devices. To use the converter, refer to the <a href="https://github.com/tf-coreml/tf-coreml">Tensorflow-CoreML converter documentation</a>.</p>
 <h3 id="toc-11">Raspberry Pi</h3>
@@ -152,7 +152,7 @@ with tf.Session() as sess:
                     src="https://www.tensorflow.org/_static/b1fb9a8564/images/tensorflow/lockup.png" height="20"/></a>
             <a href="https://github.com/xitu/tensorflow-docs"><img
                     src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" height="20"></a>
-            <a href="https://juejin.im"><img src="//xitu.github.io/tensorflow-docs-web/assets/imgs/logo_app_white.png" height="20"/></a>
+            <a href="https://juejin.im"><img src="//tensorflow.juejin.im/assets/imgs/logo_app_white.png" height="20"/></a>
         </div>
     </div>
 </footer>
@@ -163,5 +163,5 @@ with tf.Session() as sess:
 </body>
 <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js" type="text/javascript"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" type="text/javascript"></script>
-<script src="//xitu.github.io/tensorflow-docs-web/assets/js/main.js" type="text/javascript"></script>
+<script src="//tensorflow.juejin.im/assets/js/main.js" type="text/javascript"></script>
 </html>
