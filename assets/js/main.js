@@ -1,8 +1,8 @@
 $(document).ready(() => {
     $('pre code').each((i, block) => {
-        try{
+        try {
             hljs.highlightBlock(block);
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
     });
@@ -30,6 +30,7 @@ $(document).ready(() => {
             e.outerHTML = `<div class="table-wrapper">${e.outerHTML}</div>`
         }
     })
+    new needShareButton($('#share-button')[0])
 });
 
 docsearch({
