@@ -1,12 +1,12 @@
 # The website of TensorFlow Docs-zh
 
-预览：[https://xitu.github.io/tensorflow-docs-web/](https://xitu.github.io/tensorflow-docs-web/)
+预览：[https://tensorflow.juejin.im/](https://tensorflow.juejin.im/)
 
 中文文档：[@c6a929d](https://github.com/xitu/tensorflow-docs/)
 
 英文文档：[@0bce986](https://github.com/xitu/tensorflow-docs/tree/master)
 
-生成器：[@0012046](https://github.com/lsvih/tf-zh-docs-web/)
+生成器：[@6067f0a](https://github.com/lsvih/tf-zh-docs-web/)
 
 TODO：
 

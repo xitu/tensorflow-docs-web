@@ -1,9 +1,13 @@
 $(document).ready(() => {
     $('pre code').each((i, block) => {
-        hljs.highlightBlock(block);
+        try{
+            hljs.highlightBlock(block);
+        }catch(e){
+            console.log(e)
+        }
     });
     // 如果 nav 数据存在则渲染左侧菜单
-    if (nav) {
+    if (!!window.nav) {
         nav.forEach((e, i) => {
             if (e.type === "child") {
                 $("#left-nav").html($("#left-nav").html() + firstClassChildNav(e.title, e.link))
