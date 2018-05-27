@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>TensorFlow Style Guide</title>
+    <title>TensorFlow 代码风格指南</title>
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/highlight.js.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/needsharebutton.min.css">
@@ -51,23 +51,19 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/documentation.html', 'title': '编写 TensorFlow 文档'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/swift.html', 'title': 'Swift Community'}]
+    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/roadmap.html', 'title': '路线图'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/lists.html', 'title': '关于邮件组'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/documentation.html', 'title': '编写 TensorFlow 文档'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/style_guide.html', 'title': 'TensorFlow 代码风格指南'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/swift.html', 'title': 'Swift 社区'}]
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-            <h1 id="toc-0">TensorFlow Style Guide</h1>
-<p>This page contains style decisions that both developers and users of TensorFlow<br>
-should follow to increase the readability of their code, reduce the number of<br>
-errors, and promote consistency.</p>
+            <h1 id="toc-0">TensorFlow 代码风格指南</h1>
+<p>为了 TensorFlow 用户以及开发者能够提高代码可读性、减少报错并且提升一致性，我们为此提供了这份 TensorFlow 的代码风格指南。</p>
 <p>[TOC]</p>
-<h2 id="toc-1">Python style</h2>
-<p>Generally follow<br>
-<a href="https://www.python.org/dev/peps/pep-0008/">PEP8 Python style guide</a>,<br>
-except for using 2 spaces.</p>
-<h2 id="toc-2">Python 2 and 3 compatible</h2>
+<h2 id="toc-1">Python 代码风格指南</h2>
+<p>除了要使用两空格缩进这一点，通常就遵循 <a href="https://www.python.org/dev/peps/pep-0008/">PEP8 Python 代码风格指南</a>即可。</p>
+<h2 id="toc-2">Python 2 以及 Python 3 的兼容</h2>
 <ul>
-<li><p>All code needs to be compatible with Python 2 and 3.</p>
+<li><p>所有代码都必须兼容 Python 2 和 Python 3。</p>
 </li>
-<li><p>Next lines should be present in all Python files:</p>
+<li><p>每个 Python 文件都应该包含如下几行代码：</p>
 </li>
 </ul>
 <pre><code>from __future__ import absolute_import
@@ -75,12 +71,12 @@ from __future__ import division
 from __future__ import print_function
 </code></pre>
 <ul>
-<li>Use <code>six</code> to write compatible code (for example <code>six.moves.range</code>).</li>
+<li>使用 <code>six</code> 来编写可兼容的代码（例如 <code>six.moves.range</code>）。</li>
 </ul>
-<h2 id="toc-3">Bazel BUILD rules</h2>
-<p>TensorFlow uses Bazel build system and enforces next requirements:</p>
+<h2 id="toc-3">Bazel 构建规则</h2>
+<p>TensorFlow 使用 Bazel 来构建系统并执行下面的依赖：</p>
 <ul>
-<li>Every BUILD file should contain next header:</li>
+<li>每一个 BUILD 文件头部都应该包含这些代码：</li>
 </ul>
 <pre><code># Description:
 #   &lt;...&gt;
@@ -94,7 +90,7 @@ licenses(["notice"])  # Apache 2.0
 exports_files(["LICENSE"])
 </code></pre>
 <ul>
-<li>At the end of every BUILD file, should contain:</li>
+<li>每一个 BUILD 文件尾部都应该包含这些代码：</li>
 </ul>
 <pre><code>filegroup(
     name = "all_files",
@@ -109,46 +105,37 @@ exports_files(["LICENSE"])
 )
 </code></pre>
 <ul>
-<li>When adding new BUILD file, add this line to <code>tensorflow/BUILD</code> file into <code>all_opensource_files</code> target.</li>
+<li>在创建新的 BUILD 文件时，把下面这一行加入到 <code>all_opensource_files</code> 目标内的 <code>tensorflow/BUILD</code> 文件中。</li>
 </ul>
 <pre><code>"//tensorflow/&lt;directory&gt;:all_files",
 </code></pre>
 <ul>
-<li>For all Python BUILD targets (libraries and tests) add next line:</li>
+<li>在所有的 python BUILD 目标中（库文件和测试用例）加入下面这行代码：</li>
 </ul>
 <pre><code>srcs_version = "PY2AND3",
 </code></pre>
 <h2 id="toc-4">Tensor</h2>
 <ul>
-<li>Operations that deal with batches may assume that the first dimension of a Tensor is the batch dimension.</li>
+<li>在假设 Tensor 的第一维度是 batche 维度的情况下对 batches 操作的处理函数。</li>
 </ul>
-<h2 id="toc-5">Python operations</h2>
-<p>A <em>Python operation</em> is a function that, given input tensors and parameters,<br>
-creates a part of the graph and returns output tensors.</p>
+<h2 id="toc-5">Python 处理函数</h2>
+<p>这里的 <strong>Python 处理函数</strong> 是一种在输入的 tensors 和参数后，会创建一部分 graph 并且输出返回的 tensors 的函数。</p>
 <ul>
-<li><p>The first arguments should be tensors, followed by basic python parameters.<br>
-The last argument is <code>name</code> with a default value of <code>None</code>.<br>
-If operation needs to save some <code>Tensor</code>s to Graph collections,<br>
-put the arguments with names of the collections right before <code>name</code> argument.</p>
+<li><p>第一个参数应该传入 tensors，后面的参数再传入一些基本的 python 参数。最后一个参数是默认值为 <code>None</code> 的 <code>name</code> 参数。如果这个处理函数需要保存一些 <code>Tensor</code> 来用于收集 Graph 的话，那么在 <code>name</code> 参数前加上要收集的参数名称即可。</p>
 </li>
-<li><p>Tensor arguments should be either a single tensor or an iterable of tensors.<br>
-E.g. a "Tensor or list of Tensors" is too broad. See <code>assert_proper_iterable</code>.</p>
+<li><p>Tensor 参数应该是单个的 tensor 变量，也可以是个可迭代的 tensors 变量。例如说“Tensor 必须是单个 tensor 变量要不就是个 Tensors 数组”就太宽泛了。想了解更多可以查看 <code>assert_proper_iterable</code>。</p>
 </li>
-<li><p>Operations that take tensors as arguments should call <code>convert_to_tensor</code><br>
-to convert non-tensor inputs into tensors if they are using C++ operations.<br>
-Note that the arguments are still described as a <code>Tensor</code> object<br>
-of a specific dtype in the documentation.</p>
+<li><p>如果使用 C++ 的处理函数，需要调用 <code>convert_to_tensor</code> 把 non-tensor 输入值转换为 tensors 用来当做处理函数的参数。<br>
+要注意的是这个参数依然被描述为 <code>Tensor</code> 文档中具体的 dtype 对象。</p>
 </li>
-<li><p>Each Python operation should have a <code>name_scope</code> like below. Pass as<br>
-arguments <code>name</code>, a default name of the op, and a list of the input tensors.</p>
+<li><p>每个 Python 处理函数都应该有个类似下面的 <code>name_scope</code>。它要作为 <code>name</code> 参数传入，这是处理函数的一个默认的变量名也是一个包含输入 tensors 的列表。</p>
 </li>
 <li><p><a href="//tensorflow.juejin.im/community/documentation.html">编写 TensorFlow 文档</a></p>
 </li>
-<li><p>For increased usability include an example of usage with inputs / outputs<br>
-of the op in Example section.</p>
+<li><p>为了提升可用性，示例部分应该包含一个含有处理函数输入与输出的用例。</p>
 </li>
 </ul>
-<p>Example:</p>
+<p>示例：</p>
 <pre><code>def my_op(tensor_in, other_tensor_in, my_param, other_param=0.5,
           output_collections=(), name=None):
   """My operation that adds two tensors with given coefficients.
@@ -177,36 +164,27 @@ of the op in Example section.</p>
     tf.add_to_collection(output_collections, result)
     return result
 </code></pre>
-<p>Usage:</p>
+<p>用法：</p>
 <pre><code>output = my_op(t1, t2, my_param=0.5, other_param=0.6,
                output_collections=['MY_OPS'], name='add_t1t2')
 </code></pre>
 <h2 id="toc-6">Layers</h2>
-<p>A <em>Layer</em> is a Python operation that combines variable creation and/or one or many<br>
-other graph operations. Follow the same requirements as for regular Python<br>
-operation.</p>
+<p>Layer 是一个集成变量创建以及一个或多个其他 graph 函数的 Python 处理函数。它遵循通常的 Python 处理函数的需要。</p>
 <ul>
-<li><p>If a layer creates one or more variables, the layer function<br>
-should take next arguments also following order:</p>
-<ul>
-<li><code>initializers</code>: Optionally allow to specify initializers for the variables.</li>
-<li><code>regularizers</code>: Optionally allow to specify regularizers for the variables.</li>
-<li><code>trainable</code>: which control if their variables are trainable or not.</li>
-<li><code>scope</code>: <code>VariableScope</code> object that variable will be put under.</li>
-<li><code>reuse</code>: <code>bool</code> indicator if the variable should be reused if<pre><code>     it's present in the scope.
-</code></pre>
-</li>
+<li>如果一个 layer 创建了一个或多个变量，这个 layer 函数应该在传入后面的参数时也应遵循这个顺序：<ul>
+<li><code>initializers</code>：用于指定变量的 initializers。</li>
+<li><code>regularizers</code>：用于指定变量的 regularizers。</li>
+<li><code>trainable</code>：代表变量是否已经训练过。</li>
+<li><code>scope</code>：代表变量会被设置成的 <code>VariableScope</code> 对象。</li>
+<li><code>reuse</code>：代表变量在作用域中是否应该被重用的 <code>布尔值</code> 指示符。</li>
 </ul>
 </li>
-<li><p>Layers that behave differently during training should take:</p>
-<ul>
-<li><code>is_training</code>: <code>bool</code> indicator to conditionally choose different<pre><code>           computation paths (e.g. using `tf.cond`) during execution.
-</code></pre>
-</li>
+<li>表现不同的 Layers 在训练过程中应该传入：<ul>
+<li><code>is_training</code>：代表是否在执行阶段有条件地选择不同的计算路径的 <code>布尔值</code> 指示符（例如在使用 <code>tf.cond</code> 时）。</li>
 </ul>
 </li>
 </ul>
-<p>Example:</p>
+<p>示例：</p>
 <pre><code>def conv2d(inputs,
            num_filters_out,
            kernel_size,
@@ -220,18 +198,18 @@ should take next arguments also following order:</p>
            trainable=True,
            scope=None,
            reuse=None):
-  ... see implementation at tensorflow/contrib/layers/python/layers/layers.py ...
+  ... 底层实现请查看 tensorflow/contrib/layers/python/layers/layers.py ...
 </code></pre>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
         <ul id="table-of-content">
-<li><a href="#toc-0">TensorFlow Style Guide</a><ul>
-<li><a href="#toc-1">Python style</a></li>
-<li><a href="#toc-2">Python 2 and 3 compatible</a></li>
-<li><a href="#toc-3">Bazel BUILD rules</a></li>
+<li><a href="#toc-0">TensorFlow 代码风格指南</a><ul>
+<li><a href="#toc-1">Python 代码风格指南</a></li>
+<li><a href="#toc-2">Python 2 以及 Python 3 的兼容</a></li>
+<li><a href="#toc-3">Bazel 构建规则</a></li>
 <li><a href="#toc-4">Tensor</a></li>
-<li><a href="#toc-5">Python operations</a></li>
+<li><a href="#toc-5">Python 处理函数</a></li>
 <li><a href="#toc-6">Layers</a></li>
 </ul>
 </li>
@@ -257,10 +235,10 @@ should take next arguments also following order:</p>
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'meloalright': 'https://avatars1.githubusercontent.com/u/11075892?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
-<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="TensorFlow Style Guide">
+<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="TensorFlow 代码风格指南">
     <img src="//tensorflow.juejin.im/assets/imgs/share.png"/>
 </div>
 </body>

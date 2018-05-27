@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Roadmap</title>
+    <title>路线图</title>
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/highlight.js.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/needsharebutton.min.css">
@@ -51,108 +51,95 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/documentation.html', 'title': '编写 TensorFlow 文档'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/swift.html', 'title': 'Swift Community'}]
+    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/roadmap.html', 'title': '路线图'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/lists.html', 'title': '关于邮件组'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/documentation.html', 'title': '编写 TensorFlow 文档'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/style_guide.html', 'title': 'TensorFlow 代码风格指南'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/swift.html', 'title': 'Swift 社区'}]
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-            <h1 id="toc-0">Roadmap</h1>
-<p><strong>Last updated: Feb 15, 2018</strong></p>
-<p>TensorFlow is a rapidly moving, community supported project. This document is intended<br>
-to provide guidance about priorities and focus areas of the core set of TensorFlow<br>
-developers and about functionality that can be expected in the upcoming releases of<br>
-TensorFlow. Many of these areas are driven by  community use cases, and we welcome<br>
-further<br>
-<a href="https://github.com/tensorflow/tensorflow/blob/master/CONTRIBUTING.md">contributions</a><br>
-to TensorFlow.</p>
-<p>The features below do not have concrete release dates. However, the majority can be<br>
-expected in the next one to two releases.</p>
+            <h1 id="toc-0">路线图</h1>
+<p><strong>最近一次更新：2018.02.15</strong></p>
+<p>TensorFlow 是一个频繁更新并且社区活跃的项目。这份文档旨在提供关于 TensorFlow 高优先级领域以及核心开发成员专注领域的发展路线指南，也包括未来的 TensorFlow 新版本期望发行的功能。这里很多功能是靠社区内部的测试用例驱动开发的，此外我们也欢迎对 TensorFlow 更进一步的<a href="https://github.com/tensorflow/tensorflow/blob/master/CONTRIBUTING.md">讨论</a>。</p>
+<p>以下功能并没有具体计划的发行日期，但是大部分功能会在未来的一两个版本中发行。</p>
 <h3 id="toc-1">APIs</h3>
-<h4 id="toc-2">High Level APIs:</h4>
+<h4 id="toc-2">高阶 APIs：</h4>
 <ul>
-<li>Easy multi-GPU utilization with Estimators</li>
-<li>Easy-to-use high-level pre-made estimators for Gradient Boosted Trees, Time Series, and other models</li>
+<li>基于 Estimators 的友好型 multi-GPU 接口</li>
+<li>Gradient Boosted Trees, Time Series 及其他模型的友好型高阶预制 estimators</li>
 </ul>
-<h4 id="toc-3">Eager Execution:</h4>
+<h4 id="toc-3">Eager Execution：</h4>
 <ul>
-<li>Efficient utilization of multiple GPUs</li>
-<li>Distributed training (multi-machine)</li>
-<li>Performance improvements</li>
-<li>Simpler export to a GraphDef/SavedModel </li>
+<li>multiple GPUs 的高效使用接口</li>
+<li>分布式训练 (多机器训练)</li>
+<li>性能提升</li>
+<li>更友好地将模型导出到 GraphDef/SavedModel </li>
 </ul>
-<h4 id="toc-4">Keras API:</h4>
+<h4 id="toc-4">Keras API：</h4>
 <ul>
-<li>Better integration with tf.data (ability to call <code>model.fit</code> with data tensors)</li>
-<li>Full support for Eager Execution (both Eager support for the regular Keras API, and ability<br>
-to create Keras models Eager- style via Model subclassing)</li>
-<li>Better distribution/multi-GPU support and TPU support (including a smoother model-to-estimator workflow)</li>
+<li>更好的整合 tf.data (让数据张量有能力直接调用 <code>model.fit</code> )</li>
+<li>完全支持 Eager Execution (包括对常规的 Keras API 的 Eager support 支持，以及通过模型子类创建 Eager 风格的 Keras 模型的能力)</li>
+<li>更好的支持 distribution/multi-GPU 和 TPU (包括更平滑的 model-to-estimator 工作流)</li>
 </ul>
-<h4 id="toc-5">Official Models:</h4>
+<h4 id="toc-5">官方模型：</h4>
 <ul>
-<li>A set of<br>
-<a href="https://github.com/tensorflow/models/tree/master/official">reference models</a><br>
-across image recognition, speech, object detection, and<br>
-translation that demonstrate best practices and serve as a starting point for<br>
-high-performance model development.</li>
+<li>这一系列的<a href="https://github.com/tensorflow/models/tree/master/official">参考模型</a>包含了图像识别、自然语言处理、物体检测、机器翻译等领域，这些都算得上是最佳的练习选择以及学习构建高性能模型训练的理想切入点。</li>
 </ul>
-<h4 id="toc-6">Contrib:</h4>
+<h4 id="toc-6">Contrib：</h4>
 <ul>
-<li>Deprecation notices added to parts of tf.contrib where preferred implementations exist outside of tf.contrib.</li>
-<li>As much as possible, large projects inside tf.contrib moved to separate repositories.</li>
-<li>The tf.contrib module will eventually be discontinued in its current form, experimental development will in future happen in other repositories.</li>
+<li>为 tf.contrib 增加弃用声明，目前 tf.contrib 更倾向于在外部实现该功能。</li>
+<li>尽可能地将 tf.contrib 的大工程迁移到多个独立的仓库。</li>
+<li>目前这种形式的 tf.contrib 模块最终会停止开发，将来会在其他的仓库进行试验性开发。</li>
 </ul>
-<h4 id="toc-7">Probabilistic Reasoning and Statistical Analysis:</h4>
+<h4 id="toc-7">概率推理与统计分析：</h4>
 <ul>
-<li>Rich set of tools for probabilistic and statistical analysis in tf.distributions<br>
-and tf.probability. These include new samplers, layers, optimizers, losses, and structured models</li>
-<li>Statistical tools for hypothesis testing, convergence diagnostics, and sample statistics</li>
-<li>Edward 2.0: High-level API for probabilistic programming</li>
+<li>在 tf.distributions 和 tf.probability 当中有大量的概率推理与统计分析工具可供使用。包括新的采样器、层、优化器、损失和结构化模型。</li>
+<li>用于假设检验、收敛诊断、样本统计的统计工具。</li>
+<li>Edward 2.0：用于 probabilistic programming 的高阶 API</li>
 </ul>
-<h3 id="toc-8">Platforms</h3>
-<h4 id="toc-9">TensorFlow Lite:</h4>
+<h3 id="toc-8">跨平台</h3>
+<h4 id="toc-9">TensorFlow Lite：</h4>
 <ul>
-<li>Increased coverage of supported ops in TensorFlow Lite</li>
-<li>Easier conversion of a trained TensorFlow graph for use on TensorFlow Lite</li>
-<li>Support for GPU acceleration in TensorFlow Lite (iOS and Android)</li>
-<li>Support for hardware accelerators via Android NeuralNets API </li>
-<li>Improved CPU performance by quantization and other network optimizations (eg. pruning, distillation)</li>
-<li>Increased support for devices beyond Android and iOS (eg. RPi, Cortex-M)</li>
+<li>增加 TensorFlow Lite 可支持操作的覆盖率</li>
+<li>为 TensorFlow Lite 提供更易转换的已训练模型</li>
+<li>为 TensorFlow Lite 提供 GPU 加速 (包括 iOS 和 Android)</li>
+<li>通过 Android NeuralNets API 提供硬件加速支持</li>
+<li>通过量化和其他网络优化提升 CPU 性能 (例如 pruning, distillation)</li>
+<li>为 Android 和 iOS 以外的设备提升支持 (例如 树莓派, Cortex-M)</li>
 </ul>
-<h3 id="toc-10">Performance</h3>
-<h4 id="toc-11">Distributed TensorFlow:</h4>
+<h3 id="toc-10">性能</h3>
+<h4 id="toc-11">分布式 TensorFlow：</h4>
 <ul>
-<li>Multi-GPU support optimized for a variety of GPU topologies</li>
-<li>Improved mechanisms for distributing computations on several machines</li>
+<li>为多种 GPU 拓扑结构提供 Multi-GPU 优化支持</li>
+<li>为多机器分布式计算改进实现机制</li>
 </ul>
-<h4 id="toc-12">Optimizations:</h4>
+<h4 id="toc-12">优化：</h4>
 <ul>
-<li>Mixed precision training support with initial example model and guide</li>
-<li>Native TensorRT support</li>
-<li>Int8 support for SkyLake via MKL</li>
-<li>Dynamic loading of SIMD-optimized kernels</li>
+<li>为混合精度的训练提供支持，并且提供基本的示例模型和操作指南</li>
+<li>原生的 TensorRT 支持</li>
+<li>通过 MKY 为 SkyLake 提供 Int8 支持</li>
+<li>动态加载 SIMD-optimized 内核</li>
 </ul>
-<h3 id="toc-13">Documentation and Usability:</h3>
+<h3 id="toc-13">文档与可用性：</h3>
 <ul>
-<li>Updated documentation, tutorials and Getting Started guides</li>
-<li>Process to enable external contributions to tutorials, documentation, and blogs showcasing best practice use-cases of TensorFlow and high-impact applications</li>
+<li>更新文档、教程以及快速上手指南</li>
+<li>允许外部为 TensorFlow 提供支持，其中包括教程、文档以及用博客展示最佳的 TensorFlow 练习用例或者酷炫应用</li>
 </ul>
-<h3 id="toc-14">Community and Partner Engagement</h3>
-<h4 id="toc-15">Special Interest Groups:</h4>
+<h3 id="toc-14">社区以及合作伙伴</h3>
+<h4 id="toc-15">特别兴趣小组：</h4>
 <ul>
-<li>Mobilizing the community to work together in focused domains</li>
-<li><a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tf-distribute">tf-distribute</a>: build and packaging of TensorFlow</li>
-<li>More to be identified and launched</li>
+<li>动员社区成员一起为重要领域相互协作</li>
+<li><a href="https://groups.google.com/a/tensorflow.org/forum/#!forum/tf-distribute">tf-distribute</a>: 用于 TensorFlow 工程构建以及打包</li>
+<li>更多待定的以及急需开展的计划</li>
 </ul>
-<h4 id="toc-16">Community:</h4>
+<h4 id="toc-16">社区：</h4>
 <ul>
-<li>Incorporate public feedback on significant design decisions via a Request-for-Comment (RFC) process</li>
-<li>Formalize process for external contributions to land in TensorFlow and associated projects </li>
-<li>Grow global TensorFlow communities and user groups</li>
-<li>Collaborate with partners to co-develop and publish research papers</li>
+<li>通过 Request-for-Comment (RFC) 来集合公众对于重大设计决策的意见</li>
+<li>为 TensorFlow 以及相关项目的外部贡献制定程序流程</li>
+<li>为 TensorFlow 培育全球性的社区以及用户群体</li>
+<li>与行业伙伴合作以联合发展并对外发表论文研究成果</li>
 </ul>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
         <ul id="table-of-content">
-<li><a href="#toc-0">Roadmap</a></li>
+<li><a href="#toc-0">路线图</a></li>
 </ul>
 
         </div>
@@ -175,10 +162,10 @@ and tf.probability. These include new samplers, layers, optimizers, losses, and 
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'meloalright': 'https://avatars1.githubusercontent.com/u/11075892?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
-<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="Roadmap">
+<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="路线图">
     <img src="//tensorflow.juejin.im/assets/imgs/share.png"/>
 </div>
 </body>

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Swift Community</title>
+    <title>Swift 社区</title>
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/highlight.js.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/needsharebutton.min.css">
@@ -51,42 +51,23 @@
     </div>
 </nav>
 <script>
-    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/roadmap.html', 'title': 'Roadmap'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/lists.html', 'title': 'Mailing Lists'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/documentation.html', 'title': '编写 TensorFlow 文档'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/style_guide.html', 'title': 'TensorFlow Style Guide'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/swift.html', 'title': 'Swift Community'}]
+    var nav = [{'type': 'child', 'link': '//tensorflow.juejin.im/community/index.html', 'title': '社区'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/roadmap.html', 'title': '路线图'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/contributing.html', 'title': '贡献 TensorFlow'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/lists.html', 'title': '关于邮件组'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/groups.html', 'title': '用户组织'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/documentation.html', 'title': '编写 TensorFlow 文档'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/style_guide.html', 'title': 'TensorFlow 代码风格指南'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/benchmarks.html', 'title': '定义以及运行基准'}, {'type': 'child', 'link': '//tensorflow.juejin.im/community/swift.html', 'title': 'Swift 社区'}]
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-            <h1 id="toc-0">Swift Community</h1>
-<p>Welcome to the Swift for TensorFlow development community!</p>
-<p>Swift for TensorFlow is a result of first-principles thinking applied to machine<br>
-learning frameworks, and works quite differently than existing TensorFlow<br>
-language bindings.  Whereas prior solutions are designed within the constraints<br>
-of what can be achieved by a (typically Python or Lua) library, Swift for<br>
-TensorFlow is based on the belief that machine learning is important enough to<br>
-deserve first-class language and compiler support.</p>
-<p>First-class language and compiler support allows us to innovate in areas that<br>
-have traditionally been out of bounds for machine learning libraries.  Our<br>
-results provide the performance of TensorFlow graphs with the ease of use of<br>
-define-by-run models, and provides a great user experience - for example, by<br>
-catching more mistakes before you run your code.</p>
-<h2 id="toc-1">Open Source</h2>
-<p>As announced at the TensorFlow Developer Summit, we are planning to launch our<br>
-open source project on GitHub in April.  In addition to releasing the code, we<br>
-will be using an open design model, where design discussions happen in public.</p>
-<p>Between now and then, we are writing some technical white papers that explain in<br>
-detail the design approach (e.g., the core compiler partitioning technique that<br>
-underlies the whole thing, our approach to automatic differentiation, etc.),<br>
-implementation tradeoffs, and the status of this work.  We can’t wait to engage<br>
-with the broader community, but prefer to start the conversation when these<br>
-white papers are ready.</p>
-<p><a href="https://groups.google.com/a/tensorflow.org/d/forum/swift">Sign up here to join the community Google<br>
-group</a>. We will<br>
-initially use it for announcements, and then open it for general discussion when<br>
-we are ready in April.</p>
+            <h1 id="toc-0">Swift 社区</h1>
+<p>欢迎来到 TensorFlow Swift 开发者社区！</p>
+<p>TensorFlow 的 Swift 版本是机器学习框架在受到第一原则思想下产生的成果，它的运作方式和已有的 TensorFlow 语言绑定方式十分不同。而框架的早期解决方案，哪些功能可以被已有的库实现（一般都是 Python 或者 Lua 的库）往往限制了框架的设计方式，而 TensorFlow 的 Swift 版本相信机器学习很重要而值得支持一线主流的语言和编译器。</p>
+<p>主流的语言和编译器支持允许我们在机器学库上超越传统的领域进行创新。我们的成果提供了 TensorFlow graphs 同级别的性能，和使用运行时定义模型带来的便利，并且提供了非常好的用户体验 — 例如，你的代码在运行前就可以捕获更多的错误。</p>
+<h2 id="toc-1">开源项目</h2>
+<p>就像我们在 TensorFlow 开发者大会上公布的那样，我们计划在四月份把我们的开源项目放在 Github 上。除了开源发行的代码，我们使用的模型也是公开设计的，这些模型都是在社区公开讨论阶段设计的。</p>
+<p>在不远的将来，我们将要写一些技术的白皮书来解释一些含框架设计方法的细节（例如：代表了整个框架基础的编译器的核心分区技术，自动分类的方法等等），和代码实现时的权衡，以及目前项目的工作状态。我们很迫不及待想要和更多不同的社区一起协作，但是在这些白皮书准备好之前我们更希望先和大家讨论起来。</p>
+<p><a href="https://groups.google.com/a/tensorflow.org/d/forum/swift">加入 Google group 社区请在这里注册</a>。我们最初会先靠这个社区来做公告，等我们四月份一切都准备好的时候，会把社区开放来当做一个综合讨论的社区。</p>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
         <ul id="table-of-content">
-<li><a href="#toc-0">Swift Community</a><ul>
-<li><a href="#toc-1">Open Source</a></li>
+<li><a href="#toc-0">Swift 社区</a><ul>
+<li><a href="#toc-1">开源项目</a></li>
 </ul>
 </li>
 </ul>
@@ -111,10 +92,10 @@ we are ready in April.</p>
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'meloalright': 'https://avatars1.githubusercontent.com/u/11075892?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
-<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="Swift Community">
+<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="Swift 社区">
     <img src="//tensorflow.juejin.im/assets/imgs/share.png"/>
 </div>
 </body>
