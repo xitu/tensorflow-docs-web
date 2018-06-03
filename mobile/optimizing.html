@@ -95,7 +95,7 @@ BatchNormWithGlobalNormalization, 94 Conv2D, 94 Relu, 11 Concat, 9 AvgPool,
 5 MaxPool, 1 Sub, 1 Softmax, 1 ResizeBilinear, 1 Reshape, 1 Mul, 1 MatMul,
 1 ExpandDims, 1 DecodeJpeg, 1 Cast, 1 BiasAdd
 </code></pre>
-<p><a href="//tensorflow.juejin.im/performance/quantization.html">Fixed Point Quantization</a></p>
+<p><a href="//tensorflow.juejin.im/performance/quantization.html">定点量化</a></p>
 <pre><code>bazel build tensorflow/tools/graph_transforms:transform_graph &amp;&amp; \
 bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
 --in_graph=/tmp/tensorflow_inception_optimized.pb \

@@ -95,7 +95,7 @@ using the value retrieved from the CheckPoint.</li>
   --output_arrays=MobilenetV1/Predictions/Reshape_1 \
   --input_shapes=1,224,224,3
 </code></pre>
-<p><a href="//tensorflow.juejin.im/performance/quantization.html">Fixed Point Quantization</a></p>
+<p><a href="//tensorflow.juejin.im/performance/quantization.html">定点量化</a></p>
 <p>It is also possible to use the Tensorflow Optimizing Converter with protobufs from either Python or from the command line (see the  <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco/python/toco_from_protos.py">toco_from_protos.py</a> example). This allows you to integrate the conversion step into the model design workflow, ensuring the model is easily convertible to a mobile inference graph. For example:</p>
 <pre><code class="lang-python">import tensorflow as tf
 
