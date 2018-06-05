@@ -173,7 +173,7 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=1.0).minimize(loss)
 <h2 id="toc-8">评估词向量：Analogical Reasoning</h2>
 <p>词向量在各种各样的 NLP 预测任务中都非常有用。除了训练一个完善的词性标记模型或者实体命名模型，一个简单的评估词向量的方法是直接使用它们来预测语法和语义关系，比如这个句子 <code>king is to queen as father is to ?</code>。这就是 <em>analogical reasoning</em>，这个任务的介绍在 <a href="https://www.aclweb.org/anthology/N13-1090">Mikolov and colleagues</a>。你可以从 <a href="http://download.tensorflow.org/data/questions-words.txt">download.tensorflow.org</a> 下载到这个任务的数据集。</p>
 <p>想看如何实现这个评估过程，请在 <a href="https://www.tensorflow.org/code/tensorflow_models/tutorials/embedding/word2vec.py">models/tutorials/embedding/word2vec.py</a> 查看 <code>build_eval_graph()</code> 和 <code>eval()</code> 这两个函数。</p>
-<p>超参数的选择会显著的影响到任务的准确性。为了达到这个任务当前水平的的表现，我们需要使用一个很大的数据集来训练，并且精细的调优这些超参数以及利用像二次抽象这样的小技巧，不过二次抽样不在我们的教程范围内。</p>
+<p>超参数的选择会显著的影响到任务的准确性。为了达到这个任务当前水平的的表现，我们需要使用一个很大的数据集来训练，并且精细的调优这些超参数以及利用像二次抽样这样的小技巧，不过二次抽样不在我们的教程范围内。</p>
 <h2 id="toc-9">优化实现</h2>
 <p>我们朴实无华的实现展现了 TensorFlow 的灵活性。例如，如果我们想改变训练的目标，仅仅通过调用 <code>tf.nn.nce_loss()</code> 就可以使用一个现成的像 <code>tf.nn.sampled_softmax_loss()</code> 这样的函数。如果你对损失函数有一些新的想法，那么你可以在 TensorFlow 中手动写一个新的目标函数，并且让优化器计算它的导数。在机器学习模型开发的探索阶段灵活性是非常重要的，因为这样我们才可以快速迭代以及实验不同的想法。</p>
 <p><a href="//tensorflow.juejin.im/extend/new_data_formats.html">读取自定义文件和记录格式</a></p>
@@ -219,7 +219,7 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate=1.0).minimize(loss)
     </div>
 </footer>
 <script>
-    var contributors = [{'changkun': 'https://avatars3.githubusercontent.com/u/5498964?v=4'}, {'pkuwwt': 'https://avatars0.githubusercontent.com/u/4813445?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'meidongyang': 'https://avatars3.githubusercontent.com/u/15609913?v=4'}, {'changkun': 'https://avatars3.githubusercontent.com/u/5498964?v=4'}, {'pkuwwt': 'https://avatars0.githubusercontent.com/u/4813445?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="单词的向量表示">
