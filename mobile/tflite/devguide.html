@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Developer Guide</title>
+    <title>开发者指南</title>
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/highlight.js.min.css">
     <link rel="stylesheet" href="//tensorflow.juejin.im/assets/css/needsharebutton.min.css">
@@ -47,44 +47,43 @@
     <div class="row">
         
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-            <h1 id="toc-0">Developer Guide</h1>
-<p>Using a TensorFlow Lite model in your mobile app requires multiple considerations: you must choose a pre-trained or custom model, convert the model to a TensorFLow Lite format, and finally, integrate the model in your app.</p>
-<h2 id="toc-1">1. Choose a model</h2>
-<p>Depending on the use case, you can choose one of the popular open-sourced models, such as <em>InceptionV3</em> or <em>MobileNets</em>, and re-train these models with a custom data set or even build your own custom model.</p>
-<h3 id="toc-2">Use a pre-trained model</h3>
-<p><a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNets</a> is a family of mobile-first computer vision models for TensorFlow designed to effectively maximize accuracy, while taking into consideration the restricted resources for on-device or embedded applications. MobileNets are small, low-latency, low-power models parameterized to meet the resource constraints for a variety of uses. They can be used for classification, detection, embeddings, and segmentation—similar to other popular large scale models, such as <a href="https://arxiv.org/pdf/1602.07261.pdf">Inception</a>. Google provides 16 pre-trained <a href="http://www.image-net.org/challenges/LSVRC/">ImageNet</a> classification checkpoints for MobileNets that can be used in mobile projects of all sizes.</p>
-<p><a href="https://arxiv.org/abs/1512.00567">Inception-v3</a> is an image recognition model that achieves fairly high accuracy recognizing general objects with 1000 classes, for example, "Zebra", "Dalmatian", and "Dishwasher". The model extracts general features from input images using a convolutional neural network and classifies them based on those features with fully-connected and softmax layers.</p>
-<p><a href="https://research.googleblog.com/2017/02/on-device-machine-intelligence.html">On Device Smart Reply</a> is an on-device model that provides one-touch replies for incoming text messages by suggesting contextually relevant messages. The model is built specifically for memory constrained devices, such as watches and phones, and has been successfully used in Smart Replies on Android Wear. Currently, this model is Android-specific.</p>
-<p>These pre-trained models are <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/models.md">available for download</a></p>
-<h3 id="toc-3">Re-train Inception-V3 or MobileNet for a custom data set</h3>
-<p>These pre-trained models were trained on the <em>ImageNet</em> data set which contains 1000 predefined classes. If these classes are not sufficient for your use case, the model will need to be re-trained. This technique is called <em>transfer learning</em> and starts with a model that has been already trained on a problem, then retrains the model on a similar problem. Deep learning from scratch can take days, but transfer learning is fairly quick. In order to do this, you need to generate a custom data set labeled with the relevant classes.</p>
-<p>The <a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/">TensorFlow for Poets</a> codelab walks through the re-training process step-by-step. The code supports both floating point and quantized inference.</p>
-<h3 id="toc-4">Train a custom model</h3>
+            <h1 id="toc-0">开发者指南</h1>
+<p>在你的移动 app 中使用 TensorFlow Lite 格式有如下诸多因素需要注意：你必须选择一个预训练或者自定义的模型，把这个模型转化为 TensorFlow Lite 格式，最后把模型整合进你的 app 中。</p>
+<h2 id="toc-1">1. 模型选择</h2>
+<p>取决于使用案例，你可以选择任何一个流行的开源模型，例如 <em>InceptionV3</em> 或者 <em>MobileNets</em>，然后使用你自定义的数据集对（你选择的）这些模型进行重新训练，或者甚至构建你自定义的模型。</p>
+<h3 id="toc-2">使用预训练模型</h3>
+<p><a href="https://research.googleblog.com/2017/06/mobilenets-open-source-models-for.html">MobileNets</a> 是一系列专为 TensorFlow 设计的移动（场景）优先的计算机视觉模型，这类模型用于有效地最大化（提升）精确度，同时，模型还考虑到设备内置应用或嵌入式应用的资源限制问题。MobileNets 是小型化、低延迟、低能耗的模型，能够参数化地满足各种各样使用案例中资源限制的要求。这些模型可以被用于分类、检测、嵌入和分割 —— 原理和其他一些流行的大规模模型相似，例如 <a href="https://arxiv.org/pdf/1602.07261.pdf">Inception</a>。谷歌提供了 16 个利用 <a href="http://www.image-net.org/challenges/LSVRC/">ImageNet</a> 进行预训练的 MobileNets 模型分类检查点（译者注：专业术语为 checkpoints），可用于各种规模的移动项目。</p>
+<p><a href="https://arxiv.org/abs/1512.00567">Inception-v3</a> 是一个能对 1000 种常见事物，例如，“斑马”、“斑点狗”、“洗碗机”等进行非常高精度识别的图像识别模型。这个模型使用了一个卷积神经网络来提取输入图片的一般特征，然后在这些特征的基础上使用全连接和 softmax 层来对这些图片进行分类。</p>
+<p><a href="https://research.googleblog.com/2017/02/on-device-machine-intelligence.html">On Device Smart Reply</a> 是一种设备内置的模型，该模型通过提示与上下文相关的消息，为传入的文本消息提供一键回复。这种模型专门用于内存受限的设备，如手表和手机，并且已经成功地用于 Android Wear 的智能回复。目前，该模型仅仅用于安卓系统。</p>
+<p>这些预训练模型可以在<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/models.md">这里下载</a>。</p>
+<h3 id="toc-3">为自定义的数据集重新训练 Inception-V3 或 MobileNet 模型</h3>
+<p>这些预训练模型都是使用 <em>ImageNet</em> 数据集（一种包含了1000种预定义类型的数据集）进行训练的。如果这些类别不能满足于你使用案例的需求，你就需要对这个模型进行重新训练。这种技术被称为<strong>迁移学习</strong>，这需要使用一个已经基于某个问题训练过的模型，然后在相似的问题下对该模型进行重新训练。从头开始进行深度学习可能需要一些时间，但是使用转移学习技术却相当快。为了做到这一点，你需要生成一个标记为（和你问题）相关的类的自定义数据集。</p>
+<p><a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/">TensorFlow for Poets</a> 在 codelab 上展示了一步步地进行再训练的过程。这些代码支持浮点和量化推断。</p>
+<h3 id="toc-4">自定义模型训练</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></p>
-<p>TensorFlow Lite currently supports a subset of TensorFlow operators. Refer to the <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md">TensorFlow Lite &amp; TensorFlow Compatibility Guide</a> for supported operators and their usage. This set of operators will continue to grow in future Tensorflow Lite releases.</p>
-<h2 id="toc-5">2. Convert the model format</h2>
+<p>TensorFlow Lite 目前支持一组 TensorFlow 操作符。可通过参考 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md">TensorFlow Lite 和 TensorFlow 兼容性指南</a>获得现在支持的操作符以及其使用案例。在未来的 Tensorflow Lite 版本中，这组操作符将不断增加。</p>
+<h2 id="toc-5">2. 模型格式转换</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></p>
 <ul>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/GraphDef"><code>tf.GraphDef</code></a></li>
-<li><em>CheckPoint</em> (.ckpt) —Serialized variables from a TensorFlow graph. Since this does not contain a graph structure, it cannot be interpreted by itself.</li>
-<li><code>FrozenGraphDef</code> —A subclass of <code>GraphDef</code> that does not contain variables. A <code>GraphDef</code> can be converted to a <code>FrozenGraphDef</code> by taking a CheckPoint and a <code>GraphDef</code>, and converting each variable into a constant<br>
-using the value retrieved from the CheckPoint.</li>
-<li><code>SavedModel</code> —A <code>GraphDef</code> and CheckPoint with a signature that labels input and output arguments to a model. A <code>GraphDef</code> and CheckPoint can be extracted from a <code>SavedModel</code>.</li>
-<li><em>TensorFlow Lite model</em> (.tflite) —A serialized <a href="https://google.github.io/flatbuffers/">FlatBuffer</a> that contains TensorFlow Lite operators and tensors for the TensorFlow Lite interpreter, similar to a <code>FrozenGraphDef</code>.</li>
+<li><em>CheckPoint</em> (.ckpt) —— 通过一张 TensorFlow 图得到的序列化变量。因为这个格式没有包含图的结构，因此该格式无法进行自解释。</li>
+<li><code>FrozenGraphDef</code> —— 一个没有包含变量的 <code>GraphDef</code> 子类。通过选取一个检查点和一个 <code>GraphDef</code>，可以把 <code>GraphDef</code> 转化为 <code>FrozenGraphDef</code>，并使用从检查点检索到的值将每个变量转换为常量。</li>
+<li><code>SaveModel</code> —— 带有签名的 <code>GraphDef</code> 和检查点，该签名将输入和输出参数标记为模型。可以从 <code>SavedModel</code> 中提取 <code>GraphDef</code> 和检查点。</li>
+<li><strong>TensorFlow Lite 模型</strong> (.tflite) —— 一个序列化的 <a href="https://google.github.io/flatbuffers/">FlatBuffer</a>，其中包含了 TensorFlow Lite 操作符和张量，用于TensorFlow Lite 解释器，和 <code>FrozenGraphDef</code> 相似。</li>
 </ul>
-<h3 id="toc-6">Freeze Graph</h3>
-<p>To use the <code>GraphDef</code> .pb file with TensorFlow Lite, you must have checkpoints that contain trained weight parameters. The .pb file only contains the structure of the graph. The process of merging the checkpoint values with the graph structure is called <em>freezing the graph</em>.</p>
-<p>You should have a checkpoints folder or download them for a pre-trained model (for example, <a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md">MobileNets</a>).</p>
-<p>To freeze the graph, use the following command (changing the arguments):</p>
+<h3 id="toc-6">图固化（译者注：指把训练数据和模型固化成 .pb 文件）</h3>
+<p>为了在 TensorFlow Lite 模型上使用 <code>GraphDef.pb</code> 文件，你必须拥有包含已训练权重参数的检查点。<code>.pb</code> 文件仅仅包含了图的数据结构。把检查点值和图结构进行合并的操作被称为<strong>图固化</strong>。</p>
+<p>你应该已经拥有一个检查点文件夹或者已经从一个预训练模型中下载了检查点（例如，<a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md">MobileNets</a>）。</p>
+<p>使用如下一些命令来对图进行固化（使用时请修改参数）：</p>
 <pre><code>freeze_graph --input_graph=/tmp/mobilenet_v1_224.pb \
   --input_checkpoint=/tmp/checkpoints/mobilenet-10202.ckpt \
   --input_binary=true \
   --output_graph=/tmp/frozen_mobilenet_v1_224.pb \
   --output_node_names=MobileNetV1/Predictions/Reshape_1
 </code></pre>
-<p>The <code>input_binary</code> flag must be enabled so the protobuf is read and written in a binary format. Set the <code>input_graph</code> and <code>input_checkpoint</code> files.</p>
-<p>The <code>output_node_names</code> may not be obvious outside of the code that built the model. The easiest way to find them is to visualize the graph, either with <a href="https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2/#3">TensorBoard</a> or <code>graphviz</code>.</p>
-<p>The frozen <code>GraphDef</code> is now ready for conversion to the <code>FlatBuffer</code> format (.tflite) for use on Android or iOS devices. For Android, the Tensorflow Optimizing Converter tool supports both float and quantized models. To convert the frozen <code>GraphDef</code> to the .tflite format:</p>
+<p>必须启用 <code>input_binary</code> 标志位，以便以二进制格式读取和写入 protobuf。设置 <code>input_graph</code> 和 <code>input_checkpoint</code> 文件。</p>
+<p>在构建模型的代码之外，<code>output_node_names</code> 可能并不明显。要找到它们，最简单的方法是使用 <a href="https://codelabs.developers.google.com/codelabs/tensorflow-for poets-2/#3">TensorBoard</a> 或 <code>graphviz</code> 来可视化图形。</p>
+<p>固化的 <code>GraphDef</code> 现在可以转换为 <code>FlatBuffer</code> 格式（.tflite），以便在安卓或 iOS 设备上使用。对于安卓来说，Tensorflow 优化转换器工具同时支持浮动模型和量化模型。如下代码将固化的 <code>GraphDef</code> 转换为 .tflite 格式:</p>
 <pre><code>toco --input_file=$(pwd)/mobilenet_v1_1.0_224/frozen_graph.pb \
   --input_format=TENSORFLOW_GRAPHDEF \
   --output_format=TFLITE \
@@ -96,7 +95,7 @@ using the value retrieved from the CheckPoint.</li>
   --input_shapes=1,224,224,3
 </code></pre>
 <p><a href="//tensorflow.juejin.im/performance/quantization.html">定点量化</a></p>
-<p>It is also possible to use the Tensorflow Optimizing Converter with protobufs from either Python or from the command line (see the  <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco/python/toco_from_protos.py">toco_from_protos.py</a> example). This allows you to integrate the conversion step into the model design workflow, ensuring the model is easily convertible to a mobile inference graph. For example:</p>
+<p>你还可以使用来自 Python 或者命令行（参见 <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco/python/toco_from_protos.py">toco_from_protos.py</a> 案例）的含有 protobufs 的 Tensorflow 优化转换器。这允许你将转换步骤集成到模型设计工作流中，确保模型可以轻松地转换为移动推理图。例如：</p>
 <pre><code class="lang-python">import tensorflow as tf
 
 img = tf.placeholder(name=&quot;img&quot;, dtype=tf.float32, shape=(1, 64, 64, 3))
@@ -107,32 +106,32 @@ with tf.Session() as sess:
   tflite_model = tf.contrib.lite.toco_convert(sess.graph_def, [img], [out])
   open(&quot;converteds_model.tflite&quot;, &quot;wb&quot;).write(tflite_model)
 </code></pre>
-<p>For usage, see the Tensorflow Optimizing Converter <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco/g3doc/cmdline_examples.md">command-line examples</a>.</p>
-<p>Refer to the <a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md">Ops compatibility guide</a> for troubleshooting help, and if that doesn't help, please <a href="https://github.com/tensorflow/tensorflow/issues">file an issue</a>.</p>
-<p>The <a href="https://github.com/tensorflow/tensorflow">development repo</a> contains a tool to visualize TensorFlow Lite models after conversion. To build the <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/tools/visualize.py">visualize.py</a> tool:</p>
+<p>有关使用情况，请参阅 Tensorflow 优化转换器<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco/g3doc/cmdline_examples.md">命令行工具案例</a>。</p>
+<p>参照<a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md">运维兼容性指南</a>进行故障诊断帮助，如果你在这份指南里没有获得帮助，请提一个 <a href="https://github.com/tensorflow/tensorflow/issues">issue</a>。</p>
+<p>这份<a href="https://github.com/tensorflow/tensorflow">开发仓库</a>包含了一个可以在转换之后可视化 TensorFlow Lite 模型的工具。你可以使用 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/tools/visualize.py">visualize.py</a> 构建这个工具：</p>
 <pre><code class="lang-sh">bazel run tensorflow/contrib/lite/tools:visualize -- model.tflite model_viz.html
 </code></pre>
-<p>This generates an interactive HTML page listing subgraphs, operations, and a graph visualization.</p>
-<h2 id="toc-7">3. Use the TensorFlow Lite model for inference in a mobile app</h2>
-<p>After completing the prior steps, you should now have a <code>.tflite</code> model file.</p>
-<h3 id="toc-8">Android</h3>
-<p>Since Android apps are written in Java and the core TensorFlow library is in C++, a JNI library is provided as an interface. This is only meant for inference—it provides the ability to load a graph, set up inputs, and run the model to calculate outputs.</p>
+<p>这会生成一个交互式的 HTML 页面，在这个页面中会列出子图，操作和可视化的图形。</p>
+<h2 id="toc-7">3. 在移动 app 中引用 TensorFlow Lite 模型</h2>
+<p>在完成了上述的步骤之后，你现在应该已经获得了一个 <code>.tflite</code> 模型文件了。</p>
+<h3 id="toc-8">安卓</h3>
+<p>因为安卓 app 都是用 Java 语言编写的，同时 TesorFlow 核心库是基于 C++ 编写的，因此还提供了一个 JNI（译者注：JNI 是Java Native Interface 的缩写，它提供了若干的 API，实现了 Java 和其他语言，主要是 C 和 C++ 的通信）接口。这个接口仅用于推断 —— 它提供了加载图形、输入设置和运行模型来计算输出的能力。</p>
 <p><a href="//tensorflow.juejin.im/mobile/tflite/demo_android.html">Android 示例应用</a></p>
 <p><a href="//tensorflow.juejin.im/mobile/android_build.html">在安卓上构建 TensorFlow</a></p>
 <h3 id="toc-9">iOS</h3>
 <p><a href="//tensorflow.juejin.im/mobile/tflite/demo_ios.html">iOS 演示 APP</a></p>
-<h4 id="toc-10">Core ML support</h4>
-<p>Core ML is a machine learning framework used in Apple products. In addition to using Tensorflow Lite models directly in your applications, you can convert trained Tensorflow models to the <a href="https://developer.apple.com/machine-learning/">CoreML</a> format for use on Apple devices. To use the converter, refer to the <a href="https://github.com/tf-coreml/tf-coreml">Tensorflow-CoreML converter documentation</a>.</p>
-<h3 id="toc-11">Raspberry Pi</h3>
-<p>Compile Tensorflow Lite for a Raspberry Pi by following the <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/rpi.md">RPi build instructions</a> This compiles a static library file (<code>.a</code>) used to build your app. There are plans for Python bindings and a demo app.</p>
+<h4 id="toc-10">Core ML 支持</h4>
+<p>Core ML 是一个用于苹果产品的机器学习框架。除了直接在你的应用中使用 Tensorflow Lite 模型，你也可以把你的 Tensorflow 模型转换训练成能够应用于苹果设备的 <a href="https://developer.apple.com/machine-learning/">CoreML</a> 格式。要使用这个转换器，请参见 <a href="https://github.com/tf-coreml/tf-coreml">Tensorflow-CoreML 转换文档</a>。</p>
+<h3 id="toc-11">树莓派</h3>
+<p>根据下述的 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/rpi.md">RPi 构建指导</a> 为树莓派编译 Tensorflow Lite 模型。这个操作编译了一个用于构建你 app 的静态库文件（<code>.a</code>）。里面包含了一些用于 Python 绑定的计划和一个 demo app。</p>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
         <ul id="table-of-content">
-<li><a href="#toc-0">Developer Guide</a><ul>
-<li><a href="#toc-1">1. Choose a model</a></li>
-<li><a href="#toc-5">2. Convert the model format</a></li>
-<li><a href="#toc-7">3. Use the TensorFlow Lite model for inference in a mobile app</a></li>
+<li><a href="#toc-0">开发者指南</a><ul>
+<li><a href="#toc-1">1. 模型选择</a></li>
+<li><a href="#toc-5">2. 模型格式转换</a></li>
+<li><a href="#toc-7">3. 在移动 app 中引用 TensorFlow Lite 模型</a></li>
 </ul>
 </li>
 </ul>
@@ -157,10 +156,10 @@ with tf.Session() as sess:
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'mingxing47': 'https://avatars2.githubusercontent.com/u/11155853?v=4'}, {'明星': ''}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
-<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="Developer Guide">
+<div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="开发者指南">
     <img src="//tensorflow.juejin.im/assets/imgs/share.png"/>
 </div>
 </body>
