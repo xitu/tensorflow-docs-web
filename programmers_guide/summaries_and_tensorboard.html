@@ -55,20 +55,20 @@
 </script>
         <main role="main" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
             <h1 id="toc-0">Tensorboard：可视化学习面板</h1>
-<p>Tensorflow 做的一些计算是复杂和混乱，就像训练深度神经网络。为了更易于理解、调试和优化Tensorflow程序，我们发布了一套可视化工具称为 Tensorboard。你可以使用 TensorBoard 图形化 Tensorflow 图，绘制图计算过程的定量指标，以及显示图的额外数据。TensorBoard 完成配置后，是这样的：</p>
+<p>Tensorflow 做的一些计算是复杂和混乱，就像训练深度神经网络。为了更易于理解、调试和优化 Tensorflow 程序，我们发布了一套可视化工具称为 Tensorboard。你可以使用 TensorBoard 图形化 Tensorflow 图，绘制图计算过程的定量指标，以及显示图的额外数据。TensorBoard 完成配置后，是这样的：</p>
 <p><img src="https://camo.githubusercontent.com/f0f03739a6b2a0e312f929759fab857856b7cf0c/68747470733a2f2f7777772e74656e736f72666c6f772e6f72672f696d616765732f6d6e6973745f74656e736f72626f6172642e706e67" alt=""></p>
-<p>[需要翻译]This 30-minute tutorial is intended to get you started with simple TensorBoard usage. It assumes a basic understanding of TensorFlow.</p>
-<p>There are other resources available as well! The <a href="https://github.com/tensorflow/tensorboard">TensorBoard GitHub</a> has a lot more information on using individual dashboards within TensorBoard including tips &amp; tricks and debugging information.</p>
-<h2 id="toc-1">Setup</h2>
-<p><a href="https://www.tensorflow.org/install/">Install TensorFlow</a>. Installing TensorFlow via pip should also automatically install TensorBoard.</p>
+<p>这个只有 30 分钟的教程旨在让你可以通过简单的 TensorBoard 用法入门。我们假设你对于 TensorFlow 已经有了一定的基础。</p>
+<p>当然还有其他可用的资源！<a href="https://github.com/tensorflow/tensorboard">TensorBoard GitHub</a> 有更多关于在 TensorBoard 中使用单个面板所需要的信息，包括提示、技巧和调试信息。</p>
+<h2 id="toc-1">准备</h2>
+<p><a href="https://www.tensorflow.org/install/">安装 TensorFlow</a>。通过 pip 方式安装 TensorFlow 时，会自动安装 TensorBoard。</p>
 <h2 id="toc-2">数据序列化</h2>
 <p>TensorBoard 是通过读取 Tensorflow 事件文件来操作的，Tensorflow 事件包含 Tensorflow 运行所生成的汇总数据。下面是 TensorBoard 汇总数据的完整生命周期。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/summary/scalar"><code>tf.summary.scalar</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/summary/merge_all"><code>tf.summary.merge_all</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/summary/FileWriter"><code>tf.summary.FileWriter</code></a></p>
-<p>FileWriter 的构造函数需要包含 logdir，logdir 目录是非常重要的，所有的事件都会写到它所指的目录下。 另外，FileWrite 可以方便地携带一个图对象在它的构造函数中。如果它接收到一个图对象，Tensorboard 会将张量形状信息和你的图像一并显示出来。这会让你更加直观地感受到图的生产过程：查看 <a href="https://www.tensorflow.org/get_started/graph_viz#tensor_shape_information">张量图形信息</a></p>
+<p>FileWriter 的构造函数需要包含 logdir，logdir 目录是非常重要的，所有的事件都会写到它所指的目录下。另外，FileWrite 可以方便地携带一个图对象在它的构造函数中。如果它接收到一个图对象，Tensorboard 会将张量形状信息和你的图像一并显示出来。这会让你更加直观地感受到图的生产过程：查看<a href="https://www.tensorflow.org/get_started/graph_viz#tensor_shape_information">张量图形信息</a>。</p>
 <p>现在已经修改了你的图并且有一个 FileWriter，准备开始你的神经网络吧！如果您愿意，您可以单步运行合并汇总操作，并记录大量的训练数据。不过，这可能比你需要的数据更多。你可以每 n 步执行一次汇总。</p>
-<p>下面的代码示例是基于 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/tutorials/mnist/mnist.py">简单 MNIST 教程</a>, 更改的，其中我们额外每十步执行一次总结。如果你运行这个然后启动 Tensorboard—logdir=/tmp/tensorflow/mnist，你将能够可视化统计数据，例如在训练过程中权重或精确度是如何变化的。下面的代码是一个摘录，完整的资料在 <a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/mnist_with_summaries.py">这里</a>。</p>
+<p>下面的代码示例是基于<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/tutorials/mnist/mnist.py">简单 MNIST 教程</a>，更改的，其中我们额外每十步执行一次总结。如果你运行这个然后启动 Tensorboard—logdir=/tmp/tensorflow/mnist，你将能够可视化统计数据，例如在训练过程中权重或精确度是如何变化的。下面的代码是一个摘录，完整的资料在<a href="https://www.tensorflow.org/code/tensorflow/examples/tutorials/mnist/mnist_with_summaries.py">这里</a>。</p>
 <pre><code class="lang-python">def variable_summaries(var):
   &quot;&quot;&quot;为了 TensorBoard 可视化，给Tensor添加一些汇总&quot;&quot;&quot;
   with tf.name_scope(&#39;summaries&#39;):
@@ -83,7 +83,7 @@
 
 def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
   &quot;&quot;&quot;用于生成简单的神经网络层的可复用代码。
-  它进行矩阵乘法，偏置加法，然后使用relu进行非线性化。
+  它进行矩阵乘法，偏置加法，然后使用 relu 进行非线性化。
   它还设置了名称范围，使得生成的图形易于阅读，
   并增加了一些汇总操作。
   &quot;&quot;&quot;
@@ -145,7 +145,7 @@ tf.global_variables_initializer().run()
 </code></pre>
 <p>在初始化 FileWriters 后，必须要添加汇总到 FileWriters 中作为我们训练和测试的模型。</p>
 <pre><code class="lang-python">  # 训练模型，并写入汇总信息。
-  # 每10步，测量一次测试集的准确度，并写出测试汇总信息
+  # 每 10 步，测量一次测试集的准确度，并写出测试汇总信息
   # 所有其他步骤，在训练数据上运行 train_step，并添加训练汇总
 
 def feed_dict(train):
@@ -173,15 +173,15 @@ for i in range(FLAGS.max_steps):
 
 （python -m tensorboard.main）
 </code></pre>
-<p>logdir 就是 FileWriter 序列化数据的目录。如果 logdir 目录包含子目录，并且子目录具有来自单独线程的序列化数据。如果 logdir 目录包含子目录，并且子目录具有来自单独线程的序列化数据，那么 Tensorboard 将统一展示这些可视化数据。一旦 TensorBoard 运行，你可以通过你的 Web 浏览器 localhost:6006， 查看 Tensorboard。你会在 Tensorboard 右上角看到导航标签。每个选项代表一组可以可视化的序列化数据</p>
-<p>关于如何使用 <strong>“graph”</strong> 来显示你的图的详细信息，你可以查看 <a href="https://www.tensorflow.org/get_started/graph_viz">TensorBoard: Graph Visualization</a>.</p>
-<p>更多关于 TensorBoard 的信息，查看 <a href="https://github.com/tensorflow/tensorboard">TensorBoard's GitHub</a>.</p>
+<p>logdir 就是 FileWriter 序列化数据的目录。如果 logdir 目录包含子目录，并且子目录具有来自单独线程的序列化数据。如果 logdir 目录包含子目录，并且子目录具有来自单独线程的序列化数据，那么 Tensorboard 将统一展示这些可视化数据。一旦 TensorBoard 运行，你可以通过你的 Web 浏览器 localhost:6006，查看 Tensorboard。你会在 Tensorboard 右上角看到导航标签。每个选项代表一组可以可视化的序列化数据</p>
+<p>关于如何使用 <strong>“graph”</strong> 来显示你的图的详细信息，你可以查看 <a href="https://www.tensorflow.org/get_started/graph_viz">TensorBoard: Graph Visualization</a>。</p>
+<p>更多关于 TensorBoard 的信息，查看 <a href="https://github.com/tensorflow/tensorboard">TensorBoard's GitHub</a>。</p>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
         <ul id="table-of-content">
 <li><a href="#toc-0">Tensorboard：可视化学习面板</a><ul>
-<li><a href="#toc-1">Setup</a></li>
+<li><a href="#toc-1">准备</a></li>
 <li><a href="#toc-2">数据序列化</a></li>
 <li><a href="#toc-3">启动 TensorBoard</a></li>
 </ul>
@@ -208,7 +208,7 @@ for i in range(FLAGS.max_steps):
     </div>
 </footer>
 <script>
-    var contributors = [{'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="Tensorboard：可视化学习面板">

@@ -58,8 +58,8 @@
 <p>这篇指南将帮助你使用底层的 TensorFlow 核心 API 进行编程，会涉及到以下几个部分：</p>
 <ul>
 <li>管理你的 TensorFlow 程序（一张 TensorFlow 计算图，<code>tf.Graph</code>）以及 TensorFlow 运行时（一个 TensorFlow 会话，<code>tf.Session</code>），而不是依赖 Estimators 来管理它们</li>
-<li>使用 <code>tf.Session</code> 运行 TensorFlow 操作<br>
- * 在底层环境中使用高级的组件（<a href="#datasets">datasets</a>, <a href="#layers">layers</a>, 以及 <a href="#feature_columns">特征列</a>）</li>
+<li>使用 <code>tf.Session</code> 运行 TensorFlow 操作</li>
+<li>在底层环境中使用高级的组件（<a href="#datasets">datasets</a>, <a href="#layers">layers</a>, 以及 <a href="#feature_columns">特征列</a>）</li>
 <li><a href="//tensorflow.juejin.im/get_started/premade_estimators.html">Premade Estimators</a></li>
 </ul>
 <p>我们推荐尽量使用更高层次的 API 来构建模型，但了解 TensorFlow 核心 API 有以下几个优点：</p>
@@ -203,7 +203,7 @@ next_item = slices.make_one_shot_iterator().get_next()
   except tf.errors.OutOfRangeError:
     break
 </code></pre>
-<p>[需要翻译]If the <code>Dataset</code> depends on stateful operations you may need to initialize the iterator before using it, as shown below:</p>
+<p>如果 <code>Dataset</code> 依赖于有状态操作，那么使用它之前，你可能需要初始化迭代器，如下所示：</p>
 <pre><code class="lang-python">r = tf.random_normal([10,3])
 dataset = tf.data.Dataset.from_tensor_slices(r)
 iterator = dataset.make_initializable_iterator()
@@ -416,7 +416,7 @@ print(sess.run(y_pred))
     </div>
 </footer>
 <script>
-    var contributors = [{'pkuwwt': 'https://avatars0.githubusercontent.com/u/4813445?v=4'}, {'TobiasLee': 'https://avatars0.githubusercontent.com/u/20009381?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'pkuwwt': 'https://avatars0.githubusercontent.com/u/4813445?v=4'}, {'TobiasLee': 'https://avatars0.githubusercontent.com/u/20009381?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="底层 API 编程介绍">

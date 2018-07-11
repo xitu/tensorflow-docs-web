@@ -100,7 +100,7 @@
 </tbody>
 </table></div>
 <p>对于特征维数中的每一个特征（<code>feature_index</code> 即 <code>operand</code> 中特征维度的索引），此操作计算 <code>operand</code> 的梯度、在所有其他维度上的 <code>offset</code> 和 <code>scale</code>。<code>feature_index</code> 必须是 <code>operand</code> 中特征维度的合法索引。</p>
-<p>[需要翻译]：The three gradients are defined by the following formulas (Assuming a 4-dimensional tensor as <code>operand</code> and (l) is the index for feature dimension):</p>
+<p>这三个梯度由以下公式定义（假设四维张量为 <code>operand</code> 和（l）是特征维的索引）：</p>
 <p>\( coef<em>l = \frac{1}{mwh}\sum</em>{i=1}^m\sum<em>{j=1}^w\sum</em>{k=1}^h (\nabla y<em>{ijkl} * (x</em>{ijkl} - \mu<em>l) / (\sigma^2</em>{l}+\epsilon)) \)</p>
 <p>\( \nabla x<em>{ijkl} = \gamma</em>{l} <em> (1/\sqrt{\sigma^2_{l}+\epsilon}) </em> [\nabla y<em>{ijkl} - mean(\nabla y) - (x</em>{ijkl} - \mu_{l}) * coef_l] \)</p>
 <p>\( \nabla \beta<em>l = \sum</em>{i=1}^m\sum<em>{j=1}^w\sum</em>{k=1}^h \nabla y_{ijkl} \)</p>
@@ -850,7 +850,7 @@ dnums.add_rhs_contracting_dimensions(1);
 DotGeneral(lhs, rhs, dnums) -&gt; { {6.0, 12.0},
                                  {15.0, 30.0} }
 </code></pre>
-<p>'lhs' 和 'rhs' 的批处理维数必须相同，在两个数组中必须以相同的顺序列出，同时维数大小必须相同。[需要翻译]and must be ordered before contracting and non-contracting/non-batch dimension numbers。</p>
+<p>'lhs' 和 'rhs' 的批处理维数必须相同，在两个数组中必须以相同的顺序列出，同时维数大小必须相同。必须在合约和非合约/非批次维度之前订阅。</p>
 <p>批处理维数的例子（批处理大小为 2，2x2 矩阵）：</p>
 <pre><code>lhs = { { {1.0, 2.0},
           {3.0, 4.0} },
@@ -893,7 +893,7 @@ DotGeneral(lhs, rhs, dnums) -&gt; { { {1.0, 2.0},
 </tr>
 </tbody>
 </table></div>
-<p>[需要翻译]It follows that the resulting dimension number starts with the batch dimension, then the 'lhs' non-contracting/non-batch dimension, and finally the 'rhs' non-contracting/non-batch dimension.</p>
+<p>由此得出的结果维数是从批处理维度开始，然后是 <code>lhs</code> 非收缩/非批处理维数，最后是 <code>rhs</code> 非收缩/非批处理维数。</p>
 <h2 id="toc-18">DynamicSlice</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::DynamicSlice</code></a>.</p>
 <p>DynamicSlice从动态 <code>start_indices</code> 输入数组中提取子数组。<code>size_indices</code> 为每个维度的切片大小，它在每个维度上指定了切片范围：[start, start + size)。<code>start_indices</code> 的秩必须为 1，且维数大小等于 <code>operand</code> 的秩。</p>
@@ -1093,115 +1093,114 @@ DynamicUpdateSlice(b, u, s) produces:
 </tbody>
 </table></div>
 <p>该函数应用于 <code>operand</code> 数组的每个元素，从而形成具有相同形状的数组。它允许操作数为标量（秩 0 ）</p>
-<h2 id="toc-23">Gather[需要翻译]</h2>
-<p>The XLA gather operation stitches together several slices (each slice at a potentially different runtime offset) of an input tensor into an output tensor.</p>
-<h3 id="toc-24">General Semantics</h3>
-<p>See also <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Gather</code></a>. For a more intuitive description, see the "Informal Description" section below.</p>
+<h2 id="toc-23">收集</h2>
+<p>XLA 收集操作将一个输入张量的几个片（每个片在一个可能不同的运行时偏移量上）拼接成一个输出张量。</p>
+<h3 id="toc-24">一般语义</h3>
+<p>也可以在 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::Gather</code></a> 进行查阅。更直观的描述，请参阅下面的“非正式描述”部分。</p>
 <p><b> `gather(operand, gather_indices, output_window_dims, elided_window_dims, window_bounds, gather_dims_to_operand_dims)` </b></p>
 <div class="table-wrapper"><table>
 <thead><tr>
-<th>Arguments</th>
-<th>Type</th>
-<th>Semantics</th>
+<th>参数</th>
+<th>类型</th>
+<th>语义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>operand</code></td>
 <td><code>ComputationDataHandle</code></td>
-<td>The tensor we’re gathering from.</td>
+<td>我们收集的张量。</td>
 </tr>
 <tr>
 <td><code>gather_indices</code></td>
 <td><code>ComputationDataHandle</code></td>
-<td>Tensor containing the starting indices of the slices we're we're stitching together into the output tensor.</td>
+<td>张量，包含切片的起始指数，我们将它们拼接输出到张量中。</td>
 </tr>
 <tr>
 <td><code>index_vector_dim</code></td>
 <td><code>int64</code></td>
-<td>The dimension in <code>gather_indices</code> that contains the starting indices.</td>
+<td>包含起始索引 <code>gather_indices</code> 中的维度。</td>
 </tr>
 <tr>
 <td><code>output_window_dims</code></td>
 <td><code>ArraySlice&lt;int64&gt;</code></td>
-<td>The set of dimensions in the  output shape that are <em>window dimensions</em> (defined below). Not all window dimensions may be present in the output shape.</td>
+<td>输出形状中的一组维度，即 <strong>windows 维度</strong>（定义如下）。并非所有窗口维度都可能出现在输出形状中。</td>
 </tr>
 <tr>
 <td><code>elided_window_dims</code></td>
 <td><code>ArraySlice&lt;int64&gt;</code></td>
-<td>The set of <em>window dimensions</em> that are not present in the output shape. <code>window_bounds[i]</code> must be <code>1</code> for all <code>i</code> in <code>elided_window_dims</code>.</td>
+<td>不存在于输出形状中的 <strong>window dimensions</strong>。对于 <code>elided_window_dims</code> 中的所有 <code>i</code>，<code>window_bounds[i]</code> 必须是 <code>1</code>。</td>
 </tr>
 <tr>
 <td><code>window_bounds</code></td>
 <td><code>ArraySlice&lt;int64&gt;</code></td>
-<td><code>window_bounds[i]</code> is the bounds for  window dimension <code>i</code>. This includes both the window dimensions that are explicitly part of the output shape (via <code>output_window_dims</code>) and the window dimensions that are elided (via <code>elided_window_dims</code>).</td>
+<td><code>window_bounds[i]</code> 是窗口维度 <code>i</code> 的边界。这包括显式地作为输出形状的一部分的窗口尺寸（通过 <code>output_window_dims</code>）和被省略的窗口维度（通过 <code>elided_window_dims</code>）。</td>
 </tr>
 <tr>
 <td><code>gather_dims_to_operand_dims</code></td>
 <td><code>ArraySlice&lt;int64&gt;</code></td>
-<td>A dimension map (the array is interpreted as mapping <code>i</code> to <code>gather_dims_to_operand_dims[i]</code>)  from the gather indices in <code>gather_indices</code> to the operand index space.  It has to be one-to-one and total.</td>
+<td>从 <code>gather_indices</code> 中的聚集索引到操作数索引的维度映射（数组被解释为将 <code>i</code> 映射为到 <code>gather_dims_to_operand_dims[i]</code>）。它必须是一对一和全部的。</td>
 </tr>
 </tbody>
 </table></div>
-<p>For every index <code>Out</code> in the output tensor, we compute two things (more precisely described later):</p>
+<p>对于输出张量中的每一个索引 <code>Out</code>，我们计算两件事（之后进行更精确的描述）：</p>
 <ul>
-<li><p>An index into <code>gather_indices.rank</code> - <code>1</code> dimensions of <code>gather_indices</code>, which gives us a starting index of a slice, <em>operand slice</em>, in the operand tensor.  These <code>gather_indices.rank</code> - <code>1</code> dimensions are all the dimensions in <code>gather_indices</code> except <code>index_vector_dim</code>.</p>
+<li><p><code>gather_indices.rank</code> 的索引值 —— <code>1</code> 维度的 <code>gather_indices</code>，给出了操作数张量中的一个切片的起始索引 <strong>operand slice</strong>，这些都是 <code>gather_indices.rank</code> —— <code>1</code> 维度就是 <code>gather_indices</code> 中的所有维度，除了 <code>index_vector_dim</code>。</p>
 </li>
-<li><p>A <em>window index</em> that has the same rank as the operand.  This index is composed of the values in <code>Out</code> at dimensions <code>output_window_dims</code>, embedded with zeroes according to <code>elided_window_dims</code>.</p>
+<li><p>与操作数等级相同 <strong>window index</strong> 由 <code>Out</code> 在 <code>output_window_dims</code> 处的维度组成，并根据 <code>elided_window_dims</code> 嵌入零。</p>
+<p><strong>window index</strong> 是 <strong>operand slice</strong> 中元素的相对索引，它应该出现在索引 <code>Out</code> 中。</p>
 </li>
 </ul>
-<p>The <em>window index</em> is the relative index of the element in <em>operand slice</em> that should be present in the output at index <code>Out</code>.</p>
-<p>The output is a tensor of rank <code>output_window_dims.size</code> + <code>gather_indices.rank</code> - <code>1</code>.  Additionally, as a shorthand, we define <code>output_gather_dims</code> of type <code>ArraySlice&lt;int64&gt;</code> as the set of dimensions in the output shape but not in <code>output_window_dims</code>, in ascending order.  E.g. if the output tensor has rank <code>5</code>, <code>output_window_dims</code> is {<code>2</code>, <code>4</code>} then <code>output_gather_dims</code> is {<code>0</code>, <code>1</code>, <code>3</code>}</p>
-<p>If <code>index_vector_dim</code> is equal to <code>gather_indices.rank</code> we implicitly consider <code>gather_indices</code> to have a trailing <code>1</code> dimension (i.e. if <code>gather_indices</code> was of shape <code>[6,7]</code> and <code>index_vector_dim</code> is <code>2</code> then we implicitly consider the shape of <code>gather_indices</code> to be <code>[6,7,1]</code>).</p>
-<p>The bounds for the output tensor along dimension <code>i</code> is computed as follows:</p>
+<p>输出是等级 <code>output_window_dims.size</code> + <code>gather_indices.rank</code> - <code>1</code> 的张量。此外，作为简写，我们将 <code>ArraySlice&lt;int64&gt;</code>  类型的 <code>output_gather_dims</code> 定义为输出形状中的维度集合，而不是 <code>output_window_dims</code> 中的维度按照升序排列。例如，如果输出张量具有等级 <code>5</code>，则  <code>output_window_dims</code> 是 {<code>2</code>, <code>4</code>}，那么 <code>output_gather_dims</code> 是 {<code>0</code>, <code>1</code>, <code>3</code>}。</p>
+<p>如果 <code>index_vector_dim</code> 和 <code>gather_indices.rank</code> 相等，我们隐式地认为 <code>gather_indices</code> 具有尾随的 <code>1</code> 维（即，如果 <code>gather_indices</code> 是形状 <code>[6,7]</code> 而且 <code>index_vector_dim</code> 是 <code>2</code>，那么我们隐式地认为 <code>gather_indices</code> 的形状为 <code>[6,7,1]</code>）。</p>
+<p>输出张量沿维数 <code>i</code> 的边界计算如下：</p>
 <ol>
-<li>If <code>i</code> is present in <code>output_gather_dims</code> (i.e. is equal to <code>output_gather_dims[k]</code> for some <code>k</code>) then we pick the corresponding dimension bounds out of <code>gather_indices.shape</code>, skipping <code>index_vector_dim</code> (i.e. pick <code>gather_indices.shape.dims</code>[<code>k</code>] if <code>k</code> &lt; <code>index_vector_dim</code> and <code>gather_indices.shape.dims</code>[<code>k</code>+<code>1</code>] otherwise).</li>
-<li>If <code>i</code> is present in <code>output_window_dims</code> (i.e. equal to <code>output_window_dims</code>[<code>k</code>] for some <code>k</code>) then we pick the corresponding bound out of <code>window_bounds</code> after accounting for <code>elided_window_dims</code> (i.e. we pick <code>adjusted_window_bounds</code>[<code>k</code>] where <code>adjusted_window_bounds</code> is <code>window_bounds</code> with the bounds at indices <code>elided_window_dims</code> removed).</li>
+<li>如果 <code>i</code> 存在于 <code>output_gather_dims</code>（例如，对于某些 <code>k</code> 来说，等于 <code>output_gather_dims[k]</code>），那么我们从 <code>gather_indices.shape</code> 中选取相应的维度边界，跳过 <code>index_vector_dim</code>（例如，如果 <code>k</code> &lt; <code>index_vector_dim</code> 和 <code>gather_indices.shape.dims</code>[<code>k</code>+<code>1</code>]，则选择<code>gather_indices.shape.dims</code>[<code>k</code>]，否则不选）。</li>
+<li>如果 <code>i</code> 存在于 <code>output_window_dims</code>（例如，对于某些 <code>k</code> 来说，等于 <code>output_window_dims</code>[<code>k</code>]），那么我们在计算 <code>elided_window_dims</code> 之后，就从 <code>window_bounds</code> 中选出相应的边界（即我们选择 <code>adjusted_window_bounds</code>[<code>k</code>]，其中 <code>adjusted_window_bounds</code> 为 <code>window_bounds</code>，删除索引 <code>elided_window_dims</code> 处的边界）。</li>
 </ol>
-<p>The operand index <code>In</code> corresponding to an output index <code>Out</code> is computed as follows:</p>
+<p>与 <code>Out</code> 索引对应的操作数索引 <code>In</code> 的计算如下：</p>
 <ol>
-<li>Let <code>G</code> = { <code>Out</code>[<code>k</code>] for <code>k</code> in <code>output_gather_dims</code> }.  Use <code>G</code> to slice out vector <code>S</code> such that <code>S</code>[<code>i</code>] = <code>gather_indices</code>[Combine(<code>G</code>, <code>i</code>)] where Combine(A, b) inserts b at position <code>index_vector_dim</code> into A. Note that this is well defined even if <code>G</code> is empty -- if <code>G</code> is empty then <code>S</code> = <code>gather_indices</code>.</li>
-<li>Create an index, <code>S</code><sub>`in`</sub>, into <code>operand</code> using <code>S</code> by scattering <code>S</code> using the <code>gather_dims_to_operand_dims</code> map (<code>S</code><sub>`in`</sub> is the starting indices for <em>operand slice</em> mentioned above).  More precisely:<ol>
+<li>Let <code>G</code> = { <code>Out</code>[<code>k</code>] for <code>k</code> in <code>output_gather_dims</code> }。使用 <code>G</code> 将向量 <code>S</code> 切片，以便 <code>S</code>[<code>i</code>] = <code>gather_indices</code>[Combine(<code>G</code>, <code>i</code>)]，将（A, b）插入位置为 <code>index_vector_dim</code> 的 b 插入到 A 中。注意，这个定义很好，如果 <code>G</code> 为空 —— 即，如果 if <code>G</code> 为空，则 <code>S</code> = <code>gather_indices</code>。</li>
+<li>创建一个索引，<code>S</code><sub>`in`</sub>, into <code>operand</code> 通过使用 <code>gather_dims_to_operand_dims</code> 映射（<code>S</code><sub>`in`</sub> 是上述提到的 <strong>operand slice</strong> 起始索引）来将 <code>S</code> 散射成 <code>S</code>。更确切地说：<ol>
 <li><code>S</code><sub>`in`</sub>[<code>gather_dims_to_operand_dims</code>[<code>k</code>]] = <code>S</code>[<code>k</code>] if <code>k</code> &lt; <code>gather_dims_to_operand_dims.size</code>.</li>
 <li><code>S</code><sub>`in`</sub>[<code>_</code>] = <code>0</code> otherwise.</li>
 </ol>
 </li>
-<li>Create an index <code>W</code><sub>`in`</sub> into <code>operand</code> by scattering the indices at the output window dimensions in <code>Out</code> according to the <code>elided_window_dims</code> set (<code>W</code><sub>`in`</sub> is the <em>window index</em> mentioned above).  More precisely:<ol>
-<li><code>W</code><sub>`in`</sub>[<code>window_dims_to_operand_dims</code>(<code>k</code>)] = <code>Out</code>[<code>k</code>] if <code>k</code> &lt; <code>output_window_dims.size</code> (<code>window_dims_to_operand_dims</code> is defined below).</li>
-<li><code>W</code><sub>`in`</sub>[<code>_</code>] = <code>0</code> otherwise.</li>
+<li>创建一个索引 <code>W</code><sub>`in`</sub> into <code>operand</code> 通过将指数分散到 <code>Out</code> 中的输出窗口维度，按照 <code>elided_window_dims</code> 集合 （<code>W</code><sub>`in`</sub> 是上述提及的 <strong>window index</strong>）。更确切地说：<ol>
+<li><code>W</code><sub>` 在 `</sub>[<code>window_dims_to_operand_dims</code>(<code>k</code>)] = <code>Out</code>[<code>k</code>] if <code>k</code> &lt; <code>output_window_dims.size</code> （<code>window_dims_to_operand_dims</code> 有如下定义）。</li>
+<li>另外 <code>W</code><sub>` 在 `</sub>[<code>_</code>] = <code>0</code>。</li>
 </ol>
 </li>
-<li><code>In</code> is <code>W</code><sub>`in`</sub> + <code>S</code><sub>`in`</sub> where + is element-wise addition.</li>
+<li><code>In</code> 是 <code>W</code><sub>`in`</sub> + <code>S</code><sub>`in`</sub>，是元素级加法。</li>
 </ol>
-<p><code>window_dims_to_operand_dims</code> is the monotonic function with domain [<code>0</code>, <code>output_window_dims.size</code>) and range [<code>0</code>, <code>operand.rank</code>) \ <code>elided_window_dims</code>.  So if, e.g., <code>output_window_dims.size</code> is <code>4</code>, <code>operand.rank</code> is <code>6</code> and <code>elided_window_dims</code> is {<code>0</code>, <code>2</code>} then <code>window_dims_to_operand_dims</code> is {<code>0</code>→<code>1</code>, <code>1</code>→<code>3</code>, <code>2</code>→<code>4</code>, <code>3</code>→<code>5</code>}.</p>
-<h3 id="toc-25">Informal Description and Examples</h3>
-<p><code>index_vector_dim</code> is set to <code>gather_indices.rank</code> - <code>1</code> in all of the examples that follow.  More interesting values for <code>index_vector_dim</code> does not change the operation fundamentally, but makes the visual representation more cumbersome.</p>
-<p>To get an intuition on how all of the above fits together, let's look at an example that gathers 5 slices of shape <code>[8,6]</code> from a <code>[16,11]</code> tensor.  The position of a slice into the <code>[16,11]</code> tensor can be represented as an index vector of shape <code>S64[2]</code>, so the set of 5 positions can be represented as a <code>S64[5,2]</code> tensor.</p>
-<p>The behavior of the gather operation can then be depicted as an index transformation that takes [<code>G</code>,<code>W</code><sub>`0`</sub>,<code>W</code><sub>`1`</sub>], an index in the output shape, and maps it to an element in the input tensor in the following way:</p>
+<p><code>window_dims_to_operand_dims</code> 是域 [<code>0</code>, <code>output_window_dims.size</code>] 和范围 [<code>0</code>, <code>operand.rank</code>] \ <code>elided_window_dims</code> 的单调函数。因此，如果 <code>output_window_dims.size</code> 是 <code>4</code>，<code>operand.rank</code> 为 <code>6</code> 并且 <code>elided_window_dims</code> 为 {<code>0</code>, <code>2</code>} 那么 <code>window_dims_to_operand_dims</code> 就是 {<code>0</code>→<code>1</code>, <code>1</code>→<code>3</code>, <code>2</code>→<code>4</code>, <code>3</code>→<code>5</code>}。</p>
+<h3 id="toc-25">非正式说明和实例</h3>
+<p>在下面的所有示例中，<code>index_vector_dim</code> 被设置为 <code>gather_indices.rank</code> - <code>1</code>。<code>index_vector_dim</code> 的更有趣的值不会从根本上改变操作，但会使视觉表示更加繁琐。</p>
+<p>为了直观地了解所有上述情况如何结合在一起，我们来看一个例子，它从一个 <code>[16,11]</code> 张量中收集 5 片形状为 <code>[8,6]</code> 的张量。切片到 <code>[16,11]</code> 张量中的位置可以表示为形状为 <code>S64[2]</code> 的索引向量，所有以 5 个位置的集合可以表示 <code>S64[5,2]</code> 张量。</p>
+<p>集合操作的行为可以被描述为一个索引转换，采用 [<code>G</code>,<code>W</code><sub>`0`</sub>,<code>W</code><sub>`1`</sub>] 输出形状中的索引，并按以下方式将其映射到输入张量中的元素：</p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
-  <img style="width:100%" src="../../images/ops_xla_gather_0.svg">
+  <img style="width:100%" src="https://www.tensorflow.org/images/ops_xla_gather_1.svg">
 </div><p>We first select an (<code>X</code>,<code>Y</code>) vector from the gather indices tensor using <code>G</code>. The element in the output tensor at index [<code>G</code>,<code>W</code><sub>`0`</sub>,<code>W</code><sub>`1`</sub>] is then the element in the input tensor at index [<code>X</code>+<code>W</code><sub>`0`</sub>,<code>Y</code>+<code>W</code><sub>`1`</sub>].</p>
-<p><code>window_bounds</code> is <code>[8,6]</code>, which decides the range of W<sub>`0`</sub> and W<sub>`1`</sub>, and this in turn decides the bounds of the slice.</p>
-<p>This gather operation acts as a batch dynamic slice with <code>G</code> as the batch dimension.</p>
-<p>The gather indices may be multidimensional.  For instance, a more general version of the example above using a "gather indices" tensor of shape <code>[4,5,2]</code><br>
-would translate indices like this:</p>
+<p><code>window_bounds</code> 是 <code>[8,6]</code>，它决定 W<sub>`0`</sub> 和 W<sub>`1`</sub> 的范围，这反过来决定切片的边界。</p>
+<p>此集合操作充当批处理动态切片，<code>G</code> 作为批处理维度。</p>
+<p>集合指数可能是多方面的，例如，使用形状 <code>[4,5,2]</code> 的 "gather indices" 张量的上述示例的一个更一般的版本可以翻译成这样的指数：</p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%" src="../../images/ops_xla_gather_1.svg">
-</div><p>Again, this acts as a batch dynamic slice <code>G</code><sub>`0`</sub> and <code>G</code><sub>`1`</sub> as the batch dimensions.  The window bounds are still <code>[8,6]</code>.</p>
-<p>The gather operation in XLA generalizes the informal semantics outlined above in the following ways:</p>
+</div><p>同样，这是一个批处理动态切片 <code>G</code><sub>`0`</sub> 和 <code>G</code><sub>`1`</sub>，窗口的边界仍然是 <code>[8,6]</code>。</p>
+<p>XLA 中收集的数据操作概括了以上概述的非正式语义：</p>
 <ol>
-<li><p>We can configure which dimensions in the output shape are the window dimensions (dimensions containing <code>W</code><sub>`0`</sub>, <code>W</code><sub>`1`</sub> in the last example).  The output gather dimensions (dimensions containing <code>G</code><sub>`0`</sub>, <code>G</code><sub>`1`</sub> in the last example) are defined to be the output dimensions that are not window dimensions.</p>
+<li><p>在最后一个示例中，我们可以配置输出形状中的哪些维度是窗口维度（上一个示例中包含 <code>W</code><sub>`0`</sub>，<code>W</code><sub>`1`</sub> 的维数）。输出集的维度（上一个示例中包含 <code>G</code><sub>`0`</sub>，<code>G</code><sub>`1`</sub> 的维数）被定义为不是窗口的输出维度。</p>
 </li>
-<li><p>The number of output window dimensions explicitly present in the output shape may be smaller than the input rank.  These "missing" dimensions, which are listed explicitly as <code>elided_window_dims</code>, must have a window bound of <code>1</code>.  Since they have a window bound of <code>1</code> the only valid index for them is <code>0</code> and eliding them does not introduce ambiguity.</p>
+<li><p>输出形状中显式显示的输出窗口维数可能小于输入等级。这些“缺失”的维度显式地列为 <code>elided_window_dims</code>，必须有一个窗口为 <code>1</code>。由于它们的窗口界为   <code>1</code>，因此它们的唯一有效索引是 <code>0</code>，而对它们进行赋值并不会引入歧义。</p>
 </li>
-<li><p>The slice extracted from the "Gather Indices" tensor ((<code>X</code>, <code>Y</code>) in the last example) may have fewer elements than the input tensor rank, and an explicit mapping dictates how the index should be expanded to have the same rank as the input.</p>
+<li><p>从 "Gather Indices" 张量（最后一个示例中的（<code>X</code>, <code>Y</code>）中提取的切片可能比输入张量 级别有更少的元素，并且一个明确的映射指示如何扩展索引，使其与输入具有相同的等级。</p>
 </li>
 </ol>
-<p>As a final example, we use (2) and (3) to implement <code>tf.gather_nd</code>:</p>
+<p>最后一个例子，我们使用（2）和（3）来实现 <code>tf.gather_nd</code>：</p>
 <div style="width:95%; margin:auto; margin-bottom:10px; margin-top:20px;">
   <img style="width:100%" src="../../images/ops_xla_gather_2.svg">
-</div><p><code>G</code><sub>`0`</sub> and <code>G</code><sub>`1`</sub> are used to slice out a starting index from the gather indices tensor as usual, except the starting index has only one element, <code>X</code>.  Similarly, there is only one output window index with the value <code>W</code><sub>`0`</sub>.  However, before being used as indices into the input tensor, these are expanded in accordance to "Gather Index Mapping" (<code>gather_dims_to_operand_dims</code> in the formal description) and "Window Mapping" (<code>window_dims_to_operand_dims</code> in the formal description) into [<code>0</code>,<code>W</code><sub>`0`</sub>] and [<code>X</code>,<code>0</code>] respectively, adding up to [<code>X</code>,<code>W</code><sub>`0`</sub>].  In other words, the output index [<code>G</code><sub>`0`</sub>,<code>G</code><sub>`1`</sub>,<code>W</code><sub>`0`</sub>] maps to the input index [<code>GatherIndices</code>[<code>G</code><sub>`0`</sub>,<code>G</code><sub>`1`</sub>,<code>0</code>],<code>X</code>] which gives us the semantics for <code>tf.gather_nd</code>.</p>
-<p><code>window_bounds</code> for this case is <code>[1,11]</code>.  Intuitively this means that every index <code>X</code> in the gather indices tensor picks an entire row and the result is the concatenation of all these rows.</p>
+</div><p>和往常一样，<code>G</code><sub>`0`</sub> 和 <code>G</code><sub>`1`</sub> 被用来从集合索引张量中分割一个起始索引，除了起始索引只有一个元素 <code>X</code>。类似的，只有一个输出窗口索引的值为 <code>W</code><sub>`0`</sub>。但是，在作为索引运用到张量之前，这些索引被按照“聚集索引映射”（正式描述中的 <code>gather_dims_to_operand_dims</code>）和 “窗口映射”（形式描述中的 <code>window_dims_to_operand_dims</code>）将它们扩展为 [<code>0</code>,<code>W</code><sub>`0`</sub>] 和 [<code>X</code>,<code>0</code>] 结果为 [<code>X</code>,<code>W</code><sub>`0`</sub>]。换句话说，就是将输入索引 [<code>G</code><sub>`0`</sub>,<code>G</code><sub>`1`</sub>,<code>W</code><sub>`0`</sub>] 映射为输出索引 [<code>GatherIndices</code>[<code>G</code><sub>`0`</sub>,<code>G</code><sub>`1`</sub>,<code>0</code>],<code>X</code>] 这给 <code>tf.gather_nd</code> 带来了语义化。</p>
+<p>在这种情况下，<code>window_bounds</code> 是 <code>[1,11]</code>。直觉上这意味着集合索引张量中的每一个索引 <code>X</code> 都会选择整行，结果是所有这些行连在一起。</p>
 <h2 id="toc-26">GetTupleElement</h2>
 <p>另请参阅 <a href="https://www.tensorflow.org/code/tensorflow/compiler/xla/client/computation_builder.h"><code>ComputationBuilder::GetTupleElement</code></a>。</p>
 <p>将索引添加到编译时常量的元组中。</p>
@@ -2011,7 +2010,7 @@ while (result(0) &lt; 1000) {
 <li><a href="#toc-20">逐个元素的二元算术操作</a></li>
 <li><a href="#toc-21">逐个元素的比较操作</a></li>
 <li><a href="#toc-22">逐个元素的一元函数</a></li>
-<li><a href="#toc-23">Gather[需要翻译]</a></li>
+<li><a href="#toc-23">收集</a></li>
 <li><a href="#toc-26">GetTupleElement</a></li>
 <li><a href="#toc-27">Infeed</a></li>
 <li><a href="#toc-28">映射（Map）</a></li>
@@ -2056,7 +2055,7 @@ while (result(0) &lt; 1000) {
     </div>
 </footer>
 <script>
-    var contributors = [{'徐键': ''}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'徐键': ''}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="操作语义">

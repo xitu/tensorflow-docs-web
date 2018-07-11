@@ -58,9 +58,9 @@
 <p><a href="//tensorflow.juejin.im/programmers_guide/estimators.html">评估器</a></p>
 <h2 id="toc-1">保存和恢复变量</h2>
 <p><a href="//tensorflow.juejin.im/programmers_guide/variables.html">变量</a></p>
-<p><code>Saver</code> restores all variables already defined in your model. If you're loading a model without knowing how to build its graph (for example, if you're writing a generic program to load models), then read the <a href="#models">Overview of saving and restoring models</a> section later in this document.</p>
-<p>TensorFlow saves variables in binary <em>checkpoint files</em> that map variable names to tensor values.</p>
-<p>Caution: TensorFlow model files are code. Be careful with untrusted code. See <a href="https://github.com/tensorflow/tensorflow/blob/master/SECURITY.md">Using TensorFlow Securely</a> for details.</p>
+<p><code>Saver</code> 会恢复所有已经在你的模型中定义了的变量。如果你在加载一个模型，而且不知道如何构建它的图（例如，如果你在编写一个通用程序来加载模型），那么请阅读本文档后面的<a href="#models">保存和恢复概述</a>章节。</p>
+<p>TensorFlow 将变量保存在二进制文件 <em>checkpoint files</em>，这些文件将变量名映射到张量值。</p>
+<p>注意：TensorFlow 模型文件是代码。注意那些不受信任的代码。更多细节，请参阅<a href="https://github.com/tensorflow/tensorflow/blob/master/SECURITY.md">安全使用 TensorFlow</a>。</p>
 <h3 id="toc-2">保存变量</h3>
 <p>用 <code>tf.train.Saver()</code> 方法创建一个 <code>Saver</code> 来管理模型中的所有变量。例如，如下代码演示了如何调用 <code>tf.train.Saver.save</code> 方法将变量保存到快照文件中：</p>
 <pre><code class="lang-python"># 创建变量
@@ -106,7 +106,7 @@ with tf.Session() as sess:
   print(&quot;v1 : %s&quot; % v1.eval())
   print(&quot;v2 : %s&quot; % v2.eval())
 </code></pre>
-<p>[需要翻译]Note: There is not a physical file called <code>/tmp/model.ckpt</code>. It is the <strong>prefix</strong> of filenames created for the checkpoint. Users only interact with the prefix instead of physical checkpoint files.</p>
+<p>注意：没有一个名为 <code>/tmp/model.ckpt</code> 的物理文件夹。它是为检查点创建的文件名的 <strong>prefix</strong>。用户只与前缀交互，而不与物理检查点文件交互。</p>
 <h3 id="toc-4">选择需要保存和恢复的变量</h3>
 <p>如果您没有传递任何参数给 <code>tf.train.Saver()</code>，保存程序将默认对计算图中所有的变量进行保存或恢复操作。每个变量都会以原变量名保存。</p>
 <p>为快照文件中的变量明确指定名称有时是很有用的。例如，在您训练的模型中包含一个名为 <code>"weights"</code> 的变量，而你想要把 <code>"weights"</code> 变量的值恢复到名为 <code>"params"</code> 的变量中。</p>
@@ -176,7 +176,7 @@ chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name=&
 <h2 id="toc-6">保存和恢复模型</h2>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
 <h2 id="toc-7">创建并加载一个 SavedModel</h2>
-<h3 id="toc-8">Simple save[需要翻译]</h3>
+<h3 id="toc-8">简单保存</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/simple_save"><code>tf.saved_model.simple_save</code></a></p>
 <pre><code class="lang-python">simple_save(session,
             export_dir,
@@ -184,7 +184,7 @@ chkp.print_tensors_in_checkpoint_file(&quot;/tmp/model.ckpt&quot;, tensor_name=&
             outputs={&quot;z&quot;: z})
 </code></pre>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator"><code>tf.estimator.Estimator</code></a></p>
-<h3 id="toc-9">Manually build a SavedModel</h3>
+<h3 id="toc-9">手动构建一个保存模型</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/builder"><code>tf.saved_model.builder</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/builder/SavedModelBuilder"><code>tf.saved_model.builder.SavedModelBuilder</code></a></p>
 <p>如果需要将资源保存、写入或拷贝到磁盘，那么可以在添加第一个 <code>MetaGraphDef</code> 时提供这些资源。如果多个 <code>MetaGraphDef</code> 与同名资源相关联，则仅保留第一个版本。</p>
@@ -618,7 +618,7 @@ saved_model.pb|saved_model.pbtxt
     </div>
 </footer>
 <script>
-    var contributors = [{'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="保存和恢复">

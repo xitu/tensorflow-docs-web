@@ -245,8 +245,8 @@ iterator = dataset3.make_initializable_iterator()
 sess.run(iterator.initializer)
 next1, (next2, next3) = iterator.get_next()
 </code></pre>
-<p>Note that <code>next1</code>, <code>next2</code>, and <code>next3</code> are tensors produced by the same op/node (created by <code>Iterator.get_next()</code>). Therefore,  evaluating <strong>any</strong> of these tensors will advance the iterator for all components. A typical consumer of an iterator will include all components in a single expression.</p>
-<h3 id="toc-5">Saving iterator state[需要翻译]</h3>
+<p>注意：<code>next1</code>、<code>next2</code> 和 <code>next3</code> 是由相同的 op/节点（由 <code>Iterator.get_next()</code> 创建）所产生的张量。因此，评估这些张量中的<strong>任何</strong>一个，都会提高所有组件的迭代器。一个典型的迭代器消费者将会在单独的表达式中包含所有的组件。</p>
+<h3 id="toc-5">保存迭代器状态</h3>
 <p><a href="//tensorflow.juejin.im/programmers_guide/saved_model.html">保存和恢复</a></p>
 <pre><code class="lang-python"># Create saveable object from iterator.
 saveable = tf.contrib.data.make_saveable_from_iterator(iterator)
@@ -582,7 +582,7 @@ with tf.train.MonitoredTrainingSession(...) as sess:
     </div>
 </footer>
 <script>
-    var contributors = [{'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="数据导入">

@@ -58,9 +58,9 @@
 <!-- [comment]: TODO(barryr): Links to and from sections on "Graphs" & "Monitoring Learning". -->
 
 <p>[TOC]</p>
-<p>[需要翻译]<code>tfdbg</code> is a specialized debugger for TensorFlow. It lets you view the internal structure and states of running TensorFlow graphs during training and inference, which is difficult to debug with general-purpose debuggers such as Python's <code>pdb</code> due to TensorFlow's computation-graph paradigm.</p>
-<p>This guide focuses on the command-line interface (CLI) of <code>tfdbg</code>. For guide on how to use the graphical user interface (GUI) of tfdbg, i.e., the <strong>TensorBoard Debugger Plugin</strong>, please visit <a href="https://github.com/tensorflow/tensorboard/blob/master/tensorboard/plugins/debugger/README.md">its README</a>.</p>
-<p>Note: The TensorFlow debugger uses a <a href="https://en.wikipedia.org/wiki/Curses_\(programming_library\">curses</a>)-based text user interface. On Mac OS X, the <code>ncurses</code> library is required and can be installed with <code>brew install homebrew/dupes/ncurses</code>. On Windows, curses isn't as well supported, so a <a href="https://en.wikipedia.org/wiki/GNU_Readline">readline</a>-based interface can be used with tfdbg by installing <code>pyreadline</code> with <code>pip</code>. If you use Anaconda3, you can install it with a command such as <code>"C:\Program Files\Anaconda3\Scripts\pip.exe" install pyreadline</code>. Unofficial Windows curses packages can be downloaded <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses">here</a>, then subsequently installed using <code>pip install &lt;your_version&gt;.whl</code>, however curses on Windows may not work as reliably as curses on Linux or Mac.</p>
+<p><code>tfdbg</code> 是 TensorFlow 的专用调试器。由于 TensorFlow 的计算 — 图形使用常规调试器难以调试，例如 Python 的 <code>pdb</code>，因此它允许你在训练和推断的 i 过程中查看运行 TensorFlow 图的内部结构和状态。</p>
+<p>本指南重点关注 <code>tfdbg</code> 的命令行接口（CLI）。关于如何使用 tfdbg 的图形化用户界面（GUI），<strong>TensorBoard 调试插件</strong>，请查询<a href="https://github.com/tensorflow/tensorboard/blob/master/tensorboard/plugins/debugger/README.md">它的 README</a>。</p>
+<p>注意：TensorFlow 调试器使用 <a href="https://en.wikipedia.org/wiki/Curses_\(programming_library\">curses</a>) —— 基于文本用户界面。在 Mac OS X 上， <code>ncurses</code> 库是必需的，可以用 <code>brew install homebrew/dupes/ncurses</code> 进行安装。Windows 对 curses 支持性并不好，因此可以使用基于接口的 <a href="https://en.wikipedia.org/wiki/GNU_Readline">readline</a>，用 <code>pip</code> 安装 <code>pyreadline</code> 来使用 tfdbg。如果你使用 Anaconda3，你可以使用 <code>"C:\Program Files\Anaconda3\Scripts\pip.exe" install pyreadline</code> 这样的命令来安装它。非官方的 Windwos curses 包可以在<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses">这里</a>下载，然后用 <code>pip install &lt;your_version&gt;.whl</code> 安装。但是 curses 在 Windows 上可能无法像它在 Linux 和 Mac 上一样可靠地运行。</p>
 <p>本教程演示了如何使用 tfdbg 命令行界面（CLI）来调试 <a href="https://en.wikipedia.org/wiki/NaN"><code>nan</code>s</a> 和 <a href="https://en.wikipedia.org/wiki/Infinity"><code>inf</code>s</a> 错误，这是 TensorFlow 模型开发中经常遇到的错误类型。 以下示例适用于使用 TensorFlow 的底层 <a href="https://www.tensorflow.org/api_docs/python/tf/Session"><code>Session</code></a> API 的用户。 本文档的后续部分描述了如何在更高层次的 API（即 <code>tf-learn</code> 中的 <code>Estimator</code> 和 <code>Experiment</code>）中来使用 tfdbg。要<strong>观察</strong>这个问题，请运行以下命令而不使用调试器（源代码可以在<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/debug/examples/debug_mnist.py">这里</a>可找到）</p>
 <pre><code class="lang-none">python -m tensorflow.python.debug.examples.debug_mnist
 </code></pre>
@@ -103,7 +103,7 @@ sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
 </code></pre>
 <p><code>run</code> 命令会导致 <code>tfdbg</code> 执行，直到下一个 <code>Session.run()</code> 调用结束，该调用使用测试数据集计算模型的准确性。 <code>tfdbg</code> 加载运行时图时转储所有中间张量。运行结束后，<code>tfdbg</code> 将显示运行结束后在命令行界面中显示所有的中间张量值。 例如：</p>
 <p><img src="https://www.tensorflow.org/images/tfdbg_screenshot_run_end_accuracy.png" alt="tfdbg run-end UI: accuracy"></p>
-<p>在执行​​运行完 <code>run</code> 之后，也可以通过运行命令 <code>lt</code> 获得张量列表。</p>
+<p>在执行运行完 <code>run</code> 之后，也可以通过运行命令 <code>lt</code> 获得张量列表。</p>
 <h3 id="toc-3">tfdbg CLI 常用的命令</h3>
 <p>在 <code>tfdbg&gt;</code> 提示符下（参考 tensorflow / python / debug / examples / debug_mnist.py 中的代码），尝试以下命令：</p>
 <div class="table-wrapper"><table>
@@ -142,7 +142,7 @@ sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>-f &lt;filter_name&gt; -fenn &lt;regex&gt;</code></td>
-<td style="text-align:left">[需要翻译]List only the tensors that pass a registered tensor filter, excluding nodes with names matching the regular expression.</td>
+<td style="text-align:left">列出只传递注册张量过滤器的张量，不包括与正则表达式匹配的名称的节点</td>
 <td style="text-align:left"><code>lt -f has_inf_or_nan</code> <code>-fenn .*Sqrt.*</code></td>
 </tr>
 <tr>
@@ -190,7 +190,7 @@ sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>-n &lt;number&gt;</code></td>
-<td style="text-align:left">Print dump corresponding to specified 0-based dump number. Required for tensors with multiple dumps.</td>
+<td style="text-align:left">打印转储对应于指定的 基于 0 的转储数值。被具有多转储的张量所需。</td>
 <td style="text-align:left"><code>pt -n 0 hidden/Relu:0</code></td>
 </tr>
 <tr>
@@ -418,7 +418,7 @@ sess.add_tensor_filter(&quot;has_inf_or_nan&quot;, tf_debug.has_inf_or_nan)
 <tr>
 <td style="text-align:left"></td>
 <td style="text-align:left"><code>-f &lt;filter_name&gt; -fenn &lt;regex&gt;</code></td>
-<td style="text-align:left">[需要翻译]Continue executing <code>Session.run</code> until any intermediate tensor whose node names doesn't match the regular expression triggers the specified Tensor filter (causes the filter to return <code>True</code>).</td>
+<td style="text-align:left">继续执行 <code>Session.run</code>，直到任何中间张量的节点名称与正则表达式不匹配时，触发指定的张量过滤器（导致过滤器返回 true）。</td>
 <td style="text-align:left"><code>run -f has_inf_or_nan -fenn .*Sqrt.*</code></td>
 </tr>
 <tr>
@@ -706,21 +706,21 @@ hooks = [tf_debug.DumpingDebugHook(&quot;/shared/storage/location/tfdbg_dumps_1&
     --dump_dir=&quot;/shared/storage/location/tfdbg_dumps_1/run_&lt;epoch_timestamp_microsec&gt;_&lt;uuid&gt;&quot;
 </code></pre>
 <h2 id="toc-18">常见问题</h2>
-<p><strong>Q</strong>: 执行 <code>lt</code> 命令输出内容时，其左侧的时间戳可以反映非调试情况下 Session 中的实际性能吗？</p>
-<p><strong>A</strong>: 不可以的，调试器将附加的专用调试结点插入计算图中以记录中间张量的值。这些结点会减慢计算图的执行。 如果您对分析您模型的性能感兴趣，请参考下列方法</p>
+<p><strong>Q</strong>：执行 <code>lt</code> 命令输出内容时，其左侧的时间戳可以反映非调试情况下 Session 中的实际性能吗？</p>
+<p><strong>A</strong>：不可以的，调试器将附加的专用调试结点插入计算图中以记录中间张量的值。这些结点会减慢计算图的执行。 如果您对分析您模型的性能感兴趣，请参考下列方法</p>
 <ol>
 <li>tfdbg 的性能分析模式：<code>tfdbg&gt; run -p</code>。</li>
 <li><a href="https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler">tfprof</a> 和其他的 TensorFlow 性能分析工具。</li>
 </ol>
-<p><strong>Q</strong>: 如何在 Bazel 中将 tfdbg 与我的 <code>Session</code> 链接？ 为什么会看到诸如 “ImportError：cannot import name debug” 之类的错误？</p>
-<p><strong>A</strong>: 在您编译构建（BUILD）的规则中，声明依赖关系：“/ tensorflow：tensorflow_py” 和 “// tensorflow / python / debug：debug_py” 。 其中，第一个依赖是您使用 TensorFlow 即使没有调试器支持的依赖关系；第二个依赖是用来启用调试器的。 然后，在你的 Python 文件中，添加下面的代码：</p>
+<p><strong>Q</strong>：如何在 Bazel 中将 tfdbg 与我的 <code>Session</code> 链接？ 为什么会看到诸如 “ImportError：cannot import name debug” 之类的错误？</p>
+<p><strong>A</strong>：在您编译构建（BUILD）的规则中，声明依赖关系：“/ tensorflow：tensorflow_py” 和 “// tensorflow / python / debug：debug_py” 。 其中，第一个依赖是您使用 TensorFlow 即使没有调试器支持的依赖关系；第二个依赖是用来启用调试器的。 然后，在你的 Python 文件中，添加下面的代码：</p>
 <pre><code class="lang-python">from tensorflow.python import debug as tf_debug
 
 # 然后用 local-CLI 包装器包装您的 TensorFlow 会话。
 sess = tf_debug.LocalCLIDebugWrapperSession(sess)
 </code></pre>
-<p><strong>Q</strong>: tfdbg 是否可以帮助调试运行时的错误，如形状不匹配？</p>
-<p><strong>A</strong>: 是的。 tfdbg 拦截运行时由操作生成的错误，并在命令行界面中向用户显示带有一些调试指令的错误。参见示例：</p>
+<p><strong>Q</strong>：tfdbg 是否可以帮助调试运行时的错误，如形状不匹配？</p>
+<p><strong>A</strong>：是的。 tfdbg 拦截运行时由操作生成的错误，并在命令行界面中向用户显示带有一些调试指令的错误。参见示例：</p>
 <pre><code class="lang-none"># 调试矩阵乘法中的形状不匹配
 python -m tensorflow.python.debug.examples.debug_errors \
     --error shape_mismatch --debug
@@ -729,13 +729,13 @@ python -m tensorflow.python.debug.examples.debug_errors \
 python -m tensorflow.python.debug.examples.debug_errors \
     --error uninitialized_variable --debug
 </code></pre>
-<p><strong>Q</strong>: 如何让 tfdbg 包装的 Sessions 或钩子仅对主线程进行调试呢？</p>
-<p><strong>A</strong>: 这是一个常见的用例，其中 Session 对象同时从多个线程使用。 通常来说，子线程处理后台任务，例如执行入队操作。这时，您一般只想调试主线程（或者只是一个子线程）。 你可以使用 <code>LocalCLIDebugWrapperSession</code> 中的 <code>thread_name_filter</code> 参数来实现线程选择性调试。 例如，想要只调试主线程，构造一个包装的会话，如下所示：</p>
+<p><strong>Q</strong>：如何让 tfdbg 包装的 Sessions 或钩子仅对主线程进行调试呢？</p>
+<p><strong>A</strong>：这是一个常见的用例，其中 Session 对象同时从多个线程使用。 通常来说，子线程处理后台任务，例如执行入队操作。这时，您一般只想调试主线程（或者只是一个子线程）。 你可以使用 <code>LocalCLIDebugWrapperSession</code> 中的 <code>thread_name_filter</code> 参数来实现线程选择性调试。 例如，想要只调试主线程，构造一个包装的会话，如下所示：</p>
 <pre><code class="lang-python">sess = tf_debug.LocalCLIDebugWrapperSession(sess, thread_name_filter=&quot;MainThread$&quot;)
 </code></pre>
 <p>上述示例依赖于一个事实，即 Python 主线程的默认名称为 <code>MainThread</code>。</p>
-<p><strong>Q</strong>: 我正在调试的模型非常大。 tfdbg 转储的数据填满了我磁盘空闲的空间。 我该怎么办？</p>
-<p><strong>A</strong>:<br>
+<p><strong>Q</strong>：我正在调试的模型非常大。 tfdbg 转储的数据填满了我磁盘空闲的空间。 我该怎么办？</p>
+<p><strong>A</strong>：<br>
 在以下情况下，您可能会遇到此问题：</p>
 <ul>
 <li>具有许多中间张量的模型</li>
@@ -763,11 +763,11 @@ tfdbg&gt; run --tensor_dtype_filter int.*
 <p>上面的第一个命令仅监视其名称与正则表达式模式（<code>.*hidden.*</code>）匹配的结点。 第二个命令只监视名称与模式（<code>Variable.*</code>）匹配的操作结点。第三个只监视 <code>dtype</code> 与模式（<code>int.*</code>）匹配的张量（例如，int32）。</p>
 </li>
 </ul>
-<p><strong>Q</strong>: [需要翻译]I am debugging a model that generates unwanted infinities or NaNs. But there are some nodes in my model that are known to generate infinities or NaNs in their output tensors even under completely normal conditions. How can I skip those nodes during my <code>run -f has_inf_or_nan</code> actions?</p>
-<p><strong>A</strong>: Use the <code>--filter_exclude_node_names</code> (<code>-fenn</code> for short) flag. For example, if you known you have a node with name matching the regular expression <code>.*Sqrt.*</code> that generates infinities or NaNs regardless of whether the model is behaving correctly, you can exclude the nodes from the infinity/NaN-finding runs with the command <code>run -f has_inf_or_nan -fenn .*Sqrt.*</code>.</p>
-<p><strong>Q</strong>: 为什么无法在 tfdbg CLI 中选择文本？</p>
-<p><strong>A</strong>: 这是因为 tfdbg CLI 默认启用终端中的鼠标事件。 这种<a href="https://linux.die.net/man/3/mousemask">鼠标掩码</a>模式覆盖了默认终端交互过程，包括文本选择。您可以使用命令 <code>mouse off</code> 或 <code>m off</code> 重新启用文本选择。</p>
-<p><strong>Q</strong>: 为什么当我调试如下代码时，tfdbg CLI 没有显示转储张量？</p>
+<p><strong>Q</strong>：我正在调试一个生产了不必要的无穷大或 NAN 的模型。即使在完全正常的条件下，也会在它们的输出张量中生成无穷大或 NANs。我如何在运行 <code>run -f has_inf_or_nan</code> 时跳过那些节点？</p>
+<p><strong>A</strong>：使用 <code>--filter_exclude_node_names</code>（简称 <code>-fenn</code>）标志位。例如，如果你知道有一个节点的名称与正则表达式 <code>.*Sqrt.*</code> 匹配，为了将节点改成不会生成无穷大或 NANs,而不管模型的行为是否正确，则可使用命令 <code>run -f has_inf_or_nan -fenn .*Sqrt.*</code> 将节点排除在无穷大/NAN 运行中。</p>
+<p><strong>Q</strong>：为什么无法在 tfdbg CLI 中选择文本？</p>
+<p><strong>A</strong>：这是因为 tfdbg CLI 默认启用终端中的鼠标事件。 这种<a href="https://linux.die.net/man/3/mousemask">鼠标掩码</a>模式覆盖了默认终端交互过程，包括文本选择。您可以使用命令 <code>mouse off</code> 或 <code>m off</code> 重新启用文本选择。</p>
+<p><strong>Q</strong>：为什么当我调试如下代码时，tfdbg CLI 没有显示转储张量？</p>
 <pre><code class="lang-python">a = tf.ones([10], name=&quot;a&quot;)
 b = tf.add(a, a, name=&quot;b&quot;)
 sess = tf.Session()
@@ -785,8 +785,8 @@ sess = tf_debug.LocalCLIDebugWrapperSession(sess)
 sess.run(b)
 </code></pre>
 <p>则不会发生常数折叠，tfdbg 应该是会显示转储的中间张量的。</p>
-<p><strong>Q</strong>: Is there a GUI for tfdbg?[需要翻译]</p>
-<p><strong>A</strong>: Yes, the <strong>TensorBoard Debugger Plugin</strong> is the GUI of tfdbg. It offers features such as inspection of the computation graph, real-time visualization of tensor values, continuation to tensor and conditional breakpoints, and tying tensors to their graph-construction source code, all in the browser environment. To get started, please visit <a href="https://github.com/tensorflow/tensorboard/blob/master/tensorboard/plugins/debugger/README.md">its README</a>.</p>
+<p><strong>Q</strong>：有用于 tfdbg 的 GUI 吗？</p>
+<p><strong>A</strong>：有。<strong>TensorBoard 调试插件</strong>是 tfdbg 的 GUI。它提供了计算图的检查，张量值的实时可视化，张量和条件断点的延续，以及张量和条件断点绑定到它们的图构造源代码中，所有这些都在浏览器环境中。想要开始尝试，请访<a href="https://github.com/tensorflow/tensorboard/blob/master/tensorboard/plugins/debugger/README.md">它的 README</a>。</p>
 
         </main>
         <div class="d-none d-xl-block col-xl-2 bd-toc">
@@ -823,7 +823,7 @@ sess.run(b)
     </div>
 </footer>
 <script>
-    var contributors = [{'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'JohnJiangLA': 'https://avatars3.githubusercontent.com/u/6165782?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="TensorFlow 调试器">

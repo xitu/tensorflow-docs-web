@@ -110,8 +110,8 @@ print(mnist_ds)
 <p><a href="//tensorflow.juejin.im/programmers_guide/tensors.html#data_types">张量</a></p>
 <pre><code class="lang-None">&lt;TensorSliceDataset shapes: (28,28), types: tf.uint8&gt;
 </code></pre>
-<p>The <code>Dataset</code> above represents a simple collection of arrays, but datasets are much more powerful than this. A <code>Dataset</code> can transparently handle any nested combination of dictionaries or tuples (or <a href="https://docs.python.org/2/library/collections.html#collections.namedtuple"><code>namedtuple</code></a>).</p>
-<p>For example after converting the iris <code>features</code> to a standard python dictionary, you can then convert the dictionary of arrays to a <code>Dataset</code> of dictionaries as follows:</p>
+<p>上述的 <code>Dataset</code> 表示数组的简单集合，但数据集比这更复杂。<code>Dataset</code> 可以透明地处理任何嵌套的字典或元组组合（或者 <a href="https://docs.python.org/2/library/collections.html#collections.namedtuple"><code>namedtuple</code></a>）。</p>
+<p>例如，将 irls 的 <code>features</code> 转换为标准 python 字典之后，你可以将数组字典转换为字典的 <code>Dataset</code>，如下所示：</p>
 <pre><code class="lang-python">dataset = tf.data.Dataset.from_tensor_slices(dict(features))
 print(dataset)
 </code></pre>
@@ -127,7 +127,7 @@ print(dataset)
 &gt;
 </code></pre>
 <p><a href="//tensorflow.juejin.im/programmers_guide/tensors.html#rank">张量</a></p>
-<p>[需要翻译]The first line of the iris <code>train_input_fn</code> uses the same functionality，但是增加了一层结构。它创建了一个包含 <code>(features_dict, label)</code> 数据对的数据集。</p>
+<p>iris 的第一行 <code>train_input_fn</code> 使用相同的功能，但是增加了一层结构。它创建了一个包含 <code>(features_dict, label)</code> 数据对的数据集。</p>
 <p>以下代码表明，标签是类型为 <code>int64</code> 的标量：</p>
 <pre><code class="lang-python"># 将输入转化为数据集。
 dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))
@@ -178,8 +178,8 @@ dataset = dataset.shuffle(1000).repeat().batch(batch_size)
         tf.int64)&gt;
 </code></pre>
 <h3 id="toc-5">返回</h3>
-<p>[需要翻译]At this point the <code>Dataset</code> contains <code>(features_dict, labels)</code> pairs. This is the format expected by the <code>train</code> and <code>evaluate</code> methods, so the <code>input_fn</code> returns the dataset.</p>
-<p>The <code>labels</code> can/should be omitted when using the <code>predict</code> method.</p>
+<p>此时，<code>Dataset</code> 包含 <code>(features_dict, labels)</code> 对。这是 <code>train</code> 和 <code>evaluate</code> 方法所期望的格式，因此 <code>input_fn</code> 将返回数据集。</p>
+<p>在使用 <code>predict</code> 方法时，可以/应该省略 <code>labels</code>。</p>
 <!--
   TODO(markdaoust): link to `input_fn` doc when it exists
 -->
@@ -295,7 +295,7 @@ est.train(
     </div>
 </footer>
 <script>
-    var contributors = [{'EmilyQiRabbit': 'https://avatars0.githubusercontent.com/u/23472093?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'EmilyQiRabbit': 'https://avatars0.githubusercontent.com/u/23472093?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="数据集：快速了解">
