@@ -76,7 +76,7 @@
 <pre><code>TF_TYPE="cpu" # Change to "gpu" for GPU support
 TARGET_DIRECTORY='/usr/local'
 curl -L \
-  "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-${TF_TYPE}-$(go env GOOS)-x86_64-1.8.0-rc1.tar.gz" |
+  "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-${TF_TYPE}-$(go env GOOS)-x86_64-1.8.0.tar.gz" |
 sudo tar -C $TARGET_DIRECTORY -xz
 </code></pre>
 <p><code>tar</code> 命令会解压 TensorFlow C 语言库到 <code>TARGET_DIRECTORY</code> 的子目录 <code>lib</code>。比如，指定 <code>/usr/local</code> 作为 <code>TARGET_DIRECTORY</code> 使得 <code>tar</code> 命令可以将 TensorFlow C 语言库解压到 <code>/usr/local/lib</code>。<br>

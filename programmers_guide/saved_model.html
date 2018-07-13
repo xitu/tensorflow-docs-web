@@ -209,17 +209,17 @@ with tf.Session(graph=tf.Graph()) as sess:
 builder.save()
 </code></pre>
 <p><a name="forward_compatibility"></a></p>
-<h4 id="toc-10">[需要翻译]Forward compatibility via <code>strip_default_attrs=True</code></h4>
-<p>Following the guidance below gives you forward compatibility only if the set of Ops has not changed.</p>
+<h4 id="toc-10">使用 <code>strip_default_attrs=True</code> 来实现向前兼容性</h4>
+<p>按照下述指南，只有在未更改操作集的情况下，才能给出向前兼容性。</p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/builder/SavedModelBuilder/add_meta_graph"><code>tf.saved_model.builder.SavedModelBuilder.add_meta_graph</code></a></p>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/NodeDef"><code>tf.NodeDef</code></a></p>
 <ul>
-<li>An existing Op (<code>Foo</code>) is updated to include a new attribute (<code>T</code>) with a default (<code>bool</code>) at version 101.</li>
-<li>A model producer such as a "trainer binary" picks up this change (version 101) to the <code>OpDef</code> and re-exports an existing model that uses Op <code>Foo</code>.</li>
-<li>A model consumer (such as <a href="/serving">Tensorflow Serving</a>) running an older binary (version 100) doesn't have attribute <code>T</code> for Op <code>Foo</code>, but tries to import this model. The model consumer doesn't recognize attribute <code>T</code> in a <code>NodeDef</code> that uses Op <code>Foo</code> and therefore fails to load the model.</li>
-<li>By setting <code>strip_default_attrs</code> to True, the model producers can strip away any default valued attributes in the <code>NodeDefs</code>. This helps ensure that newly added attributes with defaults don't cause older model consumers to fail loading models regenerated with newer training binaries.</li>
+<li>更新现有操作（<code>Foo</code>），在版本 101 中设置（<code>bool</code>）的默认值，使其包含一个新属性（<code>T</code>） with a default (<code>bool</code>）。</li>
+<li>形如 "trainer binary" 之类的模型生产者将这个更改（版本101）选择到 <code>OpDef</code>，并重新输出使用 <code>Foo</code> 操作的现有模型。</li>
+<li>运行旧二进制（版本 100）的模型调用者（例如 <a href="/serving">Tensorflow Serving</a>）没有操作 <code>Foo</code> 的属性 <code>T</code>,但是可以尝试导入模型。模型调用者不识别使用 <code>Foo</code> 操作的 <code>NodeDef</code> 中的属性 <code>T</code>，因此无法加载模型。</li>
+<li>通过设置 <code>strip_default_attrs</code> 为 True，模型生产者可以删除 <code>NodeDefs</code> 中的任何默认属性值。这有助于确保添加的带有默认值的属性不回导致以前的模型调用者失效，加载使用更新的训练二进制文件重新生成模型。</li>
 </ul>
-<p>See <a href="https://www.tensorflow.org/programmers_guide/version_compat">compatibility guidance</a> for more information.</p>
+<p>更多信息，请参阅<a href="https://www.tensorflow.org/programmers_guide/version_compat">兼容性指南</a>。</p>
 <h3 id="toc-11">在 Python 中加载 SavedModel</h3>
 <p><a href="https://www.tensorflow.org/api_docs/python/tf/saved_model/loader"><code>tf.saved_model.loader</code></a></p>
 <ul>
