@@ -96,8 +96,8 @@
 </ul>
 </li>
 </ul>
-<p><a name="not_covered"></a><br>
-+## 未涉及的内容</p>
+<p><a name="not_covered"></a></p>
+<h2 id="toc-3">未涉及的内容</h2>
 <p>某些 API 函数被显式标记为“实验性”，它们可以在不同副版本之间进行非兼容性改动，包括：</p>
 <ul>
 <li><p><a href="https://www.tensorflow.org/api_docs/python/tf/contrib"><code>tf.contrib</code></a></p>
@@ -122,7 +122,7 @@
 <li><p><strong>错误信息</strong>：我们保留改变错误信息文本的权利。另外，只有那些在文档中记录的特定错误类型才可能发生改变。例如在文档中，可能抛出 <code>InvalidArgument</code> 异常的某个函数仍然会抛出  <code>InvalidArgument</code> 异常，改变的只是供我们阅读的信息内容。</p>
 </li>
 </ul>
-<h2 id="toc-3">图和检验点的兼容性</h2>
+<h2 id="toc-4">图和检验点的兼容性</h2>
 <p>有时你需要保留图形和检验点。<br>
 图形描述训练期间将被执行的操作的数据流和训练结果，检验点包含图中已保存的变量的张量值。</p>
 <p>许多 TensorFlow 使用者将图和训练好的模型保存到磁盘以期为后续评估或另外的训练所使用，最终却在后续发布版本中运行它们。遵从语义版本的约定，TensorFlow 生成的任何图或检验点能够被后续相同主版本号的 TensorFlow 加载和评估。然而，如果可能的话，我们甚至会在不同主版本号之间尽力保留向后兼容性，以使序列化文件能够长期使用。</p>
@@ -143,9 +143,9 @@
 </li>
 </ul>
 <p>最后，当 <code>GraphDef</code> 版本不再被支持时，我们将会尝试提供一系列工具用以将图自动转换为更新的被支持的 <code>GraphDef</code> 版本。</p>
-<h2 id="toc-4">扩展 TensorFlow 时的图和检验点兼容性</h2>
+<h2 id="toc-5">扩展 TensorFlow 时的图和检验点兼容性</h2>
 <p>只有 <code>GraphDef</code> 格式产生不兼容的更改时，本节内容才具有相关性。这些更改包括添加操作、移除操作以及更改现有操作的功能。对于多数使用者，前面几节已经足够。</p>
-<h3 id="toc-5">向后兼容性和部分向前兼容性</h3>
+<h3 id="toc-6">向后兼容性和部分向前兼容性</h3>
 <p>我们的版本体系有三个要求：</p>
 <ul>
 <li><strong>向后兼容性</strong>应支持加载由老版本 TensorFlow 创建的图和检验点。</li>
@@ -154,10 +154,10 @@
 </ul>
 <p>需要注意的是，虽然 <code>GraphDef</code> 版本机制独立于 TensorFlow 版本，不向后兼容的 <code>GraphDef</code> 格式改变仍受限于语义化版本号。这意味着只能在主版本之间移除或更改功能，比如 <code>1.7</code> 版本升至 <code>2.0</code> 版本。此外，各个补丁版本之间被强制保持向前兼容性，比如 <code>1.x.1</code> 版本升至 <code>1.x.2</code> 版本。</p>
 <p>为了实现向后和向前兼容性，并且为了解何时该强制改变格式，图和检验点拥有描述自己何时生成的元数据。下节将详述 <code>GraphDef</code> 的 TensorFlow 实现和版本更迭指南。</p>
-<h3 id="toc-6">独立数据版本体系</h3>
+<h3 id="toc-7">独立数据版本体系</h3>
 <p>图和检验点有不同的数据版本。这两种数据格式的更迭速率彼此不同，也不同于 TensorFlow 的更迭速率。两种版本系统均定义于 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/public/version.h"><code>core/public/version.h</code></a>。<br>
 每添加一个新版本，就会有一条记录被添加到头文件以详细描述更改的内容以及更改日期。</p>
-<h3 id="toc-7">数据、生产者以及消费者</h3>
+<h3 id="toc-8">数据、生产者以及消费者</h3>
 <p>我们会区分以下种类的数据版本信息：</p>
 <ul>
 <li><strong>生产者</strong>：生产数据的二进制文件。生产者拥有一个（<code>producer</code>）版本，以及一个和（<code>min_consumer</code>）兼容的最低消费者版本。</li>
@@ -176,38 +176,38 @@ versions</code></a> 字段用于记录生成这些数据的 <code>producer</code
 <li>对于 <code>GraphDef</code> 版本，我们使用 <code>TF_GRAPH_DEF_VERSION</code>、 <code>TF_GRAPH_DEF_VERSION_MIN_CONSUMER</code>，以及 <code>TF_GRAPH_DEF_VERSION_MIN_PRODUCER</code> 标识。</li>
 <li>对于检验点版本，我们使用 <code>TF_CHECKPOINT_VERSION</code>、<code>TF_CHECKPOINT_VERSION_MIN_CONSUMER</code>，以及 <code>TF_CHECKPOINT_VERSION_MIN_PRODUCER</code> 标识。</li>
 </ul>
-<h3 id="toc-8">向现有 op 添加一个新的属性（默认）</h3>
+<h3 id="toc-9">向现有 op 添加一个新的属性（默认）</h3>
 <p>遵循下面的指导，只有 ops 集合未修改的情况下，才能给出前向兼容性：</p>
 <ol>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator/export_savedmodel"><code>tf.estimator.Estimator.export_savedmodel</code></a></li>
 <li><a href="https://www.tensorflow.org/api_docs/python/tf/MetaGraphDef"><code>tf.MetaGraphDef</code></a></li>
 <li>使用此控件可以允许过时的消费者（例如，提供落后于训练二进制文件的二进制文件）继续加载模型并防止模型服务中心的中断。</li>
 </ol>
-<h3 id="toc-9">GraphDef 版本更迭</h3>
+<h3 id="toc-10">GraphDef 版本更迭</h3>
 <p>本节将阐述如何利用版本机制来区分 <code>GraphDef</code> 格式的改变。</p>
-<h4 id="toc-10">增加一个操作</h4>
+<h4 id="toc-11">增加一个操作</h4>
 <p>同时为消费者和生产者添加一个新操作，并且不改变任何 <code>GraphDef</code> 版本。这种类型的改变自动向后兼容，而且不影响向前兼容性计划，因为现有生产者脚本不会突然使用新功能。</p>
-<h4 id="toc-11">增加一个操作并使现有 Python 包装器转而使用它</h4>
+<h4 id="toc-12">增加一个操作并使现有 Python 包装器转而使用它</h4>
 <ol>
 <li>实现新的消费者功能并递增 <code>GraphDef</code> 版本。</li>
 <li>如果能使包装器使用过去没有的新功能，那么可以立刻更新包装器。</li>
 <li>更改 Python 包装器以使用新功能。不要递增 <code>min_consumer</code> ，因为未使用新功能的机型并不会停止运行。</li>
 </ol>
-<h4 id="toc-12">移除或限制某个操作的功能</h4>
+<h4 id="toc-13">移除或限制某个操作的功能</h4>
 <ol>
 <li>修复全部生产者脚本（不是 TensorFlow 本身）以避免使用禁用的操作和功能。</li>
 <li>递增 <code>GraphDef</code> 版本，实现新的禁止在新版本及其后续版本中移除 GraphDefs 操作或功能的消费者功能。可能的话，可以使用禁用功能使 TensorFlow 不生成 <code>GraphDefs</code>。想要这么做的话，请添加 <a href="https://github.com/tensorflow/tensorflow/blob/b289bc7a50fc0254970c60aaeba01c33de61a728/tensorflow/core/ops/array_ops.cc#L1009"><code>REGISTER_OP(...).Deprecated(deprecated_at_version,message)</code></a>。</li>
 <li>等待兼顾向后兼容性的主版本的发布。</li>
 <li>在第（2）点中递增 GraphDef 的 <code>min_producer</code>，并且完全移除其功能。</li>
 </ol>
-<h4 id="toc-13">更改某个操作的功能</h4>
+<h4 id="toc-14">更改某个操作的功能</h4>
 <ol>
 <li>增加一个新的名为 <code>SomethingV2</code> 或 similer 的相似操作，并经历添加且使现有 Python 包装器转而使用它的过程，如果希望保持向前兼容性，这将花费三周。</li>
 <li>移除旧操作（由于要保持向后兼容性，只能改变主版本号）。</li>
 <li>递增 <code>min_consumer</code> 以使消费者无法使用旧操作，将旧操作以别名 <code>SomethingV2</code> 添加回去，并经历添加且使现有 Python 包装器转而使用它的过程。</li>
 <li>经历移除 <code>SomethingV2</code> 的过程。</li>
 </ol>
-<h4 id="toc-14">禁用单一不安全版本</h4>
+<h4 id="toc-15">禁用单一不安全版本</h4>
 <ol>
 <li>为全部的新 GraphDef 替换掉 <code>GraphDef</code> 版本，并且在 <code>bad_consumers</code> 中添加错误版本。如果可能的话，只为包含确定操作或相似操作的 GraphDef 添加 <code>bad_consumers</code>。</li>
 <li>如果现有消费者拥有错误版本，请尽快淘汰这些版本。</li>
@@ -219,8 +219,9 @@ versions</code></a> 字段用于记录生成这些数据的 <code>producer</code
 <li><a href="#toc-0">TensorFlow 版本兼容性</a><ul>
 <li><a href="#toc-1">语义化版本 2.0</a></li>
 <li><a href="#toc-2">涉及的内容</a></li>
-<li><a href="#toc-3">图和检验点的兼容性</a></li>
-<li><a href="#toc-4">扩展 TensorFlow 时的图和检验点兼容性</a></li>
+<li><a href="#toc-3">未涉及的内容</a></li>
+<li><a href="#toc-4">图和检验点的兼容性</a></li>
+<li><a href="#toc-5">扩展 TensorFlow 时的图和检验点兼容性</a></li>
 </ul>
 </li>
 </ul>
@@ -245,7 +246,7 @@ versions</code></a> 字段用于记录生成这些数据的 <code>producer</code
     </div>
 </footer>
 <script>
-    var contributors = [{'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
+    var contributors = [{'lsvih': 'https://avatars1.githubusercontent.com/u/5164225?v=4'}, {'Starriers': 'https://avatars2.githubusercontent.com/u/24243206?v=4'}, {'leviding': 'https://avatars3.githubusercontent.com/u/26959437?v=4'}]
 </script>
 <!-- Footer end -->
 <div id="share-button" data-share-position="middleRight" data-share-icon-style="box" data-share-networks="Wechat,Twitter,RenRen,Facebook,GooglePlus" data-share-title="TensorFlow 版本兼容性">
