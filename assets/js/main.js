@@ -34,10 +34,10 @@ $(document).ready(() => {
 });
 
 docsearch({
-    apiKey: '80483bd052fa7562fd902b7ef6c06497',
-    indexName: 'tensorflow',
+    apiKey: 'd6013b51f999c112d675ac401c992cb7',
+    indexName: 'tensorflow_juejin',
     inputSelector: '#search',
-    debug: true // Set debug to true if you want to inspect the dropdown
+    debug: false // Set debug to true if you want to inspect the dropdown
 });
 
 function contributorInfo(person) {

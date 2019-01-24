@@ -101,7 +101,7 @@ bazel-bin/tensorflow/tools/freeze_graph \
 <p>TensorFlow 在训练中产生的 <code>GraphDefs</code> 文件包含了所有反向传播更新权重需要的计算，其中包含得到输入数据的队列，输入数据的解码，以及保存检查点。这些节点在推断的时候都是没有必要的，有些操作像保存检查点在移动平台上设置都是不支持的。为了创建在移动端加载的模型，您需要运行 <code>strip_unused_nodes</code> 规则来删除掉这些无用的操作。</p>
 <p>这个过程中最棘手的部分就是要弄清楚在推断过程中哪些节点对应的名字是作为输入和输出的。输入输出节点的名字不仅在运行推断过程中会被用到，而且在转换过程中也需要根据它来判断推断的路径从而得知那些节点是不需要的。在 Tensorboard 中视察图结构是最容易得知这些节点的方法。</p>
 <p>请记住，移动应用程序通常从传感器收集数据，并将其作为内存中的数组，但是训练过程通常涉及对储存在磁盘上的数据进行加载和解码。例如，在 Inception V3 的情况下，图的开始部分有一个 <code>DecodeJpeg</code> 操作，它设计的目的是将从磁盘检索到的文件中的 jpeg 编码数据转换成任意大小的图像。在此之后，有一个<code>BilinearResize</code>操作将其扩展到预期的大小，然后是其他一些操作，它们将字节数据转换为浮点数，并按图中其余部分所期望的方式缩放数值。一个典型的移动应用程序会跳过这些的步骤，因为它直接从摄像头中实时获得输入，所以你将提供的输入节点将是 <code>Mul</code> 节点的输出。</p>
-<p>&lt;img src ="<a href="https://www.tensorflow.org/images/inception_input.png">https://www.tensorflow.org/images/inception_input.png</a>" width="300"&gt;</p>
+<p><img src ="https://www.tensorflow.org/images/inception_input.png" width="300"></p>
 <p>同样，你也需要做相同的操作来确认正确的输出节点。</p>
 <p>如果你只给了一个冻结的 <code>GraphDef</code> 文件，但是不知道里面的结构，尝试使用 <code>summarize_graph</code> 工具得到图结构从而找到输入和输出。下面是 Inception V3 的一个例子：</p>
 <pre><code>bazel run tensorflow/tools/graph_transforms:summarize_graph --
